@@ -19,22 +19,10 @@
 
 - {Add your naming conventions, code style, etc.}
 
-## Brand Identity (full spec: `rules/brand-identity.md`)
+## Brand Identity
 
-Primary palette:
-- Midnight Green #004851 (dark primary, Pantone 316C)
-- Gold #F2C75C (accent primary, Pantone 141C)
-- Dark Gunmetal #1D1F2A (text/dark backgrounds)
-- White #FFFFFF (text/light backgrounds)
-
-Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
-
-Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
-Typography: Tenorite (English), Work Sans (Vietnamese). Base 11pt, headlines 6x, sub-title 3x, body-title 1.6x.
-
-When generating HTML, CSS, charts, or visual output:
-- MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)
-- Load `rules/brand-identity.md` for full color table and function mappings
+Brand identity rules (colors, typography, logo) are in `AGENTS.md` (loaded by all AI tools).
+Full reference: `rules/brand-identity.md`. Also mirrored in `.cursor/rules/` and `.agents/rules/`.
 
 ## Structure
 

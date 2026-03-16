@@ -53,8 +53,10 @@ claude   # Opens Claude Code with all rules auto-loaded
 │   ├── hooks/                         # Event-driven scripts
 │   ├── rules/                         # Path-scoped rules (loaded on demand)
 │   └── skills/                        # On-demand procedures
-├── .cursor/rules/                     # Cursor-specific rules
-├── .agents/rules/                     # AntiGravity-specific rules
+├── .cursor/rules/
+│   └── brand-identity.md             # Cursor: auto-loads on visual/frontend files
+├── .agents/rules/
+│   └── brand-identity.md             # AntiGravity: brand identity rules
 ├── rules/
 │   └── brand-identity.md             # LTC brand colors, typography, logo rules
 ├── src/                               # Application source code
@@ -76,7 +78,17 @@ The `rules/` folder contains LTC-wide standards that apply to all projects:
 | `security-rules.md` | Data privacy policies, authentication, access controls | Coming soon |
 | `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
 
-These rules are **not auto-loaded** into every session. CLAUDE.md contains a distilled summary of brand identity (primary palette, font, logo). The full reference files are loaded on demand when the agent needs detailed specifications.
+### How rules are distributed across tools
+
+| Tool | Where brand identity loads from | When |
+|------|-------------------------------|------|
+| **Claude Code** | `AGENTS.md` (distilled EPS) | Every session |
+| **Cursor** | `.cursor/rules/brand-identity.md` | Auto-loads when editing visual/frontend files (*.html, *.css, *.tsx, etc.) |
+| **AntiGravity** | `.agents/rules/brand-identity.md` | Session rules |
+| **Gemini CLI** | `AGENTS.md` (AAIF standard) | Every session |
+| **All tools** | `rules/brand-identity.md` | On demand — full reference with 20 colors, function mappings, office theme |
+
+`CLAUDE.md` does NOT duplicate brand rules — it points to `AGENTS.md` to avoid double token cost (Claude Code reads both files).
 
 ## Naming Convention
 
