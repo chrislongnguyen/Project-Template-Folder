@@ -45,30 +45,34 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 ## What's Included
 
 ```
-.
-├── CLAUDE.md                          # Claude Code rules (loaded every session)
-├── GEMINI.md                          # AntiGravity rules (loaded every session)
+.                                                    7-CS Component
+├── CLAUDE.md                  # Claude Code rules     ← EPS (always-active constitution)
+├── GEMINI.md                  # AntiGravity rules     ← EPS (always-active constitution)
 ├── .claude/
-│   ├── settings.json                  # Safety permissions (deny/allow)
-│   ├── settings.local.json.example    # Personal overrides template (gitignored)
-│   ├── agents/                        # Subagent definitions
-│   ├── commands/                      # Slash commands
-│   ├── hooks/                         # Event-driven scripts
-│   ├── rules/                         # Path-scoped rules (loaded on demand)
-│   └── skills/                        # On-demand procedures
+│   ├── settings.json          # Safety deny/allow     ← Environment (hard ceilings)
+│   ├── settings.local.json.example  # Personal overrides  ← Environment (per-user)
+│   ├── agents/                # Subagent definitions   ← Agent (operator config)
+│   ├── commands/              # Slash commands         ← EOP (on-demand procedures)
+│   ├── hooks/                 # Event-driven scripts   ← Environment (automation)
+│   ├── rules/                 # Path-scoped rules      ← EPS (modular, on-demand)
+│   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
 ├── .cursor/rules/
-│   └── brand-identity.md             # Cursor: auto-loads on visual/frontend files
+│   └── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
 ├── .agents/rules/
-│   └── brand-identity.md             # AntiGravity: workspace brand identity rules
+│   └── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
 ├── rules/
-│   └── brand-identity.md             # Full reference (20 colors, functions, office theme)
-├── src/                               # Application source code
-├── docs/                              # Reference documentation
-├── scripts/                           # Build and utility scripts
-├── tests/                             # Test suites
-├── .gitignore                         # Secrets, build output, IDE files excluded
-└── .mcp.json                          # MCP server connections
+│   └── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
+├── src/                       # Application code       ← Input (task context)
+├── docs/                      # Reference docs         ← Input (knowledge base)
+├── scripts/                   # Build/deploy utils     ← Tools (extend agent capability)
+├── tests/                     # Test suites            ← EOP (verification gates)
+├── .gitignore                 # Excluded files         ← Environment (safety boundary)
+└── .mcp.json                  # MCP server connections ← Tools (external integrations)
 ```
+
+> **7-CS** = The Agent's 7-Component System (Doc-9). Each file maps to a component:
+> **EPS** constrains behavior | **EOP** defines procedures | **Environment** sets hard limits |
+> **Tools** extend capability | **Input** provides context | **Agent** executes within all of the above.
 
 ## LTC Global Rules
 
