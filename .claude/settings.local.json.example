@@ -1,0 +1,8 @@
+{
+  "_comment": "Personal overrides — copy to settings.local.json (gitignored). Higher priority than settings.json.",
+  "permissions": {
+    "allow": [
+      "Bash(open *)"
+    ]
+  }
+}
