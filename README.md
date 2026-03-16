@@ -81,7 +81,7 @@ The `rules/` folder contains LTC-wide standards that apply to all projects:
 | Rule File | What it covers | Status |
 |-----------|---------------|--------|
 | `brand-identity.md` | Colors (20-color palette), typography (Tenorite/Work Sans), logo usage, function color assignments, MS Office theme | Active |
-| `naming-rules.md` | LTC Universal Naming Grammar (UNG) for repos, folders, and platform items | Coming soon |
+| `naming-rules.md` | Universal Naming Grammar (UNG) — canonical key pattern, 75 SCOPE codes, platform rendering (Git, Local, ClickUp, Drive), validation regex | Active |
 | `security-rules.md` | Data privacy policies, authentication, access controls | Coming soon |
 | `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
 

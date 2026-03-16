@@ -41,8 +41,11 @@ When generating HTML, CSS, charts, or visual output:
 - MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)
 - Load `rules/brand-identity.md` for full color table and function mappings
 
-## Structure
+## Naming (full spec: `rules/naming-rules.md`)
 
+All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named item (repo, folder, ClickUp project/deliverable, Drive item), load `rules/naming-rules.md`.
+
+## Structure
 `src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
 
 ## Modular Rules & Skills
