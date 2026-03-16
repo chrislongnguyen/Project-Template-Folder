@@ -1,7 +1,6 @@
 # CLAUDE.md — {PROJECT_NAME}
 
-> Constitutional rules for the AI agent. Loaded every session.
-> Keep this under 50 lines. Move file-specific details to `.claude/rules/`.
+> Claude Code agent rules. Loaded every session. Keep under 50 lines; details go to `.claude/rules/`.
 
 ## Project
 
@@ -9,37 +8,43 @@
 - **Stack:** {e.g., TypeScript, React, Node.js}
 - **Purpose:** {One sentence — what this project does}
 
+## Build
+
+- Install: `{npm install / pip install -r requirements.txt / etc.}` | Test: `{npm test / pytest / etc.}` | Lint: `{npm run lint / etc.}`
+
 ## Rules
 
 - Follow existing patterns in the codebase before inventing new ones
 - Write tests for new functionality
 - Commit atomic changes with descriptive messages
+- PREFER editing existing files over creating new ones
+- If anything contradicts this file, flag the contradiction before proceeding
 
 ## Conventions
 
 - {Add your naming conventions, code style, etc.}
 
-## Brand Identity
+## Brand Identity (full spec: `rules/brand-identity.md`)
 
-Brand identity rules (colors, typography, logo) are in `AGENTS.md` (auto-loaded by Claude Code).
-Full reference: `rules/brand-identity.md`. Also in `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`.
+Primary palette:
+- Midnight Green #004851 (dark primary, Pantone 316C)
+- Gold #F2C75C (accent primary, Pantone 141C)
+- Dark Gunmetal #1D1F2A (text/dark backgrounds)
+- White #FFFFFF (text/light backgrounds)
+
+Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
+
+Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
+Typography: Tenorite (English), Work Sans (Vietnamese). Base 11pt, headlines 6x, sub-title 3x, body-title 1.6x.
+
+When generating HTML, CSS, charts, or visual output:
+- MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)
+- Load `rules/brand-identity.md` for full color table and function mappings
 
 ## Structure
 
-```
-src/           — Application source code
-docs/          — Reference documentation
-scripts/       — Build and utility scripts
-tests/         — Test suites
-rules/         — LTC global rules (brand identity, naming, security, effectiveness)
-```
+`src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
 
-## Modular Rules
+## Modular Rules & Skills
 
-File-specific conventions live in `.claude/rules/` (loaded on demand):
-- See `.claude/rules/` for path-scoped rules
-
-## Skills
-
-On-demand procedures live in `.claude/skills/` (loaded when invoked):
-- See `.claude/skills/` for available skills
+Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/`

@@ -28,25 +28,26 @@ cd {YOUR_PROJECT_NAME}
 | 1 | `.claude/settings.json` | Review deny/allow rules. Add project-specific permissions. This is your safety net — configure it first. |
 | 2 | `.gitignore` | Add any project-specific exclusions (credentials, data files, etc.) |
 | 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 50 lines. |
-| 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. |
-| 5 | `AGENTS.md` | Fill in build/test/lint commands for your stack. |
-| 6 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
-| 7 | `.claude/rules/` | Delete the example rule. Add path-scoped rules for your codebase. |
-| 8 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
+| 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
+| 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
+| 6 | `.claude/rules/` | Delete the example rule. Add path-scoped rules for your codebase. |
+| 7 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
+| — | `.cursor/rules/`, `.agents/rules/` | Already configured with brand identity. Add more rules as needed for Cursor / AntiGravity. |
 
 ### 4. Start working
 
 ```bash
-claude   # Opens Claude Code with all rules auto-loaded
+claude   # Opens Claude Code with CLAUDE.md auto-loaded
 ```
+
+Or open the project in AntiGravity / Cursor — each IDE loads its own rules automatically.
 
 ## What's Included
 
 ```
 .
-├── CLAUDE.md                          # Claude Code agent rules (loaded every session)
-├── GEMINI.md                          # AntiGravity agent rules (loaded every session)
-├── AGENTS.md                          # Universal rules (Claude Code auto-reads this too)
+├── CLAUDE.md                          # Claude Code rules (loaded every session)
+├── GEMINI.md                          # AntiGravity rules (loaded every session)
 ├── .claude/
 │   ├── settings.json                  # Safety permissions (deny/allow)
 │   ├── settings.local.json.example    # Personal overrides template (gitignored)
@@ -58,9 +59,9 @@ claude   # Opens Claude Code with all rules auto-loaded
 ├── .cursor/rules/
 │   └── brand-identity.md             # Cursor: auto-loads on visual/frontend files
 ├── .agents/rules/
-│   └── brand-identity.md             # AntiGravity: brand identity rules
+│   └── brand-identity.md             # AntiGravity: workspace brand identity rules
 ├── rules/
-│   └── brand-identity.md             # LTC brand colors, typography, logo rules
+│   └── brand-identity.md             # Full reference (20 colors, functions, office theme)
 ├── src/                               # Application source code
 ├── docs/                              # Reference documentation
 ├── scripts/                           # Build and utility scripts
@@ -80,22 +81,18 @@ The `rules/` folder contains LTC-wide standards that apply to all projects:
 | `security-rules.md` | Data privacy policies, authentication, access controls | Coming soon |
 | `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
 
-### How rules are distributed across tools
+### How rules reach each tool
 
-| Tool | Where brand identity loads from | When |
-|------|-------------------------------|------|
-| **Claude Code** (CLI) | `AGENTS.md` (distilled EPS) | Every session — Claude Code reads both CLAUDE.md + AGENTS.md |
-| **AntiGravity** (IDE) | `GEMINI.md` (distilled EPS) + `.agents/rules/brand-identity.md` | Every session — AntiGravity reads GEMINI.md, NOT AGENTS.md |
-| **Cursor** (IDE) | `.cursor/rules/brand-identity.md` | Auto-loads when editing visual/frontend files (*.html, *.css, *.tsx, etc.) |
-| **All tools** | `rules/brand-identity.md` | On demand — full reference with 20 colors, function mappings, office theme |
+Each tool reads **different files** at session start. There is no single file all tools share.
 
-### Why the files are structured this way
+| Tool | Primary rules file | Brand identity source | Loading |
+|------|-------------------|----------------------|---------|
+| **Claude Code** (CLI) | `CLAUDE.md` | Embedded in CLAUDE.md (distilled summary) | Auto-loaded every session |
+| **AntiGravity** (IDE) | `GEMINI.md` | Embedded in GEMINI.md (distilled summary) | Auto-loaded every session |
+| **Cursor** (IDE) | `.cursor/rules/` | `.cursor/rules/brand-identity.md` | Auto-loads when editing *.html, *.css, *.tsx, etc. |
+| **All tools** | `rules/brand-identity.md` | Full 20-color reference | On demand — agent reads when it needs detailed specs |
 
-Each tool reads **different files** at session start. There is no single file all tools share:
-
-- **Claude Code** reads `CLAUDE.md` + `AGENTS.md`. Brand rules live in `AGENTS.md`. `CLAUDE.md` just points there to avoid duplication (LT-7: token cost).
-- **AntiGravity** reads `GEMINI.md` only. It does NOT read `AGENTS.md` or `CLAUDE.md`. So `GEMINI.md` must contain brand rules directly — no shortcuts.
-- **Cursor** reads `.cursor/rules/` only. Brand rules are in `.cursor/rules/brand-identity.md` with path-scoped triggers on visual files.
+**Why no AGENTS.md?** The AAIF standard promises a universal file all tools read. In practice, only Claude Code reads it. AntiGravity reads GEMINI.md. Cursor reads .cursor/rules/. Rather than maintain a file only one tool uses, each tool gets rules through its own guaranteed loading path. Less elegant, more reliable.
 
 ## Naming Convention
 
@@ -115,7 +112,7 @@ Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
 
 The template enforces a two-tier safety model:
 
-- **100% enforced** (`.claude/settings.json`): Deny rules the Claude Code agent physically cannot bypass — no reading secrets, no `rm -rf`, no force push. (AntiGravity and Cursor have their own permission models configured in their respective IDE settings.)
+- **100% enforced** (`.claude/settings.json`): Deny rules the Claude Code agent physically cannot bypass — no reading secrets, no `rm -rf`, no force push. AntiGravity and Cursor have their own permission models configured in their respective IDE settings.
 - **~80% advisory** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`): Constitutional rules the agent follows with high compliance — coding standards, brand identity, naming conventions.
 
 Configure the 100% tier first. It is your safety net.

@@ -1,14 +1,16 @@
 # GEMINI.md — {PROJECT_NAME}
 
-> Constitutional rules for the AntiGravity IDE agent. Loaded every session.
-> Keep this under 50 lines. Move file-specific details to `.agents/rules/`.
-> AntiGravity does NOT read CLAUDE.md or AGENTS.md — this file must be self-contained.
+> AntiGravity IDE agent rules. Loaded every session. Keep under 50 lines; details go to `.agents/rules/`.
 
 ## Project
 
 - **Name:** {PROJECT_NAME}
 - **Stack:** {e.g., TypeScript, React, Node.js}
 - **Purpose:** {One sentence — what this project does}
+
+## Build
+
+- Install: `{npm install / pip install -r requirements.txt / etc.}` | Test: `{npm test / pytest / etc.}` | Lint: `{npm run lint / etc.}`
 
 ## Rules
 
@@ -45,5 +47,4 @@ When generating HTML, CSS, charts, or visual output:
 
 ## Modular Rules & Skills
 
-- Workspace rules: `.agents/rules/` (loaded by AntiGravity)
-- Workspace skills: `.agents/skills/` (loaded when invoked)
+Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`
