@@ -82,10 +82,9 @@ The `rules/` folder contains LTC-wide standards that apply to all projects:
 
 | Tool | Where brand identity loads from | When |
 |------|-------------------------------|------|
-| **Claude Code** | `AGENTS.md` (distilled EPS) | Every session |
-| **Cursor** | `.cursor/rules/brand-identity.md` | Auto-loads when editing visual/frontend files (*.html, *.css, *.tsx, etc.) |
-| **AntiGravity** | `.agents/rules/brand-identity.md` | Session rules |
-| **Gemini CLI** | `AGENTS.md` (AAIF standard) | Every session |
+| **Claude Code** (CLI) | `AGENTS.md` (distilled EPS) | Every session |
+| **Cursor** (IDE) | `.cursor/rules/brand-identity.md` | Auto-loads when editing visual/frontend files (*.html, *.css, *.tsx, etc.) |
+| **AntiGravity** (IDE) | `.agents/rules/brand-identity.md` | Session rules |
 | **All tools** | `rules/brand-identity.md` | On demand — full reference with 20 colors, function mappings, office theme |
 
 `CLAUDE.md` does NOT duplicate brand rules — it points to `AGENTS.md` to avoid double token cost (Claude Code reads both files).

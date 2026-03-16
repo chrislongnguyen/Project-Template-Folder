@@ -1,6 +1,6 @@
 # AGENTS.md — {PROJECT_NAME}
 
-> Universal agent rules (AAIF standard). Readable by Claude Code, Cursor, Gemini CLI, AntiGravity, and other AI tools.
+> Universal agent rules (AAIF standard). Readable by Claude Code, Cursor, AntiGravity, and other AI tools.
 > Keep minimal — Claude Code reads both CLAUDE.md and AGENTS.md, so avoid duplicating content.
 
 ## Build
