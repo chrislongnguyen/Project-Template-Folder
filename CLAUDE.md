@@ -21,8 +21,8 @@
 
 ## Brand Identity
 
-Brand identity rules (colors, typography, logo) are in `AGENTS.md` (loaded by all AI tools).
-Full reference: `rules/brand-identity.md`. Also mirrored in `.cursor/rules/` and `.agents/rules/`.
+Brand identity rules (colors, typography, logo) are in `AGENTS.md` (auto-loaded by Claude Code).
+Full reference: `rules/brand-identity.md`. Also in `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`.
 
 ## Structure
 
