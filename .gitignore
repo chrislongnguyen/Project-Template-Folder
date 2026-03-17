@@ -3,6 +3,16 @@
 .env.local
 .env.production
 .env.*
+!.env.example
+secrets/
+.backup/
+
+# Security — prevent accidental credential commits
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
 
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json

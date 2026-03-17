@@ -27,7 +27,7 @@ cd {YOUR_PROJECT_NAME}
 |------|------|------------|
 | 1 | `.claude/settings.json` | Review deny/allow rules. Add project-specific permissions. This is your safety net — configure it first. |
 | 2 | `.gitignore` | Add any project-specific exclusions (credentials, data files, etc.) |
-| 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 50 lines. |
+| 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 80 lines. |
 | 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
 | 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
 | 6 | `.claude/rules/` | Delete the example rule. Add path-scoped rules for your codebase. |
@@ -57,11 +57,17 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 │   ├── rules/                 # Path-scoped rules      ← EPS (modular, on-demand)
 │   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
 ├── .cursor/rules/
-│   └── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
+│   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
+│   └── security.md           # Cursor security rules   ← EPS (tool-specific)
 ├── .agents/rules/
-│   └── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
+│   ├── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
+│   └── security.md           # AntiGravity security    ← EPS (tool-specific)
+├── .pre-commit-config.yaml    # gitleaks hook config    ← Environment (hard gate)
+├── .gitleaks.toml             # Secret detection rules  ← Environment (hard gate)
 ├── rules/
-│   └── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
+│   ├── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
+│   ├── naming-rules.md       # UNG full spec          ← EPS (global reference)
+│   └── security-rules.md     # 3-layer security ref   ← EPS (global reference)
 ├── src/                       # Application code       ← Input (task context)
 ├── docs/                      # Reference docs         ← Input (knowledge base)
 ├── scripts/                   # Build/deploy utils     ← Tools (extend agent capability)
@@ -82,19 +88,20 @@ The `rules/` folder contains LTC-wide standards that apply to all projects:
 |-----------|---------------|--------|
 | `brand-identity.md` | Colors (20-color palette), typography (Tenorite/Work Sans), logo usage, function color assignments, MS Office theme | Active |
 | `naming-rules.md` | Universal Naming Grammar (UNG) — canonical key pattern, 75 SCOPE codes, platform rendering (Git, Local, ClickUp, Drive), validation regex | Active |
-| `security-rules.md` | Data privacy policies, authentication, access controls | Coming soon |
+| `security-rules.md` | 3-layer defense-in-depth: 6 AI agent security rules, risk tiers, secret detection (gitleaks), gap analysis, setup guide | Active |
 | `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
 
 ### How rules reach each tool
 
 Each tool reads **different files** at session start. There is no single file all tools share.
 
-| Tool | Primary rules file | Brand identity source | Loading |
-|------|-------------------|----------------------|---------|
-| **Claude Code** (CLI) | `CLAUDE.md` | Embedded in CLAUDE.md (distilled summary) | Auto-loaded every session |
-| **AntiGravity** (IDE) | `GEMINI.md` | Embedded in GEMINI.md (distilled summary) | Auto-loaded every session |
-| **Cursor** (IDE) | `.cursor/rules/` | `.cursor/rules/brand-identity.md` | Auto-loads when editing *.html, *.css, *.tsx, etc. |
-| **All tools** | `rules/brand-identity.md` | Full 20-color reference | On demand — agent reads when it needs detailed specs |
+| Tool | Primary rules file | Brand + Security source | Loading |
+|------|-------------------|------------------------|---------|
+| **Claude Code** (CLI) | `CLAUDE.md` | Distilled in CLAUDE.md (brand, naming, security) | Auto-loaded every session |
+| **AntiGravity** (IDE) | `GEMINI.md` | Distilled in GEMINI.md (brand, naming, security) | Auto-loaded every session |
+| **Cursor** (IDE) | `.cursor/rules/` | `.cursor/rules/brand-identity.md`, `security.md` | Auto-loads matching globs |
+| **All tools** | `rules/` | Full references: brand-identity, naming-rules, security-rules | On demand — agent reads when it needs detailed specs |
+| **Pre-commit** | `.pre-commit-config.yaml` | `.gitleaks.toml` (secret detection) | Runs on every `git commit` |
 
 **Why no AGENTS.md?** The AAIF standard promises a universal file all tools read. In practice, only Claude Code reads it. AntiGravity reads GEMINI.md. Cursor reads .cursor/rules/. Rather than maintain a file only one tool uses, each tool gets rules through its own guaranteed loading path. Less elegant, more reliable.
 
@@ -114,12 +121,15 @@ Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
 
 ## Safety Model
 
-The template enforces a two-tier safety model:
+The template enforces a three-layer defense-in-depth model:
 
-- **100% enforced** (`.claude/settings.json`): Deny rules the Claude Code agent physically cannot bypass — no reading secrets, no `rm -rf`, no force push. AntiGravity and Cursor have their own permission models configured in their respective IDE settings.
-- **~80% advisory** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`): Constitutional rules the agent follows with high compliance — coding standards, brand identity, naming conventions.
+- **Layer 1 — Structural** (`.gitignore`): Passive defense. Secrets, key files, and backup directories are excluded by path. Cannot be accidentally committed.
+- **Layer 2 — Agent EPS** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
+- **Layer 3 — Hard Gate** (`.pre-commit-config.yaml` + `.gitleaks.toml`): Deterministic. gitleaks blocks any commit containing detected secrets. Cannot be bypassed without explicit allowlist entry.
 
-Configure the 100% tier first. It is your safety net.
+Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
+
+See `rules/security-rules.md` for the full security reference, including risk tiers, gap analysis, and setup instructions.
 
 ## Personal Overrides
 

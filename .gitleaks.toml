@@ -1,0 +1,13 @@
+title = "LTC Security — Secret Detection"
+
+# Uses gitleaks default rules (~100+ patterns)
+# Covers: AWS, GCP, GitHub, Slack, Anthropic, OpenAI,
+# generic API keys, private keys, JWTs, connection strings.
+# No custom rules needed — defaults are sufficient.
+
+[allowlist]
+description = "LTC template allowlist"
+paths = [
+    '''rules/security-rules\.md''',
+    '''\.gitleaks\.toml''',
+]

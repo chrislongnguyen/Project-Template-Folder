@@ -1,6 +1,6 @@
 # GEMINI.md — {PROJECT_NAME}
 
-> AntiGravity IDE agent rules. Loaded every session. Keep under 50 lines; details go to `.agents/rules/`.
+> AntiGravity IDE agent rules. Loaded every session. Keep under 80 lines; details go to `.agents/rules/`.
 
 ## Project
 
@@ -44,6 +44,29 @@ When generating HTML, CSS, charts, or visual output:
 ## Naming (full spec: `rules/naming-rules.md`)
 
 All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named item (repo, folder, ClickUp project/deliverable, Drive item), load `rules/naming-rules.md`.
+
+## Security (full spec: `rules/security-rules.md`)
+
+### Secrets
+- NEVER hardcode secrets (API keys, tokens, passwords, connection strings) in source code, prompts, or tool arguments
+- All secrets MUST live in `.env` or `secrets/` (both gitignored). Reference via environment variables only
+- Before completing any task, scan your output for patterns that look like secrets (API keys, tokens, passwords, PII). This check is pattern-based. If found — stop, redact, alert the user
+
+### Execution Risk Tiers
+- LOW (read files, search, lint, run tests): proceed without confirmation
+- MEDIUM (edit files, git commit, install packages): proceed, user can review
+- HIGH (delete files, git push, force operations, deploy, modify CI/CD, touch .env/secrets/): ALWAYS require explicit user confirmation
+
+### Blast Radius
+- Operate only within the project directory unless explicitly instructed otherwise
+- For destructive or experimental operations, prefer git worktrees or branches — never on main directly
+- Prefer reversible actions (git commit) over irreversible ones (file deletion of untracked files)
+- When making external API calls or web requests, never include secrets, PII, or confidential data unless the endpoint is explicitly authorized
+
+### Backup Awareness
+- Before overwriting non-git-tracked files, warn the user that the original is not recoverable
+- NEVER force-push without confirming the remote state and getting explicit approval
+- If a file cannot be easily recreated, flag this before modifying it
 
 ## Structure
 `src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
