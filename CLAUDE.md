@@ -1,6 +1,6 @@
 # CLAUDE.md — {PROJECT_NAME}
 
-> Claude Code agent rules. Loaded every session. Keep under 80 lines; details go to `.claude/rules/`.
+> Claude Code agent rules. Loaded every session. Keep under 100 lines; details go to `.claude/rules/`.
 
 ## Project
 
@@ -67,6 +67,26 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named 
 - Before overwriting non-git-tracked files, warn the user that the original is not recoverable
 - NEVER force-push without confirming the remote state and getting explicit approval
 - If a file cannot be easily recreated, flag this before modifying it
+
+## Agent System (full spec: `rules/agent-system.md`)
+
+Your AI agent has 8 structural limits (LLM Truths) that cannot be patched away.
+The 7-Component System compensates: EPS → Input → EOP → Environment → Tools → Agent → Action → Outcome.
+Three principles: (1) Derisk before driving output, (2) Know the agent's physics, (3) Human Director + Agent = complementary operators.
+When output is wrong: load the diagnostic framework before blaming the model.
+
+## System Design (full spec: `rules/general-system.md`)
+
+Every system has 6 components: Input, User, Action, Principles, Tools, Environment → Outcome.
+Establish RACI (R and A) before analyzing forces. UBS/UDS analyzed from both R and A perspectives.
+System boundaries have 4 progressive layers: (1) What flows, (2) Contract fields, (3) Eval spec per AC, (4) Failure modes.
+Design methodology: Problem Discovery → System Design → VANA Requirements (Verb-Adverb-Noun-Adjective with binary ACs).
+
+## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
+
+When agent output is wrong: trace through 6 configurable components (EPS → Input → EOP → Environment → Tools → Agent) before blaming the model.
+Derisk checklist: list what can go wrong, map each risk to an LT and component, verify it is configured.
+Symptom-to-component lookup table and Force Map available for quick diagnosis.
 
 ## Structure
 `src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
