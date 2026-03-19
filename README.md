@@ -77,7 +77,11 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 │   └── template-check.sh     # Staleness checker      ← Tools (distribution)
 ├── tests/                     # Test suites            ← EOP (verification gates)
 ├── .gitignore                 # Excluded files         ← Environment (safety boundary)
-└── .mcp.json                  # MCP server connections ← Tools (external integrations)
+├── .mcp.json                  # MCP server connections ← Tools (external integrations)
+├── .claude-plugin/
+│   └── marketplace.json       # Plugin registry        ← Tools (plugin discovery)
+└── plugins/
+    └── memory-vault/          # Cross-session memory   ← Environment (context persistence)
 ```
 
 > **7-CS** = The Agent's 7-Component System (Doc-9). Each file maps to a component:
@@ -134,6 +138,14 @@ The template enforces a three-layer defense-in-depth model:
 Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
 
 See `rules/security-rules.md` for the full security reference, including risk tiers, gap analysis, and setup instructions.
+
+## Plugins
+
+This template includes Claude Code plugins in `plugins/`. Each plugin is discoverable via `.claude-plugin/marketplace.json`.
+
+| Plugin | What it does | Install |
+|--------|-------------|---------|
+| `memory-vault` | Cross-session memory — auto-exports sessions, indexes with QMD, recalls context at startup | See [`plugins/memory-vault/README.md`](plugins/memory-vault/README.md) |
 
 ## Personal Overrides
 

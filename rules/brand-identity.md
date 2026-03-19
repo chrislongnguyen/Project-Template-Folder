@@ -89,8 +89,10 @@
 ## 5. Typography
 
 ### Typefaces
-- **English:** Tenorite
-- **Vietnamese:** Work Sans (Worksans)
+- **English:** Inter (load via Google Fonts: `https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap`)
+- **Vietnamese:** Work Sans (load via Google Fonts: `https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap`)
+
+> **Note:** Tenorite (Microsoft 365 private font) was previously specified for English. Inter replaces it for all agent-generated output because Tenorite is unavailable outside MS Office.
 
 ### Type Hierarchy (base size A = 11pt)
 | Level | Scale | Size |
@@ -101,9 +103,9 @@
 | Body Text | A (base) | 11pt |
 
 ### For HTML/CSS output
-When web-safe fallbacks are needed:
-- Tenorite fallback: `'Tenorite', 'Segoe UI', system-ui, sans-serif`
-- Work Sans fallback: `'Work Sans', 'Segoe UI', system-ui, sans-serif`
+- Inter: `'Inter', system-ui, -apple-system, sans-serif`
+- Work Sans: `'Work Sans', system-ui, -apple-system, sans-serif`
+- ALWAYS include a `<link>` or `@import` for Google Fonts — do NOT assume fonts are installed locally
 
 ---
 
