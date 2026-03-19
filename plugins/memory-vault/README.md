@@ -169,6 +169,45 @@ If you previously installed Memory Vault manually:
 4. Run `/setup` — it detects existing vault and config, skips what's already done
 5. Vault folder and QMD config are unchanged
 
+## Importing old conversations
+
+Import chat history from other platforms into your vault for QMD search.
+
+### Gemini (Google Takeout)
+
+1. Go to [Google Takeout](https://takeout.google.com), select "Gemini Apps Activity", download archive
+2. Extract the ZIP
+3. Run:
+```bash
+python3 plugins/memory-vault/scripts/import-gemini.py <takeout-dir> <vault>/07-Claude/conversations/
+```
+
+### Cursor
+
+Reads directly from Cursor's local SQLite database:
+```bash
+python3 plugins/memory-vault/scripts/import-cursor.py <vault>/07-Claude/conversations/
+```
+Default db: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+
+### Claude web (claude.ai)
+
+1. Go to claude.ai → Settings → Privacy & Data → Export Data
+2. Download the `.dms` file (or extract it)
+3. Run:
+```bash
+python3 plugins/memory-vault/scripts/import-claude-web.py <export-path> <vault>/07-Claude/conversations/
+```
+
+### Shared flags
+
+| Flag | What it does |
+|------|-------------|
+| `--dry-run` | Preview what would be imported without writing |
+| `--force` | Overwrite existing files |
+
+After importing, refresh QMD: `qmd update && qmd embed`
+
 ## Version
 
 1.0.0
