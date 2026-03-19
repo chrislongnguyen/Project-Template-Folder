@@ -1,0 +1,8 @@
+{
+  "name": "memory-vault",
+  "description": "Cross-session memory for Claude Code — auto-exports sessions, indexes with QMD, recalls context at startup",
+  "author": {
+    "name": "Long Nguyen",
+    "email": "longnguyen@ltcpartners.com"
+  }
+}
