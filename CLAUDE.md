@@ -14,7 +14,7 @@
 
 ## Rules
 
-- Follow existing patterns in the codebase before inventing new ones
+- Follow existing patterns before inventing new ones
 - Write tests for new functionality
 - Commit atomic changes with descriptive messages
 - PREFER editing existing files over creating new ones
@@ -29,24 +29,16 @@
 **MANDATORY for ALL visual output** — HTML, CSS, SVG, charts, slide decks, diagrams, emails, PDFs.
 Non-compliance = broken output. Load `rules/brand-identity.md` BEFORE generating any visual artifact.
 
-Primary palette:
-- Midnight Green #004851 (dark primary) | Gold #F2C75C (accent primary)
-- Dark Gunmetal #1D1F2A (text/dark bg) | White #FFFFFF (text/light bg)
-
+Primary: Midnight Green #004851 | Gold #F2C75C | Dark Gunmetal #1D1F2A | White #FFFFFF
 Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
-
 Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
-Typography: **Inter** (English), **Work Sans** (Vietnamese). Both via Google Fonts. Base 11pt.
+Typography: **Inter** (English), **Work Sans** (Vietnamese). Google Fonts. Base 11pt.
 
-**NEVER:**
-- Use generic/default colors (Bootstrap blue, Tailwind gray, Chart.js defaults, browser defaults)
-- Use fonts other than Inter or Work Sans — no Arial, Helvetica, Roboto, system defaults
-- Omit Google Fonts `<link>` / `@import` — fonts are NOT locally installed
-- Generate unstyled HTML — every visual artifact MUST include LTC colors and fonts
+**NEVER:** Use generic/default colors or fonts (no Bootstrap blue, Tailwind gray, Arial, Helvetica, Roboto, system defaults). Never omit Google Fonts `<link>`/`@import`. Every visual artifact MUST include LTC colors and fonts.
 
 ## Naming (full spec: `rules/naming-rules.md`)
 
-All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named item (repo, folder, ClickUp project/deliverable, Drive item), load `rules/naming-rules.md`.
+All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Load `rules/naming-rules.md` before creating any named item.
 
 ## Security (full spec: `rules/security-rules.md`)
 
@@ -73,23 +65,15 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named 
 
 ## Agent System (full spec: `rules/agent-system.md`)
 
-Your AI agent has 8 structural limits (LLM Truths) that cannot be patched away.
-The 7-Component System compensates: EPS → Input → EOP → Environment → Tools → Agent → Action → Outcome.
-Three principles: (1) Derisk before driving output, (2) Know the agent's physics, (3) Human Director + Agent = complementary operators.
-When output is wrong: load the diagnostic framework before blaming the model.
+8 LLM Truths + 7-Component System (EPS→Input→EOP→Environment→Tools→Agent→Action→Outcome). Load full spec for details.
 
 ## System Design (full spec: `rules/general-system.md`)
 
-Every system has 6 components: Input, User, Action, Principles, Tools, Environment → Outcome.
-Establish RACI (R and A) before analyzing forces. UBS/UDS analyzed from both R and A perspectives.
-System boundaries have 4 progressive layers: (1) What flows, (2) Contract fields, (3) Eval spec per AC, (4) Failure modes.
-Design methodology: Problem Discovery → System Design → VANA Requirements (Verb-Adverb-Noun-Adjective with binary ACs).
+6-component model + RACI-first analysis + 4-layer boundary spec + VANA requirements. Load full spec for details.
 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 
-When agent output is wrong: trace through 6 configurable components (EPS → Input → EOP → Environment → Tools → Agent) before blaming the model.
-Derisk checklist: list what can go wrong, map each risk to an LT and component, verify it is configured.
-Symptom-to-component lookup table and Force Map available for quick diagnosis.
+Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
 ## Structure
 `src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
@@ -100,5 +84,4 @@ Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/`
 
 ## Template Version
 
-If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start.
-If behind, warn the user before proceeding. If the script is missing, skip silently.
+If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start. If behind, warn user. If missing, skip.

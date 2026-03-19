@@ -1,9 +1,22 @@
 title = "LTC Security — Secret Detection"
 
-# Uses gitleaks default rules (~100+ patterns)
-# Covers: AWS, GCP, GitHub, Slack, Anthropic, OpenAI,
-# generic API keys, private keys, JWTs, connection strings.
-# No custom rules needed — defaults are sufficient.
+# IMPORTANT: [extend] useDefault = true loads gitleaks' built-in ~100+ rules.
+# Without it, a custom .gitleaks.toml REPLACES all default rules with nothing.
+[extend]
+useDefault = true
+
+# Custom rules — cover gaps not in gitleaks defaults
+[[rules]]
+id = "connection-string-password"
+description = "Database connection string with embedded password"
+regex = '''(?i)((?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?|redis|amqp)://[^:]+:[^@\s]{3,}@[^\s]+)'''
+keywords = ["postgresql", "postgres", "mysql", "mongodb", "redis", "amqp"]
+
+[[rules]]
+id = "bearer-auth-header"
+description = "Bearer authentication token in header"
+regex = '''(?i)(?:Authorization[:\s]+Bearer\s+)([a-zA-Z0-9_.~+/=-]{20,})'''
+keywords = ["bearer", "authorization"]
 
 [allowlist]
 description = "LTC template allowlist"

@@ -3,29 +3,21 @@
 > AntiGravity IDE agent rules. Loaded every session. Keep under 80 lines; details go to `.agents/rules/`.
 
 ## Project
-
-- **Name:** {PROJECT_NAME}
-- **Stack:** {e.g., TypeScript, React, Node.js}
+- **Name:** {PROJECT_NAME} | **Stack:** {e.g., TypeScript, React, Node.js}
 - **Purpose:** {One sentence — what this project does}
 
 ## Build
-
 - Install: `{npm install / pip install -r requirements.txt / etc.}` | Test: `{npm test / pytest / etc.}` | Lint: `{npm run lint / etc.}`
 
 ## Rules
-
-- Follow existing patterns in the codebase before inventing new ones
-- Write tests for new functionality
-- Commit atomic changes with descriptive messages
-- PREFER editing existing files over creating new ones
+- Follow existing codebase patterns before inventing new ones; write tests for new functionality
+- Commit atomic changes with descriptive messages; PREFER editing existing files over creating new ones
 - If anything contradicts this file, flag the contradiction before proceeding
 
 ## Conventions
-
 - {Add your naming conventions, code style, etc.}
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)
-
 Primary palette:
 - Midnight Green #004851 (dark primary, Pantone 316C)
 - Gold #F2C75C (accent primary, Pantone 141C)
@@ -42,7 +34,6 @@ When generating HTML, CSS, charts, or visual output:
 - Load `rules/brand-identity.md` for full color table and function mappings
 
 ## Naming (full spec: `rules/naming-rules.md`)
-
 All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named item (repo, folder, ClickUp project/deliverable, Drive item), load `rules/naming-rules.md`.
 
 ## Security (full spec: `rules/security-rules.md`)
@@ -68,14 +59,20 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named 
 - NEVER force-push without confirming the remote state and getting explicit approval
 - If a file cannot be easily recreated, flag this before modifying it
 
+## Agent System (full spec: `rules/agent-system.md`)
+Your AI agent has 8 structural limits (LLM Truths). The 7-Component System compensates. Three principles: derisk before output, know the agent's physics, human + agent = complementary.
+
+## System Design (full spec: `rules/general-system.md`)
+Every system has 6 components: Input, User, Action, Principles, Tools, Environment → Outcome. Establish RACI first, then analyze forces. Design: Problem Discovery → System Design → VANA Requirements.
+
+## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
+When agent output is wrong: trace through 6 configurable components (EPS → Input → EOP → Environment → Tools → Agent) before blaming the model.
+
 ## Structure
 `src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
 
 ## Modular Rules & Skills
-
 Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`
 
 ## Template Version
-
-If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start.
-If behind, warn the user before proceeding. If the script is missing, skip silently.
+If `./scripts/template-check.sh` exists, run it with `--quiet` at session start. If behind, warn user. If missing, skip silently.
