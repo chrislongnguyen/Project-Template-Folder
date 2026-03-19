@@ -48,6 +48,8 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 .                                                    7-CS Component
 ├── CLAUDE.md                  # Claude Code rules     ← EPS (always-active constitution)
 ├── GEMINI.md                  # AntiGravity rules     ← EPS (always-active constitution)
+├── VERSION                    # Template version       ← Input (distribution tracking)
+├── CHANGELOG.md               # Tier-tagged changelog  ← Input (distribution tracking)
 ├── .claude/
 │   ├── settings.json          # Safety deny/allow     ← Environment (hard ceilings)
 │   ├── settings.local.json.example  # Personal overrides  ← Environment (per-user)
@@ -58,6 +60,7 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 │   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
 ├── .cursor/rules/
 │   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
+│   ├── template-version.md   # Version check rule     ← EPS (session-start)
 │   └── security.md           # Cursor security rules   ← EPS (tool-specific)
 ├── .agents/rules/
 │   ├── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
@@ -70,7 +73,8 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 │   └── security-rules.md     # 3-layer security ref   ← EPS (global reference)
 ├── src/                       # Application code       ← Input (task context)
 ├── docs/                      # Reference docs         ← Input (knowledge base)
-├── scripts/                   # Build/deploy utils     ← Tools (extend agent capability)
+├── scripts/
+│   └── template-check.sh     # Staleness checker      ← Tools (distribution)
 ├── tests/                     # Test suites            ← EOP (verification gates)
 ├── .gitignore                 # Excluded files         ← Environment (safety boundary)
 └── .mcp.json                  # MCP server connections ← Tools (external integrations)
