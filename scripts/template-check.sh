@@ -8,6 +8,17 @@ TEMPLATE_REPO="Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE"
 RAW_BASE="https://raw.githubusercontent.com/${TEMPLATE_REPO}/main"
 LOCAL_VERSION_FILE=".template-version"
 
+# --- Flag parsing ---
+MODE="default"
+for arg in "$@"; do
+  case "$arg" in
+    --quiet) MODE="quiet" ;;
+    --diff)  MODE="diff" ;;
+    --init)  MODE="init" ;;
+    *)       echo "Usage: $0 [--quiet|--diff|--init]"; exit 2 ;;
+  esac
+done
+
 # --- Helpers ---
 
 fetch_remote() {
@@ -34,7 +45,24 @@ semver_lt() {
 
 # --- Main ---
 
+do_init() {
+  local remote_version
+  remote_version=$(fetch_remote "${RAW_BASE}/VERSION" | tr -d '[:space:]') || true
+  if [[ -z "$remote_version" ]]; then
+    echo "Error: Could not fetch template VERSION (offline or auth required)."
+    echo "Hint: Set GITHUB_TOKEN to access private repos."
+    exit 2
+  fi
+  echo "$remote_version" > "$LOCAL_VERSION_FILE"
+  echo "Initialized .template-version to ${remote_version}"
+  exit 0
+}
+
 main() {
+  if [[ "$MODE" == "init" ]]; then
+    do_init
+  fi
+
   # Step 1: Read local version
   if [[ ! -f "$LOCAL_VERSION_FILE" ]]; then
     echo "No .template-version found."
@@ -69,6 +97,11 @@ main() {
     echo "  Local version:    ${local_version}"
     echo "  Template version: ${remote_version}"
     echo "  Status:           ⚠ Outdated (local ${local_version} → latest ${remote_version})"
+
+    if [[ "$MODE" == "quiet" ]]; then
+      echo "⚠ Template v${remote_version} available (you're on v${local_version}). Run ./scripts/template-check.sh for details."
+      exit 1
+    fi
 
     # Step 4: Fetch and parse CHANGELOG for versions between local and remote
     local changelog
@@ -111,15 +144,41 @@ main() {
         }
       '
     fi
+
+    if [[ "$MODE" == "diff" ]]; then
+      echo ""
+      echo "  Changed files (${local_version} → ${remote_version}):"
+      # POSIX-compatible awk (no 3-arg match — works on macOS BSD awk)
+      echo "$changelog" | awk -v local="$local_version" '
+        /^## \[/ {
+          s = $0; i = index(s, "[")
+          if (i > 0) { s = substr(s, i+1); j = index(s, "]"); ver = (j>0) ? substr(s,1,j-1) : "" } else ver = ""
+          in_range = (ver != "" && ver != local) ? 1 : 0
+        }
+        /^- \[T[123]:/ && in_range {
+          # Extract tier tag: first [...] on the line
+          s = $0; i = index(s, "[")
+          if (i > 0) { s = substr(s, i+1); j = index(s, "]"); tier = (j>0) ? substr(s,1,j-1) : "" } else tier = ""
+          # Extract file path between backticks
+          s = $0; i = index(s, "`")
+          if (i > 0) { s = substr(s, i+1); j = index(s, "`"); f = (j>0) ? substr(s,1,j-1) : "" } else f = ""
+          if (tier != "" && f != "") printf "    [%-12s] %s\n", tier, f
+        }
+      '
+      exit 1
+    fi
+
     echo ""
     echo "  Run: $0 --diff"
     echo "  to see file-level changes."
     exit 1
   else
-    echo "LTC Project Template — Update Check"
-    echo "  Local version:    ${local_version}"
-    echo "  Template version: ${remote_version}"
-    echo "  Status:           ✓ Up to date"
+    if [[ "$MODE" != "quiet" ]]; then
+      echo "LTC Project Template — Update Check"
+      echo "  Local version:    ${local_version}"
+      echo "  Template version: ${remote_version}"
+      echo "  Status:           ✓ Up to date"
+    fi
     exit 0
   fi
 }
