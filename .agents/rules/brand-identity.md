@@ -12,8 +12,8 @@
 Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
 
 ## Typography
-- English: Tenorite (fallback: 'Segoe UI', system-ui, sans-serif)
-- Vietnamese: Work Sans (fallback: 'Segoe UI', system-ui, sans-serif)
+- English: Inter (fallback: system-ui, -apple-system, sans-serif) — load via Google Fonts
+- Vietnamese: Work Sans (fallback: system-ui, -apple-system, sans-serif) — load via Google Fonts
 
 ## Rules
 - MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)

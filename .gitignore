@@ -16,6 +16,7 @@ secrets/
 
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json
+.template-version
 
 # Dependencies
 node_modules/

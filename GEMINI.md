@@ -35,7 +35,7 @@ Primary palette:
 Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
 
 Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
-Typography: Tenorite (English), Work Sans (Vietnamese). Base 11pt, headlines 6x, sub-title 3x, body-title 1.6x.
+Typography: **Inter** (English), **Work Sans** (Vietnamese). Both via Google Fonts. Base 11pt, headlines 6x, sub-title 3x, body-title 1.6x.
 
 When generating HTML, CSS, charts, or visual output:
 - MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)
