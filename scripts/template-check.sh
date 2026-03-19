@@ -93,15 +93,16 @@ main() {
 
   # Step 3: Compare
   if semver_lt "$local_version" "$remote_version"; then
-    echo "LTC Project Template — Update Check"
-    echo "  Local version:    ${local_version}"
-    echo "  Template version: ${remote_version}"
-    echo "  Status:           ⚠ Outdated (local ${local_version} → latest ${remote_version})"
-
+    # Quiet mode: one-liner only, no header
     if [[ "$MODE" == "quiet" ]]; then
       echo "⚠ Template v${remote_version} available (you're on v${local_version}). Run ./scripts/template-check.sh for details."
       exit 1
     fi
+
+    echo "LTC Project Template — Update Check"
+    echo "  Local version:    ${local_version}"
+    echo "  Template version: ${remote_version}"
+    echo "  Status:           ⚠ Outdated (local ${local_version} → latest ${remote_version})"
 
     # Step 4: Fetch and parse CHANGELOG for versions between local and remote
     local changelog
@@ -124,22 +125,11 @@ main() {
             # Extract date after "— "
             d = ""
             k = index($0, "— ")
-            if (k > 0) d = substr($0, k+3, 10)
+            if (k > 0) d = substr($0, k+4, 10)
             in_range = 1
             printf "    [%s] %s\n", ver, d
           } else {
             in_range = 0
-          }
-        }
-        /^### / && in_range { next }
-        /^- \[T[123]:/ && in_range {
-          # Extract file path between backticks
-          s = $0
-          i = index(s, "`")
-          if (i > 0) {
-            s = substr(s, i+1)
-            j = index(s, "`")
-            if (j > 0) printf "      %s\n", substr(s, 1, j-1)
           }
         }
       '
