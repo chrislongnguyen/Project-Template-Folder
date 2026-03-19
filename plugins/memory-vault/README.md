@@ -6,6 +6,8 @@ Cross-session memory for Claude Code. Auto-exports sessions, indexes with QMD, r
 
 A Claude Code plugin that gives your agent persistent memory across sessions. When Claude stops, a session log is saved to your vault. When Claude starts, it recalls what you were working on. QMD (a local search engine) makes everything searchable — keyword and semantic search across your entire work history.
 
+> **New here?** Start with the [A-Z Install Guide](INSTALL.md) — it walks through everything step by step.
+
 ## Prerequisites
 
 - **Claude Code** installed and working (`claude --version`)
