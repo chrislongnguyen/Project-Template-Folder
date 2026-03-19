@@ -140,6 +140,50 @@ cp .claude/settings.local.json.example .claude/settings.local.json
 # Edit settings.local.json — it's gitignored
 ```
 
+## Keeping Your Repo Updated
+
+This template uses semver versioning. The `VERSION` file tracks the current template version.
+
+### Distribution Tiers
+
+Every file falls into one of three update tiers:
+
+| Tier | Strategy | What it means |
+|------|----------|---------------|
+| T1:REPLACE | Overwrite | Org-owned. Copy the template's version directly. |
+| T2:MERGE | Merge | Mixed ownership. Update org sections, keep your project sections. |
+| T3:ADD-ONLY | Add new | New files only. Never overwrites your existing files. |
+
+See CHANGELOG.md for tier tags on every change.
+
+### Checking for Updates
+
+Run the staleness checker:
+
+    ./scripts/template-check.sh           # full report
+    ./scripts/template-check.sh --diff    # show changed files with tier tags
+    ./scripts/template-check.sh --quiet   # one-line summary (used by session-start)
+
+First time? Bootstrap your sync version:
+
+    ./scripts/template-check.sh --init
+
+### Applying Updates
+
+1. Open your repo in Claude Code (or your IDE of choice)
+2. Paste the template repo URL and ask:
+   "Check this template and see if there is any update I need to make to my repo"
+3. Claude diffs the template against your repo and recommends changes per tier
+4. Review and approve each change
+5. Update `.template-version` to the new version
+
+### Releasing a Template Update (maintainers)
+
+1. Make changes to the template repo
+2. Bump `VERSION` (semver: patch/minor/major)
+3. Add CHANGELOG.md entry with tier tags per file
+4. Commit, push, and optionally tag: `git tag v{VERSION}`
+
 ---
 
 _Template maintained by OPS Process. Source: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE)_
