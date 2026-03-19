@@ -74,3 +74,8 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Before creating any named 
 ## Modular Rules & Skills
 
 Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`
+
+## Template Version
+
+If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start.
+If behind, warn the user before proceeding. If the script is missing, skip silently.

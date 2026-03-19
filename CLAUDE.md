@@ -26,20 +26,23 @@
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)
 
+**MANDATORY for ALL visual output** — HTML, CSS, SVG, charts, slide decks, diagrams, emails, PDFs.
+Non-compliance = broken output. Load `rules/brand-identity.md` BEFORE generating any visual artifact.
+
 Primary palette:
-- Midnight Green #004851 (dark primary, Pantone 316C)
-- Gold #F2C75C (accent primary, Pantone 141C)
-- Dark Gunmetal #1D1F2A (text/dark backgrounds)
-- White #FFFFFF (text/light backgrounds)
+- Midnight Green #004851 (dark primary) | Gold #F2C75C (accent primary)
+- Dark Gunmetal #1D1F2A (text/dark bg) | White #FFFFFF (text/light bg)
 
 Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
 
 Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
-Typography: Tenorite (English), Work Sans (Vietnamese). Base 11pt, headlines 6x, sub-title 3x, body-title 1.6x.
+Typography: **Inter** (English), **Work Sans** (Vietnamese). Both via Google Fonts. Base 11pt.
 
-When generating HTML, CSS, charts, or visual output:
-- MUST use LTC palette — NEVER generic defaults (blue, gray, Bootstrap colors)
-- Load `rules/brand-identity.md` for full color table and function mappings
+**NEVER:**
+- Use generic/default colors (Bootstrap blue, Tailwind gray, Chart.js defaults, browser defaults)
+- Use fonts other than Inter or Work Sans — no Arial, Helvetica, Roboto, system defaults
+- Omit Google Fonts `<link>` / `@import` — fonts are NOT locally installed
+- Generate unstyled HTML — every visual artifact MUST include LTC colors and fonts
 
 ## Naming (full spec: `rules/naming-rules.md`)
 
@@ -94,3 +97,8 @@ Symptom-to-component lookup table and Force Map available for quick diagnosis.
 ## Modular Rules & Skills
 
 Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/`
+
+## Template Version
+
+If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start.
+If behind, warn the user before proceeding. If the script is missing, skip silently.
