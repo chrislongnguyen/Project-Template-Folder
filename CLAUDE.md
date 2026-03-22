@@ -69,7 +69,7 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Load `rules/naming-rules.m
 
 ## System Design (full spec: `rules/general-system.md`)
 
-6-component model + RACI-first analysis + 4-layer boundary spec + VANA requirements. Load full spec for details.
+6-component model + RACI-first analysis + 4-layer boundary spec + VANA requirements. Load `rules/general-system.md` BEFORE designing any system, writing any spec, or performing force analysis.
 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 
