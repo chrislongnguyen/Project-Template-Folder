@@ -235,8 +235,11 @@ def check_4_io_consistency(task_files: list[Path]) -> tuple[bool, str]:
         for path in parse_io_paths(content, "Inputs"):
             inputs[path] = task_id
 
-    # For now, just verify format is present (deep matching requires dependency info)
-    return True, f"{len(outputs)} output paths, {len(inputs)} input paths declared"
+    # Deep matching deferred (requires full dependency graph traversal)
+    return True, (
+        f"{len(outputs)} output paths, {len(inputs)} input paths declared — "
+        "WARN: I/O path consistency not fully verified — deep matching not yet implemented"
+    )
 
 
 def check_5_environment(task_files: list[Path]) -> tuple[bool, str]:

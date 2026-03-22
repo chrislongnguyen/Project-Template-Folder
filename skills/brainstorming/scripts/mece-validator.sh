@@ -31,14 +31,17 @@ else
     ERRORS=$((ERRORS + 1))
 fi
 
-# Check 2: §6 System Boundaries with all 4 layers
+# Check 2: §6 System Boundaries with all 4 layers (two-pass: locate §6, then search within)
 echo "Check 2: §6 System Boundaries completeness"
 LAYERS_FOUND=0
-for layer in "Layer 1" "Layer 2" "Layer 3" "Layer 4"; do
-    if grep -q "§6.*$layer\|§6\.[0-9].*$layer" "$SPEC"; then
-        LAYERS_FOUND=$((LAYERS_FOUND + 1))
-    fi
-done
+SECTION_START=$(grep -n "§6\|System Boundaries" "$SPEC" | head -1 | cut -d: -f1)
+if [ -n "$SECTION_START" ]; then
+    for layer in "Layer 1" "Layer 2" "Layer 3" "Layer 4"; do
+        if tail -n +"$SECTION_START" "$SPEC" | grep -q "$layer"; then
+            LAYERS_FOUND=$((LAYERS_FOUND + 1))
+        fi
+    done
+fi
 if [ "$LAYERS_FOUND" -eq 4 ]; then
     echo "  PASS: All 4 boundary layers present"
 else
@@ -46,14 +49,19 @@ else
     ERRORS=$((ERRORS + 1))
 fi
 
-# Check 3: Extract AC IDs from §2-§5
+# Check 3: AC ID uniqueness — scoped to lines before AC-TEST-MAP (avoid false positives)
 echo "Check 3: AC ID uniqueness"
-AC_IDS=$(grep -oE '(Verb|SustainAdv|EffAdv|ScalAdv|Noun|SustainAdj|EffAdj|ScalAdj)-AC[0-9]+' "$SPEC" | sort)
+# Determine the boundary line: AC-TEST-MAP section start (or end of file)
+TESTMAP_BOUNDARY=$(grep -n "AC-TEST-MAP" "$SPEC" | head -1 | cut -d: -f1)
+if [ -n "$TESTMAP_BOUNDARY" ]; then
+    AC_IDS=$(head -n "$((TESTMAP_BOUNDARY - 1))" "$SPEC" | grep -oE '(Verb|SustainAdv|EffAdv|ScalAdv|Noun|SustainAdj|EffAdj|ScalAdj)-AC[0-9]+' | sort)
+else
+    AC_IDS=$(grep -oE '(Verb|SustainAdv|EffAdv|ScalAdv|Noun|SustainAdj|EffAdj|ScalAdj)-AC[0-9]+' "$SPEC" | sort)
+fi
 UNIQUE_AC_IDS=$(echo "$AC_IDS" | sort -u)
-TOTAL_AC=$(echo "$AC_IDS" | wc -l | tr -d ' ')
-UNIQUE_AC=$(echo "$UNIQUE_AC_IDS" | wc -l | tr -d ' ')
+UNIQUE_AC=$(echo "$UNIQUE_AC_IDS" | grep -c . || true)
 
-# Find duplicates (IDs that appear more times in sections than in test map)
+# Find duplicates within scoped region
 DUPLICATES=$(echo "$AC_IDS" | sort | uniq -d)
 if [ -z "$DUPLICATES" ]; then
     echo "  PASS: No duplicate AC IDs ($UNIQUE_AC unique IDs found)"

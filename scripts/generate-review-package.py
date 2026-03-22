@@ -21,7 +21,10 @@ def load_status(exec_dir: Path) -> dict:
     if not status_path.exists():
         raise FileNotFoundError(f"status.json not found at {status_path}")
     with status_path.open() as f:
-        return json.load(f)
+        try:
+            return json.load(f)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"status.json is not valid JSON: {e}") from e
 
 
 def scan_for_risk_tags(exec_dir: Path) -> list[str]:
@@ -148,7 +151,7 @@ def build_risk_flags(risk_tags: list[str], status: dict) -> str:
     return "\n".join(lines)
 
 
-def build_decision(pass_rate: float) -> str:
+def build_decision() -> str:
     return """---
 
 **Human Director Decision:**
@@ -191,7 +194,7 @@ def generate(exec_dir: Path) -> str:
         "",
         build_risk_flags(risk_tags, status),
         "",
-        build_decision(pass_rate),
+        build_decision(),
     ]
     return "\n".join(sections)
 
@@ -210,6 +213,9 @@ def main():
         output = generate(exec_dir)
         print(output)
     except FileNotFoundError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        sys.exit(1)
+    except (json.JSONDecodeError, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
 

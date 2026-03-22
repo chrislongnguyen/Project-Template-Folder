@@ -8,7 +8,7 @@ set -euo pipefail
 FILE_PATH="$1"
 
 if [[ "$FILE_PATH" == *"-design.md"* ]]; then
-  required_sections=("§0 Force Analysis" "§1" "§2 Verb" "§3 Adverb" "§4 Noun" "§5 Adjective" "§6 System Boundaries")
+  required_sections=("§0 Force Analysis" "§1 System Identity" "§2 Verb" "§3 Adverb" "§4 Noun" "§5 Adjective" "§6 System Boundaries")
   missing=()
   for section in "${required_sections[@]}"; do
     if ! grep -q "$section" "$FILE_PATH" 2>/dev/null; then
