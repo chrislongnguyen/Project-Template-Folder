@@ -1,0 +1,28 @@
+{
+  "project": "Test Project",
+  "spec_version": "v1",
+  "plan_version": "v1",
+  "exec_version": "v1",
+  "generated_at": "2026-03-22T10:00:00Z",
+  "updated_at": "2026-03-22T10:00:00Z",
+  "pipeline_stage": "exec_plan",
+  "deliverables": {
+    "D1": {
+      "name": "Foundation",
+      "status": "ready",
+      "tasks": {
+        "D1-T1": {
+          "name": "Setup Database",
+          "status": "ready",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    }
+  },
+  "rework_log": []
+}
