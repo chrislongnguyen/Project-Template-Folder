@@ -1,0 +1,81 @@
+{
+  "project": "LTC Execution Pipeline",
+  "spec_version": "v1",
+  "plan_version": "v1",
+  "exec_version": "v1",
+  "generated_at": "2026-03-22T08:00:00Z",
+  "updated_at": "2026-03-22T10:30:00Z",
+  "pipeline_stage": "review",
+  "deliverables": {
+    "D1": {
+      "name": "Foundation Scaffolding",
+      "status": "done",
+      "tasks": {
+        "D1-T1": {
+          "name": "Create Directory Structure",
+          "status": "done",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T08:05:00Z",
+          "completed_at": "2026-03-22T08:20:00Z",
+          "ac_results": {
+            "D1-AC-1": {
+              "eval_type": "Deterministic",
+              "result": "pass",
+              "evidence": "find skills templates scripts hooks -type d | wc -l returned 18"
+            }
+          }
+        },
+        "D1-T2": {
+          "name": "Create .exec/ Templates",
+          "status": "done",
+          "rework_count": 1,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T08:25:00Z",
+          "completed_at": "2026-03-22T09:00:00Z",
+          "ac_results": {
+            "D1-AC-2": {
+              "eval_type": "Deterministic",
+              "result": "pass",
+              "evidence": "wc -l showed all 4 template files >10 lines each"
+            }
+          }
+        }
+      }
+    },
+    "D2": {
+      "name": "Task Executor Skill",
+      "status": "done",
+      "tasks": {
+        "D2-T1": {
+          "name": "Write task-executor SKILL.md",
+          "status": "done",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T09:05:00Z",
+          "completed_at": "2026-03-22T09:30:00Z",
+          "ac_results": {
+            "D2-AC-1": {
+              "eval_type": "Deterministic",
+              "result": "pass",
+              "evidence": "grep -c returned 5 for all 5 meta-rules"
+            }
+          }
+        }
+      }
+    }
+  },
+  "rework_log": [
+    {
+      "task_id": "D1-T2",
+      "from_status": "done",
+      "to_status": "rework",
+      "reason": "status-schema.json was missing the rework_log required field",
+      "triggered_by": "stage_6_review",
+      "timestamp": "2026-03-22T08:50:00Z"
+    }
+  ]
+}
