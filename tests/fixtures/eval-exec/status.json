@@ -1,0 +1,58 @@
+{
+  "project": "Eval Runner Test",
+  "spec_version": "v1",
+  "plan_version": "v1",
+  "exec_version": "v1",
+  "generated_at": "2026-03-22T10:00:00Z",
+  "updated_at": "2026-03-22T10:00:00Z",
+  "pipeline_stage": "eval",
+  "deliverables": {
+    "D1": {
+      "name": "EvalTest",
+      "status": "done",
+      "tasks": {
+        "D1-T1": {
+          "name": "Task With Passing AC",
+          "status": "done",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T10:00:00Z",
+          "completed_at": "2026-03-22T10:05:00Z",
+          "ac_results": {}
+        },
+        "D1-T2": {
+          "name": "Task With Failing AC",
+          "status": "done",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T10:05:00Z",
+          "completed_at": "2026-03-22T10:10:00Z",
+          "ac_results": {}
+        },
+        "D1-T3": {
+          "name": "Task With Manual AC",
+          "status": "done",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": "2026-03-22T10:10:00Z",
+          "completed_at": "2026-03-22T10:15:00Z",
+          "ac_results": {}
+        },
+        "D1-T4": {
+          "name": "Task Not Done (should be skipped)",
+          "status": "ready",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    }
+  },
+  "rework_log": []
+}
