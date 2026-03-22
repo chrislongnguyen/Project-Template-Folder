@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LEP Execution Status",
+  "type": "object",
+  "required": ["project", "spec_version", "plan_version", "exec_version", "generated_at", "updated_at", "pipeline_stage", "deliverables", "rework_log"],
+  "properties": {
+    "project": { "type": "string" },
+    "spec_version": { "type": "string", "pattern": "^v\\d+$" },
+    "plan_version": { "type": "string", "pattern": "^v\\d+$" },
+    "exec_version": { "type": "string", "pattern": "^v\\d+$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "pipeline_stage": { "type": "string", "enum": ["brainstorm", "spec_review", "plan", "exec_plan", "execute", "test", "review", "done"] },
+    "deliverables": {
+      "type": "object",
+      "patternProperties": {
+        "^D\\d+$": {
+          "type": "object",
+          "required": ["name", "status", "tasks"],
+          "properties": {
+            "name": { "type": "string" },
+            "status": { "type": "string", "enum": ["ready", "blocked", "in_progress", "done", "rework", "failed"] },
+            "tasks": {
+              "type": "object",
+              "patternProperties": {
+                "^D\\d+-T\\d+$": {
+                  "type": "object",
+                  "required": ["name", "status", "rework_count", "agent_pattern", "agent_model"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "status": { "type": "string", "enum": ["ready", "blocked", "in_progress", "done", "rework", "failed"] },
+                    "rework_count": { "type": "integer", "minimum": 0 },
+                    "agent_pattern": { "type": "string", "enum": ["single_agent", "sub_agents", "agent_team", "agent_team_reviewers"] },
+                    "agent_model": { "type": "string", "enum": ["opus", "sonnet", "haiku"] },
+                    "started_at": { "type": ["string", "null"], "format": "date-time" },
+                    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+                    "ac_results": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "rework_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "from_status", "to_status", "reason", "triggered_by", "timestamp"],
+        "properties": {
+          "task_id": { "type": "string", "pattern": "^D\\d+-T\\d+$" },
+          "from_status": { "type": "string" },
+          "to_status": { "type": "string" },
+          "reason": { "type": "string" },
+          "triggered_by": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
