@@ -55,6 +55,7 @@ def build_summary(status: dict, pass_rate: float, total_tasks: int, completed_ta
         f"| Pipeline Stage | {status.get('pipeline_stage', '(unknown)')} |",
         f"| Total Tasks | {total_tasks} |",
         f"| Completed | {completed_tasks} ({pass_rate:.0f}%) |",
+        f"| Rework Cycles | {len(status.get('rework_log', []))} |",
         f"| Generated | {datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')} |",
     ]
     return "\n".join(lines)

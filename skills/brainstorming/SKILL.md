@@ -272,3 +272,5 @@ A question about a UI topic is not automatically a visual question. "What does p
 
 If they agree to the companion, read the detailed guide before proceeding:
 `skills/brainstorming/references/visual-companion.md`
+<!-- OE.6.4 fork note: path changed from original superpowers `skills/brainstorming/visual-companion.md`
+     to `skills/brainstorming/references/visual-companion.md` to match the OE.6.4 directory convention. -->

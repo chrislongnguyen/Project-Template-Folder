@@ -79,7 +79,7 @@ def test_output_contains_human_director_decision():
 
 
 def test_pass_rate_computed_correctly():
-    """3 tasks total, all done → 100%."""
+    """3 tasks across 2 deliverables, all done → 100%."""
     result = run_script(FIXTURE_DIR)
     assert "100%" in result.stdout
 
@@ -92,9 +92,9 @@ def test_rework_history_contains_entry():
 
 
 def test_rework_count_flagged_in_risk():
-    """D1-T2 has rework_count=1 — it should appear in Risk Flags."""
+    """D1-T2 has rework_count=1 — it should appear in Risk Flags with specific format."""
     result = run_script(FIXTURE_DIR)
-    assert "D1-T2" in result.stdout
+    assert "`D1-T2` has 1 rework cycle(s)" in result.stdout
 
 
 def test_ac_results_rows_present():
@@ -135,27 +135,75 @@ def test_help_flag_exits_zero():
 # Risk tag detection
 # ---------------------------------------------------------------------------
 
-def test_incomplete_tag_detected(tmp_path):
-    """[INCOMPLETE] tag in a .md file should appear in Risk Flags."""
+MINIMAL_STATUS = {
+    "project": "Test",
+    "spec_version": "v1",
+    "plan_version": "v1",
+    "exec_version": "v1",
+    "generated_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-01-01T00:00:00Z",
+    "pipeline_stage": "review",
+    "deliverables": {},
+    "rework_log": [],
+}
+
+
+def _make_exec_with_tag(tmp_path, tag_text):
+    """Helper: create a minimal .exec/ dir with a .md file containing the given tag."""
     exec_dir = tmp_path / ".exec"
     exec_dir.mkdir()
+    (exec_dir / "status.json").write_text(json.dumps(MINIMAL_STATUS))
+    (exec_dir / "task.md").write_text(f"## Output\n{tag_text} — flagged section\n")
+    return exec_dir
 
-    # Write a minimal status.json
-    status = {
-        "project": "Test",
-        "spec_version": "v1",
-        "plan_version": "v1",
-        "exec_version": "v1",
-        "generated_at": "2026-01-01T00:00:00Z",
-        "updated_at": "2026-01-01T00:00:00Z",
-        "pipeline_stage": "review",
-        "deliverables": {},
-        "rework_log": [],
-    }
-    (exec_dir / "status.json").write_text(json.dumps(status))
-    # Write a .md file with the risk tag
-    (exec_dir / "task.md").write_text("## Output\n[INCOMPLETE] — missing section\n")
 
+def test_incomplete_tag_detected(tmp_path):
+    """[INCOMPLETE] tag in a .md file should appear in Risk Flags."""
+    exec_dir = _make_exec_with_tag(tmp_path, "[INCOMPLETE]")
     result = run_script(exec_dir)
     assert result.returncode == 0
     assert "INCOMPLETE" in result.stdout
+
+
+def test_eval_failed_tag_detected(tmp_path):
+    """[EVAL_FAILED] tag in a .md file should appear in Risk Flags."""
+    exec_dir = _make_exec_with_tag(tmp_path, "[EVAL_FAILED]")
+    result = run_script(exec_dir)
+    assert result.returncode == 0
+    assert "EVAL_FAILED" in result.stdout
+
+
+def test_unverified_tag_detected(tmp_path):
+    """[UNVERIFIED] tag in a .md file should appear in Risk Flags."""
+    exec_dir = _make_exec_with_tag(tmp_path, "[UNVERIFIED]")
+    result = run_script(exec_dir)
+    assert result.returncode == 0
+    assert "UNVERIFIED" in result.stdout
+
+
+def test_malformed_json_exits_nonzero(tmp_path):
+    """status.json with invalid JSON should exit non-zero with ERROR message."""
+    exec_dir = tmp_path / ".exec"
+    exec_dir.mkdir()
+    (exec_dir / "status.json").write_text("{broken json content")
+    result = run_script(exec_dir)
+    assert result.returncode != 0
+    assert "ERROR" in result.stderr
+
+
+def test_zero_deliverables_no_division_error(tmp_path):
+    """status.json with no deliverables should produce 0% pass rate, no crash."""
+    exec_dir = tmp_path / ".exec"
+    exec_dir.mkdir()
+    (exec_dir / "status.json").write_text(json.dumps(MINIMAL_STATUS))
+    result = run_script(exec_dir)
+    assert result.returncode == 0
+    assert "0%" in result.stdout
+
+
+def test_rework_cycles_in_summary():
+    """Summary section should include Rework Cycles count."""
+    result = run_script(FIXTURE_DIR)
+    assert "Rework Cycles" in result.stdout
+    # Fixture has 1 rework_log entry
+    assert "| Rework Cycles | 1 |" in result.stdout

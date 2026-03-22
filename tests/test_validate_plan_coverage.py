@@ -118,3 +118,44 @@ def test_nonexistent_file_exits_nonzero(tmp_path):
 def test_result_line_present():
     result = run_validator(FIXTURES / "valid-plan.md")
     assert "RESULT:" in result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Check 6: Critical path duration < 8 hours
+# ---------------------------------------------------------------------------
+
+def test_critical_path_no_estimates_warns(tmp_path):
+    """Plan without time estimates should produce WARN, not FAIL."""
+    plan = tmp_path / "no-estimates.md"
+    plan.write_text(
+        "# Plan\n\n## D1: Test\n\n**HOW:** Build stuff\n\n"
+        "**HOW NOT:**\n- Do NOT skip\n\n**Agent Architecture:** Single Agent\n\n"
+        "### Task 1\n\nAC Coverage: D1-AC-1\n\nDo the thing.\n"
+    )
+    result = run_validator(plan)
+    assert "WARN" in result.stdout
+    assert "time estimate" in result.stdout.lower() or "8h" in result.stdout
+
+
+def test_critical_path_exceeding_limit_fails(tmp_path):
+    """Plan with total estimates > 8 hours should fail Check 6."""
+    plan = tmp_path / "long-plan.md"
+    plan.write_text(
+        "# Plan\n\n## D1: Test\n\n**HOW:** Build stuff ~5h\n\n"
+        "**HOW NOT:**\n- Do NOT skip\n\n**Agent Architecture:** Single Agent\n\n"
+        "### Task 1\n\nAC Coverage: D1-AC-1\n\nEstimated: 4h\n\n"
+        "### Task 2\n\nAC Coverage: D1-AC-2\n\nEstimated: 5h\n"
+    )
+    result = run_validator(plan)
+    assert result.returncode == 1
+    assert "8h" in result.stdout.lower() or "limit" in result.stdout.lower()
+
+
+# ---------------------------------------------------------------------------
+# Check 7: All file paths plausible
+# ---------------------------------------------------------------------------
+
+def test_valid_plan_file_paths_pass():
+    """Valid plan should pass file path check (or WARN if no paths found)."""
+    result = run_validator(FIXTURES / "valid-plan.md")
+    assert "[FAIL]" not in result.stdout or "file path" not in result.stdout.lower()

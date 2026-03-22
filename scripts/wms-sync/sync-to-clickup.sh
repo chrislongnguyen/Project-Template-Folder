@@ -28,13 +28,19 @@
 set -euo pipefail
 
 # --- Arguments ---
-EXEC_DIR="${1:-.exec}"
+# Parse positional and flag arguments in any order
 DRY_RUN=false
-if [[ "${2:-}" == "--dry-run" ]] || [[ "${1:-}" == "--dry-run" ]]; then
-    DRY_RUN=true
-    # If first arg was --dry-run, use default EXEC_DIR
-    [[ "${1:-}" == "--dry-run" ]] && EXEC_DIR=".exec"
-fi
+EXEC_DIR=""
+for arg in "$@"; do
+    if [[ "$arg" == "--dry-run" ]]; then
+        DRY_RUN=true
+    elif [[ -z "$EXEC_DIR" ]]; then
+        EXEC_DIR="$arg"
+    fi
+done
+# Default to .exec in current working directory; resolve to absolute path
+EXEC_DIR="${EXEC_DIR:-.exec}"
+EXEC_DIR="$(cd "$(dirname "$EXEC_DIR")" 2>/dev/null && pwd)/$(basename "$EXEC_DIR")" 2>/dev/null || EXEC_DIR="$(pwd)/.exec"
 
 STATUS_FILE="$EXEC_DIR/status.json"
 SYNC_CACHE="$EXEC_DIR/.wms-sync.json"

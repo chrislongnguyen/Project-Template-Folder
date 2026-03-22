@@ -57,6 +57,22 @@
           "timestamp": { "type": "string", "format": "date-time" }
         }
       }
+    },
+    "version_history": {
+      "type": "array",
+      "description": "Records each .exec/ generation event. Optional on initial generation, mandatory after re-spec/re-plan.",
+      "items": {
+        "type": "object",
+        "required": ["exec_version", "spec_version", "plan_version", "generated_at", "trigger"],
+        "properties": {
+          "exec_version": { "type": "string", "pattern": "^v\\d+$" },
+          "spec_version": { "type": "string", "pattern": "^v\\d+$" },
+          "plan_version": { "type": "string", "pattern": "^v\\d+$" },
+          "generated_at": { "type": "string", "format": "date-time" },
+          "trigger": { "type": "string" },
+          "changes": { "type": "string" }
+        }
+      }
     }
   }
 }

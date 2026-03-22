@@ -13,8 +13,11 @@ Checks (per spec §7.2):
   3. Tasks per deliverable < 7
   4. HOW NOT sections present for every deliverable
   5. Agent architecture present for every deliverable
+  6. Critical path duration < 8 hours (WARN if no estimates found)
+  7. All referenced file paths are plausible (parent directories exist or are in the plan)
 """
 import sys
+import os
 import re
 from pathlib import Path
 
@@ -201,6 +204,71 @@ def check_agent_arch_present(deliverables: dict[str, dict]) -> tuple[bool, str]:
     return True, f"Agent architecture present in all {len(deliverables)} deliverables"
 
 
+def check_critical_path_duration(content: str) -> tuple[bool, str]:
+    """
+    Check 6: Critical path duration < 8 hours.
+    Looks for time estimates in the plan (e.g., '~2h', '3 hours', 'estimated: 4h').
+    Returns WARN (not FAIL) if no estimates are found.
+    """
+    time_pattern = re.compile(r"(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h)\b", re.IGNORECASE)
+    matches = time_pattern.findall(content)
+    if not matches:
+        return True, "[WARN] No time estimates found in plan — cannot verify critical path < 8h (skipped)"
+
+    total_hours = sum(float(m) for m in matches)
+    if total_hours > 8:
+        return False, f"Critical path estimates total {total_hours:.1f}h (limit is 8h)"
+    return True, f"Critical path estimates total {total_hours:.1f}h (within 8h limit)"
+
+
+def check_file_paths_plausible(content: str, plan_path: Path) -> tuple[bool, str]:
+    """
+    Check 7: All referenced file paths are plausible.
+    Extracts file paths from the plan and checks that their parent directories
+    either exist on disk or are listed as 'Create' targets in the plan.
+    """
+    # Extract paths from code blocks and inline references
+    # Match patterns like: `path/to/file.ext`, Create: `path/to/file`
+    path_pattern = re.compile(r"`([\w./-]+/[\w.-]+(?:\.\w+)?)`")
+    paths_found = set(path_pattern.findall(content))
+
+    if not paths_found:
+        return True, "[WARN] No file paths found in plan (skipped)"
+
+    # Build set of directories that the plan itself will create
+    # (paths under "Create:" lines or mkdir commands)
+    plan_creates = set()
+    create_pattern = re.compile(r"(?:Create|mkdir\s+-p)\s*:?\s*`?([\w./-]+)`?")
+    for match in create_pattern.finditer(content):
+        created_path = match.group(1)
+        plan_creates.add(created_path)
+        # Also add all parent directories
+        parts = created_path.split("/")
+        for i in range(1, len(parts)):
+            plan_creates.add("/".join(parts[:i]))
+
+    # Check each referenced path
+    plan_dir = plan_path.parent
+    implausible = []
+    for p in sorted(paths_found):
+        parent = str(Path(p).parent)
+        if parent == ".":
+            continue  # root-level files are always plausible
+        # Plausible if: parent dir exists on disk, or parent is in plan_creates, or path itself is in plan_creates
+        parent_exists = (plan_dir / parent).is_dir() or os.path.isdir(parent)
+        parent_planned = parent in plan_creates or p in plan_creates
+        if not parent_exists and not parent_planned:
+            implausible.append(p)
+
+    if implausible:
+        if len(implausible) > 5:
+            shown = implausible[:5]
+            return False, f"File paths with implausible parents ({len(implausible)} total): {shown} ..."
+        return False, f"File paths with implausible parents: {implausible}"
+
+    return True, f"All {len(paths_found)} referenced file paths have plausible parent directories"
+
+
 # ---------------------------------------------------------------------------
 # Runner
 # ---------------------------------------------------------------------------
@@ -216,6 +284,8 @@ def run_checks(plan_path: Path) -> int:
         ("Check 3: Tasks per deliverable < 7", lambda: check_tasks_per_deliverable(deliverables)),
         ("Check 4: HOW NOT present for every deliverable", lambda: check_how_not_present(deliverables)),
         ("Check 5: Agent arch present for every deliverable", lambda: check_agent_arch_present(deliverables)),
+        ("Check 6: Critical path duration < 8 hours", lambda: check_critical_path_duration(content)),
+        ("Check 7: All file paths plausible", lambda: check_file_paths_plausible(content, plan_path)),
     ]
 
     passed = 0

@@ -132,6 +132,34 @@ done -> rework -> in_progress -> done (rework cycle)
 
 The `rework_log` in status.json is the **canonical, project-level** log of all rework events. Individual task files do NOT contain a separate rework_log — they reflect rework through their Status field and Rework Count.
 
+### Version History (for re-spec/re-plan scenarios)
+
+When a project undergoes re-spec (§8.1) or re-plan (§8.2), the `version_history` array records each generation event:
+
+```json
+{
+  "version_history": [
+    {
+      "exec_version": "v1",
+      "spec_version": "v1",
+      "plan_version": "v1",
+      "generated_at": "2026-03-22T10:00:00Z",
+      "trigger": "initial_generation"
+    },
+    {
+      "exec_version": "v2",
+      "spec_version": "v2",
+      "plan_version": "v1",
+      "generated_at": "2026-03-23T14:00:00Z",
+      "trigger": "re_spec",
+      "changes": "§2 Verb ACs updated; D1-T2, D2-T1 affected"
+    }
+  ]
+}
+```
+
+This field is optional for initial generation but becomes mandatory after any re-entry event. It allows downstream tooling to trace which .exec/ files were generated under which spec/plan versions.
+
 ## project.md Structure
 
 The project.md file captures the execution topology and agent architecture decisions.

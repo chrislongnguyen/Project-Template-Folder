@@ -1,3 +1,8 @@
+<!-- NOTE: This template is a REFERENCE FORMAT document. It is NOT read programmatically
+     by scripts/generate-review-package.py. The script generates output independently.
+     If you update this template, also update the corresponding build_*() functions
+     in the script to keep them aligned. -->
+
 # Review Package: {project_name}
 
 | Field | Value |

@@ -19,6 +19,16 @@ Display Layer. The adapter:
 
 **Load before using:** `field-map.md` (UUIDs), `task-protocol.md` (hierarchy + MECE), `gotchas.md` (known issues)
 
+### Sync Script Execution Model
+
+The sync scripts (`scripts/wms-sync/sync-to-clickup.sh`, `pull-comments.sh`) are **coordination wrappers**, not autonomous executors. They:
+
+1. Read `.exec/status.json` and compute the required ClickUp operations
+2. Output `MCP_ACTION:` lines describing each operation (create, update, comment)
+3. The **agent** (not the script) then executes these actions via the ClickUp MCP server tools
+
+This design is intentional: shell scripts cannot invoke MCP tools directly — only the LLM agent can. The scripts compute the plan; the agent executes it. In `--dry-run` mode, the agent reviews the plan without executing.
+
 ---
 
 ## 1. Status Field Mapping (.exec/ → ClickUp)

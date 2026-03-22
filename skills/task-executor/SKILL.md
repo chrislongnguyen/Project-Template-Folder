@@ -43,18 +43,18 @@ Before executing ANY task increment, apply these rules:
 
 For each task in dependency order:
 
-1. Load this skill (you're reading it now — L2 re-injection complete)
-2. Read the task .exec/ file
-3. Verify Environment prerequisites (run verify commands in Environment table)
-4. Check Dependencies (all `blocked_by` tasks are "done" in status.json)
-5. Set status → `in_progress` in status.json
-6. Execute Increments sequentially:
+0. Load this skill (you're reading it now — L2 re-injection complete)
+1. Read the task .exec/ file
+2. Verify Environment prerequisites (run verify commands in Environment table)
+3. Check Dependencies (all `blocked_by` tasks are "done" in status.json)
+4. Set status → `in_progress` in status.json
+5. Execute Increments sequentially:
    a. Perform INC-{n} Action
    b. Run INC-{n} Verify
    c. If verify fails: retry with error context (max 2 retries), then escalate
-7. Run task-level Verify command
-8. Set status → `done` in status.json
-9. Sync WMS (per spec §2.5 — update status, add comment if rework/failed)
+6. Run task-level Verify command
+7. Set status → `done` in status.json
+8. Sync WMS (per spec §2.5 — update status, add comment if rework/failed)
 
 ## Failure Behavior
 
@@ -64,3 +64,4 @@ For each task in dependency order:
 | Task verify fails | Re-run from the failed increment |
 | Environment prereq fails | Mark task `blocked`, log the missing prerequisite |
 | Dependency not done | Mark task `blocked`, wait for upstream |
+| Partial completion (task fails mid-execution) | Completed increments preserved. Parallel tasks on other deliverables continue unaffected |

@@ -115,3 +115,14 @@ def test_empty_exec_dir_exits_nonzero(tmp_path):
     exec_dir.mkdir()
     result = run_validator(exec_dir)
     assert result.returncode != 0
+
+
+def test_missing_status_json_exits_nonzero(tmp_path):
+    """A dir with task files but no status.json should exit non-zero with specific error."""
+    exec_dir = tmp_path / ".exec"
+    d1 = exec_dir / "D1-Test"
+    d1.mkdir(parents=True)
+    (d1 / "T1-Setup.md").write_text("# D1-T1: Setup\n\n## Identity\n")
+    result = run_validator(exec_dir)
+    assert result.returncode != 0
+    assert "status.json" in result.stdout.lower() or "status.json" in result.stderr.lower()
