@@ -2,43 +2,79 @@
 
 > Source of truth: OPS_OE.6.0 docs/governance/LTC-UNIVERSAL-NAMING-GRAMMAR-v1.md
 > Distilled for agent use. Load when creating named items on any platform.
-> Last synced: 2026-03-16
+> Last synced: 2026-03-22
 
 ---
 
 ## 1. Canonical Key Pattern
 
-Every LTC digital asset has a Canonical Key built from 4 segments:
+Every LTC digital asset has a Canonical Key. The key has **two forms** depending on whether the item has a parent.
+
+### 1a. Standard Form — 3-Part (item with parent)
+
+This is the **default**. Most items exist within a parent context.
+
+```
+{SCOPE}_{PARENT_ID}.{PARENT_NAME}_{ITEM_ID}.{ITEM_NAME}
+```
+
+The 3 parts:
+1. **SCOPE** — organizational scope (from Table 3a)
+2. **PARENT** — parent's ID + name (establishes context)
+3. **ITEM** — this item's ID + name (the leaf)
+
+Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE_D1.FOUNDATION`
+- SCOPE: `OPS`
+- PARENT: `OE.6.4.LTC-PROJECT-TEMPLATE` (the project)
+- ITEM: `D1.FOUNDATION` (deliverable 1)
+
+### 1b. Short Form — 2-Part (top-level item, no parent)
+
+Only for items that have **no parent** within the naming scope (e.g., Git repos, top-level ClickUp projects, root Drive folders).
 
 ```
 {SCOPE}_{FA}.{ID}.{NAME}
 ```
 
-**Separator grammar:**
-- `_` = scope boundary (between SCOPE segments and between last SCOPE segment and FA)
+Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
+- SCOPE: `OPS`
+- ITEM: `OE.6.4.LTC-PROJECT-TEMPLATE`
+
+### Separator Grammar
+
+- `_` = boundary separator (between SCOPE and PARENT; between PARENT and ITEM)
 - `.` = numeric hierarchy (between numbers; between last number and NAME)
 - `-` = word join within NAME
 
-**Parsing rules:**
+### Parsing Rules
+
+**2-Part (no `_` after SCOPE+FA segment):**
 1. Split on first `_` after SCOPE (try longest matching SCOPE from Table 3a first)
 2. Next segment before `.` = FA
 3. Consecutive numeric `.`-separated segments = ID
 4. Everything after last number `.` = NAME
 
-**Agent rule:** Always try the longest matching SCOPE from Table 3a first. `COE_EFF` matches before `COE`. No algorithmic derivation -- use the lookup table.
+**3-Part (second `_` present after PARENT_NAME):**
+1. First `_` after SCOPE → start of PARENT segment
+2. Second `_` after PARENT_NAME → start of ITEM segment
+3. Each segment follows the `{ID}.{NAME}` pattern
+
+**Agent rule:** Always try the longest matching SCOPE from Table 3a first. `COE_EFF` matches before `COE`. No algorithmic derivation — use the lookup table.
+
+**Agent rule:** Default to 3-part naming. Only use 2-part when the item genuinely has no parent in the naming context.
 
 ---
 
 ## 2. Where UNG Applies
 
-| Platform | Named Items | UNG Applies? |
-|---|---|---|
-| Git / GitHub | Repos | Full UNG. Canonical Key as-is. Max 50 chars. |
-| Local filesystem | Folders | Full UNG. Canonical Key + trailing slash. |
-| ClickUp -- Project | PJ Project | Full: `[GROUP]_FA.ID. NAME` |
-| ClickUp -- Deliverable | PJ Deliverable | Full: `[GROUP]_FA.ID. NAME` or `[GROUP]_FA.ID. PROJECT - DELI #. Name` |
-| ClickUp -- Task and below | Increment, Blocker, Documentation, Request, etc. | No prefix. Free text. |
-| Google Drive | Folders, files | Full UNG with optional decorators (classification, member, version). |
+| Platform | Named Items | Form | UNG Applies? |
+|---|---|---|---|
+| Git / GitHub | Repos | 2-part | Full UNG. Canonical Key as-is. Max 50 chars. |
+| Local filesystem | Folders | 2-part | Full UNG. Canonical Key + trailing slash. |
+| ClickUp — PJ Project | Top-level project | 2-part | `[GROUP]_FA.ID. NAME` |
+| ClickUp — PJ Deliverable | Deliverable under project | 3-part | `[GROUP]_FA.ID. PROJECT NAME_D{n}. DELIVERABLE NAME` |
+| ClickUp — Task and below | Task, Increment, Blocker, Documentation, etc. | Free text | No UNG prefix. Free text. |
+| Google Drive | Folders, files | 2-part or 3-part | Full UNG with optional decorators (classification, member, version). |
 
 **Not governed by UNG:** Learning Book page filenames inside repos (those use `BOOK-NN --` prefix convention).
 
@@ -56,19 +92,41 @@ Every LTC digital asset has a Canonical Key built from 4 segments:
 - Max length: 255 (OS limit). ALL CAPS. No spaces, no brackets.
 
 ### ClickUp
-- Format: `[GROUP DISPLAY]_FA.ID. NAME`
+
+**PJ Project (2-part, top-level):**
+```
+[GROUP DISPLAY]_FA.ID. PROJECT NAME
+```
+
+**PJ Deliverable (3-part, child of project):**
+```
+[GROUP DISPLAY]_FA.ID. PROJECT NAME_D{n}. DELIVERABLE NAME
+```
+
+**Task and below:** Free text. No UNG prefix.
+
+**Examples:**
+```
+PJ Project:     [OPS]_OE.6.4. LTC Project Template
+PJ Deliverable: [OPS]_OE.6.4. LTC Project Template_D1. Foundation
+PJ Deliverable: [OPS]_OE.6.4. LTC Project Template_D5. CLI
+Task:           Core Commands
+PJ Increment:   Embedder Interface + Local Backend
+PJ Documentation: Storage Layer Reference
+```
 
 **Canonical -> ClickUp:**
 1. Look up SCOPE in Table 3a -> get ClickUp Display name (e.g. `INVTECH` -> `INV TECH`)
 2. Wrap in brackets: `[INV TECH]`
-3. Append `_FA.ID. ` (trailing dot-space before NAME)
-4. NAME: replace hyphens with spaces
+3. For 2-part (PJ Project): Append `_FA.ID. ` (dot-space before NAME). NAME: replace hyphens with spaces.
+4. For 3-part (PJ Deliverable): Append `_FA.ID. PARENT NAME_ITEM_ID. ITEM NAME`. Both NAMEs: replace hyphens with spaces.
 
 **ClickUp -> Canonical:**
 1. Strip brackets from group -> look up in Table 3a -> get SCOPE code
 2. FA code stays as-is
 3. ID numbers stay as-is
-4. NAME: spaces -> hyphens; strip ACTION PHASE prefix if present
+4. All NAMEs: spaces -> hyphens
+5. If `_` separates parent and item segments, preserve as 3-part canonical key
 
 ### Google Drive
 - Same bracket format as ClickUp, plus optional decorators:
@@ -236,20 +294,27 @@ No single algorithm produces all of these. ALWAYS use the lookup table.
 
 ### Canonical Key Regex
 
+**2-part (top-level, no parent):**
 ```
 ^[A-Z][A-Z0-9_]*_[A-Z]{2,3}\.[0-9]+(\.[0-9]+)*\.[A-Z][A-Z0-9-]*$
 ```
 
-### 7-Step Pre-Creation Checklist
+**3-part (child item with parent):**
+```
+^[A-Z][A-Z0-9_]*_[A-Z]{2,3}\.[0-9]+(\.[0-9]+)*\.[A-Z][A-Z0-9-]*_[A-Z0-9]+\.[A-Z][A-Z0-9-]*$
+```
+
+### 8-Step Pre-Creation Checklist
 
 Before creating ANY named item on ANY platform, the agent MUST:
 
-1. **Compose** the Canonical Key from SCOPE + FA + ID + NAME
-2. **Validate** against the regex above
-3. **Verify** SCOPE exists in Table 3a (Section 4)
-4. **Verify** FA exists in Table 3b (Section 5)
-5. **Check** character count for Git (must be 50 chars or fewer)
-6. **Render** to target platform using Section 3 rules
-7. **Check** for name collisions on the target platform
+1. **Determine form** — Does this item have a parent? 3-part (default) or 2-part (top-level only)?
+2. **Compose** the Canonical Key from SCOPE + (PARENT +) ITEM
+3. **Validate** against the appropriate regex above
+4. **Verify** SCOPE exists in Table 3a (Section 4)
+5. **Verify** FA exists in Table 3b (Section 5)
+6. **Check** character count for Git (must be 50 chars or fewer — Git repos only, always 2-part)
+7. **Render** to target platform using Section 3 rules
+8. **Check** for name collisions on the target platform
 
-If a collision is detected, disambiguate by adjusting NAME. As a last resort, append `-NN` suffix. Never create duplicates -- halt and ask the user.
+If a collision is detected, disambiguate by adjusting NAME. As a last resort, append `-NN` suffix. Never create duplicates — halt and ask the user.
