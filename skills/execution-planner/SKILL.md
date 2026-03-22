@@ -1,5 +1,5 @@
 ---
-name: execution-planner
+name: ltc:execution-planner
 description: "Stage 4 — Transforms a frozen plan.md into .exec/ files (task files, project.md, status.json). Runs readiness checks and triggers WMS sync."
 trigger: "When a plan.md is approved (Stage 3 gate passed) and .exec/ files need to be generated."
 ---

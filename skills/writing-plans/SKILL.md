@@ -1,5 +1,5 @@
 ---
-name: writing-plans
+name: ltc:writing-plans
 description: Use when you have a spec or requirements for a multi-step task, before touching code. LTC fork with HOW NOT sections, agent architecture decisions, and mandatory plan validation checklist (Fix 4).
 ---
 
