@@ -19,7 +19,7 @@
 #   2 = partial failure (some tasks could not be queried)
 #
 # Protocol: spec §2.4 (Agent Pull Pattern)
-# Adapter: skills/wms-adapters/clickup/adapter.md §3
+# Adapter: skills/ltc-wms-adapters/clickup/adapter.md §3
 
 set -euo pipefail
 

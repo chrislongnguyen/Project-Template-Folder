@@ -21,9 +21,9 @@
 #   - .exec/status.json must exist and be valid
 #   - User must have confirmed the target ClickUp List before calling this script
 #
-# Protocol: skills/wms-adapters/clickup/adapter.md
-# Field UUIDs: skills/wms-adapters/clickup/field-map.md
-# Gotchas: skills/wms-adapters/clickup/gotchas.md
+# Protocol: skills/ltc-wms-adapters/clickup/adapter.md
+# Field UUIDs: skills/ltc-wms-adapters/clickup/field-map.md
+# Gotchas: skills/ltc-wms-adapters/clickup/gotchas.md
 
 set -euo pipefail
 

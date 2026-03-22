@@ -45,7 +45,7 @@ Every task file MUST contain ALL of the following sections. No section may be om
 | **Verify** | Task-level test | Bash command that proves task is complete |
 | **Scope Exclusions** | Boundaries | What this task does NOT do |
 
-Template location: `skills/execution-planner/templates/task.md`
+Template location: `skills/ltc-execution-planner/templates/task.md`
 
 ## status.json Schema
 
@@ -173,7 +173,7 @@ The project.md file captures the execution topology and agent architecture decis
 | **Dependency Graph** | ASCII or Mermaid diagram showing task execution order |
 | **Version History** | Version, date, trigger, changes for each .exec/ generation |
 
-Template location: `skills/execution-planner/templates/project.md`
+Template location: `skills/ltc-execution-planner/templates/project.md`
 
 ## Deliverable Contract Structure
 
@@ -187,8 +187,8 @@ Each deliverable directory contains a `deliverable.md` with:
 | **Child Tasks** | Task list with status and dependencies |
 | **Scope** | In scope / Out of scope boundaries |
 
-Template location: `skills/execution-planner/templates/deliverable.md`
+Template location: `skills/ltc-execution-planner/templates/deliverable.md`
 
 ## JSON Schema Validation
 
-Use `skills/execution-planner/templates/status-schema.json` to validate status.json files programmatically. The schema enforces all required fields, enum values, and pattern constraints.
+Use `skills/ltc-execution-planner/templates/status-schema.json` to validate status.json files programmatically. The schema enforces all required fields, enum values, and pattern constraints.

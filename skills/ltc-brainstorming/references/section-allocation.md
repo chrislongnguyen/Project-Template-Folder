@@ -83,7 +83,7 @@ The lead assembles all 5 groups into a complete VANA-SPEC and runs:
 Run the deterministic validator:
 
 ```bash
-./skills/brainstorming/scripts/mece-validator.sh <spec-path>
+./skills/ltc-brainstorming/scripts/mece-validator.sh <spec-path>
 ```
 
 ## Failure Handling

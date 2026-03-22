@@ -105,7 +105,7 @@ Do NOT hardcode [value] — [reason]; it belongs in [config location]
 ```
 
 Example:
-> Do NOT hardcode the ClickUp field UUID for `task_type` — UUIDs change per workspace and are already defined in `skills/wms-adapters/clickup/field-map.md`; reference that file rather than embedding the UUID in the script.
+> Do NOT hardcode the ClickUp field UUID for `task_type` — UUIDs change per workspace and are already defined in `skills/ltc-wms-adapters/clickup/field-map.md`; reference that file rather than embedding the UUID in the script.
 
 ### Pattern 7: "Premature optimization"
 

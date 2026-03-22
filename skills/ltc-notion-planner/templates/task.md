@@ -46,5 +46,5 @@ Parent Deliverable: {link to parent Deliverable}
 
 {**Mandatory at completion.** Link to what was produced.}
 
-- {e.g., Git: `skills/notion-planner/SKILL.md` — rewritten skill}
+- {e.g., Git: `skills/ltc-notion-planner/SKILL.md` — rewritten skill}
 - {e.g., Wiki: [page title](notion-url)}

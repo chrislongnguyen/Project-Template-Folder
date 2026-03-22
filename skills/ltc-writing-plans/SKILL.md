@@ -89,7 +89,7 @@ Rules for HOW NOT sections:
 - At least 2 entries per deliverable (minimum viable drift guard)
 - Each entry must state BOTH what not to do AND why
 - "Why" must be specific, not generic ("breaks X" not "bad idea")
-- Reference the scope-exclusions guide: `skills/writing-plans/references/scope-exclusions-guide.md`
+- Reference the scope-exclusions guide: `skills/ltc-writing-plans/references/scope-exclusions-guide.md`
 
 ### Agent Architecture Decision (mandatory)
 
@@ -99,7 +99,7 @@ Every deliverable MUST have an **Agent Architecture** section that states the ch
 **Agent Architecture:** {Pattern} — {Count} {Complexity}-complexity tasks; {1-sentence rationale}
 ```
 
-Use the decision tree: `skills/writing-plans/references/agent-arch-decision-tree.md`
+Use the decision tree: `skills/ltc-writing-plans/references/agent-arch-decision-tree.md`
 
 Valid patterns: `Single Agent`, `Sub-Agents`, `Agent Team`, `Agent Team + Scoped Reviewers`
 
@@ -177,7 +177,7 @@ git commit -m "feat: add specific feature"
 
 **Run ALL 7 checks BEFORE presenting plan for human review.** This is not optional. Failure behavior: fix and re-check (max 2 retries), then surface with warnings.
 
-Full reference: `skills/writing-plans/references/plan-validation-checklist.md`
+Full reference: `skills/ltc-writing-plans/references/plan-validation-checklist.md`
 
 | # | Check | Flag Threshold | Rationale |
 |---|---|---|---|

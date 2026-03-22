@@ -116,7 +116,7 @@ Exceptions: code blocks (fenced with triple backticks) are excluded from this ch
 ### CLI Usage
 
 ```bash
-python3 skills/execution-planner/scripts/readiness-check.py /path/to/.exec/
+python3 skills/ltc-execution-planner/scripts/readiness-check.py /path/to/.exec/
 ```
 
 ### Exit Codes

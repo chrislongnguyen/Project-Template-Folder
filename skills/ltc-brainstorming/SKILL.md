@@ -178,7 +178,7 @@ Runs cross-section consistency check:
 **Step 5: Run MECE validator script**
 
 ```bash
-./skills/brainstorming/scripts/mece-validator.sh docs/superpowers/specs/<spec-file>.md
+./skills/ltc-brainstorming/scripts/mece-validator.sh docs/superpowers/specs/<spec-file>.md
 ```
 
 - Every AC in §2-§5 appears exactly once in AC-TEST-MAP
@@ -271,6 +271,6 @@ A browser-based companion for showing mockups, diagrams, and visual options duri
 A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question — use the terminal. "Which wizard layout works better?" is a visual question — use the browser.
 
 If they agree to the companion, read the detailed guide before proceeding:
-`skills/brainstorming/references/visual-companion.md`
-<!-- OE.6.4 fork note: path changed from original superpowers `skills/brainstorming/visual-companion.md`
-     to `skills/brainstorming/references/visual-companion.md` to match the OE.6.4 directory convention. -->
+`skills/ltc-brainstorming/references/visual-companion.md`
+<!-- OE.6.4 fork note: path changed from original superpowers `skills/ltc-brainstorming/visual-companion.md`
+     to `skills/ltc-brainstorming/references/visual-companion.md` to match the OE.6.4 directory convention. -->

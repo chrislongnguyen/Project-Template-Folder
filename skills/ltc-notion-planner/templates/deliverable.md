@@ -39,7 +39,7 @@ Parent Iteration: {Master Plan Item link to parent Iteration}
 
 - {e.g., `research/amt/Doc-11-Session-3-Research.md` — research input}
 - {e.g., Notion Wiki page URL — prior session's training doc}
-- {e.g., `skills/notion-planner/SKILL.md` — existing artifact to modify}
+- {e.g., `skills/ltc-notion-planner/SKILL.md` — existing artifact to modify}
 
 ## Dependencies
 
@@ -58,4 +58,4 @@ Parent Iteration: {Master Plan Item link to parent Iteration}
 
 - {e.g., Wiki: [Session 3 — Input Engineering](notion-url) — training doc}
 - {e.g., Git: `research/amt/Doc-11-Session-3-Research.md` — research report}
-- {e.g., Skill: `skills/notion-planner/` v1.1 — refactored skill}
+- {e.g., Skill: `skills/ltc-notion-planner/` v1.1 — refactored skill}

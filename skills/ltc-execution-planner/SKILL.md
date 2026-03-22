@@ -39,18 +39,18 @@ Load these before generating .exec/ files:
 
 | Reference | Path | Purpose |
 |---|---|---|
-| Exec File Format | `skills/execution-planner/references/exec-file-format.md` | Definitive .exec/ format specification |
-| Readiness Checks | `skills/execution-planner/references/agent-readiness-checks.md` | 10-point quality gate checklist |
-| WMS Sync Protocol | `skills/execution-planner/references/wms-sync-protocol.md` | Sync contract and conflict resolution |
+| Exec File Format | `skills/ltc-execution-planner/references/exec-file-format.md` | Definitive .exec/ format specification |
+| Readiness Checks | `skills/ltc-execution-planner/references/agent-readiness-checks.md` | 10-point quality gate checklist |
+| WMS Sync Protocol | `skills/ltc-execution-planner/references/wms-sync-protocol.md` | Sync contract and conflict resolution |
 
 ## Templates
 
 | Template | Path | Purpose |
 |---|---|---|
-| Task File | `skills/execution-planner/templates/task.md` | Individual task execution contract |
-| Deliverable | `skills/execution-planner/templates/deliverable.md` | Deliverable contract with ACs and child tasks |
-| Project | `skills/execution-planner/templates/project.md` | Execution topology and dependency graph |
-| Status Schema | `skills/execution-planner/templates/status-schema.json` | JSON Schema for status.json validation |
+| Task File | `skills/ltc-execution-planner/templates/task.md` | Individual task execution contract |
+| Deliverable | `skills/ltc-execution-planner/templates/deliverable.md` | Deliverable contract with ACs and child tasks |
+| Project | `skills/ltc-execution-planner/templates/project.md` | Execution topology and dependency graph |
+| Status Schema | `skills/ltc-execution-planner/templates/status-schema.json` | JSON Schema for status.json validation |
 
 ## Generation Protocol
 
@@ -121,8 +121,8 @@ Unaffected tasks preserve their status. A new exec_version is created in status.
 After generation, run both validators:
 
 ```bash
-python3 skills/execution-planner/scripts/readiness-check.py .exec/
-python3 skills/execution-planner/scripts/coverage-check.py path/to/spec.md .exec/
+python3 skills/ltc-execution-planner/scripts/readiness-check.py .exec/
+python3 skills/ltc-execution-planner/scripts/coverage-check.py path/to/spec.md .exec/
 ```
 
 Both must exit 0 before execution (Stage 5) can begin.

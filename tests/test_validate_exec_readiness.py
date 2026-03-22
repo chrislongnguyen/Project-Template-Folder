@@ -2,7 +2,7 @@
 Tests for scripts/stage-validators/validate-exec-readiness.py (Stage 4→5)
 
 This validator is now standalone (all 10 checks inlined; no subprocess delegation
-to skills/execution-planner/scripts/readiness-check.py).
+to skills/ltc-execution-planner/scripts/readiness-check.py).
 """
 import subprocess
 import sys
