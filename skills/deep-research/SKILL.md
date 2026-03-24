@@ -1,6 +1,6 @@
 ---
 name: deep-research
-description: Multi-source research with citation tracking and verification. 4 modes — research:lite (5min), research:mid (15min), research:deep (30min), research:full (60min+). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Even if you think you can answer with a quick WebSearch — if the user wants a structured, cited, multi-angle analysis, USE THIS SKILL. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
+description: Multi-source research with citation tracking and verification. 4 modes — research:lite (2-5min), research:mid (5-10min), research:deep (10-20min), research:full (20-45min). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Even if you think you can answer with a quick WebSearch — if the user wants a structured, cited, multi-angle analysis, USE THIS SKILL. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
 ---
 
 # Deep Research
