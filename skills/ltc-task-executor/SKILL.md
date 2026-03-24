@@ -1,5 +1,5 @@
 ---
-name: ltc:task-executor
+name: ltc-task-executor
 description: Stage 5 L2 defense — re-injects critical meta-rules when executing .exec/ task files. Load this skill before executing any task.
 ---
 

@@ -18,16 +18,20 @@ from pathlib import Path
 def extract_spec_ac_ids(spec_path: Path) -> list[str]:
     """Extract AC IDs from a VANA-SPEC file.
 
-    Looks for AC IDs in patterns like:
-    - | AC-ID | ... (table rows)
-    - AC-{word}: ... (list items)
-    - {Noun}-AC{N} patterns
+    Looks for AC IDs in the A.C. ID column of spec tables. Supports:
+    - VANA AC patterns: V-1, A-S1, A-E2, A-Sc1, N-I1, N-W1, Adj-I1, Adj-W2, etc.
+    - Legacy patterns: Noun-AC1, AC-1
+    - Checklist items: - [ ] AC-1: ...
     """
     content = spec_path.read_text(encoding="utf-8")
     ac_ids: list[str] = []
 
-    # Pattern 1: Table rows with AC IDs (e.g., | Noun-AC1 | ...)
-    for match in re.finditer(r"\|\s*(\w+-AC\d+)\s*\|", content):
+    # Pattern 1: Table rows — first column of markdown tables with AC-like IDs
+    # Match IDs like V-1, A-S1, A-E2, A-Sc1, N-I1, N-W1, Adj-I1, Adj-W2, Noun-AC1
+    for match in re.finditer(
+        r"\|\s*((?:V-\d+|A-[A-Z][a-z]?\d+|N-[A-Z]\d+|Adj-[A-Z]\d+|[A-Z][a-z]+-AC\d+))\s*\|",
+        content,
+    ):
         ac_id = match.group(1)
         if ac_id not in ac_ids:
             ac_ids.append(ac_id)

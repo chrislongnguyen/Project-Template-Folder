@@ -1,0 +1,167 @@
+{
+  "project": "LTC Memory Engine v2.0 (I1)",
+  "spec_version": "v1",
+  "plan_version": "v1",
+  "exec_version": "v1",
+  "generated_at": "2026-03-22T23:45:00Z",
+  "updated_at": "2026-03-22T23:45:00Z",
+  "pipeline_stage": "exec_plan",
+  "deliverables": {
+    "D1": {
+      "name": "Package Scaffolding + Data Models",
+      "status": "ready",
+      "tasks": {
+        "D1-T1": {
+          "name": "Data Models",
+          "status": "ready",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        },
+        "D1-T2": {
+          "name": "Package Scaffolding",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    },
+    "D2": {
+      "name": "Config + Storage Layer",
+      "status": "blocked",
+      "tasks": {
+        "D2-T1": {
+          "name": "Config Module",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        },
+        "D2-T2": {
+          "name": "Storage Layer",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    },
+    "D3": {
+      "name": "Embedder",
+      "status": "blocked",
+      "tasks": {
+        "D3-T1": {
+          "name": "Local Embedder",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    },
+    "D4": {
+      "name": "MemoryManager",
+      "status": "blocked",
+      "tasks": {
+        "D4-T1": {
+          "name": "MemoryManager CRUD",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        },
+        "D4-T2": {
+          "name": "Search Quality + Performance",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        },
+        "D4-T3": {
+          "name": "Secret Scanning + Dedup Detection",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    },
+    "D5": {
+      "name": "Click CLI",
+      "status": "blocked",
+      "tasks": {
+        "D5-T1": {
+          "name": "Core CLI Commands",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        },
+        "D5-T2": {
+          "name": "Setup Wizard + Integration Test",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "sonnet",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    },
+    "D6": {
+      "name": "Final Integration + AC Verification",
+      "status": "blocked",
+      "tasks": {
+        "D6-T1": {
+          "name": "Full Integration Test",
+          "status": "blocked",
+          "rework_count": 0,
+          "agent_pattern": "single_agent",
+          "agent_model": "opus",
+          "started_at": null,
+          "completed_at": null,
+          "ac_results": {}
+        }
+      }
+    }
+  },
+  "rework_log": [],
+  "version_history": [
+    {
+      "exec_version": "v1",
+      "spec_version": "v1",
+      "plan_version": "v1",
+      "generated_at": "2026-03-22T23:45:00Z",
+      "trigger": "initial_generation"
+    }
+  ]
+}

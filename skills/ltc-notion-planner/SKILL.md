@@ -1,5 +1,5 @@
 ---
-name: ltc:notion-planner
+name: ltc-notion-planner
 description: >
   Plan and log work to the LTC Notion Task Board and Master Plan. Creates Iterations, Deliverables,
   Tasks, and Sub-tasks with proper 5-level hierarchy, VANA outcomes, linkage, and standardized naming

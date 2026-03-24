@@ -1,5 +1,5 @@
 ---
-name: ltc:clickup-planner
+name: ltc-clickup-planner
 description: >
   Plan and log work to ClickUp within the LTC workspace. Creates PJ Projects, PJ Workstreams (iterations),
   PJ Deliverables, Tasks, PJ Increments, PJ Documentation, and PJ Blockers with proper hierarchy,

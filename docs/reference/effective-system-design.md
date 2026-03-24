@@ -15,8 +15,8 @@ scope: OE (Operational Excellence) and all UE (User Enablement) instances
 
 The **Effective System Design (ESD)** framework is the translation layer between *learning* and *building*. After an operator completes the **Effective Learning Framework (ELF)** on a subject, the output — a 7-layer structured Learning Book — contains everything needed to design a User Enablement (UE) system. ESD takes that knowledge and decomposes it into three sequential phases:
 
-1. **Phase 1 — Problem Discovery**: Reconstruct the User's system from ELF output. Who is the User? What blocks them? What drives them? *(Source: ELF EO, EU, UBS, UDS)*
-2. **Phase 2 — System Design**: Define the conceptual solution space. What principles govern the design? What environment and tools are needed? What is the Desirable Wrapper and Effective Core? *(Source: ELF EP, EOE+EOT, EOP)*
+1. **Phase 1 — Problem Discovery**: Reconstruct the User's system from ELF output. Who is the User? What blocks them? What drives them? *(Source: ELF UDO, User Roles, UBS, UDS)*
+2. **Phase 2 — System Design**: Define the conceptual solution space. What principles govern the design? What environment and tools are needed? What is the Desirable Wrapper and Effective Core? *(Source: ELF EPS, UES, EOP)*
 3. **Phase 3 — User's Requirements**: Translate Phase 2 into deterministic engineering requirements expressed as Verbs, Adverbs, Nouns, and Adjectives with binary Acceptance Criteria (A.C.). *(Derives from: Phases 1 + 2)*
 
 **ESD is not the same as ELF.** ELF is a learning methodology. ESD is a design methodology. They operate in sequence:
@@ -44,7 +44,7 @@ All terms ordered from highest to lowest abstraction. Use these definitions cons
 ### 1.1 System Types
 
 **System vs Workstream**
-Per UT#1, a **system** is any entity with EO, EU, UBS, UDS, EP, EOE+EOT, EOP. A **workstream** is a system that operates as a concurrent sub-system within a parent OE System. Every workstream is a system; not every system is a workstream. Templates use "system" as the generic term. In subject-specific contexts (e.g., AI-Centric OE System Design), each sub-system (WS-A, WS-B, etc.) is called a "workstream" because it runs concurrently within the parent OE System's event loop. Both terms refer to the same UT#1 entity — the distinction is deployment context, not structure.
+Per UT#1, a **system** is any entity with UDO, User, UBS, UDS, EPS, UES, EOP. A **workstream** is a system that operates as a concurrent sub-system within a parent OE System. Every workstream is a system; not every system is a workstream. Templates use "system" as the generic term. In subject-specific contexts (e.g., AI-Centric OE System Design), each sub-system (WS-A, WS-B, etc.) is called a "workstream" because it runs concurrently within the parent OE System's event loop. Both terms refer to the same UT#1 entity — the distinction is deployment context, not structure.
 
 **Value Chain — The 6-Layer Corporate Structure**
 Every organisation operates through a value chain of six interdependent layers. Each layer enables the one above it:
@@ -59,10 +59,10 @@ Layer 5: Financial Performance    — the measurable outcomes of all layers abov
 ```
 
 **OE — Operational Excellence (Layer 2)**
-The meta-layer. The system of systems that designs, builds, monitors, and improves User Enablement (Layer 3). OE does not serve the end-user directly — it serves the *builder*. In a specific domain, OE manifests as a concrete system: e.g., in AI Orchestration, OE = the Orchestration Engine; in HR, OE = the Talent Management System; in Finance, OE = the Financial Controls System. The EO of any OE is to enable any analyst or operator to build a domain-specific UE system that is Sustainable, Efficient, and Scalable.
+The meta-layer. The system of systems that designs, builds, monitors, and improves User Enablement (Layer 3). OE does not serve the end-user directly — it serves the *builder*. In a specific domain, OE manifests as a concrete system: e.g., in AI Orchestration, OE = the Orchestration Engine; in HR, OE = the Talent Management System; in Finance, OE = the Financial Controls System. The UDO of any OE is to enable any analyst or operator to build a domain-specific UE system that is Sustainable, Efficient, and Scalable.
 
 **UE — User Enablement (Layer 3)**
-A domain-specific system designed and built by OE. Its EO is to enable a specific User to perform a specific set of Verbs and reach specific desired outcomes. Always built *for* a named User Persona. Example: Investment Research Agent, Recruitment Pipeline System, Monthly Reporting Dashboard.
+A domain-specific system designed and built by OE. Its UDO is to enable a specific User to perform a specific set of Verbs and reach specific desired outcomes. Always built *for* a named User Persona. Example: Investment Research Agent, Recruitment Pipeline System, Monthly Reporting Dashboard.
 
 ---
 
@@ -70,7 +70,7 @@ A domain-specific system designed and built by OE. Its EO is to enable a specifi
 
 **ELF — Effective Learning Framework**
 A 7-layer methodology for learning any subject deeply enough to design a system around it.
-Layers in order: `EO → EU → UBS (+ UBS.UB + UBS.UD) → UDS (+ UDS.UD + UDS.UB) → EP → EOE + EOT → EOP`
+Layers in order: `UDO → User Roles → UBS (+ UBS.UB + UBS.UD) → UDS (+ UDS.UD + UDS.UB) → EPS → UES → EOP`
 Output: a structured Learning Book. **ELF is for learning, not designing.**
 
 **ESD — Effective System Design**
@@ -79,46 +79,46 @@ Phases: Problem Discovery → System Design → User's Requirements.
 Output: design decisions + A.C. tables. **ESD is for designing, not learning.**
 
 **System Wiki Template**
-The documentation format for each project or feature built by the agent. Captures: Document Control, Desired Outcomes, Users & Roles, Effective Principles (UBS/UDS/EP), Environment, Tools, and EOP. One filled wiki per system built. **The wiki is for documenting, not designing.**
+The documentation format for each project or feature built by the agent. Captures: Document Control, Desired Outcomes, Users & Roles, Effective Operating Principles (UBS/UDS/EPS), Environment, Tools, and EOP. One filled wiki per system built. **The wiki is for documenting, not designing.**
 
 ---
 
 ### 1.3 ELF Layers (inputs to ESD)
 
-**EO — Effective Outcome**
-The fundamental, non-technical state the User is trying to achieve. Not a feature or system output — a state of being. Carried verbatim from ELF into ESD Phase 1. Does not change between ELF and ESD. EO is aspirational, directional, and technology-agnostic. How close A.C.s push the User towards the EO measures success.
+**UDO — Ultimate Desired Outcome**
+The fundamental, non-technical state the User is trying to achieve. Not a feature or system output — a state of being. Carried verbatim from ELF into ESD Phase 1. Does not change between ELF and ESD. UDO is aspirational, directional, and technology-agnostic. How close A.C.s push the User towards the UDO measures success.
 
 **INPUT — System-Level Trigger and Upstream Data**
 What triggers this workstream/system and what data it receives from upstream systems. INPUT is the system-level aggregation of all EOP step-level "REQUIRED INPUT" that originates from OUTSIDE this system. It is the integration contract with upstream systems. Example: SYS-E1 (Scope Management) INPUT = "Ranked execution routes from SYS-D (Prioritization)."
 
 **OUTPUT — System-Level Artifact for Downstream Systems**
-The concrete artifact or data this workstream/system produces that feeds INTO downstream systems. OUTPUT is the system-level aggregation of all EOP step-level "DESIRED OUTPUT" that goes OUTSIDE this system. It is evidence that EO was achieved for this iteration — the handoff contract with downstream systems. Example: SYS-E1 OUTPUT = "Binary A.C.s per scope item → consumed by SYS-E2 (Design)." System integration depends on OUTPUT: SYS-A OUTPUT → SYS-B INPUT → SYS-B OUTPUT → SYS-C INPUT.
+The concrete artifact or data this workstream/system produces that feeds INTO downstream systems. OUTPUT is the system-level aggregation of all EOP step-level "DESIRED OUTPUT" that goes OUTSIDE this system. It is evidence that UDO was achieved for this iteration — the handoff contract with downstream systems. Example: SYS-E1 OUTPUT = "Binary A.C.s per scope item → consumed by SYS-E2 (Design)." System integration depends on OUTPUT: SYS-A OUTPUT → SYS-B INPUT → SYS-B OUTPUT → SYS-C INPUT.
 
 **RACI — System-Level Responsibility Assignment**
 At the system/workstream level: R (Responsible — who does the work; in AI-Centric systems, often the AI Agent), A (Accountable — who owns the outcome; typically the Human Director), C (Consulted — domain experts or upstream system output providers), I (Informed — downstream system consumers, team, logs). System-level RACI anchors the perspective for UBS/UDS analysis: the same workstream has different blockers for R vs A. Per-step RACI (see §1.4) refines this for each EOP step.
 
-**EU — Effective User**
-The Doer — the set of distinct actors who interact with the system: who triggers it, who uses it, who benefits, who maintains it, and who must NOT use it. Solved for R (Responsible) and A (Accountable) roles per RACI. In ESD, translated into User Persona + Anti-Persona + RACI matrix per EOP step.
+**User Roles**
+The set of distinct actors who interact with the system: who triggers it, who uses it, who benefits, who maintains it, and who must NOT use it. In ESD, translated into User Persona + Anti-Persona + RACI matrix per EOP step.
 
 **UBS — Ultimate Blocking System**
-The root system of forces preventing the User from reaching the EO. Expressed recursively using dot-notation:
+The root system of forces preventing the User from reaching the UDO. Expressed recursively using dot-notation:
 - `UBS` = root blocker
 - `UBS.UD` = what drives the UBS harder (works AGAINST the User)
 - `UBS.UB` = what disables the UBS (works IN the User's favour)
 - `UBS.UD.UD`, `UBS.UB.UB`, etc. = deeper recursive layers
 
 **UDS — Ultimate Driving System**
-The root system of forces helping the User reach the EO. Expressed recursively:
+The root system of forces helping the User reach the UDO. Expressed recursively:
 - `UDS` = root driver
 - `UDS.UD` = what drives the UDS further (works IN the User's favour)
 - `UDS.UB` = what blocks the UDS (works AGAINST the User)
 - `UDS.UD.UD`, `UDS.UB.UB`, etc. = deeper recursive layers
 
-**EP — Effective Principles**
+**EPS — Effective Principle System**
 The set of governing principles derived *directly* from UBS and UDS. Each principle either enables a UDS element or disables a UBS element. Never generic best practices. Each principle is labeled with its S/E/Sc pillar during ELF (see §1.5): `P[n](S)`, `P[n](E)`, `P[n](Sc)`. In ESD Phase 2, these bucketed principles become the source of Adverb A.C.s in Phase 3.
 
-**EOE — Effective Operating Environment + EOT — Effective Operating Tools**
-The concrete environment and tools that implement the EP principles. EOE defines the operating context (where); EOT defines the tools (what). Together they replace the former UES. Organized in 3 universal causal layers. The layer **names** are subject-specific; the **logic** is always the same:
+**UES — Ultimate Effective System**
+The concrete environment and tools that implement the EPS principles. Organized in 3 universal causal layers. The layer **names** are subject-specific; the **logic** is always the same:
 
 - **Layer 1 (Foundational)**: The base runtime — must exist before anything else can operate. Everything above depends on this. *(Example names: Infrastructure, Physical, Legal, Biological)*
 - **Layer 2 (Operational)**: The working environment — requires Layer 1 to function. Where the actual work is done. *(Example names: Workspace, Digital, Process, Organisational)*
@@ -126,26 +126,23 @@ The concrete environment and tools that implement the EP principles. EOE defines
 
 **Why this order is always causal:** You cannot operate Layer 2 without Layer 1 running. Layer 3 amplifies nothing without Layer 2 to operate in. The structure is universal — only the names change per subject.
 
-In ESD, EOE+EOT become the Noun and Noun A.C.s in Phase 3.
+In ESD, UES becomes the Noun and Noun A.C.s in Phase 3.
 
 **EOP — Effective Operating Procedure**
-The sequential, gated steps a User takes using the EOE+EOT to reach the EO. Staged in two phases: first DERISK (Sustainability steps that neutralise the UBS), then OPTIMIZE (Efficiency/Scalability steps that amplify the UDS). Each step includes a full RACI assignment (Responsible, Accountable, Consulted, Informed), Required Input, Desired Output, Operating Tools, Typical Blocker, and Dos/Don'ts/KPIs. In ESD Phase 3, each EOP step where the primary EU Role = Responsible becomes one Verb with its own A.C. block.
-
-**EA — Effective Action**
-Observable execution — the emergent result of all 7 components working together (EO, EU, UBS, UDS, EP, EOE+EOT, EOP). EA is not designed directly; it is what happens when the EU follows the EOP using the EOT within the EOE, governed by EP, to move toward the EO. In ESD Phase 3, each Verb block captures the EA for one EOP step.
+The sequential, gated steps a User takes using the UES to reach the UDO. Staged in two phases: first DERISK (Sustainability steps that neutralise the UBS), then OPTIMIZE (Efficiency/Scalability steps that amplify the UDS). Each step includes a full RACI assignment (Responsible, Accountable, Consulted, Informed), Required Input, Desired Output, Operating Tools, Typical Blocker, and Dos/Don'ts/KPIs. In ESD Phase 3, each EOP step where the primary User Role = Responsible becomes one Verb with its own A.C. block.
 
 ---
 
 ### 1.4 ESD-Specific Concepts
 
 **User Persona**
-A detailed profile of the primary User the UE system is built for. Derived from ELF EU (primary actor). Includes: role/title, operating context, current capability level, primary job-to-be-done, key constraints. Every Phase 3 A.C. is written *for this persona*.
+A detailed profile of the primary User the UE system is built for. Derived from ELF User Roles (primary actor). Includes: role/title, operating context, current capability level, primary job-to-be-done, key constraints. Every Phase 3 A.C. is written *for this persona*.
 
 **Anti-Persona**
 An explicit profile of who the UE system is NOT built for. Any user matching the Anti-Persona is explicitly out of scope. Prevents scope creep. Must be specific — name the exact characteristics that disqualify an actor.
 
 **Desirable Wrapper**
-The surface-level experience of the UE system in its early iterations (Iterations 1–2). Tests *desirability*: "Will the User want to use this?" Addresses UBS and UDS at root level only. The minimum needed to validate the EO is worth solving.
+The surface-level experience of the UE system in its early iterations (Iterations 1–2). Tests *desirability*: "Will the User want to use this?" Addresses UBS and UDS at root level only. The minimum needed to validate the UDO is worth solving.
 
 **Effective Core**
 The deep mechanism of the UE system at maturity (Iterations 3–4). Tests *effectiveness*: "Does this actually solve the root cause?" Addresses all recursive UBS/UDS layers (UBS.UB.UB, UDS.UD.UD, etc.). What separates a useful tool from a transformative system.
@@ -178,7 +175,7 @@ Repeatable, comparable, growth-capable operation. Handles increasing load, users
 The four grammar elements of Phase 3 User's Requirements. Together they form a complete engineering requirement set.
 
 **Verb**
-An atomic action the primary User takes using the UE system to progress toward the EO. Derived from one EOP step where the primary User Role = Responsible. A system with N such EOP steps has N Verbs. Each Verb has its own independent A.C. block. Verb A.C.s test whether the action can be performed at all — before any Adverb quality is applied.
+An atomic action the primary User takes using the UE system to progress toward the UDO. Derived from one EOP step where the primary User Role = Responsible. A system with N such EOP steps has N Verbs. Each Verb has its own independent A.C. block. Verb A.C.s test whether the action can be performed at all — before any Adverb quality is applied.
 
 **Adverb**
 How a Verb must be performed to be considered effective. Bucketed by S/E/Sc pillar — one Adverb group per pillar per Verb:
@@ -189,7 +186,7 @@ How a Verb must be performed to be considered effective. Bucketed by S/E/Sc pill
 Each Verb has three Adverb groups. Each group has N independent, atomic A.C.s.
 
 **Noun**
-The specific UE tool or system built to enable the User to perform the Verbs adverbly. Corresponds to the EOE+EOT from ELF. The Noun is the system/tool *itself* — not its output. Noun A.C.s define what the Noun must HAVE (components, integrations, schemas), organized by EOT causal layer (Foundational → Operational → Enhancement) — not by S/E/Sc. All Noun A.C.s are confirmed in Iteration 1 — the tool must exist before any Verb can be tested.
+The specific UE tool or system built to enable the User to perform the Verbs adverbly. Corresponds to the UES from ELF. The Noun is the system/tool *itself* — not its output. Noun A.C.s define what the Noun must HAVE (components, integrations, schemas), organized by UES causal layer (Foundational → Operational → Enhancement) — not by S/E/Sc. All Noun A.C.s are confirmed in Iteration 1 — the tool must exist before any Verb can be tested.
 
 **Adjective**
 A quality, attribute, or characteristic the Noun must POSSESS to effectively enable the Verbs. Grouped by S/E/Sc pillar — one group per pillar with N A.C.s (not one adjective word × 3 A.C.s):
@@ -221,7 +218,7 @@ Numbers sequential within each grammar block. Do not rename or renumber once use
 
 **4-link Traceability Chain** (required for every A.C.):
 ```
-A.C. ← Grammar Element ← Phase 2 Decision ← ELF Layer ← EO
+A.C. ← Grammar Element ← Phase 2 Decision ← ELF Layer ← UDO
 ```
 
 **Rule**: If you cannot complete all 4 links, the A.C. does not belong in this system.
@@ -254,18 +251,18 @@ Explicit mapping of every ELF layer to its corresponding ESD element. Reference 
 
 | ELF Layer | ESD Phase | ESD Element | Translation Rule |
 |---|---|---|---|
-| EO | Phase 1 | EO | Carried verbatim. Do not rephrase. |
-| EU (primary) | Phase 1 | User Persona | Primary EU Role → full Persona profile |
-| EU (excluded) | Phase 1 | Anti-Persona | Out-of-scope roles → Anti-Persona |
-| EU (all) | Phase 2 | RACI per EOP step | R/A/C/I assigned per step across all roles |
+| UDO | Phase 1 | UDO | Carried verbatim. Do not rephrase. |
+| User Roles (primary) | Phase 1 | User Persona | Primary User Role → full Persona profile |
+| User Roles (excluded) | Phase 1 | Anti-Persona | Out-of-scope roles → Anti-Persona |
+| User Roles (all) | Phase 2 | RACI per EOP step | R/A/C/I assigned per step across all roles |
 | UBS (all recursive layers) | Phase 1 | Blockers section | UBS + UBS.UD + UBS.UB + all recursive sub-layers |
 | UDS (all recursive layers) | Phase 1 | Drivers section | UDS + UDS.UD + UDS.UB + all recursive sub-layers |
-| EP — P[n](S) | Phase 2 | Sustainability Principles | Principles disabling UBS / enabling UDS via correct/safe operation → SustainAdv A.C.s |
-| EP — P[n](E) | Phase 2 | Efficiency Principles | Principles enabling UDS via fast/lean operation → EffAdv A.C.s |
-| EP — P[n](Sc) | Phase 2 | Scalability Principles | Principles enabling UDS via repeatable/scalable operation → ScalAdv A.C.s |
-| EOT — Layer 1 (Foundational) | Phase 2 → Phase 3 | Noun Layer 1 A.C.s | Foundational components → Noun-ACn (under Layer 1 header) |
-| EOT — Layer 2 (Operational) | Phase 2 → Phase 3 | Noun Layer 2 A.C.s | Operational components → Noun-ACn (under Layer 2 header) |
-| EOT — Layer 3 (Enhancement) | Phase 2 → Phase 3 | Noun Layer 3 A.C.s | Enhancement components → Noun-ACn (under Layer 3 header) |
+| EPS — P[n](S) | Phase 2 | Sustainability Principles | Principles disabling UBS / enabling UDS via correct/safe operation → SustainAdv A.C.s |
+| EPS — P[n](E) | Phase 2 | Efficiency Principles | Principles enabling UDS via fast/lean operation → EffAdv A.C.s |
+| EPS — P[n](Sc) | Phase 2 | Scalability Principles | Principles enabling UDS via repeatable/scalable operation → ScalAdv A.C.s |
+| UES — Layer 1 (Foundational) | Phase 2 → Phase 3 | Noun Layer 1 A.C.s | Foundational components → Noun-ACn (under Layer 1 header) |
+| UES — Layer 2 (Operational) | Phase 2 → Phase 3 | Noun Layer 2 A.C.s | Operational components → Noun-ACn (under Layer 2 header) |
+| UES — Layer 3 (Enhancement) | Phase 2 → Phase 3 | Noun Layer 3 A.C.s | Enhancement components → Noun-ACn (under Layer 3 header) |
 | EOP (primary User Role = R) | Phase 2 → Phase 3 | EOP → Verbs | Each step where primary User = R → one Verb block |
 | EOP (full RACI) | Phase 2 | EOP (full) | Complete RACI per step for multi-role documentation |
 | *(not in ELF)* | Phase 2 | Desirable Wrapper | Defined in Phase 2: which Verbs + Sustainability A.C.s test desirability at root UBS/UDS level |
@@ -277,7 +274,7 @@ Explicit mapping of every ELF layer to its corresponding ESD element. Reference 
 ## 3. Phase 1: Problem Discovery
 
 *Goal: Reconstruct the User's system from ELF output — before introducing any technology.*
-*Source: ELF Learning Book (EO, EU, UBS, UDS layers).*
+*Source: ELF Learning Book (UDO, User Roles, UBS, UDS layers).*
 *Rule: No solution language. Phase 1 describes the problem space only.*
 
 ---
@@ -289,7 +286,7 @@ Before defining the User, establish the system/workstream boundary. This maps 1:
 | Field | Source | Description |
 |-------|--------|-------------|
 | **INPUT** | ILE T0 Workstream Contract | What triggers this system; what data/artifacts arrive from upstream systems |
-| **EO** | ILE T0 Workstream Contract / ELF | The state this system aims to achieve — carried into §3.2 |
+| **UDO** | ILE T0 Workstream Contract / ELF | The state this system aims to achieve — carried into §3.2 |
 | **OUTPUT** | ILE T0 Workstream Contract | What this system produces for downstream systems |
 
 *The INPUT/OUTPUT fields create the integration chain: SYS-A OUTPUT → SYS-B INPUT → SYS-B OUTPUT → SYS-C INPUT. Without these, the system is designed in isolation.*
@@ -299,7 +296,7 @@ Before defining the User, establish the system/workstream boundary. This maps 1:
 ### 3.1 User Definition
 
 **User Persona (Primary)**
-Who is the primary User this system is designed for? Derived from ELF EU.
+Who is the primary User this system is designed for? Derived from ELF User Roles.
 Include: role/title, operating context, current tools and methods, capability level, primary job-to-be-done, key constraints.
 *Specific enough that a designer can make decisions by referencing this profile.*
 
@@ -320,11 +317,11 @@ Establish R (Responsible) and A (Accountable) BEFORE UBS/UDS analysis. The same 
 
 ---
 
-### 3.2 Effective Outcome (EO)
+### 3.2 Ultimate Desired Outcome (UDO)
 
 Carried verbatim from ELF. The fundamental, non-technical state the User is trying to achieve.
 Format: "[User] [desired state] without [current constraint]."
-*Do not rephrase or add technology references. The EO must be true regardless of which system is built.*
+*Do not rephrase or add technology references. The UDO must be true regardless of which system is built.*
 
 ---
 
@@ -334,8 +331,8 @@ Derived from ELF UDS layer and all recursive sub-layers. **Role-aware per D25**:
 
 | Element | Description |
 |---|---|
-| **UDS(R)** | Root driving forces from R (Responsible) perspective — what drives R toward EO |
-| **UDS(A)** | Root driving forces from A (Accountable) perspective — what drives A toward EO |
+| **UDS(R)** | Root driving forces from R (Responsible) perspective — what drives R toward UDO |
+| **UDS(A)** | Root driving forces from A (Accountable) perspective — what drives A toward UDO |
 | **UDS(R).UD** | What drives UDS(R) further — amplifies R's driver |
 | **UDS(A).UB** | What blocks UDS(A) — the force working against A's driver |
 | *...recursive* | Continue for all layers documented in the ELF Learning Book, role-tagged |
@@ -363,14 +360,14 @@ Derived from ELF UBS layer and all recursive sub-layers. **Role-aware per D25**:
 ## 4. Phase 2: System Design
 
 *Goal: Define the conceptual solution space based ONLY on what was learned in Phase 1 and ELF.*
-*Source: ELF Learning Book (EP, EOE+EOT, EOP) + Phase 1.*
+*Source: ELF Learning Book (EPS, UES, EOP) + Phase 1.*
 *Rule: No technology introduced that was not surfaced by the ELF. No design decision without a causal link to UBS or UDS.*
 
 ---
 
 ### 4.1 Principles (Why)
 
-Derived from EP. Already bucketed by S/E/Sc pillar AND role-tagged during ELF (each principle labeled `P[n](S)(R)`, `P[n](E)(A)`, or `P[n](Sc)(both)` in the Learning Book per D29). Each principle explicitly states which UDS element it enables or which UBS element it disables. Never generic.
+Derived from EPS. Already bucketed by S/E/Sc pillar AND role-tagged during ELF (each principle labeled `P[n](S)(R)`, `P[n](E)(A)`, or `P[n](Sc)(both)` in the Learning Book per D29). Each principle explicitly states which UDS element it enables or which UBS element it disables. Never generic.
 
 **Sustainability Principles (S)**
 Govern correct, safe, risk-managed operation. Primarily address UBS and its recursive sub-layers.
@@ -390,7 +387,7 @@ Format: `P[n](Sc)(R/A/both): [Principle] — Enables [UDS.UD element at recursiv
 
 ### 4.2 Environment (Where)
 
-Derived from ELF EOE (Effective Operating Environment). The context where the UE system must operate. Specifies constraints on the operating environment — not the tools themselves (those are in §4.3).
+Derived from ELF UES (Environment sub-layer). The context where the UE system must operate. Specifies constraints on the operating environment — not the tools themselves (those are in §4.3).
 
 **Environment is documented by type** (following the System Wiki Template format):
 
@@ -407,7 +404,7 @@ Derived from ELF EOE (Effective Operating Environment). The context where the UE
 
 ### 4.3 Tools (What)
 
-Derived from ELF EOT (Effective Operating Tools). Organized by EOT 3 causal layers. Layer names are subject-specific — define them before designing. Every tool traces to at least one Principle from §4.1.
+Derived from ELF UES (Tools sub-layer). Organized by UES 3 causal layers. Layer names are subject-specific — define them before designing. Every tool traces to at least one Principle from §4.1.
 
 **Layer 1 ([Subject-Specific Foundational Name])**: The base runtime. Must exist before any other layer can function. Everything above depends on this.
 **Layer 2 ([Subject-Specific Operational Name])**: The working environment. Requires Layer 1. Where the actual work is done.
@@ -422,13 +419,13 @@ Derived from ELF EOT (Effective Operating Tools). Organized by EOT 3 causal laye
 Minimal tool configuration enabling the primary User to perform the Verb(s) and reach Sustainable Adverb outcomes. Tests: "Will the User desire this?"
 
 **Effective Core** *(Iterations 3–4: addresses all recursive UBS/UDS layers)*
-Full tool configuration enabling the User to reach the EO by solving root-cause recursive layers. Tests: "Does this actually work at depth?"
+Full tool configuration enabling the User to reach the UDO by solving root-cause recursive layers. Tests: "Does this actually work at depth?"
 
 ---
 
 ### 4.4 EOP — Effective Operating Procedure (How)
 
-Derived from ELF EOP. The sequential, gated steps the primary EU takes using the EOT in the EOE to reach the EO. Staged in two phases and documented per step with full RACI.
+Derived from ELF EOP. The sequential, gated steps the primary User Role takes using the Tools in the Environment to reach the UDO. Staged in two phases and documented per step with full RACI.
 
 **EOP Decision Matrix (D26)**
 Before listing steps, declare which UBS elements are targeted for disabling and which UDS elements are targeted for amplifying. This mirrors the ILE T5 Decision Matrix — the EOP is a DECISION POINT, not just a discovery list.
@@ -473,7 +470,7 @@ Gate: [Verifiable condition before Step N+1 begins]
 ## 5. Phase 3: User's Requirements
 
 *Goal: Translate Phase 2 into strict, deterministic, binary engineering requirements.*
-*Source: Phase 1 (EU) + Phase 2 (EOP → Verbs, EP → Adverbs, EOT → Nouns, Qualities → Adjectives).*
+*Source: Phase 1 (User) + Phase 2 (EOP → Verbs, Principles → Adverbs, Tools → Nouns, Qualities → Adjectives).*
 *Rule: Every A.C. must satisfy all five properties: Atomic, Binary, Deterministic, Pre-committed, Traceable.*
 
 ---
@@ -548,7 +545,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Sustainability Adverb**: *[Named adverb(s) — e.g., "Correctly, Verifiably"]*
-*Traceability: EP P[n](S) — Disables [UBS element] ← ELF EP layer*
+*Traceability: EPS P[n](S) — Disables [UBS element] ← ELF EPS layer*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -559,7 +556,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Efficiency Adverb**: *[Named adverb(s) — e.g., "Incrementally, Frugally"]*
-*Traceability: EP P[n](E) — Enables [UDS element] ← ELF EP layer*
+*Traceability: EPS P[n](E) — Enables [UDS element] ← ELF EPS layer*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -570,7 +567,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Scalability Adverb**: *[Named adverb(s) — e.g., "Repeatedly, Comparatively"]*
-*Traceability: EP P[n](Sc) — Enables [UDS.UD element] ← ELF EP layer*
+*Traceability: EPS P[n](Sc) — Enables [UDS.UD element] ← ELF EPS layer*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -587,14 +584,14 @@ Format: `{Grammar}-AC{n}`
 ### 5.5 Section 3: Feature Requirements
 
 *One Noun for the primary UE system. Multiple Nouns if the system has distinct UE components.*
-*Noun A.C.s: organized by EOT causal layer (Foundational → Operational → Enhancement) — NOT by S/E/Sc.*
+*Noun A.C.s: organized by UES causal layer (Foundational → Operational → Enhancement) — NOT by S/E/Sc.*
 *Adjective A.C.s: organized by S/E/Sc pillar — NOT by individual adjective word.*
 
 ---
 
 #### Noun: [Name of the UE system or primary component]
 
-*Traceability: EOT ([Layer1].n, [Layer2].n, [Layer3].n) ← ELF EOT layer ← EP Principles*
+*Traceability: UES ([Layer1].n, [Layer2].n, [Layer3].n) ← ELF UES layer ← EPS Principles*
 *Definition: [One sentence — what this tool is built to do and for whom]*
 
 **[Layer 1 Name] Components** *(Foundational — confirm before Layer 2 is tested)*
@@ -624,7 +621,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Sustainability Adjective**: *[Named quality attributes — e.g., "Auditable, Sourced, Deterministic"]*
-*Traceability: EP Sustainability Principles → qualities the Noun must possess to operate correctly/safely*
+*Traceability: EPS Sustainability Principles → qualities the Noun must possess to operate correctly/safely*
 *Note: Multiple quality attributes expressed as multiple A.C.s within this single pillar group.*
 
 | A.C. ID | Acceptance Criteria |
@@ -636,7 +633,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Efficiency Adjective**: *[Named quality attributes — e.g., "Lightweight, Structured, Automated"]*
-*Traceability: EP Efficiency Principles → qualities the Noun must possess to operate quickly/leanly*
+*Traceability: EPS Efficiency Principles → qualities the Noun must possess to operate quickly/leanly*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -647,7 +644,7 @@ Format: `{Grammar}-AC{n}`
 ---
 
 **Scalability Adjective**: *[Named quality attributes — e.g., "Modular, API-driven, Extensible"]*
-*Traceability: EP Scalability Principles → qualities the Noun must possess to handle growth*
+*Traceability: EPS Scalability Principles → qualities the Noun must possess to handle growth*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -662,23 +659,23 @@ Format: `{Grammar}-AC{n}`
 Every A.C. requires a complete 4-link chain. Verify before locking.
 
 ```
-A.C. ← Grammar Element ← Phase 2 Decision ← ELF Layer ← EO
+A.C. ← Grammar Element ← Phase 2 Decision ← ELF Layer ← UDO
 ```
 
 **Complete chain example:**
 ```
 SustainAdv-AC1: "Every data point cites its source (e.g., 'YFinance 2026-02-28')"
   ← SustainAdv ("Verifiably, Correctly")
-  ← EP P1(S): "Use only verified, sourced data" — Disables UBS: Manual hallucination risk
+  ← EPS P1(S): "Use only verified, sourced data" — Disables UBS: Manual hallucination risk
   ← UBS: "Manual data processing generates unverifiable claims at volume"
-  ← EO: "Make accurate, timely investment decisions without manual aggregation"
+  ← UDO: "Make accurate, timely investment decisions without manual aggregation"
 ```
 
 **Incomplete chain example (invalid — remove or redesign):**
 ```
 SustainAdv-ACX: "Output should look professional"
   ← SustainAdv (???)
-  ← ??? no EP principle governs visual polish in this system
+  ← ??? no EPS principle governs visual polish in this system
   ← not traceable to any UBS or UDS element
   ACTION: Remove this A.C. or add a Phase 2 principle that justifies it
 ```
@@ -689,7 +686,7 @@ SustainAdv-ACX: "Output should look professional"
 
 When two A.C.s conflict (passing one makes the other impossible to pass):
 
-1. **Trace both A.C.s** to their ELF layer. Identify which EP principle each derives from.
+1. **Trace both A.C.s** to their ELF layer. Identify which EPS principle each derives from.
 2. **Apply S/E/Sc priority**: if one is Sustainability and the other is Efficiency, Sustainability wins. Revise the Efficiency A.C. — never the Sustainability A.C.
 3. **If both are the same pillar**: return to Phase 2 and resolve the principle-level conflict first. Then rewrite the A.C.s from the revised principle.
 4. **Never weaken an A.C. to resolve a conflict.** Weakening a pre-committed A.C. is a Phase 2 regression, not a Phase 3 edit.
@@ -798,8 +795,8 @@ Structural gaps between ELF and ESD and how each is bridged.
 | ELF Layer | → Phase 3 Element | Mechanism |
 |---|---|---|
 | EOP steps (primary User = R) | → Verbs | One step = one Verb block with independent A.C.s |
-| EP bucketed by S/E/Sc | → SustainAdv / EffAdv / ScalAdv | One principle per pillar = one or more Adverb A.C.s |
-| EOT (3 causal layers) | → Noun A.C.s (by layer) | One EOT component = one Noun A.C. |
+| EPS bucketed by S/E/Sc | → SustainAdv / EffAdv / ScalAdv | One principle per pillar = one or more Adverb A.C.s |
+| UES (3 causal layers) | → Noun A.C.s (by layer) | One UES component = one Noun A.C. |
 | Phase 2 design qualities | → SustainAdj / EffAdj / ScalAdj | Design decisions about Noun characteristics = Adjective A.C.s |
 
 **Resolution**: Run ESD Phase 3 immediately after ELF + ESD Phase 1+2. Do not attempt to formalize during learning.
@@ -820,10 +817,10 @@ Structural gaps between ELF and ESD and how each is bridged.
 
 ### Gap 3: User Persona / Anti-Persona not in ELF
 
-**The gap**: ELF defines EU but does not build a full Persona profile or explicitly name the Anti-Persona.
+**The gap**: ELF defines User Roles but does not build a full Persona profile or explicitly name the Anti-Persona.
 
-**The bridge**: In ESD Phase 1, derive Persona and Anti-Persona from ELF EU:
-- Primary EU Role → full Persona profile (context, constraints, job-to-be-done)
+**The bridge**: In ESD Phase 1, derive Persona and Anti-Persona from ELF User Roles:
+- Primary User Role → full Persona profile (context, constraints, job-to-be-done)
 - Out-of-scope roles → Anti-Persona (specific disqualifying characteristics)
 
 **Rule**: Every Phase 3 A.C. is written *for the named Persona*. A.C.s that would only be valid for the Anti-Persona must be removed.
@@ -834,13 +831,13 @@ Structural gaps between ELF and ESD and how each is bridged.
 
 **The gap**: ELF EOP defines sequential steps but does not always specify Responsible/Accountable/Consulted/Informed per step.
 
-**The bridge**: In ESD Phase 2 EOP, define full RACI per step using all EU roles from Phase 1.
+**The bridge**: In ESD Phase 2 EOP, define full RACI per step using all User Roles from Phase 1.
 
 **Rule**: Phase 3 Verbs derive only from steps where the primary User Role = Responsible (R). Steps where the primary User = Consulted or Informed do not generate Verb A.C.s — they generate Noun or Adjective requirements instead (the tool does the work, not the User).
 
 ---
 
-### Gap 5: EP S/E/Sc bucketing not explicit in early ELF
+### Gap 5: EPS S/E/Sc bucketing not explicit in early ELF
 
 **The gap**: ELF originally generated principles labeled `P1`, `P2`, `P3`... without explicit S/E/Sc bucketing. ESD requires principles to arrive pre-bucketed.
 
@@ -854,7 +851,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 
 *Domain: Investment Research | Primary User: Investment Analyst*
 *OE layer: AI Orchestration Engine | UE system: Investment Research Agent*
-*EOT layers for this subject: INFRASTRUCTURE (L1) → WORKSPACE (L2) → INTELLIGENCE (L3)*
+*UES layers for this subject: INFRASTRUCTURE (L1) → WORKSPACE (L2) → INTELLIGENCE (L3)*
 *Use this to calibrate A.C. writing precision before applying ESD to your own domain.*
 
 ---
@@ -865,7 +862,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 
 **Anti-Persona**: Quantitative researcher (requires statistically rigorous backtesting with historical data); retail investor (no institutional-grade API access). Designing for either would compromise the speed and structured-output requirements of the primary Persona.
 
-**EO**: Make timely, accurate investment decisions on sector allocation without manual data aggregation.
+**UDO**: Make timely, accurate investment decisions on sector allocation without manual data aggregation.
 
 **UDS**: Access to structured, sourced, real-time market data
 - UDS.UD: Automated data pipeline removes the human bottleneck
@@ -889,7 +886,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 **Scalability Principles**:
 - P1(Sc): System must handle N tickers without redesign — Enables UDS.UD (automated pipeline scales)
 
-**Tools (EOT)** — *Subject-specific layer names: INFRASTRUCTURE / WORKSPACE / INTELLIGENCE*:
+**Tools (UES)** — *Subject-specific layer names: INFRASTRUCTURE / WORKSPACE / INTELLIGENCE*:
 - INFRASTRUCTURE (L1): Python 3.10+, Agno framework, YFinance API, Anthropic API
 - WORKSPACE (L2): Cursor IDE, Pydantic output schema, Git
 - INTELLIGENCE (L3): Claude claude-sonnet-4-6, AgentOS (stream_events=True)
@@ -931,7 +928,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 | Verb-AC1 | Agent returns trend data for every ticker submitted in the input list |
 
 **Sustainability Adverb**: *Verifiably, Correctly*
-*Traceability: EP P1(S) + P2(S) ← UBS (manual errors) + UBS.UD (volume-induced errors)*
+*Traceability: EPS P1(S) + P2(S) ← UBS (manual errors) + UBS.UD (volume-induced errors)*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -939,14 +936,14 @@ Structural gaps between ELF and ESD and how each is bridged.
 | SustainAdv-AC2 | Every cited value matches the exact value from the cited source |
 
 **Efficiency Adverb**: *Incrementally, Quickly*
-*Traceability: EP P1(E) ← UDS (timely decisions)*
+*Traceability: EPS P1(E) ← UDS (timely decisions)*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
 | EffAdv-AC1 | Analysis step completes in ≤3 seconds for a 10-ticker input |
 
 **Scalability Adverb**: *Repeatedly, At Scale*
-*Traceability: EP P1(Sc) ← UDS.UD (automated pipeline)*
+*Traceability: EPS P1(Sc) ← UDS.UD (automated pipeline)*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -964,21 +961,21 @@ Structural gaps between ELF and ESD and how each is bridged.
 | Verb-AC1 | Agent returns ≥3 sector recommendations distinct from the input ticker list |
 
 **Sustainability Adverb**: *Deterministically, Correctly*
-*Traceability: EP P1(S) ← UBS (manual errors)*
+*Traceability: EPS P1(S) ← UBS (manual errors)*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
 | SustainAdv-AC1 | Each identified sector is a real, named GICS sector |
 
 **Efficiency Adverb**: *Surgically*
-*Traceability: EP P1(E) ← UDS*
+*Traceability: EPS P1(E) ← UDS*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
 | EffAdv-AC1 | Identification returns ≥3 sectors in ≤2 seconds |
 
 **Scalability Adverb**: *Comparatively*
-*Traceability: EP P1(Sc) ← UDS.UD*
+*Traceability: EPS P1(Sc) ← UDS.UD*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -992,7 +989,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 
 ##### Noun: Investment Research Agent
 
-*Traceability: EOT INFRA.1-2, WORKSPACE.1-2, INTEL.1-2 ← ELF EOT ← EP P1-P2 (S/E/Sc)*
+*Traceability: UES INFRA.1-2, WORKSPACE.1-2, INTEL.1-2 ← ELF UES ← EPS P1-P2 (S/E/Sc)*
 *Definition: The AI agent built to enable the Investment Analyst to perform Verb 1 (Analyse) and receive the output of Verb 2 (Identify) — with sourced, structured, auditable results.*
 
 **INFRASTRUCTURE Components** *(Layer 1 — Foundational)*
@@ -1020,7 +1017,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 ---
 
 **Sustainability Adjective**: *Auditable, Sourced*
-*Traceability: EP P1(S) + EP P2(S) → safety/correctness qualities the Agent must possess*
+*Traceability: EPS P1(S) + P2(S) → safety/correctness qualities the Agent must possess*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -1028,7 +1025,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 | SustainAdj-AC2 | No output field is populated from model internal knowledge — all claims require a live API call |
 
 **Efficiency Adjective**: *Lightweight, Structured*
-*Traceability: EP P1(E) → efficiency qualities the Agent must possess*
+*Traceability: EPS P1(E) → efficiency qualities the Agent must possess*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|
@@ -1036,7 +1033,7 @@ Structural gaps between ELF and ESD and how each is bridged.
 | EffAdj-AC2 | Total API token usage per run is ≤2,000 tokens |
 
 **Scalability Adjective**: *Modular, Extensible*
-*Traceability: EP P1(Sc) → scalability qualities the Agent must possess*
+*Traceability: EPS P1(Sc) → scalability qualities the Agent must possess*
 
 | A.C. ID | Acceptance Criteria |
 |---|---|

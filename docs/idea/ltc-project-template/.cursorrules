@@ -1,0 +1,24 @@
+# Cursor IDE Rules — LTC Capital Partners
+
+# Read CLAUDE.md and AGENTS.md for full behavioral rules.
+# This file provides a summary for Cursor's built-in AI features.
+
+# Core Equation: Success = Efficient & Scalable Management of Failure Risks
+
+# Before coding:
+# 1. Check alignment in 1-ALIGN/
+# 2. Check risks in 2-PLAN/risks/
+# 3. Check drivers in 2-PLAN/drivers/
+
+# During coding:
+# - Sustainability: Handle errors gracefully, write tests, no single points of failure
+# - Efficiency: Minimal code for maximum clarity
+# - Scalability: No magic numbers, no hardcoded limits
+
+# After coding:
+# - Run quality gates in 3-EXECUTE/tests/quality-gates/
+# - Document decisions in 1-ALIGN/decisions/
+
+# Brand: Primary #004851, Secondary #F2C75C, Accent #9B1842
+# Font: Tenorite (fallback: Calibri)
+# See _shared/brand/ for full standards

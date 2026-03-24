@@ -1,3 +1,4 @@
+
 # [LTC ALL]_DOC TEMPLATE - System Wiki Template
 
 > **Design Methodology Reference:** This template is filled out AFTER completing the **Effective System Design (ESD)** Phases 1–3. Each section below corresponds to ESD output. For design methodology, see `templates/effective-system-design.md`.
@@ -25,7 +26,7 @@
 
 ### 0.2. PURPOSE
 
-`[ Instructions: Define the "Why". Explain how this system empowers the "Effective User (EU)" to achieve the "Effective Outcome (EO)" using specific "Principles" and "Tools". Explicitly state how this system contributes to the mission of safeguarding and growing family capital or improving the "Cost of Safety". ]`
+`[ Instructions: Define the "Why". Explain how this system empowers the "Effective Doer" to achieve the "Desired Outcome" using specific "Principles" and "Tools". Explicitly state how this system contributes to the mission of safeguarding and growing family capital or improving the "Cost of Safety". ]`
 
 ### 0.3. SCOPE
 
@@ -33,41 +34,11 @@
 
 **System Integration Contract:**
 
-`[ Populate the schema-level tables below from ESD Phase 1 §3.0 (Workstream Boundary) after design. Update with tested/verified values after each iteration (evidence-based, not speculation). ]`
-
-
-| Field  | Value                                                                                                                                                                               |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| INPUT  | `[ What triggers this system; what data/artifacts it receives from upstream systems. Example: "Ranked execution routes from SYS-D (Prioritization)" ]`                              |
-| EO     | `[ The state this system aims to achieve — aspirational, directional, technology-agnostic. Carried from ESD Phase 1. How close A.C.s push the User towards EO measures success. ]` |
-| OUTPUT | `[ What data/artifacts this system produces for downstream systems. Example: "Binary A.C.s per scope item → consumed by SYS-E2 (Design)" ]`                                         |
-
-
-**INPUT CONTRACT (from upstream)** — Source, Schema, Validation, Error, SLA, Version per ESD §3.0.
-
-
-| Row            | Value                                                                             |
-| -------------- | --------------------------------------------------------------------------------- |
-| **Source**     | `[ Upstream system/workstream name, e.g. SYS-D (Prioritization) ]`                |
-| **Schema**     | `[ Data shape agreed with upstream — JSON Schema, Pydantic, or equivalent ]`      |
-| **Validation** | `[ Rules payload must satisfy; reference A.C.s that enforce this ]`               |
-| **Error**      | `[ Behaviour when contract violated or source unavailable ]`                      |
-| **SLA**        | `[ Latency/availability from upstream; derive from or reference Phase 3 A.C.s ]`  |
-| **Version**    | `[ Contract version, e.g. v1.0; breaking changes require upstream notification ]` |
-
-
-**OUTPUT CONTRACT (to downstream)** — Consumer, Schema, Validation, Error, SLA, Version per ESD §3.0.
-
-
-| Row            | Value                                                                                   |
-| -------------- | --------------------------------------------------------------------------------------- |
-| **Consumer**   | `[ Downstream system/workstream name, e.g. SYS-E2 (Design) ]`                           |
-| **Schema**     | `[ Data shape this system produces; must match consumer INPUT contract ]`               |
-| **Validation** | `[ Rules this system guarantees; reference A.C.s that enforce this ]`                   |
-| **Error**      | `[ Behaviour when this system cannot produce valid OUTPUT ]`                            |
-| **SLA**        | `[ Latency/availability promised to consumer; derive from or reference Phase 3 A.C.s ]` |
-| **Version**    | `[ Contract version, e.g. v1.0; breaking changes require downstream notification ]`     |
-
+| Field | Value |
+|-------|-------|
+| INPUT | `[ What triggers this system; what data/artifacts it receives from upstream systems. Example: "Ranked execution routes from SYS-D (Prioritization)" ]` |
+| UDO | `[ The state this system aims to achieve — aspirational, directional, technology-agnostic. Carried from ESD Phase 1. How close A.C.s push the User towards UDO measures success. ]` |
+| OUTPUT | `[ What data/artifacts this system produces for downstream systems. Example: "Binary A.C.s per scope item → consumed by SYS-E2 (Design)" ]` |
 
 ### 0.4. DATA GOVERNANCE
 
@@ -84,17 +55,6 @@
 | `[ e.g., Sustainability: % of Compliance Breaches (Target: 0%) ]` | `[ e.g., 0% ]`       |
 | `[ e.g., Efficiency: Cycle Time to complete the process ]`        | `[ e.g., < 2 Days ]` |
 | `[ e.g., Scalability: Unit cost per additional transaction ]`     | `[ e.g., < $50 ]`    |
-
-
-**Eval pass rates (per iteration gate)**  
-`[ Populated after each iteration gate from the eval harness. Source: AC-TEST-MAP + gate evidence. Thresholds: Sustainability = 100% (zero tolerance per D37); Efficiency = 90%+; Scalability = 80%+. ]`
-
-
-| PILLAR         | THRESHOLD | I1    | I2    | I3    | I4    | TREND (I1→I4)        |
-| -------------- | --------- | ----- | ----- | ----- | ----- | -------------------- |
-| Sustainability | 100%      | `[%]` | `[%]` | `[%]` | `[%]` | `[ pass / regress ]` |
-| Efficiency     | ≥ 90%     | `[%]` | `[%]` | `[%]` | `[%]` | `[ pass / regress ]` |
-| Scalability    | ≥ 80%     | `[%]` | `[%]` | `[%]` | `[%]` | `[ pass / regress ]` |
 
 
 ### 0.6. RISK MANAGEMENT
@@ -160,7 +120,7 @@
 
 ### 2.1. ROLE ASSIGNMENTS
 
-`[` `**Instructions**: Define the "Effective Users (EU)". You must use the RACI model (Responsible, Accountable, Consulted, Informed). ]`
+`[` `**Instructions**: Define the "Effective Doers". You must use the RACI model (Responsible, Accountable, Consulted, Informed). ]`
 `[` `**CRITICAL**: Do not just list names. You must list the "System Identification Name" (e.g., [OPS HR]_Recruiter) found in the Organizational Chart. This ensures the system works regardless of who currently holds the seat. ]`
 
 
@@ -172,7 +132,7 @@
 | INFORMED (The Stakeholder)       | `[ e.g., Hiring Managers ]` | `[ e.g., [MGT]_Function Heads ]`            | `[ One-way communication. Notified after the action is completed (e.g., "Candidate Offer Signed"). ]`                              |
 
 
-# [COMPANY NAME]_System NAME - 3. Effective Principles (EP)
+# [COMPANY NAME]_System NAME - 3. Effective Operating Principles
 
 ### 3.1. THE ULTIMATE BLOCKING SYSTEM (UBS) OF THIS SYSTEM
 
@@ -218,21 +178,20 @@
 | UDS.UB.Environment + UDS.UB.UD.Environment + UBS.UD.UB.Environment [UDS.UB.Tools](http://UDS.UB.Tools) + [UDS.UB.UD.Tools](http://UDS.UB.UD.Tools) + [UBS.UD.UB.Tools](http://UBS.UD.UB.Tools) UDS.UB.Actions + UDS.UB.UD.Actions + UBS.UD.UB.Actions | How do the UDS' ultimate blockers cause the UDS to fail? (The System's Root Failure Mechanism)        | `[ The Root Failure Mechanism. ]`                                               |                                                                                                                         |                                                                                                |                 |
 
 
-### 3.3. THE EFFECTIVE PRINCIPLES (EP) OF THIS SYSTEM
+### 3.3. THE EFFECTIVE PRINCIPLES OF THIS SYSTEM
 
 **Instructions**: Principles should arrive pre-labeled from ESD (see `effective-system-design.md` §4.1). Each principle is labeled with its S/E/Sc pillar: `P[n](S)`, `P[n](E)`, `P[n](Sc)`. List them below, grouped by pillar with 2 sub-categories per pillar. These principles must be derived from your analysis of the UBS and UDS above and trace directly to how this system disables blockers or enables drivers.
 
 **Principle Label Format**: `P1(S)`, `P2(S)`, `P3(E)`, `P4(Sc)`, etc. — where the letter indicates the Effectiveness pillar.
 
-
-| PILLAR & LABEL         | PURPOSE OF PRINCIPLES                 | PRINCIPLE NAME & DESCRIPTION                                                                             | IMPORTANT NOTES                                                                                                                                                                          |
-| ---------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **SUSTAINABILITY (S)** | Minimize failure risks                | `[ e.g., P1(S): "Principle of Redundancy: No single point of failure." ]`                                | These principles disable/avoid the following: Combined Root Failure Principles (UBS.UD + UBS.UD.UD + UBS.UB.UB + UDS.UB + UDS.UB.UD + UBS.UD.UB), and the root Failure Principles (UBS). |
-|                        | Produce desired outcomes              | `[ e.g., P2(S): "Principle of Auditability: All decisions leave a traceable record." ]`                  |                                                                                                                                                                                          |
-| **EFFICIENCY (E)**     | De-risk at current resources          | `[ e.g., P3(E): "Principle of Standardization: Do it once, use it many times." ]`                        | These principles enable/utilize the following: Root Success Principles (UDS.UD + UDS.UD.UD + UDS.UB.UB + UBS.UB + UBS.UD.UB + UBS.UB.UD), and the root Success Principles (UDS).         |
-|                        | Maximize outputs at current resources | `[ e.g., P4(E): "Principle of Automation: Automate low-value tasks to free up human time." ]`            |                                                                                                                                                                                          |
-| **SCALABILITY (Sc)**   | De-risk gains at growth               | `[ e.g., P5(Sc): "Principle of Systems over Heroes: Build processes that survive staff turnover." ]`     | These principles enable scalability at recursive UDS layers.                                                                                                                             |
-|                        | Output gains at growth                | `[ e.g., P6(Sc): "Principle of Self-Service: Enable users to help themselves via self-service tools." ]` |                                                                                                                                                                                          |
+| PILLAR & LABEL | PURPOSE OF PRINCIPLES | PRINCIPLE NAME & DESCRIPTION | IMPORTANT NOTES |
+| --- | --- | --- | --- |
+| **SUSTAINABILITY (S)** | Minimize failure risks | `[ e.g., P1(S): "Principle of Redundancy: No single point of failure." ]` | These principles disable/avoid the following: Combined Root Failure Principles (UBS.UD + UBS.UD.UD + UBS.UB.UB + UDS.UB + UDS.UB.UD + UBS.UD.UB), and the root Failure Principles (UBS). |
+| | Produce desired outcomes | `[ e.g., P2(S): "Principle of Auditability: All decisions leave a traceable record." ]` | |
+| **EFFICIENCY (E)** | De-risk at current resources | `[ e.g., P3(E): "Principle of Standardization: Do it once, use it many times." ]` | These principles enable/utilize the following: Root Success Principles (UDS.UD + UDS.UD.UD + UDS.UB.UB + UBS.UB + UBS.UD.UB + UBS.UB.UD), and the root Success Principles (UDS). |
+| | Maximize outputs at current resources | `[ e.g., P4(E): "Principle of Automation: Automate low-value tasks to free up human time." ]` | |
+| **SCALABILITY (Sc)** | De-risk gains at growth | `[ e.g., P5(Sc): "Principle of Systems over Heroes: Build processes that survive staff turnover." ]` | These principles enable scalability at recursive UDS layers. |
+| | Output gains at growth | `[ e.g., P6(Sc): "Principle of Self-Service: Enable users to help themselves via self-service tools." ]` | |
 
 
 ### 3.4. CORE VALUES FOR THIS SYSTEM
@@ -245,14 +204,13 @@
 - **Collective Leadership:** `[ How does this system ensure "no single person dominates" and diverse voices are heard? ]`
 - **Continuous Improvement:** `[ How does this system learn from mistakes (e.g., Post-Mortem Reviews)? ]`
 
-# [COMPANY NAME]_System NAME - 4. Effective Operating Environment (EOE)
+# [COMPANY NAME]_System NAME - 4. Effective Operating Environment
 
 ### 4.1. EFFECTIVE OPERATING ENVIRONMENT
 
 **Design Source**: Derived from ESD Phase 2 §4.2 (Environment).
 
-**Classification Note**: Environment types below (Physical/Digital/Cultural/Other) describe the **KIND** of environment. These are orthogonal to ESD's EOE causal layers (Foundational/Operational/Enhancement), which describe **DEPENDENCY ORDER**. Both classifications are useful: environment types for operational documentation (this wiki), causal layers for design methodology (ESD).
-
+**Classification Note**: Environment types below (Physical/Digital/Cultural/Other) describe the **KIND** of environment. These are orthogonal to ESD's UES causal layers (Foundational/Operational/Enhancement), which describe **DEPENDENCY ORDER**. Both classifications are useful: environment types for operational documentation (this wiki), causal layers for design methodology (ESD).
 
 | PURPOSE OF THE ENVIRONMENT      | TYPE OF ENVIRONMENT  | SPECIFICATION                                                                                                                | IMPORTANT NOTES                                                        |
 | ------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -266,11 +224,11 @@
 |                                 | Other Environments   | `[ e.g., "Knowledge Library." Access to the COE's shared wisdom to prevent reinventing the wheel. ]`                         |                                                                        |
 
 
-# [COMPANY NAME]_System NAME - 5. Effective Operating Tools (EOT)
+# [COMPANY NAME]_System NAME - 5. Effective Operating Tools
 
 ### 5.1. EFFECTIVE OPERATING TOOLS
 
-`[` `**Instructions**: Define the specific tools the "Effective User (EU)" needs to execute this system. According to Ultimate Truth #1, "Tools" are a fundamental component of any system. You must strictly distinguish between tools used for Safety (e.g., encryption, audit logs) and tools used for Productivity (e.g., automation, AI). Prefer standard LTC tools (ClickUp, Odoo, Google Workspace) to ensure integration and scalability. ]`
+`[` `**Instructions**: Define the specific tools the "Effective Doer" needs to execute this system. According to Ultimate Truth #1, "Tools" are a fundamental component of any system. You must strictly distinguish between tools used for Safety (e.g., encryption, audit logs) and tools used for Productivity (e.g., automation, AI). Prefer standard LTC tools (ClickUp, Odoo, Google Workspace) to ensure integration and scalability. ]`
 
 
 | PURPOSE OF THE TOOLS            | TYPE OF ENVIRONMENT  | TOOLS & SPECIFICATION                                | MAIN USE OF THIS TOOL                                     | LOCATION TO ACCESS THE TOOL   | ACCESS LEVEL      | IMPORTANT NOTES                                     |
@@ -296,24 +254,22 @@
 
 `[ Before listing steps, declare which UBS elements (from §3.1) are targeted for DERISK and which UDS elements (from §3.2) are targeted for OPTIMIZE. This header links back to §3 and declares the EOP's intent. ]`
 
-
-| Category                     | Targeted Elements                                        | Source Section | Role                            |
-| ---------------------------- | -------------------------------------------------------- | -------------- | ------------------------------- |
-| **DERISK**: UBS to disable   | `[ List specific UBS(R) and UBS(A) elements from §3.1 ]` | §3.1           | R: `[action]`; A: `[oversight]` |
-| **OPTIMIZE**: UDS to amplify | `[ List specific UDS(R) and UDS(A) elements from §3.2 ]` | §3.2           | R: `[action]`; A: `[oversight]` |
-
+| Category | Targeted Elements | Source Section | Role |
+|----------|------------------|---------------|------|
+| **DERISK**: UBS to disable | `[ List specific UBS(R) and UBS(A) elements from §3.1 ]` | §3.1 | R: `[action]`; A: `[oversight]` |
+| **OPTIMIZE**: UDS to amplify | `[ List specific UDS(R) and UDS(A) elements from §3.2 ]` | §3.2 | R: `[action]`; A: `[oversight]` |
 
 
-| **STAGE**                           | **STEP #**                            | **STEP NAME**                   | **REQUIRED INPUT**                         | **DESIRED OUTPUT**                                | **OPERATING USERS**                                         | **OPERATING TOOLS**                                       | **TYPICAL BLOCKER**                                             | **REFERENCES & IMPORTANT NOTES**                                  |
-| ----------------------------------- | ------------------------------------- | ------------------------------- | ------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
-| **RESPONSIBLE** (The Doer)          | **ACCOUNTABLE** (The Reviewer/Tester) | **CONSULTED** (The Expert)      | **INFORMED** (Other Relevant Stakeholders) | **HARDWARE**                                      | **SOFTWARE**                                                | **DOCUMENTS**                                             | **RELEVANT WIKI**                                               | **COE LINK / OTHER REFERENCES**                                   |
-| **DOS**                             | **DON'TS**                            | **KPI**                         | **DOS**                                    | **DON'TS**                                        | **KPI**                                                     | **DOS**                                                   | **DON'TS**                                                      | **KPI**                                                           |
-| (What is needed to start?)          | (What is the final result?)           | (Key actions to perform)        | (Actions/Mistakes to Avoid)                | (Key Performance Indicator(s) to measure success) | (Oversight/Approval Tasks)                                  | (Negligence/ Delegation to Avoid)                         | (Key Performance Indicator(s) to measure success)               | (Advice/ Input to Provide)                                        |
-| **DERISK / MINIMIZE FAILURE RISKS** | **1**                                 | `[ Name of De-risking Step 1 ]` | List inputs needed for this step           | `[ Define safe outcome ]`                         | **Role Name:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
-|                                     | **2**                                 | `[ Name of De-risking Step 2 ]` | List inputs needed for this step           | `[ Define safe outcome ]`                         | **Role Name:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
-| **OPTIMIZE OUTPUT**                 | **3**                                 | `[ Name of Execution Step 1 ]`  | List inputs needed for this step           | `[ Define value outcome ]`                        | **Role Name:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
-|                                     | **4**                                 | `[ Name of Execution Step 2 ]`  | List inputs needed for this step           | `[ Define value outcome ]`                        | **Role Name:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
-|                                     | **5**                                 | **… / Continuous**              | … / Continuous                             | … / Continuous                                    | … / Continuous                                              | … / Continuous                                            | … / Continuous                                                  | … / Continuous                                                    |
+| **STAGE**                           | **STEP #**                            | **STEP NAME**                   | **REQUIRED INPUT**                         | **DESIRED OUTPUT**                                | **OPERATING USERS**                                             | **OPERATING TOOLS**                                       | **TYPICAL BLOCKER**                                             | **REFERENCES & IMPORTANT NOTES**                                  |
+| ----------------------------------- | ------------------------------------- | ------------------------------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **RESPONSIBLE** (The Doer)          | **ACCOUNTABLE** (The Reviewer/Tester) | **CONSULTED** (The Expert)      | **INFORMED** (Other Relevant Stakeholders) | **HARDWARE**                                      | **SOFTWARE**                                                    | **DOCUMENTS**                                             | **RELEVANT WIKI**                                               | **COE LINK / OTHER REFERENCES**                                   |
+| **DOS**                             | **DON'TS**                            | **KPI**                         | **DOS**                                    | **DON'TS**                                        | **KPI**                                                         | **DOS**                                                   | **DON'TS**                                                      | **KPI**                                                           |
+| (What is needed to start?)          | (What is the final result?)           | (Key actions to perform)        | (Actions/Mistakes to Avoid)                | (Key Performance Indicator(s) to measure success) | (Oversight/Approval Tasks)                                      | (Negligence/ Delegation to Avoid)                         | (Key Performance Indicator(s) to measure success)               | (Advice/ Input to Provide)                                        |
+| **DERISK / MINIMIZE FAILURE RISKS** | **1**                                 | `[ Name of De-risking Step 1 ]` | List inputs needed for this step           | `[ Define safe outcome ]`                         | **Role Name****:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
+|                                     | **2**                                 | `[ Name of De-risking Step 2 ]` | List inputs needed for this step           | `[ Define safe outcome ]`                         | **Role Name****:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
+| **OPTIMIZE OUTPUT**                 | **3**                                 | `[ Name of Execution Step 1 ]`  | List inputs needed for this step           | `[ Define value outcome ]`                        | **Role Name****:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
+|                                     | **4**                                 | `[ Name of Execution Step 2 ]`  | List inputs needed for this step           | `[ Define value outcome ]`                        | **Role Name****:** Action to perform (add more Roles if needed) | **Role Name:** Action to avoid (add more Roles if needed) | **Role Name:** KPI to measure success (add more KPIs if needed) | **Role Name:** Oversight/approval task (add more Roles if needed) |
+|                                     | **5**                                 | **… / Continuous**              | … / Continuous                             | … / Continuous                                    | … / Continuous                                                  | … / Continuous                                            | … / Continuous                                                  | … / Continuous                                                    |
 
 
 ### 6.2. EXCEPTION HANDLING & ESCALATION
