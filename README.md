@@ -1,12 +1,14 @@
 # LTC Project Template
 
-Standard project scaffold for LT Capital Partners. Use this template to start any new project with LTC's global rules, safety guardrails, and AI agent configuration pre-loaded.
+Standard project scaffold for LT Capital Partners. A **thinking system** — not just file storage — that captures every decision, rejected path, and "why" explicitly in the structure.
+
+Use this template to start any new project with LTC's 4-zone APEI framework, global rules, learning pipeline, and AI agent configuration pre-loaded.
 
 ## Quick Start
 
 ### 1. Create your project from this template
 
-**On GitHub:** Click the green **"Use this template"** button at the top of this repo. Choose the owner, name your project using LTC naming convention, and click "Create repository."
+**On GitHub:** Click **"Use this template"** → name using UNG convention → Create.
 
 **From CLI:**
 ```bash
@@ -14,106 +16,83 @@ gh repo create Long-Term-Capital-Partners/{YOUR_PROJECT_NAME} \
   --template Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE
 ```
 
-### 2. Clone and configure
-
-```bash
-git clone https://github.com/Long-Term-Capital-Partners/{YOUR_PROJECT_NAME}.git
-cd {YOUR_PROJECT_NAME}
-```
-
-### 3. Customize these files (in this order)
+### 2. Configure (in this order)
 
 | Step | File | What to do |
 |------|------|------------|
-| 1 | `.claude/settings.json` | Review deny/allow rules. Add project-specific permissions. This is your safety net — configure it first. |
-| 2 | `.gitignore` | Add any project-specific exclusions (credentials, data files, etc.) |
-| 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 80 lines. |
-| 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
-| 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
-| 6 | `.claude/rules/` | `memory-format.md` is pre-loaded (AutoDream protection). Delete the example rule. Add path-scoped rules for your codebase. |
-| 7 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
-| — | `.cursor/rules/`, `.agents/rules/` | Already configured with brand identity. Add more rules as needed for Cursor / AntiGravity. |
+| 1 | `CLAUDE.md` | Replace `{placeholders}` with project details |
+| 2 | `1-ALIGN/charter/PROJECT_CHARTER.md` | Define purpose, scope, success criteria |
+| 3 | `1-ALIGN/charter/STAKEHOLDERS.md` | Identify users, RACI, anti-personas |
+| 4 | `1-ALIGN/charter/REQUIREMENTS.md` | VANA-decompose requirements with binary ACs |
+| 5 | `.claude/settings.json` | Review deny/allow rules — your safety net |
+| 6 | `.mcp.json` | Add MCP server connections if needed |
 
-### 4. Start working
+### 3. Start working
 
 ```bash
 claude   # Opens Claude Code with CLAUDE.md auto-loaded
 ```
 
-Or open the project in AntiGravity / Cursor — each IDE loads its own rules automatically.
+## Structure (5×4 Matrix)
 
-## What's Included
+This project follows the **LTC APEI Framework**: 5 workstream activities across 4 project-specific subsystems, organized in 4 zones.
 
 ```
-.                                                    7-CS Component
-├── CLAUDE.md                  # Claude Code rules     ← EPS (always-active constitution)
-├── GEMINI.md                  # AntiGravity rules     ← EPS (always-active constitution)
-├── VERSION                    # Template version       ← Input (distribution tracking)
-├── CHANGELOG.md               # Tier-tagged changelog  ← Input (distribution tracking)
-├── .claude/
-│   ├── settings.json          # Safety deny/allow     ← Environment (hard ceilings)
-│   ├── settings.local.json.example  # Personal overrides  ← Environment (per-user)
-│   ├── agents/                # Subagent definitions   ← Agent (operator config)
-│   ├── commands/              # Slash commands         ← EOP (on-demand procedures)
-│   ├── hooks/                 # Event-driven scripts   ← Environment (automation)
-│   ├── rules/
-│   │   ├── memory-format.md   # AutoDream protection   ← EPS (memory structure guard)
-│   │   └── example-api-conventions.md  # Example rule  ← EPS (delete after reading)
-│   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
-├── .cursor/rules/
-│   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
-│   ├── template-version.md   # Version check rule     ← EPS (session-start)
-│   └── security.md           # Cursor security rules   ← EPS (tool-specific)
-├── .agents/rules/
-│   ├── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
-│   └── security.md           # AntiGravity security    ← EPS (tool-specific)
-├── .pre-commit-config.yaml    # gitleaks hook config    ← Environment (hard gate)
-├── .gitleaks.toml             # Secret detection rules  ← Environment (hard gate)
-├── rules/
-│   ├── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
-│   ├── naming-rules.md       # UNG full spec          ← EPS (global reference)
-│   └── security-rules.md     # 3-layer security ref   ← EPS (global reference)
-├── src/                       # Application code       ← Input (task context)
-├── docs/                      # Reference docs         ← Input (knowledge base)
-├── scripts/
-│   └── template-check.sh     # Staleness checker      ← Tools (distribution)
-├── tests/                     # Test suites            ← EOP (verification gates)
-├── .gitignore                 # Excluded files         ← Environment (safety boundary)
-├── .mcp.json                  # MCP server connections ← Tools (external integrations)
-├── .claude-plugin/
-│   └── marketplace.json       # Plugin registry        ← Tools (plugin discovery)
-└── plugins/
-    └── memory-vault/          # Cross-session memory   ← Environment (context persistence)
+Zone 0 — Agent Governance       → CLAUDE.md, AGENTS.md, .claude/, rules/
+Zone 1 — ALIGN (Right Outcome)  → 1-ALIGN/  (charter, decisions, okrs, learning)
+Zone 2 — PLAN (Minimize Risks)  → 2-PLAN/   (architecture, risks, drivers, roadmap)
+Zone 3 — EXECUTE (Deliver)      → 3-EXECUTE/ (src, tests, config, docs)
+Zone 4 — IMPROVE (Learn & Grow) → 4-IMPROVE/ (changelog, metrics, retros, reviews)
+Shared  — Org Knowledge Base    → _shared/   (brand, frameworks, security, sops, templates)
 ```
 
-> **7-CS** = The Agent's 7-Component System (Doc-9). Each file maps to a component:
-> **EPS** constrains behavior | **EOP** defines procedures | **Environment** sets hard limits |
-> **Tools** extend capability | **Input** provides context | **Agent** executes within all of the above.
+**Core Equation:** Success = Efficient & Scalable Management of Failure Risks
 
-## LTC Global Rules
+**5 Activities (ALIGN → LEARN → PLAN → EXECUTE → IMPROVE):**
+- LEARN lives inside Zone 1 (ALIGN) — it resolves unknowns that ALIGN identifies
+- IMPROVE output loops back to ALIGN for next iteration
 
-The `rules/` folder contains LTC-wide standards that apply to all projects:
+**4 Subsystems (project-specific — customize per domain):**
+- Example for UE/Investment: User's Problem → Data → Analysis → Decision Making
+- Example for Software: Requirements → Architecture → Implementation → Operations
 
-| Rule File | What it covers | Status |
-|-----------|---------------|--------|
-| `brand-identity.md` | Colors (20-color palette), typography (Inter/Work Sans), logo usage, function color assignments, MS Office theme | Active |
-| `naming-rules.md` | Universal Naming Grammar (UNG) — canonical key pattern, 75 SCOPE codes, platform rendering (Git, Local, ClickUp, Drive), validation regex | Active |
-| `security-rules.md` | 3-layer defense-in-depth: 6 AI agent security rules, risk tiers, secret detection (gitleaks), gap analysis, setup guide | Active |
-| `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
+### Zone Details
 
-### How rules reach each tool
+| Zone | Purpose | Key Question | Key Artifacts |
+|------|---------|-------------|---------------|
+| **1-ALIGN** | Choose the right outcome | Are we solving the right problem? | Charter, Stakeholders, Requirements, OKRs, ADRs, Learning Output |
+| **2-PLAN** | Minimize risks via design | How do we manage failure risks? | System Design, UBS/UDS Registers, Master Plan, Execution Plan |
+| **3-EXECUTE** | Deliver with version control | Are we building it right? | Source code, Tests, Config, API docs, Runbooks |
+| **4-IMPROVE** | Learn and grow (cycle back) | What did we learn? What changed? | Changelog, Metrics, Retrospectives, Reviews, Risk Log |
+| **_shared** | Organization knowledge base | What rules apply everywhere? | Brand, Security, Naming, Frameworks, SOPs, Templates |
 
-Each tool reads **different files** at session start. There is no single file all tools share.
+### Learning Pipeline (inside 1-ALIGN/learning/)
 
-| Tool | Primary rules file | Brand + Security source | Loading |
-|------|-------------------|------------------------|---------|
-| **Claude Code** (CLI) | `CLAUDE.md` | Distilled in CLAUDE.md (brand, naming, security) | Auto-loaded every session |
-| **AntiGravity** (IDE) | `GEMINI.md` | Distilled in GEMINI.md (brand, naming, security) | Auto-loaded every session |
-| **Cursor** (IDE) | `.cursor/rules/` | `.cursor/rules/brand-identity.md`, `security.md` | Auto-loads matching globs |
-| **All tools** | `rules/` | Full references: brand-identity, naming-rules, security-rules | On demand — agent reads when it needs detailed specs |
-| **Pre-commit** | `.pre-commit-config.yaml` | `.gitleaks.toml` (secret detection) | Runs on every `git commit` |
+The Effective Learning Framework (ELF) produces structured system designs from any learning process:
 
-**Why no AGENTS.md?** The AAIF standard promises a universal file all tools read. In practice, only Claude Code reads it. AntiGravity reads GEMINI.md. Cursor reads .cursor/rules/. Rather than maintain a file only one tool uses, each tool gets rules through its own guaranteed loading path. Less elegant, more reliable.
+```
+/learn:input → /learn:research → /learn:structure → /learn:review → /spec:extract → /spec:handoff
+```
+
+ELF output maps directly to project artifacts:
+- P0 (Overview) → Charter | P1 (Blockers) → UBS Register | P2 (Drivers) → UDS Register
+- P3 (Principles) → Requirements | P4 (Components) → System Design | P5 (Steps) → Execution Plan
+
+Note: The learning PROCESS varies per member (Read/Write, Structured, Visual/Audio/Kinesthetic). The ELF OUTPUT format is standard. This pipeline is could-have, not must-have.
+
+## Global Rules (`_shared/`)
+
+| Area | Files | What it covers |
+|------|-------|---------------|
+| Brand | `_shared/brand/` | 20-color palette, Inter/Work Sans typography, logo usage |
+| Security | `_shared/security/` | 3-layer defense, data classification, risk tiers |
+| Naming | `_shared/security/NAMING_CONVENTION.md` | UNG grammar, 75 SCOPE codes, platform rendering |
+| Frameworks | `_shared/frameworks/` | ESD, 3 Pillars, Agent System, Diagnostics, UBS/UDS Guide |
+| Version Control | `_shared/frameworks/HISTORY_VERSION_CONTROL.md` | Branching, commits, PR workflow, chain-of-thought preservation |
+| SOPs | `_shared/sops/` | Code review, deployment, discussion |
+| Templates | `_shared/templates/` | ADR, research, retro, review, risk entry, SOP, spike, standup, wiki |
+
+Also available at `rules/` (Zone 0 agent-facing copies): brand-identity.md, naming-rules.md, security-rules.md, agent-system.md, general-system.md, agent-diagnostic.md.
 
 ## Naming Convention
 
@@ -134,7 +113,7 @@ Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
 The template enforces a three-layer defense-in-depth model:
 
 - **Layer 1 — Structural** (`.gitignore`): Passive defense. Secrets, key files, and backup directories are excluded by path. Cannot be accidentally committed.
-- **Layer 2 — Agent EPS** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
+- **Layer 2 — Agent EP** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
 - **Layer 3 — Hard Gate** (`.pre-commit-config.yaml` + `.gitleaks.toml`): Deterministic. gitleaks blocks any commit containing detected secrets. Cannot be bypassed without explicit allowlist entry.
 
 Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
@@ -149,7 +128,7 @@ LTC projects use a custom 3-section MEMORY.md template:
 
 ```
 ## Agent Instructions   ← Meta-rules (structural, never consolidate)
-## Briefing Card        ← Quick-load context (Identity, Subject, UDO, state, WMS)
+## Briefing Card        ← Quick-load context (Identity, Subject, UDO, Charter, state, WMS)
 ## Topic Index          ← Pointer list to detail files
 ```
 
@@ -160,10 +139,43 @@ Without protection, AutoDream flattens this structure into generic sections and 
 | 1 (Guide) | `.claude/rules/memory-format.md` | Instructs any agent to preserve the 3-section structure | ~95% (probabilistic) |
 | 2 (Gate) | `~/.claude/hooks/scripts/memory-guard.sh` | PreToolUse hook blocks writes that destroy structure | 100% (deterministic) |
 
-**Layer 1** ships with the template. **Layer 2** must be installed per-machine — see `plugins/memory-vault/README.md` for the hook setup.
+**Layer 1** ships with the template. **Layer 2** must be installed per-machine (see setup below).
 
-To check memory health across all projects:
+### Member Setup (per-machine, ~5 minutes)
 
+**1. Install Memory Vault plugin** — add to `~/.claude/settings.json`:
+```json
+{
+  "extraKnownMarketplaces": {
+    "ltc-plugins": {
+      "source": { "source": "directory", "path": "/path/to/OPS_OE.6.4.LTC-PROJECT-TEMPLATE" }
+    }
+  }
+}
+```
+Then run `/setup` in any Claude Code session.
+
+**2. Install memory-guard hook** — copy to `~/.claude/hooks/scripts/` and add to `~/.claude/settings.json`:
+```bash
+# Copy scripts
+cp plugins/memory-vault/scripts/memory-guard.sh ~/.claude/hooks/scripts/
+cp plugins/memory-vault/scripts/validate-memory-structure.sh ~/.claude/hooks/scripts/
+chmod +x ~/.claude/hooks/scripts/memory-guard.sh ~/.claude/hooks/scripts/validate-memory-structure.sh
+```
+Add this to `hooks.PreToolUse` array in `~/.claude/settings.json`:
+```json
+{ "matcher": "Write", "hooks": [{ "type": "command", "command": "bash $HOME/.claude/hooks/scripts/memory-guard.sh", "timeout": 5 }] }
+```
+
+**3. Copy global rule** — ensures protection outside project repos:
+```bash
+mkdir -p ~/.claude/rules
+cp .claude/rules/memory-format.md ~/.claude/rules/memory-format.md
+```
+
+**4. Enable AutoDream** — run `/memory` in Claude Code, toggle `Auto-dream` to `on`.
+
+**5. Verify:**
 ```bash
 bash ~/.claude/hooks/scripts/validate-memory-structure.sh
 ```
