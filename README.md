@@ -30,7 +30,7 @@ cd {YOUR_PROJECT_NAME}
 | 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 80 lines. |
 | 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
 | 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
-| 6 | `.claude/rules/` | Delete the example rule. Add path-scoped rules for your codebase. |
+| 6 | `.claude/rules/` | `memory-format.md` is pre-loaded (AutoDream protection). Delete the example rule. Add path-scoped rules for your codebase. |
 | 7 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
 | — | `.cursor/rules/`, `.agents/rules/` | Already configured with brand identity. Add more rules as needed for Cursor / AntiGravity. |
 
@@ -56,7 +56,9 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 │   ├── agents/                # Subagent definitions   ← Agent (operator config)
 │   ├── commands/              # Slash commands         ← EOP (on-demand procedures)
 │   ├── hooks/                 # Event-driven scripts   ← Environment (automation)
-│   ├── rules/                 # Path-scoped rules      ← EPS (modular, on-demand)
+│   ├── rules/
+│   │   ├── memory-format.md   # AutoDream protection   ← EPS (memory structure guard)
+│   │   └── example-api-conventions.md  # Example rule  ← EPS (delete after reading)
 │   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
 ├── .cursor/rules/
 │   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
@@ -138,6 +140,33 @@ The template enforces a three-layer defense-in-depth model:
 Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
 
 See `rules/security-rules.md` for the full security reference, including risk tiers, gap analysis, and setup instructions.
+
+## Memory Protection
+
+Claude Code's **Auto Memory** writes notes about your project across sessions into `~/.claude/projects/<project>/memory/MEMORY.md`. **AutoDream** periodically consolidates these notes — pruning stale entries, merging duplicates, and normalizing dates.
+
+LTC projects use a custom 3-section MEMORY.md template:
+
+```
+## Agent Instructions   ← Meta-rules (structural, never consolidate)
+## Briefing Card        ← Quick-load context (Identity, Subject, UDO, state, WMS)
+## Topic Index          ← Pointer list to detail files
+```
+
+Without protection, AutoDream flattens this structure into generic sections and deletes the meta-rules. The template includes a 2-layer defense:
+
+| Layer | File | Mechanism | Reliability |
+|-------|------|-----------|-------------|
+| 1 (Guide) | `.claude/rules/memory-format.md` | Instructs any agent to preserve the 3-section structure | ~95% (probabilistic) |
+| 2 (Gate) | `~/.claude/hooks/scripts/memory-guard.sh` | PreToolUse hook blocks writes that destroy structure | 100% (deterministic) |
+
+**Layer 1** ships with the template. **Layer 2** must be installed per-machine — see `plugins/memory-vault/README.md` for the hook setup.
+
+To check memory health across all projects:
+
+```bash
+bash ~/.claude/hooks/scripts/validate-memory-structure.sh
+```
 
 ## Plugins
 
