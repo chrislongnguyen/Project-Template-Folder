@@ -62,14 +62,14 @@ Query is incomprehensible
 #### Issue #3: "User can redirect if needed" (Line 64)
 **Current:**
 ```markdown
-PROCEED with standard mode. User can redirect if needed.
+PROCEED with mid mode. User can redirect if needed.
 ```
 
 **Problem:** "can" is weak permission, "if needed" is uncertain, both undermine autonomy
 
 **Fix:**
 ```markdown
-PROCEED with standard mode. User will redirect if incorrect.
+PROCEED with mid mode. User will redirect if incorrect.
 ```
 
 **Intention carried:** "can...if needed" → uncertain, permission-seeking | "will...if incorrect" → confident, definitive
@@ -180,10 +180,10 @@ Time investment: 5-45 minutes
 
 ---
 
-#### Issue #10: "Standard+" unclear notation (Lines 96, 101)
+#### Issue #10: "Mid+" unclear notation (Lines 96, 101)
 **Current:**
 ```markdown
-**Standard+ adds:**
+**Mid+ adds:**
 **Deep+ adds:**
 ```
 
@@ -191,8 +191,8 @@ Time investment: 5-45 minutes
 
 **Fix:**
 ```markdown
-**Standard/Deep/UltraDeep execute:**
-**Deep/UltraDeep execute:**
+**Mid/Deep/Full execute:**
+**Deep/Full execute:**
 ```
 
 **Intention carried:** "+" → ambiguous scope | explicit listing → clear scope

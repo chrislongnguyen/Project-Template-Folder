@@ -33,8 +33,8 @@
 ## Our Deep Research Skill Advantages
 
 ### Speed Competitive
-- **Standard Mode**: 5-10 minutes (faster than OpenAI, comparable to Gemini)
-- **Quick Mode**: 2-5 minutes (approaches Claude Desktop speed)
+- **Mid Mode**: 5-10 minutes (faster than OpenAI, comparable to Gemini)
+- **Lite Mode**: 2-5 minutes (approaches Claude Desktop speed)
 - **Parallel Agents**: Simultaneous source retrieval for efficiency
 
 ### Superior Quality Control
@@ -50,7 +50,7 @@
 ### Better Methodology
 - **8-Phase Pipeline**: More thorough than competitors' ad-hoc approaches
 - **Graph-of-Thoughts**: Non-linear reasoning with branching paths
-- **Multiple Modes**: 4 depth levels (quick/standard/deep/ultradeep)
+- **Multiple Modes**: 4 depth levels (lite/mid/deep/full)
 - **Decision Trees**: Clear logic for mode and tool selection
 - **Stop Rules**: Prevents runaway research or low-quality loops
 
@@ -170,7 +170,7 @@
 ## Conclusion
 
 Our Deep Research Skill delivers:
-- ✅ **Speed**: 5-10 min standard (competitive with Gemini, faster than OpenAI)
+- ✅ **Speed**: 5-10 min mid (competitive with Gemini, faster than OpenAI)
 - ✅ **Quality**: Superior through triangulation, critique, and validation
 - ✅ **Depth**: 8-phase methodology exceeds competitors
 - ✅ **Innovation**: Unique credibility scoring and validation

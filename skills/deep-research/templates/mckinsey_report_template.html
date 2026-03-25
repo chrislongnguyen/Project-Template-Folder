@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE}} - Deep Research Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +15,7 @@
         }
 
         body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Inter", "Work Sans", sans-serif;
             font-size: 14px;
             line-height: 1.5;
             color: #1a1a1a;
@@ -26,10 +29,10 @@
         }
 
         .header {
-            background: #003d5c;
+            background: #004851;
             color: white;
             padding: 25px 40px;
-            border-bottom: 3px solid #002840;
+            border-bottom: 3px solid #1D1F2A;
         }
 
         .header h1 {
@@ -41,7 +44,7 @@
 
         .header-meta {
             font-size: 13px;
-            color: #b8d4e6;
+            color: #F2C75C;
             display: flex;
             gap: 25px;
         }
@@ -50,7 +53,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 0;
-            border-bottom: 2px solid #003d5c;
+            border-bottom: 2px solid #004851;
         }
 
         .metric {
@@ -67,7 +70,7 @@
         .metric-number {
             font-size: 32px;
             font-weight: 700;
-            color: #003d5c;
+            color: #004851;
             display: block;
             margin-bottom: 6px;
         }
@@ -91,10 +94,10 @@
         .section-title {
             font-size: 20px;
             font-weight: 700;
-            color: #003d5c;
+            color: #004851;
             margin: 32px 0 16px 0;
             padding-bottom: 8px;
-            border-bottom: 2px solid #003d5c;
+            border-bottom: 2px solid #004851;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             line-height: 1.3;
@@ -112,7 +115,7 @@
             background: #f8f9fa;
             padding: 20px;
             margin-bottom: 30px;
-            border-left: 4px solid #003d5c;
+            border-left: 4px solid #004851;
         }
 
         .executive-summary p {
@@ -133,31 +136,23 @@
             margin-bottom: 16px;
         }
 
-        .findings-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+        /* CODE Hierarchy Sections */
+        .section-context { border-left: 4px solid #004851; }
+        .section-mechanics { border-left: 4px solid #F2C75C; }
+        .section-application { border-left: 4px solid #69994D; }
+        .section-mastery { border-left: 4px solid #653469; }
 
-        .finding-card {
-            background: #f8f9fa;
-            padding: 18px;
-            border-left: 3px solid #003d5c;
+        .hierarchy-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
-
-        .finding-card h3 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #003d5c;
-            margin-bottom: 10px;
-        }
-
-        .finding-card p {
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
+        .hierarchy-label.knowledge { color: #004851; }
+        .hierarchy-label.understanding { color: #F2C75C; }
+        .hierarchy-label.wisdom { color: #69994D; }
+        .hierarchy-label.expertise { color: #653469; }
 
         .data-table {
             width: 100%;
@@ -167,7 +162,7 @@
         }
 
         .data-table th {
-            background: #003d5c;
+            background: #004851;
             color: white;
             padding: 10px 15px;
             text-align: left;
@@ -218,18 +213,18 @@
         .key-insight {
             background: white;
             border: 1px solid #d1d5db;
-            border-left: 3px solid #003d5c;
+            border-left: 3px solid #004851;
             padding: 15px;
             margin: 15px 0;
         }
 
         .key-insight strong {
-            color: #003d5c;
+            color: #004851;
             font-weight: 600;
         }
 
         .citation {
-            color: #003d5c;
+            color: #004851;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
@@ -241,7 +236,7 @@
         }
 
         .citation:hover {
-            background: #003d5c;
+            background: #004851;
             color: white;
         }
 
@@ -254,8 +249,8 @@
             transform: translateX(-50%);
             margin-bottom: 8px;
             background: white;
-            border: 2px solid #003d5c;
-            box-shadow: 0 4px 12px rgba(0, 61, 92, 0.15);
+            border: 2px solid #004851;
+            box-shadow: 0 4px 12px rgba(0, 72, 81, 0.15);
             padding: 12px;
             min-width: 300px;
             max-width: 500px;
@@ -270,7 +265,7 @@
 
         .tooltip-title {
             font-weight: 700;
-            color: #003d5c;
+            color: #004851;
             margin-bottom: 8px;
             font-size: 13px;
             border-bottom: 1px solid #d1d5db;
@@ -287,13 +282,13 @@
             background: #f8f9fa;
             padding: 8px;
             margin-top: 8px;
-            border-left: 3px solid #003d5c;
+            border-left: 3px solid #004851;
             font-size: 11px;
         }
 
         .tooltip-claim-label {
             font-weight: 600;
-            color: #003d5c;
+            color: #004851;
             text-transform: uppercase;
             font-size: 10px;
             letter-spacing: 0.5px;
@@ -308,7 +303,7 @@
 
         .evidence-chain-label {
             font-weight: 600;
-            color: #003d5c;
+            color: #004851;
             font-size: 11px;
             margin-bottom: 6px;
             text-transform: uppercase;
@@ -328,7 +323,7 @@
             background: #f8f9fa;
             padding: 30px;
             margin-top: 40px;
-            border-left: 4px solid #003d5c;
+            border-left: 4px solid #004851;
         }
 
         .bibliography-content {
@@ -345,13 +340,13 @@
         }
 
         .bib-number {
-            color: #003d5c;
+            color: #004851;
             font-weight: 700;
             margin-right: 8px;
         }
 
         .bib-entry a {
-            color: #003d5c;
+            color: #004851;
             word-wrap: break-word;
             text-decoration: none;
         }
@@ -382,14 +377,14 @@
         .info-box h4 {
             font-size: 13px;
             font-weight: 700;
-            color: #003d5c;
+            color: #004851;
             margin-bottom: 8px;
             text-transform: uppercase;
         }
 
         .highlight-stat {
             font-weight: 700;
-            color: #003d5c;
+            color: #004851;
         }
 
         strong {
@@ -406,9 +401,6 @@
         @media (max-width: 768px) {
             .metrics-dashboard {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .findings-grid {
-                grid-template-columns: 1fr;
             }
             .compact-list {
                 grid-template-columns: 1fr;
@@ -433,7 +425,7 @@
             {{CONTENT}}
 
             <div class="bibliography">
-                <div class="section-title">Bibliography</div>
+                <div class="section-title">Sources</div>
                 {{BIBLIOGRAPHY}}
             </div>
 

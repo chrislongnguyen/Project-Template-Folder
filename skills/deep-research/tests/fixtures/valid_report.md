@@ -1,4 +1,7 @@
-# Research Report: Test Topic
+# Research: Test Topic
+
+**Mode:** mid | **Sources:** 10 | **Confidence:** High
+**Date:** 2026-03-25 | **Duration:** 8 min
 
 ## Executive Summary
 
@@ -10,81 +13,76 @@ This is a test report with exactly the right length for validation. It contains 
 
 ---
 
-## Introduction
+## 1. Context
 
-### Research Question
-What is the current state of test research?
+### 1.1 Why This Matters
+<!-- Q1 -->
+This research matters because test topics are fundamental to validation infrastructure [1].
 
-### Scope & Methodology
-This research covered academic sources, industry publications, and recent developments in the field using a systematic 8-phase approach.
+### 1.2 What Is It?
+<!-- Q2 -->
+A systematic investigation of the current state of test research covering academic and industry sources [2].
 
-### Key Assumptions
-We assume test data is representative of real-world conditions.
+### 1.3 Landscape & Alternatives
+<!-- Q3 -->
+Multiple approaches exist including manual review, automated testing, and hybrid methods [3].
 
----
+## 2. Mechanics
 
-## Main Analysis
-
-### Finding 1: Current State
-
+### 2.1 How It Works
+<!-- Q4 -->
 The field has seen significant advancement in recent years [1], [2]. Multiple studies confirm this trend [3].
 
-**Sources:** [1], [2], [3]
+**Components:**
+| Component | Role | Depends On |
+|-----------|------|------------|
+| Validator | Checks report quality | Report template |
+| Engine | Orchestrates phases | Mode selection |
 
-### Finding 2: Key Challenges
+### 2.2 Why It Works
+<!-- Q5 -->
+Success is driven by structured decomposition and systematic verification [4].
 
-Several challenges remain, including scalability [4] and adoption barriers [5], [6].
+### 2.3 Why It Fails
+<!-- Q6 -->
+Several challenges remain, including scalability [4] and adoption barriers [5], [6]. Limited data for niche applications creates blind spots.
 
-**Sources:** [4], [5], [6]
+## 3. Application
 
-### Finding 3: Future Outlook
+### 3.1 How We Can Benefit
+<!-- Q7 -->
+Organizations should prepare for rapid change and invest in capability building. Clear trend toward increased adoption [7].
 
-The outlook is positive with emerging solutions [7], [8], [9], [10].
+### 3.2 Recommendations
+<!-- Q8 -->
 
-**Sources:** [7], [8], [9], [10]
+**Immediate:**
+1. Begin pilot implementation to gain early experience [8]
 
----
+**Next Steps:**
+1. Monitor developments and adjust strategy quarterly [9]
 
-## Synthesis & Insights
+## 4. Mastery
 
-### Patterns Identified
-Clear trend toward increased adoption and sophistication in implementations.
+### 4.1 Misconceptions
+<!-- Q9 -->
+Common misconception that automated testing replaces human judgment entirely [7].
 
-### Novel Insights
-The combination of recent developments suggests accelerated progress in the next 2-3 years.
+### 4.2 Anti-Patterns
+<!-- Q10 -->
+Over-reliance on single-source validation leads to confirmation bias [8].
 
-### Implications
-Organizations should prepare for rapid change and invest in capability building.
+### 4.3 Contingencies
+<!-- Q11 -->
+If current approach fails, fallback to manual expert review with structured templates [9].
 
----
-
-## Limitations & Caveats
-
-### Known Gaps
-Limited data available for certain niche applications.
-
-### Assumptions
-Assumes current trajectory continues without major disruptions.
-
-### Areas of Uncertainty
-Long-term impact remains to be fully understood.
-
----
-
-## Recommendations
-
-### Immediate Actions
-Begin pilot implementation to gain early experience.
-
-### Next Steps
-Monitor developments and adjust strategy quarterly.
-
-### Further Research
-Deep dive into specific implementation case studies.
+### 4.4 Competitive Edge
+<!-- Q12 -->
+The combination of recent developments suggests accelerated progress in the next 2-3 years [10].
 
 ---
 
-## Bibliography
+## Sources
 
 [1] Smith, J. (2025). "Test Research Advances". Journal of Testing. https://example.com/paper1
 [2] Johnson, K. (2025). "Current State Analysis". Research Quarterly. https://example.com/paper2
@@ -99,7 +97,7 @@ Deep dive into specific implementation case studies.
 
 ---
 
-## Appendix: Methodology
+## Methodology
 
 ### Research Process
 Conducted 8-phase research pipeline with systematic source evaluation and triangulation.
@@ -110,5 +108,7 @@ Conducted 8-phase research pipeline with systematic source evaluation and triang
 ### Verification Approach
 All major claims verified across minimum 3 independent sources.
 
-### Quality Control
-Automated validation plus manual review for accuracy and completeness.
+| Claim | Evidence | Sources | Falsification Attempted? | Confidence |
+|-------|----------|---------|--------------------------|------------|
+| Field advancing rapidly | Multiple studies | [1], [2], [3] | Yes — no counter-evidence found | High |
+| Scalability is key challenge | Industry reports | [4], [5], [6] | Yes — confirmed | High |

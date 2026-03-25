@@ -163,7 +163,7 @@ class HTMLVerifier:
 
     def _check_bibliography(self, html: str, md: str):
         """Verify bibliography is present and formatted"""
-        if '## Bibliography' in md:
+        if re.search(r'## (?:Sources|Bibliography)', md):
             if 'class="bibliography"' not in html:
                 self.errors.append("Bibliography section missing from HTML")
             elif 'class="bib-entry"' not in html:

@@ -59,7 +59,7 @@ description: Conduct enterprise-grade research with multi-source synthesis, cita
 **ISSUE #2: Preview Section Ambiguous**
 ```markdown
 **Preview scope if:**
-- Mode is deep/ultradeep
+- Mode is deep/full
 - Topic highly specialized
 - User requests preview
 ```
@@ -75,22 +75,22 @@ description: Conduct enterprise-grade research with multi-source synthesis, cita
 
 **ONLY ask if CRITICALLY ambiguous:**
 - Query is genuinely incomprehensible (e.g., "research the thing")
-- Contradictory requirements (e.g., "quick 50-source ultradeep analysis")
+- Contradictory requirements (e.g., "lite 50-source full analysis")
 
-**When in doubt: PROCEED with standard mode. User can redirect if needed.**
+**When in doubt: PROCEED with mid mode. User can redirect if needed.**
 
 **Good autonomous assumptions:**
 - Technical query → Assume technical audience
 - Comparison query → Assume balanced perspective needed
 - Trend query → Assume recent 1-2 years unless specified
-- Standard mode is default for most queries
+- Mid mode is default for most queries
 ```
 
 **FIX #2: Clear Announcement (No Blocking)**
 ```markdown
 **Announce plan (then proceed immediately):**
 - Briefly state: selected mode, estimated time, number of sources
-- Example: "Starting standard mode research (5-10 min, 15-30 sources)"
+- Example: "Starting mid mode research (5-10 min, 15-30 sources)"
 - NO need to wait for approval - proceed directly to execution
 ```
 
@@ -110,8 +110,8 @@ User Input: "deep research on quantum computing 2025"
     ↓
 Skill Activates (triggers: "deep research")
     ↓
-Plan: Standard mode (5-10 min, 15-30 sources)
-Announce: "Starting standard mode research..."
+Plan: Mid mode (5-10 min, 15-30 sources)
+Announce: "Starting mid mode research..."
     ↓
 Phase 1: SCOPE
     - Define research boundaries
@@ -202,18 +202,18 @@ DONE (Total user interactions: 0 ✅)
 
 | User Query | Auto-Selected Mode | Time | Sources | User Input Needed? |
 |------------|-------------------|------|---------|-------------------|
-| "deep research X" | Standard | 5-10 min | 15-30 | ❌ No |
-| "quick overview of X" | Quick | 2-5 min | 10-15 | ❌ No |
-| "comprehensive analysis X" | Standard | 5-10 min | 15-30 | ❌ No |
-| "compare X vs Y" | Standard | 5-10 min | 15-30 | ❌ No |
+| "deep research X" | Mid | 5-10 min | 15-30 | ❌ No |
+| "quick overview of X" | Lite | 2-5 min | 10-15 | ❌ No |
+| "comprehensive analysis X" | Mid | 5-10 min | 15-30 | ❌ No |
+| "compare X vs Y" | Mid | 5-10 min | 15-30 | ❌ No |
 | "research the thing" (ambiguous) | Ask clarification | N/A | N/A | ✅ Yes (justified) |
 
 **Autonomous Decision Logic:**
-- Clear query → Standard mode (DEFAULT)
-- "quick" keyword → Quick mode
-- "comprehensive" keyword → Standard mode
+- Clear query → Mid mode (DEFAULT)
+- "quick" keyword → Lite mode
+- "comprehensive" keyword → Mid mode
 - "deep" or "thorough" → Deep mode
-- Ambiguous → Standard mode (when in doubt, proceed)
+- Ambiguous → Mid mode (when in doubt, proceed)
 - Incomprehensible → Ask (rare edge case)
 
 ---
@@ -305,7 +305,7 @@ The skill automatically activates when user says:
 | **Error handling graceful** | ✅ Pass | Retry logic, clear error messages |
 | **Output path predetermined** | ✅ Pass | `~/.claude/research_output/` |
 | **Validation automated** | ✅ Pass | 8 checks, no manual review |
-| **Mode selection autonomous** | ✅ Pass | Standard as default |
+| **Mode selection autonomous** | ✅ Pass | Mid as default |
 
 **Total:** 15/15 checks passed ✅
 
@@ -318,7 +318,7 @@ The skill automatically activates when user says:
 | **Clarify frequency** | "When to ask" (ambiguous conditions) | "Rarely needed" (explicit autonomy) | ✅ 90% fewer stops |
 | **Preview behavior** | "Preview scope if..." (unclear) | "Announce and proceed" (clear) | ✅ No blocking |
 | **Autonomy principle** | Implicit | Explicit ("operates independently") | ✅ Clear guidance |
-| **Default action** | Unclear | "PROCEED with standard mode" | ✅ Removes ambiguity |
+| **Default action** | Unclear | "PROCEED with mid mode" | ✅ Removes ambiguity |
 | **User interaction** | 2-3 stops possible | 0-1 stops (errors only) | ✅ 90% reduction |
 
 ---
@@ -351,7 +351,7 @@ The skill automatically activates when user says:
 
 **Behavior:**
 1. Skill activates
-2. Announces: "Starting standard mode research (5-10 min, 15-30 sources)"
+2. Announces: "Starting mid mode research (5-10 min, 15-30 sources)"
 3. Executes all 6 phases
 4. Generates 2,000-5,000 word report
 5. Delivers report
@@ -369,7 +369,7 @@ The skill automatically activates when user says:
 **Expected Behavior:**
 1. ✅ Skill activates (trigger: "comprehensive analysis")
 2. ✅ Announces plan without waiting
-3. ✅ Executes standard mode (6 phases)
+3. ✅ Executes mid mode (6 phases)
 4. ✅ Gathers 15-30 sources
 5. ✅ Triangulates 3+ sources per claim
 6. ✅ Generates report (2,000-5,000 words)
@@ -416,5 +416,3 @@ The deep-research skill is properly configured as a Claude Code skill and optimi
 8. **Testing:** ✅ Real-world validation successful
 
 **Independence Score:** 15/15 checks passed (100%)
-
-**Ready for autonomous deployment and use.**

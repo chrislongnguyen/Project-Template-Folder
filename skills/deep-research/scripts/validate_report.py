@@ -83,19 +83,18 @@ class ReportValidator:
         """Check all required sections are present"""
         required = [
             "Executive Summary",
-            "Introduction",
-            "Main Analysis",
-            "Synthesis",
-            "Limitations",
-            "Recommendations",
-            "Bibliography",
+            "Context",
+            "Mechanics",
+            "Application",
+            "Mastery",
+            "Sources",
             "Methodology"
         ]
 
         # Recommended sections (warnings if missing, not errors)
         recommended = [
-            "Counterevidence Register",
-            "Claims-Evidence Table"
+            "Why It Fails",
+            "Claims-Evidence"
         ]
 
         missing = []
@@ -146,11 +145,11 @@ class ReportValidator:
 
     def _check_bibliography(self) -> bool:
         """Check bibliography exists, matches citations, and has no truncation placeholders"""
-        pattern = r'## Bibliography(.*?)(?=##|\Z)'
+        pattern = r'## (?:Sources|Bibliography)(.*?)(?=##|\Z)'
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:
-            self.errors.append("Missing 'Bibliography' section")
+            self.errors.append("Missing 'Sources' section")
             return False
 
         bib_section = match.group(1)
@@ -256,11 +255,11 @@ class ReportValidator:
 
     def _check_source_count(self) -> bool:
         """Check minimum source count"""
-        pattern = r'## Bibliography(.*?)(?=##|\Z)'
+        pattern = r'## (?:Sources|Bibliography)(.*?)(?=##|\Z)'
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:
-            return True  # Already caught in bibliography check
+            return True  # Already caught in sources check
 
         bib_section = match.group(1)
         bib_entries = re.findall(r'^\[(\d+)\]', bib_section, re.MULTILINE)

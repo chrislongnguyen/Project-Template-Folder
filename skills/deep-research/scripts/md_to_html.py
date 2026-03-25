@@ -19,8 +19,8 @@ def convert_markdown_to_html(markdown_text: str) -> Tuple[str, str]:
     Returns:
         Tuple of (content_html, bibliography_html)
     """
-    # Split content and bibliography
-    parts = markdown_text.split('## Bibliography')
+    # Split content and bibliography/sources
+    parts = re.split(r'## (?:Sources|Bibliography)', markdown_text, maxsplit=1)
     content_md = parts[0]
     bibliography_md = parts[1] if len(parts) > 1 else ""
 

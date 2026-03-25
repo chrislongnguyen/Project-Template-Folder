@@ -176,7 +176,7 @@ Scope → Retrieve → Package
 - ❌ No synthesis
 - ❌ No quality control
 
-**Standard (6 phases):**
+**Mid (6 phases):**
 Scope → Plan → Retrieve → Triangulate → Synthesize → Package
 - ✅ Verification
 - ✅ Synthesis
@@ -198,16 +198,16 @@ AnkitClassicVision has 7 phases (no separate REFINE)
 - Purpose: Address gaps identified in CRITIQUE
 - Cost: 2-5 additional minutes
 - Benefit: Completeness, addresses weaknesses before delivery
-- **Verdict:** JUSTIFIED for deep/ultradeep modes, COULD SKIP in quick/standard
+- **Verdict:** JUSTIFIED for deep/full modes, COULD SKIP in lite/mid
 
 **RECOMMENDATION:** Make REFINE phase conditional:
-- Quick mode: Skip
-- Standard mode: Skip (stay at 6 phases)
+- Lite mode: Skip
+- Mid mode: Skip (stay at 6 phases)
 - Deep mode: Include
-- UltraDeep mode: Include + iterate
+- Full mode: Include + iterate
 
 **Potential Savings:**
-- Standard mode: 5-10 min → 4-8 min (faster than competitor's 7 phases)
+- Mid mode: 5-10 min → 4-8 min (faster than competitor's 7 phases)
 - Still beat OpenAI (5-30 min) and Gemini (2-5 min but lower quality)
 
 ---
@@ -268,7 +268,7 @@ AnkitClassicVision has 7 phases (no separate REFINE)
 ### 7.3 Time Pressure (User Wants Quick Result)
 
 **Current Handling:**
-- ✅ Quick mode: 2-5 min with 3 phases
+- ✅ Lite mode: 2-5 min with 3 phases
 - ✅ Mode selection at start
 
 **Status:** HANDLED ✅
@@ -343,16 +343,16 @@ except Exception as e:
 | Gemini Deep Research | 2-5 min | Unknown | Medium |
 | OpenAI Deep Research | 5-30 min | Unknown | High |
 | AnkitClassicVision | Unknown | 7 | Unknown (no validation) |
-| **Ours (Quick)** | **2-5 min** | **3** | **Medium** |
-| **Ours (Standard)** | **5-10 min** | **6** | **High** |
+| **Ours (Lite)** | **2-5 min** | **3** | **Medium** |
+| **Ours (Mid)** | **5-10 min** | **6** | **High** |
 | **Ours (Deep)** | **10-20 min** | **8** | **Highest** |
-| **Ours (UltraDeep)** | **20-45 min** | **8+** | **Highest** |
+| **Ours (Full)** | **20-45 min** | **8+** | **Highest** |
 
 **Positioning:**
-- Quick mode: Competitive with Gemini (2-5 min)
-- Standard mode: Faster than OpenAI (5-10 vs 5-30)
+- Lite mode: Competitive with Gemini (2-5 min)
+- Mid mode: Faster than OpenAI (5-10 vs 5-30)
 - Deep mode: Unmatched quality, reasonable time
-- UltraDeep mode: Premium tier, maximum rigor
+- Full mode: Premium tier, maximum rigor
 
 ---
 
@@ -381,9 +381,9 @@ for attempt in range(max_retries):
 Update SKILL.md and research_engine.py:
 ```python
 def get_phases_for_mode(mode: ResearchMode) -> List[ResearchPhase]:
-    if mode == ResearchMode.QUICK:
+    if mode == ResearchMode.LITE:
         return [SCOPE, RETRIEVE, PACKAGE]
-    elif mode == ResearchMode.STANDARD:
+    elif mode == ResearchMode.MID:
         return [SCOPE, PLAN, RETRIEVE, TRIANGULATE, SYNTHESIZE, PACKAGE]  # Skip REFINE
     elif mode == ResearchMode.DEEP:
         return [SCOPE, PLAN, RETRIEVE, TRIANGULATE, SYNTHESIZE, CRITIQUE, REFINE, PACKAGE]
@@ -395,10 +395,10 @@ def get_phases_for_mode(mode: ResearchMode) -> List[ResearchPhase]:
 **3. Add Explicit Timeout Enforcement**
 ```markdown
 **Time Limits:**
-- Quick mode: 5 min max
-- Standard mode: 12 min max
+- Lite mode: 5 min max
+- Mid mode: 12 min max
 - Deep mode: 25 min max
-- UltraDeep mode: 50 min max
+- Full mode: 50 min max
 ```
 
 **4. Add WebSearch Failure Graceful Degradation**
@@ -446,7 +446,7 @@ def get_phases_for_mode(mode: ResearchMode) -> List[ResearchPhase]:
 
 ### Occam's Razor Assessment: ✅ APPROPRIATELY COMPLEX
 
-The 8-phase pipeline is justified for deep research. Making REFINE conditional would optimize standard mode without sacrificing quality.
+The 8-phase pipeline is justified for deep research. Making REFINE conditional would optimize mid mode without sacrificing quality.
 
 ### Production Readiness: ✅ READY
 
@@ -471,7 +471,7 @@ The system is production-ready with minor optimizations available. Zero critical
 
 ✅ Automated validation (8 checks)
 ✅ Source credibility scoring (0-100)
-✅ 4 depth modes (quick/standard/deep/ultradeep)
+✅ 4 depth modes (lite/mid/deep/full)
 ✅ Context optimization (2025 best practices)
 ✅ Writing standards enforcement (precision, economy)
 ✅ Comprehensive documentation (6 supporting files)

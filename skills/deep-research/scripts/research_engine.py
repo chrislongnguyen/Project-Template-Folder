@@ -29,10 +29,10 @@ class ResearchPhase(Enum):
 
 class ResearchMode(Enum):
     """Research depth modes"""
-    QUICK = "quick"  # 3 phases: scope, retrieve, package
-    STANDARD = "standard"  # 6 phases: skip refine and critique
+    LITE = "lite"  # 3 phases: scope, retrieve, package
+    MID = "mid"  # 6 phases: skip refine and critique
     DEEP = "deep"  # Full 8 phases
-    ULTRADEEP = "ultradeep"  # 8 phases + extended iterations
+    FULL = "full"  # 8 phases + extended iterations
 
 
 @dataclass
@@ -122,7 +122,7 @@ class ResearchState:
 class ResearchEngine:
     """Main research orchestration engine"""
 
-    def __init__(self, mode: ResearchMode = ResearchMode.STANDARD):
+    def __init__(self, mode: ResearchMode = ResearchMode.MID):
         self.mode = mode
         self.state: Optional[ResearchState] = None
         self.output_dir = Path.home() / ".claude" / "research_output"
@@ -375,64 +375,11 @@ Updated findings, sources, and synthesis with improvements documented.
 
 Your task: Deliver professional, actionable research report
 
-## Generate Complete Report:
+## Generate Complete Report using templates/report_template.md
 
-```markdown
-# Research Report: [Topic]
+Structure: Executive Summary → §1 Context (Q1-Q3) → §2 Mechanics (Q4-Q6) → §3 Application (Q7-Q8) → §4 Mastery (Q9-Q12) → Sources → Methodology
 
-## Executive Summary
-[3-5 key findings bullets]
-[Primary recommendation]
-[Confidence level: High/Medium/Low]
-
-## Introduction
-### Research Question
-[Original question]
-
-### Scope & Methodology
-[What was investigated and how]
-
-### Key Assumptions
-[Important assumptions made]
-
-## Main Analysis
-
-### Finding 1: [Title]
-[Detailed explanation with evidence]
-[Citations: [1], [2], [3]]
-
-### Finding 2: [Title]
-[Detailed explanation with evidence]
-[Citations: [4], [5], [6]]
-
-[Continue for all findings...]
-
-## Synthesis & Insights
-[Patterns and connections]
-[Novel insights]
-[Implications]
-
-## Limitations & Caveats
-[Known gaps]
-[Assumptions]
-[Areas of uncertainty]
-
-## Recommendations
-[Action items]
-[Next steps]
-[Further research needs]
-
-## Bibliography
-[1] Source 1 full citation
-[2] Source 2 full citation
-...
-
-## Appendix: Methodology
-[Research process]
-[Sources consulted]
-[Verification approach]
-```
-
+All 12 questions answered at depth appropriate to mode.
 Save report to file with timestamp.
 """
         }
@@ -494,13 +441,13 @@ Save report to file with timestamp.
 
     def _get_phases_for_mode(self) -> List[ResearchPhase]:
         """Get phases based on research mode"""
-        if self.mode == ResearchMode.QUICK:
+        if self.mode == ResearchMode.LITE:
             return [
                 ResearchPhase.SCOPE,
                 ResearchPhase.RETRIEVE,
                 ResearchPhase.PACKAGE
             ]
-        elif self.mode == ResearchMode.STANDARD:
+        elif self.mode == ResearchMode.MID:
             return [
                 ResearchPhase.SCOPE,
                 ResearchPhase.PLAN,
@@ -511,8 +458,7 @@ Save report to file with timestamp.
             ]
         elif self.mode == ResearchMode.DEEP:
             return list(ResearchPhase)
-        elif self.mode == ResearchMode.ULTRADEEP:
-            # In ultradeep, we might iterate some phases
+        elif self.mode == ResearchMode.FULL:
             return list(ResearchPhase)
 
         return list(ResearchPhase)
@@ -526,8 +472,8 @@ def main():
         epilog="""
 Examples:
   python research_engine.py --query "state of quantum computing 2025" --mode deep
-  python research_engine.py --query "PostgreSQL vs Supabase comparison" --mode standard
-  python research_engine.py -q "longevity biotech funding trends" -m ultradeep
+  python research_engine.py --query "PostgreSQL vs Supabase comparison" --mode mid
+  python research_engine.py -q "longevity biotech funding trends" -m full
         """
     )
 
@@ -541,9 +487,9 @@ Examples:
     parser.add_argument(
         '--mode', '-m',
         type=str,
-        choices=['quick', 'standard', 'deep', 'ultradeep'],
-        default='standard',
-        help='Research depth mode (default: standard)'
+        choices=['lite', 'mid', 'deep', 'full'],
+        default='mid',
+        help='Research depth mode (default: mid)'
     )
 
     parser.add_argument(

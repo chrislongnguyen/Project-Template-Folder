@@ -19,41 +19,41 @@ Deep research: Should we migrate from PostgreSQL to Supabase?
 ```
 
 ```
-Use deep research in ultradeep mode to review recent advances in longevity science
+Use deep research in full mode to review recent advances in longevity science
 ```
 
 ### Direct CLI Usage
 
 ```bash
-# Standard research (6 phases, ~5-10 minutes)
+# Mid research (6 phases, ~5-10 minutes)
 python3 ~/.claude/skills/deep-research/research_engine.py \
   --query "Your research question" \
-  --mode standard
+  --mode mid
 
 # Deep research (8 phases, ~10-20 minutes)
 python3 ~/.claude/skills/deep-research/research_engine.py \
   --query "Your research question" \
   --mode deep
 
-# Quick research (3 phases, ~2-5 minutes)
+# Lite research (3 phases, ~2-5 minutes)
 python3 ~/.claude/skills/deep-research/research_engine.py \
   --query "Your research question" \
-  --mode quick
+  --mode lite
 
-# Ultra-deep research (8+ phases, ~20-45 minutes)
+# Full research (8+ phases, ~20-45 minutes)
 python3 ~/.claude/skills/deep-research/research_engine.py \
   --query "Your research question" \
-  --mode ultradeep
+  --mode full
 ```
 
 ## Research Modes Explained
 
 | Mode | Phases | Time | Use When |
 |------|--------|------|----------|
-| **Quick** | 3 | 2-5 min | Initial exploration, simple questions |
-| **Standard** | 6 | 5-10 min | Most research needs (default) |
+| **Lite** | 3 | 2-5 min | Initial exploration, simple questions |
+| **Mid** | 6 | 5-10 min | Most research needs (default) |
 | **Deep** | 8 | 10-20 min | Complex topics, important decisions |
-| **UltraDeep** | 8+ | 20-45 min | Critical analysis, comprehensive reports |
+| **Full** | 8+ | 20-45 min | Critical analysis, comprehensive reports |
 
 ## What You Get
 
@@ -79,7 +79,7 @@ Format: `research_report_YYYYMMDD_HHMMSS.md`
 ## Features That Beat Claude Desktop Research
 
 ✅ **8-Phase Pipeline** - More thorough than Claude Desktop's approach
-✅ **Multiple Research Modes** - Choose depth vs speed
+✅ **Multiple Research Modes** - Choose depth vs. speed
 ✅ **Source Credibility Scoring** - Evaluates each source (0-100 score)
 ✅ **Graph-of-Thoughts** - Non-linear exploration with branching reasoning
 ✅ **Citation Management** - Automatic tracking and bibliography generation
@@ -107,7 +107,7 @@ Use deep research to help me choose between Auth0, Clerk, and Supabase Auth
 
 ### Scientific Review
 ```
-Use deep research in ultradeep mode to summarize senolytics research progress
+Use deep research in full mode to summarize senolytics research progress
 ```
 
 ### Competitive Intelligence
@@ -129,7 +129,7 @@ Every report guarantees:
 
 1. **Be Specific** - "Compare X vs Y for use case Z" is better than "Tell me about X"
 2. **State Your Goal** - "Help me decide..." vs "Give me an overview..."
-3. **Choose Right Mode** - Use Quick for exploration, Deep for decisions
+3. **Choose Right Mode** - Use Lite for exploration, Deep for decisions
 4. **Check Scope First** - Review Phase 1 output to ensure on track
 5. **Use Citations** - Drill deeper by asking about specific sources [1], [2], etc.
 

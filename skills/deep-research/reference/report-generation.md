@@ -27,10 +27,10 @@ Also save a copy to `~/.claude/research_output/` for internal tracking.
 
 | Mode | Target Words | Notes |
 |---|---|---|
-| Quick | 2,000-4,000 | Well under output limit |
-| Standard | 4,000-8,000 | Comfortably under limit |
+| Lite | 2,000-4,000 | Well under output limit |
+| Mid | 4,000-8,000 | Comfortably under limit |
 | Deep | 8,000-15,000 | Achievable with care |
-| UltraDeep | 15,000-20,000 | At limit — use continuation if needed |
+| Full | 15,000-20,000 | At limit — use continuation if needed |
 
 ---
 
