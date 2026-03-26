@@ -1,3 +1,4 @@
+<!-- Zone 0 agent-facing copy. Human-readable version: _shared/frameworks/EFFECTIVE_SYSTEM.md -->
 # LTC General System
 
 > Source of truth: ESD Framework (OPS_OE.6.1 templates/), 10 Ultimate Truths (BOOK-00), Spec-Gap-Analysis (OPS_OE.6.1 research/), Whiteboard Template (ClickUp)
@@ -11,7 +12,8 @@
 | Abbreviation | Full Name |
 |---|---|
 | UT#N | Ultimate Truth #N (from the 10 Universal Truths framework) |
-| EO | Effective Outcome (the desired state the EU aims to achieve; replaces UDO) |
+| EO | Effective Outcome (the desired state the EU aims to achieve) |
+| EI | Effective Inputs (triggers, data, upstream resources entering the system) |
 | UBS | Ultimate Blocking System (forces preventing desired outcome) |
 | UDS | Ultimate Driving System (forces driving toward desired outcome) |
 | EP | Effective Principles (rules governing correct, efficient, scalable operation) |
@@ -37,38 +39,42 @@ This document is the canonical reference for designing and building any system w
 
 **When to load:** When designing or building a UE product, OE process, workflow, or agent team. This is the starting point for all system work.
 
-**UT#1 — Every system has the same 7 components that produce an Outcome.**
+**UT#1 — Every system has the same 8 components that produce an Outcome.**
 
 The universal system formula:
 
 ```
-EO = f(Input, EU, EA, EP, EOT, EOE)
+EO = f(EI, EU, EA, EP, EOE, EOT, EOP)
 ```
 
-Every system — regardless of domain, scale, or technology — is composed of these seven elements. If any component is missing or misconfigured, the EO degrades. There are no exceptions.
+7 arguments producing EO — 8 named components total.
+
+Every system — regardless of domain, scale, or technology — is composed of these eight elements. If any component is missing or misconfigured, the EO degrades. There are no exceptions.
 
 **Derisk-first principle applied to systems:** For every action at every level — per component, per task, per system: (1) identify and reduce failure risks first (release the brake), then (2) maximize value within remaining constraints (hit the gas). Skipping step 1 is among the most common failure modes for both humans and AI agents.
 
-**Relationship to agent-system.md:** The 7-Component System in agent-system.md (see agent-system.md §5) is a specialization of this universal model where EU becomes Agent, EP splits into EP (always-active) and EOP (on-demand), and EA separates from process design.
+**Relationship to agent-system.md:** The AI Agent's 7-Component System (7-CS) in agent-system.md (see §5) is a specialization of this universal 8-component model. In the 7-CS: EU becomes "Agent" (the LLM — uncontrollable, only observe UBS/UDS), EA is emergent/observable-only (unlike human EA), EI becomes "Input" (what you feed the agent), and EO is the outcome rather than a configurable component — yielding 7 configurable components: EP, Input, EOP, EOE, EOT, Agent, EA.
 
 ---
 
 ## 3. The Universal System Model
 
-From UT#1 and the system formula, every system is composed of seven components. The table below defines each, its role, and what happens when it is absent.
+From UT#1 and the system formula, every system is composed of eight components. The table below defines each, its role, and what happens when it is absent.
 
 | Component | Definition | Role in System | What Happens When Missing |
 |---|---|---|---|
-| **Input** | What triggers the system and what data it receives | Feeds the EU with task-specific information; sets the ceiling for output quality | System never activates, or EU fills gaps with assumptions — producing wrong output |
+| **EI (Effective Inputs)** | Triggers, data, and upstream resources entering the system | Feeds the EU with task-specific information; sets the ceiling for output quality | System never activates, or EU fills gaps with assumptions — producing wrong output |
 | **EU (Effective User)** | Who performs the work (human or agent) | Executes the cognitive or physical work within the system | No execution occurs; the system is inert |
 | **EA (Effective Action)** | The observable execution that emerges from all components interacting | Produces the EO; the diagnostic surface for system health | No observable work; nothing to measure or diagnose |
+| **EO (Effective Outcome)** | The desired state the system aims to achieve | Defines success; every other component exists to produce this | No target — system operates without direction; no way to evaluate success or failure |
 | **EP (Effective Principles)** | Rules governing correct, efficient, scalable operation | Constrain all components; prevent harm and ensure quality | Unconstrained operation — errors compound, quality is random, risk is unmanaged |
-| **EOT (Effective Operating Tools)** | Instruments available during execution | Extend the EU's capabilities beyond what they can do alone | EU is limited to native capability; throughput and accuracy capped |
 | **EOE (Effective Operating Environment)** | Workspace configuration, permissions, limits | Sets hard ceilings for EU and EOT; no component can exceed what EOE allows | No operating context; EU cannot access EOT, data, or workspace |
+| **EOT (Effective Operating Tools)** | Instruments available during execution | Extend the EU's capabilities beyond what they can do alone | EU is limited to native capability; throughput and accuracy capped |
+| **EOP (Effective Operating Procedures)** | Sequential gated steps with per-step RACI | Orchestrate the order, conditions, and gates for execution | Ad-hoc execution; no repeatability, no handoff points, no quality gates |
 
 **Output vs Outcome:** Output is the concrete artifact a system produces (a report, a dataset, a decision). Outcome is the state change the system creates — the movement toward or away from the EO. Output is what you ship; Outcome is what matters.
 
-**System vs Workstream:** A workstream is a system that operates as a concurrent sub-system within a parent system. Every workstream is a system; not every system is a workstream. The distinction is deployment context, not structure. Both have the same 7 components.
+**System vs Workstream:** A workstream is a system that operates as a concurrent sub-system within a parent system. Every workstream is a system; not every system is a workstream. The distinction is deployment context, not structure. Both have the same 8 components.
 
 ---
 
@@ -151,6 +157,8 @@ From ESD Phase 2 (§4.1): EP exist to disable specific UBS elements or enable sp
 | **Scalability (Sc)** | Repeatable, comparable, growth-capable operation | Enables increasing load, domains, complexity without redesign. Addressed only after E is confirmed. |
 
 **Priority hierarchy when principles conflict: Sustainability > Efficiency > Scalability.** A fast system that is unsafe fails. A scalable system that is slow wastes resources at scale. Sustainability gates everything.
+
+**DT#3 — The three pillars of effectiveness (Sustainability > Efficiency > Scalability) apply to ALL 6 work streams, not just the overall system.** Each work stream must independently satisfy S > E > Sc. A system that is sustainable at the top level but has an unsustainable work stream will degrade at that seam. Evaluate pillars per-work-stream, not only in aggregate.
 
 ---
 

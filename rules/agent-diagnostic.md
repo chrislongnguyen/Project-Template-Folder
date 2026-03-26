@@ -1,3 +1,4 @@
+<!-- Zone 0 agent-facing copy. Human-readable version: _shared/frameworks/AGENT_DIAGNOSTIC.md -->
 # LTC Agent Diagnostic
 
 > Source of truth: Doc-9 §3.7 (OPS_OE.6.0 research/amt/), Session 0 §4+§6 (Notion ALIGN Wiki)
@@ -11,7 +12,7 @@
 | Abbreviation | Full Name |
 |---|---|
 | 7-CS | The Agent's 7-Component System |
-| EPS | Effective Principles and Standards |
+| EP | Effective Principles |
 | EOP | Effective Operating Procedures |
 | LT-N | LLM Truth #N (the 8 fundamental limits of LLM models) |
 | UBS | Ultimate Blocking System (forces preventing desired outcome) |
@@ -35,7 +36,7 @@ This doc is structured for both human practitioners and future automated diagnos
 
 From Session 0 §4 Pattern 2 and Doc-9 §3.7. Sequential walkthrough — ALWAYS check in this order:
 
-1. **EPS** — Did the rules cover this case? Are they too verbose (consuming context budget via LT-7)?
+1. **EP** — Did the rules cover this case? Are they too verbose (consuming context budget via LT-7)?
 2. **Input** — Was context complete and unambiguous? Was scope explicit?
 3. **EOP** — Was the procedure appropriate? Were steps well-scoped? Was the right skill triggered?
 4. **Environment** — Was context window sufficient? Permissions correct? Compute adequate?
@@ -46,7 +47,7 @@ From Session 0 §4 Pattern 2 and Doc-9 §3.7. Sequential walkthrough — ALWAYS 
 
 | Platform | How to trace |
 |---|---|
-| **Claude Code** | Review tool call log — trace which files were read (Input), which rules applied (EPS), which skill triggered (EOP) |
+| **Claude Code** | Review tool call log — trace which files were read (Input), which rules applied (EP), which skill triggered (EOP) |
 | **Cursor** | Check .cursorrules loading + which files were in context via @ mentions |
 | **Gemini** | Check workspace rules + which context was loaded into the session |
 
@@ -58,14 +59,14 @@ Merged from Doc-9 §3.7 diagnostic table and Session 0 §6 anti-pattern table.
 
 | Symptom | Likely Root Component | Check First |
 |---|---|---|
-| Agent states incorrect facts confidently | EPS (missing validation rules) or Tools (no fact-checking) or Input (no source material) | Does EPS require citations? Are verification tools available? |
-| Agent loses track of instructions mid-task | EPS (too verbose, consumes context) or Environment (insufficient context budget) | Count EPS token footprint. Check context utilization. |
+| Agent states incorrect facts confidently | EP (missing validation rules) or Tools (no fact-checking) or Input (no source material) | Does EP require citations? Are verification tools available? |
+| Agent loses track of instructions mid-task | EP (too verbose, consumes context) or Environment (insufficient context budget) | Count EP token footprint. Check context utilization. |
 | Agent completes the wrong task | Input (ambiguous requirements) or EOP (wrong procedure loaded) | Was scope explicit? Was the right skill triggered? |
 | Agent reasoning is shallow or circular | EOP (steps too large) or Agent (underpowered) or Environment (insufficient compute) | Are steps decomposed? Is extended thinking enabled? |
 | Agent uses wrong tool or misinterprets output | Tools (too many, unclear purpose) or EOP (no tool selection guidance) | How many tools loaded? Does EOP specify which to use? |
 | Output is correct but Director rejects it | Human UBS — Director's biases overriding evaluation | Run Force Map (§6). Is System 1 dominant? |
 | Rushed delegation, compound errors | Derisk step skipped | Run Derisk Checklist (§5) before re-delegating |
-| Inconsistent behavior across sessions | EPS missing or too thin; LT-6 (no memory) | Is CLAUDE.md loaded? Does it cover this case? |
+| Inconsistent behavior across sessions | EP missing or too thin; LT-6 (no memory) | Is CLAUDE.md loaded? Does it cover this case? |
 
 *Future iteration may convert this table to a structured data format (YAML/JSON) for automated consumption. The Markdown table serves as the human-readable v1.*
 
@@ -133,13 +134,13 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 
 **Cross-session intelligence:**
 
-- Trend: is a component degrading over time? (e.g., EPS growing beyond token budget)
+- Trend: is a component degrading over time? (e.g., EP growing beyond token budget)
 - Correlation: which component combinations produce compound failures?
-- Recommendation engine: e.g., "EPS has been root cause in 40% of failures this week — review rules"
+- Recommendation engine: e.g., "EP has been root cause in 40% of failures this week — review rules"
 - Drift detection: compare current session component scores against rolling baseline
 
 **Future architecture:**
 
 - Autonomous diagnostic agent: hooks into Action observation → traces to component via §3 order → proposes fix → optionally auto-remediates (with Human Director approval gate)
-- Review agent (like Cursor Review, post-session): scores component health, flags drift from EPS, generates improvement tickets (see agent-system.md §5, Action component card)
+- Review agent (like Cursor Review, post-session): scores component health, flags drift from EP, generates improvement tickets (see agent-system.md §5, Action component card)
 - Integration with observability stack: logging, metrics, tracing, alerting feed diagnostic data automatically

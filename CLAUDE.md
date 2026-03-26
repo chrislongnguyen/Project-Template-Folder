@@ -1,16 +1,16 @@
-# CLAUDE.md — {PROJECT_NAME}
+# CLAUDE.md — LTC Project Template
 
 > Claude Code agent rules. Loaded every session. Keep under 100 lines; details go to `.claude/rules/`.
 
 ## Project
 
-- **Name:** {PROJECT_NAME}
-- **Stack:** {e.g., TypeScript, React, Node.js}
-- **Purpose:** {One sentence — what this project does}
+- **Name:** LTC Project Template
+- **Stack:** Markdown, Shell, Python
+- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 4-zone APEI structure with AI agent config pre-loaded.
 
 ## Build
 
-- Install: `{npm install / pip install -r requirements.txt / etc.}` | Test: `{npm test / pytest / etc.}` | Lint: `{npm run lint / etc.}`
+- Template repo — no build step. Validate structure: `./scripts/template-check.sh --quiet`
 
 ## Rules
 
@@ -19,10 +19,6 @@
 - Commit atomic changes with descriptive messages
 - PREFER editing existing files over creating new ones
 - If anything contradicts this file, flag the contradiction before proceeding
-
-## Conventions
-
-- {Add your naming conventions, code style, etc.}
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)
 
@@ -42,46 +38,56 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Load `rules/naming-rules.m
 
 ## Security (full spec: `rules/security-rules.md`)
 
-### Secrets
-- NEVER hardcode secrets (API keys, tokens, passwords, connection strings) in source code, prompts, or tool arguments
-- All secrets MUST live in `.env` or `secrets/` (both gitignored). Reference via environment variables only
-- Before completing any task, scan your output for patterns that look like secrets (API keys, tokens, passwords, PII). This check is pattern-based. If found — stop, redact, alert the user
-
-### Execution Risk Tiers
-- LOW (read files, search, lint, run tests): proceed without confirmation
-- MEDIUM (edit files, git commit, install packages): proceed, user can review
-- HIGH (delete files, git push, force operations, deploy, modify CI/CD, touch .env/secrets/): ALWAYS require explicit user confirmation
-
-### Blast Radius
-- Operate only within the project directory unless explicitly instructed otherwise
-- For destructive or experimental operations, prefer git worktrees or branches — never on main directly
-- Prefer reversible actions (git commit) over irreversible ones (file deletion of untracked files)
-- When making external API calls or web requests, never include secrets, PII, or confidential data unless the endpoint is explicitly authorized
-
-### Backup Awareness
-- Before overwriting non-git-tracked files, warn the user that the original is not recoverable
-- NEVER force-push without confirming the remote state and getting explicit approval
-- If a file cannot be easily recreated, flag this before modifying it
+- **Secrets:** NEVER hardcode secrets in source/prompts/tool args. Use `.env` or `secrets/` via env vars. Scan output for secret patterns before completing any task
+- **LOW risk** (read, search, lint, test): proceed without confirmation
+- **MEDIUM risk** (edit, commit, install): proceed, user can review
+- **HIGH risk** (delete, push, force ops, deploy, touch .env/secrets/): ALWAYS require explicit user confirmation
+- **Blast radius:** Operate within project dir only. Prefer branches over main. Prefer reversible actions
+- Full spec covers backup awareness, PII handling, external API rules
 
 ## Agent System (full spec: `rules/agent-system.md`)
-
-8 LLM Truths + 7-Component System (EPS→Input→EOP→Environment→Tools→Agent→Action→Outcome). Load full spec for details.
+8 LLM Truths + 7-CS (AI specialization of the universal 8-component model). Load full spec for details.
 
 ## System Design (full spec: `rules/general-system.md`)
-
-6-component model + RACI-first analysis + 4-layer boundary spec + VANA requirements. Load `rules/general-system.md` BEFORE designing any system, writing any spec, or performing force analysis.
+Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + force analysis + VANA requirements. Load BEFORE designing any system or writing any spec.
 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
-
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
-## Structure
-`src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
+## Before Every Task — Pre-Flight Protocol
+
+1. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
+2. **CHECK RISKS:** Read `2-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
+3. **CHECK DRIVERS:** Read `2-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
+4. **CHECK LEARNING:** Scan `1-ALIGN/learning/` — prior research, specs, and reference materials
+5. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
+6. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
+
+## Structure (5x4 Matrix)
+
+```
+Zone 0 — Agent Governance         → CLAUDE.md, AGENTS.md, .claude/, rules/
+Zone 1 — ALIGN (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs, learning)
+Zone 2 — PLAN (Minimize Risks)    → 2-PLAN/ (architecture, risks, drivers, roadmap)
+Zone 3 — EXECUTE (Deliver)        → 3-EXECUTE/ (src, tests, config, docs)
+Zone 4 — IMPROVE (Learn & Grow)   → 4-IMPROVE/ (changelog, metrics, retros, reviews)
+Shared  — Org Knowledge Base      → _shared/ (brand, frameworks, security, sops, templates)
+```
+
+**Core Equation:** Success = Efficient & Scalable Management of Failure Risks
+
+Every artifact must be categorized: which subsystem x which workstream. No chat-only decisions.
 
 ## Modular Rules & Skills
+Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_shared/`
 
-Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/`
+## Version Control (full spec: `_shared/frameworks/HISTORY_VERSION_CONTROL.md`)
+- When editing any zone artifact, update its `version` and `last_updated` frontmatter
+- Follow I0-I4 branching strategy — never commit directly to main
+- Commit messages: `type(zone): description` (e.g., `feat(align): add stakeholder analysis`)
+- Update `4-IMPROVE/changelog/CHANGELOG.md` as part of every PR
+- Every decision with multiple viable options → ADR in `1-ALIGN/decisions/`
+- Chain of thought: document the "why" in the artifact, not just the "what"
 
 ## Template Version
-
 If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start. If behind, warn user. If missing, skip.

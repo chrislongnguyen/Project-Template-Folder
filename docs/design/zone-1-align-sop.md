@@ -109,12 +109,12 @@ Example for Charter template:
 
 | Doc | When to Load | Used For |
 |-----|-------------|----------|
-| `docs/reference/effective-system-design.md` | During 3.1 (Charter) and 3.4 (Requirements) | Design methodology — HOW to fill fields |
-| `docs/reference/system-wiki-template.md` | During 3.2 (Stakeholders) and 3.5 (OKRs) | Output format reference — WHAT fields look like when filled |
-| `docs/reference/effective-principles-registry.md` | During any step if EP compliance question arises | EP quick-reference — check design decisions against principles |
-| `docs/reference/10-ultimate-truths.md` | During 3.1 (Charter §How, §Risks) | UT compliance — ensure principles trace to UTs |
-| `docs/reference/human-centric-ueds.md` | During 3.3 (Research) if domain is a UEDS topic | Domain learning — feeds learn pipeline |
-| `docs/reference/ai-centric-ueds.md` | During 3.3 (Research) if domain is AI-related | Domain learning — feeds learn pipeline |
+| `_shared/reference/effective-system-design.md` | During 3.1 (Charter) and 3.4 (Requirements) | Design methodology — HOW to fill fields |
+| `_shared/reference/system-wiki-template.md` | During 3.2 (Stakeholders) and 3.5 (OKRs) | Output format reference — WHAT fields look like when filled |
+| `_shared/reference/effective-agent-principles-registry.md` | During any step if EP compliance question arises | EP quick-reference — check design decisions against principles |
+| `_shared/reference/EFFECTIVENESS-GUIDE.md` (Part 1) | During 3.1 (Charter §How, §Risks) | UT compliance — ensure principles trace to UTs |
+| `_shared/reference/EFFECTIVENESS-GUIDE.md` (UT#6) + `_shared/reference/effective-system-design.md` (Phase 1) | During 3.3 (Research) if domain is a UEDS topic | Domain learning — feeds learn pipeline |
+| `rules/agent-system.md` (§3-4) | During 3.3 (Research) if domain is AI-related | Domain learning — feeds learn pipeline |
 
 **Rule (EP-04):** Never load more than 2-3 of these in a single step. Load the specific section needed, not the full doc.
 

@@ -3,7 +3,7 @@
 > For AntiGravity and other AAIF-compatible agents. Full spec: `rules/agent-diagnostic.md`
 
 ## Blame Diagnostic — Trace in This Order (sequentially)
-1. **EPS** — Rules cover this case? Too verbose (consuming context)?
+1. **EP** — Rules cover this case? Too verbose (consuming context)?
 2. **Input** — Context complete and unambiguous? Scope explicit?
 3. **EOP** — Right procedure? Steps well-scoped? Right skill triggered?
 4. **Environment** — Context window sufficient? Permissions correct?
@@ -18,13 +18,13 @@
 ## Symptom Lookup
 | Symptom | Likely Root |
 |---------|-------------|
-| Incorrect facts stated confidently | EPS / Tools / Input |
-| Loses track mid-task | EPS (too verbose) / Environment |
+| Incorrect facts stated confidently | EP / Tools / Input |
+| Loses track mid-task | EP (too verbose) / Environment |
 | Completes wrong task | Input / EOP |
 | Shallow or circular reasoning | EOP / Agent / Environment |
 | Wrong tool or misinterpreted output | Tools / EOP |
 | Correct output but Director rejects | Human UBS (System 1 bias) |
-| Inconsistent across sessions | EPS / LT-6 |
+| Inconsistent across sessions | EP / LT-6 |
 
 ## Force Map
 - Human under pressure/fatigue → delegate to Agent

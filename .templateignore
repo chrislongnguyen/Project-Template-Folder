@@ -1,0 +1,37 @@
+# .templateignore — Files excluded when child repos sync from this template
+# Used by: scripts/release-pr.sh (generates diff excluding these patterns)
+# Convention: Same glob syntax as .gitignore
+#
+# Purpose: Cleanly separate SHIPPED scaffold from WIP/design-time artifacts
+# that live on the APEI-Project-Repo branch but should NOT land on main.
+
+# ─── Design-Time Artifacts (APEI branch only) ───
+docs/idea/
+docs/superpowers/
+
+# ─── Agent Memory & Sessions (per-machine) ───
+# Memory lives in ~/.claude/projects/*, not in the repo
+.claude/settings.local.json
+
+# ─── WIP / Scratch ───
+scratch/
+tmp/
+*.draft.md
+
+# ─── Presentation / Non-code Assets ───
+*.pptx
+*.xlsx
+*.docx
+
+# ─── CI/CD Artifacts (not part of scaffold) ───
+.github/workflows/*.yml.disabled
+
+# ─── Test Output (fixtures ship, output doesn't) ───
+3-EXECUTE/tests/**/output/
+3-EXECUTE/tests/**/results/
+
+# ─── OS / Editor Junk ───
+.DS_Store
+Thumbs.db
+*.swp
+*~

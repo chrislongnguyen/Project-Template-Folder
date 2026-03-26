@@ -642,28 +642,28 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 
 ```php
 .                                                    7-CS Component
-├── CLAUDE.md                  # Claude Code rules     ← EPS (always-active constitution)
-├── GEMINI.md                  # AntiGravity rules     ← EPS (always-active constitution)
+├── CLAUDE.md                  # Claude Code rules     ← EP (always-active constitution)
+├── GEMINI.md                  # AntiGravity rules     ← EP (always-active constitution)
 ├── .claude/
 │   ├── settings.json          # Safety deny/allow     ← Environment (hard ceilings)
 │   ├── settings.local.json.example  # Personal overrides  ← Environment (per-user)
 │   ├── agents/                # Subagent definitions   ← Agent (operator config)
 │   ├── commands/              # Slash commands         ← EOP (on-demand procedures)
 │   ├── hooks/                 # Event-driven scripts   ← Environment (automation)
-│   ├── rules/                 # Path-scoped rules      ← EPS (modular, on-demand)
+│   ├── rules/                 # Path-scoped rules      ← EP (modular, on-demand)
 │   └── skills/                # On-demand procedures   ← EOP (reusable playbooks)
 ├── .cursor/rules/
-│   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
-│   └── security.md           # Cursor security rules   ← EPS (tool-specific)
+│   ├── brand-identity.md     # Cursor brand rules     ← EP (tool-specific)
+│   └── security.md           # Cursor security rules   ← EP (tool-specific)
 ├── .agents/rules/
-│   ├── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
-│   └── security.md           # AntiGravity security    ← EPS (tool-specific)
+│   ├── brand-identity.md     # AntiGravity rules      ← EP (tool-specific)
+│   └── security.md           # AntiGravity security    ← EP (tool-specific)
 ├── .pre-commit-config.yaml    # gitleaks hook config    ← Environment (hard gate)
 ├── .gitleaks.toml             # Secret detection rules  ← Environment (hard gate)
 ├── rules/
-│   ├── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
-│   ├── naming-rules.md       # UNG full spec          ← EPS (global reference)
-│   └── security-rules.md     # 3-layer security ref   ← EPS (global reference)
+│   ├── brand-identity.md     # Full 20-color ref      ← EP (global reference)
+│   ├── naming-rules.md       # UNG full spec          ← EP (global reference)
+│   └── security-rules.md     # 3-layer security ref   ← EP (global reference)
 ├── src/                       # Application code       ← Input (task context)
 ├── docs/                      # Reference docs         ← Input (knowledge base)
 ├── scripts/                   # Build/deploy utils     ← Tools (extend agent capability)
@@ -673,7 +673,7 @@ Or open the project in AntiGravity / Cursor — each IDE loads its own rules aut
 ```
 
 **7-CS** = The Agent's 7-Component System (Doc-9). Each file maps to a component:
-**EPS** constrains behavior | **EOP** defines procedures | **Environment** sets hard limits |
+**EP** constrains behavior | **EOP** defines procedures | **Environment** sets hard limits |
 > **Tools** extend capability | **Input** provides context | **Agent** executes within all of the above.
 * * *
 
@@ -707,7 +707,7 @@ Each tool reads **different files** at session start. There is no single file al
 The template enforces a three-layer defense-in-depth model:
 
 *   **Layer 1 — Structural** (`.gitignore`): Passive defense. Secrets, key files, and backup directories are excluded by path. Cannot be accidentally committed.
-*   **Layer 2 — Agent EPS** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
+*   **Layer 2 — Agent EP** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
 *   **Layer 3 — Hard Gate** (`.pre-commit-config.yaml` + `.gitleaks.toml`): Deterministic. gitleaks blocks any commit containing detected secrets. Cannot be bypassed without explicit allowlist entry.
 
 Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
@@ -770,7 +770,7 @@ Layer 3: PRE-COMMIT HOOK (gitleaks)
   ├── Catches: API keys, private keys, tokens, JWTs, connection strings, high-entropy strings
   └── Cannot catch: low-entropy secrets, PII, prompt leaks, classification violations
 
-Layer 2: AGENT EPS (CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/)
+Layer 2: AGENT EP (CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/)
   ├── Always-loaded rules — agent self-enforces every session
   ├── Catches: secrets in prompts/output, PII, execution risk, blast radius, backup awareness
   └── Cannot catch: what LT-8 causes agent to miss under complex task pressure
@@ -785,7 +785,7 @@ Layer 1: STRUCTURAL CONVENTION (.gitignore + file conventions)
 
 ### What the hook catches vs. what the agent must catch
 
-| Threat | Hook (Layer 3) | Agent EPS (Layer 2) | Why |
+| Threat | Hook (Layer 3) | Agent EP (Layer 2) | Why |
 | ---| ---| ---| --- |
 | API keys (AWS, GCP, Anthropic, etc.) | Y | Y | Hook detects patterns; agent should not write them |
 | Private keys (.pem, .key) | Y | Y | Hook + gitignore both block |
@@ -869,7 +869,7 @@ pre-commit run --all-files   # verify
 | Layer | How to verify |
 | ---| --- |
 | Layer 1 (Structural) | `git status` should not show `.env`, `secrets/`, or `*.pem` files |
-| Layer 2 (Agent EPS) | Check that [CLAUDE.md/GEMINI.md](http://CLAUDE.md/GEMINI.md) contains the `## Security` section |
+| Layer 2 (Agent EP) | Check that [CLAUDE.md/GEMINI.md](http://CLAUDE.md/GEMINI.md) contains the `## Security` section |
 | Layer 3 (Hook) | `pre-commit run --all-files` should complete without errors |
 
 # Brand Identity Rules
@@ -1260,12 +1260,12 @@ If a collision is detected, disambiguate by adjusting NAME. As a last resort, ap
 | Abbreviation | Full Name |
 | ---| --- |
 | UT#N | Ultimate Truth #N (from the 10 Universal Truths framework) |
-| UDO | Ultimate Desired Outcome |
+| EO | Ultimate Desired Outcome |
 | UBS | Ultimate Blocking System (forces preventing desired outcome) |
 | UDS | Ultimate Driving System (forces driving toward desired outcome) |
-| EPS | Effective Principles and Standards |
+| EP | Effective Principles and Standards |
 | EOP | Effective Operating Procedures |
-| UES | Ultimate Effective System (environment + tools implementing EPS) |
+| EOE/EOT | Effective Outcome Environment / Effective Outcome Tools (environment + tools implementing EP) |
 | ESD | Effective System Design (3-phase design methodology) |
 | ELF | Effective Learning Framework (7-layer learning methodology) |
 | VANA | Verb-Adverb-Noun-Adjective (requirements grammar) |
@@ -1291,7 +1291,7 @@ Every system — regardless of domain, scale, or technology — is composed of t
 
 **Derisk-first principle applied to systems:** For every action at every level — per component, per task, per system: (1) identify and reduce failure risks first (release the brake), then (2) maximize value within remaining constraints (hit the gas). Skipping step 1 is among the most common failure modes for both humans and AI agents.
 
-**Relationship to** [**agent-system.md**](http://agent-system.md)**:** The 7-Component System in the Agent System reference is a specialization of this universal model where User becomes Agent, Principles splits into EPS (always-active) and EOP (on-demand), and Action separates from process design.
+**Relationship to** [**agent-system.md**](http://agent-system.md)**:** The 7-Component System in the Agent System reference is a specialization of this universal model where User becomes Agent, Principles splits into EP (always-active) and EOP (on-demand), and Action separates from process design.
 * * *
 
 ## 3\. The Universal System Model
@@ -1307,7 +1307,7 @@ From UT#1 and the system formula, every system is composed of six components:
 | Tools | Instruments available during execution | Extend the doer's capabilities beyond what they can do alone | Doer is limited to native capability; throughput and accuracy capped |
 | Environment | Workspace configuration, permissions, limits | Sets hard ceilings for doer and tools; no component can exceed what Environment allows | No operating context; doer cannot access tools, data, or workspace |
 
-**Output vs Outcome:** Output is the concrete artifact a system produces (a report, a dataset, a decision). Outcome is the state change the system creates — the movement toward or away from the UDO. Output is what you ship; Outcome is what matters.
+**Output vs Outcome:** Output is the concrete artifact a system produces (a report, a dataset, a decision). Outcome is the state change the system creates — the movement toward or away from the EO. Output is what you ship; Outcome is what matters.
 
 **System vs Workstream:** A workstream is a system that operates as a concurrent sub-system within a parent system. Every workstream is a system; not every system is a workstream. The distinction is deployment context, not structure. Both have the same 6 components.
 * * *
@@ -1340,7 +1340,7 @@ Forces are structural — they exist whether you identify them or not. Unidentif
 
 ### UBS — The Blocking System (derisk first)
 
-The root system of forces preventing the User from reaching the UDO. Analyzed from both RACI perspectives:
+The root system of forces preventing the User from reaching the EO. Analyzed from both RACI perspectives:
 
 *   **UBS(R)** — what blocks the doer from executing (e.g., ambiguous input, missing tools, capability gaps)
 *   **UBS(A)** — what blocks the owner from ensuring quality (e.g., cognitive biases, lack of visibility, decision fatigue)
@@ -1353,7 +1353,7 @@ The root system of forces preventing the User from reaching the UDO. Analyzed fr
 
 ### UDS — The Driving System (drive output second)
 
-The root system of forces helping the User reach the UDO. Analyzed from both RACI perspectives:
+The root system of forces helping the User reach the EO. Analyzed from both RACI perspectives:
 
 *   **UDS(R)** — what drives the doer to succeed (e.g., structured procedures, strong tools, clear input)
 *   **UDS(A)** — what drives the owner to ensure quality (e.g., domain expertise, strategic judgment, risk intuition)
@@ -1472,7 +1472,7 @@ ESD is a design methodology, not a document template. It defines HOW to translat
 Reconstruct the User's system from ELF output — before introducing any technology.
 
 *   **Who** is the User? (User Persona + Anti-Persona)
-*   **What** is their UDO? (Carried verbatim from ELF — do not rephrase)
+*   **What** is their EO? (Carried verbatim from ELF — do not rephrase)
 *   **What blocks** them? (UBS from both R and A perspectives)
 *   **What drives** them? (UDS from both R and A perspectives)
 
@@ -1484,7 +1484,7 @@ Define the conceptual solution space based on Phase 1 and ELF.
 
 *   **Principles** (S/E/Sc) — each traced to a UBS or UDS element, role-tagged
 *   **Environment** — workspace configuration and constraints
-*   **Tools** — organized by 3 UES causal layers (Foundational -> Operational -> Enhancement)
+*   **Tools** — organized by 3 EOT causal layers (Foundational -> Operational -> Enhancement)
 *   **Desirable Wrapper** (Iterations 1-2) — minimum viable tool configuration addressing root-level UBS/UDS. Tests: "Will the User want to use this?"
 *   **Effective Core** (Iterations 3-4) — full configuration addressing all recursive UBS/UDS layers. Tests: "Does this actually solve the root cause?"
 *   **EOP** — sequential gated steps with per-step RACI, staged DERISK then OPTIMIZE
@@ -1495,7 +1495,7 @@ Translate Phase 2 into deterministic engineering requirements using VANA grammar
 
 *   **Verb** — atomic user action from EOP steps where User = R
 *   **Adverb** — how the Verb must be performed, bucketed by S/E/Sc (SustainAdv, EffAdv, ScalAdv)
-*   **Noun** — the UE tool/system built, organized by UES causal layers
+*   **Noun** — the UE tool/system built, organized by EOT causal layers
 *   **Adjective** — qualities the Noun must possess, bucketed by S/E/Sc (SustainAdj, EffAdj, ScalAdj)
 
 Every A.C. must be: Atomic, Binary, Deterministic, Pre-committed, Traceable.
@@ -1540,7 +1540,7 @@ Every organization operates through a value chain of six interdependent layers. 
 | Abbreviation | Full Name |
 | ---| --- |
 | 7-CS | The Agent's 7-Component System |
-| EPS | Effective Principles and Standards |
+| EP | Effective Principles and Standards |
 | EOP | Effective Operating Procedures |
 | LT-N | LLM Truth #N (the 8 fundamental limits of LLM models) |
 | UBS | Ultimate Blocking System (forces preventing desired outcome) |
@@ -1557,7 +1557,7 @@ Every organization operates through a value chain of six interdependent layers. 
 
 From Session 0 §4 Pattern 2 and Doc-9 §3.7. Sequential walkthrough — ALWAYS check in this order:
 
-1. **EPS** — Did the rules cover this case? Are they too verbose (consuming context budget via LT-7)?
+1. **EP** — Did the rules cover this case? Are they too verbose (consuming context budget via LT-7)?
 2. **Input** — Was context complete and unambiguous? Was scope explicit?
 3. **EOP** — Was the procedure appropriate? Were steps well-scoped? Was the right skill triggered?
 4. **Environment** — Was context window sufficient? Permissions correct? Compute adequate?
@@ -1568,7 +1568,7 @@ From Session 0 §4 Pattern 2 and Doc-9 §3.7. Sequential walkthrough — ALWAYS 
 
 | Platform | How to trace |
 | ---| --- |
-| Claude Code | Review tool call log — trace which files were read (Input), which rules applied (EPS), which skill triggered (EOP) |
+| Claude Code | Review tool call log — trace which files were read (Input), which rules applied (EP), which skill triggered (EOP) |
 | Cursor | Check .cursorrules loading + which files were in context via @ mentions |
 | Gemini | Check workspace rules + which context was loaded into the session |
 
@@ -1580,14 +1580,14 @@ Merged from Doc-9 §3.7 diagnostic table and Session 0 §6 anti-pattern table.
 
 | Symptom | Likely Root Component | Check First |
 | ---| ---| --- |
-| Agent states incorrect facts confidently | EPS (missing validation rules) or Tools (no fact-checking) or Input (no source material) | Does EPS require citations? Are verification tools available? |
-| Agent loses track of instructions mid-task | EPS (too verbose, consumes context) or Environment (insufficient context budget) | Count EPS token footprint. Check context utilization. |
+| Agent states incorrect facts confidently | EP (missing validation rules) or Tools (no fact-checking) or Input (no source material) | Does EP require citations? Are verification tools available? |
+| Agent loses track of instructions mid-task | EP (too verbose, consumes context) or Environment (insufficient context budget) | Count EP token footprint. Check context utilization. |
 | Agent completes the wrong task | Input (ambiguous requirements) or EOP (wrong procedure loaded) | Was scope explicit? Was the right skill triggered? |
 | Agent reasoning is shallow or circular | EOP (steps too large) or Agent (underpowered) or Environment (insufficient compute) | Are steps decomposed? Is extended thinking enabled? |
 | Agent uses wrong tool or misinterprets output | Tools (too many, unclear purpose) or EOP (no tool selection guidance) | How many tools loaded? Does EOP specify which to use? |
 | Output is correct but Director rejects it | Human UBS — Director's biases overriding evaluation | Run Force Map (§6). Is System 1 dominant? |
 | Rushed delegation, compound errors | Derisk step skipped | Run Derisk Checklist (§5) before re-delegating |
-| Inconsistent behavior across sessions | EPS missing or too thin; LT-6 (no memory) | Is [CLAUDE.md](http://CLAUDE.md) loaded? Does it cover this case? |
+| Inconsistent behavior across sessions | EP missing or too thin; LT-6 (no memory) | Is [CLAUDE.md](http://CLAUDE.md) loaded? Does it cover this case? |
 
 * * *
 
@@ -1661,15 +1661,15 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 
 ### Cross-Session Intelligence
 
-*   Trend: is a component degrading over time? (e.g., EPS growing beyond token budget)
+*   Trend: is a component degrading over time? (e.g., EP growing beyond token budget)
 *   Correlation: which component combinations produce compound failures?
-*   Recommendation engine: e.g., "EPS has been root cause in 40% of failures this week — review rules"
+*   Recommendation engine: e.g., "EP has been root cause in 40% of failures this week — review rules"
 *   Drift detection: compare current session component scores against rolling baseline
 
 ### Future Architecture
 
 *   **Autonomous diagnostic agent:** hooks into Action observation → traces to component via §3 order → proposes fix → optionally auto-remediates (with Human Director approval gate)
-*   **Review agent:** scores component health, flags drift from EPS, generates improvement tickets
+*   **Review agent:** scores component health, flags drift from EP, generates improvement tickets
 *   **Observability stack integration:** logging, metrics, tracing, alerting feed diagnostic data automatically
 
 # Agent System
@@ -1686,7 +1686,7 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 | Abbreviation | Full Name |
 | ---| --- |
 | 7-CS | The Agent's 7-Component System |
-| EPS | Effective Principles and Standards |
+| EP | Effective Principles and Standards |
 | EOP | Effective Operating Procedures |
 | UBS | Ultimate Blocking System |
 | UDS | Ultimate Driving System |
@@ -1714,7 +1714,7 @@ The Human Director and the LLM Agent have complementary failure modes and streng
 **The System Formula:**
 
 ```java
-Effective Outcome = f(EPS, Input, EOP, Environment, Tools, Agent, Action)
+Effective Outcome = f(EP, Input, EOP, Environment, Tools, Agent, Action)
 ```
 
 The Human Director is not a component — they are the Accountable party who owns the outcome.
@@ -1724,30 +1724,30 @@ The Human Director is not a component — they are the Accountable party who own
 
 Structural constraints baked into how LLMs work. Not patched away by the next model release.
 
-> **Note on LT-2/3/4:** All three involve "the model struggles when there's too much" but differ in WHAT dimension: LT-2 = VOLUME, LT-3 = NUMBER OF STEPS, LT-4 = PRECISION of retrieval.
+> **Note on LT-2/3/4:** All three involve "the model struggles when there's too much" but differ in WHAT dimension: LT-2 = VOLUME, LT-3 = NUMBER OF STEP, LT-4 = PRECISION of retrieval.
 
 | # | Truth | Bottleneck | Compensated by |
 | ---| ---| ---| --- |
-| LT-1 | Hallucination is structural | Factual accuracy | EPS, Tools, Input |
-| LT-2 | Context compression is lossy | Volume of info loaded | Environment, Input, EPS |
+| LT-1 | Hallucination is structural | Factual accuracy | EP, Tools, Input |
+| LT-2 | Context compression is lossy | Volume of info loaded | Environment, Input, EP |
 | LT-3 | Reasoning degrades on complex tasks | Number of logical steps | EOP, Input, Environment |
 | LT-4 | Retrieval is fragile under token limits | Precision in noisy context | Input, Tools, Environment |
-| LT-5 | Prediction optimises plausibility, not truth | Truth vs sounding right | EPS, Tools, Human judgment |
-| LT-6 | No persistent memory across sessions | Memory between sessions | Input, Tools, EPS |
-| LT-7 | Cost scales with token count | Budget | Input, EPS, Environment |
-| LT-8 | Alignment is approximate | Rule compliance under pressure | EPS, EOP, Human oversight |
+| LT-5 | Prediction optimises plausibility, not truth | Truth vs sounding right | EP, Tools, Human judgment |
+| LT-6 | No persistent memory across sessions | Memory between sessions | Input, Tools, EP |
+| LT-7 | Cost scales with token count | Budget | Input, EP, Environment |
+| LT-8 | Alignment is approximate | Rule compliance under pressure | EP, EOP, Human oversight |
 
 ### LT-1 — Hallucination is structural
 
 **Bottleneck:** Factual accuracy. For any model, P(hallucination) > 0. It predicts the most plausible next word, and plausible is not true.
 **Mechanism:** Diagonalization guarantees inputs where any computable predictor must fail.
-**Compensated by:** EPS (validation rules), Tools (fact-checking), Input (provide source material).
+**Compensated by:** EP (validation rules), Tools (fact-checking), Input (provide source material).
 
 ### LT-2 — Context compression is lossy
 
 **Bottleneck:** Volume of information loaded. The effective context window is much smaller than the nominal one. Information in the middle gets lost.
 **Mechanism:** Positional under-training, encoding attenuation, and softmax crowding degrade retrieval as context grows.
-**Compensated by:** Environment (context budget), Input (load only what is needed), EPS (concise rules).
+**Compensated by:** Environment (context budget), Input (load only what is needed), EP (concise rules).
 
 ### LT-3 — Reasoning degrades on complex tasks
 
@@ -1765,24 +1765,24 @@ Structural constraints baked into how LLMs work. Not patched away by the next mo
 
 **Bottleneck:** Truth vs sounding right. Trained to predict the most likely next word. Root cause of LT-1.
 **Mechanism:** Next-token prediction with no native truth-detection mechanism.
-**Compensated by:** EPS (require evidence/citations), Tools (external verification), Human judgment.
+**Compensated by:** EP (require evidence/citations), Tools (external verification), Human judgment.
 
 ### LT-6 — No persistent memory across sessions
 
 **Bottleneck:** Memory between sessions. Every new conversation starts blank.
 **Mechanism:** All state must be externally provided. Nothing carries between sessions without external storage.
-**Compensated by:** Input (load session state/history), Tools (memory vault systems), EPS (rules for session start).
+**Compensated by:** Input (load session state/history), Tools (memory vault systems), EP (rules for session start).
 
 ### LT-7 — Cost scales with token count
 
 **Bottleneck:** Budget. More words in/out = more money. Attention scales superlinearly. Wasted tokens waste budget AND worsen LT-2.
-**Compensated by:** Input (lean context), EPS (concise rules), Environment (budget limits).
+**Compensated by:** Input (lean context), EP (concise rules), Environment (budget limits).
 
 ### LT-8 — Alignment is approximate
 
 **Bottleneck:** Rule compliance under pressure. Safety training makes the model mostly behave, but "mostly" is not "always." Probabilistic, not deterministic.
 **Mechanism:** RLHF/Constitutional AI shape behavior probabilistically. May optimize for proxy metrics over the desired outcome.
-**Compensated by:** EPS (behavioral boundaries), EOP (verification gates), Human oversight.
+**Compensated by:** EP (behavioral boundaries), EOP (verification gates), Human oversight.
 * * *
 
 ## 4\. The Two Operators
@@ -1822,7 +1822,7 @@ Executes cognitive work. Weaknesses: the 8 LTs. Strengths are architectural:
 | Exhaustive analysis | No pressure to "wrap it up" |
 | No ego investment | Failure analysis without distortion |
 | High recall within context | No availability heuristic |
-| Programmatic enforcement | EPS rules applied consistently |
+| Programmatic enforcement | EP rules applied consistently |
 | Consistent instruction following | Procedures execute the same way |
 
 ### Shared Forces
@@ -1837,7 +1837,7 @@ Executes cognitive work. Weaknesses: the 8 LTs. Strengths are architectural:
 
 ```css
                     ┌─────────┐
-                    │   EPS   │ ← Constitution
+                    │   EP   │ ← Constitution
                     └────┬────┘
                          │ governs
               ┌──────────┼──────────┐
@@ -1866,7 +1866,7 @@ Executes cognitive work. Weaknesses: the 8 LTs. Strengths are architectural:
 
 | # | Component | One-liner | AI Examples | Priority |
 | ---| ---| ---| ---| --- |
-| 1 | EPS | Persistent rules — always active | [CLAUDE.md](http://CLAUDE.md), .cursorrules, [GEMINI.md](http://GEMINI.md) | 1st |
+| 1 | EP | Persistent rules — always active | [CLAUDE.md](http://CLAUDE.md), .cursorrules, [GEMINI.md](http://GEMINI.md) | 1st |
 | 2 | Input | What you provide for this task | Prompt, context files, RAG, memory | 2nd |
 | 3 | EOP | Step-by-step procedures, on demand | [SKILL.md](http://SKILL.md), .mdc files, Code Actions | 3rd |
 | 4 | Environment | Workspace — config, permissions, limits | IDE, terminal, context window, hooks | 4th |
@@ -1876,7 +1876,7 @@ Executes cognitive work. Weaknesses: the 8 LTs. Strengths are architectural:
 
 ### Component Cards
 
-#### Card 1: EPS — Effective Principles and Standards
+#### Card 1: EP — Effective Principles and Standards
 
 Persistent rules always active — the constitution. Constrains all other components.
 
@@ -1938,7 +1938,7 @@ Observable execution from all components interacting. Not configured — it emer
 **Version:** 1.0 | **Date:** 2026-03-19 **Depends on:** `rules/general-system.md` (system model, notation, force analysis, boundaries)
 * * *
 ## 1\. Purpose
-Every project that produces insight or enablement from a domain follows the same causal chain: **Understand → Observe → Reason → Express.** This rule defines the minimum viable decomposition of that chain into 4 systems, each with its own UDO, UBS/UDS, Principles, and full component design.
+Every project that produces insight or enablement from a domain follows the same causal chain: **Understand → Observe → Reason → Express.** This rule defines the minimum viable decomposition of that chain into 4 systems, each with its own EO, UBS/UDS, Principles, and full component design.
 **Why 4 systems, not 1?** From UT#1, each system's output function is multiplicative — if any component goes to zero, output goes to zero. A single monolithic system hides which component is the bottleneck. Decomposing into 4 systems exposes per-system leverage points and prevents one weak layer from silently killing the whole chain.
 **Why at least 4?** These 4 are MECE for the knowledge-to-action pipeline. Some projects add more (e.g., a Validation system between S2 and S3). But every project has at least these 4 — skip one and the chain breaks.
 **What this is NOT for:** Projects that do not follow the Understand → Observe → Reason → Express chain. Examples: pure infrastructure provisioning, standalone tooling with no analytical output, training-only initiatives where the goal is skill transfer rather than domain insight. Those projects are still systems (UT#1 applies), but they decompose differently.
@@ -2015,7 +2015,7 @@ Before defining components, **map the system's internal structure.** A system yo
     *   **Social dynamics**: power dynamics, status seeking, in-group/out-group (emerge when >1 person)
 > **You cannot remove inherent nodes.** Counter-design: anchoring → collect independent opinions before group discussion. Sunk cost → pre-commit kill criteria before starting. Loss aversion → frame changes as gains.
 ### 4.1 Problem Discovery (ESD Phase 1)
-*   **UDO:** What is this system's outcome?
+*   **EO:** What is this system's outcome?
 *   **User/Doer:** Who operates this system? (RACI: R and A)
 *   **UBS:** What blocks the outcome? (from both R and A perspectives)
     *   Go to the root: `UBS.UB` (what weakens the blocker — amplify), `UBS.UD` (what strengthens the blocker — neutralize)
@@ -2027,7 +2027,7 @@ Before defining components, **map the system's internal structure.** A system yo
 *   **Principles:** Traced to specific UBS/UDS elements. Tagged by pillar (S/E/Sc) and role (R/A).
     *   Principles must cover both **technical leverage** (structure layer — controls loops) AND **human leverage** (alignment layer — changes why people act). Principles without human layer = SOP (followed when watched, bypassed when not). Principles with human layer = Culture (followed because people believe).
 *   **Environment:** Where this system operates (infrastructure, permissions, constraints).
-*   **Tools:** What extends the doer's capability. Organized by UES layers (Foundational → Operational → Enhancement).
+*   **Tools:** What extends the doer's capability. Organized by EOT layers (Foundational → Operational → Enhancement).
 *   **EOP:** Step-by-step procedure with per-step RACI. Staged: DERISK then OPTIMIZE.
 ### 4.3 Requirements (ESD Phase 3, VANA)
 *   **Verb:** What the user does in this system.
@@ -2057,10 +2057,10 @@ S0 OUTPUT ──► S1 INPUT ──► S1 OUTPUT ──► S2 INPUT ──► S2
 **Across the 4 systems, the leverage ordering is:**
 1. **S0 premises** — If S0's understanding of the domain is wrong, everything downstream amplifies the error. Highest-leverage, highest-risk point.
 2. **S0 ↔ S3 feedback loop** — The loop from presentation back to understanding is how the system self-corrects. Without it, errors compound silently.
-3. **EPS (Principles & Standards)** — The rules governing each system's operation. A system without principles operates randomly. Includes output definitions at system boundaries.
+3. **EP (Principles & Standards)** — The rules governing each system's operation. A system without principles operates randomly. Includes output definitions at system boundaries.
 4. **S2 falsification mechanism** — S2 must be able to tell when its own model is wrong. Without this, overfitting goes undetected.
 5. **S1 data quality** — Data is the raw material. Garbage in, garbage out — but only after S0 premises are correct.
-**Within each system**, apply the component priority: EPS → Input → Process → Environment → Tools → User. Each component follows a curve: below a threshold it produces nothing, then a steep zone where investment pays off most, then saturation. Invest in the steep zone.
+**Within each system**, apply the component priority: EP → Input → Process → Environment → Tools → User. Each component follows a curve: below a threshold it produces nothing, then a steep zone where investment pays off most, then saturation. Invest in the steep zone.
 **How to find leverage (per system):**
 1. Define the system's final output
 2. Trace backward: which component constrains output the most?

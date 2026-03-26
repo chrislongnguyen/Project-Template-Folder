@@ -66,10 +66,10 @@ Your AI agent has 8 structural limits (LLM Truths). The 7-Component System compe
 Every system has 6 components: Input, User, Action, Principles, Tools, Environment → Outcome. Establish RACI first, then analyze forces. Design: Problem Discovery → System Design → VANA Requirements.
 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
-When agent output is wrong: trace through 6 configurable components (EPS → Input → EOP → Environment → Tools → Agent) before blaming the model.
+When agent output is wrong: trace through 6 configurable components (EP → Input → EOP → Environment → Tools → Agent) before blaming the model.
 
-## Structure
-`src/` code | `docs/` reference | `scripts/` utilities | `tests/` tests | `rules/` LTC global rules
+## Structure (4-Zone APEI)
+`1-ALIGN/` alignment + learning | `2-PLAN/` architecture + risks | `3-EXECUTE/` src + tests | `4-IMPROVE/` changelog + retros | `_shared/` org knowledge | `rules/` agent rules
 
 ## Modular Rules & Skills
 Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`

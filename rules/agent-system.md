@@ -1,3 +1,4 @@
+<!-- Zone 0 agent-facing copy. Human-readable version: _shared/frameworks/AGENT_SYSTEM.md -->
 # LTC Agent System
 
 > Source of truth: Doc-9 (OPS_OE.6.0 research/amt/), Session 0 & Session 1 (Notion ALIGN Wiki)

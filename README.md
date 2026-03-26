@@ -53,7 +53,7 @@ Shared  — Org Knowledge Base    → _shared/   (brand, frameworks, security, s
 - IMPROVE output loops back to ALIGN for next iteration
 
 **4 Subsystems (project-specific — customize per domain):**
-- Example for UE/Investment: User's Problem → Data → Analysis → Decision Making
+- Example for Investment (User Enablement): User's Problem → Data → Analysis → Decision Making
 - Example for Software: Requirements → Architecture → Implementation → Operations
 
 ### Zone Details
@@ -78,7 +78,7 @@ ELF output maps directly to project artifacts:
 - P0 (Overview) → Charter | P1 (Blockers) → UBS Register | P2 (Drivers) → UDS Register
 - P3 (Principles) → Requirements | P4 (Components) → System Design | P5 (Steps) → Execution Plan
 
-Note: The learning PROCESS varies per member (Read/Write, Structured, Visual/Audio/Kinesthetic). The ELF OUTPUT format is standard. This pipeline is could-have, not must-have.
+Note: The learning PROCESS varies per member (Read/Write, Structured, Visual/Audio/Kinesthetic). The ELF OUTPUT format is standard. This pipeline is a could-have, not must-have.
 
 ## Global Rules (`_shared/`)
 
@@ -86,13 +86,13 @@ Note: The learning PROCESS varies per member (Read/Write, Structured, Visual/Aud
 |------|-------|---------------|
 | Brand | `_shared/brand/` | 20-color palette, Inter/Work Sans typography, logo usage |
 | Security | `_shared/security/` | 3-layer defense, data classification, risk tiers |
-| Naming | `_shared/security/NAMING_CONVENTION.md` | UNG grammar, 75 SCOPE codes, platform rendering |
-| Frameworks | `_shared/frameworks/` | ESD, 3 Pillars, Agent System, Diagnostics, UBS/UDS Guide |
+| Naming | `_shared/security/NAMING_CONVENTION.md` | UNG grammar, 75 SCOPE codes, platform rendering (lives under security/ as naming is a security control) |
+| Frameworks | `_shared/frameworks/` | Thin pointers to canonical sources: ESD (8-component model), 7-CS, Diagnostics, Version Control, 3 Pillars, UBS/UDS Guide |
 | Version Control | `_shared/frameworks/HISTORY_VERSION_CONTROL.md` | Branching, commits, PR workflow, chain-of-thought preservation |
 | SOPs | `_shared/sops/` | Code review, deployment, discussion |
 | Templates | `_shared/templates/` | ADR, research, retro, review, risk entry, SOP, spike, standup, wiki |
 
-Also available at `rules/` (Zone 0 agent-facing copies): brand-identity.md, naming-rules.md, security-rules.md, agent-system.md, general-system.md, agent-diagnostic.md.
+**SSOT flow:** `_shared/reference/` (canonical source) → `rules/` (agent-distilled, auto-loaded) → `_shared/frameworks/` (thin pointers for human discovery). When updating frameworks, edit `rules/` — `_shared/` pointers reference them automatically.
 
 ## Naming Convention
 
@@ -128,18 +128,18 @@ LTC projects use a custom 3-section MEMORY.md template:
 
 ```
 ## Agent Instructions   ← Meta-rules (structural, never consolidate)
-## Briefing Card        ← Quick-load context (Identity, Subject, UDO, Charter, state, WMS)
+## Briefing Card        ← Quick-load context (Identity, Subject, EO, state, WMS)
 ## Topic Index          ← Pointer list to detail files
 ```
 
-Without protection, AutoDream flattens this structure into generic sections and deletes the meta-rules. The template includes a 2-layer defense:
+Without protection, AutoDream flattens this structure into generic sections and deletes the meta-rules. The template includes a 2-tier defense:
 
-| Layer | File | Mechanism | Reliability |
-|-------|------|-----------|-------------|
+| Tier | File | Mechanism | Reliability |
+|------|------|-----------|-------------|
 | 1 (Guide) | `.claude/rules/memory-format.md` | Instructs any agent to preserve the 3-section structure | ~95% (probabilistic) |
 | 2 (Gate) | `~/.claude/hooks/scripts/memory-guard.sh` | PreToolUse hook blocks writes that destroy structure | 100% (deterministic) |
 
-**Layer 1** ships with the template. **Layer 2** must be installed per-machine (see setup below).
+**Tier 1** ships with the template. **Tier 2** must be installed per-machine (see setup below).
 
 ### Member Setup (per-machine, ~5 minutes)
 
