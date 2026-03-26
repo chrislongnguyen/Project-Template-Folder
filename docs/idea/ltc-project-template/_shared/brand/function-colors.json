@@ -1,0 +1,14 @@
+{
+  "governance": { "name": "LTC Purple", "hex": "#9949B8", "covers": "Compliance, IC, Culture" },
+  "ltc_all": { "name": "LTC Gold", "hex": "#F2C75C", "covers": "Handbook, OKRs, Wiki, SOPs" },
+  "external_affairs": { "name": "LTC Orange", "hex": "#FF9D3B", "covers": "External Corporate Affairs" },
+  "admins_leaders": { "name": "LTC Ruby Red", "hex": "#9B1842", "covers": "Admins & Leaders" },
+  "management": { "name": "LTC Cyan", "hex": "#69C7CC", "covers": "Management" },
+  "internal_operations": { "name": "LTC Midnight Green", "hex": "#004851", "covers": "Internal Operations" },
+  "business_development": { "name": "LTC Lime", "hex": "#5CF26A", "covers": "Business Development" },
+  "client_service": { "name": "LTC Pink", "hex": "#E87299", "covers": "Client Service" },
+  "business_ventures": { "name": "LTC Green", "hex": "#69994D", "covers": "Business Ventures" },
+  "investment": { "name": "LTC Dark Purple", "hex": "#653469", "covers": "Investment" },
+  "business_technology": { "name": "LTC Blue", "hex": "#244091", "covers": "Business Technology" },
+  "investment_technology": { "name": "LTC Navy", "hex": "#253669", "covers": "Investment Technology" }
+}

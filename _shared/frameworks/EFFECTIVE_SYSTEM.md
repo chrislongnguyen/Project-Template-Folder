@@ -1,0 +1,26 @@
+# Effective System Design — Quick Reference
+> LTC Global Framework — applies to ALL projects.
+
+## What is it?
+The universal model for designing any system. 8 components: EI, EU, EA, EO, EP, EOE, EOT, EOP.
+Core equation: `EO = f(EI, EU, EA, EP, EOE, EOT, EOP)`
+Core principle: Success = Efficient & Scalable Management of Failure Risks (S > E > Sc)
+
+## When to use
+- Before designing any system, writing any spec, or performing force analysis
+- During ALIGN phase to identify forces (UBS/UDS)
+- During PLAN phase to translate learning into architecture
+
+## Canonical sources
+| Source | What it contains | When to load |
+|--------|-----------------|--------------|
+| `_shared/reference/EFFECTIVENESS-GUIDE.md` | 10 Ultimate Truths + 8-component template + full recursive ESD structure | During LEARN — foundational philosophy |
+| `_shared/reference/effective-system-design.md` | 3-phase ESD methodology (Problem→Design→Requirements), VANA grammar, A.C. specs, iteration gates | During PLAN — translating learning to requirements |
+| `rules/general-system.md` | Agent-distilled version: 8-component formula, RACI, force analysis, boundary spec | Always-loaded via CLAUDE.md |
+
+## Key concepts (summary only — see canonical sources for full spec)
+- **8 Universal Components:** EI (Inputs), EU (User), EA (Action), EO (Outcome), EP (Principles), EOE (Environment), EOT (Tools), EOP (Procedure)
+- **Force Analysis:** UBS (blocks success) vs UDS (drives success) — recursive dot-notation (UBS.UB, UBS.UD, etc.)
+- **3 Pillars:** Sustainability > Efficiency > Scalability — priority order, never reversed
+- **VANA Grammar:** Verb + Adverb + Noun + Adjective — each with binary A.C.s
+- **Iteration Gates:** I1(Concept/Sustainability) → I2(Prototype/Efficiency) → I3(MVE/Scalability) → I4(Leadership)

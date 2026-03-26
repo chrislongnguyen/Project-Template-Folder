@@ -1,0 +1,50 @@
+# config/constraints.yaml v1.0 — ILE Engine Hard Rules (D45)
+# Enforcement data. Rationale: engine/rules/*.md
+
+learn_engine:
+  phase_c_table:
+    column_count: 17
+    cell_format: "{RowCode}{ColSuffix}: {content}"
+    cell_separator: "|"
+    cell_regex: "^(Eff\\.[A-Z][A-Z0-9-]*|UBS|UDS|(P_?F?[0-9]*)(\\([A-Za-z]+\\))?|([A-Z][A-Z0-9_]*)(\\.[0-9]+)?)\\([RAb][A-Za-z]*\\)(\\.U[BD])*\\.(REL|DEF|ACT|UD|UB|FAIL|ELSE|NEXT|UD\\.MECH|UD\\.EP|UD\\.EOT|UD\\.EOE|UB\\.MECH|UB\\.EP|UB\\.EOT|UB\\.EOE): .+$"
+    row_counts:
+      P0: {T0: 2, T1plus: 2}
+      P1: {T0: 2, T1plus: "2-6"}
+      P2: {T0: 2, T1plus: "2-6"}
+      P3: {typical: "4-8"}
+      P4: {typical: "4-8"}
+      P5: {typical: "4-6"}
+    ueds_terms_only: true
+    col_inversion_on_ubs: "UBS rows: .UD.EP→P_F notation; .UB.EP→P notation (inverted vs UDS rows)"
+  naming:
+    separator: " \u2014 "
+    book_prefix_pattern: "BOOK-[0-9]{2}"
+    page_file: "BOOK-NN \u2014 T{t}.P{p} {Name}.md"
+    phase_folder: "BOOK-NN \u2014 {Letter}. {Phase Name}/"
+    topic_folder: "BOOK-NN \u2014 {N}. {Topic Name}/"
+    no_prefix: ["_CONTEXT_ANCHOR.md", "PROJECT_HANDOFF.md"]
+  sprint_state:
+    max_sections: 5
+    max_lines: 20
+    machine_written_only: true
+    linear_authoritative: true
+    commit_with_page: true
+    bootstrap_query_linear_first: true
+  cross_book:
+    rules: [seed_verification, upstream_contract, role_tag_consistency, shared_force_declaration, ut_compliance, cross_book_issue_logging]
+    advisory_only: true
+
+build_engine:
+  anti_patterns:
+    no_code_before_design: true
+    no_deps_without_resource_impact: true
+    no_optimize_outside_ac: true
+    no_skip_evidence: true
+    no_iteration_jump_without_gate: true
+  ac_test_map:
+    required_fields: [ac_id, description, eval_type, dataset, grader, threshold, iteration]
+    eval_types: [Deterministic, Manual, AI-Graded]
+  interface_contract:
+    required_fields: [source, schema, field_types, validation_rules, error_handling, sla, version]
+  behavioral_boundaries:
+    tiers: [always, ask_first, never]

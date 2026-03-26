@@ -8,7 +8,7 @@ globs: **/*
 Full spec: `rules/agent-diagnostic.md`
 
 ## Blame Diagnostic — trace in this order, always
-1. **EPS** — rules cover this case? Too verbose (LT-7)?
+1. **EP** — rules cover this case? Too verbose (LT-7)?
 2. **Input** — context complete and unambiguous? Scope explicit?
 3. **EOP** — procedure appropriate? Steps well-scoped? Right skill triggered?
 4. **Environment** — context window sufficient? Permissions correct?
@@ -23,8 +23,8 @@ Full spec: `rules/agent-diagnostic.md`
 ## Common Symptom Lookup
 | Symptom | Check First |
 |---|---|
-| Incorrect facts stated confidently | EPS (citations required?), Tools (verification?), Input (source material?) |
-| Loses track mid-task | EPS token footprint, Environment context budget |
+| Incorrect facts stated confidently | EP (citations required?), Tools (verification?), Input (source material?) |
+| Loses track mid-task | EP token footprint, Environment context budget |
 | Completes wrong task | Input (ambiguous?), EOP (wrong skill triggered?) |
 | Shallow/circular reasoning | EOP (steps too large?), Environment (extended thinking?) |
 | Wrong tool selection | Tools (too many?), EOP (tool guidance?) |

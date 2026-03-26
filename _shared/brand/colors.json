@@ -1,0 +1,20 @@
+{
+  "primary": {
+    "midnight_green": "#004851",
+    "gold": "#F2C75C",
+    "dark_gunmetal": "#1D1F2A",
+    "white": "#FFFFFF"
+  },
+  "accent": {
+    "ruby_red": "#9B1842",
+    "green": "#69994D",
+    "dark_purple": "#653469"
+  },
+  "accent_priority": ["gold", "ruby_red", "green", "dark_purple"],
+  "typography": {
+    "english": "Inter",
+    "vietnamese": "Work Sans",
+    "source": "Google Fonts",
+    "base_size": "11pt"
+  }
+}

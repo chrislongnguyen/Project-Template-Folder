@@ -1,3 +1,4 @@
+<!-- Zone 0 agent-facing copy. Human-readable version: _shared/security/NAMING_CONVENTION.md -->
 # LTC Naming Rules (Universal Naming Grammar)
 
 > Source of truth: OPS_OE.6.0 docs/governance/LTC-UNIVERSAL-NAMING-GRAMMAR-v1.md

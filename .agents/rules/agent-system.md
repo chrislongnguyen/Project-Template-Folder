@@ -13,11 +13,11 @@
 8. Alignment is approximate (rule compliance under pressure)
 
 ## 7-Component System
-`Outcome = f(EPS, Input, EOP, Environment, Tools, Agent, Action)`
+`Outcome = f(EP, Input, EOP, Environment, Tools, Agent, Action)`
 
 | # | Component | Role |
 |---|-----------|------|
-| 1 | EPS | Persistent rules — always active, constrains all below |
+| 1 | EP | Persistent rules — always active, constrains all below |
 | 2 | Input | Task-specific context — sets output ceiling |
 | 3 | EOP | Step-by-step procedures loaded on demand |
 | 4 | Environment | Workspace config, permissions, context budget |

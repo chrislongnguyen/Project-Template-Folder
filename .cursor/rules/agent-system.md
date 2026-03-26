@@ -18,7 +18,7 @@ Full spec: `rules/agent-system.md`
 8. Alignment is approximate (rule compliance)
 
 ## 7-Component System
-EPS (rules) → Input (task context) → EOP (procedures) → Environment (workspace) → Tools (instruments) → Agent (model) → Action (emergent output → diagnose only)
+EP (rules) → Input (task context) → EOP (procedures) → Environment (workspace) → Tools (instruments) → Agent (model) → Action (emergent output → diagnose only)
 
 Each component compensates for specific LTs. Action is never configured — trace failures to the other 6.
 

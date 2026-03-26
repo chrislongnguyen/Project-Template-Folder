@@ -1,10 +1,11 @@
+<!-- Zone 0 agent-facing copy. Human-readable version: _shared/security/SECURITY_HIERARCHY.md -->
 # LTC Security Rules — AI Agent Reference
 
 > Full reference for AI agent security behavior. Distilled rules are loaded via CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/. This file provides the rationale, examples, and setup instructions.
 
 **Version:** 1.0
 **Date:** 2026-03-17
-**Task:** OPS_-4215
+**Task:** OPS_-4215 (task reference may be truncated — verify in ClickUp)
 
 ---
 
@@ -33,7 +34,7 @@ Layer 3: PRE-COMMIT HOOK (gitleaks)
   ├── Catches: API keys, private keys, tokens, JWTs, connection strings, high-entropy strings
   └── Cannot catch: low-entropy secrets, PII, prompt leaks, classification violations
 
-Layer 2: AGENT EPS (CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/)
+Layer 2: AGENT EP (CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/)
   ├── Always-loaded rules — agent self-enforces every session
   ├── Catches: secrets in prompts/output, PII, execution risk, blast radius, backup awareness
   └── Cannot catch: what LT-8 causes agent to miss under complex task pressure
@@ -49,7 +50,7 @@ Layer 1: STRUCTURAL CONVENTION (.gitignore + file conventions)
 
 ### What the hook catches vs. what the agent must catch
 
-| Threat | Hook (Layer 3) | Agent EPS (Layer 2) | Why |
+| Threat | Hook (Layer 3) | Agent EP (Layer 2) | Why |
 |--------|:-:|:-:|-----|
 | API keys (AWS, GCP, Anthropic, etc.) | Y | Y | Hook detects patterns; agent should not write them |
 | Private keys (.pem, .key) | Y | Y | Hook + gitignore both block |
@@ -230,5 +231,5 @@ If gitleaks flags a legitimate string (e.g., a test fixture, documentation examp
 | Layer | How to verify |
 |-------|--------------|
 | Layer 1 (Structural) | `git status` should not show `.env`, `secrets/`, or `*.pem` files |
-| Layer 2 (Agent EPS) | Check that CLAUDE.md/GEMINI.md contains the `## Security` section |
+| Layer 2 (Agent EP) | Check that CLAUDE.md/GEMINI.md contains the `## Security` section |
 | Layer 3 (Hook) | `pre-commit run --all-files` should complete without errors |
