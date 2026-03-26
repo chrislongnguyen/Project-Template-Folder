@@ -52,6 +52,14 @@ Shared  — Org Knowledge Base    → _shared/   (brand, frameworks, security, s
 - LEARN lives inside Zone 1 (ALIGN) — it resolves unknowns that ALIGN identifies
 - IMPROVE output loops back to ALIGN for next iteration
 
+**Iteration Cycle:** Each iteration (I0 Scaffold, I1 Concept, etc.) should complete the full APEI loop — ALIGN → LEARN → PLAN → EXECUTE → IMPROVE — before advancing to the next iteration. The output of IMPROVE feeds back into ALIGN for the next cycle:
+
+```
+I0: ALIGN → LEARN → PLAN → EXECUTE → IMPROVE ─┐
+I1: ALIGN → LEARN → PLAN → EXECUTE → IMPROVE ←─┘ (feedback loop)
+I2: ...
+```
+
 **4 Subsystems (project-specific — customize per domain):**
 - Example for Investment (User Enablement): User's Problem → Data → Analysis → Decision Making
 - Example for Software: Requirements → Architecture → Implementation → Operations
@@ -214,6 +222,9 @@ Every file falls into one of three update tiers:
 See CHANGELOG.md for tier tags on every change.
 
 ### Checking for Updates
+
+**Prerequisite:** The staleness checker uses `gh` CLI (already installed with Claude Code).
+If not yet authenticated, run `gh auth login` once — no separate token needed.
 
 Run the staleness checker:
 

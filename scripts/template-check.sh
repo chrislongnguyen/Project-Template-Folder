@@ -2,10 +2,9 @@
 set -euo pipefail
 
 # LTC Project Template — Staleness Checker
-# Spec: docs/superpowers/specs/2026-03-19-template-distribution-design.md §6
+# Uses gh CLI (Contents API) to fetch remote template files — no separate PAT needed.
 
 TEMPLATE_REPO="Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE"
-RAW_BASE="https://raw.githubusercontent.com/${TEMPLATE_REPO}/main"
 LOCAL_VERSION_FILE=".template-version"
 
 # --- Flag parsing ---
@@ -22,12 +21,9 @@ done
 # --- Helpers ---
 
 fetch_remote() {
-  local url="$1"
-  local curl_opts=(-sfL --connect-timeout 5 --max-time 10)
-  if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-    curl_opts+=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
-  fi
-  curl "${curl_opts[@]}" "$url" 2>/dev/null
+  local file_path="$1"
+  gh api "repos/${TEMPLATE_REPO}/contents/${file_path}?ref=main" \
+    --jq '.content' 2>/dev/null | base64 -d 2>/dev/null
 }
 
 # Compare semver: returns 0 if $1 < $2, 1 otherwise
@@ -47,10 +43,10 @@ semver_lt() {
 
 do_init() {
   local remote_version
-  remote_version=$(fetch_remote "${RAW_BASE}/VERSION" | tr -d '[:space:]') || true
+  remote_version=$(fetch_remote "VERSION" | tr -d '[:space:]') || true
   if [[ -z "$remote_version" ]]; then
     echo "Error: Could not fetch template VERSION (offline or auth required)."
-    echo "Hint: Set GITHUB_TOKEN to access private repos."
+    echo "Hint: Run: gh auth login"
     exit 2
   fi
   echo "$remote_version" > "$LOCAL_VERSION_FILE"
@@ -59,6 +55,18 @@ do_init() {
 }
 
 main() {
+  # Verify gh CLI is available and authenticated
+  if ! command -v gh &>/dev/null; then
+    echo "Error: gh CLI not found. Install: https://cli.github.com"
+    exit 2
+  fi
+  if ! gh auth status &>/dev/null 2>&1; then
+    echo "Error: gh CLI not authenticated."
+    echo "  Run: gh auth login"
+    echo "  Then retry: $0 $*"
+    exit 2
+  fi
+
   if [[ "$MODE" == "init" ]]; then
     do_init
   fi
@@ -74,20 +82,15 @@ main() {
 
   # Step 2: Fetch remote version
   local remote_version
-  remote_version=$(fetch_remote "${RAW_BASE}/VERSION" | tr -d '[:space:]') || true
+  remote_version=$(fetch_remote "VERSION" | tr -d '[:space:]') || true
 
   if [[ -z "$remote_version" ]]; then
     echo "LTC Project Template — Update Check"
     echo "  Local version:    ${local_version}"
     echo "  Template version: (offline — could not reach GitHub)"
     echo "  Status:           Unknown. Check manually or retry with network."
-    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-      echo ""
-      echo "  Note: GITHUB_TOKEN is set but fetch failed. Check token permissions."
-    else
-      echo ""
-      echo "  Hint: Set GITHUB_TOKEN to access private repos."
-    fi
+    echo ""
+    echo "  Hint: Run: gh auth login"
     exit 0
   fi
 
@@ -106,7 +109,7 @@ main() {
 
     # Step 4: Fetch and parse CHANGELOG for versions between local and remote
     local changelog
-    changelog=$(fetch_remote "${RAW_BASE}/CHANGELOG.md") || true
+    changelog=$(fetch_remote "CHANGELOG.md") || true
     if [[ -n "$changelog" ]]; then
       echo ""
       echo "  Changes since ${local_version}:"
