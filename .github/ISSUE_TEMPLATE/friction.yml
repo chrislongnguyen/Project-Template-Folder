@@ -1,0 +1,47 @@
+name: "\U0001F534 Friction Report"
+description: Something blocked, confused, or broke during template usage
+labels: ["friction", "triage"]
+body:
+  - type: dropdown
+    id: zone
+    attributes:
+      label: Zone
+      description: Which part of the template were you working in?
+      options:
+        - align
+        - plan
+        - execute
+        - improve
+        - shared
+        - agent
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How much did this impact your work?
+      options:
+        - blocked
+        - confused
+        - annoying
+        - minor
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      placeholder: "I was trying to... and then..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+      placeholder: "What would have helped?"
+    validations:
+      required: false

@@ -54,6 +54,9 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
+## Feedback (full spec: `4-IMPROVE/skills/feedback/SKILL.md`)
+When a user expresses frustration, confusion, or suggests an improvement, offer: "Want me to capture this as feedback? Takes 30 seconds with /feedback." Feedback creates a GitHub Issue for template maintainers.
+
 ## Before Every Task — Pre-Flight Protocol
 
 1. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
