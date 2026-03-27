@@ -1,13 +1,16 @@
-# /feedback — Capture User Feedback as GitHub Issue
+# /feedback — Report Template Feedback to Maintainers
 
-> Invoked when a user expresses frustration, confusion, or suggests an improvement.
-> Creates a GitHub Issue using the project's issue templates.
+> Creates a GitHub Issue on the **template repo** (not the current project).
+> Use when something in the scaffold, rules, skills, or shared frameworks
+> is broken, confusing, or could be better.
 
-## Trigger
+## Scope
 
-- User says something is broken, confusing, annoying, or could be better
-- Agent detects repeated friction with a file, skill, or workflow
-- User explicitly runs `/feedback`
+This skill is for **template-level feedback only** — issues with the APEI scaffold,
+DSBV process, rules, skills, or `_shared/` frameworks that affect ALL projects.
+
+For project-specific issues (your own bugs, your own domain): use `gh issue create`
+directly in your repo. This skill always routes to the template maintainers.
 
 ## Steps
 
@@ -15,63 +18,101 @@
    - Frustration, confusion, breakage → `friction`
    - Suggestion, wish, "it would be nice if" → `idea`
 
-2. **Auto-detect zone** from recent file paths:
-   - `1-ALIGN/` → align | `2-PLAN/` → plan | `3-EXECUTE/` → execute
-   - `4-IMPROVE/` → improve | `_shared/` → shared
-   - `.claude/`, `rules/`, `CLAUDE.md` → agent
+2. **Detect zone** from recent file paths or conversation topic:
 
-3. **Confirm with user** (minimal input):
-   - "Type: friction | Zone: execute | Severity: confused"
-   - "What happened: [pre-filled from context]"
-   - "Suggestion: [ask user or pre-fill]"
-   - Wait for user OK or edits before creating issue.
+   | Pattern | Zone label |
+   |---------|-----------|
+   | `1-ALIGN/`, charter, stakeholders, OKRs | `zone:align` |
+   | `2-PLAN/`, risks, drivers, architecture | `zone:plan` |
+   | `3-EXECUTE/`, src, tests, config | `zone:execute` |
+   | `4-IMPROVE/`, changelog, retro, metrics | `zone:improve` |
+   | `_shared/`, frameworks, templates, SOPs | `zone:shared` |
+   | `.claude/`, `rules/`, `CLAUDE.md`, skills, hooks | `zone:agent` |
+   | DSBV process, `/dsbv`, DESIGN.md, SEQUENCE.md | `zone:agent` |
 
-4. **Create GitHub Issue** using `gh`:
+3. **Detect severity** (friction only):
 
-For **friction**:
-```bash
-gh issue create \
-  --label "friction" --label "triage" --label "zone:ZONE" --label "severity:SEVERITY" \
-  --title "[friction][ZONE] Short description" \
-  --body "$(cat <<'EOF'
-**Zone:** ZONE
-**Severity:** SEVERITY
+   | Severity | Meaning |
+   |----------|---------|
+   | `blocked` | Could not proceed at all |
+   | `confused` | Unclear what to do or where to look |
+   | `annoying` | Works but frustrating |
 
-## What happened
-DESCRIPTION
+4. **Draft and confirm** with user (minimal input):
 
-## Suggestion
-SUGGESTION
-EOF
-)"
-```
+   ```
+   Template feedback detected:
+     Type:     friction
+     Zone:     agent
+     Severity: confused
+     What:     [pre-filled from conversation context]
+     Suggest:  [pre-filled or ask user]
 
-For **idea**:
-```bash
-gh issue create \
-  --label "idea" --label "triage" --label "zone:ZONE" \
-  --title "[idea][ZONE] Short description" \
-  --body "$(cat <<'EOF'
-**Zone:** ZONE
+   Create this issue on the template repo? [y/n/edit]
+   ```
 
-## What would improve
-DESCRIPTION
+   Wait for user confirmation. Never create without it.
 
-## Proposed change
-SUGGESTION
-EOF
-)"
-```
+5. **Create GitHub Issue** on the template repo:
 
-5. **Report** the issue URL back to the user.
+   For **friction**:
+   ```bash
+   gh issue create \
+     --repo Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE \
+     --label "friction" --label "triage" --label "zone:ZONE" --label "severity:SEVERITY" \
+     --title "[friction][ZONE] Short description" \
+     --body "$(cat <<'EOF'
+   **Reporter:** [user name or "anonymous"]
+   **Project:** [current repo name, so maintainers know which consumer hit this]
+   **Zone:** ZONE
+   **Severity:** SEVERITY
+
+   ## What happened
+   [1-3 sentences. Name the specific file, skill, step, or rule.]
+
+   ## Expected behavior
+   [What should have happened instead.]
+
+   ## Suggestion
+   [How to fix or improve. "I don't know" is acceptable.]
+
+   ## Context
+   [Any relevant file paths, error messages, or conversation excerpts.]
+   EOF
+   )"
+   ```
+
+   For **idea**:
+   ```bash
+   gh issue create \
+     --repo Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE \
+     --label "idea" --label "triage" --label "zone:ZONE" \
+     --title "[idea][ZONE] Short description" \
+     --body "$(cat <<'EOF'
+   **Reporter:** [user name or "anonymous"]
+   **Project:** [current repo name]
+   **Zone:** ZONE
+
+   ## What would improve
+   [1-3 sentences. Be specific.]
+
+   ## Proposed change
+   [What the improvement looks like. Include file paths if relevant.]
+   EOF
+   )"
+   ```
+
+6. **Report** the issue URL back to the user.
+
+## Constraints
+
+- **Always route to template repo** — `--repo Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
+- Never create an issue without user confirmation
+- Keep titles under 80 characters
+- One issue per friction point — do not batch
+- Include the reporter's current repo name so maintainers know which consumer project hit the issue
+- If `gh` is not authenticated or lacks permission to the template repo, tell the user and provide the issue body as copyable text instead
 
 ## Format Reference
 
 See `_shared/templates/FEEDBACK_TEMPLATE.md` for the canonical field schema.
-
-## Constraints
-
-- Never create an issue without user confirmation
-- Keep titles under 80 characters
-- One issue per friction point — do not batch
-- If `gh` is not authenticated, tell the user and skip

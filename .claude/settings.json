@@ -18,7 +18,34 @@
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(./scripts/dsbv-gate.sh)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit *)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/dsbv-gate.sh",
+            "timeout": 10,
+            "statusMessage": "Checking DSBV zone boundaries..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/dsbv-skill-guard.sh",
+            "timeout": 5,
+            "statusMessage": "Checking DSBV Design phase prerequisite..."
+          }
+        ]
+      }
     ]
   }
 }

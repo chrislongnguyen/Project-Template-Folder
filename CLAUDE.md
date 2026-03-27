@@ -54,17 +54,21 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
+## DSBV Process (full spec: `_shared/templates/DSBV_PROCESS.md`)
+Every zone uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No zone artifact is produced outside DSBV. Phase ordering enforced: Design before Build, Validate before zone complete.
+
 ## Feedback (full spec: `4-IMPROVE/skills/feedback/SKILL.md`)
 When a user expresses frustration, confusion, or suggests an improvement, offer: "Want me to capture this as feedback? Takes 30 seconds with /feedback." Feedback creates a GitHub Issue for template maintainers.
 
 ## Before Every Task — Pre-Flight Protocol
 
-1. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
-2. **CHECK RISKS:** Read `2-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
-3. **CHECK DRIVERS:** Read `2-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
-4. **CHECK LEARNING:** Scan `1-ALIGN/learning/` — prior research, specs, and reference materials
-5. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
-6. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
+1. **CHECK ZONE:** Which zone is this task in? Run `/dsbv status` to see current progress
+2. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
+3. **CHECK RISKS:** Read `2-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
+4. **CHECK DRIVERS:** Read `2-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
+5. **CHECK LEARNING:** Scan `1-ALIGN/learning/` — prior research, specs, and reference materials
+6. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
+7. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
 
 ## Structure (5x4 Matrix)
 
