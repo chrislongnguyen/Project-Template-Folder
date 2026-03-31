@@ -25,6 +25,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 
 # ---------------------------------------------------------------------------
@@ -267,7 +268,7 @@ def save_status(exec_dir: Path, data: dict) -> None:
 # Task .md file discovery
 # ---------------------------------------------------------------------------
 
-def find_task_md(exec_dir: Path, deliverable_id: str, task_id: str) -> Path | None:
+def find_task_md(exec_dir: Path, deliverable_id: str, task_id: str) -> Optional[Path]:
     """
     Locate a task .md file inside .exec/.
 

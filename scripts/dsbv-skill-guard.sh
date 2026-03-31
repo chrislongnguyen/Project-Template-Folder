@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# version: 1.0 | last_updated: 2026-03-29
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on zone artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -60,7 +61,7 @@ elif [[ "$FILE_PATH" =~ /4-IMPROVE/ ]]; then
     ZONE="4-IMPROVE"
     ZONE_PATTERN="improve"
 else
-    # Not a zone file — allow (could be _shared/, scripts/, .claude/, etc.)
+    # Not a zone file — allow (could be _genesis/, scripts/, .claude/, etc.)
     exit 0
 fi
 
@@ -88,6 +89,7 @@ case "$RELATIVE_PATH" in
     decisions/*) exit 0 ;;                   # ADRs can be written anytime
     learning/*) exit 0 ;;                    # Learning outputs from research
     reviews/*) exit 0 ;;                     # Review packages
+    skills/*) exit 0 ;;                      # Skills are operational tools, evolve incrementally
 esac
 
 # --- Check if DESIGN.md exists for this zone -------------------------------

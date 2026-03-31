@@ -1,3 +1,8 @@
+---
+version: "1.0"
+last_updated: 2026-03-29
+owner: "Long Nguyen"
+---
 # Effective Learning Framework (ELF)
 
 The Effective Learning Framework is LTC's structured knowledge acquisition pipeline. It transforms a new subject or system into a standardized set of learning pages that capture the causal structure of success and failure — then extracts actionable specifications (VANA-SPEC) for the Build pipeline.
@@ -9,23 +14,26 @@ ELF is part of the Learn-Build Engine (LBE). This directory contains the skills,
 ## Pipeline Flow
 
 ```
+/learn             Orchestrator — derives state from file system, routes to correct sub-skill
+     |
+     v
 /learn:input       Capture foundational inputs (EO, RACI, contracts, scope)
-     |                 --> learn-input-{system}.md
+     |                 --> input/learn-input-{system}.md
      v
 /learn:research    Deep research via parallel sub-agents (1 per topic)
      |                 --> research/{system}/T{n}-{topic}.md
      v
-/learn:structure   Structure research into 6 UEDS pages per topic
-     |                 --> learning-output/{system}/T{n}.P0-P5.md
+/learn:structure   Structure research into 6 P-pages per topic (1 topic at a time)
+     |                 --> research/{system}/{topic}/P0.md through P5.md
      v
-/learn:review      Human review gate (validate + approve all pages)
+/learn:review      Per-topic human review (causal spine + active learning Qs)
      |                 --> status: approved on each page
      v
-/spec:extract      Extract VANA grammar from approved T0 pages
-     |                 --> specs/{system}/vana-spec.md
+/learn:spec        Extract VANA-SPEC + generate DSBV Readiness Package
+     |                 --> specs/{system}/vana-spec.md + DSBV-READY-{system}.md
      v
-/spec:handoff      Human Director review + Build pipeline activation
-                       --> specs/{system}/GSD-STATE.md
+/learn:visualize   Interactive HTML system map (optional, I2)
+                       --> learn-visual-{system}/ (React+Vite app)
 ```
 
 ---
@@ -63,7 +71,7 @@ The ELF OUTPUT format is standard regardless of process. The 6-page structure (P
 
 ELF is a could-have capability, not a must-have gate. Members can:
 
-1. Use the full automated pipeline (`/learn:input` through `/spec:handoff`)
+1. Use the full automated pipeline (`/learn` orchestrates `/learn:input` through `/learn:spec`)
 2. Use only the templates manually (fill pages by hand)
 3. Skip ELF entirely and produce ALIGN artifacts through their own process
 
@@ -76,15 +84,15 @@ The pipeline accelerates knowledge acquisition but does not block project execut
 ```
 learning/
   skills/                    Pipeline skill definitions
-    learn-input/SKILL.md       Phase 0: interview + input capture
-    learn-research/SKILL.md    Phase 1: parallel deep research
-    learn-structure/SKILL.md   Phase 2: structure into UEDS pages
-      references/                Structuring procedure, validation rules, dispatch table
-    learn-review/SKILL.md      Phase 3: human review gate
-    spec-extract/SKILL.md      Phase 4: VANA-SPEC extraction
-    spec-handoff/SKILL.md      Phase 5: Human Director handoff
-    learn-pipeline/SKILL.md    Master pipeline orchestrator
-      references/                Research prompt template
+    learn/SKILL.md             Orchestrator — state-aware router (derives state from file system)
+    learn-input/SKILL.md       Input capture — 9-question interview with EO validation gate
+    learn-research/SKILL.md    Research — parallel sub-agents, shared methodology reference
+    learn-structure/SKILL.md   Structure — per-topic P0-P5 generation, Opus fork
+      references/                Structure rules, validation criteria, page dispatch
+    learn-review/SKILL.md      Review — per-topic causal spine + active learning Qs
+    learn-spec/SKILL.md        Spec — VANA extraction + DSBV Readiness Package
+      references/                VANA extraction rules
+    learn-visualize/SKILL.md   Visualize — interactive HTML system map (I2, deferred)
   templates/                 ELF output page templates
     learn-input-template.md    Input capture format
     page-0-overview-and-summary.md

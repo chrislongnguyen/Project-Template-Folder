@@ -1,7 +1,7 @@
 ---
 version: "1.0"
 status: Active
-last_updated: 2026-03-26
+last_updated: 2026-03-30
 owner: Long Nguyen
 ---
 
@@ -11,9 +11,33 @@ owner: Long Nguyen
 
 ## [Unreleased]
 ### Added
+- [T1:REPLACE] `_genesis/` knowledge base hierarchy (13 MECE categories, renamed from `_shared/`)
+- [T1:REPLACE] `.claude/skills/` consolidated skill system (26 skills in 11 groupings)
+- [T3:ADD-ONLY] Learning pipeline: 6+1 skills (`/learn` → `/learn-input` → `/learn-research` → `/learn-structure` → `/learn-review` → `/learn-spec` → `/learn-visualize`)
+- [T3:ADD-ONLY] `.claude/hooks/` event-driven automation (7 scripts)
+- [T3:ADD-ONLY] `_genesis/reference/ltc-ai-agent-system-project-template-guide.md` v2.0 user guide
+- [T3:ADD-ONLY] `.claude/rules/versioning.md` always-loaded versioning rule
+- [T3:ADD-ONLY] `.claude/hooks/validate-frontmatter.sh` pre-commit versioning gate
+- [T3:ADD-ONLY] `1-ALIGN/learning/` zone with full DSBV artifacts
+- [T3:ADD-ONLY] `_genesis/templates/DESIGN_TEMPLATE.md` standard design template
+- [T3:ADD-ONLY] `_genesis/templates/DSBV_PROCESS.md` enhanced with scope check, execution strategy, agent catalog
 ### Changed
+- [T1:REPLACE] `_shared/` → `_genesis/` (renamed for clarity)
+- [T1:REPLACE] All `_genesis/reference/` files renamed to `ltc-{kebab-case}` convention
+- [T1:REPLACE] `CLAUDE.md` updated: all `_shared/` refs → `_genesis/`, skill paths, EOP-GOV path
+- [T1:REPLACE] `README.md` updated: file tree, safety model, learning pipeline docs
+- [T2:ENHANCE] `_genesis/templates/DSBV_PROCESS.md` enhanced with agent catalog and git lifecycle
+- [T2:ENHANCE] All 24 skill/rule files updated with `_genesis/` references
 ### Fixed
+- [T4:FIX] 21 active files: stale `_shared/` path references → `_genesis/` (PR #6 review Issue 1)
+- [T4:FIX] Python 3.9 compat: `X | None` → `Optional[X]` in `run-deterministic-evals.py` and `test_validate_ac_results.py`
+- [T4:FIX] `test_wms_sync.py` SCRIPTS_DIR path updated from `_shared/` to `_genesis/scripts/wms-sync/`
 ### Removed
+- [T1:REPLACE] `docs/` directory dissolved (content moved to `1-ALIGN/learning/research/` and `_genesis/reference/`)
+- [T1:REPLACE] `plugins/` directory dissolved (hooks → `.claude/hooks/`, scripts → `scripts/`)
+- [T1:REPLACE] Zone-level `learning/` folders in zones 2-4 (consolidated to zone 1 only)
+- [T1:REPLACE] 91 stale files from old structure
+- [T1:REPLACE] `archive/archive/` nesting flattened
 
 ---
 

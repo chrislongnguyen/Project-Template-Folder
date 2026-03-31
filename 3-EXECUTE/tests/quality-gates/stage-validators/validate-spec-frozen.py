@@ -16,6 +16,7 @@ import sys
 import re
 import subprocess
 from pathlib import Path
+from typing import Optional
 from datetime import datetime, timezone
 
 
@@ -27,7 +28,7 @@ def read_spec(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def parse_table_field(content: str, field_name: str) -> str | None:
+def parse_table_field(content: str, field_name: str) -> Optional[str]:
     """
     Extract a value from a markdown table row like:
       | Field Name | Value |
@@ -38,7 +39,7 @@ def parse_table_field(content: str, field_name: str) -> str | None:
     return match.group(1).strip() if match else None
 
 
-def extract_approval_timestamp(content: str) -> str | None:
+def extract_approval_timestamp(content: str) -> Optional[str]:
     """
     Look for an approval timestamp in various formats:
       - 'Approved At | 2026-03-22...'
@@ -178,7 +179,7 @@ def check_no_post_approval_modifications(spec_path: Path, content: str) -> tuple
     return True, "[WARN] Cannot verify post-approval modifications — no git and no approval timestamp (pass with warning)"
 
 
-def _parse_iso(ts: str) -> datetime | None:
+def _parse_iso(ts: str) -> Optional[datetime]:
     """Parse an ISO-like timestamp string, return datetime or None."""
     # Strip timezone offset to make comparison easier
     ts = ts.strip()

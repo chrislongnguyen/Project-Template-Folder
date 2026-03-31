@@ -27,10 +27,10 @@ cd {YOUR_PROJECT_NAME}
 |------|------|------------|
 | 1 | `.claude/settings.json` | Review deny/allow rules. Add project-specific permissions. This is your safety net — configure it first. |
 | 2 | `.gitignore` | Add any project-specific exclusions (credentials, data files, etc.) |
-| 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 80 lines. |
+| 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 100 lines. |
 | 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
 | 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
-| 6 | `.claude/rules/` | `memory-format.md` is pre-loaded (AutoDream protection). Delete the example rule. Add path-scoped rules for your codebase. |
+| 6 | `.claude/rules/` | `memory-format.md` and `versioning.md` are pre-loaded. Delete the example rule. Add path-scoped rules for your codebase. |
 | 7 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
 | — | `.cursor/rules/`, `.agents/rules/` | Already configured with brand identity. Add more rules as needed for Cursor / AntiGravity. |
 
@@ -56,72 +56,159 @@ DSBV guides you step by step: define what the zone must produce (Design), order 
 
 Start with ALIGN: `/dsbv design align` — it will ask you to describe your project's purpose in 1-3 sentences, then draft the specification for your review.
 
-Full process: `_shared/templates/DSBV_PROCESS.md` | Skill: `.claude/skills/dsbv/SKILL.md`
+Full process: `_genesis/templates/DSBV_PROCESS.md` | Skill: `.claude/skills/dsbv/SKILL.md`
+
+### 6. Research before you build
+
+The **learning pipeline** helps you understand a domain before committing to decisions:
+
+```
+/learn "What is X and how does it apply to our project?"
+```
+
+This runs a 6-step pipeline: scope → research → structure → review → spec → visualize. Outputs land in `1-ALIGN/learning/` and feed directly into your charter, requirements, and risk analysis.
+
+| Skill | What it does |
+|-------|-------------|
+| `/learn` | Orchestrates the full pipeline end-to-end |
+| `/learn-input` | Scopes what to research |
+| `/learn-research` | Deep research with sources |
+| `/learn-structure` | Organizes into 6 structured pages |
+| `/learn-review` | You approve the research |
+| `/learn-spec` | Extracts acceptance criteria (VANA-SPEC) |
+| `/learn-visualize` | Creates interactive HTML visualization |
 
 ## What's Included
 
 ```
-.                                                    7-CS Component
-├── CLAUDE.md                  # Claude Code rules     ← EPS (always-active constitution)
-├── GEMINI.md                  # AntiGravity rules     ← EPS (always-active constitution)
-├── VERSION                    # Template version       ← Input (distribution tracking)
-├── CHANGELOG.md               # Tier-tagged changelog  ← Input (distribution tracking)
+.                                                       7-CS Component
+├── CLAUDE.md                   # Claude Code rules      ← EPS (always-active constitution)
+├── GEMINI.md                   # AntiGravity rules      ← EPS (always-active constitution)
+├── VERSION                     # Template version        ← Input (distribution tracking)
+├── CHANGELOG.md                # Tier-tagged changelog   ← Input (distribution tracking)
+│
 ├── .claude/
-│   ├── settings.json          # Safety deny/allow     ← Environment (hard ceilings)
+│   ├── settings.json           # Safety deny/allow      ← Environment (hard ceilings)
 │   ├── settings.local.json.example  # Personal overrides  ← Environment (per-user)
-│   ├── agents/                # Subagent definitions   ← Agent (operator config)
-│   ├── commands/              # Slash commands         ← EOP (on-demand procedures)
-│   ├── hooks/                 # Event-driven scripts   ← Environment (automation)
+│   ├── agents/                 # Subagent definitions    ← Agent (operator config)
+│   ├── commands/               # Slash commands          ← EOP (on-demand procedures)
+│   ├── hooks/                  # Event-driven scripts    ← Environment (automation)
+│   │   ├── session-reconstruct.sh  # Git state on startup
+│   │   ├── session-summary.sh      # Auto-save on stop
+│   │   ├── state-saver.sh          # Snapshot on every write
+│   │   ├── strategic-compact.sh    # Context limit warnings
+│   │   └── validate-frontmatter.sh # Version metadata gate
 │   ├── rules/
-│   │   ├── dsbv.md            # DSBV zone awareness    ← EPS (always-loaded, 15 lines)
-│   │   ├── memory-format.md   # AutoDream protection   ← EPS (memory structure guard)
-│   │   └── example-api-conventions.md  # Example rule  ← EPS (delete after reading)
-│   └── skills/
-│       └── dsbv/SKILL.md      # /dsbv guided workflow  ← EOP (zone production process)
-├── .cursor/rules/
-│   ├── brand-identity.md     # Cursor brand rules     ← EPS (tool-specific)
-│   ├── template-version.md   # Version check rule     ← EPS (session-start)
-│   └── security.md           # Cursor security rules   ← EPS (tool-specific)
-├── .agents/rules/
-│   ├── brand-identity.md     # AntiGravity rules      ← EPS (tool-specific)
-│   └── security.md           # AntiGravity security    ← EPS (tool-specific)
-├── .pre-commit-config.yaml    # gitleaks hook config    ← Environment (hard gate)
-├── .gitleaks.toml             # Secret detection rules  ← Environment (hard gate)
-├── rules/
-│   ├── brand-identity.md     # Full 20-color ref      ← EPS (global reference)
-│   ├── naming-rules.md       # UNG full spec          ← EPS (global reference)
-│   └── security-rules.md     # 3-layer security ref   ← EPS (global reference)
-├── src/                       # Application code       ← Input (task context)
-├── docs/                      # Reference docs         ← Input (knowledge base)
+│   │   ├── dsbv.md             # DSBV zone awareness    ← EPS (always-loaded)
+│   │   ├── versioning.md       # Version metadata rule  ← EPS (always-loaded)
+│   │   └── memory-format.md    # Memory structure guard ← EPS (always-loaded)
+│   └── skills/                 # 26 skills across 9 categories
+│       ├── dsbv/               #   /dsbv — zone production process
+│       ├── learning/           #   7 skills: /learn pipeline
+│       ├── process/            #   4 skills: brainstorming, planning, execution
+│       ├── session/            #   5 skills: start, end, compress, resume, setup
+│       ├── wms/                #   2 skills: Notion + ClickUp planners
+│       ├── quality/            #   1 skill: /feedback capture
+│       ├── research/           #   2 skills: deep-research, root-cause-tracing
+│       ├── ltc-brand-identity/ #   Apply LTC brand rules
+│       ├── ltc-naming-rules/   #   Apply LTC naming rules
+│       ├── ltc-rules-compliance/ # Check LTC rules compliance
+│       └── ltc-skill-creator/  #   Create new EOP-governed skills
+│
+├── _genesis/                   # Org knowledge base (read-only for projects)
+│   ├── philosophy/             #   WHY we do things
+│   ├── principles/             #   WHAT we commit to
+│   ├── frameworks/             #   HOW we model systems (11 frameworks)
+│   ├── brand/                  #   Visual identity (colors, typography, logo)
+│   ├── security/               #   Data classification, naming, hierarchy
+│   ├── sops/                   #   Standard operating procedures
+│   ├── templates/              #   DSBV process, VANA-SPEC, ADR, 15+ templates
+│   ├── reference/              #   User guide, handbook, ALPEI PDFs, EOP-GOV
+│   ├── governance/             #   (I2 placeholder)
+│   ├── compliance/             #   (I2 placeholder)
+│   └── culture/                #   (I2 placeholder)
+│
+├── 1-ALIGN/                    # Zone 1: Right Outcome
+│   ├── charter/                #   Project charter, stakeholders, requirements
+│   ├── decisions/              #   ADRs for multi-option choices
+│   ├── okrs/                   #   Objectives + Key Results
+│   └── learning/               #   Research pipeline outputs
+│       ├── input/              #     Scoping documents
+│       ├── research/           #     Raw research + HTML visualizations
+│       ├── specs/              #     VANA-SPEC extractions
+│       └── output/             #     Final structured deliverables
+│
+├── 2-PLAN/                     # Zone 2: Minimize Risks
+│   ├── architecture/           #   System design, ADRs, diagrams
+│   ├── risks/                  #   UBS register (blocking forces)
+│   ├── drivers/                #   UDS register (driving forces)
+│   └── roadmap/                #   Execution timeline
+│
+├── 3-EXECUTE/                  # Zone 3: Deliver
+│   ├── src/                    #   Application code
+│   ├── tests/                  #   Unit, integration, e2e, quality gates
+│   ├── config/                 #   CI/CD, env, security config
+│   ├── docs/                   #   API docs, onboarding, runbooks
+│   └── scripts/                #   Build and deploy scripts
+│
+├── 4-IMPROVE/                  # Zone 4: Learn & Grow
+│   ├── changelog/              #   CHANGELOG.md (tier-tagged)
+│   ├── metrics/                #   Performance and quality metrics
+│   ├── retrospectives/         #   Sprint and project retros
+│   ├── reviews/                #   Code and design reviews
+│   └── risk-log/               #   Materialized risks tracker
+│
+├── rules/                      # LTC global rules (agent-facing)
+│   ├── brand-identity.md       #   Full 20-color palette ref
+│   ├── naming-rules.md         #   UNG full spec (75 SCOPE codes)
+│   ├── security-rules.md       #   3-layer security ref
+│   ├── agent-system.md         #   8 LLM Truths + 7-CS model
+│   ├── agent-diagnostic.md     #   6-component trace methodology
+│   └── general-system.md       #   Universal 8-component model
+│
 ├── scripts/
-│   └── template-check.sh     # Staleness checker      ← Tools (distribution)
-├── tests/                     # Test suites            ← EOP (verification gates)
-├── .gitignore                 # Excluded files         ← Environment (safety boundary)
-├── .mcp.json                  # MCP server connections ← Tools (external integrations)
-├── .claude-plugin/
-│   └── marketplace.json       # Plugin registry        ← Tools (plugin discovery)
-└── plugins/
-    └── memory-vault/          # Cross-session memory   ← Environment (context persistence)
+│   └── template-check.sh       # Staleness checker
+├── .cursor/rules/              # Cursor IDE rules (brand, security)
+├── .agents/rules/              # AntiGravity IDE rules
+├── .pre-commit-config.yaml     # gitleaks hook config
+├── .gitleaks.toml              # Secret detection rules
+└── .mcp.json                   # MCP server connections
 ```
 
-> **7-CS** = The Agent's 7-Component System (Doc-9). Each file maps to a component:
+> **7-CS** = The Agent's 7-Component System. Each file maps to a component:
 > **EPS** constrains behavior | **EOP** defines procedures | **Environment** sets hard limits |
 > **Tools** extend capability | **Input** provides context | **Agent** executes within all of the above.
+
+## Skills (26 total)
+
+All skills live in `.claude/skills/` and are invoked with `/skill-name`.
+
+| Category | Skills | Purpose |
+|----------|--------|---------|
+| **DSBV** | `/dsbv` | Zone production process — Design, Sequence, Build, Validate |
+| **Learning** | `/learn`, `/learn-input`, `/learn-research`, `/learn-structure`, `/learn-review`, `/learn-spec`, `/learn-visualize` | Research pipeline — from question to structured spec |
+| **Process** | `/ltc-brainstorming`, `/ltc-writing-plans`, `/ltc-execution-planner`, `/ltc-task-executor` | Structured thinking and execution |
+| **Session** | `/session-start`, `/session-end`, `/compress`, `/resume`, `/setup` | Session lifecycle management |
+| **WMS** | `/ltc-clickup-planner`, `/ltc-notion-planner` | Work management system integration |
+| **Quality** | `/feedback` | Capture friction reports → GitHub Issues |
+| **Research** | `/deep-research`, `/root-cause-tracing` | Deep investigation and debugging |
+| **Compliance** | `/ltc-brand-identity`, `/ltc-naming-rules`, `/ltc-rules-compliance` | Apply and verify LTC standards |
+| **Governance** | `/ltc-skill-creator` | Create new EOP-governed skills |
 
 ## LTC Global Rules
 
 The `rules/` folder contains LTC-wide standards that apply to all projects:
 
-| Rule File | What it covers | Status |
-|-----------|---------------|--------|
-| `brand-identity.md` | Colors (20-color palette), typography (Inter/Work Sans), logo usage, function color assignments, MS Office theme | Active |
-| `naming-rules.md` | Universal Naming Grammar (UNG) — canonical key pattern, 75 SCOPE codes, platform rendering (Git, Local, ClickUp, Drive), validation regex | Active |
-| `security-rules.md` | 3-layer defense-in-depth: 6 AI agent security rules, risk tiers, secret detection (gitleaks), gap analysis, setup guide | Active |
-| `effective-system.md` | Desired outcomes, UBS/UDS framework, effective principles | Coming soon |
+| Rule File | What it covers |
+|-----------|---------------|
+| `brand-identity.md` | Colors (20-color palette), typography (Inter/Work Sans), logo usage, function color assignments |
+| `naming-rules.md` | Universal Naming Grammar (UNG) — canonical key pattern, 75 SCOPE codes, platform rendering |
+| `security-rules.md` | 3-layer defense-in-depth: AI agent security rules, risk tiers, secret detection (gitleaks) |
+| `agent-system.md` | 8 LLM Truths + 7-Component System (AI specialization of the universal 8-component model) |
+| `agent-diagnostic.md` | 6-component trace methodology — diagnose agent failures before blaming the model |
+| `general-system.md` | Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + VANA requirements |
 
 ### How rules reach each tool
-
-Each tool reads **different files** at session start. There is no single file all tools share.
 
 | Tool | Primary rules file | Brand + Security source | Loading |
 |------|-------------------|------------------------|---------|
@@ -132,6 +219,41 @@ Each tool reads **different files** at session start. There is no single file al
 | **Pre-commit** | `.pre-commit-config.yaml` | `.gitleaks.toml` (secret detection) | Runs on every `git commit` |
 
 **Why no AGENTS.md?** The AAIF standard promises a universal file all tools read. In practice, only Claude Code reads it. AntiGravity reads GEMINI.md. Cursor reads .cursor/rules/. Rather than maintain a file only one tool uses, each tool gets rules through its own guaranteed loading path. Less elegant, more reliable.
+
+## Hooks (Event-Driven Automation)
+
+The `.claude/hooks/` directory contains scripts that fire automatically on Claude Code events:
+
+| Hook | Event | What it does |
+|------|-------|-------------|
+| `session-reconstruct.sh` | SessionStart | Loads git state + cross-project landscape into context |
+| `validate-frontmatter.sh` | PreToolUse (git commit) | Blocks commits missing version metadata — exit 2 = block |
+| `strategic-compact.sh` | PreToolUse (all) | Warns when context approaches quality threshold |
+| `state-saver.sh` | PostToolUse (Write/Edit) | Snapshots git state to vault for crash recovery (30s debounce) |
+| `session-summary.sh` | Stop | Auto-saves session summary to vault + refreshes QMD index |
+
+## Org Knowledge Base (`_genesis/`)
+
+`_genesis/` is the organizational knowledge base that ships with every project. It follows a cascade:
+
+```
+philosophy → principles → frameworks → derived artifacts
+                                            ↑
+                                   [reference/ supplements all]
+```
+
+| Layer | Path | Contents |
+|-------|------|----------|
+| Philosophy | `_genesis/philosophy/` | WHY we do things — core beliefs |
+| Principles | `_genesis/principles/` | WHAT we commit to — non-negotiable standards |
+| Frameworks | `_genesis/frameworks/` | HOW we model systems — 11 frameworks (3 pillars, 6 workstreams, UBS/UDS, etc.) |
+| Brand | `_genesis/brand/` | Visual identity — colors.json, BRAND_GUIDE.md, assets/ |
+| Security | `_genesis/security/` | Data classification, naming convention, security hierarchy |
+| SOPs | `_genesis/sops/` | Standard operating procedures (code review, deployment, discussion) |
+| Templates | `_genesis/templates/` | 18 templates — DSBV process, VANA-SPEC, ADR, research, review, and more |
+| Reference | `_genesis/reference/` | User guide, company handbook, ALPEI PDFs, EOP governance spec |
+
+**Full user guide:** `_genesis/reference/ltc-ai-agent-system-project-template-guide.md`
 
 ## Naming Convention
 
@@ -153,7 +275,7 @@ The template enforces a three-layer defense-in-depth model:
 
 - **Layer 1 — Structural** (`.gitignore`): Passive defense. Secrets, key files, and backup directories are excluded by path. Cannot be accidentally committed.
 - **Layer 2 — Agent EPS** (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.agents/rules/`): Constitutional rules the agent self-enforces — security, brand identity, naming conventions. Broad coverage, probabilistic enforcement (~80% compliance).
-- **Layer 3 — Hard Gate** (`.pre-commit-config.yaml` + `.gitleaks.toml`): Deterministic. gitleaks blocks any commit containing detected secrets. Cannot be bypassed without explicit allowlist entry.
+- **Layer 3 — Hard Gate** (`.pre-commit-config.yaml` + `.gitleaks.toml` + `.claude/hooks/validate-frontmatter.sh`): Deterministic. gitleaks blocks commits containing secrets. Frontmatter validator blocks commits missing version metadata. Cannot be bypassed without explicit allowlist.
 
 Additionally, `.claude/settings.json` provides platform-level deny/allow rules the agent physically cannot bypass. Configure it first — it is your safety net.
 
@@ -167,7 +289,7 @@ LTC projects use a custom 3-section MEMORY.md template:
 
 ```
 ## Agent Instructions   ← Meta-rules (structural, never consolidate)
-## Briefing Card        ← Quick-load context (Identity, Subject, UDO, state, WMS)
+## Briefing Card        ← Quick-load context (Identity, Subject, EO, state, WMS)
 ## Topic Index          ← Pointer list to detail files
 ```
 
@@ -178,21 +300,13 @@ Without protection, AutoDream flattens this structure into generic sections and 
 | 1 (Guide) | `.claude/rules/memory-format.md` | Instructs any agent to preserve the 3-section structure | ~95% (probabilistic) |
 | 2 (Gate) | `~/.claude/hooks/scripts/memory-guard.sh` | PreToolUse hook blocks writes that destroy structure | 100% (deterministic) |
 
-**Layer 1** ships with the template. **Layer 2** must be installed per-machine — see `plugins/memory-vault/README.md` for the hook setup.
+**Layer 1** ships with the template. **Layer 2** must be installed per-machine (global hook — see setup instructions from your team lead).
 
 To check memory health across all projects:
 
 ```bash
 bash ~/.claude/hooks/scripts/validate-memory-structure.sh
 ```
-
-## Plugins
-
-This template includes Claude Code plugins in `plugins/`. Each plugin is discoverable via `.claude-plugin/marketplace.json`.
-
-| Plugin | What it does | Install |
-|--------|-------------|---------|
-| `memory-vault` | Cross-session memory — auto-exports sessions, indexes with QMD, recalls context at startup | See [`plugins/memory-vault/README.md`](plugins/memory-vault/README.md) |
 
 ## Personal Overrides
 

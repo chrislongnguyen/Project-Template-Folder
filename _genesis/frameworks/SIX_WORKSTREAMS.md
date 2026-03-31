@@ -1,0 +1,36 @@
+---
+version: "1.0"
+last_updated: 2026-03-29
+owner: "Long Nguyen"
+---
+# THE 6 WORK STREAMS
+### Derived From: Ultimate Truth #7 & #10
+
+---
+
+## Core Principle
+These 6 work streams run CONCURRENTLY, not sequentially.
+Life and work are uncertain — the most effective approach is to iterate across all 6 simultaneously.
+
+---
+
+| # | Work Stream | Key Question | Zone in Project |
+|---|-------------|-------------|-----------------|
+| 1 | **Self/Team Alignment** | Are we solving the right problem? | `1-ALIGN/` |
+| 2 | **Risk Management** | What can go wrong? | `2-PLAN/risks/` + everywhere |
+| 3 | **Effective Learning** | What do we need to know? | `1-ALIGN/learning/` |
+| 4 | **Effective Thinking** | What are our options? | `2-PLAN/architecture/` |
+| 5 | **Effective Decision Making** | Which option is best? | `2-PLAN/roadmap/` + `1-ALIGN/decisions/` |
+| 6 | **Effective Execution** | Are we building it right? | `3-EXECUTE/` |
+
+**Continuous Improvement** feeds back from `4-IMPROVE/` into all 6 work streams.
+
+## Why Concurrent, Not Sequential?
+- A developer might discover new risks (WS2) during execution (WS6)
+- Learning (WS3) might invalidate a decision (WS5)
+- Stakeholder alignment (WS1) might shift after a review (WS4)
+- The structure supports moving between zones at any time
+
+---
+
+**Classification:** INTERNAL

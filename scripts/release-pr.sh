@@ -87,7 +87,7 @@ Z1_COUNT="$(zone_count "1-ALIGN/")"
 Z2_COUNT="$(zone_count "2-PLAN/")"
 Z3_COUNT="$(zone_count "3-EXECUTE/")"
 Z4_COUNT="$(zone_count "4-IMPROVE/")"
-ZS_COUNT="$(zone_count "_shared/")"
+ZS_COUNT="$(zone_count "_genesis/")"
 ZROOT_COUNT="$(echo "$SHIPPED_FILES" | grep -cE "^(README|VERSION|\.gitignore|\.templateignore|scripts/)" 2>/dev/null)" || true
 ZROOT_COUNT="${ZROOT_COUNT:-0}"
 
@@ -105,7 +105,7 @@ I0 delivers the complete LTC Project Template scaffold — a 5×4 APEI matrix wi
 |----|-------------|-------------|
 | D1 | Zone Structure | 5×4 matrix (1-ALIGN, 2-PLAN, 3-EXECUTE, 4-IMPROVE, _shared) |
 | D2 | Agent Governance | CLAUDE.md, GEMINI.md, rules/, .claude/ (hooks, skills, config) |
-| D3 | Templates & Frameworks | 11 templates (_shared/templates), 10 framework pointers |
+| D3 | Templates & Frameworks | 11 templates (_genesis/templates), 10 framework pointers |
 | D4 | Quality Gates | 6 stage validators + test fixtures + test scaffolding |
 | D5 | Distribution System | VERSION, template-check.sh, CHANGELOG.md, .templateignore |
 | D6 | Skills Infrastructure | 6 skills zone-scoped + symlinked in .claude/skills/ |

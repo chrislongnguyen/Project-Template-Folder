@@ -32,6 +32,12 @@
             "command": "./scripts/dsbv-gate.sh",
             "timeout": 10,
             "statusMessage": "Checking DSBV zone boundaries..."
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'if git diff --cached --name-only | grep -qE \"(SKILL\\.md|/skills/)\"; then ./scripts/skill-validator.sh --staged; fi'",
+            "timeout": 15,
+            "statusMessage": "Validating skill quality (EOP governance)..."
           }
         ]
       },

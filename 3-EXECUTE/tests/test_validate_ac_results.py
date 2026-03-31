@@ -5,6 +5,7 @@ import subprocess
 import sys
 import json
 from pathlib import Path
+from typing import Optional
 
 SCRIPT = Path(__file__).parent / "quality-gates" / "stage-validators" / "validate-ac-results.py"
 VALID_EXEC = Path(__file__).parent / "fixtures" / "exec-fixtures" / "valid-exec"
@@ -19,7 +20,7 @@ def run_validator(exec_dir: Path) -> subprocess.CompletedProcess:
     )
 
 
-def make_exec_dir(tmp_path: Path, status: dict, task_files: dict[str, str] | None = None) -> Path:
+def make_exec_dir(tmp_path: Path, status: dict, task_files: Optional[dict[str, str]] = None) -> Path:
     """Helper: write status.json and optional task files to a tmp exec dir."""
     exec_dir = tmp_path / "exec"
     exec_dir.mkdir()

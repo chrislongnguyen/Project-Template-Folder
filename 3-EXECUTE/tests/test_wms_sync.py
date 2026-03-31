@@ -1,5 +1,5 @@
 """
-Integration tests for _shared/scripts/wms-sync/ shell scripts (dry-run mode).
+Integration tests for _genesis/scripts/wms-sync/ shell scripts (dry-run mode).
 
 All tests run the scripts with --dry-run, verifying output and exit codes
 without making any real API calls.
@@ -9,7 +9,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SCRIPTS_DIR = Path(__file__).parent.parent.parent / "_shared" / "scripts" / "wms-sync"
+SCRIPTS_DIR = Path(__file__).parent.parent.parent / "_genesis" / "scripts" / "wms-sync"
 SYNC_TO_CLICKUP = SCRIPTS_DIR / "sync-to-clickup.sh"
 PULL_COMMENTS   = SCRIPTS_DIR / "pull-comments.sh"
 SYNC_TO_NOTION  = SCRIPTS_DIR / "sync-to-notion.sh"

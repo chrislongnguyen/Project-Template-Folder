@@ -14,6 +14,7 @@ import sys
 import json
 import re
 from pathlib import Path
+from typing import Optional
 
 
 # ---------------------------------------------------------------------------
@@ -32,14 +33,14 @@ def find_task_files(exec_dir: Path) -> list[Path]:
     return task_files
 
 
-def extract_task_id(task_file: Path) -> str | None:
+def extract_task_id(task_file: Path) -> Optional[str]:
     """Extract Task ID from Identity table in a task file."""
     content = task_file.read_text(encoding="utf-8")
     match = re.search(r"\|\s*Task ID\s*\|\s*(D\d+-T\d+)\s*\|", content)
     return match.group(1) if match else None
 
 
-def parse_identity_field(content: str, field_name: str) -> str | None:
+def parse_identity_field(content: str, field_name: str) -> Optional[str]:
     """Parse a field from the Identity table."""
     pattern = rf"\|\s*{re.escape(field_name)}\s*\|\s*(.+?)\s*\|"
     match = re.search(pattern, content)
@@ -176,7 +177,7 @@ def check_2_acyclicity(task_files: list[Path]) -> tuple[bool, str]:
     WHITE, GRAY, BLACK = 0, 1, 2
     color = {n: WHITE for n in all_ids}
 
-    def dfs(node: str) -> str | None:
+    def dfs(node: str) -> Optional[str]:
         color[node] = GRAY
         for neighbor in graph.get(node, []):
             if color.get(neighbor) == GRAY:

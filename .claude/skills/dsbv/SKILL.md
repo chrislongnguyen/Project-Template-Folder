@@ -1,8 +1,10 @@
 ---
+version: "1.0"
+last_updated: 2026-03-29
+owner: "Long Nguyen"
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI zone. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---
-
 # /dsbv — Design, Sequence, Build, Validate
 
 Run the 4-phase DSBV process to produce a zone's artifacts. Every zone (ALIGN, PLAN, EXECUTE, IMPROVE) uses this same workflow. DSBV defines HOW you produce work; the zone defines WHAT you produce.
@@ -56,11 +58,13 @@ Before ANY phase, verify these conditions. If any is RED, tell the user what is 
 | C1 | **Clear scope** | Zone identified. In-scope and out-of-scope are written down. |
 | C2 | **Input materials curated** | Reading list assembled — prior zone output, reference docs, research. No "go find it yourself." |
 | C3 | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
-| C4 | **Process definition loaded** | `_shared/templates/DSBV_PROCESS.md` is in context. |
+| C4 | **Process definition loaded** | `_genesis/templates/DSBV_PROCESS.md` is in context. |
 | C5 | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
 | C6 | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
 
 Report readiness as a table: `C1: GREEN | C2: RED — missing prior zone output | ...`
+
+**Practical execution guidance:** Read [references/phase-execution-guide.md](references/phase-execution-guide.md) for quality patterns per phase — what good DESIGN.md looks like, dependency ordering by zone, Build quality checkpoints, Validate evidence standards.
 
 ## Phase 1: DESIGN
 
@@ -70,7 +74,7 @@ Report readiness as a table: `C1: GREEN | C2: RED — missing prior zone output 
 
 **Steps:**
 1. Ask the user for their high-level intent (1-3 sentences about what this zone should accomplish)
-2. Load `_shared/templates/DSBV_CONTEXT_TEMPLATE.md` as the Design template
+2. Load `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` as the Design template
 3. Draft DESIGN.md: artifact inventory, per-artifact purpose, success rubric, acceptance criteria
 4. **Alignment check (mandatory before presenting):**
    - For every completion condition: which artifact satisfies it? Write the mapping.
@@ -131,6 +135,8 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
    c. Checkpoint commit
 2. When all tasks complete, report status
 
+If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT retry more than once. Report to user with: what was attempted, what failed, the error output. User decides whether to retry, simplify scope, or skip to next artifact.
+
 **Steps (multi-agent):**
 1. Show cost estimate. Wait for human approval.
 2. Launch N agents in parallel, each producing a complete draft for the task set
@@ -147,7 +153,7 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
 **Why it matters:** Without validation, errors compound across zones. A flawed ALIGN produces a flawed PLAN produces a flawed EXECUTE (LT-3: errors cascade through reasoning chains).
 
 **Steps:**
-1. Load `_shared/templates/DSBV_EVAL_TEMPLATE.md` as the evaluation template
+1. Load `_genesis/templates/DSBV_EVAL_TEMPLATE.md` as the evaluation template
 2. Check **Completeness** — all artifacts listed in DESIGN.md are present
 3. Check **Quality** — each artifact passes its success rubric
 4. Check **Coherence** — artifacts do not contradict each other
@@ -183,6 +189,16 @@ When the user expresses confusion or asks "what should I do next?":
 2. Explain the current phase in 2-3 plain sentences
 3. Suggest the specific next action: "You are in the Design phase for ALIGN. The next step is to tell me what you want ALIGN to accomplish in 1-3 sentences, and I will draft the DESIGN.md for your review."
 
+## Gotchas
+
+- **#1 failure mode: skipping Design** — agent rationalizes scope is "obvious" and jumps to Build. No DESIGN.md = no acceptance criteria = no way to Validate. Even a 10-line DESIGN.md is better than none.
+- **Validate as rubber stamp** — agent marks all checks PASS without comparing against DESIGN.md criteria line by line. If VALIDATE.md has fewer checks than DESIGN.md has criteria, it was faked.
+- **Multi-agent Build without cost confirmation** — agent spawns parallel sub-agents for design-heavy zones without showing estimate or getting human go.
+
+Full list (5 patterns): [gotchas.md](gotchas.md)
+
 ## Process Reference
 
-Full process specification: `_shared/templates/DSBV_PROCESS.md`
+Full process specification: `_genesis/templates/DSBV_PROCESS.md`
+
+**GATE — Verify:** At phase completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the phase is NOT complete. See gotchas.md for LT-1 hallucination pattern.

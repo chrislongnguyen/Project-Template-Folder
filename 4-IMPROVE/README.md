@@ -54,6 +54,6 @@ Output from this zone feeds back into `1-ALIGN/` for the next iteration.
 - [ ] No bureaucratic overhead from improvement process itself
 
 ### Scalability — Do our improvements scale?
-- [ ] Lessons are captured in `_shared/` for cross-project benefit
+- [ ] Lessons are captured in `_genesis/` for cross-project benefit
 - [ ] Templates and SOPs are updated, not just individual behavior
 - [ ] Automation implemented where human repetition was the bottleneck

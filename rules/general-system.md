@@ -1,4 +1,4 @@
-<!-- Zone 0 agent-facing copy. Human-readable version: _shared/frameworks/EFFECTIVE_SYSTEM.md -->
+<!-- Zone 0 agent-facing copy. Human-readable version: _genesis/frameworks/EFFECTIVE_SYSTEM.md -->
 # LTC General System
 
 > Source of truth: ESD Framework (OPS_OE.6.1 templates/), 10 Ultimate Truths (BOOK-00), Spec-Gap-Analysis (OPS_OE.6.1 research/), Whiteboard Template (ClickUp)

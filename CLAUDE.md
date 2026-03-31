@@ -1,6 +1,10 @@
 # CLAUDE.md — LTC Project Template
 
 > Claude Code agent rules. Loaded every session. Keep under 100 lines; details go to `.claude/rules/`.
+> Members: global `~/.claude/CLAUDE.md` handles identity, communication, model routing.
+> This file handles project structure, rules, and processes. Template: `_genesis/templates/GLOBAL_CLAUDE_MD_EXAMPLE.md`.
+
+<!-- ── CUSTOMIZE AFTER CLONING (replace placeholders) ──────────────── -->
 
 ## Project
 
@@ -11,6 +15,8 @@
 ## Build
 
 - Template repo — no build step. Validate structure: `./scripts/template-check.sh --quiet`
+
+<!-- ── LTC STANDARD (do not modify below this line) ────────────────── -->
 
 ## Rules
 
@@ -54,10 +60,13 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
-## DSBV Process (full spec: `_shared/templates/DSBV_PROCESS.md`)
+## DSBV Process (full spec: `_genesis/templates/DSBV_PROCESS.md`)
 Every zone uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No zone artifact is produced outside DSBV. Phase ordering enforced: Design before Build, Validate before zone complete.
 
-## Feedback (full spec: `4-IMPROVE/skills/feedback/SKILL.md`)
+## EOP Governance (full spec: `_genesis/reference/ltc-eop-gov.md`)
+Before creating or reviewing any skill, load `_genesis/reference/ltc-eop-gov.md`. Run `./scripts/skill-validator.sh <skill-dir>` before committing skill changes. Use `/ltc-skill-creator` for guided skill creation.
+
+## Feedback (full spec: `.claude/skills/quality/feedback/SKILL.md`)
 When a user expresses frustration, confusion, or suggests an improvement, offer: "Want me to capture this as feedback? Takes 30 seconds with /feedback." Feedback creates a GitHub Issue for template maintainers.
 
 ## Before Every Task — Pre-Flight Protocol
@@ -78,7 +87,7 @@ Zone 1 — ALIGN (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs, lear
 Zone 2 — PLAN (Minimize Risks)    → 2-PLAN/ (architecture, risks, drivers, roadmap)
 Zone 3 — EXECUTE (Deliver)        → 3-EXECUTE/ (src, tests, config, docs)
 Zone 4 — IMPROVE (Learn & Grow)   → 4-IMPROVE/ (changelog, metrics, retros, reviews)
-Shared  — Org Knowledge Base      → _shared/ (brand, frameworks, security, sops, templates)
+Shared  — Org Knowledge Base      → _genesis/ (brand, frameworks, security, sops, templates)
 ```
 
 **Core Equation:** Success = Efficient & Scalable Management of Failure Risks
@@ -86,9 +95,9 @@ Shared  — Org Knowledge Base      → _shared/ (brand, frameworks, security, s
 Every artifact must be categorized: which subsystem x which workstream. No chat-only decisions.
 
 ## Modular Rules & Skills
-Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_shared/`
+Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_genesis/`
 
-## Version Control (full spec: `_shared/frameworks/HISTORY_VERSION_CONTROL.md`)
+## Version Control (full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md`)
 - When editing any zone artifact, update its `version` and `last_updated` frontmatter
 - Follow I0-I4 branching strategy — never commit directly to main
 - Commit messages: `type(zone): description` (e.g., `feat(align): add stakeholder analysis`)

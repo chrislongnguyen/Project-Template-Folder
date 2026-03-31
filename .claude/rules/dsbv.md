@@ -1,7 +1,9 @@
 ---
+version: "1.0"
+last_updated: 2026-03-29
+owner: "Long Nguyen"
 description: "DSBV sub-process awareness — ensures every zone uses Design → Sequence → Build → Validate."
 ---
-
 # DSBV — Always-On Rule
 
 Every APEI zone produces artifacts through DSBV: **Design → Sequence → Build → Validate**.
@@ -12,4 +14,4 @@ Every APEI zone produces artifacts through DSBV: **Design → Sequence → Build
 - **Human gates.** Each phase transition requires explicit human approval.
 
 **Skill:** `/dsbv` — full guided flow, single-phase commands, status view.
-**Process doc:** `_shared/templates/DSBV_PROCESS.md` — phase details, multi-agent config, readiness conditions (C1-C6).
+**Process doc:** `_genesis/templates/DSBV_PROCESS.md` — phase details, multi-agent config, readiness conditions (C1-C6).

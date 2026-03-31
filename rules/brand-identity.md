@@ -1,4 +1,4 @@
-<!-- Zone 0 agent-facing copy. Human-readable version: _shared/brand/BRAND_GUIDE.md -->
+<!-- Zone 0 agent-facing copy. Human-readable version: _genesis/brand/BRAND_GUIDE.md -->
 # LTC Brand Identity Rules
 
 > Source of truth: ClickUp Wiki — [LTC ALL]_WIKI > 1. LTC's BRAND IDENTITY SYSTEM (verify this path is current — Notion is now the primary WMS)

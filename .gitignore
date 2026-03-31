@@ -16,6 +16,7 @@ secrets/
 
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json
+.claude/worktrees/
 .template-version
 
 # Superpowers working artifacts (specs/plans are local-only)

@@ -1,4 +1,4 @@
-<!-- Zone 0 agent-facing copy. Human-readable version: _shared/frameworks/AGENT_DIAGNOSTIC.md -->
+<!-- Zone 0 agent-facing copy. Human-readable version: _genesis/frameworks/AGENT_DIAGNOSTIC.md -->
 # LTC Agent Diagnostic
 
 > Source of truth: Doc-9 §3.7 (OPS_OE.6.0 research/amt/), Session 0 §4+§6 (Notion ALIGN Wiki)

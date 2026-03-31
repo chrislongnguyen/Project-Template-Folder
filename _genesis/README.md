@@ -1,0 +1,51 @@
+---
+version: "1.0"
+last_updated: 2026-03-29
+owner: "Long Nguyen"
+derived_from:
+  - "Vinh ALPEI Overview PDF"
+  - "Vinh ALPEI By Work Streams PDF"
+  - "Vinh ALPEI By Sub-system PDF"
+  - "Vinh ALPEI Process Requirements PDF"
+  - "Vinh ALPEI UES Versioning PDF"
+---
+# _genesis — LTC Organizational Knowledge Base
+
+The genesis layer is the immutable foundation that all LTC projects inherit from. It captures organizational intellectual capital: beliefs, commitments, models, and standards that are project-agnostic.
+
+## Cascade Model
+
+```
+philosophy → principles → frameworks → derived artifacts
+(WHY)        (WHAT)       (HOW)        (rules, skills, zones)
+```
+
+Derived artifacts (CLAUDE.md rules, agent skills, zone templates) are downstream of this layer. Changes here propagate outward through team consensus.
+
+## Improvement Flow
+
+```
+member worktree → branch → PR → daily standup → consensus → merge to main
+```
+
+No genesis artifact changes without team consensus. This protects organizational coherence.
+
+## Categories
+
+| Dir          | Layer         | Purpose                                              |
+|--------------|---------------|------------------------------------------------------|
+| philosophy/  | WHY           | Core beliefs, cognitive truths, 3 Pillars            |
+| principles/  | WHAT          | EP registry EP-01–EP-10, EOP-GOV, Agent Diagnostic   |
+| frameworks/  | HOW           | Agent System 7-CS, ESD, UBS/UDS, Six Workstreams     |
+| brand/       | IDENTITY      | Brand Guide, colors, naming convention               |
+| security/    | PROTECTION    | Data classification, security hierarchy              |
+| sops/        | PROCESS       | Standard operating procedures                       |
+| templates/   | FORMATS       | DSBV process, document templates (Agent E)           |
+| governance/  | AUTHORITY     | Decision rights, RACI, escalation paths              |
+| compliance/  | OBLIGATIONS   | Regulatory, audit, legal obligations                 |
+| culture/     | VALUES        | Behavioral norms, collaboration standards            |
+| reference/   | SUPPLEMENTARY | Handbook, external refs, archive                    |
+
+---
+
+**Classification:** INTERNAL
