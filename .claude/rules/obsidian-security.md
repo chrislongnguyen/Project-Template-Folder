@@ -1,5 +1,5 @@
 ---
-version: "1.1"
+version: "1.2"
 status: Draft
 last_updated: 2026-04-01
 owner: "Long Nguyen"
@@ -119,7 +119,7 @@ Source: research spike §4.2 + Oasis Security CVE Feb 2026.
 **Why:** `.claude/` is invisible to Obsidian's search index. Rules and skills that govern agent behavior — including security rules, routing constraints, and skill definitions — will never appear in vault search results. Relying solely on Obsidian search produces an incomplete picture: 30% of agent-relevant references are in `.claude/` and will be missed.
 
 **Enforcement:**
-- After any `obsidian search` or `obsidian find` call, immediately run: `grep -r "<key-term>" .claude/rules/ .claude/skills/`
+- After any `obsidian search` or `obsidian find` call, immediately run: `grep -r --include='*.md' --include='*.sh' --include='*.py' --include='*.html' "<key-term>" .claude/rules/ .claude/skills/`
 - Log the grep results alongside the vault search results before drawing conclusions
 - If the grep sweep finds a relevant rule or skill that the vault search missed, the `.claude/` result takes precedence (rules > vault content)
 

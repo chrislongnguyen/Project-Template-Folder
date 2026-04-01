@@ -1,5 +1,5 @@
 ---
-version: "1.2"
+version: "1.3"
 status: Draft
 last_updated: 2026-04-01
 ---
@@ -68,7 +68,7 @@ When searching project knowledge, apply this hierarchy in order. Escalate only w
 **Mandatory `.claude/` sweep (after every obsidian search):** After ANY obsidian-cli search, agents MUST grep `.claude/rules/` and `.claude/skills/` for content relevant to the query. This is NOT a fallback — it is a required supplement. Obsidian cannot index `.claude/`, which contains ~30% of agent-relevant references.
 
 ```bash
-grep -r "<key-term>" .claude/rules/ .claude/skills/
+grep -r --include='*.md' --include='*.sh' --include='*.py' --include='*.html' "<key-term>" .claude/rules/ .claude/skills/
 ```
 
 Log grep results alongside vault results before drawing conclusions. If `.claude/` content conflicts with vault content, `.claude/` takes precedence.

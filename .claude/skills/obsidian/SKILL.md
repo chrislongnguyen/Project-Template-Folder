@@ -1,7 +1,7 @@
 ---
 name: obsidian-cli
 description: Use when searching the Obsidian vault semantically, traversing backlinks, accessing daily notes, or finding knowledge graph connections — when Obsidian is running. Falls back to Grep/Glob silently if not running.
-version: "1.1"
+version: "1.2"
 status: Draft
 last_updated: "2026-04-01"
 ---
@@ -32,7 +32,7 @@ Before choosing a tool, apply this routing hierarchy in order:
 
 **Mandatory hybrid sweep (L9):** After EVERY Obsidian search, agents MUST grep `.claude/rules/` and `.claude/skills/` for content relevant to the query. This is NOT a fallback — it is a mandatory supplement. Obsidian cannot index `.claude/`, which contains ~30% of agent-relevant references. Run:
 ```
-grep -r "<key-term>" .claude/rules/ .claude/skills/
+grep -r --include='*.md' --include='*.sh' --include='*.py' --include='*.html' "<key-term>" .claude/rules/ .claude/skills/
 ```
 Log grep results alongside vault results before drawing conclusions. If `.claude/` content conflicts with vault content, `.claude/` takes precedence.
 
@@ -65,6 +65,21 @@ Use Grep/Glob instead when:
 - Query is exact-match keyword (Grep is faster, no app dependency)
 - File path is known (Read tool is sufficient)
 - Working in a worktree (Build phase — see Vault Targeting above)
+
+---
+
+## When NOT to Use Obsidian
+
+Obsidian only indexes `.md` files in the vault. The following scenarios should go **directly to Grep/Glob** — obsidian will miss results or return incomplete data:
+
+| Scenario | Why Grep Wins | Example |
+|----------|---------------|---------|
+| **Searching non-markdown files** (.sh, .py, .html, .json, .yml) | Obsidian cannot index these formats. Grep searches all file types. | "Which scripts reference `UBS_REGISTER`?" → `Grep` for `UBS_REGISTER` in `*.sh` |
+| **Cross-format dependency tracing** | When a dependency chain crosses .md → .sh → .py, obsidian only sees the .md hop. Grep follows all hops. | "What depends on `obsidian-security.md`?" → Grep finds .sh test scripts + .md rules |
+| **Known file path or exact pattern** | Read/Grep is O(1). Obsidian search has app overhead + scoring latency. | "Read line 42 of `SKILL.md`" → `Read` directly |
+| **`.claude/` directory content** | `.claude/` is invisible to obsidian's index. Always grep `.claude/` directly. | "Find all rules mentioning `AP1`" → Grep `.claude/rules/` |
+
+**Rule of thumb:** If your query targets non-.md files or you already know the file path, skip obsidian entirely.
 
 ---
 
