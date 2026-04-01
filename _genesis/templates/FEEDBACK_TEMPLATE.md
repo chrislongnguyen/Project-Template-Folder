@@ -7,6 +7,9 @@ workstream: [align | plan | execute | improve | shared | agent]
 severity: [blocked | confused | annoying | minor]  # friction only, omit for ideas
 date: YYYY-MM-DD
 author: [name or agent]
+work_stream: improve
+stage: build
+sub_system: 
 ---
 ## What happened / What I'd improve
 [1-3 sentences. Be specific -- name the file, skill, or step.]

@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: align
+stage: design
+sub_system: 
 ---
 # OKR TEMPLATE (T3)
 > Stub template — populate during ALIGN Sequence and IMPROVE Validate phases.
@@ -61,3 +65,7 @@ _[Objective statement]_
 | KR 1.1 | _[0.0–1.0]_ | _[GO / NO-GO]_ |
 | KR 1.2 | _[0.0–1.0]_ | _[GO / NO-GO]_ |
 | KR 2.1 | _[0.0–1.0]_ | _[GO / NO-GO]_ |
+
+## Links
+
+- [[VANA_SPEC_TEMPLATE]]

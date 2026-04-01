@@ -4,6 +4,10 @@ iteration: "I1: Concept"
 status: Draft
 last_updated: 2026-03-29
 owner: Long Nguyen
+type: template
+work_stream: govern
+stage: design
+sub_system: 
 ---
 # DSBV Context Package — [WORKSTREAM NAME]
 

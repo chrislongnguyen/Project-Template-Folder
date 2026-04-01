@@ -2,6 +2,10 @@
 version: "1.0"
 last_updated: 2026-03-30
 purpose: "Template for LTC members to create their personal ~/.claude/CLAUDE.md"
+type: template
+work_stream: govern
+stage: design
+sub_system: 
 ---
 # CLAUDE.md — Global ({YOUR_NAME}, LTC Partners)
 

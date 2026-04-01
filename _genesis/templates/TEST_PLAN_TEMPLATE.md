@@ -3,6 +3,10 @@ version: "1.1"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: execute
+stage: build
+sub_system: 
 ---
 # TEST PLAN TEMPLATE (T8)
 > Stub template — populate during IMPROVE Build phase (for EXECUTE Validate gate).
@@ -74,3 +78,7 @@ owner: "Long Nguyen"
 |------|------|---------|------|
 | Test owner | _[name]_ | _[GO / NO-GO]_ | _[YYYY-MM-DD]_ |
 | Human gate (G4) | _[name]_ | _[APPROVE / REJECT]_ | _[YYYY-MM-DD]_ |
+
+## Links
+
+- [[REVIEW_TEMPLATE]]

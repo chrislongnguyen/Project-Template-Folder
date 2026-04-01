@@ -2,6 +2,10 @@
 version: "1.0"
 last_updated: 2026-03-29
 owner: "Long Nguyen"
+type: template
+work_stream: align
+stage: design
+sub_system: 
 ---
 # VANA-SPEC: {system_name}
 

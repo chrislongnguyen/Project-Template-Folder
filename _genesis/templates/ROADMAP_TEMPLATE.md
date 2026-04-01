@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: plan
+stage: build
+sub_system: 
 ---
 # ROADMAP TEMPLATE (T6)
 > Stub template — populate during PLAN Sequence phase.
@@ -63,3 +67,7 @@ M1 ──► M2 ──► M3 ──► Release
 |-----------|----------------|-----------|
 | M1 | _[driver name]_ | _[UDS-###]_ |
 | M2 | _[driver name]_ | _[UDS-###]_ |
+
+## Links
+
+- [[SOP_TEMPLATE]]

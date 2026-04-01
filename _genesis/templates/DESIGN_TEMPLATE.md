@@ -5,6 +5,10 @@ owner: Long Nguyen
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: Draft
+type: template
+work_stream: govern
+stage: design
+sub_system: 
 ---
 # DESIGN.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
 
@@ -104,3 +108,11 @@ Additional workstream-specific gates:
 | C6 | Evaluation protocol defined — how Human reviews output | GREEN / RED |
 
 **All conditions must be GREEN before G1.**
+
+## Links
+
+- [[DSBV_PROCESS]]
+- [[EP-01]]
+- [[EP-03]]
+- [[EP-04]]
+- [[EP-09]]
