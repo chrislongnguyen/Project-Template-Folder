@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: learn-visualize
 description: >
@@ -20,13 +20,13 @@ causal references. LTC brand throughout.
 
 Required: `{system-slug}` — matches the slug used in `/learn:research` and `/learn:structure`.
 
-If omitted, list available slugs by scanning `1-ALIGN/learning/research/` and ask user to choose.
+If omitted, list available slugs by scanning `2-LEARN/research/` and ask user to choose.
 
 ## HARD-GATE — Prerequisites
 
 Before generating, verify:
 
-1. `1-ALIGN/learning/research/{slug}/` exists (research was run)
+1. `2-LEARN/research/{slug}/` exists (research was run)
 2. All topic directories under `research/{slug}/` contain P0.md through P5.md
 3. Every P-page frontmatter has `status: approved`
 
@@ -70,7 +70,7 @@ Build a JSON structure:
 > See `references/viz-spec.md §2` for the full React+Vite CDN template.
 
 Generate a single self-contained HTML file at:
-`1-ALIGN/learning/learn-visual-{slug}/index.html`
+`2-LEARN/learn-visual-{slug}/index.html`
 
 Required features:
 - React + ReactDOM via CDN (esm.sh or unpkg)
@@ -94,7 +94,7 @@ structured table rows with CAG prefixes and causal reference columns.
 After writing the file, confirm:
 ```
 learn-visualize complete:
-  Output:  1-ALIGN/learning/learn-visual-{slug}/index.html
+  Output:  2-LEARN/learn-visual-{slug}/index.html
   Nodes:   {N}
   Edges:   {N}
   Topics:  {list}

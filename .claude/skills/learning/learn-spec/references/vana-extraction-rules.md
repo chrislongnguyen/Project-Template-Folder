@@ -6,7 +6,7 @@
 
 ## Step 1: Load System Identity (§1)
 
-From `1-ALIGN/learning/input/learn-input-{system-slug}.md`:
+From `2-LEARN/input/learn-input-{system-slug}.md`:
 - `system_name`, `system_slug`, `system_abbrev`, `eo`, `topic_list`
 - `input_contract`, `output_contract` (§3 and §4 tables)
 - `user_persona_r`, `user_persona_a`, `anti_persona`

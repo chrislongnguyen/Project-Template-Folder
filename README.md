@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # LTC Project Template
 
 Standard project scaffold for LT Capital Partners. Use this template to start any new project with LTC's global rules, safety guardrails, and AI agent configuration pre-loaded.
@@ -58,6 +62,16 @@ Start with ALIGN: `/dsbv design align` — it will ask you to describe your proj
 
 Full process: `_genesis/templates/DSBV_PROCESS.md` | Skill: `.claude/skills/dsbv/SKILL.md`
 
+### Already have a project? Migrate to I1
+
+If your project was cloned from the I0 scaffold (or set up before this template existed), see the migration guide:
+
+```
+_genesis/guides/MIGRATION_GUIDE.md
+```
+
+Your AI agent can execute it: *"Read `_genesis/guides/MIGRATION_GUIDE.md` and execute it for my project."*
+
 ### 6. Research before you build
 
 The **learning pipeline** helps you understand a domain before committing to decisions:
@@ -66,7 +80,7 @@ The **learning pipeline** helps you understand a domain before committing to dec
 /learn "What is X and how does it apply to our project?"
 ```
 
-This runs a 6-step pipeline: scope → research → structure → review → spec → visualize. Outputs land in `1-ALIGN/learning/` and feed directly into your charter, requirements, and risk analysis.
+This runs a 6-step pipeline: scope → research → structure → review → spec → visualize. Outputs land in `2-LEARN/` and feed directly into your charter, requirements, and risk analysis.
 
 | Skill | What it does |
 |-------|-------------|
@@ -131,27 +145,28 @@ This runs a 6-step pipeline: scope → research → structure → review → spe
 ├── 1-ALIGN/                    # Zone 1: Right Outcome
 │   ├── charter/                #   Project charter, stakeholders, requirements
 │   ├── decisions/              #   ADRs for multi-option choices
-│   ├── okrs/                   #   Objectives + Key Results
-│   └── learning/               #   Research pipeline outputs
-│       ├── input/              #     Scoping documents
-│       ├── research/           #     Raw research + HTML visualizations
-│       ├── specs/              #     VANA-SPEC extractions
-│       └── output/             #     Final structured deliverables
+│   └── okrs/                   #   Objectives + Key Results
 │
-├── 2-PLAN/                     # Zone 2: Minimize Risks
+├── 2-LEARN/                    # Zone 2: Problem Research (ALPEI)
+│   ├── input/                  #     Scoping documents + raw WIP
+│   ├── research/               #     Structured research + HTML visualizations
+│   ├── specs/                  #     VANA-SPEC extractions
+│   └── output/                 #     Final structured deliverables
+│
+├── 3-PLAN/                     # Zone 2: Minimize Risks
 │   ├── architecture/           #   System design, ADRs, diagrams
 │   ├── risks/                  #   UBS register (blocking forces)
 │   ├── drivers/                #   UDS register (driving forces)
 │   └── roadmap/                #   Execution timeline
 │
-├── 3-EXECUTE/                  # Zone 3: Deliver
+├── 4-EXECUTE/                  # Zone 3: Deliver
 │   ├── src/                    #   Application code
 │   ├── tests/                  #   Unit, integration, e2e, quality gates
 │   ├── config/                 #   CI/CD, env, security config
 │   ├── docs/                   #   API docs, onboarding, runbooks
 │   └── scripts/                #   Build and deploy scripts
 │
-├── 4-IMPROVE/                  # Zone 4: Learn & Grow
+├── 5-IMPROVE/                  # Zone 4: Learn & Grow
 │   ├── changelog/              #   CHANGELOG.md (tier-tagged)
 │   ├── metrics/                #   Performance and quality metrics
 │   ├── retrospectives/         #   Sprint and project retros

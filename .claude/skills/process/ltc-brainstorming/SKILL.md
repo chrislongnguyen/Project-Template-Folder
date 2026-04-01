@@ -1,13 +1,18 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: ltc-brainstorming
 description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. OE.6.4 fork with sectional sub-agent orchestration and extended VANA-SPEC output."
+agents:
+  search: ltc-explorer
+  synthesis: ltc-planner
 ---
 # Brainstorming Ideas Into Designs
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+
+**Agent dispatch:** For search/diverge phases, use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) — fast, cheap, wide-net discovery. For synthesis/convergence, use `ltc-planner` (`.claude/agents/ltc-planner.md`) — architectural judgment. **Context packaging:** Every Agent() call must use the 5-field template in `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
 
 Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
 
@@ -50,7 +55,7 @@ You MUST create a task for each of these items and complete them in order:
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 4. **Propose 2-3 approaches** — with trade-offs (use S/E/Sc framework from `references/trade-off-framework.md`) and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — produce extended VANA-SPEC (with §0 Force Analysis and §6 System Boundaries) using sectional sub-agent orchestration, save to `2-PLAN/architecture/specs/YYYY-MM-DD-<topic>-design.md` and commit
+6. **Write design doc** — produce extended VANA-SPEC (with §0 Force Analysis and §6 System Boundaries) using sectional sub-agent orchestration, save to `3-PLAN/architecture/specs/YYYY-MM-DD-<topic>-design.md` and commit
 7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
 8. **User reviews written spec** — ask user to review the spec file before proceeding
 9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
@@ -102,7 +107,7 @@ When writing the VANA-SPEC, use sectional sub-agent orchestration and extended o
 
 ## After the Design
 
-**Documentation:** Write the spec to `2-PLAN/architecture/specs/YYYY-MM-DD-<topic>-design.md` (user preferences override this default). Use elements-of-style:writing-clearly-and-concisely skill if available. Commit to git.
+**Documentation:** Write the spec to `3-PLAN/architecture/specs/YYYY-MM-DD-<topic>-design.md` (user preferences override this default). Use elements-of-style:writing-clearly-and-concisely skill if available. Commit to git.
 
 **Spec Review Loop:** Dispatch spec-document-reviewer subagent (see spec-document-reviewer-prompt.md). If issues found: fix, re-dispatch, repeat until Approved. Max 3 iterations, then surface to human.
 

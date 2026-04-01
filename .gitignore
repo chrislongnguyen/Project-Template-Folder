@@ -17,6 +17,7 @@ secrets/
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json
 .claude/worktrees/
+.worktrees/
 .template-version
 
 # Superpowers working artifacts (specs/plans are local-only)
@@ -45,3 +46,4 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+.env

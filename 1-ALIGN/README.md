@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # ZONE 1 — ALIGN (Choose the Right Outcome + Learn)
 
 > "Are we solving the right problem? Is everyone aligned? Do we know enough?"
@@ -30,7 +34,7 @@ LEARN is embedded inside ALIGN because **learning is how you resolve unknowns be
                     └────────────────────────────────────────┘
                          │                          ▲
                          ▼                          │
-                      2-PLAN                    4-IMPROVE
+                      3-PLAN                    5-IMPROVE
 ```
 
 ## Contents
@@ -59,7 +63,7 @@ LEARN is embedded inside ALIGN because **learning is how you resolve unknowns be
 - [ ] KEY_RESULTS.md has measurable results with formulas, each tagged to a Pillar
 - [ ] Learning pipeline has been run for all identified unknowns
 - [ ] ELF pages in `learning/output/` are validated and complete
-- [ ] VANA specs in `learning/specs/` are ready for handoff to 2-PLAN
+- [ ] VANA specs in `learning/specs/` are ready for handoff to 3-PLAN
 
 ## Pre-Flight — 3 Pillars Check
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#007bff"/>
+  <text x="200" y="80" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="28">
+    Non-Compliant Sample
+  </text>
+  <text x="200" y="120" text-anchor="middle" fill="#6c757d" font-family="Helvetica" font-size="14">
+    Uses default colors and fonts
+  </text>
+  <circle cx="50" cy="170" r="15" fill="#1f77b4" stroke="#ff7f0e" stroke-width="2"/>
+  <circle cx="90" cy="170" r="15" fill="#0d6efd"/>
+</svg>

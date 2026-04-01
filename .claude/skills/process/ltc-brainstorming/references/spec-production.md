@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # Spec Production — Sectional Sub-Agent Orchestration & Extended Output
 
 Reference material for VANA-SPEC production. Read this before dispatching sub-agents.
@@ -24,11 +28,13 @@ The lead agent (you) reads all source material and creates a Section Allocation 
 
 **Step 2: Dispatch 5 sub-agent groups in parallel**
 
-Each sub-agent receives:
-- The Section Allocation Map (for cross-reference awareness)
-- Only the source material relevant to their group
-- The VANA-SPEC template sections they must fill
-- Budget hint: "This task should require approximately 30K tokens of context."
+Use `ltc-builder` agent file (`.claude/agents/ltc-builder.md`) for each group. Wrap each dispatch in the context packaging template (`.claude/skills/dsbv/references/context-packaging.md`):
+
+- **EO:** "Group {N} VANA-SPEC sections are filled with traced claims"
+- **INPUT:** Context (project + spec purpose), Files (Allocation Map + source material + templates), Budget (~30K tokens)
+- **EP:** EP-10 (Define Done), EP-08 (Signal Over Volume) + only fill assigned sections
+- **OUTPUT:** Filled template sections + ACs: every claim traces to source page/row/col
+- **VERIFY:** Section count matches allocation. Traceability check passes.
 
 **Step 3: Each sub-agent self-reviews against source material before returning**
 
@@ -45,7 +51,7 @@ Runs cross-section consistency check:
 **Step 5: Run MECE validator script**
 
 ```bash
-./1-ALIGN/skills/ltc-brainstorming/scripts/mece-validator.sh 2-PLAN/architecture/specs/<spec-file>.md
+./1-ALIGN/skills/ltc-brainstorming/scripts/mece-validator.sh 3-PLAN/architecture/specs/<spec-file>.md
 ```
 
 - Every AC in §2-§5 appears exactly once in AC-TEST-MAP

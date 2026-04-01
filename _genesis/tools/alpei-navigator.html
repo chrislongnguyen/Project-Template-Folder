@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="version" content="3.4">
+<meta name="last-updated" content="2026-04-01">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTC Company Navigator — Full Organizational Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--midnight:#004851;--gold:#F2C75C;--gunmetal:#1D1F2A;--white:#FFFFFF;--ruby:#9B1842;--green:#69994D;--purple:#653469;--bg:#FFFFFF;--card:#F4F5F7;--border:#D0D5DD}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size:13px;line-height:1.5}
+
+.hdr{background:var(--gunmetal);padding:14px 24px;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hdr h1{font-size:15px;font-weight:700;color:var(--gold);white-space:nowrap}
+.hdr .sub{font-size:10px;color:#888;margin-right:auto}
+.pills{display:flex;gap:6px}
+.pill{font-size:10px;padding:4px 10px;border-radius:3px;cursor:pointer;border:1px solid var(--border);color:#999;transition:.2s;user-select:none}
+.pill:hover,.pill.on{background:rgba(242,199,92,.15);color:var(--gold);border-color:var(--gold)}
+.legend{display:flex;gap:14px;padding:8px 24px;background:#EAECF0;border-bottom:1px solid var(--border);flex-wrap:wrap;font-size:10px}
+.leg{display:flex;align-items:center;gap:4px}
+.dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.wrap{max-width:1440px;margin:0 auto;padding:16px}
+.view{display:none}.view.active{display:block}
+
+/* ========== BUILDING VIEW v2 ========== */
+
+/* Constitution wrapper — vertical EP borders around all zones */
+.bld-wrapper{display:flex;gap:0;position:relative}
+.ep-rail{width:48px;background:var(--gunmetal);border:2px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:space-around;padding:8px 2px;flex-shrink:0;border-radius:6px}
+.ep-rail.left{border-radius:6px 0 0 6px;border-right:2px solid var(--gold)}
+.ep-rail.right{border-radius:0 6px 6px 0;border-left:2px solid var(--gold)}
+.ep-rail .ep-label{writing-mode:vertical-rl;text-orientation:mixed;color:var(--gold);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.ep-rule{writing-mode:vertical-rl;text-orientation:mixed;font-size:7px;color:#999;padding:4px 0;border-top:1px solid rgba(242,199,92,.2)}
+
+.bld-center{flex:1;min-width:0}
+
+/* Zone floors */
+.zone-floor{border:1px solid var(--border);border-radius:0;overflow:hidden;background:var(--white)}
+.zone-floor+.zone-floor{border-top:none}
+.zone-floor:first-child{border-radius:6px 6px 0 0}
+.zone-floor:last-child{border-radius:0 0 6px 6px}
+
+.zf-header{padding:10px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;border-bottom:1px solid rgba(0,0,0,.04)}
+.zf-header:hover{filter:brightness(1.05)}
+.zf-header h2{font-size:12px;font-weight:700}
+.zf-header .zf-io{font-size:8px;padding:2px 6px;border-radius:3px;border:1px solid rgba(0,0,0,.08);color:#888;background:rgba(0,0,0,.02)}
+.zf-header .arr{font-size:10px;margin-left:auto;transition:transform .2s;color:#888}
+.zf-header .arr.open{transform:rotate(90deg)}
+
+.zf-body{display:none;padding:10px 14px 14px}
+.zf-body.open{display:block}
+
+/* I/O Banner between zones */
+.io-banner{display:flex;align-items:center;gap:6px;padding:5px 14px;font-size:9px;color:#888;background:rgba(242,199,92,.04);border-bottom:1px solid rgba(242,199,92,.15)}
+.io-banner .io-arrow{color:var(--gold);font-size:14px;font-weight:700}
+.io-banner .io-label{font-weight:600;color:var(--midnight)}
+
+/* DSBV rooms inside zone */
+.dsbv-rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.dsbv-room{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--white)}
+.dsbv-room-hdr{padding:5px 8px;font-size:9px;font-weight:700;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--border)}
+.dsbv-room-hdr .gate{color:var(--ruby)}
+
+/* 7CS Grid inside each room — THE SKELETON */
+.cs7{display:grid;grid-template-columns:1fr;gap:0}
+.cs7-row{display:flex;border-bottom:1px solid rgba(0,0,0,.04);min-height:22px}
+.cs7-row:last-child{border-bottom:none}
+.cs7-label{width:38px;flex-shrink:0;font-size:7px;font-weight:700;color:var(--midnight);padding:3px 4px;background:rgba(0,72,81,.04);text-transform:uppercase;letter-spacing:.3px;display:flex;align-items:center}
+.cs7-val{flex:1;font-size:9px;color:#555;padding:3px 6px;display:flex;flex-wrap:wrap;gap:2px;align-items:center}
+.cs7-val:empty::after{content:"—";color:#ddd}
+.cs7-val .r{background:rgba(0,72,81,.06);padding:1px 4px;border-radius:2px;font-size:8px;white-space:normal;word-break:break-word}
+.cs7-val .r.eop{border-left:2px solid var(--midnight)}
+.cs7-val .r.eot{border-left:2px solid var(--gold)}
+.cs7-val .r.ep{border-left:2px solid var(--ruby)}
+.cs7-val .io{color:var(--gunmetal);font-weight:500;font-size:8px}
+
+/* Zone-level 7CS summary */
+.zone-7cs{border:1px solid var(--gold);border-radius:5px;margin-bottom:10px;overflow:hidden}
+.zone-7cs-hdr{padding:6px 10px;background:rgba(242,199,92,.12);font-size:11px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(242,199,92,.15)}
+.zone-7cs-body{display:block;padding:0}
+.zone-7cs .cs7-row{min-height:30px}
+.zone-7cs .cs7-label{width:56px;font-size:9px;color:var(--midnight);font-weight:700;background:rgba(242,199,92,.06)}
+
+.subsystems-label{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin:8px 0 4px;padding-left:4px}
+
+/* Room-to-room flow arrows */
+.room-flow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;font-weight:700;padding:0 2px}
+
+/* Feedback loop */
+.feedback-loop{text-align:center;padding:8px;margin:6px 0;background:rgba(155,24,66,.05);border:1px dashed var(--ruby);border-radius:6px;font-size:10px}
+
+/* ========== MATRIX VIEW ========== */
+.matrix{overflow-x:auto}
+.mtx-grid{display:grid;grid-template-columns:100px repeat(4,1fr);gap:2px;min-width:800px}
+.mtx-hdr{background:var(--gunmetal);color:var(--gold);padding:8px;text-align:center;font-size:10px;font-weight:700;border-radius:3px}
+.mtx-row-hdr{background:var(--gunmetal);color:var(--white);padding:8px 10px;font-size:10px;font-weight:600;border-radius:3px;display:flex;align-items:center}
+.mtx-cell{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:8px;cursor:pointer;transition:.2s;min-height:60px;font-size:10px}
+.mtx-cell:hover{border-color:var(--gold);transform:translateY(-1px)}
+.mtx-cell .cell-id{font-weight:700;color:var(--gold);margin-bottom:3px}
+.mtx-cell .cell-count{color:#888;font-size:9px}
+.mtx-cell.validate .cell-id::after{content:" \U0001f512";font-size:9px}
+.cell-detail{display:none;grid-column:1/-1;background:var(--card);border:1px solid var(--gold);border-radius:6px;padding:14px;margin:4px 0}
+.cell-detail.open{display:block}
+.cell-detail h3{color:var(--gold);font-size:12px;margin-bottom:10px}
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.cs-item{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:8px}
+.cs-item h4{font-size:9px;font-weight:700;color:var(--midnight);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.cs-item .cs-content{font-size:10px;color:#555;line-height:1.5}
+.cs-item .cs-resource{padding:2px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+
+/* ========== RESOURCES VIEW ========== */
+.res-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.res-select{padding:5px 8px;border:1px solid var(--border);border-radius:4px;font-family:'Inter',sans-serif;font-size:11px;background:var(--white);cursor:pointer}
+.res-select:focus{border-color:var(--gold);outline:none}
+.res-info{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:16px;font-size:11px}
+.res-info h3{color:var(--gold);font-size:13px;margin-bottom:6px}
+.res-info .ri-row{display:flex;gap:8px;margin-bottom:3px}
+.res-info .ri-label{font-weight:600;color:var(--gold);min-width:90px}
+.res-info .ri-val{color:#333}
+.heat-cell{transition:background .2s}
+.heat-cell.active{background:rgba(242,199,92,.25)!important;border-color:var(--gold)!important}
+.heat-cell.active .cell-id{color:var(--gunmetal)}
+.res-detail{background:var(--card);border:1px solid var(--gold);border-radius:6px;padding:16px;margin-top:16px;display:none}
+.res-detail.open{display:block}
+.res-detail h3{color:var(--gold);font-size:13px;margin-bottom:10px}
+.rd-row{display:flex;gap:8px;margin-bottom:5px;font-size:11px}
+.rd-label{font-weight:600;color:var(--gold);min-width:100px;flex-shrink:0}
+.rd-val{color:#333}
+.rd-conn{margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.rd-conn-item{font-size:10px;padding:2px 0;color:#555}
+.rd-conn-item .arrow{color:var(--gold);font-weight:700}
+
+/* ========== SIDEBAR ========== */
+.sidebar{display:none;position:fixed;right:0;top:0;width:380px;height:100vh;background:var(--gunmetal);border-left:2px solid var(--gold);z-index:200;overflow-y:auto;padding:20px}
+.sidebar.open{display:block}
+.sidebar h2{color:var(--gold);font-size:14px;margin-bottom:10px}
+.sidebar .close{position:absolute;top:12px;right:16px;color:#888;cursor:pointer;font-size:18px}
+.sidebar .close:hover{color:var(--gold)}
+.sb-section{margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-section h3{color:var(--gold);font-size:11px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.sb-section p,.sb-section li{color:#ccc;font-size:10px;line-height:1.7}
+.sb-section ul{padding-left:14px}
+.sb-section .eq{background:rgba(242,199,92,.08);padding:6px 10px;border-radius:4px;border-left:2px solid var(--gold);color:var(--gold);font-size:11px;font-weight:600;margin:6px 0}
+
+/* Chain (used in Shared Services) */
+.chain{background:rgba(242,199,92,.05);border:1px solid rgba(242,199,92,.2);border-radius:6px;padding:8px;margin:6px 0;font-size:10px}
+.chain h4{color:var(--gold);font-size:10px;margin-bottom:3px}
+.chain .path{color:#555;font-family:monospace;font-size:9px;line-height:1.7}
+.chain .path .sk{color:var(--midnight);font-weight:600}
+.chain .path .ar{color:var(--gold)}
+
+/* ========== BRIEF MODE ========== */
+.brief-mode [data-brief-coord]{cursor:crosshair!important}
+.brief-mode [data-brief-coord]:hover{outline:2px dashed var(--gold)!important;outline-offset:1px;border-radius:2px}
+.pill.brief-active{background:rgba(155,24,66,.2)!important;color:var(--ruby)!important;border-color:var(--ruby)!important}
+
+#brief-panel{display:none;position:fixed;right:0;top:0;width:420px;height:100vh;background:var(--gunmetal);border-left:2px solid var(--gold);z-index:200;overflow-y:auto;padding:20px}
+#brief-panel.open{display:block}
+#brief-panel h2{color:var(--gold);font-size:14px;margin-bottom:16px}
+#brief-panel .close{position:absolute;top:12px;right:16px;color:#888;cursor:pointer;font-size:18px}
+#brief-panel .close:hover{color:var(--gold)}
+.bp-field{margin-bottom:10px}
+.bp-label{color:var(--gold);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;display:block}
+.bp-value{background:rgba(242,199,92,.08);padding:6px 10px;border-radius:4px;border-left:2px solid var(--gold);color:#ccc;font-size:10px;font-family:monospace;white-space:pre-wrap;word-break:break-all}
+.bp-input,.bp-textarea,.bp-sel{width:100%;padding:6px 10px;border:1px solid rgba(255,255,255,.15);border-radius:4px;background:rgba(255,255,255,.05);color:var(--white);font-family:'Inter',sans-serif;font-size:11px}
+.bp-textarea{min-height:50px;resize:vertical}
+.bp-sel{cursor:pointer}
+.bp-divider{border-top:1px solid rgba(255,255,255,.08);margin:14px 0}
+.bp-preview{background:rgba(0,0,0,.3);padding:10px;border-radius:4px;font-family:monospace;font-size:9px;color:#aaa;white-space:pre-wrap;max-height:280px;overflow-y:auto;margin-top:6px;line-height:1.6}
+.bp-btn{background:var(--gold);color:var(--gunmetal);padding:8px 16px;border:none;border-radius:4px;font-weight:700;font-size:11px;cursor:pointer;margin-top:8px}
+.bp-btn:hover{filter:brightness(1.1)}
+.bp-btn-secondary{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:8px 16px;border-radius:4px;font-size:11px;cursor:pointer;margin-top:8px;margin-left:6px}
+.bp-toast{position:fixed;bottom:20px;right:20px;background:var(--green);color:white;padding:8px 16px;border-radius:4px;font-size:11px;font-weight:600;opacity:0;transition:opacity .3s;z-index:300;pointer-events:none}
+.bp-toast.show{opacity:1}
+
+/* ========== LEARN PIPELINE ========== */
+.learn-pipeline{display:flex;flex-direction:column;gap:4px}
+.pipeline-stage{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--white)}
+.pipeline-hdr{padding:5px 8px;font-size:9px;font-weight:700;color:var(--midnight);border-bottom:1px solid var(--border);background:rgba(0,72,81,.04)}
+.pipeline-arrow{text-align:center;color:var(--gold);font-size:14px;font-weight:700;padding:2px 0}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>LTC Company Navigator</h1>
+  <span class="sub">ALPEI &times; DSBV &times; 7CS</span>
+  <div class="pills">
+    <div class="pill on" onclick="switchView('building')" id="pill-building" role="button" aria-label="Switch to Building view">Building</div>
+    <div class="pill" onclick="switchView('matrix')" id="pill-matrix" role="button" aria-label="Switch to Matrix view">Matrix</div>
+    <div class="pill" onclick="switchView('resources')" id="pill-resources" role="button" aria-label="Switch to Resources view">Resources</div>
+  </div>
+  <div class="pills" style="margin-left:8px">
+    <div class="pill" onclick="expandAll(true)" role="button" aria-label="Expand all sections">Expand All</div>
+    <div class="pill" onclick="expandAll(false)" role="button" aria-label="Collapse all sections">Collapse All</div>
+    <div class="pill" onclick="toggleSidebar()" role="button" aria-label="Toggle quick reference sidebar">Sidebar</div>
+    <div class="pill" onclick="toggleBriefMode()" id="pill-brief" role="button" aria-label="Toggle Brief Mode for change management">Brief</div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="dot" style="background:var(--green)"></div>ALIGN</div>
+  <div class="leg"><div class="dot" style="background:var(--midnight)"></div>LEARN</div>
+  <div class="leg"><div class="dot" style="background:var(--gold)"></div>PLAN</div>
+  <div class="leg"><div class="dot" style="background:var(--purple)"></div>EXECUTE</div>
+  <div class="leg"><div class="dot" style="background:var(--ruby)"></div>IMPROVE</div>
+  <div class="leg" style="margin-left:auto;font-size:9px">
+    <span style="border-left:2px solid var(--midnight);padding-left:3px;margin-right:6px">EOP</span>
+    <span style="border-left:2px solid var(--gold);padding-left:3px;margin-right:6px">EOT</span>
+    <span style="border-left:2px solid var(--ruby);padding-left:3px">EP</span>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar" role="complementary" aria-label="Quick Reference">
+  <span class="close" onclick="toggleSidebar()" role="button" aria-label="Close sidebar" tabindex="0">&times;</span>
+  <h2>Quick Reference</h2>
+  <div class="sb-section"><h3>Success Equation</h3><div class="eq">Success = Efficient &amp; Scalable Management of Failure Risks</div></div>
+  <div class="sb-section"><h3>Three Pillars</h3><ul><li><strong>1. Sustainability</strong> &mdash; Can it survive its worst day?</li><li><strong>2. Efficiency</strong> &mdash; Leanest path to quality?</li><li><strong>3. Scalability</strong> &mdash; Will it hold at 10x?</li></ul></div>
+  <div class="sb-section"><h3>7CS Components</h3><p>EP &rarr; Input &rarr; EOP &rarr; EOE &rarr; EOT &rarr; Agent &rarr; EA &rarr; EO</p><p style="margin-top:4px;color:#999;font-size:9px">EA = Effective Action (emergent from Agent execution — observable only, not configurable)</p><p style="color:var(--ruby);margin-top:4px">Diagnostic: blame Agent LAST</p></div>
+  <div class="sb-section"><h3>DSBV</h3><p><strong>D</strong>esign &rarr; <strong>S</strong>equence &rarr; <strong>B</strong>uild &rarr; <strong>V</strong>alidate (human gate at V)</p></div>
+  <div class="sb-section"><h3>8 LLM Truths</h3><ul><li>LT-1: Hallucination is structural</li><li>LT-2: Context compression is lossy</li><li>LT-3: Reasoning degrades on complex tasks</li><li>LT-4: Retrieval is fragile</li><li>LT-5: Predicts plausibility, not truth</li><li>LT-6: No memory across sessions</li><li>LT-7: Cost scales with tokens</li><li>LT-8: Alignment is approximate</li></ul></div>
+  <div class="sb-section"><h3>Maturity</h3><p>1. Logic Scaffold &rarr; 2. Concept &rarr; 3. Prototype &rarr; 4. MVE &rarr; 5. Leadership</p></div>
+  <div class="sb-section"><h3>UNG Naming</h3><p><code>{SCOPE}_{FA}.{ID}.{NAME}</code></p></div>
+  <div class="sb-section"><h3>ALPEI</h3><ul><li><strong>A</strong>lign &mdash; Right outcome</li><li><strong>L</strong>earn &mdash; Knowledge</li><li><strong>P</strong>lan &mdash; Minimize risks</li><li><strong>E</strong>xecute &mdash; Deliver</li><li><strong>I</strong>mprove &mdash; Grow</li></ul></div>
+</div>
+
+<!-- BRIEF PANEL -->
+<div id="brief-panel" role="dialog" aria-label="Brief Generator" aria-modal="true">
+  <span class="close" onclick="closeBriefPanel()" role="button" aria-label="Close brief panel" tabindex="0">&times;</span>
+  <h2>Brief Generator</h2>
+  <div class="bp-field"><label class="bp-label">Coordinate</label><div class="bp-value" id="bp-coord">--</div></div>
+  <div class="bp-field"><label class="bp-label">Level</label><div class="bp-value" id="bp-level">--</div></div>
+  <div class="bp-field"><label class="bp-label">Current State</label><div class="bp-value" id="bp-current">--</div></div>
+  <div class="bp-field"><label class="bp-label">Affected File(s)</label><div class="bp-value" id="bp-paths">--</div></div>
+  <div class="bp-divider"></div>
+  <div class="bp-field"><label class="bp-label">Action</label><select class="bp-sel" id="bp-action" oninput="updatePreview()"><option value="Modify">Modify</option><option value="Add">Add</option><option value="Remove">Remove</option><option value="Move">Move</option></select></div>
+  <div class="bp-field"><label class="bp-label">Desired State</label><textarea class="bp-textarea" id="bp-desired" placeholder="Describe the target state after the change..." oninput="updatePreview()"></textarea></div>
+  <div class="bp-field"><label class="bp-label">Acceptance Criteria</label><textarea class="bp-textarea" id="bp-criteria" placeholder="How will you verify the change is correct?" oninput="updatePreview()"></textarea></div>
+  <div class="bp-divider"></div>
+  <div class="bp-field"><label class="bp-label">Brief Preview</label><div class="bp-preview" id="bp-preview"></div></div>
+  <button class="bp-btn" onclick="copyBrief()">Copy to Clipboard</button>
+  <button class="bp-btn-secondary" onclick="updatePreview()">Refresh</button>
+</div>
+<div class="bp-toast" id="bp-toast">Copied to clipboard!</div>
+
+<div class="wrap">
+
+<!-- ==================== VIEW 1: BUILDING ==================== -->
+<div class="view active" id="view-building">
+  <p style="font-size:10px;color:#888;margin-bottom:8px">EP rules (left &amp; right rails) govern ALL zones. Click any zone to expand its 4 DSBV subsystems, each showing the full 7CS skeleton.</p>
+  <div class="bld-wrapper">
+    <!-- LEFT EP RAIL -->
+    <div class="ep-rail left">
+      <div class="ep-label">EFFECTIVE PRINCIPLES</div>
+      <div class="ep-rule" data-brief-coord="EP:dsbv" data-brief-level="framework">dsbv</div>
+      <div class="ep-rule" data-brief-coord="EP:alpei-chain-of-custody" data-brief-level="framework">alpei-chain-of-custody</div>
+      <div class="ep-rule" data-brief-coord="EP:alpei-pre-flight" data-brief-level="framework">alpei-pre-flight</div>
+      <div class="ep-rule" data-brief-coord="EP:agent-dispatch" data-brief-level="framework">agent-dispatch</div>
+      <div class="ep-rule" data-brief-coord="EP:git-conventions" data-brief-level="framework">git-conventions</div>
+      <div class="ep-rule" data-brief-coord="EP:versioning" data-brief-level="framework">versioning</div>
+      <div class="ep-rule" data-brief-coord="EP:memory-format" data-brief-level="framework">memory-format</div>
+    </div>
+
+    <!-- CENTER: Zone floors -->
+    <div class="bld-center" id="bld-zones"></div>
+
+    <!-- RIGHT EP RAIL -->
+    <div class="ep-rail right">
+      <div class="ep-label">EFFECTIVE PRINCIPLES</div>
+      <div class="ep-rule" data-brief-coord="EP:THREE_PILLARS" data-brief-level="framework">THREE_PILLARS</div>
+      <div class="ep-rule" data-brief-coord="EP:SIX_WORKSTREAMS" data-brief-level="framework">SIX_WORKSTREAMS</div>
+      <div class="ep-rule" data-brief-coord="EP:UBS_UDS_GUIDE" data-brief-level="framework">UBS_UDS_GUIDE</div>
+      <div class="ep-rule" data-brief-coord="EP:LEARNING_HIERARCHY" data-brief-level="framework">LEARNING_HIERARCHY</div>
+      <div class="ep-rule" data-brief-coord="EP:CRITICAL_THINKING" data-brief-level="framework">CRITICAL_THINKING</div>
+      <div class="ep-rule" data-brief-coord="EP:COGNITIVE_BIASES" data-brief-level="framework">COGNITIVE_BIASES</div>
+      <div class="ep-rule" data-brief-coord="EP:EFFECTIVE_SYSTEM" data-brief-level="framework">EFFECTIVE_SYSTEM</div>
+      <div class="ep-rule" data-brief-coord="EP:AGENT_SYSTEM" data-brief-level="framework">AGENT_SYSTEM</div>
+      <div class="ep-rule" data-brief-coord="EP:AGENT_DIAGNOSTIC" data-brief-level="framework">AGENT_DIAGNOSTIC</div>
+      <div class="ep-rule" data-brief-coord="EP:HISTORY_VERSION_CONTROL" data-brief-level="framework">VERSION_CONTROL</div>
+    </div>
+  </div>
+
+  <div class="feedback-loop" data-brief-coord="IMPROVE:feedback-loop" data-brief-level="zone">
+    <span style="font-size:14px;color:var(--ruby)">&#8635;</span>
+    <strong style="color:var(--ruby)"> FEEDBACK LOOP: I-V &rarr; A-D (next iteration)</strong>
+    <span style="color:#888"> &mdash; improvements, lessons, updated UBS/UDS, metrics</span>
+  </div>
+</div>
+
+<!-- ==================== VIEW 2: MATRIX ==================== -->
+<div class="view" id="view-matrix">
+<div class="matrix">
+  <p style="font-size:10px;color:#888;margin-bottom:8px">Click any cell for full 7CS detail. Flow: A&rarr;L&rarr;P&rarr;E&rarr;I&rarr;A (iterative).</p>
+  <div class="mtx-grid" id="matrix-grid">
+    <div class="mtx-hdr"></div>
+    <div class="mtx-hdr">DESIGN (D)</div>
+    <div class="mtx-hdr">SEQUENCE (S)</div>
+    <div class="mtx-hdr">BUILD (B)</div>
+    <div class="mtx-hdr">VALIDATE (V)</div>
+  </div>
+</div>
+</div>
+
+<!-- ==================== VIEW 3: RESOURCES ==================== -->
+<div class="view" id="view-resources">
+  <div class="res-controls">
+    <label style="font-size:10px;font-weight:600;color:var(--gold)">Select Resource:</label>
+    <select class="res-select" id="res-type-select" onchange="filterResources()"><option value="all">All Types</option><option value="skill">Skills (27)</option><option value="template">Templates (27)</option><option value="framework">Frameworks (17)</option><option value="rule">Rules (7)</option><option value="human">Human (1)</option><option value="environment">Environment (3)</option><option value="tool">Tools (6)</option></select>
+    <select class="res-select" id="res-select" onchange="selectResource()"><option value="">-- Choose a resource --</option></select>
+  </div>
+  <div class="res-info" id="res-info" style="display:none"></div>
+  <div class="matrix" id="heatmap-container"></div>
+  <div class="res-detail" id="res-detail"></div>
+</div>
+
+</div>
+
+<script>
+// ========== DATA ==========
+const SKILLS=[
+{id:"dsbv",name:"dsbv",desc:"Runs DSBV sub-process within any APEI zone with human gates",role:"EOP",cells:["A-D","A-S","A-B","A-V","L-D","L-S","L-B","L-V","P-D","P-S","P-B","P-V","E-D","E-S","E-B","E-V","I-D","I-S","I-B","I-V"],cat:"Alignment",connects:["ltc-brainstorming"]},
+{id:"learn",name:"learn",desc:"State-aware orchestrator routing to correct sub-skill based on file system state",role:"EOP",cells:["L-D"],cat:"Learning",connects:["learn-input"]},
+{id:"learn-input",name:"learn-input",desc:"9-question interview capturing foundational inputs for learning pipeline",role:"EOP",cells:["L-D","L-S"],cat:"Learning",connects:["learn","learn-research"]},
+{id:"learn-research",name:"learn-research",desc:"Spawns parallel sub-agents for all active topics",role:"EOP",cells:["L-B"],cat:"Learning",connects:["learn-input","learn-structure"]},
+{id:"learn-review",name:"learn-review",desc:"Reviews one topic at a time with comprehension questions",role:"EOP",cells:["L-V"],cat:"Learning",connects:["learn-structure","learn-spec"]},
+{id:"learn-spec",name:"learn-spec",desc:"Extracts VANA-SPEC and DSBV Readiness from approved pages",role:"EOP",cells:["L-V","A-B"],cat:"Learning",connects:["learn-review"]},
+{id:"learn-structure",name:"learn-structure",desc:"Generates P0-P5 Effective Learning pages with 17-column tables",role:"EOP",cells:["L-B"],cat:"Learning",connects:["learn-research","learn-review"]},
+{id:"learn-visualize",name:"learn-visualize",desc:"Generates interactive HTML system map from approved pages",role:"EOT",cells:["L-B","A-B"],cat:"Learning",connects:["learn-spec"]},
+{id:"ltc-brand-identity",name:"ltc-brand-identity",desc:"Enforces LTC visual standards on artifacts",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Compliance",connects:["ltc-naming-rules","ltc-rules-compliance"]},
+{id:"ltc-naming-rules",name:"ltc-naming-rules",desc:"Enforces UNG naming grammar",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Compliance",connects:["ltc-brand-identity","ltc-rules-compliance"]},
+{id:"ltc-rules-compliance",name:"ltc-rules-compliance",desc:"Produces pass/warn/fail compliance report",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Compliance",connects:["ltc-brand-identity","ltc-naming-rules"]},
+{id:"ltc-skill-creator",name:"ltc-skill-creator",desc:"Creates new skills following EOP governance",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Compliance",connects:["ltc-rules-compliance"]},
+{id:"ltc-brainstorming",name:"ltc-brainstorming",desc:"Turns ideas into designs via dialogue and VANA-SPEC",role:"EOP",cells:["A-D","P-D"],cat:"Process",connects:["ltc-writing-plans"]},
+{id:"ltc-writing-plans",name:"ltc-writing-plans",desc:"Writes plans with HOW NOT sections and validation gates",role:"EOP",cells:["P-D","P-B"],cat:"Process",connects:["ltc-brainstorming","ltc-execution-planner"]},
+{id:"ltc-execution-planner",name:"ltc-execution-planner",desc:"Transforms plan into .exec/ task files",role:"EOP",cells:["P-B","P-S"],cat:"Process",connects:["ltc-writing-plans","ltc-task-executor"]},
+{id:"ltc-task-executor",name:"ltc-task-executor",desc:"Executes .exec/ task files with meta-rules re-injection",role:"EOP",cells:["E-B"],cat:"Process",connects:["ltc-execution-planner"]},
+{id:"feedback",name:"feedback",desc:"Routes feedback as GitHub Issues",role:"EOP",cells:["I-B"],cat:"Quality",connects:["ltc-rules-compliance"]},
+{id:"deep-research",name:"deep-research",desc:"12-question CODE framework with Blue-Red falsification",role:"EOT",cells:["L-B","A-B"],cat:"Research",connects:["learn-research"]},
+{id:"root-cause-tracing",name:"root-cause-tracing",desc:"ILE causal chain via UBS/UDS dot-notation",role:"EOT",cells:["I-B","I-D"],cat:"Research",connects:["feedback"]},
+{id:"session-start",name:"session-start",desc:"Recalls prior session context from Memory Vault",role:"EOP",cells:["A-D","L-D","P-D","E-D","I-D"],cat:"Session",connects:["resume","setup"]},
+{id:"session-end",name:"session-end",desc:"Session close with WMS sync, git commit, vault compression",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Session",connects:["compress","ltc-clickup-planner"]},
+{id:"compress",name:"compress",desc:"Saves session context to Memory Vault",role:"EOP",cells:["A-B","L-B","P-B","E-B","I-B"],cat:"Session",connects:["session-end","resume"]},
+{id:"resume",name:"resume",desc:"Loads prior session context from Memory Vault",role:"EOP",cells:["A-D","L-D","P-D","E-D","I-D"],cat:"Session",connects:["session-start","compress"]},
+{id:"setup",name:"setup",desc:"First-run Memory Vault configuration",role:"EOP",cells:["A-D","L-D","P-D","E-D","I-D"],cat:"Session",connects:["session-start"]},
+{id:"ltc-clickup-planner",name:"ltc-clickup-planner",desc:"ClickUp integration with VANA outcomes",role:"EOT",cells:["P-S","E-S","I-B"],cat:"WMS",connects:["ltc-notion-planner","session-end"]},
+{id:"ltc-notion-planner",name:"ltc-notion-planner",desc:"Notion integration with VANA outcomes",role:"EOT",cells:["P-S","E-S","I-B"],cat:"WMS",connects:["ltc-clickup-planner","session-end"]},
+{id:"git-save",name:"git-save",desc:"Classify, stage, commit, and optionally PR changes. LTC-aware: enforces zone scopes, version bump checks, changelog hygiene.",role:"EOP",cells:["E-S","I-B"],cat:"Process",connects:["session-end","ltc-clickup-planner"]}
+];
+const TEMPLATES=[
+{id:"DSBV_PROCESS",name:"DSBV_PROCESS",desc:"DSBV workflow reference",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
+{id:"DSBV_CONTEXT",name:"DSBV_CONTEXT",desc:"Context package for Build",cells:["A-B","L-B","P-B","E-B","I-B"],role:"EOP"},
+{id:"DSBV_EVAL",name:"DSBV_EVAL",desc:"Validation protocol",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EOP"},
+{id:"DESIGN_TEMPLATE",name:"DESIGN_TEMPLATE",desc:"Zone design spec (DSBV Phase 1)",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
+{id:"ADR_TEMPLATE",name:"ADR_TEMPLATE",desc:"Architecture Decision Record",cells:["A-D","A-B"],role:"EOP"},
+{id:"VANA_SPEC",name:"VANA_SPEC",desc:"System requirements + acceptance criteria",cells:["A-B","L-V"],role:"EOP"},
+{id:"RISK_ENTRY",name:"RISK_ENTRY",desc:"Risk register entry (UBS)",cells:["P-B"],role:"EOP"},
+{id:"SPIKE",name:"SPIKE",desc:"Time-boxed investigation",cells:["L-B"],role:"EOP"},
+{id:"RESEARCH",name:"RESEARCH",desc:"Structured research report",cells:["L-B"],role:"EOP"},
+{id:"RESEARCH_METHODOLOGY",name:"RESEARCH_METHODOLOGY",desc:"Multi-angle research protocol",cells:["L-B"],role:"EOP"},
+{id:"SOP",name:"SOP",desc:"Standard Operating Procedure",cells:["E-B"],role:"EOP"},
+{id:"WIKI_PAGE",name:"WIKI_PAGE",desc:"Knowledge base page",cells:["E-B"],role:"EOP"},
+{id:"REVIEW",name:"REVIEW",desc:"Deliverable review",cells:["E-V","I-B"],role:"EOP"},
+{id:"REVIEW_PACKAGE",name:"REVIEW_PACKAGE",desc:"Milestone review package",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EOP"},
+{id:"RETRO",name:"RETRO",desc:"Retrospective analysis",cells:["I-B"],role:"EOP"},
+{id:"FEEDBACK_T",name:"FEEDBACK",desc:"Structured feedback",cells:["I-B"],role:"EOP"},
+{id:"STANDUP",name:"STANDUP",desc:"Done/WIP/Blockers",cells:["E-B","I-B"],role:"EOP"},
+{id:"CHARTER_TEMPLATE",name:"CHARTER_TEMPLATE",desc:"Project charter — EO, stakeholders, scope, VANA criteria.",cells:["A-D","A-B"],role:"EOP"},
+{id:"ARCHITECTURE_TEMPLATE",name:"ARCHITECTURE_TEMPLATE",desc:"System architecture — components, interfaces, data flows.",cells:["P-B"],role:"EOP"},
+{id:"FORCE_ANALYSIS_TEMPLATE",name:"FORCE_ANALYSIS_TEMPLATE",desc:"Force analysis session — driving/restraining forces + UBS/UDS routing.",cells:["A-D","P-D"],role:"EOP"},
+{id:"DRIVER_ENTRY_TEMPLATE",name:"DRIVER_ENTRY_TEMPLATE",desc:"UDS (Underlying Drivers to Success) register entry format.",cells:["P-S","P-B"],role:"EOP"},
+{id:"ROADMAP_TEMPLATE",name:"ROADMAP_TEMPLATE",desc:"Roadmap — milestones, dependencies, iteration mapping.",cells:["P-S"],role:"EOP"},
+{id:"METRICS_BASELINE_TEMPLATE",name:"METRICS_BASELINE_TEMPLATE",desc:"Quantitative metrics baseline — current value, target, measurement method.",cells:["I-D","I-B"],role:"EOP"},
+{id:"OKR_TEMPLATE",name:"OKR_TEMPLATE",desc:"OKR register — Objectives with Key Results, baseline, target, formula.",cells:["A-S","I-V"],role:"EOP"},
+{id:"TEST_PLAN_TEMPLATE",name:"TEST_PLAN_TEMPLATE",desc:"Test plan — cases, expected/actual, pass/fail, AC coverage.",cells:["I-D","I-B"],role:"EOP"},
+{id:"GLOBAL_CLAUDE_MD_EXAMPLE",name:"GLOBAL_CLAUDE_MD_EXAMPLE",desc:"Golden reference CLAUDE.md for new projects — brand, rules, agent config scaffold.",cells:["A-D"],role:"EOP"},
+{id:"README_TEMPLATES",name:"README (Templates Index)",desc:"Template directory catalog — which template serves which zone×phase.",cells:["A-D"],role:"EOP"}
+];
+const FRAMEWORKS=[
+{id:"THREE_PILLARS",name:"THREE_PILLARS",desc:"S > E > Sc priority",cells:["ALL"],role:"EP",insight:"Derisk first, optimize second, scale third"},
+{id:"SIX_WORKSTREAMS",name:"SIX_WORKSTREAMS",desc:"6 concurrent streams",cells:["ALL"],role:"EP",insight:"Self-Alignment, Risk, Learning, Thinking, Decisions, Execution"},
+{id:"UBS_UDS_GUIDE",name:"UBS_UDS_GUIDE",desc:"Blockers vs Drivers",cells:["P-D","P-B","I-B"],role:"EP",insight:"Manage risks first, leverage drivers second"},
+{id:"LEARNING_HIERARCHY",name:"LEARNING_HIERARCHY",desc:"Knowledge\u2192Expertise",cells:["L-D","L-B"],role:"EP",insight:"Min depth = Level 2 (Understanding)"},
+{id:"CRITICAL_THINKING",name:"CRITICAL_THINKING",desc:"5-step reasoning",cells:["A-D","P-D","I-D"],role:"EP",insight:"Deduction > abduction > induction"},
+{id:"COGNITIVE_BIASES",name:"COGNITIVE_BIASES",desc:"5 key biases",cells:["A-D","L-D","P-D"],role:"EP",insight:"Personal UBS = psychological biases"},
+{id:"EFFECTIVE_SYSTEM",name:"EFFECTIVE_SYSTEM",desc:"8-component model",cells:["ALL"],role:"EP",insight:"Every system = 8 components"},
+{id:"AGENT_SYSTEM",name:"AGENT_SYSTEM",desc:"7-CS for AI",cells:["ALL"],role:"EP",insight:"Configure EP first, blame Agent last"},
+{id:"AGENT_DIAGNOSTIC",name:"AGENT_DIAGNOSTIC",desc:"Sequential blame",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EP",insight:"Most failures = Input or EOP"},
+{id:"HISTORY_VERSION_CONTROL",name:"HISTORY_VERSION_CONTROL",desc:"Git strategy",cells:["E-B","E-V"],role:"EP",insight:"Human promotes Draft\u2192Approved"},
+{id:"ALPEI_DSBV_PROCESS_MAP",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 zones \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every zone artifact routes through this map"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Zone \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P2",name:"Process Map P2: Version Progression",desc:"What each zone produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN zone \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P4",name:"Process Map P4: LEARN Data Flows",desc:"Cross-zone data flow \u2014 LEARN feeds ALIGN and PLAN with UBS, UDS, Effective Principles.",cells:["L-D","L-S","L-B","L-V","A-D","P-D"],role:"EP",insight:"LEARN is the research engine \u2014 downstream zones consume its outputs"},
+{id:"UES_VERSION_BEHAVIORS",name:"UES Version Behaviors",desc:"Version-specific behaviors per zone \u2014 what \u201cdone\u201d looks like at I0 through I4.",cells:["ALL"],role:"EP",insight:"Build deeper than your version = waste; shallower = gap"},
+{id:"README_FRAMEWORKS",name:"README (Frameworks Index)",desc:"Framework cascade: philosophy \u2192 principles \u2192 frameworks \u2192 artifacts (Layer 3 of 4).",cells:["ALL"],role:"EP",insight:"Frameworks sit between principles and artifacts \u2014 they guide, not prescribe"}
+];
+const RULES=[
+{id:"dsbv",name:"DSBV Process",desc:"Every zone uses Design\u2192Sequence\u2192Build\u2192Validate. No ad-hoc artifacts. Phase ordering enforced with human gates.",cells:["ALL"],role:"EP"},
+{id:"alpei-chain-of-custody",name:"ALPEI Chain-of-Custody",desc:"Zone N cannot Build until Zone N-1 has \u22651 validated artifact. Upstream constraints inherited downstream.",cells:["ALL"],role:"EP"},
+{id:"alpei-pre-flight",name:"ALPEI Pre-Flight",desc:"7-step readiness check before ANY task: zone, alignment, risks, drivers, templates, learning, version consistency.",cells:["ALL"],role:"EP"},
+{id:"agent-dispatch",name:"Agent Dispatch",desc:"Every Agent() call must name 1 of 4 MECE agents, use 5-field context package, match model tier. Enforced via PreToolUse hook.",cells:["ALL"],role:"EP"},
+{id:"git-conventions",name:"Git Conventions",desc:"Commit format type(scope): description. 9 canonical scopes. Staging rules. Skip list (.obsidian/, .env, secrets/).",cells:["ALL"],role:"EP"},
+{id:"versioning",name:"Versioning",desc:"Every .md has version + status + last_updated. MAJOR=iteration (I1=1.x). Agent sets Draft/Review. Human ONLY sets Approved.",cells:["ALL"],role:"EP"},
+{id:"memory-format",name:"Memory Format",desc:"MEMORY.md uses 3-section structure: Agent Instructions, Briefing Card, Topic Index. Never flatten or rename.",cells:["ALL"],role:"EP"}
+];
+const CROSS_CUTTING=[
+{id:"director",name:"Human Director",desc:"Sole human Director, gate approver",cells:["A-V","L-V","P-V","E-V","I-V","A-D","L-D","P-D","E-D","I-D"],role:"EU",type:"human"},
+{id:"claude-code",name:"Claude Code (CLI)",desc:"Primary AI agent environment",cells:["ALL"],role:"EOE",type:"environment"},
+{id:"cursor",name:"Cursor (IDE)",desc:"Visual code editing",cells:["E-B","E-D"],role:"EOE",type:"environment"},
+{id:"antigravity",name:"AntiGravity (IDE)",desc:"Gemini-based IDE",cells:["E-B","E-D"],role:"EOE",type:"environment"},
+{id:"clickup",name:"ClickUp (MCP)",desc:"Work management system (optional \u2014 user skill, not enforced)",cells:[],role:"EOT",type:"tool"},
+{id:"mermaid",name:"Mermaid Chart (MCP)",desc:"Diagram validation",cells:["P-B","A-B","L-B"],role:"EOT",type:"tool"},
+{id:"github",name:"Git / GitHub",desc:"Version control",cells:["E-B","E-V","A-V","L-V","P-V","I-V"],role:"EOT",type:"tool"},
+{id:"notion-mcp",name:"Notion (MCP)",desc:"Task board + docs integration (optional \u2014 user skill, not enforced)",cells:[],role:"EOT",type:"tool"},
+{id:"exa-mcp",name:"Exa Web Search (MCP)",desc:"External web research with semantic search and source verification.",cells:["A-D","L-D","L-B","P-D"],role:"EOT",type:"tool"},
+{id:"qmd-mcp",name:"QMD Local Search (MCP)",desc:"Local markdown knowledge base search \u2014 1900+ documents indexed.",cells:["A-D","L-D","L-B","P-D"],role:"EOT",type:"tool"}
+];
+
+const AGENTS={
+  D:'ltc-planner (Opus)',
+  S:'ltc-planner (Opus)',
+  B:'ltc-builder (Sonnet)',
+  V:'ltc-reviewer (Opus)'
+};
+const AGENT_EXPLORER='ltc-explorer (Haiku) \u2014 Pre-DSBV research';
+
+const ZONE_FULL={A:'ALIGN',L:'LEARN',P:'PLAN',E:'EXECUTE',I:'IMPROVE'};
+const PHASE_FULL={D:'DESIGN',S:'SEQUENCE',B:'BUILD',V:'VALIDATE'};
+
+const CELL_7CS={
+  'A-D':{
+    input:'Stakeholder brief + project scope \u00b7 Zone 0 GOVERN \u22651 validated artifact',
+    eop:['dsbv','ltc-brainstorming'],
+    eot_templates:['DESIGN_TEMPLATE','CHARTER_TEMPLATE','FORCE_ANALYSIS_TEMPLATE','ADR_TEMPLATE'],
+    eot_tools:[],
+    eo:'1-ALIGN/DESIGN.md (artifact inventory + binary ACs)'
+  },
+  'A-S':{
+    input:'ALIGN.DESIGN.EO: 1-ALIGN/DESIGN.md (approved G1)',
+    eop:['dsbv'],
+    eot_templates:['OKR_TEMPLATE','DSBV_CONTEXT'],
+    eot_tools:[],
+    eo:'1-ALIGN/SEQUENCE.md (ordered tasks + dependencies)'
+  },
+  'A-B':{
+    input:'ALIGN.DESIGN.EO: 1-ALIGN/DESIGN.md \u00b7 ALIGN.SEQUENCE.EO: 1-ALIGN/SEQUENCE.md (approved G2)',
+    eop:['dsbv'],
+    eot_templates:['CHARTER_TEMPLATE','ADR_TEMPLATE','VANA_SPEC','OKR_TEMPLATE'],
+    eot_tools:['Mermaid Chart (MCP)'],
+    eo:'1-ALIGN/charter/CHARTER.md (final) \u00b7 1-ALIGN/charter/REQUIREMENTS.md \u00b7 1-ALIGN/okrs/OKR_REGISTER.md \u00b7 1-ALIGN/decisions/ADR_*.md'
+  },
+  'A-V':{
+    input:'ALIGN.DESIGN.EO: 1-ALIGN/DESIGN.md (ACs to verify) \u00b7 ALIGN.BUILD outputs: CHARTER.md, REQUIREMENTS.md, OKR_REGISTER.md, ADR_*.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_EVAL','REVIEW_TEMPLATE','REVIEW_PACKAGE'],
+    eot_tools:['Git / GitHub'],
+    eo:'1-ALIGN/VALIDATE.md (per-criterion PASS/FAIL with evidence)'
+  },
+  'P-D':{
+    input:'LEARN.EO: 2-LEARN/output/{SUB}-UBS-UDS.md \u00b7 2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md \u00b7 ALIGN.EO: CHARTER.md',
+    eop:['dsbv'],
+    eot_templates:['DESIGN_TEMPLATE','FORCE_ANALYSIS_TEMPLATE','RISK_ENTRY_TEMPLATE'],
+    eot_tools:[],
+    eo:'3-PLAN/DESIGN.md \u00b7 3-PLAN/risks/UBS_REGISTER.md (every UBS has mitigation)'
+  },
+  'P-S':{
+    input:'PLAN.DESIGN.EO: 3-PLAN/DESIGN.md (approved) \u00b7 LEARN: 2-LEARN/output/{SUB}-UBS-UDS.md (UDS entries)',
+    eop:['dsbv'],
+    eot_templates:['DSBV_CONTEXT','ROADMAP_TEMPLATE','DRIVER_ENTRY_TEMPLATE'],
+    eot_tools:[],
+    eo:'3-PLAN/SEQUENCE.md \u00b7 3-PLAN/roadmap/ROADMAP.md \u00b7 3-PLAN/drivers/UDS_REGISTER.md'
+  },
+  'P-B':{
+    input:'PLAN.SEQUENCE.EO: ROADMAP.md (approved) \u00b7 PLAN.DESIGN.EO: UBS_REGISTER.md \u00b7 LEARN: {SUB}-EFFECTIVE-PRINCIPLES.md \u00b7 ALIGN: CHARTER.md',
+    eop:['dsbv'],
+    eot_templates:['ARCHITECTURE_TEMPLATE','RISK_ENTRY_TEMPLATE'],
+    eot_tools:['Mermaid Chart (MCP)'],
+    eo:'3-PLAN/architecture/ARCHITECTURE.md \u00b7 3-PLAN/risks/UBS_REGISTER.md'
+  },
+  'P-V':{
+    input:'PLAN.BUILD.EO: ARCHITECTURE.md \u00b7 PLAN.DESIGN.EO: UBS_REGISTER.md \u00b7 PLAN.SEQUENCE.EO: ROADMAP.md, UDS_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_EVAL','REVIEW_TEMPLATE','REVIEW_PACKAGE'],
+    eot_tools:['Git / GitHub'],
+    eo:'3-PLAN/VALIDATE.md (architecture refs UBS mitigations; no orphans)'
+  },
+  'E-D':{
+    input:'PLAN.VALIDATE.EO: ARCHITECTURE.md + UBS_REGISTER.md + UDS_REGISTER.md + ROADMAP.md + VALIDATE.md (all approved)',
+    eop:['dsbv'],
+    eot_templates:['DESIGN_TEMPLATE','DSBV_PROCESS'],
+    eot_tools:[],
+    eo:'4-EXECUTE/DESIGN.md (artifact inventory, binary ACs)'
+  },
+  'E-S':{
+    input:'EXECUTE.DESIGN.EO: 4-EXECUTE/DESIGN.md (approved) \u00b7 PLAN: ARCHITECTURE.md + UBS_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_CONTEXT'],
+    eot_tools:[],
+    eo:'4-EXECUTE/SEQUENCE.md (tasks ordered by dependency)'
+  },
+  'E-B':{
+    input:'EXECUTE.SEQUENCE.EO: SEQUENCE.md (approved) \u00b7 EXECUTE.DESIGN.EO: DESIGN.md \u00b7 PLAN: ARCHITECTURE.md + UBS_REGISTER.md',
+    eop:['dsbv','ltc-task-executor','git-save'],
+    eot_templates:[],
+    eot_tools:['Git / GitHub','Mermaid Chart (MCP)'],
+    eo:'Zone artifacts per SEQUENCE.md (version-stamped, checkpoint-committed)'
+  },
+  'E-V':{
+    input:'EXECUTE.BUILD.EO: artifacts per SEQUENCE.md \u00b7 EXECUTE.DESIGN.EO: DESIGN.md \u00b7 PLAN: UBS_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_EVAL','REVIEW_TEMPLATE','REVIEW_PACKAGE'],
+    eot_tools:['Git / GitHub'],
+    eo:'4-EXECUTE/VALIDATE.md (all SEQUENCE.md ACs addressed)'
+  },
+  'I-D':{
+    input:'EXECUTE.VALIDATE.EO: 4-EXECUTE/VALIDATE.md (approved) \u00b7 4-EXECUTE/ deliverables \u00b7 1-ALIGN/okrs/OKR_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DESIGN_TEMPLATE','METRICS_BASELINE_TEMPLATE'],
+    eot_tools:[],
+    eo:'5-IMPROVE/DESIGN.md \u00b7 5-IMPROVE/metrics/METRICS_BASELINE.md'
+  },
+  'I-S':{
+    input:'IMPROVE.DESIGN.EO: METRICS_BASELINE.md (approved) \u00b7 1-ALIGN/okrs/OKR_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_CONTEXT','RETRO_TEMPLATE'],
+    eot_tools:[],
+    eo:'5-IMPROVE/SEQUENCE.md \u00b7 5-IMPROVE/retros/RETRO-PLAN.md'
+  },
+  'I-B':{
+    input:'IMPROVE.SEQUENCE.EO: RETRO-PLAN.md (approved) \u00b7 METRICS_BASELINE.md \u00b7 4-EXECUTE/ deliverables',
+    eop:['dsbv','feedback','git-save'],
+    eot_templates:['TEST_PLAN_TEMPLATE','FEEDBACK_TEMPLATE'],
+    eot_tools:[],
+    eo:'5-IMPROVE/metrics/FEEDBACK_REGISTER.md \u00b7 5-IMPROVE/changelog/CHANGELOG.md'
+  },
+  'I-V':{
+    input:'IMPROVE.BUILD.EO: FEEDBACK_REGISTER.md \u00b7 METRICS_BASELINE.md \u00b7 RETRO-PLAN.md \u00b7 OKR_REGISTER.md',
+    eop:['dsbv'],
+    eot_templates:['DSBV_EVAL','REVIEW_PACKAGE','OKR_TEMPLATE'],
+    eot_tools:['Git / GitHub'],
+    eo:'5-IMPROVE/VALIDATE.md \u00b7 5-IMPROVE/reviews/VERSION-REVIEW.md (GO/NO-GO decision)'
+  }
+};
+
+// Cell-specific EOE — environment, hooks, infrastructure per DSBV cell
+const CELL_EOE={
+  'A-D':['Claude Code (CLI)','Pre-flight 7-step check','Hook: dsbv-skill-guard.sh (Write|Edit)'],
+  'A-S':['Claude Code (CLI)','Hook: dsbv-skill-guard.sh (Write|Edit)'],
+  'A-B':['Claude Code (CLI)','Git worktrees (parallel builds)','Hook: dsbv-gate.sh (commit)','Hook: dsbv-skill-guard.sh'],
+  'A-V':['Claude Code (CLI)','Git / GitHub (PR review)','Hook: verify-deliverables.sh (SubagentStop)'],
+  'L-D':['Claude Code (CLI)','File-system state detection','Hook: dsbv-skill-guard.sh'],
+  'L-S':['Claude Code (CLI)','File-system state detection'],
+  'L-B':['Claude Code (CLI)','Exa MCP (web research)','QMD MCP (local search)','Mermaid MCP (diagrams)'],
+  'L-V':['Claude Code (CLI)','Per-topic approval gates','Hook: verify-deliverables.sh'],
+  'P-D':['Claude Code (CLI)','Pre-flight 7-step check','Hook: dsbv-skill-guard.sh (Write|Edit)'],
+  'P-S':['Claude Code (CLI)','Hook: dsbv-skill-guard.sh'],
+  'P-B':['Claude Code (CLI)','Git worktrees (parallel builds)','Mermaid MCP (diagrams)','Hook: dsbv-gate.sh (commit)'],
+  'P-V':['Claude Code (CLI)','Git / GitHub (PR review)','Hook: verify-deliverables.sh (SubagentStop)'],
+  'E-D':['Claude Code (CLI)','Pre-flight 7-step check','Hook: dsbv-skill-guard.sh (Write|Edit)'],
+  'E-S':['Claude Code (CLI)','Hook: dsbv-skill-guard.sh'],
+  'E-B':['Claude Code (CLI)','Cursor / AntiGravity (IDE)','Git worktrees (parallel builds)','Hook: dsbv-gate.sh (commit)','Hook: verify-agent-dispatch.sh (Agent)'],
+  'E-V':['Claude Code (CLI)','Git / GitHub (PR review)','Hook: verify-deliverables.sh (SubagentStop)'],
+  'I-D':['Claude Code (CLI)','Pre-flight 7-step check','Hook: dsbv-skill-guard.sh (Write|Edit)'],
+  'I-S':['Claude Code (CLI)','Hook: dsbv-skill-guard.sh'],
+  'I-B':['Claude Code (CLI)','Hook: dsbv-gate.sh (commit)'],
+  'I-V':['Claude Code (CLI)','Git / GitHub (PR review)','Hook: verify-deliverables.sh (SubagentStop)']
+};
+
+// Cell EOP guidance — one-line description per DSBV cell
+const CELL_EOP_DESC={
+  'A-D':'/dsbv design align \u2014 Define what ALIGN must produce and acceptance criteria',
+  'A-S':'/dsbv sequence align \u2014 Order tasks, map dependencies, assign agents',
+  'A-B':'/dsbv build align \u2014 Produce charter, OKRs, ADRs, requirements',
+  'A-V':'/dsbv validate align \u2014 Verify all ACs pass with evidence',
+  'L-D':'/learn {slug} \u2014 Start the 5-stage learning pipeline',
+  'L-S':'/learn:research {slug} \u2014 Spawn parallel research agents per topic',
+  'L-B':'/learn:structure {slug} {topic} \u2014 Generate P0\u2013P7 learning pages',
+  'L-V':'/learn:review {slug} {topic} \u2014 Approve or revise each topic',
+  'P-D':'/dsbv design plan \u2014 Design risk register and architecture approach',
+  'P-S':'/dsbv sequence plan \u2014 Sequence roadmap milestones and driver actions',
+  'P-B':'/dsbv build plan \u2014 Produce architecture doc with UBS mitigations',
+  'P-V':'/dsbv validate plan \u2014 Verify architecture refs all UBS mitigations',
+  'E-D':'/dsbv design execute \u2014 Define execution artifacts and binary ACs',
+  'E-S':'/dsbv sequence execute \u2014 Order tasks by dependency with token estimates',
+  'E-B':'/dsbv build execute \u2014 Produce zone artifacts per SEQUENCE.md',
+  'E-V':'/dsbv validate execute \u2014 Verify all SEQUENCE.md ACs pass',
+  'I-D':'/dsbv design improve \u2014 Define metrics baseline and improvement scope',
+  'I-S':'/dsbv sequence improve \u2014 Plan retrospective format and participants',
+  'I-B':'/dsbv build improve \u2014 Produce feedback register and run tests',
+  'I-V':'/dsbv validate improve \u2014 Score Three Pillars, GO/NO-GO decision'
+};
+
+const ALL_CELLS=["A-D","A-S","A-B","A-V","L-D","L-S","L-B","L-V","P-D","P-S","P-B","P-V","E-D","E-S","E-B","E-V","I-D","I-S","I-B","I-V"];
+const ROWS=["A","L","P","E","I"];
+const ROW_NAMES={A:"ALIGN",L:"LEARN",P:"PLAN",E:"EXECUTE",I:"IMPROVE"};
+const ROW_SUBS={A:"Define Right Outcome",L:"Acquire Knowledge",P:"Minimize Risks",E:"Build & Deliver",I:"Learn & Grow"};
+const COLS=["D","S","B","V"];
+const COL_NAMES={D:"DESIGN",S:"SEQUENCE",B:"BUILD",V:"VALIDATE"};
+const ROW_COLORS={A:"var(--green)",L:"var(--midnight)",P:"var(--gold)",E:"var(--purple)",I:"var(--ruby)"};
+const ROW_BG={A:"rgba(105,153,77,.06)",L:"rgba(0,72,81,.06)",P:"rgba(242,199,92,.04)",E:"rgba(101,52,105,.06)",I:"rgba(155,24,66,.04)"};
+
+// I/O between zones
+const ZONE_IO={
+  A:{input:"Director mandate + IMPROVE.VALIDATE.EO: VERSION-REVIEW.md + FEEDBACK_REGISTER.md",output:"CHARTER.md \u00b7 OKR_REGISTER.md \u00b7 ADR_*.md \u00b7 VALIDATE.md \u2192 LEARN"},
+  L:{input:"ALIGN.VALIDATE.EO: CHARTER.md + ADR_*.md + research questions",output:"{SUB}-UBS-UDS.md \u00b7 {SUB}-EFFECTIVE-PRINCIPLES.md \u00b7 vana-spec.md \u2192 PLAN + ALIGN"},
+  P:{input:"LEARN.EO: {SUB}-UBS-UDS.md + {SUB}-EFFECTIVE-PRINCIPLES.md + ALIGN: CHARTER.md",output:"UBS_REGISTER.md \u00b7 UDS_REGISTER.md \u00b7 ARCHITECTURE.md \u00b7 ROADMAP.md \u2192 EXECUTE"},
+  E:{input:"PLAN.VALIDATE.EO: ARCHITECTURE.md + UBS_REGISTER.md + ROADMAP.md",output:"Zone artifacts per SEQUENCE.md \u00b7 VALIDATE.md \u2192 IMPROVE"},
+  I:{input:"EXECUTE.VALIDATE.EO: 4-EXECUTE/ deliverables + VALIDATE.md + OKR_REGISTER.md",output:"VERSION-REVIEW.md (GO/NO-GO) \u00b7 FEEDBACK_REGISTER.md \u2192 ALIGN (next iteration)"}
+};
+// I/O between DSBV phases
+const DSBV_IO={
+  D:{input:"Zone input + EP constraints",output:"Design spec + execution strategy"},
+  S:{input:"Design spec",output:"Ordered task list + dependencies"},
+  B:{input:"Sequenced tasks + context package",output:"Zone artifacts (documents or code)"},
+  V:{input:"Built artifacts + acceptance criteria",output:"Approved artifacts \u2192 next zone input"}
+};
+
+// Zone-level 7CS: CURATED data per zone (not derived from filtering arrays)
+const ZONE_7CS={
+  A:{
+    eop:'/dsbv design align (entry point)',
+    eoe:'Claude Code (CLI) \u00b7 1-ALIGN/ directory \u00b7 G1\u2013G4 human gates \u00b7 Hooks: dsbv-skill-guard (Write|Edit), dsbv-gate (commit), verify-deliverables (SubagentStop)',
+    eot:'CHARTER_TEMPLATE \u00b7 OKR_TEMPLATE \u00b7 FORCE_ANALYSIS_TEMPLATE \u00b7 ADR_TEMPLATE \u00b7 VANA_SPEC \u00b7 REVIEW_TEMPLATE \u00b7 REVIEW_PACKAGE'
+  },
+  L:{
+    eop:'/learn {slug} (entry point \u2014 5-stage pipeline)',
+    eoe:'Claude Code (CLI) \u00b7 2-LEARN/ directory \u00b7 Per-topic approval gates \u00b7 MCP: Exa (web research), QMD (local search) \u00b7 File-system-driven state (compensates LT-6)',
+    eot:'RESEARCH_METHODOLOGY \u00b7 VANA_SPEC \u00b7 Exa Web Search (MCP) \u00b7 QMD Local Search (MCP)'
+  },
+  P:{
+    eop:'/dsbv design plan (entry point)',
+    eoe:'Claude Code (CLI) \u00b7 3-PLAN/ directory \u00b7 G1\u2013G4 human gates \u00b7 Hooks: dsbv-skill-guard, dsbv-gate',
+    eot:'FORCE_ANALYSIS_TEMPLATE \u00b7 RISK_ENTRY_TEMPLATE \u00b7 ROADMAP_TEMPLATE \u00b7 DRIVER_ENTRY_TEMPLATE \u00b7 ARCHITECTURE_TEMPLATE \u00b7 REVIEW_TEMPLATE \u00b7 REVIEW_PACKAGE'
+  },
+  E:{
+    eop:'/dsbv design execute (entry point)',
+    eoe:'Claude Code (CLI) \u00b7 Cursor / AntiGravity (IDE) \u00b7 4-EXECUTE/ directory \u00b7 G1\u2013G4 human gates \u00b7 Git worktrees (parallel builds) \u00b7 Hooks: dsbv-gate, verify-agent-dispatch, verify-deliverables',
+    eot:'DESIGN_TEMPLATE \u00b7 DSBV_CONTEXT \u00b7 DSBV_EVAL \u00b7 REVIEW_TEMPLATE \u00b7 REVIEW_PACKAGE \u00b7 Git / GitHub \u00b7 Mermaid Chart (MCP)'
+  },
+  I:{
+    eop:'/dsbv design improve (entry point)',
+    eoe:'Claude Code (CLI) \u00b7 5-IMPROVE/ directory \u00b7 GO/NO-GO gate \u00b7 Hooks: dsbv-gate, verify-deliverables',
+    eot:'METRICS_BASELINE_TEMPLATE \u00b7 RETRO_TEMPLATE \u00b7 TEST_PLAN_TEMPLATE \u00b7 FEEDBACK_TEMPLATE \u00b7 REVIEW_PACKAGE \u00b7 ClickUp (MCP)'
+  }
+};
+
+function getZone7CS(row){
+  let ep_rules=RULES.map(r=>r.name);
+  let input=ZONE_IO[row].input;
+  let z=ZONE_7CS[row];
+  let agent='ltc-planner (D,S) \u00b7 ltc-builder (B) \u00b7 ltc-reviewer (V) \u00b7 ltc-explorer (pre-DSBV)';
+  let eo=ZONE_IO[row].output;
+  return {ep_rules,input,eop:z.eop,eoe:z.eoe,eot:z.eot,agent,eo};
+}
+
+function getCell7CS(cellId){
+  const c=cellId[2];
+  const phase=c;
+  const data=CELL_7CS[cellId]||{};
+
+  // EP: enforcement rules (no frameworks)
+  let ep_rules=RULES.map(r=>r.name);
+
+  // Input: specific file paths from CELL_7CS
+  let input=data.input||DSBV_IO[c].input;
+
+  // EOP: named skills + guidance description
+  let eop_named=(data.eop||[]);
+  let eop_skills=eop_named.map(id=>{const s=SKILLS.find(x=>x.id===id||x.name===id);return s||{name:id,id:id};});
+  let eop_desc=CELL_EOP_DESC[cellId]||'';
+
+  // EOE: cell-specific from CELL_EOE (hooks, MCP, infrastructure)
+  let eoe_list=CELL_EOE[cellId]||['Claude Code (CLI)'];
+  let eoe=eoe_list.map(e=>({name:e,id:e}));
+
+  // EOT: templates + tools from CELL_7CS
+  let eot_tmpl=(data.eot_templates||[]).map(id=>{const t=TEMPLATES.find(x=>x.id===id||x.name===id);return t||{name:id,id:id,_isTmpl:true};});
+  let eot_tool_names=(data.eot_tools||[]);
+  let eot=[...eot_tmpl,...eot_tool_names.map(n=>({name:n,id:n}))];
+
+  // Agent: dynamic lookup by phase column
+  let agent=AGENTS[phase]||'ltc-planner (Opus)';
+
+  // EO: specific output file paths
+  let eo=data.eo||DSBV_IO[c].output;
+
+  return {ep_rules,input,eop_skills,eop_desc,eoe,eot,agent,eo};
+}
+
+// ========== BUILD BUILDING VIEW ==========
+function buildBuildingView(){
+  const container=document.getElementById('bld-zones');
+  let html='';
+
+  ROWS.forEach((r,ri)=>{
+    // I/O banner above zone (except first)
+    if(ri>0){
+      const prevR=ROWS[ri-1];
+      html+='<div class="io-banner"><span class="io-arrow">\u2193</span><span class="io-label">'+ROW_NAMES[prevR]+' \u2192 '+ROW_NAMES[r]+':</span> '+ZONE_IO[r].input+'</div>';
+    }
+
+    html+='<div class="zone-floor" style="border-left:3px solid '+ROW_COLORS[r]+'">';
+    html+='<div class="zf-header" style="background:'+ROW_BG[r]+'" onclick="toggleZone(this)" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="zone">';
+    html+='<h2 style="color:'+ROW_COLORS[r]+'">'+(5-ri)+'F: '+ROW_NAMES[r]+' \u2014 '+ROW_SUBS[r]+'</h2>';
+    html+='<span class="zf-io" title="Input">IN: '+ZONE_IO[r].input.substring(0,50)+'...</span>';
+    html+='<span class="zf-io" title="Output">OUT: '+ZONE_IO[r].output.substring(0,50)+'...</span>';
+    html+='<span class="arr">\u25B6</span>';
+    html+='</div>';
+
+    html+='<div class="zf-body">';
+
+    // ZONE-LEVEL 7CS (the "big system") — always open
+    const zcs=getZone7CS(r);
+    html+='<div class="zone-7cs">';
+    html+='<div class="zone-7cs-hdr" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="zone-7cs">\u2605 '+ROW_NAMES[r]+' \u2014 Zone System View</div>';
+    html+='<div class="zone-7cs-body"><div class="cs7">';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EP</div><div class="cs7-val">';
+    html+=zcs.ep_rules.map(x=>'<span class="r ep" data-brief-coord="EP:'+x+'" data-brief-level="framework">'+x+'</span>').join('');
+    html+='</div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">Input</div><div class="cs7-val"><span class="io">'+zcs.input+'</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EOP</div><div class="cs7-val"><span class="r eop">'+zcs.eop+'</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EOE</div><div class="cs7-val"><span class="r">'+zcs.eoe+'</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EOT</div><div class="cs7-val"><span class="r eot">'+zcs.eot+'</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">Agent</div><div class="cs7-val"><span class="r">'+zcs.agent+'</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EA</div><div class="cs7-val"><span style="font-size:8px;color:#999;font-style:italic">Emergent from Agent execution \u2014 observable only, not configurable</span></div></div>';
+
+    html+='<div class="cs7-row"><div class="cs7-label">EO \u2192</div><div class="cs7-val"><span class="io">'+zcs.eo+'</span></div></div>';
+
+    html+='</div></div></div>'; // cs7 + zone-7cs-body + zone-7cs
+
+    if(r==='L'){
+      // CHANGE 5: LEARN uses 5-stage pipeline, NOT 4 DSBV rooms
+      html+='<div class="subsystems-label">\u25BC 5-Stage Learning Pipeline</div>';
+      const learnStages=[
+        {id:'S1',label:'S1: /learn:input',
+          rows:[
+            {lbl:'Input',val:'ALIGN.EO: CHARTER.md + research questions',cls:'io'},
+            {lbl:'EOP',val:'<span class="r eop">learn-input</span>'},
+            {lbl:'Agent',val:'<span class="r">Lead agent (no sub-agent dispatch)</span>'},
+            {lbl:'EO \u2192',val:'2-LEARN/input/learn-input-{slug}.md',cls:'io'}
+          ]},
+        {id:'S2',label:'S2: /learn:research',
+          rows:[
+            {lbl:'Input',val:'S1 output: learn-input-{slug}.md',cls:'io'},
+            {lbl:'EOP',val:'<span class="r eop">learn-research</span>'},
+            {lbl:'EOT',val:'<span class="r eot">Exa Web Search (MCP)</span> <span class="r eot">QMD Local Search (MCP)</span> <span class="r eot">RESEARCH_METHODOLOGY</span>'},
+            {lbl:'Agent',val:'<span class="r">ltc-explorer (Haiku) \u00d7 N parallel sub-agents</span>'},
+            {lbl:'EO \u2192',val:'2-LEARN/research/{slug}/ (raw research per topic)',cls:'io'}
+          ]},
+        {id:'S3',label:'S3: /learn:structure',
+          rows:[
+            {lbl:'Input',val:'S2 output: research/{slug}/{topic}.md',cls:'io'},
+            {lbl:'EOP',val:'<span class="r eop">learn-structure</span>'},
+            {lbl:'EOT',val:'<span class="r eot">learn-visualize</span> <span class="r eot">Mermaid Chart (MCP)</span> <span class="r eot">deep-research</span>'},
+            {lbl:'Agent',val:'<span class="r">Lead agent (Opus, model override)</span>'},
+            {lbl:'EO \u2192',val:'2-LEARN/research/{slug}/{topic}/P0\u2013P7.md',cls:'io'}
+          ]},
+        {id:'S4',label:'S4: /learn:review',
+          rows:[
+            {lbl:'Input',val:'S3 output: P0\u2013P7 pages per topic',cls:'io'},
+            {lbl:'EOP',val:'<span class="r eop">learn-review</span>'},
+            {lbl:'Agent',val:'<span class="r">Lead agent + Human (approval gate per topic)</span>'},
+            {lbl:'EO \u2192',val:'All P-pages status: approved (or needs-revision \u2192 back to S3)',cls:'io'}
+          ]},
+        {id:'S5',label:'S5: /learn:spec',
+          rows:[
+            {lbl:'Input',val:'All approved P-pages across all topics',cls:'io'},
+            {lbl:'EOP',val:'<span class="r eop">learn-spec</span>'},
+            {lbl:'EOT',val:'<span class="r eot">VANA_SPEC</span>'},
+            {lbl:'Agent',val:'<span class="r">Lead agent (Opus, model override)</span>'},
+            {lbl:'EO \u2192',val:'2-LEARN/specs/{slug}/vana-spec.md \u00b7 DSBV-READY-{slug}.md \u2192 feeds PLAN + ALIGN',cls:'io'}
+          ]}
+      ];
+      html+='<div class="learn-pipeline">';
+      learnStages.forEach((stage,si)=>{
+        if(si>0) html+='<div class="pipeline-arrow">\u2192</div>';
+        html+='<div class="pipeline-stage" data-brief-coord="LEARN:'+stage.id+'" data-brief-level="subsystem">';
+        html+='<div class="pipeline-hdr">'+stage.label+'</div>';
+        html+='<div class="cs7">';
+        stage.rows.forEach(row=>{
+          html+='<div class="cs7-row"><div class="cs7-label">'+row.lbl+'</div><div class="cs7-val">';
+          if(row.cls==='io') html+='<span class="io">'+row.val+'</span>';
+          else html+=row.val;
+          html+='</div></div>';
+        });
+        html+='</div></div>';
+      });
+      html+='</div>'; // learn-pipeline
+    } else {
+      // Label for subsystems
+      html+='<div class="subsystems-label">\u25BC 4 Subsystems (DSBV) &mdash; each with own 7CS</div>';
+
+      // 4 DSBV rooms with flow arrows between — CHANGE 6: content-addressing headers
+      html+='<div style="display:flex;gap:0;align-items:stretch">';
+      COLS.forEach((c,ci)=>{
+        if(ci>0) html+='<div class="room-flow">\u2192</div>';
+        const cellId=r+'-'+c;
+        const cs=getCell7CS(cellId);
+        const cellHeader=ZONE_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
+
+        html+='<div class="dsbv-room" style="flex:1">';
+        html+='<div class="dsbv-room-hdr" style="background:'+ROW_BG[r]+';color:'+ROW_COLORS[r]+'" data-brief-coord="'+cellId+'" data-brief-level="subsystem">';
+        html+=cellHeader;
+        if(c==='V') html+=' <span class="gate">\U0001f512</span>';
+        html+='</div>';
+
+        // 7CS skeleton — all 8 rows in order
+        html+='<div class="cs7">';
+
+        // EP — inherited from zone (simplified per user request)
+        html+='<div class="cs7-row"><div class="cs7-label">EP</div><div class="cs7-val"><span class="r ep" style="font-style:italic">\u2191 Inherited from '+ZONE_FULL[r]+' zone (all '+cs.ep_rules.length+' rules)</span></div></div>';
+
+        // Input
+        html+='<div class="cs7-row"><div class="cs7-label">Input</div><div class="cs7-val"><span class="io">'+cs.input+'</span></div></div>';
+
+        // EOP — entry point + additional skills
+        html+='<div class="cs7-row"><div class="cs7-label">EOP</div><div class="cs7-val">';
+        if(cs.eop_desc) html+='<span class="r eop" style="font-weight:600" data-brief-coord="'+cellId+':EOP:dsbv" data-brief-level="resource">'+cs.eop_desc+'</span>';
+        if(cs.eop_skills.length>1) html+=cs.eop_skills.filter(s=>s.name!=='dsbv'&&s.name!=='learn').map(s=>'<span class="r eop" data-brief-coord="'+cellId+':EOP:'+s.name+'" data-brief-level="resource">+ '+s.name+'</span>').join('');
+        html+='</div></div>';
+
+        // EOE
+        html+='<div class="cs7-row"><div class="cs7-label">EOE</div><div class="cs7-val">';
+        html+=cs.eoe.map(e=>'<span class="r" data-brief-coord="'+cellId+':EOE:'+e.name+'" data-brief-level="resource">'+e.name+'</span>').join('');
+        html+='</div></div>';
+
+        // EOT
+        html+='<div class="cs7-row"><div class="cs7-label">EOT</div><div class="cs7-val">';
+        if(cs.eot.length) html+=cs.eot.map(t=>'<span class="r eot" data-brief-coord="'+cellId+':EOT:'+t.name+'" data-brief-level="resource">'+t.name+'</span>').join('');
+        html+='</div></div>';
+
+        // Agent
+        html+='<div class="cs7-row"><div class="cs7-label">Agent</div><div class="cs7-val"><span class="r">'+cs.agent+'</span></div></div>';
+
+        // EA
+        html+='<div class="cs7-row"><div class="cs7-label">EA</div><div class="cs7-val"><span style="font-size:8px;color:#999;font-style:italic">Emergent from Agent execution \u2014 observable only</span></div></div>';
+
+        // EO
+        html+='<div class="cs7-row"><div class="cs7-label">EO \u2192</div><div class="cs7-val"><span class="io">'+cs.eo+'</span></div></div>';
+
+        html+='</div>'; // cs7
+        html+='</div>'; // dsbv-room
+      });
+      html+='</div>'; // flex row
+    }
+    html+='</div>'; // zf-body
+    html+='</div>'; // zone-floor
+  });
+
+  container.innerHTML=html;
+}
+
+function toggleZone(hdr){
+  const body=hdr.nextElementSibling;
+  const arr=hdr.querySelector('.arr');
+  body.classList.toggle('open');
+  if(arr) arr.classList.toggle('open');
+}
+
+// ========== BUILD MATRIX VIEW ==========
+function buildMatrix(){
+  const g=document.getElementById('matrix-grid');
+  ROWS.forEach(r=>{
+    const rh=document.createElement('div');
+    rh.className='mtx-row-hdr';rh.innerHTML=ROW_NAMES[r];
+    rh.style.borderLeft='3px solid '+ROW_COLORS[r];
+    g.appendChild(rh);
+    COLS.forEach(c=>{
+      const cellId=r+'-'+c;
+      const cell=document.createElement('div');
+      cell.className='mtx-cell'+(c==='V'?' validate':'');
+      cell.id='mtx-'+cellId;
+      cell.dataset.briefCoord=cellId;
+      cell.dataset.briefLevel='subsystem';
+      cell.onclick=function(){toggleCellDetail(cellId)};
+      let sk=SKILLS.filter(s=>s.cells.includes(cellId));
+      let tp=TEMPLATES.filter(t=>t.cells.includes(cellId));
+      const cellHeader=ZONE_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
+      cell.innerHTML='<div class="cell-id">'+cellHeader+'</div><div class="cell-count">'+sk.length+' skills, '+tp.length+' tmpl</div>';
+      g.appendChild(cell);
+    });
+    const detail=document.createElement('div');
+    detail.className='cell-detail';detail.id='detail-'+r;
+    g.appendChild(detail);
+  });
+}
+
+function toggleCellDetail(cellId){
+  const row=cellId[0];
+  const detail=document.getElementById('detail-'+row);
+  if(detail.classList.contains('open')&&detail.dataset.cell===cellId){detail.classList.remove('open');return;}
+  detail.dataset.cell=cellId;detail.classList.add('open');
+  const cs=getCell7CS(cellId);
+  const cellHeader=ZONE_FULL[cellId[0]]+'.'+PHASE_FULL[cellId[2]]+' ('+cellId+')';
+  detail.innerHTML='<h3>7CS: '+cellHeader+'</h3><div class="cs-grid">'+
+    '<div class="cs-item"><h4>EP (Rules only)</h4><div class="cs-content">'+cs.ep_rules.map(e=>'<div class="cs-resource">'+e+'</div>').join('')+'</div></div>'+
+    '<div class="cs-item"><h4>Input</h4><div class="cs-content"><strong>'+cs.input+'</strong></div></div>'+
+    '<div class="cs-item"><h4>EOP (Skills)</h4><div class="cs-content">'+(cs.eop_desc?'<div class="cs-resource" style="font-weight:600;color:var(--midnight)">'+cs.eop_desc+'</div>':'')+(cs.eop_skills.length?cs.eop_skills.map(e=>'<div class="cs-resource">'+e.name+'</div>').join(''):'<em>\u2014</em>')+'</div></div>'+
+    '<div class="cs-item"><h4>EOE (Environment)</h4><div class="cs-content">'+(cs.eoe.length?cs.eoe.map(e=>'<div class="cs-resource">'+e.name+'</div>').join(''):'<em>\u2014</em>')+'</div></div>'+
+    '<div class="cs-item"><h4>EOT (Templates + Tools)</h4><div class="cs-content">'+(cs.eot.length?cs.eot.map(e=>'<div class="cs-resource">'+e.name+'</div>').join(''):'<em>\u2014</em>')+'</div></div>'+
+    '<div class="cs-item"><h4>Agent</h4><div class="cs-content">'+cs.agent+'</div></div>'+
+    '<div class="cs-item"><h4>EA (Effective Action)</h4><div class="cs-content"><em style="color:#999">Emergent from Agent execution \u2014 observable only, not configurable</em></div></div>'+
+    '<div class="cs-item"><h4>EO (Outcome) \u2192</h4><div class="cs-content"><strong>'+cs.eo+'</strong></div></div></div>';
+}
+
+// ========== BUILD RESOURCES VIEW ==========
+function buildResourcesView(){
+  const allRes=[...SKILLS.map(s=>({...s,type:'skill'})),...TEMPLATES.map(t=>({...t,type:'template'})),...FRAMEWORKS.map(f=>({...f,type:'framework'})),...RULES.map(r=>({...r,type:'rule'})),...CROSS_CUTTING];
+  window._allResources=allRes;
+  populateDropdown(allRes);
+  const container=document.getElementById('heatmap-container');
+  let html='<div class="mtx-grid" id="heat-grid"><div class="mtx-hdr"></div><div class="mtx-hdr">DESIGN</div><div class="mtx-hdr">SEQUENCE</div><div class="mtx-hdr">BUILD</div><div class="mtx-hdr">VALIDATE</div>';
+  ROWS.forEach(r=>{
+    html+='<div class="mtx-row-hdr" style="border-left:3px solid '+ROW_COLORS[r]+'">'+ROW_NAMES[r]+'</div>';
+    COLS.forEach(c=>{const cid=r+'-'+c;html+='<div class="mtx-cell heat-cell" id="heat-'+cid+'" data-brief-coord="'+cid+'" data-brief-level="subsystem" onclick="heatCellClick(\''+cid+'\')"><div class="cell-id">'+cid+'</div></div>';});
+  });
+  html+='</div>';container.innerHTML=html;
+}
+function populateDropdown(items){
+  const sel=document.getElementById('res-select');sel.innerHTML='<option value="">-- Choose --</option>';
+  const tf=document.getElementById('res-type-select').value;
+  (tf==='all'?items:items.filter(i=>i.type===tf)).forEach(item=>{const o=document.createElement('option');o.value=item.id;o.textContent=item.name+' ('+item.role+')';sel.appendChild(o);});
+}
+function filterResources(){populateDropdown(window._allResources);clearHeatmap();}
+function selectResource(){
+  const id=document.getElementById('res-select').value;if(!id){clearHeatmap();return;}
+  const res=window._allResources.find(r=>r.id===id);if(!res)return;
+  const info=document.getElementById('res-info');info.style.display='block';
+  info.innerHTML='<h3>'+res.name+'</h3><div class="ri-row"><span class="ri-label">Type:</span><span class="ri-val">'+res.type+'</span></div><div class="ri-row"><span class="ri-label">7CS Role:</span><span class="ri-val">'+res.role+'</span></div><div class="ri-row"><span class="ri-label">Description:</span><span class="ri-val">'+res.desc+'</span></div><div class="ri-row"><span class="ri-label">Active in:</span><span class="ri-val">'+(res.cells.includes('ALL')?'ALL 20 cells':res.cells.join(', ')||'Meta')+'</span></div>';
+  clearHeatmap();
+  (res.cells.includes('ALL')?ALL_CELLS:res.cells).forEach(c=>{const el=document.getElementById('heat-'+c);if(el)el.classList.add('active');});
+  const det=document.getElementById('res-detail');det.classList.add('open');
+  let conn='';if(res.connects&&res.connects.length){conn='<div class="rd-conn"><strong style="color:var(--gold);font-size:10px">Connects:</strong>';res.connects.forEach(c=>{conn+='<div class="rd-conn-item"><span class="arrow">\u2194</span> '+c+'</div>';});conn+='</div>';}
+  det.innerHTML='<h3>'+res.name+'</h3><div class="rd-row"><span class="rd-label">Description:</span><span class="rd-val">'+res.desc+'</span></div><div class="rd-row"><span class="rd-label">7CS Role:</span><span class="rd-val">'+res.role+' ('+({EP:'Effective Principles',EOP:'Effective Operating Procedures',EOT:'Effective Operating Tools',EOE:'Effective Operating Environment',EU:'Effective User / Gate Authority'}[res.role]||res.role)+')</span></div><div class="rd-row"><span class="rd-label">Active cells:</span><span class="rd-val">'+(res.cells.includes('ALL')?'ALL 20':res.cells.join(', ')||'N/A')+'</span></div>'+(res.cat?'<div class="rd-row"><span class="rd-label">Category:</span><span class="rd-val">'+res.cat+'</span></div>':'')+(res.insight?'<div class="rd-row"><span class="rd-label">Insight:</span><span class="rd-val">'+res.insight+'</span></div>':'')+conn;
+}
+function heatCellClick(cellId){
+  const id=document.getElementById('res-select').value;if(!id)return;
+  const res=window._allResources.find(r=>r.id===id);if(!res)return;
+  const cells=res.cells.includes('ALL')?ALL_CELLS:res.cells;if(!cells.includes(cellId))return;
+  document.getElementById('res-detail').innerHTML+='<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><strong style="color:var(--gold)">In '+cellId+':</strong> '+res.role+' \u2014 '+res.desc+'</div>';
+}
+function clearHeatmap(){document.querySelectorAll('.heat-cell').forEach(c=>c.classList.remove('active'));document.getElementById('res-info').style.display='none';const d=document.getElementById('res-detail');d.classList.remove('open');d.innerHTML='';}
+
+// ========== GLOBAL ==========
+function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById('view-'+v).classList.add('active');document.querySelectorAll('.pills .pill').forEach(p=>p.classList.remove('on'));document.getElementById('pill-'+v).classList.add('on');}
+function expandAll(open){document.querySelectorAll('.zf-body').forEach(b=>{open?b.classList.add('open'):b.classList.remove('open')});document.querySelectorAll('.zf-header .arr').forEach(a=>{open?a.classList.add('open'):a.classList.remove('open')});if(!open)document.querySelectorAll('.cell-detail').forEach(d=>d.classList.remove('open'));}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+
+// ========== BRIEF MODE ==========
+let briefMode=false;
+
+function toggleBriefMode(){
+  briefMode=!briefMode;
+  document.body.classList.toggle('brief-mode',briefMode);
+  document.getElementById('pill-brief').classList.toggle('brief-active',briefMode);
+  if(!briefMode) closeBriefPanel();
+}
+
+function closeBriefPanel(){
+  document.getElementById('brief-panel').classList.remove('open');
+}
+
+// Capture-phase delegation: intercept clicks in brief mode
+document.body.addEventListener('click',function(e){
+  if(!briefMode) return;
+  const target=e.target.closest('[data-brief-coord]');
+  if(!target) return;
+  e.stopPropagation();
+  e.preventDefault();
+  openBrief(target.dataset.briefCoord, target.dataset.briefLevel);
+},true);
+
+function coordToPath(coord){
+  if(coord==='IMPROVE:feedback-loop') return 'CLAUDE.md (IMPROVE zone section) + 4-IMPROVE/ artifacts';
+  if(coord.startsWith('EP:')){
+    const name=coord.slice(3);
+    if(RULES.find(r=>r.id===name)) return 'rules/'+name+'.md';
+    if(FRAMEWORKS.find(f=>f.id===name)) return '_genesis/frameworks/'+name+'.md';
+    return 'rules/'+name+'.md (or _genesis/frameworks/)';
+  }
+  if(coord.endsWith(':*')){
+    const zone=coord.split(':')[0];
+    return zone+' zone folder/ + CLAUDE.md (zone section)';
+  }
+  const parts=coord.split(':');
+  if(parts.length>=3){
+    const csType=parts[1],name=parts.slice(2).join(':');
+    if(csType==='EOP'){
+      if(SKILLS.find(s=>s.id===name||s.name===name)) return '.claude/skills/'+name+'/SKILL.md';
+      if(TEMPLATES.find(t=>t.id===name||t.name===name)) return '_genesis/templates/'+name+'.md';
+      return '.claude/skills/'+name+'/ or _genesis/templates/'+name+'.md';
+    }
+    if(csType==='EOT') return '.claude/settings.json (tool permissions)';
+    if(csType==='EOE') return '.claude/settings.json (environment config)';
+    if(csType==='EP') return 'rules/'+name+'.md or _genesis/frameworks/'+name+'.md';
+  }
+  if(/^[ALPEI]-[DSBV]$/.test(coord)) return 'Subsystem '+coord+' (multiple files across skills, templates)';
+  return '(coordinate: '+coord+')';
+}
+
+function getCurrentState(coord,level){
+  if(coord==='IMPROVE:feedback-loop') return 'Feedback loop: I-V validated results feed back to A-D for next iteration.\nCarries: improvement requests, lessons learned, updated UBS/UDS, pillar metrics, assumption validations.\nThis is the agile iteration mechanism connecting IMPROVE back to ALIGN.';
+  if(coord.startsWith('EP:')){
+    const name=coord.slice(3);
+    const rule=RULES.find(r=>r.id===name);
+    if(rule) return 'Rule: '+rule.desc+'\nScope: ALL 20 cells (constitutional)';
+    const fw=FRAMEWORKS.find(f=>f.id===name);
+    if(fw) return 'Framework: '+fw.desc+(fw.insight?'\nInsight: '+fw.insight:'')+'\nActive in: '+(fw.cells.includes('ALL')?'ALL cells':fw.cells.join(', '));
+    return '(not found in data)';
+  }
+  if(coord.endsWith(':*')){
+    const zoneName=coord.split(':')[0];
+    const zl=ROWS.find(r=>ROW_NAMES[r]===zoneName);
+    if(zl){
+      const io=ZONE_IO[zl];
+      return 'Zone: '+ROW_NAMES[zl]+' \u2014 '+ROW_SUBS[zl]+'\nInput: '+io.input+'\nOutput: '+io.output;
+    }
+  }
+  if(/^[ALPEI]-[DSBV]$/.test(coord)){
+    const cs=getCell7CS(coord);
+    return 'EOP: '+(cs.eop_skills.map(s=>s.name).join(', ')||'\u2014')+
+      '\nEOT: '+(cs.eot.map(t=>t.name).join(', ')||'\u2014');
+  }
+  const parts=coord.split(':');
+  if(parts.length>=3){
+    const name=parts.slice(2).join(':');
+    const all=[...SKILLS,...TEMPLATES,...FRAMEWORKS,...RULES,...CROSS_CUTTING];
+    const res=all.find(r=>r.id===name||r.name===name);
+    if(res) return res.desc+'\nRole: '+res.role+'\nActive in: '+(res.cells&&res.cells.includes('ALL')?'ALL cells':(res.cells||[]).join(', '));
+  }
+  return '(no data for '+coord+')';
+}
+
+function openBrief(coord,level){
+  // Close sidebar if open
+  document.getElementById('sidebar').classList.remove('open');
+  // Populate auto fields
+  document.getElementById('bp-coord').textContent=coord;
+  document.getElementById('bp-level').textContent=level;
+  document.getElementById('bp-current').textContent=getCurrentState(coord,level);
+  document.getElementById('bp-paths').textContent=coordToPath(coord);
+  // Clear director fields
+  document.getElementById('bp-action').value='Modify';
+  document.getElementById('bp-desired').value='';
+  document.getElementById('bp-criteria').value='';
+  // Open panel
+  document.getElementById('brief-panel').classList.add('open');
+  updatePreview();
+}
+
+function generateBriefMarkdown(){
+  const coord=document.getElementById('bp-coord').textContent;
+  const level=document.getElementById('bp-level').textContent;
+  const current=document.getElementById('bp-current').textContent;
+  const paths=document.getElementById('bp-paths').textContent;
+  const action=document.getElementById('bp-action').value;
+  const desired=document.getElementById('bp-desired').value||'(not specified)';
+  const criteria=document.getElementById('bp-criteria').value||'(not specified)';
+  const ts=new Date().toISOString().slice(0,10);
+
+  return `# CHANGE BRIEF: ${action} ${coord}
+
+## Metadata
+- **Coordinate:** \`${coord}\`
+- **Level:** ${level}
+- **Action:** ${action}
+- **Date:** ${ts}
+- **Director:** Human Director
+
+## Current State
+${current}
+
+## Affected File(s)
+\`${paths}\`
+
+## Desired State
+${desired}
+
+## Acceptance Criteria
+${criteria}
+
+---
+
+## Instructions for Agent
+1. Read the current state of the affected file(s) listed above.
+2. Make the changes described in "Desired State".
+3. Verify against the acceptance criteria.
+4. Regenerate LTC-COMPANY-NAVIGATOR.html:
+   - Update the relevant JS data array (SKILLS, TEMPLATES, FRAMEWORKS, RULES, or CROSS_CUTTING)
+   - If Added: add new entry with id, name, desc, role, cells, connects fields
+   - If Removed: delete entry and clean up connects references
+   - If Moved: update the cells array
+   - If Modified: update relevant fields
+5. Open the navigator in browser and verify the change appears in Building, Matrix, and Resources views.
+6. Commit both the source file changes and the regenerated navigator.
+`;
+}
+
+function updatePreview(){
+  document.getElementById('bp-preview').textContent=generateBriefMarkdown();
+}
+
+function copyBrief(){
+  const md=generateBriefMarkdown();
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(md).then(()=>showToast()).catch(()=>fallbackCopy(md));
+  }else{fallbackCopy(md);}
+}
+
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  document.execCommand('copy');document.body.removeChild(ta);
+  showToast();
+}
+
+function showToast(){
+  const t=document.getElementById('bp-toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+// INIT
+buildBuildingView();
+buildMatrix();
+buildResourcesView();
+</script>
+</body>
+</html>

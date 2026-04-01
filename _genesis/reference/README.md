@@ -1,6 +1,7 @@
 ---
-version: "2.0"
-last_updated: 2026-03-29
+version: "1.2"
+status: Draft
+last_updated: 2026-03-31
 owner: "Long Nguyen"
 ---
 # reference/ — SUPPLEMENTARY

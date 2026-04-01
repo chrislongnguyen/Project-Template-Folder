@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 # LEARNING HIERARCHY
@@ -42,7 +42,7 @@ owner: "Long Nguyen"
 ---
 
 ## Application
-Use this hierarchy when filling out research templates in `1-ALIGN/learning/research/`.
+Use this hierarchy when filling out research templates in `2-LEARN/research/`.
 The minimum acceptable depth for project research is Level 2 (Understanding).
 Level 3-4 is required for core architectural decisions.
 

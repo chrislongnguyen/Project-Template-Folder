@@ -1,12 +1,18 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: ltc-execution-planner
-description: "Stage 4 — Transforms a frozen plan.md into .exec/ files (task files, project.md, status.json). Runs readiness checks and triggers WMS sync."
+description: "DEPRECATED — Use `/dsbv build` instead. This skill is now a sub-skill of /dsbv Build phase. Kept for backward compatibility."
 trigger: "When a plan.md is approved (Stage 3 gate passed) and .exec/ files need to be generated."
+deprecated: true
+redirect: "/dsbv build"
 ---
 # Execution Planner
+
+> **DEPRECATED:** This skill has been consolidated into `/dsbv build`. Use `/dsbv build` for all artifact production.
+> This file is retained for backward compatibility — invoking `/ltc-execution-planner` will still work but follows the `/dsbv build` workflow.
+> **Agent:** Artifact production is handled by `ltc-builder` (`.claude/agents/ltc-builder.md`).
 
 > **L2 Re-Injection — read these meta-rules before generating any .exec/ file.**
 > Do NOT rely on CLAUDE.md for these; context degrades under LT-2/LT-4 in long sessions.
@@ -48,18 +54,18 @@ Load these before generating .exec/ files:
 
 | Reference | Path | Purpose |
 |---|---|---|
-| Exec File Format | `2-PLAN/skills/ltc-execution-planner/references/exec-file-format.md` | Definitive .exec/ format specification |
-| Readiness Checks | `2-PLAN/skills/ltc-execution-planner/references/agent-readiness-checks.md` | 10-point quality gate checklist |
-| WMS Sync Protocol | `2-PLAN/skills/ltc-execution-planner/references/wms-sync-protocol.md` | Sync contract and conflict resolution |
+| Exec File Format | `3-PLAN/skills/ltc-execution-planner/references/exec-file-format.md` | Definitive .exec/ format specification |
+| Readiness Checks | `3-PLAN/skills/ltc-execution-planner/references/agent-readiness-checks.md` | 10-point quality gate checklist |
+| WMS Sync Protocol | `3-PLAN/skills/ltc-execution-planner/references/wms-sync-protocol.md` | Sync contract and conflict resolution |
 
 ## Templates
 
 | Template | Path | Purpose |
 |---|---|---|
-| Task File | `2-PLAN/skills/ltc-execution-planner/templates/task.md` | Individual task execution contract |
-| Deliverable | `2-PLAN/skills/ltc-execution-planner/templates/deliverable.md` | Deliverable contract with ACs and child tasks |
-| Project | `2-PLAN/skills/ltc-execution-planner/templates/project.md` | Execution topology and dependency graph |
-| Status Schema | `2-PLAN/skills/ltc-execution-planner/templates/status-schema.json` | JSON Schema for status.json validation |
+| Task File | `3-PLAN/skills/ltc-execution-planner/templates/task.md` | Individual task execution contract |
+| Deliverable | `3-PLAN/skills/ltc-execution-planner/templates/deliverable.md` | Deliverable contract with ACs and child tasks |
+| Project | `3-PLAN/skills/ltc-execution-planner/templates/project.md` | Execution topology and dependency graph |
+| Status Schema | `3-PLAN/skills/ltc-execution-planner/templates/status-schema.json` | JSON Schema for status.json validation |
 
 ## Generation Protocol
 
@@ -97,18 +103,21 @@ Load these before generating .exec/ files:
 
 ### Sub-Agent Dispatch
 
+> **NOTE:** This skill is deprecated. Prefer `/dsbv build` which uses `ltc-builder` agent file with context-packaging template. The legacy dispatch below is retained for backward compatibility only.
+
 For deliverables with 3+ tasks or medium+ complexity, use sub-agents:
 
-| Role | Model | Scope |
-|---|---|---|
-| Lead (you) | Opus | Parse plan, generate project.md, status.json, orchestrate |
-| Worker | Sonnet | Generate one deliverable's .exec/ files (deliverable.md + task files) |
+| Role | Agent File | Model | Scope |
+|---|---|---|---|
+| Lead (you) | — | Opus | Parse plan, generate project.md, status.json, orchestrate |
+| Worker | `.claude/agents/ltc-builder.md` | Sonnet | Generate one deliverable's .exec/ files (deliverable.md + task files) |
 
-Each worker sub-agent receives:
-- The deliverable section from plan.md
-- The relevant VANA-SPEC ACs
-- The task.md and deliverable.md templates
-- This SKILL.md (for meta-rules re-injection)
+Each worker sub-agent dispatch must use the context packaging template (`.claude/skills/dsbv/references/context-packaging.md`):
+- **EO:** "Deliverable {name} .exec/ files pass all readiness checks"
+- **INPUT:** Context (project identity), Files (deliverable section + templates), Budget (~15K tokens)
+- **EP:** EP-10 (Define Done), EP-09 (Decompose) + scope limited to one deliverable
+- **OUTPUT:** .exec/ files (deliverable.md + task files) + ACs from readiness-check.py
+- **VERIFY:** .exec/ files exist and `scripts/readiness-check.py` exits 0
 
 ## Failure Behavior
 
@@ -138,8 +147,8 @@ Full list: [gotchas.md](gotchas.md)
 After generation, run both validators:
 
 ```bash
-python3 2-PLAN/skills/ltc-execution-planner/scripts/readiness-check.py .exec/
-python3 2-PLAN/skills/ltc-execution-planner/scripts/coverage-check.py path/to/spec.md .exec/
+python3 3-PLAN/skills/ltc-execution-planner/scripts/readiness-check.py .exec/
+python3 3-PLAN/skills/ltc-execution-planner/scripts/coverage-check.py path/to/spec.md .exec/
 ```
 
 Both must exit 0 before execution (Stage 5) can begin.

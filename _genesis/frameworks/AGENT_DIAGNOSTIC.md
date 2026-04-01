@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 # Agent Diagnostic Framework — Quick Reference
@@ -12,7 +12,7 @@ Systematic blame-diagnostic: when agent output fails, trace through 6 configurab
 ## When to use
 - When agent output is wrong, incomplete, or unexpected
 - Before changing the model or adding more context
-- During retrospectives (4-IMPROVE)
+- During retrospectives (5-IMPROVE)
 
 ## Canonical source
 | Source | What it contains | When to load |

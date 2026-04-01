@@ -5,6 +5,6 @@ owner: "Long Nguyen"
 ---
 # WIKI PAGE TEMPLATE
 > Stub template — populate during project setup.
-> See `_genesis/frameworks/` for LTC methodology.
+> See `_shared/frameworks/` for LTC methodology.
 
 <!-- TODO: Fill in during ALIGN phase -->

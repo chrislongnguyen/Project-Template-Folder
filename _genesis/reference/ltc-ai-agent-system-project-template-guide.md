@@ -1,6 +1,7 @@
 ---
-version: "2.0"
-last_updated: 2026-03-29
+version: "1.3"
+status: Draft
+last_updated: 2026-03-31
 owner: "Long Nguyen"
 iteration: I1
 audience: "Human users (primary), AI agents (secondary)"
@@ -38,7 +39,7 @@ When you join a project that uses this template:
 |------|--------|-------|
 | 1 | Read the agent rules | `CLAUDE.md` (or `GEMINI.md` for AntiGravity) |
 | 2 | Understand the project purpose | `1-ALIGN/charter/` |
-| 3 | Check what can go wrong | `2-PLAN/risks/UBS_REGISTER.md` |
+| 3 | Check what can go wrong | `3-PLAN/risks/UBS_REGISTER.md` |
 | 4 | See where the project is | Run `/dsbv status` in Claude Code |
 | 5 | Start producing | Every artifact goes through DSBV (see §5) |
 
@@ -68,23 +69,27 @@ project-root/
 ├── 1-ALIGN/                     ← Zone 1: Choose the right outcome
 │   ├── charter/                 ← Why the project exists
 │   ├── decisions/               ← Architecture Decision Records
-│   ├── learning/                ← Learning pipeline outputs
-│   │   └── research/            ← Research notes, specs, visuals
 │   └── okrs/                    ← Objectives & Key Results
 │
-├── 2-PLAN/                      ← Zone 2: Minimize risks before acting
+├── 2-LEARN/                     ← Zone 2: Problem research workspace (ALPEI)
+│   ├── input/                   ← Raw WIP + scoping documents (no format enforcement)
+│   ├── research/                ← Structured synthesis + HTML visualizations
+│   ├── specs/                   ← VANA-SPEC extractions
+│   └── output/                  ← Final structured deliverables
+│
+├── 3-PLAN/                      ← Zone 3: Minimize risks before acting
 │   ├── risks/                   ← UBS register (what can go wrong)
 │   ├── drivers/                 ← UDS register (what to leverage)
 │   ├── architecture/            ← System design
 │   └── roadmap/                 ← Sequenced plan
 │
-├── 3-EXECUTE/                   ← Zone 3: Build and deliver
+├── 4-EXECUTE/                   ← Zone 3: Build and deliver
 │   ├── src/                     ← Source code
 │   ├── tests/                   ← Test suites
 │   ├── config/                  ← Environment configuration
 │   └── docs/                    ← Delivery documentation
 │
-├── 4-IMPROVE/                   ← Zone 4: Learn and grow
+├── 5-IMPROVE/                   ← Zone 4: Learn and grow
 │   ├── changelog/               ← What changed
 │   ├── metrics/                 ← What we measured
 │   ├── retrospectives/          ← What we learned
@@ -157,31 +162,52 @@ project-root/
 |--------|---------------|---------|
 | `charter/` | Project charter, stakeholders, requirements | Why this project exists and what success looks like |
 | `decisions/` | Architecture Decision Records (ADRs) | "We chose X over Y because..." |
-| `learning/` | Learning pipeline outputs | Research notes, specs, visual summaries |
 | `okrs/` | Objectives & Key Results | Measurable success criteria with pillar tags |
-
-**The Learning Pipeline:**
-
-Zone 1 is the only zone with a `learning/` folder. The `/learn` pipeline feeds into it:
-
-```
-/learn-input → /learn-research → /learn-structure → /learn-review → /learn-spec → /learn-visualize
-                                                                                        ↓
-                                                                        1-ALIGN/learning/
-```
-
-To use it: open Claude Code in your project and type `/learn`. The orchestrator guides you through all 6 steps. You review and approve each output before moving on.
 
 **When to add things here:**
 
 - Starting a new project → write the charter first
 - Making a non-trivial decision → ADR in `decisions/`
-- Researching a topic → run `/learn` → outputs go to `learning/`
 - Setting goals → define OKRs in `okrs/`
 
 ---
 
-### Zone 2 — PLAN (Minimize Failure Risks Before Acting)
+### Zone 2 — LEARN (Problem Research Workspace)
+
+**What it answers:** "What do we need to know before we plan or build?"
+
+Zone 2 is the dedicated research workspace in the ALPEI flow. It sits between ALIGN (right outcome) and PLAN (minimize risks). Learning outputs feed bidirectionally — back into ALIGN (refine charter/requirements) AND forward into PLAN (research inputs for risks/architecture).
+
+| Folder | What goes here | Example |
+|--------|---------------|---------|
+| `input/` | Raw WIP, personal notes, scoping documents (no format enforcement) | Vinh whiteboard photo, early braindumps |
+| `research/` | Structured synthesis notes, HTML visualizations | `/learn-research` outputs with `feeds:` frontmatter tag |
+| `specs/` | VANA-SPEC extractions | `/learn-spec` outputs — acceptance criteria from research |
+| `output/` | Final structured deliverables ready for consumption | Synthesis documents with explicit destinations |
+
+**The Learning Pipeline:**
+
+```
+/learn-input → /learn-research → /learn-structure → /learn-review → /learn-spec → /learn-visualize
+                                                                                        ↓
+                                                                             2-LEARN/
+```
+
+To use it: open Claude Code in your project and type `/learn`. The orchestrator guides you through all 6 steps. You review and approve each output before moving on.
+
+**Bidirectional feed:** Research documents in `research/` use a `feeds:` frontmatter field (`ALIGN`, `PLAN`, or `ALIGN, PLAN`) to declare which downstream zone consumes them. This prevents orphaned research.
+
+**When to add things here:**
+
+- Researching a topic before committing to a decision → run `/learn` → outputs go to `2-LEARN/`
+- Raw notes or personal WIP → drop in `input/` without format enforcement
+- Synthesized research ready for ALIGN/PLAN consumption → `research/` with `feeds:` tag
+
+---
+
+### Zone 3 — PLAN (Minimize Failure Risks Before Acting)
+
+**Note:** Zone 3 in ALPEI flow. Folder path remains `3-PLAN/` (filesystem numbering preserved from APEI baseline).
 
 **What it answers:** "What can go wrong? What should we leverage? In what order?"
 
@@ -293,7 +319,7 @@ Each layer builds on the one before. Don't create a framework that contradicts p
 2. Configure `.claude/settings.json` — **do this first**, it's your safety net
 3. Edit `CLAUDE.md` — replace placeholders with your project details
 4. Write the charter: `1-ALIGN/charter/`
-5. Identify risks: `2-PLAN/risks/UBS_REGISTER.md`
+5. Identify risks: `3-PLAN/risks/UBS_REGISTER.md`
 6. Start DSBV: `/dsbv design align`
 
 ### Using the DSBV Process
@@ -319,7 +345,7 @@ Every zone produces artifacts through **Design → Sequence → Build → Valida
 | `/learn-research` | Run just the research step on its own |
 | `/learn-spec` | Convert notes to a formal spec |
 
-All outputs land in `1-ALIGN/learning/`. If you stop mid-pipeline, the outputs already saved remain — you can continue from any step later.
+All outputs land in `2-LEARN/`. If you stop mid-pipeline, the outputs already saved remain — you can continue from any step later.
 
 ### Finding Any File
 
@@ -335,8 +361,8 @@ All outputs land in `1-ALIGN/learning/`. If you stop mid-pipeline, the outputs a
 | EOP governance | `_genesis/reference/ltc-eop-gov.md` |
 | Any skill | `.claude/skills/{category}/{skill-name}/SKILL.md` |
 | Project charter | `1-ALIGN/charter/` |
-| Risk register | `2-PLAN/risks/UBS_REGISTER.md` |
-| Changelog | `4-IMPROVE/changelog/CHANGELOG.md` |
+| Risk register | `3-PLAN/risks/UBS_REGISTER.md` |
+| Changelog | `5-IMPROVE/changelog/CHANGELOG.md` |
 | This guide | `_genesis/reference/ltc-ai-agent-system-project-template-guide.md` |
 
 ---
@@ -369,25 +395,32 @@ ZONE_MAP:
 
   zone_1_align:
     path: 1-ALIGN/
-    subfolders: [charter/, decisions/, learning/, okrs/]
+    subfolders: [charter/, decisions/, okrs/]
     purpose: choose_the_right_outcome
-    key_artifacts: [PROJECT_CHARTER.md, ADR-*.md, learning pipeline outputs]
-    has_learning_pipeline: true
+    key_artifacts: [PROJECT_CHARTER.md, ADR-*.md]
 
-  zone_2_plan:
-    path: 2-PLAN/
+  zone_2_learn:
+    path: 2-LEARN/
+    subfolders: [input/, research/, specs/, output/]
+    purpose: problem_research_workspace
+    key_artifacts: [research synthesis docs, VANA-SPEC files, HTML visualizations]
+    has_learning_pipeline: true
+    feeds: [zone_1_align, zone_3_plan]
+
+  zone_3_plan:
+    path: 3-PLAN/
     subfolders: [risks/, drivers/, architecture/, roadmap/]
     purpose: minimize_failure_risks
     key_artifacts: [UBS_REGISTER.md, UDS_REGISTER.md, SYSTEM_DESIGN.md]
 
-  zone_3_execute:
-    path: 3-EXECUTE/
+  zone_4_execute:
+    path: 4-EXECUTE/
     subfolders: [src/, tests/, config/, docs/]
     purpose: build_and_deliver
     key_artifacts: [source code, test suites, deployment configs]
 
-  zone_4_improve:
-    path: 4-IMPROVE/
+  zone_5_improve:
+    path: 5-IMPROVE/
     subfolders: [changelog/, metrics/, retrospectives/, reviews/, risk-log/]
     purpose: learn_and_grow
     key_artifacts: [CHANGELOG.md, retrospectives, metrics dashboards]
@@ -400,14 +433,14 @@ ZONE_MAP:
     categories: 13
 
 ROUTING_RULES:
-  - "research notes"    → 1-ALIGN/learning/
+  - "research notes"    → 2-LEARN/research/
   - "decision record"   → 1-ALIGN/decisions/
-  - "risk identified"   → 2-PLAN/risks/
-  - "driver identified" → 2-PLAN/drivers/
-  - "source code"       → 3-EXECUTE/src/
-  - "test suite"        → 3-EXECUTE/tests/
-  - "retrospective"     → 4-IMPROVE/retrospectives/
-  - "changelog entry"   → 4-IMPROVE/changelog/
+  - "risk identified"   → 3-PLAN/risks/
+  - "driver identified" → 3-PLAN/drivers/
+  - "source code"       → 4-EXECUTE/src/
+  - "test suite"        → 4-EXECUTE/tests/
+  - "retrospective"     → 5-IMPROVE/retrospectives/
+  - "changelog entry"   → 5-IMPROVE/changelog/
   - "new template"      → _genesis/templates/
   - "new skill"         → .claude/skills/{category}/
   - "new rule"          → .claude/rules/ (always-loaded) or rules/ (global)

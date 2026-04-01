@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+status: Draft
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI zone. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
@@ -66,6 +67,18 @@ Report readiness as a table: `C1: GREEN | C2: RED — missing prior zone output 
 
 **Practical execution guidance:** Read [references/phase-execution-guide.md](references/phase-execution-guide.md) for quality patterns per phase — what good DESIGN.md looks like, dependency ordering by zone, Build quality checkpoints, Validate evidence standards.
 
+## Agent Dispatch Protocol
+
+Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST use the 5-field context packaging template. This is always-on — not phase-specific.
+
+**Template:** `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY)
+
+**Rule:** `.claude/rules/agent-dispatch.md` — enforced via PreToolUse hook; ad-hoc Agent() calls without the 5-field structure are blocked.
+
+**Why:** Context degradation (LT-2) causes sub-agents to drift from scope when given unstructured prompts. The 5-field template is the minimum viable context package that compensates. An Agent() call is only as good as the context it receives.
+
+---
+
 ## Phase 1: DESIGN
 
 **What this does:** Defines WHAT the zone must produce and WHY — before any work begins. This is the contract. If it is not in DESIGN.md, it is not in scope.
@@ -74,7 +87,9 @@ Report readiness as a table: `C1: GREEN | C2: RED — missing prior zone output 
 
 **Steps:**
 1. Ask the user for their high-level intent (1-3 sentences about what this zone should accomplish)
-2. Load `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` as the Design template
+2. Look up the Design template: grep `## Routing: {zone}` in
+   `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`, Design row, Template column.
+   Default: `DESIGN_TEMPLATE.md` if routing table not yet populated for this zone.
 3. Draft DESIGN.md: artifact inventory, per-artifact purpose, success rubric, acceptance criteria
 4. **Alignment check (mandatory before presenting):**
    - For every completion condition: which artifact satisfies it? Write the mapping.
@@ -113,6 +128,9 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
 
 **Zone-aware behavior:**
 
+For the current zone's Build-phase template and agent, look up:
+`_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § `## Routing: {ZONE}`, Build row.
+
 | Zone type | Default pattern | Why |
 |---|---|---|
 | Design-heavy (ALIGN, PLAN) | Competing Hypotheses + Synthesis: 3 Sonnet agents produce parallel drafts, 1 Opus synthesizes | Open-ended work benefits from diverse perspectives. Missing a risk in ALIGN has high blast radius. |
@@ -128,10 +146,12 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
   Proceed with multi-agent? [y/n]
   ```
 
+**Agent dispatch:** When spawning sub-agents for Build, use the `ltc-builder` agent file (`.claude/agents/ltc-builder.md`). This ensures Sonnet model, tool allowlist (Read, Edit, Write, Bash, Grep), and scope constraints are enforced deterministically via the agent file — not inline prompt. **Context packaging:** Every Agent() call must use the 5-field template in `references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
+
 **Steps (single-agent):**
 1. For each task in SEQUENCE.md in order:
-   a. Implement the artifact
-   b. Self-verify against task acceptance criteria
+   a. Dispatch to `ltc-builder` with context package (see `references/context-packaging.md`)
+   b. ltc-builder self-verifies against task acceptance criteria
    c. Checkpoint commit
 2. When all tasks complete, report status
 
@@ -139,7 +159,7 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 
 **Steps (multi-agent):**
 1. Show cost estimate. Wait for human approval.
-2. Launch N agents in parallel, each producing a complete draft for the task set
+2. Launch N `ltc-builder` agents in parallel, each producing a complete draft for the task set
 3. Opus synthesizes: selects best elements from each draft, resolves conflicts
 4. Present synthesis to the user
 5. Checkpoint commit
@@ -152,13 +172,18 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 
 **Why it matters:** Without validation, errors compound across zones. A flawed ALIGN produces a flawed PLAN produces a flawed EXECUTE (LT-3: errors cascade through reasoning chains).
 
+**Agent dispatch:** When spawning a sub-agent for Validate, use the `ltc-reviewer` agent file (`.claude/agents/ltc-reviewer.md`). This ensures Opus model, read-only tool allowlist (Read, Glob, Grep, Bash), and evidence-based review protocol are enforced via the agent file. **Context packaging:** Use `references/context-packaging.md` template (EO, INPUT, EP, OUTPUT, VERIFY).
+
 **Steps:**
-1. Load `_genesis/templates/DSBV_EVAL_TEMPLATE.md` as the evaluation template
-2. Check **Completeness** — all artifacts listed in DESIGN.md are present
-3. Check **Quality** — each artifact passes its success rubric
-4. Check **Coherence** — artifacts do not contradict each other
-5. Check **Downstream readiness** — the next zone can start with these outputs
-6. Produce a validation report: pass/fail per criterion
+1. Dispatch to `ltc-reviewer` with: DESIGN.md, list of produced artifacts, zone context
+2. ltc-reviewer loads the Validate-phase template from
+   `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § `## Routing: {ZONE}`, Validate row, Template column.
+   Default: `DSBV_EVAL_TEMPLATE.md` if routing table not yet populated for this zone.
+3. Check **Completeness** — all artifacts listed in DESIGN.md are present
+4. Check **Quality** — each artifact passes its success rubric
+5. Check **Coherence** — artifacts do not contradict each other
+6. Check **Downstream readiness** — the next zone can start with these outputs
+7. Produce a validation report: pass/fail per criterion with file-path evidence
 
 **Output:** `{zone-number}-{ZONE}/VALIDATE.md` — validation report with pass/fail per criterion
 
@@ -166,21 +191,48 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 
 ## Status Command
 
-`/dsbv status` outputs a table:
+`/dsbv status` reads `0-GOVERN/VERSION_REGISTRY.md` and renders the 20-row cell-level progress table.
+
+**Full output format:**
 
 ```
-DSBV Status — [Zone Name]
-┌───────────┬────────────┬───────────────────────────┐
-│ Phase     │ Status     │ Artifact                  │
-├───────────┼────────────┼───────────────────────────┤
-│ Design    │ Approved   │ 1-ALIGN/DESIGN.md         │
-│ Sequence  │ Approved   │ 1-ALIGN/SEQUENCE.md       │
-│ Build     │ In Progress│ 3/7 tasks complete        │
-│ Validate  │ Not Started│ —                         │
-└───────────┴────────────┴───────────────────────────┘
+DSBV Status — I1 (YYYY-MM-DD)
+┌─────────────────────────┬──────────────────────────┬─────────┬─────────────┬──────────┐
+│ Zone × Phase            │ Deliverable              │ Version │ Status      │ AC Pass  │
+├─────────────────────────┼──────────────────────────┼─────────┼─────────────┼──────────┤
+│ 1-ALIGN × Design        │ DESIGN.md                │ 1.4     │ Draft       │ —        │
+│ 1-ALIGN × Sequence      │ SEQUENCE.md              │ 1.3     │ Draft       │ —        │
+│ 1-ALIGN × Build         │ Charter+ADRs+OKRs        │ 1.x     │ In Progress │ 28/30    │
+│ 1-ALIGN × Validate      │ VALIDATE.md              │ 1.2     │ Draft       │ 28/30    │
+│ 2-LEARN × Design        │ DESIGN.md                │ 1.0     │ Approved    │ —        │
+│ 2-LEARN × Sequence      │ SEQUENCE.md              │ 1.1     │ Approved    │ —        │
+│ 2-LEARN × Build         │ input/research/specs/out │ 1.x     │ In Progress │ —        │
+│ 2-LEARN × Validate      │ VALIDATE.md              │ —       │ Not Started │ —        │
+│ 3-PLAN × Design         │ DESIGN.md                │ —       │ Pending     │ —        │
+│ 3-PLAN × Sequence       │ SEQUENCE.md              │ —       │ Pending     │ —        │
+│ 3-PLAN × Build          │ UBS/UDS/Architecture     │ —       │ Pending     │ —        │
+│ 3-PLAN × Validate       │ VALIDATE.md              │ —       │ Pending     │ —        │
+│ 4-EXECUTE × Design      │ DESIGN.md                │ 1.2     │ Draft       │ —        │
+│ 4-EXECUTE × Sequence    │ SEQUENCE.md              │ —       │ Not Started │ —        │
+│ 4-EXECUTE × Build       │ src/tests/config/docs    │ —       │ Not Started │ —        │
+│ 4-EXECUTE × Validate    │ VALIDATE.md              │ —       │ Not Started │ —        │
+│ 5-IMPROVE × Design      │ DESIGN.md                │ —       │ Pending     │ —        │
+│ 5-IMPROVE × Sequence    │ SEQUENCE.md              │ —       │ Pending     │ —        │
+│ 5-IMPROVE × Build       │ CHANGELOG/metrics/retros │ 1.0     │ Pending     │ —        │
+│ 5-IMPROVE × Validate    │ VALIDATE.md              │ —       │ Pending     │ —        │
+└─────────────────────────┴──────────────────────────┴─────────┴─────────────┴──────────┘
+Active zone: 2-LEARN × Build (In Progress)
+Next gate: 2-LEARN × Validate → human approval required
 ```
 
-Status is derived from file existence and content — not stored separately.
+**Single-zone summary (backward-compatible):** `/dsbv status [zone]` filters to 4 rows for that zone only, preserving the same column structure.
+
+**Data source:** All values read from `0-GOVERN/VERSION_REGISTRY.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
+
+**Status vocabulary (6 values only):** `Not Started` | `Pending` | `Draft` | `Review` | `In Progress` | `Approved`
+- `Pending` = upstream zone not Approved — this cell cannot start yet
+- `Not Started` = upstream is ready but this cell's primary artifact does not exist
+- `Approved` = human-set only; agents never self-approve
 
 ## If the User Seems Lost
 

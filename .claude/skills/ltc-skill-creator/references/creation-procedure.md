@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # Skill Creation Procedure
 
 Follow these steps in order. Do not skip steps unless explicitly noted.
@@ -45,7 +49,7 @@ If unsure, start SIMPLE. Upgrade to STANDARD when SKILL.md exceeds 40 lines.
 
 | Skill Type | Location | Example |
 |-----------|----------|---------|
-| Zone-specific | `{N}-{ZONE}/skills/{name}/` | `4-IMPROVE/skills/feedback/` |
+| Zone-specific | `{N}-{ZONE}/skills/{name}/` | `5-IMPROVE/skills/feedback/` |
 | Agent governance | `.claude/skills/{name}/` | `.claude/skills/ltc-skill-creator/` |
 | Cross-project shared | `_genesis/skills/{name}/` | `_genesis/skills/common-lint/` |
 

@@ -103,13 +103,19 @@ owner: "Long Nguyen"
 
 > **Note:** Tenorite (Microsoft 365 private font) was previously specified for English. Inter replaces it for all agent-generated output because Tenorite is unavailable outside MS Office.
 
-### Type Hierarchy (base size A = 11pt)
-| Level | Scale | Size |
-|-------|-------|------|
-| Headlines | A * 6 | 66pt |
-| Sub-Title | A * 3 | 33pt |
-| Body Title | A * 1.6 | ~18pt |
-| Body Text | A (base) | 11pt |
+### Type Hierarchy (base size A = 11pt, Google Docs convention)
+
+| Level | Size | Weight | Style | Color | Use case |
+|-------|------|--------|-------|-------|----------|
+| Title | 32pt | Bold (700) | Normal | Midnight Green #004851 | Document/slide titles, cover pages |
+| Heading 1 | 20pt | Bold (700) | Normal | Midnight Green #004851 | Major sections |
+| Heading 2 | 16pt | Bold (700) | Normal | Midnight Green #004851 | Sub-sections |
+| Heading 3 | 14pt | Bold (700) | Normal | Midnight Green #004851 | Sub-sub-sections |
+| Heading 4 | 11pt | Bold (700) | Normal | Midnight Green #004851 | Inline headings, label groups |
+| Body Text | 11pt | Regular (400) | Normal | Dark Gunmetal #1D1F2A | All body copy |
+| Caption | 9pt | Regular (400) | Italic | Gray #787B86 | Footnotes, sources, annotations |
+
+> **Design rationale:** Scale follows Google Docs defaults for cross-platform consistency across Docs, Slides (slidedoc format), and Sheets. Bold (700) used for all headings — Google Workspace apps only support bold on/off, no semi-bold (600) distinction.
 
 ### For HTML/CSS output
 - Inter: `'Inter', system-ui, -apple-system, sans-serif`

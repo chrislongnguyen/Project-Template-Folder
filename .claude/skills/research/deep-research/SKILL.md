@@ -1,11 +1,17 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: deep-research
 description: Multi-source research using the 12-question CODE framework (Knowledge → Understanding → Wisdom → Expertise) with Blue-Red team falsification. 4 modes — research:lite (2-5min, ~70K tokens), research:mid (5-10min, ~200K tokens), research:deep (10-20min, ~350K tokens), research:full (20-45min, ~600K tokens). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
+agents:
+  research: ltc-explorer
+tool-preference: "Exa MCP and WebSearch are peers. Exa for speed; WebSearch for source quality and academic rigor."
 ---
 # Deep Research
+
+**Agent dispatch:** For research sub-agent spawning, use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) — Haiku model, optimized for fast wide-net search. **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
+**Tool preference:** Exa MCP and WebSearch are both available for external research. Exa is faster (48% fewer tool calls); WebSearch finds higher-quality sources (academic papers, official docs). Choose based on task requirements.
 
 ## Decision Tree (Execute First)
 

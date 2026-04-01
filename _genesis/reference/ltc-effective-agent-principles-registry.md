@@ -31,8 +31,11 @@ owner: "Long Nguyen"
 | EP-08 | Input | Signal Over Volume | DERISK | LT-2 + LT-4 | Every unnecessary token actively degrades the agent's ability to use the tokens that matter. |
 | EP-09 | Input | Decompose Before You Delegate | DERISK | LT-3 | Break complex tasks into agent-digestible pieces before sending them. |
 | EP-10 | Input | Define Done | OUTPUT | LT-5 + LT-8 | Embed testable success criteria so the agent can verify its own work before reporting completion. |
+| EP-11 | EOE | Agent Role Separation | DERISK | LT-8 + LT-3 | Each agent has a declared scope boundary; cross-boundary actions require explicit handoff. |
+| EP-12 | Input | Verified Handoff | DERISK | LT-1 + LT-5 | Output passing between agents must pass receiving agent's ACs before being treated as ground truth. |
+| EP-13 | Agent | Orchestrator Authority | OUTPUT | UT#9 + EP-03 | Exactly one orchestrator owns decomposition and synthesis. Sub-agents are R only, never A. |
 
-**Distribution:** 8 DERISK, 2 OUTPUT. This reflects UT#5: managing failure risk is more important than maximising output.
+**Distribution:** 10 DERISK, 3 OUTPUT. This reflects UT#5: managing failure risk is more important than maximising output. The two new DERISK principles (EP-11, EP-12) address multi-agent coordination risks.
 
 ---
 
@@ -135,6 +138,20 @@ Source:       AMT session and section reference
 **APEI Application:** Human Director owns ALIGN + PLAN (judgment-heavy). Agent Team owns EXECUTE (execution-heavy). Zone 4 IMPROVE is the feedback loop connecting them. RACI separation: R ≠ A (UT#9).
 
 **Source:** AMT Session 0, §3 + §5
+
+---
+
+**Multi-Agent Extension (added 2026-03-30):**
+
+In multi-agent systems, EP-03 extends from two operators to three layers:
+
+| Layer | Role | RACI | Failure Mode |
+|---|---|---|---|
+| Human Director | Strategic judgment, approval, accountability | **A** | Cognitive shortcuts (System 1) |
+| Orchestrator Agent (Opus) | Task decomposition, synthesis, quality gates | **C** (consulted by sub-agents) | LT-3 (reasoning under complexity), LT-8 (alignment drift) |
+| Sub-Agents (Sonnet/Haiku) | Task execution within declared scope | **R** | LT-1 (hallucination), LT-8 (scope creep) |
+
+The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces scope boundaries. EP-12 (Verified Handoff) ensures inter-agent output quality. EP-13 (Orchestrator Authority) establishes the single point of synthesis.
 
 ---
 
@@ -306,6 +323,72 @@ Source:       AMT session and section reference
 **APEI Application:** Every .exec/ task file contains: VANA traceability, acceptance criteria (binary, deterministic), Definition of Done, and a Verify command (bash command proving task completion). The agent can self-check before reporting done. The readiness-check validates that every task has these fields populated.
 
 **Source:** AMT Session 3, §3
+
+---
+
+### EP-11: Agent Role Separation [DERISK]
+
+**Component:** EOE (multi-agent coordination)
+
+**Statement:** Each agent has a declared scope boundary; cross-boundary actions require explicit handoff protocol.
+
+**Grounded in:** LT-8 (alignment drift per agent — without scope enforcement, agents expand into adjacent work) + LT-3 (reasoning degrades when scope is too broad — a builder doing design+build+validate degrades all three).
+
+**Without this:** ltc-builder starts doing design work because nothing enforces scope. Two agents modify the same file concurrently with no conflict detection.
+
+**Compensated by:** Agent file `tools:` allowlist (deterministic — restricts which tools each agent can use), skill routing (probabilistic — each skill declares which agent type handles it).
+
+**Patterns:**
+- Scope Declaration at Spawn — every agent prompt begins with explicit scope boundary. If a task crosses boundaries, the agent surfaces a handoff request rather than resolving unilaterally.
+- MECE File Ownership — agents operating in parallel are assigned non-overlapping file targets. Shared files written by one designated agent per phase.
+
+**APEI Application:** Zone 1-2 (ALIGN, PLAN) are ltc-planner's domain. Zone 3 (EXECUTE) is ltc-builder's domain. Zone 4 (IMPROVE) is ltc-reviewer-initiated. Handoff artifacts (PLANNING_BASELINE.md, .exec/ task files) are the formal scope boundaries between zones.
+
+**Source:** Multi-agent orchestration design spec (2026-03-30) + AMT LT-8, LT-3.
+
+---
+
+### EP-12: Verified Handoff [DERISK]
+
+**Component:** Input (inter-agent context)
+
+**Statement:** Output passing between agents must pass the receiving agent's acceptance criteria before being treated as ground truth.
+
+**Grounded in:** LT-1 (hallucination in Agent A becomes ground truth for Agent B — error amplification across agent boundaries) + LT-5 (plausible output from one agent is treated as true by the next without verification).
+
+**Without this:** Agent A hallucinates a requirement. Agent B builds it faithfully. The defect is invisible until human review — the most expensive failure mode in multi-agent systems.
+
+**Compensated by:** SubagentStop hook (deterministic — blocks sub-agent completion if ACs fail), context packaging template (structured handoff with explicit VERIFY field).
+
+**Patterns:**
+- AC Gate at Handoff — every inter-agent output includes acceptance criteria that the receiving agent or a verification hook checks before proceeding.
+- Context Packaging v2.0 — the 5-field template (EO, INPUT, EP, OUTPUT, VERIFY) ensures every sub-agent dispatch includes self-verification criteria.
+
+**APEI Application:** Zone boundaries are handoff points. Zone 1→2 handoff (PLANNING_BASELINE.md) must pass Zone 2 entry criteria. Zone 2→3 handoff (.exec/ files) must pass readiness checks. The SubagentStop hook enforces EP-12 deterministically at the sub-agent level.
+
+**Source:** Multi-agent orchestration design spec (2026-03-30) + AMT LT-1, LT-5.
+
+---
+
+### EP-13: Orchestrator Authority [OUTPUT]
+
+**Component:** Agent (multi-agent governance)
+
+**Statement:** Exactly one orchestrator agent owns task decomposition and result synthesis. Sub-agents are Responsible only, never Accountable. Human Director remains Accountable.
+
+**Grounded in:** UT#9 (R ≠ A — Responsible and Accountable must not be the same entity) + EP-03 (Two Operators extended for multi-agent RACI).
+
+**Without this:** Two agents both decompose the same task differently. No single point of synthesis. Outputs conflict with no arbiter.
+
+**Compensated by:** DSBV skill as orchestrator (EOP — the skill defines who decomposes and who synthesizes), lead agent model selection (EOE — Opus for orchestration, Sonnet for execution).
+
+**Patterns:**
+- Single Orchestrator — one lead agent (typically Opus) owns the DSBV flow. Sub-agents (typically Sonnet) execute individual tasks and return results. The lead synthesizes.
+- RACI at Agent Level — Human=Accountable, Lead=Consulted+Synthesizer, Sub-agents=Responsible. No sub-agent makes architectural decisions.
+
+**APEI Application:** In competing-hypotheses builds (ADR-001 Option C), N Sonnet agents are R for producing drafts. One Opus agent is the synthesis authority. Human Director is A for the final output. This mirrors the Human-Agent RACI from EP-03 but adds the orchestrator layer.
+
+**Source:** Multi-agent orchestration design spec (2026-03-30) + UT#9 (RACI), EP-03.
 
 ---
 

@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # Plan Review Loop & Execution Handoff
 
 Reference extracted from SKILL.md. Loaded on demand after plan validation passes.
@@ -24,7 +28,7 @@ After writing the complete plan and passing the validation checklist:
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `2-PLAN/architecture/plans/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `3-PLAN/architecture/plans/<filename>.md`. Two execution options:**
 
 **1. Subagent-Driven (recommended)** — I dispatch a fresh subagent per task, review between tasks, fast iteration
 

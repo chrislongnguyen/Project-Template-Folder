@@ -1,8 +1,8 @@
 ---
-version: "1.2"
+version: "1.3"
 iteration: "I1: Concept"
 status: Draft
-last_updated: 2026-03-29
+last_updated: 2026-03-30
 owner: Long Nguyen
 ---
 # DSBV Process — Design, Sequence, Build, Validate
@@ -35,7 +35,7 @@ Each zone runs all 4 DSBV phases internally. The zone determines the content; DS
 - Run `/dsbv status` to see current progress across all zones
 - Run `./scripts/dsbv-gate.sh` to manually check zone-boundary readiness
 - Skill definition: `.claude/skills/dsbv/SKILL.md` | Rule: `.claude/rules/dsbv.md`
-- Context template: `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` | Evaluation template: `_genesis/templates/DSBV_EVAL_TEMPLATE.md`
+- Context template: `_shared/templates/DSBV_CONTEXT_TEMPLATE.md` | Evaluation template: `_shared/templates/DSBV_EVAL_TEMPLATE.md`
 
 ---
 
@@ -260,11 +260,11 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 |----------|------|
 | DSBV Skill | `.claude/skills/dsbv/SKILL.md` |
 | DSBV Rule | `.claude/rules/dsbv.md` |
-| Context Template | `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` |
-| Evaluation Template | `_genesis/templates/DSBV_EVAL_TEMPLATE.md` |
+| Context Template | `_shared/templates/DSBV_CONTEXT_TEMPLATE.md` |
+| Evaluation Template | `_shared/templates/DSBV_EVAL_TEMPLATE.md` |
 | Zone-Boundary Gate | `scripts/dsbv-gate.sh` |
 | Design-Phase Guard | `scripts/dsbv-skill-guard.sh` |
-| ALIGN Retrospective | `4-IMPROVE/retrospectives/DSBV_ALIGN_RETRO.md` |
+| ALIGN Retrospective | `5-IMPROVE/retrospectives/DSBV_ALIGN_RETRO.md` |
 
 ---
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <defs>
+    <style>
+      text { font-family: 'Inter', sans-serif; }
+      .vn { font-family: 'Work Sans', sans-serif; }
+    </style>
+  </defs>
+  <rect width="400" height="200" fill="#004851"/>
+  <text x="200" y="80" text-anchor="middle" fill="#F2C75C" font-size="28">
+    LT Capital Partners
+  </text>
+  <text x="200" y="120" text-anchor="middle" fill="#FFFFFF" font-size="14" class="vn">
+    Mẫu tuân thủ thương hiệu
+  </text>
+  <circle cx="50" cy="170" r="15" fill="#9B1842"/>
+  <circle cx="90" cy="170" r="15" fill="#69994D"/>
+  <circle cx="130" cy="170" r="15" fill="#653469"/>
+</svg>

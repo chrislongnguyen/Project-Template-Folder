@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 # THE 6 WORK STREAMS
@@ -17,13 +17,13 @@ Life and work are uncertain — the most effective approach is to iterate across
 | # | Work Stream | Key Question | Zone in Project |
 |---|-------------|-------------|-----------------|
 | 1 | **Self/Team Alignment** | Are we solving the right problem? | `1-ALIGN/` |
-| 2 | **Risk Management** | What can go wrong? | `2-PLAN/risks/` + everywhere |
-| 3 | **Effective Learning** | What do we need to know? | `1-ALIGN/learning/` |
-| 4 | **Effective Thinking** | What are our options? | `2-PLAN/architecture/` |
-| 5 | **Effective Decision Making** | Which option is best? | `2-PLAN/roadmap/` + `1-ALIGN/decisions/` |
-| 6 | **Effective Execution** | Are we building it right? | `3-EXECUTE/` |
+| 2 | **Risk Management** | What can go wrong? | `3-PLAN/risks/` + everywhere |
+| 3 | **Effective Learning** | What do we need to know? | `2-LEARN/` |
+| 4 | **Effective Thinking** | What are our options? | `3-PLAN/architecture/` |
+| 5 | **Effective Decision Making** | Which option is best? | `3-PLAN/roadmap/` + `1-ALIGN/decisions/` |
+| 6 | **Effective Execution** | Are we building it right? | `4-EXECUTE/` |
 
-**Continuous Improvement** feeds back from `4-IMPROVE/` into all 6 work streams.
+**Continuous Improvement** feeds back from `5-IMPROVE/` into all 6 work streams.
 
 ## Why Concurrent, Not Sequential?
 - A developer might discover new risks (WS2) during execution (WS6)

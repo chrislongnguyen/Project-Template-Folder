@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: learn-spec
 description: >
@@ -16,7 +16,7 @@ allowed-tools: Read, Glob, Write, Bash
 # /learn:spec — VANA-SPEC + DSBV Readiness Generator
 
 Reads 6 approved T0 Effective Learning pages and produces two output files
-for `1-ALIGN/learning/specs/{system-slug}/`:
+for `2-LEARN/specs/{system-slug}/`:
 
 1. `vana-spec.md` — VANA-SPEC handoff to Build pipeline
 2. `DSBV-READY-{slug}.md` — C1-C6 Readiness Package for DSBV Design gate
@@ -27,7 +27,7 @@ VANA extraction rules and template structure live in
 ## Arguments
 
 Parse `{system-slug}` from the invocation (e.g., `/learn:spec data-foundation`).
-If missing, check for a single `1-ALIGN/learning/input/learn-input-*.md`. Use it if exactly one exists.
+If missing, check for a single `2-LEARN/input/learn-input-*.md`. Use it if exactly one exists.
 
 <HARD-GATE>
 1. All 6 T0 pages must have `status: approved` frontmatter — halt if any is missing.
@@ -41,20 +41,20 @@ If missing, check for a single `1-ALIGN/learning/input/learn-input-*.md`. Use it
 ## Injected Context
 
 ### Learn Input Metadata
-!`cat 1-ALIGN/learning/input/learn-input-*.md 2>/dev/null`
+!`cat 2-LEARN/input/learn-input-*.md 2>/dev/null`
 
 ### VANA-SPEC Template
-!`cat 1-ALIGN/learning/templates/vana-spec-template.md 2>/dev/null`
+!`cat 2-LEARN/templates/vana-spec-template.md 2>/dev/null`
 
 ---
 
 ## Pre-Checks
 
-1. Verify `1-ALIGN/learning/output/{system-slug}/T0.P0-overview-and-summary.md` exists. If not, error: "Run /learn:structure first."
+1. Verify `2-LEARN/output/{system-slug}/T0.P0-overview-and-summary.md` exists. If not, error: "Run /learn:structure first."
 2. Collect all 6 T0 page files and check `status:` frontmatter:
    - If any page is not `status: approved`, error: "Page T0.P{m} is not approved. Run /learn:review first."
-3. Read `1-ALIGN/learning/templates/vana-spec-template.md`. If missing, error: "vana-spec-template.md not found."
-4. Run: `mkdir -p 1-ALIGN/learning/specs/{system-slug}`
+3. Read `2-LEARN/templates/vana-spec-template.md`. If missing, error: "vana-spec-template.md not found."
+4. Run: `mkdir -p 2-LEARN/specs/{system-slug}`
 
 ---
 
@@ -81,14 +81,14 @@ Also extracts: SPAWNED ACs (I4, from P5 NEXT cells) and Hardening ACs (I4, from 
 
 ## Output 1: VANA-SPEC
 
-Write fully populated VANA-SPEC to `1-ALIGN/learning/specs/{system-slug}/vana-spec.md`.
+Write fully populated VANA-SPEC to `2-LEARN/specs/{system-slug}/vana-spec.md`.
 Preserve all HTML comment derivation hints. Replace all `{placeholder}` values.
 
 ---
 
 ## Output 2: DSBV Readiness Package
 
-Write `1-ALIGN/learning/specs/{system-slug}/DSBV-READY-{slug}.md` with this structure:
+Write `2-LEARN/specs/{system-slug}/DSBV-READY-{slug}.md` with this structure:
 
 ```
 # DSBV Readiness Package — {system_name}
@@ -99,7 +99,7 @@ Generated: {date} | Skill: /learn:spec
 | # | Condition | Status | Evidence |
 |---|-----------|--------|----------|
 | C1 | Clear scope | GREEN | VANA-SPEC §1 defines system boundary |
-| C2 | Input materials curated | GREEN | P0-P5 pages in 1-ALIGN/learning/output/{slug}/ |
+| C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/output/{slug}/ |
 | C3 | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
 | C4 | Process definition loaded | GREEN | _genesis/templates/DSBV_PROCESS.md exists |
 | C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA zones |
@@ -112,15 +112,15 @@ All C1-C6 GREEN → DSBV Design phase may begin.
 | P-page | Zone Artifact | Feeds Into |
 |--------|--------------|------------|
 | P0 (System Context) | System identity, scope | DESIGN.md §1 |
-| P1 (Blockers/UBS) | UBS entries | 2-PLAN/risks/UBS_REGISTER.md |
-| P2 (Drivers/UDS) | UDS entries | 2-PLAN/drivers/UDS_REGISTER.md |
+| P1 (Blockers/UBS) | UBS entries | 3-PLAN/risks/UBS_REGISTER.md |
+| P2 (Drivers/UDS) | UDS entries | 3-PLAN/drivers/UDS_REGISTER.md |
 | P3 (Principles/EP) | EP candidates | Agent rules, design principles |
-| P4 (Components) | Component map | 2-PLAN/architecture/SYSTEM_DESIGN.md |
-| P5 (Steps to Apply) | Sequence hints | 2-PLAN/roadmap/EXECUTION_PLAN.md |
+| P4 (Components) | Component map | 3-PLAN/architecture/SYSTEM_DESIGN.md |
+| P5 (Steps to Apply) | Sequence hints | 3-PLAN/roadmap/EXECUTION_PLAN.md |
 
 ## Summary
 
-- VANA-SPEC: 1-ALIGN/learning/specs/{slug}/vana-spec.md
+- VANA-SPEC: 2-LEARN/specs/{slug}/vana-spec.md
 - Total ACs: {grand_total} ({N} Verb, {N} Adverb, {N} Noun, {N} Adjective)
 - Next: /learn:handoff {slug} — review spec with Human Director before building
 ```
@@ -137,7 +137,7 @@ After writing both files, print:
 System:   {system_name}
 Slug:     {system-slug}
 
-Output 1: 1-ALIGN/learning/specs/{slug}/vana-spec.md
+Output 1: 2-LEARN/specs/{slug}/vana-spec.md
   §2 Verb ACs    — {N} ACs
   §3 Adverb ACs  — {N} ACs
   §4 Noun ACs    — {N} ACs
@@ -145,7 +145,7 @@ Output 1: 1-ALIGN/learning/specs/{slug}/vana-spec.md
   §6 AC-TEST-MAP — {total} rows (MECE)
   Total ACs: {grand_total}
 
-Output 2: 1-ALIGN/learning/specs/{slug}/DSBV-READY-{slug}.md
+Output 2: 2-LEARN/specs/{slug}/DSBV-READY-{slug}.md
   C1-C6: all GREEN
 
 Next: /learn:handoff {slug}

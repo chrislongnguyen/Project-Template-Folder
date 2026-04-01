@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# version: 1.0 | last_updated: 2026-03-30
 # dsbv-gate.sh — Zone-boundary enforcement for DSBV/APEI flow
 #
 # Ensures APEI zones are committed in order: ALIGN → PLAN → EXECUTE → IMPROVE.
@@ -21,7 +22,7 @@ set -euo pipefail
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # Ordered APEI zones — each requires the previous to have approved artifacts
-ZONES=("1-ALIGN" "2-PLAN" "3-EXECUTE" "4-IMPROVE")
+ZONES=("1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE")
 
 # --- Functions ----------------------------------------------------------------
 

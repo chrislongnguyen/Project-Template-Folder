@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | last_updated: 2026-03-29
+# version: 1.1 | last_updated: 2026-03-30
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on zone artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -7,7 +7,7 @@
 #
 # Behavior:
 #   1. Reads PreToolUse JSON from stdin (tool_name, tool_input.file_path)
-#   2. Checks if file is in a zone directory (1-ALIGN/, 2-PLAN/, 3-EXECUTE/, 4-IMPROVE/)
+#   2. Checks if file is in a zone directory (1-ALIGN/, 3-PLAN/, 4-EXECUTE/, 5-IMPROVE/)
 #   3. If not a zone file → ALLOW (exit 0)
 #   4. If a DSBV process file (DESIGN.md, SEQUENCE.md, VALIDATE.md) → ALLOW
 #   5. If zone's DESIGN.md exists → ALLOW (Design phase completed)
@@ -45,23 +45,23 @@ fi
 # --- Determine if this is a zone artifact ----------------------------------
 
 # Extract zone from file path
-# Matches: /any/path/1-ALIGN/anything, /any/path/2-PLAN/anything, etc.
+# Matches: /any/path/1-ALIGN/anything, /any/path/3-PLAN/anything, etc.
 ZONE=""
 ZONE_PATTERN=""
 if [[ "$FILE_PATH" =~ /1-ALIGN/ ]]; then
     ZONE="1-ALIGN"
     ZONE_PATTERN="align"
-elif [[ "$FILE_PATH" =~ /2-PLAN/ ]]; then
-    ZONE="2-PLAN"
+elif [[ "$FILE_PATH" =~ /3-PLAN/ ]]; then
+    ZONE="3-PLAN"
     ZONE_PATTERN="plan"
-elif [[ "$FILE_PATH" =~ /3-EXECUTE/ ]]; then
-    ZONE="3-EXECUTE"
+elif [[ "$FILE_PATH" =~ /4-EXECUTE/ ]]; then
+    ZONE="4-EXECUTE"
     ZONE_PATTERN="execute"
-elif [[ "$FILE_PATH" =~ /4-IMPROVE/ ]]; then
-    ZONE="4-IMPROVE"
+elif [[ "$FILE_PATH" =~ /5-IMPROVE/ ]]; then
+    ZONE="5-IMPROVE"
     ZONE_PATTERN="improve"
 else
-    # Not a zone file — allow (could be _genesis/, scripts/, .claude/, etc.)
+    # Not a zone file — allow (could be _shared/, scripts/, .claude/, etc.)
     exit 0
 fi
 

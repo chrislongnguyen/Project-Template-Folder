@@ -6,12 +6,12 @@ Use this table to determine row structure, row counts, and derivation sources fo
 
 | Page | Template File | Row Code Pattern | T0 Rows | T1+ Rows | Seeds From |
 |------|--------------|-----------------|---------|----------|------------|
-| P0 | `1-ALIGN/learning/templates/page-0-overview-and-summary.md` | `Eff.{ABBREV}({role})` | 2 (R+A) | 2 (copy parent) | learn-input EO + research |
-| P1 | `1-ALIGN/learning/templates/page-1-ultimate-blockers.md` | `UBS({role})[.UB]*` | 2 (R+A) | 2-6 (3/chain) | P0 col 10 (UB) per role |
-| P2 | `1-ALIGN/learning/templates/page-2-ultimate-drivers.md` | `UDS({role})[.UD]*` | 2 (R+A) | 2-6 (3/chain) | P0 col 4 (UD) per role |
-| P3 | `1-ALIGN/learning/templates/page-3-principles.md` | `P[n]({pillar})({role})` / `P_F[n]({pillar})({role})` | 4-8 | 4-8+ | P0/P1/P2 col 6 + col 12 |
-| P4 | `1-ALIGN/learning/templates/page-4-components.md` | `{LAYER}.n({role})` | 4-8 | 4-8+ | P3 principles |
-| P5 | `1-ALIGN/learning/templates/page-5-steps-to-apply.md` | `STEP.n({role})` | 4-6 | 4-6+ | P1-P4 elements |
+| P0 | `2-LEARN/templates/page-0-overview-and-summary.md` | `Eff.{ABBREV}({role})` | 2 (R+A) | 2 (copy parent) | learn-input EO + research |
+| P1 | `2-LEARN/templates/page-1-ultimate-blockers.md` | `UBS({role})[.UB]*` | 2 (R+A) | 2-6 (3/chain) | P0 col 10 (UB) per role |
+| P2 | `2-LEARN/templates/page-2-ultimate-drivers.md` | `UDS({role})[.UD]*` | 2 (R+A) | 2-6 (3/chain) | P0 col 4 (UD) per role |
+| P3 | `2-LEARN/templates/page-3-principles.md` | `P[n]({pillar})({role})` / `P_F[n]({pillar})({role})` | 4-8 | 4-8+ | P0/P1/P2 col 6 + col 12 |
+| P4 | `2-LEARN/templates/page-4-components.md` | `{LAYER}.n({role})` | 4-8 | 4-8+ | P3 principles |
+| P5 | `2-LEARN/templates/page-5-steps-to-apply.md` | `STEP.n({role})` | 4-6 | 4-6+ | P1-P4 elements |
 
 ## T1+ Causal Chain Structure (P1/P2)
 

@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.3"
+status: Draft
+last_updated: 2026-03-31
 owner: "Long Nguyen"
 ---
 # LTC History & Version Control
@@ -23,9 +24,9 @@ Like Google Docs version history, but more structured. Every change is saved wit
 
 ```
 ---
-version: "0.1"              ← goes up each time the document is edited
+version: "1.0"              ← MAJOR = iteration (I1=1.x, I2=2.x). MINOR = edit count.
 status: Draft               ← only 3 options: Draft, Review, Approved
-last_updated: 2026-03-25    ← when it was last touched
+last_updated: 2026-03-31
 owner: "Long"               ← who is responsible for this document
 ---
 ```
@@ -64,7 +65,7 @@ GOOD: "Added data quality requirement because raw Bloomberg data has missing fie
 1. All documents in this milestone = Approved
 2. Agent packages everything into a "Release"
 3. You review the package — approve — it goes to the stable version
-4. Gets a version tag: v0.1.0, v0.2.0, etc.
+4. Gets a version tag: v1.0.0, v2.0.0, etc.
 
 ```
                     ┌──────────────────────────────────┐
@@ -77,7 +78,7 @@ happens here ──────→│  (safe to experiment,             │
                     ┌──────────────────────────────────┐
 The "published"     │  main branch                      │
 version lives  ────→│  (stable, approved work only)     │
-here                │  v0.1.0 → v0.2.0 → v1.0.0       │
+here                │  v1.0.0 → v2.0.0 → v3.0.0       │
                     └──────────────────────────────────┘
 ```
 
@@ -114,13 +115,13 @@ Sections 1-7 below cover the full technical specification — branching strategy
 ## 1. Git Branching Strategy
 
 ```
-main                     ← Stable, approved work only. Protected branch.
-  ├── I0-foundation      ← Iteration 0: ALIGN zone setup
-  ├── I1-desirable       ← Iteration 1: PLAN + first EXECUTE pass
-  ├── I2-effective-core   ← Iteration 2: Deeper EXECUTE + EVALUATE
-  ├── I3-refinement      ← Iteration 3: IMPROVE cycle
-  ├── I4-maturity        ← Iteration 4: Final polish + handoff
-  └── hotfix/*           ← Emergency fixes to main
+main                        ← Stable, approved work only. Protected branch.
+  ├── I0-logic-scaffold   ← Iteration 0: ALIGN zone setup (pre-build framing)
+  ├── I1-concept          ← Iteration 1: Sustainability — prove correctness
+  ├── I2-prototype        ← Iteration 2: Efficiency — real data, outperform
+  ├── I3-mve              ← Iteration 3: Full efficiency — production-grade
+  ├── I4-leadership       ← Iteration 4: Scalability — self-improving
+  └── hotfix/*            ← Emergency fixes to main
 ```
 
 - **main** = production-quality, approved artifacts. Never commit directly.
@@ -165,7 +166,7 @@ When EXECUTE produces multiple configuration variants (CF1, CF2, CF3), manage th
 
 **Preferred: Directory-based separation**
 ```
-3-EXECUTE/
+4-EXECUTE/
   ├── CF1-baseline/       ← Configuration variant 1
   ├── CF2-optimized/      ← Configuration variant 2
   ├── CF3-experimental/   ← Configuration variant 3
@@ -214,11 +215,11 @@ Each iteration produces a Pull Request to main:
 
 | Iteration | PR Title Pattern | Merge Condition |
 |---|---|---|
-| I0 | `I0: Foundation — ALIGN zone complete` | Zone 1 artifacts reviewed and approved |
-| I1 | `I1: Desirable Wrapper — initial EXECUTE pass` | Zone 2+3 first pass, Zone 4 baseline eval |
-| I2 | `I2: Effective Core — deep EXECUTE + EVALUATE` | All zones populated, eval metrics pass threshold |
-| I3 | `I3: Refinement — IMPROVE cycle applied` | Changelog updated, regression check passed |
-| I4 | `I4: Maturity — final review and handoff` | All A.C. met, stakeholder sign-off |
+| I0 | `I0: Logic Scaffold — ALIGN zone setup` | Zone 1 artifacts reviewed and approved |
+| I1 | `I1: Concept — PLAN + first EXECUTE pass` | Zone 2+3 first pass, Zone 4 baseline eval |
+| I2 | `I2: Prototype — deep EXECUTE + EVALUATE` | All zones populated, eval metrics pass threshold |
+| I3 | `I3: MVE — IMPROVE cycle applied` | Changelog updated, regression check passed |
+| I4 | `I4: Leadership — final review and handoff` | All A.C. met, stakeholder sign-off |
 
 - PRs require at least one reviewer (Human Director or designated reviewer).
 - PR description must reference which zones were modified and link to relevant ADRs.
@@ -228,7 +229,7 @@ Each iteration produces a Pull Request to main:
 
 ## 6. CHANGELOG Maintenance
 
-Maintain `4-IMPROVE/changelog/CHANGELOG.md` with reverse-chronological entries:
+Maintain `5-IMPROVE/changelog/CHANGELOG.md` with reverse-chronological entries:
 
 ```
 ## [I2] - 2026-03-25
@@ -251,14 +252,15 @@ Tags mark stable iteration endpoints on main:
 
 | Tag Pattern | Meaning |
 |---|---|
-| `v0.1.0` | I0 merged — foundation complete |
-| `v0.2.0` | I1 merged — desirable wrapper |
-| `v0.3.0` | I2 merged — effective core |
-| `v0.4.0` | I3 merged — refinement |
-| `v1.0.0` | I4 merged — maturity / release |
-| `v1.0.1` | Hotfix after release |
+| `v1.0.0` | I1 merged — Concept complete |
+| `v2.0.0` | I2 merged — Prototype complete |
+| `v3.0.0` | I3 merged — MVE complete |
+| `v4.0.0` | I4 merged — Leadership complete |
+| `v4.0.1` | Hotfix after I4 release |
 
-Semantic versioning: `MAJOR.MINOR.PATCH`
-- MAJOR = project phase (0 = development, 1 = first release)
-- MINOR = iteration number
+> **Note:** I0 (Logic Scaffold) is pre-build framing — no tag is produced because no artifacts merge to main during I0.
+
+Tag format: `v{ITERATION}.0.0`
+- MAJOR = iteration number (I1=1, I2=2, I3=3, I4=4)
+- MINOR = 0 (reserved for future sub-iteration use)
 - PATCH = hotfixes within an iteration

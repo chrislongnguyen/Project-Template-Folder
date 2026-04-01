@@ -1,0 +1,28 @@
+/* LTC Brand-Compliant CSS Sample */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Work+Sans:wght@400;600&display=swap');
+
+:root {
+    --ltc-midnight-green: #004851;
+    --ltc-gold: #F2C75C;
+    --ltc-dark-gunmetal: #1D1F2A;
+    --ltc-white: #FFFFFF;
+    --ltc-ruby-red: #9B1842;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ltc-dark-gunmetal);
+    background: var(--ltc-white);
+}
+
+h1, h2, h3 {
+    color: var(--ltc-midnight-green);
+}
+
+.accent {
+    color: var(--ltc-gold);
+}
+
+.vn {
+    font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+}

@@ -2,6 +2,8 @@
 
 Sub-agent prompt for /learn:research. Interpolate `{variables}` from learn-input before dispatch.
 
+> **Agent:** `ltc-explorer` (`.claude/agents/ltc-explorer.md`). **Context packaging:** The orchestrator wraps this prompt in the 5-field template from `.claude/skills/dsbv/references/context-packaging.md` before dispatch.
+
 ---
 
 ## Prompt
@@ -36,7 +38,7 @@ For each search angle:
 
 ## Output Structure (6 Sections)
 
-Write to: 1-ALIGN/learning/research/{system_slug}/T{topic_number}-{topic_slug}.md
+Write to: 2-LEARN/research/{system_slug}/T{topic_number}-{topic_slug}.md
 
 ### YAML Frontmatter
 

@@ -109,7 +109,7 @@ Exception: If research genuinely lacks content for a cell, use `[NEEDS REVIEW]` 
 
 ```bash
 # Per-page validation
-bash 1-ALIGN/learning/scripts/validate-learning-page.sh <page-file> <page-type> <topic-depth>
+bash 2-LEARN/scripts/validate-learning-page.sh <page-file> <page-type> <topic-depth>
 
 # Arguments:
 #   page-file:    path to the generated page markdown file
@@ -121,5 +121,5 @@ bash 1-ALIGN/learning/scripts/validate-learning-page.sh <page-file> <page-type> 
 #   exit 1 = FAIL (with error details on stderr)
 
 # Example:
-bash 1-ALIGN/learning/scripts/validate-learning-page.sh 1-ALIGN/learning/output/data-foundation/T0.P0-overview-and-summary.md P0 T0
+bash 2-LEARN/scripts/validate-learning-page.sh 2-LEARN/output/data-foundation/T0.P0-overview-and-summary.md P0 T0
 ```

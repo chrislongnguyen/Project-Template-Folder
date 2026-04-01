@@ -1,0 +1,27 @@
+/* Non-Compliant CSS Sample — uses generic defaults */
+
+body {
+    font-family: Arial, Helvetica, Roboto, 'DejaVu Sans', sans-serif;
+    color: #333333;
+    background: #f8f9fa;
+}
+
+h1 {
+    color: #007bff;
+}
+
+.primary {
+    background: #0d6efd;
+}
+
+.secondary {
+    color: #6c757d;
+}
+
+.chart-blue {
+    color: #1f77b4;
+}
+
+.chart-orange {
+    color: #ff7f0e;
+}

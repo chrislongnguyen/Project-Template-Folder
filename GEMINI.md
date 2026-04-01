@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # GEMINI.md — {PROJECT_NAME}
 
 > AntiGravity IDE agent rules. Loaded every session. Keep under 80 lines; details go to `.agents/rules/`.
@@ -69,7 +73,7 @@ Every system has 6 components: Input, User, Action, Principles, Tools, Environme
 When agent output is wrong: trace through 6 configurable components (EP → Input → EOP → Environment → Tools → Agent) before blaming the model.
 
 ## Structure (4-Zone APEI)
-`1-ALIGN/` alignment + learning | `2-PLAN/` architecture + risks | `3-EXECUTE/` src + tests | `4-IMPROVE/` changelog + retros | `_genesis/` org knowledge | `rules/` agent rules
+`1-ALIGN/` alignment + learning | `3-PLAN/` architecture + risks | `4-EXECUTE/` src + tests | `5-IMPROVE/` changelog + retros | `_shared/` org knowledge | `rules/` agent rules
 
 ## Modular Rules & Skills
 Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`

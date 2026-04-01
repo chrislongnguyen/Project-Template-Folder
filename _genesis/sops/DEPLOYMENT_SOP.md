@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 # DEPLOYMENT SOP
@@ -29,7 +29,7 @@ owner: "Long Nguyen"
 - [ ] Confirm rollback is ready if needed
 
 ## Post-Deployment
-- [ ] Update `4-IMPROVE/changelog/CHANGELOG.md`
+- [ ] Update `5-IMPROVE/changelog/CHANGELOG.md`
 - [ ] Notify stakeholders
 - [ ] Monitor for 24 hours
 

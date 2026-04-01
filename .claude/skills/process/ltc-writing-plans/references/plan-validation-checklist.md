@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # Plan Validation Checklist
 
 > Source: LTC Execution Pipeline Design Spec §4.3 (Fix 4 — Plan Validation Checklist)
@@ -129,4 +133,4 @@ After running all 7 checks, produce this report and include it at the end of the
 
 ## Stage Integration
 
-This checklist is embedded in the Stage 3 → Stage 4 transition. The `validate-plan-coverage.py` script at `3-EXECUTE/tests/quality-gates/stage-validators/validate-plan-coverage.py` runs these checks deterministically. Manual checklist use is the fallback when the script is not yet built.
+This checklist is embedded in the Stage 3 → Stage 4 transition. The `validate-plan-coverage.py` script at `4-EXECUTE/tests/quality-gates/stage-validators/validate-plan-coverage.py` runs these checks deterministically. Manual checklist use is the fallback when the script is not yet built.

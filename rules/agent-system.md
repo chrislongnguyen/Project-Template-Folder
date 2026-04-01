@@ -1,9 +1,13 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 <!-- Zone 0 agent-facing copy. Human-readable version: _genesis/frameworks/AGENT_SYSTEM.md -->
 # LTC Agent System
 
 > Source of truth: Doc-9 (OPS_OE.6.0 research/amt/), Session 0 & Session 1 (Notion ALIGN Wiki)
 > Distilled for agent and practitioner use. Load when configuring or diagnosing an AI agent.
-> Last synced: 2026-03-18
+> Last synced: 2026-03-30
 
 ---
 
@@ -253,6 +257,8 @@ Lateral dependencies:
 
 > **Always/Ask/Never pattern:** When configuring EP, define behavioral boundaries: what the agent always does (safe actions, no approval needed), what requires Human Director approval (high-impact actions), and what is prohibited (hard stops, violation = immediate halt).
 
+> **Multi-Agent Scope (EP-11/12/13):** In multi-agent configurations, EP extends to govern inter-agent boundaries. EP-11 (Agent Role Separation) enforces scope per agent via tools allowlists. EP-12 (Verified Handoff) requires AC verification at every agent-to-agent output boundary. EP-13 (Orchestrator Authority) designates a single lead agent for task decomposition and synthesis. See the EP Registry for full specifications.
+
 #### Card 2: Input
 **Definition:** Task-specific information provided for this particular task — prompt, context, data, constraints.
 **System role:** Feeds the Agent. Quality of Input sets the ceiling for quality of Output.
@@ -332,6 +338,21 @@ Lateral dependencies:
 - Strengths leveraged: orchestrated parallelism, exhaustive coverage, ego-free reflection
 - Clear separation: Agent decisions (tactical) vs Director decisions (strategic)
 - Reasoning monitored for drift indicators
+
+**Multi-Agent Governance**
+
+When multiple agents collaborate on a DSBV flow, the following roster applies:
+
+| Agent | Model | Phase | Tools (max 7) | Scope Boundary |
+|---|---|---|---|---|
+| ltc-planner | Opus | Design + Sequence | Read, Grep, WebFetch, Exa MCP, QMD MCP | Architectural judgment. No file writes to 4-EXECUTE/. |
+| ltc-builder | Sonnet | Build | Read, Edit, Write, Bash, Grep | Artifact production from approved sequences only. No design decisions. |
+| ltc-reviewer | Opus | Validate | Read, Glob, Grep, Bash | Evidence-based review. Read-only — never modifies artifacts under review. |
+| ltc-explorer | Haiku | Pre-DSBV | Read, Glob, Grep, Exa MCP, QMD MCP | Fast wide-net discovery. No commits, no file writes. |
+
+RACI: Human Director = Accountable. Lead agent (Opus orchestrator) = Consulted + Synthesizer. Sub-agents = Responsible. No sub-agent makes architectural decisions (EP-13).
+
+Agent files: `.claude/agents/ltc-{name}.md`. Each file declares model, tools, and scope boundary.
 
 #### Card 7: EA — Effective Action (Emergent Output)
 **Definition:** The observable execution from all components interacting. Not configured — it emerges.

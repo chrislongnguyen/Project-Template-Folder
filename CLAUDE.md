@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # CLAUDE.md — LTC Project Template
 
 > Claude Code agent rules. Loaded every session. Keep under 100 lines; details go to `.claude/rules/`.
@@ -34,7 +38,7 @@ Non-compliance = broken output. Load `rules/brand-identity.md` BEFORE generating
 Primary: Midnight Green #004851 | Gold #F2C75C | Dark Gunmetal #1D1F2A | White #FFFFFF
 Accent priority: Gold > Ruby Red #9B1842 > Green #69994D > Dark Purple #653469
 Logo: "LT Capital Partners" — Midnight Green on light bg, Gold on dark bg.
-Typography: **Inter** (English), **Work Sans** (Vietnamese). Google Fonts. Base 11pt.
+Typography: **Inter** (English), **Work Sans** (Vietnamese). Google Fonts. Scale: Title 32pt → H1 20pt → H2 16pt → H3 14pt → H4/Body 11pt → Caption 9pt. All headings Bold (700) Midnight Green.
 
 **NEVER:** Use generic/default colors or fonts (no Bootstrap blue, Tailwind gray, Arial, Helvetica, Roboto, system defaults). Never omit Google Fonts `<link>`/`@import`. Every visual artifact MUST include LTC colors and fonts.
 
@@ -53,6 +57,7 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Load `rules/naming-rules.m
 
 ## Agent System (full spec: `rules/agent-system.md`)
 8 LLM Truths + 7-CS (AI specialization of the universal 8-component model). Load full spec for details.
+Multi-agent roster: ltc-planner (Opus, Design+Seq), ltc-builder (Sonnet, Build), ltc-reviewer (Opus, Validate), ltc-explorer (Haiku, Research). Agent files: `.claude/agents/`. Tool routing: `rules/tool-routing.md`.
 
 ## System Design (full spec: `rules/general-system.md`)
 Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + force analysis + VANA requirements. Load BEFORE designing any system or writing any spec.
@@ -73,20 +78,21 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 
 1. **CHECK ZONE:** Which zone is this task in? Run `/dsbv status` to see current progress
 2. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
-3. **CHECK RISKS:** Read `2-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
-4. **CHECK DRIVERS:** Read `2-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
-5. **CHECK LEARNING:** Scan `1-ALIGN/learning/` — prior research, specs, and reference materials
+3. **CHECK RISKS:** Read `3-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
+4. **CHECK DRIVERS:** Read `3-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
+5. **CHECK LEARNING:** Scan `2-LEARN/` — prior research, specs, and reference materials
 6. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
 7. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
 
 ## Structure (5x4 Matrix)
 
 ```
-Zone 0 — Agent Governance         → CLAUDE.md, AGENTS.md, .claude/, rules/
-Zone 1 — ALIGN (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs, learning)
-Zone 2 — PLAN (Minimize Risks)    → 2-PLAN/ (architecture, risks, drivers, roadmap)
-Zone 3 — EXECUTE (Deliver)        → 3-EXECUTE/ (src, tests, config, docs)
-Zone 4 — IMPROVE (Learn & Grow)   → 4-IMPROVE/ (changelog, metrics, retros, reviews)
+Zone 0 — Agent Governance         → CLAUDE.md, AGENTS.md, .claude/, rules/, 0-GOVERN/ (DSBV artifacts)
+Zone 1 — ALIGN (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs)
+Zone 2 — LEARN (Problem Research) → 2-LEARN/ (input, research, specs, output — learning pipeline outputs)
+Zone 3 — PLAN (Minimize Risks)    → 3-PLAN/ (architecture, risks, drivers, roadmap)
+Zone 4 — EXECUTE (Deliver)        → 4-EXECUTE/ (src, tests, config, docs)
+Zone 5 — IMPROVE (Learn & Grow)   → 5-IMPROVE/ (changelog, metrics, retros, reviews)
 Shared  — Org Knowledge Base      → _genesis/ (brand, frameworks, security, sops, templates)
 ```
 
@@ -101,7 +107,7 @@ Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Glob
 - When editing any zone artifact, update its `version` and `last_updated` frontmatter
 - Follow I0-I4 branching strategy — never commit directly to main
 - Commit messages: `type(zone): description` (e.g., `feat(align): add stakeholder analysis`)
-- Update `4-IMPROVE/changelog/CHANGELOG.md` as part of every PR
+- Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 - Every decision with multiple viable options → ADR in `1-ALIGN/decisions/`
 - Chain of thought: document the "why" in the artifact, not just the "what"
 

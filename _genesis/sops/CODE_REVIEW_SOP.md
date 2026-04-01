@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 # CODE REVIEW SOP
@@ -10,7 +10,7 @@ owner: "Long Nguyen"
 
 ## Before Reviewing
 - [ ] Read the linked requirement in `1-ALIGN/charter/REQUIREMENTS.md`
-- [ ] Read any linked risks in `2-PLAN/risks/UBS_REGISTER.md`
+- [ ] Read any linked risks in `3-PLAN/risks/UBS_REGISTER.md`
 
 ## Sustainability Check
 - [ ] Error handling is comprehensive (no silent failures)

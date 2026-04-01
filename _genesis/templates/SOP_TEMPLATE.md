@@ -5,7 +5,7 @@ owner: "Long Nguyen"
 ---
 # SOP TEMPLATE
 > Stub template — populate during project setup.
-> See `_genesis/sops/` for existing SOPs.
-> See `_genesis/frameworks/EFFECTIVE_SYSTEM.md` for 7-component model.
+> See `_shared/sops/` for existing SOPs.
+> See `_shared/frameworks/EFFECTIVE_SYSTEM.md` for 7-component model.
 
 <!-- TODO: Fill in during ALIGN phase -->

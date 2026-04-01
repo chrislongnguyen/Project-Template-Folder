@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# version: 1.0 | last_updated: 2026-03-30
 set -euo pipefail
 
 # LTC Project Template — Release PR Creator
@@ -10,7 +11,7 @@ set -euo pipefail
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 TEMPLATEIGNORE="${REPO_ROOT}/.templateignore"
 VERSION_FILE="${REPO_ROOT}/VERSION"
-CHANGELOG_FILE="${REPO_ROOT}/4-IMPROVE/changelog/CHANGELOG.md"
+CHANGELOG_FILE="${REPO_ROOT}/5-IMPROVE/changelog/CHANGELOG.md"
 BASE_BRANCH="main"
 
 # --- Flag parsing ---
@@ -84,10 +85,10 @@ zone_count() {
 Z0_COUNT="$(echo "$SHIPPED_FILES" | grep -cE "^(CLAUDE|GEMINI|AGENTS|rules/|\.claude/)" 2>/dev/null)" || true
 Z0_COUNT="${Z0_COUNT:-0}"
 Z1_COUNT="$(zone_count "1-ALIGN/")"
-Z2_COUNT="$(zone_count "2-PLAN/")"
-Z3_COUNT="$(zone_count "3-EXECUTE/")"
-Z4_COUNT="$(zone_count "4-IMPROVE/")"
-ZS_COUNT="$(zone_count "_genesis/")"
+Z2_COUNT="$(zone_count "3-PLAN/")"
+Z3_COUNT="$(zone_count "4-EXECUTE/")"
+Z4_COUNT="$(zone_count "5-IMPROVE/")"
+ZS_COUNT="$(zone_count "_shared/")"
 ZROOT_COUNT="$(echo "$SHIPPED_FILES" | grep -cE "^(README|VERSION|\.gitignore|\.templateignore|scripts/)" 2>/dev/null)" || true
 ZROOT_COUNT="${ZROOT_COUNT:-0}"
 
@@ -103,9 +104,9 @@ I0 delivers the complete LTC Project Template scaffold — a 5×4 APEI matrix wi
 
 | ID | Deliverable | Description |
 |----|-------------|-------------|
-| D1 | Zone Structure | 5×4 matrix (1-ALIGN, 2-PLAN, 3-EXECUTE, 4-IMPROVE, _shared) |
+| D1 | Zone Structure | 5×4 matrix (1-ALIGN, 3-PLAN, 4-EXECUTE, 5-IMPROVE, _shared) |
 | D2 | Agent Governance | CLAUDE.md, GEMINI.md, rules/, .claude/ (hooks, skills, config) |
-| D3 | Templates & Frameworks | 11 templates (_genesis/templates), 10 framework pointers |
+| D3 | Templates & Frameworks | 11 templates (_shared/templates), 10 framework pointers |
 | D4 | Quality Gates | 6 stage validators + test fixtures + test scaffolding |
 | D5 | Distribution System | VERSION, template-check.sh, CHANGELOG.md, .templateignore |
 | D6 | Skills Infrastructure | 6 skills zone-scoped + symlinked in .claude/skills/ |

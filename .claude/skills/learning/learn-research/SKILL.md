@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.3"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: learn-research
 description: >
@@ -8,24 +8,29 @@ description: >
   Spawns one sub-agent per topic against the shared research methodology.
 argument-hint: <system-slug>
 allowed-tools: Read, Glob, Write, Bash, Agent
+agents:
+  research: ltc-explorer
+tool-preference: "Exa MCP and WebSearch are peers for external search. QMD MCP for project knowledge."
 ---
 # /learn:research — Parallel Research Pipeline
 
 Spawn one sub-agent per topic — all topics launch simultaneously.
 
+**Agent dispatch:** Use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) for each research sub-agent. Haiku model, read-only tools, Exa MCP or WebSearch (both available). **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
+
 > Load `_genesis/templates/RESEARCH_METHODOLOGY.md` before executing research.
 
 ## Arguments
 
-Parse `{system-slug}` from the invocation. If missing, check for a single `1-ALIGN/learning/input/learn-input-*.md` file. If ambiguous, list and ask.
+Parse `{system-slug}` from the invocation. If missing, check for a single `2-LEARN/input/learn-input-*.md` file. If ambiguous, list and ask.
 
 ---
 
 ## Pre-Checks
 
-1. Find `1-ALIGN/learning/input/learn-input-{system-slug}.md`. If missing: "Run /learn:input first."
+1. Find `2-LEARN/input/learn-input-{system-slug}.md`. If missing: "Run /learn:input first."
 2. Extract: `system_name`, `system-slug`, `eo`, `user_persona_r`, `user_persona_a`, `research_domains`, topics table (active rows), `topic_depth`.
-3. Check `1-ALIGN/learning/research/{system-slug}/` — if files exist, report done topics. Ask: "Re-run all, or only missing?"
+3. Check `2-LEARN/research/{system-slug}/` — if files exist, report done topics. Ask: "Re-run all, or only missing?"
 
 ---
 
@@ -51,8 +56,8 @@ For each active topic, interpolate the sub-agent prompt from **[references/resea
 
 Launch 1 Agent tool call per topic in a SINGLE message — all topics research simultaneously.
 
-Each sub-agent receives the interpolated prompt from `references/research-agent-prompt.md`. Sub-agent config:
-- `subagent_type`: `general-purpose`
+Each sub-agent receives the interpolated prompt from `references/research-agent-prompt.md`, wrapped in the context packaging template (`.claude/skills/dsbv/references/context-packaging.md` — EO, INPUT, EP, OUTPUT, VERIFY). Sub-agent config:
+- `subagent_type`: `ltc-explorer` (`.claude/agents/ltc-explorer.md` — Haiku, read-only, Exa or WebSearch+QMD)
 - `description`: `"Research T{n} {topic_name}"`
 - `run_in_background`: `false`
 
@@ -71,7 +76,7 @@ Each sub-agent receives the interpolated prompt from `references/research-agent-
 
 After all sub-agents complete, verify each topic:
 
-1. File exists at `1-ALIGN/learning/research/{system-slug}/T{n}-{topic}.md`
+1. File exists at `2-LEARN/research/{system-slug}/T{n}-{topic}.md`
 2. File > 2000 chars
 3. Frontmatter `status` = "completed" (flag any "partial")
 4. All 6 section headings present
@@ -98,7 +103,7 @@ Report: system name, search depth, topics completed/total, per-file stats (chars
 
 ## Research Output Format (6 sections per topic)
 
-Output path: `1-ALIGN/learning/research/{system-slug}/T{n}-{topic}.md`
+Output path: `2-LEARN/research/{system-slug}/T{n}-{topic}.md`
 
 1. Overview (system context)
 2. Blockers (failure modes, risks)
@@ -131,4 +136,4 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 - `references/research-agent-prompt.md` — full sub-agent prompt template with 6-section structure
 - `_genesis/templates/RESEARCH_METHODOLOGY.md` — shared methodology (multi-angle search, verification, anti-hallucination)
-- `1-ALIGN/learning/input/learn-input-{system-slug}.md` — system identity, personas, topics
+- `2-LEARN/input/learn-input-{system-slug}.md` — system identity, personas, topics

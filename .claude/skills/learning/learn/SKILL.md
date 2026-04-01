@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: learn
 description: >
@@ -20,7 +20,7 @@ to a sub-skill via the Skill tool.
 
 Optional: `{system-slug}` — identifies which learning subject to resume.
 
-If omitted, scan `1-ALIGN/learning/input/` for files matching `learn-input-*.md`.
+If omitted, scan `2-LEARN/input/` for files matching `learn-input-*.md`.
 - If exactly one exists, use that slug automatically.
 - If multiple exist, list them and ask the user to choose.
 - If none exist, route directly to `/learn:input`.
@@ -33,8 +33,8 @@ condition wins — scan top-down:
 ```
  #  File System Condition                                              State              Route
 ─── ────────────────────────────────────────────────────────────────── ────────────────── ──────────────────────────────────
- 1  No learn-input-{slug}.md in 1-ALIGN/learning/input/               No input           → /learn:input
- 2  Input exists, no 1-ALIGN/learning/research/{slug}/ directory       Input ready        → /learn:research {slug}
+ 1  No learn-input-{slug}.md in 2-LEARN/input/               No input           → /learn:input
+ 2  Input exists, no 2-LEARN/research/{slug}/ directory       Input ready        → /learn:research {slug}
  3  Research dir exists, any topic lacks 6 P-pages with                Research done,     → /learn:structure {slug} {topic}
     status: approved in frontmatter                                    not fully done       then /learn:review {slug} {topic}
  4  All topics status: approved, no specs/{slug}/vana-spec.md          All approved       → /learn:spec {slug}
@@ -44,12 +44,12 @@ condition wins — scan top-down:
 ## State Detection Procedure
 
 ```
-1. Glob for 1-ALIGN/learning/input/learn-input-{slug}.md
+1. Glob for 2-LEARN/input/learn-input-{slug}.md
    - If no match → STATE 1
 
 2. Read the input file, extract system-slug from frontmatter
 
-3. Glob for 1-ALIGN/learning/research/{slug}/*.md
+3. Glob for 2-LEARN/research/{slug}/*.md
    - If no research dir or no files → STATE 2
 
 4. For each topic file in research/{slug}/:
@@ -58,7 +58,7 @@ condition wins — scan top-down:
    c. If ANY topic is missing pages or has non-approved status → STATE 3
       (report which topics need work)
 
-5. Glob for 1-ALIGN/learning/specs/{slug}/vana-spec.md
+5. Glob for 2-LEARN/specs/{slug}/vana-spec.md
    - If not found → STATE 4
 
 6. → STATE 5 (complete)
@@ -84,11 +84,11 @@ When pipeline is complete, print this summary:
 
 ```
 Pipeline complete for: {system_name}
-├── Input:      1-ALIGN/learning/input/learn-input-{slug}.md
-├── Research:   1-ALIGN/learning/research/{slug}/ ({N} topics)
+├── Input:      2-LEARN/input/learn-input-{slug}.md
+├── Research:   2-LEARN/research/{slug}/ ({N} topics)
 ├── Structured: {N} topics x 6 pages = {N*6} P-pages (all approved)
-├── VANA-SPEC:  1-ALIGN/learning/specs/{slug}/vana-spec.md
-└── DSBV-READY: 1-ALIGN/learning/specs/{slug}/DSBV-READY-{slug}.md
+├── VANA-SPEC:  2-LEARN/specs/{slug}/vana-spec.md
+└── DSBV-READY: 2-LEARN/specs/{slug}/DSBV-READY-{slug}.md
 
 Next steps:
   /learn:visualize {slug}  — Generate interactive system map (optional, I2)

@@ -1,11 +1,17 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.2"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 name: ltc-writing-plans
-description: Use when you have a spec or requirements for a multi-step task, before touching code. LTC fork with HOW NOT sections, agent architecture decisions, and mandatory plan validation checklist (Fix 4).
+description: "DEPRECATED — Use `/dsbv sequence` instead. This skill is now a sub-skill of /dsbv Sequence phase. Kept for backward compatibility."
+deprecated: true
+redirect: "/dsbv sequence"
 ---
 # Writing Plans (LTC OE.6.4 Fork)
+
+> **DEPRECATED:** This skill has been consolidated into `/dsbv sequence`. Use `/dsbv sequence` for implementation planning.
+> This file is retained for backward compatibility — invoking `/ltc-writing-plans` will still work but follows the `/dsbv sequence` workflow.
+> **Agent:** Planning is handled by `ltc-planner` (`.claude/agents/ltc-planner.md`).
 
 ## Overview
 
@@ -17,7 +23,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
-**Save plans to:** `2-PLAN/architecture/plans/YYYY-MM-DD-<feature-name>.md`
+**Save plans to:** `3-PLAN/architecture/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
 
 <HARD-GATE>

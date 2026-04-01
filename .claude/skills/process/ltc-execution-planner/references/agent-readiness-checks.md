@@ -1,3 +1,7 @@
+---
+version: "1.0"
+last_updated: 2026-03-30
+---
 # Agent Readiness Checks
 
 > Run these checks AFTER generating .exec/ files, BEFORE execution begins.
@@ -116,7 +120,7 @@ Exceptions: code blocks (fenced with triple backticks) are excluded from this ch
 ### CLI Usage
 
 ```bash
-python3 2-PLAN/skills/ltc-execution-planner/scripts/readiness-check.py /path/to/.exec/
+python3 3-PLAN/skills/ltc-execution-planner/scripts/readiness-check.py /path/to/.exec/
 ```
 
 ### Exit Codes

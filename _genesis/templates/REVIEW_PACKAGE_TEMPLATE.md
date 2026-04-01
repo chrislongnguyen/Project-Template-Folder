@@ -1,10 +1,10 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
 <!-- NOTE: This template is a REFERENCE FORMAT document. It is NOT read programmatically
-     by 3-EXECUTE/scripts/generate-review-package.py. The script generates output independently.
+     by 4-EXECUTE/scripts/generate-review-package.py. The script generates output independently.
      If you update this template, also update the corresponding build_*() functions
      in the script to keep them aligned. -->
 

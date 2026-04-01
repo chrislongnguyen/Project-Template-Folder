@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="version" content="1.0">
+<meta name="last-updated" content="2026-03-30">
+<title>LTC Multi-Agent Orchestration Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --midnight-green: #004851;
+  --gold: #F2C75C;
+  --dark-gunmetal: #1D1F2A;
+  --white: #FFFFFF;
+  --ruby-red: #9B1842;
+  --green: #69994D;
+  --dark-purple: #653469;
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #2a3140;
+  --text-muted: #8b95a6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); font-size: 11pt; min-width: 1024px; }
+header { background: var(--midnight-green); padding: 16px 32px; display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--gold); }
+header h1 { font-size: 18px; font-weight: 700; }
+header .badge { font-size: 10px; font-weight: 600; color: var(--gold); background: rgba(242,199,92,0.15); padding: 3px 10px; border-radius: 3px; }
+main { padding: 24px 32px; display: flex; flex-direction: column; gap: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+.panel-title { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+/* 7-CS */
+.cs-flow { display: flex; align-items: stretch; gap: 0; overflow-x: auto; }
+.cs-box { background: var(--dark-gunmetal); border: 1.5px solid var(--border); border-radius: 5px; padding: 12px 14px; min-width: 134px; flex: 1; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+.cs-box.ep { border-color: var(--gold); background: rgba(242,199,92,.08); }
+.cs-box:hover { border-color: var(--gold); }
+.cs-box.active { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(242,199,92,.2); }
+.cs-label { font-size: 9px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
+.cs-name { font-size: 12px; font-weight: 700; }
+.cs-desc { font-size: 10px; color: var(--text-muted); margin-top: 5px; line-height: 1.4; }
+.cs-lts { font-size: 9px; color: var(--ruby-red); margin-top: 6px; line-height: 1.3; }
+.cs-arrow { display: flex; align-items: center; color: var(--text-muted); font-size: 20px; padding: 0 5px; flex-shrink: 0; }
+
+/* Agents */
+.agent-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.agent-card { border-radius: 5px; padding: 14px; cursor: pointer; transition: transform .15s, border-color .2s; border: 1.5px solid transparent; }
+.agent-card:hover { transform: translateY(-2px); }
+.agent-card.active { border-color: var(--gold) !important; box-shadow: 0 0 0 2px rgba(242,199,92,.2); }
+.card-research { background: rgba(0,72,81,.4); border-color: rgba(0,72,81,.7); }
+.card-design   { background: rgba(101,52,105,.25); border-color: rgba(101,52,105,.55); }
+.card-build    { background: rgba(105,153,77,.2); border-color: rgba(105,153,77,.45); }
+.card-validate { background: rgba(155,24,66,.2); border-color: rgba(155,24,66,.45); }
+.a-name { font-size: 13px; font-weight: 700; }
+.a-phase { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-top: 2px; }
+.card-research .a-phase { color: var(--gold); }
+.card-design   .a-phase { color: #c08fd0; }
+.card-build    .a-phase { color: #8fc46a; }
+.card-validate .a-phase { color: #e05c82; }
+.a-model { font-size: 10px; color: var(--text-muted); margin-top: 6px; }
+.a-tools { margin-top: 8px; }
+.tool-tag { display: inline-block; font-size: 8px; font-weight: 500; background: rgba(255,255,255,.07); color: var(--text-muted); padding: 2px 6px; border-radius: 2px; margin: 1px; }
+.cs-tags { margin-top: 7px; }
+.cs-tag { display: inline-block; font-size: 8px; font-weight: 600; background: rgba(242,199,92,.12); color: var(--gold); padding: 1px 5px; border-radius: 2px; margin: 1px; }
+.a-scope { font-size: 9px; color: var(--text-muted); margin-top: 8px; border-top: 1px solid rgba(255,255,255,.06); padding-top: 6px; line-height: 1.4; }
+
+/* DSBV */
+.dsbv-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.dsbv-phase { border-radius: 5px; padding: 14px; }
+.dsbv-d { background: rgba(101,52,105,.2); border: 1px solid rgba(101,52,105,.45); }
+.dsbv-s { background: rgba(101,52,105,.14); border: 1px solid rgba(101,52,105,.35); }
+.dsbv-b { background: rgba(105,153,77,.15); border: 1px solid rgba(105,153,77,.4); }
+.dsbv-v { background: rgba(155,24,66,.15); border: 1px solid rgba(155,24,66,.4); }
+.p-name { font-size: 15px; font-weight: 700; }
+.p-owner { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+.ep-row { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+.ep-badge { display: inline-block; position: relative; font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 3px; background: rgba(255,255,255,.07); color: var(--text-muted); cursor: default; }
+.ep-badge.new { background: rgba(242,199,92,.15); color: var(--gold); border: 1px solid rgba(242,199,92,.3); }
+.ep-tooltip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--dark-gunmetal); border: 1px solid var(--border); color: var(--white); font-size: 9px; font-weight: 400; padding: 5px 8px; border-radius: 4px; white-space: nowrap; z-index: 10; pointer-events: none; }
+.ep-badge:hover .ep-tooltip { display: block; }
+.ep-note { font-size: 9px; color: var(--text-muted); margin-top: 10px; }
+
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(242,199,92,.4); } 50% { box-shadow: 0 0 0 5px rgba(242,199,92,.1); } }
+.highlight { animation: pulse 1.2s ease-in-out 2; border-color: var(--gold) !important; }
+
+footer { text-align: center; padding: 14px; font-size: 10px; color: var(--text-muted); border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>LTC Multi-Agent Orchestration Map</h1>
+  <span class="badge">feat/multi-agent-orchestration</span>
+  <span class="badge">v1.0 · 2026-03-30</span>
+</header>
+
+<main>
+
+<!-- Panel 1 -->
+<div class="panel">
+  <div class="panel-title">Panel 1 — 7-CS Component Map (click to see which agents touch each component)</div>
+  <div class="cs-flow">
+    <div class="cs-box ep" id="cs-EP" data-cs="EP">
+      <div class="cs-label">EP</div>
+      <div class="cs-name">Effective Principles</div>
+      <div class="cs-desc">Always-on constraints governing all agents and outputs</div>
+      <div class="cs-lts">LT: Hallucination, Scope Creep</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-Input" data-cs="Input">
+      <div class="cs-label">Input / EOP</div>
+      <div class="cs-name">Input + EOP</div>
+      <div class="cs-desc">Skill definitions, phase gates, context packaging</div>
+      <div class="cs-lts">LT: Context Loss, Inconsistency</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-EOE" data-cs="EOE">
+      <div class="cs-label">EOE</div>
+      <div class="cs-name">Effective Operating Environment</div>
+      <div class="cs-desc">Agent files + hooks — model, tools, memory, isolation</div>
+      <div class="cs-lts">LT: Overfit, Role Confusion</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-EOT" data-cs="EOT">
+      <div class="cs-label">EOT</div>
+      <div class="cs-name">Effective Operating Tools</div>
+      <div class="cs-desc">Best-in-class tools, ≤7 per agent, no overlap</div>
+      <div class="cs-lts">LT: Tool Misuse</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-Agent" data-cs="Agent">
+      <div class="cs-label">Agent</div>
+      <div class="cs-name">Agent (LLM)</div>
+      <div class="cs-desc">DSBV-phase-scoped LLM execution</div>
+      <div class="cs-lts">LT: Overfit, Multi-provider Risk</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-EA" data-cs="EA">
+      <div class="cs-label">EA</div>
+      <div class="cs-name">Effective Action</div>
+      <div class="cs-desc">Verified handoff protocol, eval gates (Approach D)</div>
+      <div class="cs-lts">LT: Context Loss, Inconsistency</div>
+    </div>
+    <div class="cs-arrow">→</div>
+    <div class="cs-box" id="cs-EO" data-cs="EO">
+      <div class="cs-label">EO</div>
+      <div class="cs-name">Effective Outcome</div>
+      <div class="cs-desc">DSBV zone artifacts — APEI-structured, versioned</div>
+      <div class="cs-lts">LT: Hallucination, Scope Creep</div>
+    </div>
+  </div>
+</div>
+
+<!-- Panel 2 -->
+<div class="panel">
+  <div class="panel-title">Panel 2 — Agent Roster (click to see 7-CS components each agent touches)</div>
+  <div class="agent-grid">
+
+    <div class="agent-card card-research" id="agent-ltc-explorer" data-cs="EP,Input,EOT,Agent">
+      <div class="a-name">ltc-explorer</div>
+      <div class="a-phase">Research · Pre-DSBV</div>
+      <div class="a-model">Model: Haiku</div>
+      <div class="a-tools">
+        <span class="tool-tag">Read</span><span class="tool-tag">Glob</span><span class="tool-tag">Grep</span><span class="tool-tag">QMD</span><span class="tool-tag">Exa</span>
+      </div>
+      <div class="cs-tags">
+        <span class="cs-tag">EP</span><span class="cs-tag">Input</span><span class="cs-tag">EOT</span><span class="cs-tag">Agent</span>
+      </div>
+      <div class="a-scope">Discovery only. No writes. Hands off research brief to ltc-planner.</div>
+    </div>
+
+    <div class="agent-card card-design" id="agent-ltc-planner" data-cs="EP,Input,EOE,EOT,Agent,EA">
+      <div class="a-name">ltc-planner</div>
+      <div class="a-phase">Design + Sequence</div>
+      <div class="a-model">Model: Opus</div>
+      <div class="a-tools">
+        <span class="tool-tag">Read</span><span class="tool-tag">Grep</span><span class="tool-tag">Exa</span><span class="tool-tag">QMD</span><span class="tool-tag">WebFetch</span>
+      </div>
+      <div class="cs-tags">
+        <span class="cs-tag">EP</span><span class="cs-tag">Input</span><span class="cs-tag">EOE</span><span class="cs-tag">EA</span>
+      </div>
+      <div class="a-scope">DESIGN.md + SEQUENCE.md only. No code execution. Gate before Build.</div>
+    </div>
+
+    <div class="agent-card card-build" id="agent-ltc-builder" data-cs="EP,EOE,EOT,Agent,EO">
+      <div class="a-name">ltc-builder</div>
+      <div class="a-phase">Build</div>
+      <div class="a-model">Model: Sonnet</div>
+      <div class="a-tools">
+        <span class="tool-tag">Read</span><span class="tool-tag">Edit</span><span class="tool-tag">Write</span><span class="tool-tag">Bash</span><span class="tool-tag">Grep</span>
+      </div>
+      <div class="cs-tags">
+        <span class="cs-tag">EP</span><span class="cs-tag">EOE</span><span class="cs-tag">EOT</span><span class="cs-tag">EO</span>
+      </div>
+      <div class="a-scope">Implementation only. Consumes SEQUENCE.md. Produces versioned artifacts.</div>
+    </div>
+
+    <div class="agent-card card-validate" id="agent-ltc-reviewer" data-cs="EP,Input,EA,EO">
+      <div class="a-name">ltc-reviewer</div>
+      <div class="a-phase">Validate</div>
+      <div class="a-model">Model: Opus</div>
+      <div class="a-tools">
+        <span class="tool-tag">Read</span><span class="tool-tag">Glob</span><span class="tool-tag">Grep</span><span class="tool-tag">Bash</span>
+      </div>
+      <div class="cs-tags">
+        <span class="cs-tag">EP</span><span class="cs-tag">Input</span><span class="cs-tag">EA</span><span class="cs-tag">EO</span>
+      </div>
+      <div class="a-scope">Read-only audit. Produces VALIDATE.md. No-pass blocks zone completion.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Panel 3 -->
+<div class="panel">
+  <div class="panel-title">Panel 3 — DSBV Flow + EP Coverage (hover EP badges for description)</div>
+  <div class="dsbv-grid">
+
+    <div class="dsbv-phase dsbv-d">
+      <div class="p-name">Design</div>
+      <div class="p-owner">ltc-planner (Opus)</div>
+      <div class="ep-row">
+        <span class="ep-badge">EP-01<span class="ep-tooltip">Follow existing patterns before inventing new ones</span></span>
+        <span class="ep-badge">EP-08<span class="ep-tooltip">Lean code — no CSS frameworks, no JS libraries</span></span>
+        <span class="ep-badge new">EP-11<span class="ep-tooltip">Agent Role Separation — MECE agent boundaries</span></span>
+        <span class="ep-badge new">EP-13<span class="ep-tooltip">Orchestrator Authority — lead agent controls flow</span></span>
+      </div>
+    </div>
+
+    <div class="dsbv-phase dsbv-s">
+      <div class="p-name">Sequence</div>
+      <div class="p-owner">ltc-planner (Opus)</div>
+      <div class="ep-row">
+        <span class="ep-badge">EP-03<span class="ep-tooltip">DSBV phase ordering enforced — Design before Build</span></span>
+        <span class="ep-badge new">EP-12<span class="ep-tooltip">Verified Handoff — structured context packages between agents</span></span>
+        <span class="ep-badge new">EP-13<span class="ep-tooltip">Orchestrator Authority — lead agent controls flow</span></span>
+      </div>
+    </div>
+
+    <div class="dsbv-phase dsbv-b">
+      <div class="p-name">Build</div>
+      <div class="p-owner">ltc-builder (Sonnet)</div>
+      <div class="ep-row">
+        <span class="ep-badge">EP-02<span class="ep-tooltip">Atomic commits with descriptive messages</span></span>
+        <span class="ep-badge">EP-05<span class="ep-tooltip">Versioning frontmatter on every edited file</span></span>
+        <span class="ep-badge">EP-08<span class="ep-tooltip">Lean code — no CSS frameworks, no JS libraries</span></span>
+        <span class="ep-badge new">EP-11<span class="ep-tooltip">Agent Role Separation — MECE agent boundaries</span></span>
+      </div>
+    </div>
+
+    <div class="dsbv-phase dsbv-v">
+      <div class="p-name">Validate</div>
+      <div class="p-owner">ltc-reviewer (Opus)</div>
+      <div class="ep-row">
+        <span class="ep-badge">EP-04<span class="ep-tooltip">Human gate required before zone complete</span></span>
+        <span class="ep-badge">EP-07<span class="ep-tooltip">Security scan before task completion</span></span>
+        <span class="ep-badge new">EP-12<span class="ep-tooltip">Verified Handoff — structured context packages between agents</span></span>
+        <span class="ep-badge new">EP-13<span class="ep-tooltip">Orchestrator Authority — lead agent controls flow</span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="ep-note"><span style="color:var(--gold);font-weight:600;">Gold badges</span> = EP-11, EP-12, EP-13 — new multi-agent EPs added in this iteration</div>
+</div>
+
+</main>
+
+<footer>LT Capital Partners | Multi-Agent Orchestration | 2026-03-30</footer>
+
+<script>
+(function() {
+  function clearAll() {
+    document.querySelectorAll('.agent-card').forEach(function(c) { c.classList.remove('active','highlight'); });
+    document.querySelectorAll('.cs-box').forEach(function(b) { b.classList.remove('active','highlight'); });
+  }
+  document.querySelectorAll('.agent-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      clearAll();
+      card.classList.add('active');
+      card.dataset.cs.split(',').forEach(function(key) {
+        var box = document.getElementById('cs-' + key.trim());
+        if (box) box.classList.add('active','highlight');
+      });
+    });
+  });
+  document.querySelectorAll('.cs-box').forEach(function(box) {
+    box.addEventListener('click', function() {
+      clearAll();
+      box.classList.add('active');
+      document.querySelectorAll('.agent-card').forEach(function(card) {
+        if (card.dataset.cs.split(',').map(function(k){return k.trim();}).indexOf(box.dataset.cs) !== -1) {
+          card.classList.add('active','highlight');
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
