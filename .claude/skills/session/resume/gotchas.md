@@ -31,3 +31,8 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Output is longer than ~15 lines or contains raw YAML frontmatter / unstructured notes.
 
 **Fix:** Extract key fields from the session file and format into the context brief template defined in SKILL.md Mode 1 step 4.
+
+## Links
+
+- [[SKILL]]
+- [[project]]

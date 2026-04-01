@@ -13,3 +13,10 @@ sub_system:
 > Full spike template with hypothesis + premises: `3-PLAN/learning/spikes/`
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[CRITICAL_THINKING]]
+- [[DESIGN]]
+- [[methodology]]
+- [[project]]

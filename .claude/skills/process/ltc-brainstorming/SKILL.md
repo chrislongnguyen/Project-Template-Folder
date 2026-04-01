@@ -154,3 +154,23 @@ If they agree to the companion, read the detailed guide before proceeding:
 - **Skipping UBS-before-UDS** — agent explores features before identifying constraints/risks. Meta-Rule 2 requires forces analysis first.
 
 Full list (5 patterns): [gotchas.md](gotchas.md)
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[agent-system]]
+- [[context-packaging]]
+- [[documentation]]
+- [[dsbv]]
+- [[general-system]]
+- [[gotchas]]
+- [[idea]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[project]]
+- [[simple]]
+- [[spec-production]]
+- [[task]]
+- [[trade-off-framework]]
+- [[visual-companion]]

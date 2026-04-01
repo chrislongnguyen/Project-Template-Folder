@@ -149,3 +149,16 @@ These are in `.gitignore`. If `/git-save` flags them, skip them.
 ## Full reference
 
 Conventions: `.claude/rules/git-conventions.md` | Versioning: `.claude/rules/versioning.md` | Skill: `/git-save`
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[SKILL]]
+- [[VERSION_REGISTRY]]
+- [[git-conventions]]
+- [[iteration]]
+- [[project]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

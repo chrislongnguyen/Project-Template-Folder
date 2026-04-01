@@ -48,3 +48,8 @@ Parent Deliverable: {link to parent Deliverable}
 
 - {e.g., Git: `_genesis/skills/ltc-notion-planner/SKILL.md` — rewritten skill}
 - {e.g., Wiki: [page title](notion-url)}
+
+## Links
+
+- [[SKILL]]
+- [[deliverable]]

@@ -27,3 +27,9 @@ gh issue create \
 EOF
 )"
 ```
+
+## Links
+
+- [[SKILL]]
+- [[project]]
+- [[workstream]]

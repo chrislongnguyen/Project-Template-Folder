@@ -25,3 +25,7 @@ EP → Input → EOP → EOE → EOT → Agent
 (Most fixable ────────────────→ Least fixable)
 ```
 If the first 5 components are correctly configured and the output is still wrong, THEN blame the model.
+
+## Links
+
+- [[agent-diagnostic]]

@@ -98,3 +98,21 @@ No file uses 0.x or 2.x. No file is self-approved. All dates are absolute.
 Recommended action: Approve G4 → PR to main.
 
 Note: Live A/B re-test (`ab-retest.sh` without `--dry-run`) requires Obsidian running with vault registered. This is a post-merge validation step, not a build gate — the test infrastructure is in place and will produce quantitative results when run with a live vault.
+
+## Links
+
+- [[ADR-002]]
+- [[ADR-002-obsidian-cli]]
+- [[DESIGN]]
+- [[RESEARCH_METHODOLOGY]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[SPIKE_TEMPLATE]]
+- [[VAULT_GUIDE]]
+- [[alpei-template-usage]]
+- [[ltc-reviewer]]
+- [[obsidian-security]]
+- [[security]]
+- [[tool-routing]]
+- [[versioning]]
+- [[workstream]]

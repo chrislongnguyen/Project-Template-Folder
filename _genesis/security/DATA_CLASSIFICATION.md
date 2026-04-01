@@ -64,3 +64,10 @@ INTERNAL and PERSONAL files do not require a classification prefix (INTERNAL is 
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[documentation]]
+- [[project]]
+- [[security]]
+- [[standard]]

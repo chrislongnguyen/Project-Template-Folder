@@ -13,3 +13,9 @@ sub_system:
 > Full sprint/execution review template: `5-IMPROVE/reviews/REVIEW_TEMPLATE.md`
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[VALIDATE]]
+- [[methodology]]
+- [[project]]

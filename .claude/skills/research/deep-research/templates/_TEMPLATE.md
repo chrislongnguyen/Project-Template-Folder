@@ -62,3 +62,8 @@
 - [ ] Bias check: confirmation, anchoring, survivorship, availability
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[anti-patterns]]
+- [[project]]

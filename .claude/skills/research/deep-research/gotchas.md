@@ -123,3 +123,12 @@ Known failure patterns from observed executions. Update this file when new issue
 **How to detect:** If Phase 6 critique does not reference specific claims or sections from the Phase 5 synthesis, it was likely dispatched in parallel without seeing the synthesis.
 
 **Fix:** Hybrid pattern now specified in SKILL.md: sub-agents for Phase 3 (independent retrieval), agent team for Phase 5-7 (sequential with critic). Check `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` before dispatching teams; fall back to sequential Agent calls if disabled.
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[methodology]]
+- [[report-generation]]
+- [[report_template]]
+- [[standard]]

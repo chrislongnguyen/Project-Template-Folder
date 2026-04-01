@@ -16,3 +16,10 @@ sub_system:
 
 ## Suggestion
 [1-3 sentences. What would have helped? What's the better way?]
+
+## Links
+
+- [[SKILL]]
+- [[friction]]
+- [[idea]]
+- [[workstream]]

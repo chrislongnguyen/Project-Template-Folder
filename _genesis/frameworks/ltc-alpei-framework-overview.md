@@ -116,3 +116,11 @@ The tables below are structured summaries of the prose above. AI agents should u
 |STAGES CHAIN FORWARD WITHIN A WORK STREAM|Design → Sequence → Build → Validate|Sequential, output-to-input|
 |IMPROVE LOOPS BACK TO ALIGN|Improve → Align|Feedback loop for next iteration|
 |VERSIONS PROGRESS THROUGH PILLARS|Logic Scaffold → Concept → Prototype → MVE → Leadership|Sequential, pillar-by-pillar|
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[iteration]]

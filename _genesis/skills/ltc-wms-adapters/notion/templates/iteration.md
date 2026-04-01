@@ -70,3 +70,10 @@ Parent Project: {Parent Task link to parent Project}
 
 - {e.g., DEL-1: [Scaffold](notion-url) -- project structure + DVC init}
 - {e.g., DEL-2: [Acquisition Pipeline](notion-url) -- data ingestion working}
+
+## Links
+
+- [[deliverable]]
+- [[project]]
+- [[standard]]
+- [[task]]

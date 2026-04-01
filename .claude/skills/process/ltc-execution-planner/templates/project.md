@@ -23,3 +23,8 @@
 | Version | Date | Trigger | Changes |
 |---|---|---|---|
 | v1 | 2026-03-22 | Initial generation | Full .exec/ created from plan v1 |
+
+## Links
+
+- [[deliverable]]
+- [[task]]

@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="version" content="1.1">
+<meta name="status" content="Draft">
+<meta name="last-updated" content="2026-04-01">
+<title>Obsidian Feature Analysis — CODE Framework v1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight-green: #004851;
+    --gold: #F2C75C;
+    --dark-gunmetal: #1D1F2A;
+    --white: #FFFFFF;
+    --ruby: #9B1842;
+    --green: #69994D;
+    --purple: #653469;
+    --bg-light: #F8F9FA;
+    --bg-medium: #EFF1F3;
+    --text-body: #2C2C2C;
+    --border: #D0D5DD;
+    --corrected-bg: #FFF3CD;
+    --corrected-border: #F2C75C;
+    --confirmed-bg: #E8F5E2;
+    --confirmed-border: #69994D;
+    --removed-bg: #FCE8EE;
+    --removed-border: #9B1842;
+    --deferred-bg: #F0EAF5;
+    --deferred-border: #653469;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 11pt;
+    color: var(--text-body);
+    background: var(--bg-light);
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--midnight-green);
+    color: var(--white);
+    padding: 32px 48px 24px;
+    border-bottom: 4px solid var(--gold);
+  }
+  .page-header .logo-line {
+    font-size: 11pt;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .page-header h1 {
+    font-size: 24pt;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .page-header .subtitle {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 16px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.6);
+  }
+  .meta-row span strong { color: var(--gold); }
+
+  /* ── Summary bar ── */
+  .summary-bar {
+    background: var(--dark-gunmetal);
+    color: var(--white);
+    padding: 16px 48px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 10pt;
+  }
+  .summary-bar .stat { display: flex; flex-direction: column; gap: 2px; }
+  .summary-bar .stat .val { font-size: 18pt; font-weight: 700; color: var(--gold); line-height: 1; }
+  .summary-bar .stat .lbl { font-size: 9pt; color: rgba(255,255,255,0.6); }
+
+  /* ── Legend ── */
+  .legend {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 48px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 9pt;
+    align-items: center;
+  }
+  .legend strong { font-size: 9pt; color: var(--midnight-green); margin-right: 8px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .badge.corrected  { background: var(--corrected-bg);  color: #7A5A00; border: 1px solid var(--corrected-border); }
+  .badge.confirmed  { background: var(--confirmed-bg);  color: #2E5A1A; border: 1px solid var(--confirmed-border); }
+  .badge.removed    { background: var(--removed-bg);    color: var(--ruby); border: 1px solid var(--removed-border); }
+  .badge.deferred   { background: var(--deferred-bg);   color: var(--purple); border: 1px solid var(--deferred-border); }
+  .badge.built      { background: #E3F0FF; color: #1A4A8A; border: 1px solid #7EB3E8; }
+
+  /* ── Section ── */
+  .section {
+    padding: 32px 48px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .section-header h2 {
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--midnight-green);
+  }
+  .section-header .section-count {
+    background: var(--midnight-green);
+    color: var(--gold);
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .section-note {
+    background: var(--bg-medium);
+    border-left: 4px solid var(--midnight-green);
+    padding: 10px 16px;
+    font-size: 10pt;
+    color: #444;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── Table ── */
+  .feature-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .feature-table thead tr {
+    background: var(--midnight-green);
+    color: var(--white);
+  }
+  .feature-table thead th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 9pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .feature-table thead th:last-child { border-right: none; }
+
+  .feature-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  .feature-table tbody tr:last-child { border-bottom: none; }
+  .feature-table tbody tr:hover { background: #F0F4F6; }
+
+  /* Row status tinting */
+  .feature-table tbody tr.row-corrected { background: #FFFDF0; }
+  .feature-table tbody tr.row-corrected:hover { background: #FFF8D6; }
+  .feature-table tbody tr.row-removed  { background: #FEF5F7; }
+  .feature-table tbody tr.row-removed:hover  { background: #FBDDE5; }
+  .feature-table tbody tr.row-deferred { background: #F7F3FB; }
+  .feature-table tbody tr.row-deferred:hover { background: #EDE3F5; }
+
+  .feature-table td {
+    padding: 10px 12px;
+    vertical-align: top;
+    border-right: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .feature-table td:last-child { border-right: none; }
+
+  /* ID cell */
+  .feature-id {
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--midnight-green);
+    white-space: nowrap;
+  }
+  .feature-name {
+    font-size: 9pt;
+    color: #666;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* Correction callout within a cell */
+  .correction-box {
+    background: var(--corrected-bg);
+    border: 1px solid var(--corrected-border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-top: 6px;
+    font-size: 9pt;
+  }
+  .correction-box .correction-label {
+    font-weight: 700;
+    color: #7A5A00;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .correction-box p { color: #5A4200; }
+
+  /* Col widths */
+  .col-id        { width: 110px; min-width: 100px; }
+  .col-what      { width: 160px; }
+  .col-not       { width: 130px; }
+  .col-without   { width: 130px; }
+  .col-human     { width: 120px; }
+  .col-agent     { width: 130px; }
+  .col-why       { width: 130px; }
+  .col-now       { width: 160px; }
+
+  /* Divider between sections */
+  .section-divider {
+    margin: 0 48px;
+    border: none;
+    border-top: 2px solid var(--border);
+  }
+
+  /* Footer */
+  .page-footer {
+    background: var(--dark-gunmetal);
+    color: rgba(255,255,255,0.5);
+    padding: 16px 48px;
+    font-size: 9pt;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .page-footer strong { color: var(--gold); }
+
+  /* A/B results sidebar */
+  .ab-callout {
+    background: var(--midnight-green);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .ab-callout h3 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .ab-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+  .ab-table th {
+    color: rgba(255,255,255,0.6);
+    font-size: 9pt;
+    font-weight: 600;
+    text-align: left;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .ab-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: var(--white);
+  }
+  .ab-table .win-a { color: #F97066; font-weight: 600; }
+  .ab-table .win-b { color: #6CE9A6; font-weight: 600; }
+  .ab-table .decisive { color: var(--gold); font-weight: 700; }
+
+  strike { color: #999; }
+  em { font-style: italic; color: #555; }
+</style>
+</head>
+<body>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="logo-line">LT Capital Partners · COE OPS · OPS_OE.6.4</div>
+  <h1>Obsidian Feature Analysis — CODE Framework</h1>
+  <div class="subtitle">Objective comparison: Long's approach (L1–L13) vs Vinh's approach (V1–V10) · v1.1 self-audit applied</div>
+  <div class="meta-row">
+    <span><strong>Version:</strong> 1.1</span>
+    <span><strong>Status:</strong> Draft</span>
+    <span><strong>Updated:</strong> 2026-04-01</span>
+    <span><strong>Branch:</strong> I1/test/obsidian-ab</span>
+    <span><strong>v1.1 change:</strong> 5 Long corrections + 6 Vinh corrections applied</span>
+  </div>
+</div>
+
+<!-- ── SUMMARY BAR ── -->
+<div class="summary-bar">
+  <div class="stat"><span class="val">23</span><span class="lbl">Total features</span></div>
+  <div class="stat"><span class="val">13</span><span class="lbl">Long features (L)</span></div>
+  <div class="stat"><span class="val">10</span><span class="lbl">Vinh features (V)</span></div>
+  <div class="stat"><span class="val">11</span><span class="lbl">v1.1 corrections total</span></div>
+  <div class="stat"><span class="val">3.6×</span><span class="lbl">Fewer tool calls (A/B)</span></div>
+  <div class="stat"><span class="val">18%</span><span class="lbl">Fewer tokens (A/B)</span></div>
+  <div class="stat"><span class="val">32%</span><span class="lbl">Faster wall time (A/B)</span></div>
+</div>
+
+<!-- ── LEGEND ── -->
+<div class="legend">
+  <strong>Row status:</strong>
+  <span class="badge confirmed">Confirmed</span>
+  <span class="badge corrected">v1.1 Corrected</span>
+  <span class="badge removed">Removed</span>
+  <span class="badge deferred">Deferred</span>
+  <span class="badge built">Built &amp; Tested</span>
+</div>
+
+<!-- ── A/B TEST RESULTS ── -->
+<div class="section">
+  <div class="ab-callout">
+    <h3>A/B Test Baseline — 4 Scenarios × 2 Methods (8 parallel agents)</h3>
+    <table class="ab-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Agent A (Grep only)</th>
+          <th>Agent B (Obsidian CLI)</th>
+          <th>Delta</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S1 — Dependency trace</td>
+          <td class="win-a">18 tool calls · 75 files</td>
+          <td class="win-b">2 tool calls · 80 files</td>
+          <td class="win-b">9× fewer calls</td>
+          <td>Obsidian wins on calls; finds 5 more files</td>
+        </tr>
+        <tr>
+          <td>S2 — Orphan detection</td>
+          <td class="win-a">5% completeness</td>
+          <td class="win-b decisive">100% completeness</td>
+          <td class="win-b decisive">Decisive win</td>
+          <td>Grep structurally can't find what nothing links to</td>
+        </tr>
+        <tr>
+          <td>S3 — Chain-of-custody</td>
+          <td class="win-a">34 calls · 47s</td>
+          <td class="win-b">4 calls · 15s</td>
+          <td class="win-b">8.5× faster</td>
+          <td>Graph traversal vs exhaustive scan</td>
+        </tr>
+        <tr>
+          <td>S4 — Impact analysis</td>
+          <td class="win-a">28/44 (64%)</td>
+          <td class="win-b">5/44 (11%)</td>
+          <td class="win-a">Grep wins</td>
+          <td>.claude/ blind spot — Obsidian can't see agent rules</td>
+        </tr>
+        <tr>
+          <td><strong>Total (4 scenarios)</strong></td>
+          <td>83 calls · 292,597 tokens · 141.7s</td>
+          <td>23 calls · 239,409 tokens · 95.7s</td>
+          <td class="win-b"><strong>3.6× / 18% / 32%</strong></td>
+          <td>Hybrid approach required for .claude/ coverage</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 1 — LONG FEATURES (L1–L13)
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <h2>Long's Features (L)</h2>
+    <span class="section-count">L1 – L13</span>
+  </div>
+  <div class="section-note">
+    This project's implementation decisions. 5 entries corrected in v1.1 (L3, L4, L7, L11, L12).
+  </div>
+
+  <table class="feature-table">
+    <thead>
+      <tr>
+        <th class="col-id">Feature</th>
+        <th class="col-what">What Is It</th>
+        <th class="col-not">What It's Not</th>
+        <th class="col-without">Without It</th>
+        <th class="col-human">How: Human</th>
+        <th class="col-agent">How: Agent</th>
+        <th class="col-why">Why It Works</th>
+        <th class="col-now">Now What</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- L1 -->
+      <tr>
+        <td><div class="feature-id">L1</div><div class="feature-name">Backlinks traversal</div><span class="badge confirmed">Confirmed</span></td>
+        <td><code>obsidian backlinks file="X"</code> — returns all files that link inbound to X</td>
+        <td>Not a text search; finds semantic relationships, not keyword matches</td>
+        <td>Agent re-scans every file to find what references a given artifact. 18 calls → 2 calls (S1).</td>
+        <td>Maintain wikilinks in files as they're created. Autolinker scripts automate this.</td>
+        <td>Call <code>backlinks</code> at pre-flight to get upstream context instantly</td>
+        <td>Graph relationships are pre-indexed by Obsidian. One CLI call = instant traversal</td>
+        <td>P1: Fix SKILL.md syntax (key=value). Confirm backlinks return non-zero after autolinker merge.</td>
+      </tr>
+
+      <!-- L2 -->
+      <tr>
+        <td><div class="feature-id">L2</div><div class="feature-name">Outgoing-links traversal</div><span class="badge confirmed">Confirmed</span></td>
+        <td><code>obsidian links file="X"</code> — returns all files that X links outbound to</td>
+        <td>Not recursive by default. Does not walk the chain; caller chains manually.</td>
+        <td>Downstream impact analysis requires exhaustive grep through every file</td>
+        <td>Ensure outgoing wikilinks are maintained in all artifact files</td>
+        <td>Chain <code>links</code> calls to walk dependency graphs one hop at a time</td>
+        <td>Composable with backlinks — builds full impact map with N calls not O(files)</td>
+        <td>Add chained traversal pattern to SKILL.md examples section</td>
+      </tr>
+
+      <!-- L3 — REMOVED -->
+      <tr class="row-removed">
+        <td><div class="feature-id">L3</div><div class="feature-name"><strike>graph:walk</strike></div><span class="badge removed">Removed</span></td>
+        <td><strike>Recursive graph traversal in a single command</strike></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Removed</div>
+            <p><strong>graph:walk does not exist.</strong> The command was in SKILL.md but never worked — no empirical data, no A/B test used it. S1 used backlinks chaining instead. Removed from SKILL.md entirely. Replace with explicit chained backlinks + outgoing-links pattern (L1+L2).</p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- L4 — DEFERRED -->
+      <tr class="row-deferred">
+        <td><div class="feature-id">L4</div><div class="feature-name">Daily notes (3rd memory layer)</div><span class="badge deferred">Deferred</span></td>
+        <td><code>obsidian daily:read</code> at session start — loads yesterday's journal for intra-week continuity</td>
+        <td>Not a replacement for Memory Vault or QMD — it captures micro-decisions those miss</td>
+        <td>Agent loses intra-week continuity not captured in session logs (minor gap)</td>
+        <td>Write daily notes regularly — high discipline cost</td>
+        <td>Read silently at session start if daily note exists</td>
+        <td>Fills gap between session logs (summarized) and real-time context</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Overstated</div>
+            <p>We already have <strong>7 session persistence components</strong>: Memory Vault + QMD + /resume + Stop hook + Start hook + /session-start + project MEMORY.md. The cold-start problem is mostly solved. Daily notes solve a marginal gap. <strong>Defer to I2 — fix /session-start and /session-end hooks first before adding a third memory layer.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- L5 -->
+      <tr>
+        <td><div class="feature-id">L5</div><div class="feature-name">search:context command</div><span class="badge confirmed">Confirmed</span></td>
+        <td><code>obsidian search:context query="X"</code> — returns matching passages with surrounding context, not just file paths</td>
+        <td>Not a file-path search. Returns text excerpts — agent reads meaning, not just location.</td>
+        <td>Agent must open each found file to read relevant passage. More calls, more tokens.</td>
+        <td>No special action needed — vault population determines quality</td>
+        <td>Replace <code>search</code> with <code>search:context</code> for all research queries</td>
+        <td>Reduces read-file calls. Returns relevant content inline = lower token usage.</td>
+        <td>Add to SKILL.md as primary search command. Remove bare <code>search</code> from examples.</td>
+      </tr>
+
+      <!-- L6 -->
+      <tr>
+        <td><div class="feature-id">L6</div><div class="feature-name">Orphan detection</div><span class="badge confirmed">Confirmed</span></td>
+        <td><code>obsidian orphans</code> — returns all files with no inbound or outbound wikilinks</td>
+        <td>Not a dead-link finder. Orphans = isolated nodes, not broken links.</td>
+        <td>Orphan files accumulate silently. S2: Grep found 5% of orphans; Obsidian found 100%.</td>
+        <td>Run orphan check during IMPROVE workstream review</td>
+        <td>Call <code>orphans</code> at pre-flight or after major refactors to detect drift</td>
+        <td>Graph index tracks all nodes. O(1) lookup vs O(files) cross-reference scan.</td>
+        <td>Add orphan check to the 7-step pre-flight protocol as optional Step 8.</td>
+      </tr>
+
+      <!-- L7 — CORRECTED -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">L7</div><div class="feature-name">Vault structure (Option C)</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>Flat vault folders + <code>zone:</code> / <code>subsystem:</code> frontmatter tags. Files live in flat dirs, not mirrored ALPEI folder hierarchy.</td>
+        <td>Not Option A (no vault), not Option B (mirror ALPEI structure in Obsidian)</td>
+        <td>If mirroring ALPEI folders: vault structure diverges from repo on every rename. Maintenance overhead high.</td>
+        <td>Add frontmatter tags to all artifacts. No folder restructuring needed.</td>
+        <td>Query by <code>zone: execute</code> frontmatter, not folder path</td>
+        <td>Repo folder structure is source of truth. Vault tags provide queryable overlay without coupling.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Decision Locked</div>
+            <p>Option C confirmed as the approach. Updated analysis to reflect final decision (was previously listed as "under consideration"). Autolinker pass will add <code>zone:</code> and <code>subsystem:</code> frontmatter to all template files.</p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- L8 -->
+      <tr>
+        <td><div class="feature-id">L8</div><div class="feature-name">AP4 opt-out model</div><span class="badge confirmed">Confirmed</span></td>
+        <td>Privacy model: <code>cli-blocked: true</code> in frontmatter = CLI cannot read this file. Default = accessible. Opposite of opt-in.</td>
+        <td>Not a file permission. The CLI flag is a convention, not enforced by OS or Obsidian.</td>
+        <td>Opt-in model (original SKILL.md) meant most files were inaccessible by default — kills graph traversal value.</td>
+        <td>Add <code>cli-blocked: true</code> to sensitive notes (personal, salary, credentials)</td>
+        <td>Check <code>cli-blocked</code> frontmatter before reading any file in AP4 gate</td>
+        <td>Opt-out maximizes graph coverage while protecting genuinely sensitive content</td>
+        <td>P2: Update SKILL.md AP4 section. Align field name with any other agents using this convention.</td>
+      </tr>
+
+      <!-- L9 -->
+      <tr>
+        <td><div class="feature-id">L9</div><div class="feature-name">.claude/ hybrid strategy</div><span class="badge confirmed">Confirmed</span></td>
+        <td>After every obsidian search: mandatory grep sweep of <code>.claude/</code> as supplement. Option B = not a fallback, a requirement.</td>
+        <td>Not a fallback for when CLI fails. It's a mandatory second pass every time, CLI or not.</td>
+        <td>S4: Obsidian-only found 11% of .claude/ impact. 89% of rule dependencies invisible. Hybrid finds ~95%.</td>
+        <td>No action — this is agent behavior encoded in SKILL.md</td>
+        <td>After obsidian search → always grep <code>.claude/rules/</code> and <code>.claude/skills/</code></td>
+        <td>.claude/ is not registered as vault content. CLI has no index of it. Grep is the only path.</td>
+        <td>P3: Add mandatory grep sweep to SKILL.md workflow section. Add to pre-flight checklist.</td>
+      </tr>
+
+      <!-- L10 -->
+      <tr>
+        <td><div class="feature-id">L10</div><div class="feature-name">QMD + Obsidian composability</div><span class="badge confirmed">Confirmed</span></td>
+        <td>QMD = semantic search over session/decision/daily collections. Obsidian = graph traversal. They compose, not compete.</td>
+        <td>Not an either/or decision. QMD handles personal vault collections; Obsidian handles repo wikilinks.</td>
+        <td>Either tool alone misses the other's domain. QMD can't do graph. Obsidian can't search session history.</td>
+        <td>No special action — both tools are already configured</td>
+        <td>Use QMD first for semantic search → Obsidian for graph traversal → grep for .claude/</td>
+        <td>Three complementary tools covering: meaning (QMD), relationships (Obsidian), literal text (.claude grep)</td>
+        <td>Document the 3-tool routing decision in tool-routing.md. Add to SKILL.md usage guide.</td>
+      </tr>
+
+      <!-- L11 — CORRECTED (built status) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">L11</div><div class="feature-name">Auto-linker scripts</div><span class="badge built">Built &amp; Tested</span></td>
+        <td>Python scripts (528 lines) that scan all repo markdown files and inject wikilinks to referenced artifacts</td>
+        <td>Not a one-time cleanup. Designed to run on every new file added to the repo.</td>
+        <td>Without it, wikilinks must be added manually. S1 + S3 wins depend on populated wikilinks.</td>
+        <td>Trigger auto-linker after adding new files to repo</td>
+        <td>Graph traversal only works if wikilinks exist. Scripts bootstrap the graph.</td>
+        <td>One-time retroactive enrichment creates permanent traversal paths for all future sessions</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Status Wrong</div>
+            <p>v1.0 labeled this "designed only." <strong>WRONG.</strong> Scripts are <strong>built (528 lines), committed, and ran on 380 files</strong> in the obsidian-cli worktree. They exist at <code>.worktrees/obsidian-cli/scripts/</code>. Copy to this branch as part of the merge sequence.</p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- L12 — CORRECTED -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">L12</div><div class="feature-name">Vault targeting fix</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>Worktree inside main repo causes vault resolution failure — Obsidian sees parent vault path, not worktree path</td>
+        <td>Not a bug in the CLI. A known constraint: only one vault active at a time per Obsidian instance.</td>
+        <td>Without awareness: all CLI calls from worktrees silently return wrong results or 0 backlinks</td>
+        <td>During Build phase, use main repo vault (not worktree). Merge to branch, then run obsidian checks.</td>
+        <td>Build phase = grep (worktree invisible to vault). Validate phase = obsidian (after merge).</td>
+        <td>Obsidian single-vault constraint is architectural. Worktree lifecycle must match this constraint.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 — Decision Confirmed</div>
+            <p>Worktree lifecycle decision locked: Build in worktree (grep only) → merge to branch → run obsidian validate. Do NOT register worktrees as separate vaults. Updated LP-6: DSBV Validate must test against live vault, not worktree.</p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- L13 -->
+      <tr>
+        <td><div class="feature-id">L13</div><div class="feature-name">Graceful degradation</div><span class="badge confirmed">Confirmed</span></td>
+        <td>If Obsidian CLI fails (app not running, vault not registered), agent falls back to grep. Floor = current behavior. No broken sessions.</td>
+        <td>Not a testing crutch. The floor behavior must remain fully functional — degradation is graceful, not partial.</td>
+        <td>Hard dependency on CLI = every session breaks when Obsidian is closed. Unacceptable for 8-member team.</td>
+        <td>Keep Obsidian app running for best experience. CLI works only when app is open.</td>
+        <td>Try CLI call → if error, fall back to grep equivalent. Never fail silently.</td>
+        <td>S > E pillar: sustainability requires zero adoption friction. Members who don't use Obsidian still get working agents.</td>
+        <td>Encode fallback logic in SKILL.md. Test: close Obsidian → run pre-flight → verify grep fallback triggers.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 2 — VINH'S FEATURES (V1–V10)
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <h2>Vinh's Features (V) — Objective Re-Analysis</h2>
+    <span class="section-count">V1 – V10</span>
+  </div>
+  <div class="section-note">
+    <strong>v1.0 bias audit:</strong> 6 of 10 entries had speculative or biased framing (V1, V2, V3, V6, V7, V9). v1.1 applies objective corrections — no opinion presented as data, no dismissal without evidence. Features are evaluated on their own merit, not compared defensively to Long's approach.
+  </div>
+
+  <table class="feature-table">
+    <thead>
+      <tr>
+        <th class="col-id">Feature</th>
+        <th class="col-what">What Is It</th>
+        <th class="col-not">What It's Not</th>
+        <th class="col-without">Without It</th>
+        <th class="col-human">How: Human</th>
+        <th class="col-agent">How: Agent</th>
+        <th class="col-why">Why It Works</th>
+        <th class="col-now">Now What</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- V1 — CORRECTED (virtuous cycle) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V1</div><div class="feature-name">Wikilink flywheel</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>Each wikilink added = a cached relationship that agents follow instead of re-discovering. Auto-linker runs once → permanent enrichment.</td>
+        <td>Not a self-sustaining system by itself. Links must be maintained as files are renamed or removed.</td>
+        <td>Agents re-discover relationships every session via grep. No compounding benefit over time.</td>
+        <td>Approve autolinker runs. Review and clean broken links periodically.</td>
+        <td>Navigate graph directly instead of scanning. Each session starts with relationships already known.</td>
+        <td>Pre-indexed relationships = O(1) traversal vs O(files) scan. Value is real per-session.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Speculative</div>
+            <p>v1.0 claimed "virtuous cycle" of compounding value. <strong>UNPROVEN.</strong> We have per-session data (S1, S3) showing single-session wins. We have <em>zero</em> data on whether savings compound over time (session N vs N+10). The mechanism is plausible but the "flywheel" framing overstates it. <strong>Per-session value = confirmed. Compounding = hypothesis. Need longitudinal measurement.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V2 — CORRECTED (41 templates) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V2</div><div class="feature-name">41 Templater templates</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>Comprehensive Obsidian Templater template set covering every ALPEI stage × work stream combination. Each template enforces the correct frontmatter schema for Bases queries.</td>
+        <td>Not arbitrary note-creation shortcuts. Templates encode the 80-cell matrix's required metadata structure.</td>
+        <td>Without templates, notes have inconsistent frontmatter → Bases filters break → dashboards show wrong data.</td>
+        <td>Ctrl+T in Obsidian → select template for the note type. No manual frontmatter needed.</td>
+        <td>Agent creates notes by referencing template structure to ensure correct <code>work_stream</code>, <code>stage</code>, <code>sub_system</code>, <code>status</code> fields.</td>
+        <td>Frontmatter consistency is a prerequisite for Bases. Templates are the enforcement mechanism.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Bias Removed</div>
+            <p>v1.0 said "41 = overload." <strong>That was my bias, not analysis.</strong> 41 templates for 80+ cells is actually lean. The real question is onboarding: do members know which template to use? <strong>Recommendation: tier templates into L1 (5 must-know) → L2 (10 common) → L3 (rest). Ship L1 tier first, not all 41.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V3 — CORRECTED (Kanban) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V3</div><div class="feature-name">12 Kanban boards</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>12 Kanban boards (one per sub-system × work stream) where tasks are plain markdown. Agents can read and write task cards directly.</td>
+        <td>Not a replacement for ClickUp at team scale. No cross-member assignments, no notifications, no external integrations.</td>
+        <td>Without local Kanban: agent task queues live only in ClickUp — requires API calls. Local markdown is faster and offline-capable.</td>
+        <td>Move cards in Obsidian Kanban UI. Boards are always visible alongside vault content.</td>
+        <td>Read task cards as plain markdown. Write new tasks directly to board file. No plugin API needed.</td>
+        <td>Kanban plugin uses plain markdown format. Any file editor — human or agent — can write valid Kanban syntax.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Wrong Claim</div>
+            <p>v1.0 said "agents can't write to Kanban boards." <strong>WRONG.</strong> The Obsidian Kanban plugin stores boards as plain markdown with specific heading syntax. Agents can write valid Kanban cards by following the format. The constraint is <em>sync latency to ClickUp</em>, not writeability. <strong>Test: have agent write a task card → verify Obsidian UI renders it correctly.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V4 — CONFIRMED -->
+      <tr>
+        <td><div class="feature-id">V4</div><div class="feature-name">14 Obsidian Bases dashboards</div><span class="badge confirmed">Confirmed</span></td>
+        <td>Database-view dashboards filtering frontmatter across all vault files. ALPEI Master, Blocker, Approval Queue, Standup, Version Progress, Stage Board, + 5 work stream overviews + 3 operational.</td>
+        <td>Not a replacement for ClickUp at team scale (no assignments, no cross-system notifications). Solo / ≤3-person teams: Bases may suffice. Team of 8: supplement only.</td>
+        <td>Without Bases: no queryable project state. Must manually open files to find blockers, pending approvals, or version status.</td>
+        <td>Open a Base view to see current project state. Frontmatter auto-populates all rows.</td>
+        <td>Agent queries frontmatter fields (<code>status: blocked</code>) to find what needs attention without opening individual files.</td>
+        <td>Frontmatter = structured data. Bases = SQL-like query layer over plain markdown. Requires consistent schema (see V2 templates).</td>
+        <td>Evaluate: is Bases interim (until Notion WMS ready) or permanent for this project? Define the switch criteria. Ship ALPEI Master + Blocker dashboards first.</td>
+      </tr>
+
+      <!-- V5 — CONFIRMED -->
+      <tr>
+        <td><div class="feature-id">V5</div><div class="feature-name">3-layer architecture</div><span class="badge confirmed">Confirmed</span></td>
+        <td>Explicit layer separation: Knowledge layer (Obsidian vault, read-heavy) · Execution layer (Agent, produces artifacts) · Accountability layer (ClickUp/Notion, human-facing WMS).</td>
+        <td>Not a rigid technical boundary enforced by tooling. A design principle with designated write paths per layer.</td>
+        <td>Without layer discipline: agents pollute vault with execution artifacts → humans lose trust in Knowledge layer quality → adoption collapses.</td>
+        <td>Architect the rules. Periodically audit that write paths are respected.</td>
+        <td>Read from Knowledge layer freely. Write only to designated paths (<code>AI MEMORY/</code>, <code>TEMP OUT/</code>). Never write to <code>2. LEARN/</code> or <code>1. ALIGN/</code> directly.</td>
+        <td>Separation of concerns reduces cognitive load. Humans always know which layer to trust for what type of content.</td>
+        <td>Define the complete write-path whitelist for agents. Add hookify rule to warn on out-of-bounds agent writes.</td>
+      </tr>
+
+      <!-- V6 — CORRECTED (cold start) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V6</div><div class="feature-name">Session startup via daily notes</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td><code>obsidian daily:read silent</code> at session start loads yesterday's journal. Captures micro-decisions not summarized in session logs (meeting notes, async decisions, reading notes).</td>
+        <td>Not the only cold-start solution. One of many context-loading mechanisms, not the primary one.</td>
+        <td>Agent misses intra-day context that wasn't captured in formal session logs. Small gap in practice.</td>
+        <td>Write daily notes consistently. Value scales with note discipline.</td>
+        <td>Read silently at session start if daily note exists. Skip gracefully if not.</td>
+        <td>Daily notes capture qualitative context that structured session logs can't: mood, serendipitous insights, blocked thoughts.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Overstated (same as L4)</div>
+            <p>v1.0 framed this as solving a critical cold-start gap. <strong>Same mistake as L4.</strong> We have 7 existing session persistence components. The gap daily notes solve is marginal. <strong>Don't add a third memory layer until /session-start and /session-end hooks work reliably. Revisit in I2.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V7 — CORRECTED (layer bleeding) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V7</div><div class="feature-name">Layer boundary discipline</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>Convention: agents do not write to the Knowledge layer (human-curated vault notes) except via designated paths (<code>AI MEMORY/</code>, <code>TEMP OUT/</code>). Preserves vault quality.</td>
+        <td>Not enforced by Obsidian or the CLI. A behavioral rule, not a technical constraint.</td>
+        <td>Agents that freely write vault notes contaminate the human knowledge base with execution artifacts. Hard to clean up retroactively.</td>
+        <td>Design the rule. Run periodic audits. Trust but verify.</td>
+        <td>Follow write-path whitelist. Write to designated paths only.</td>
+        <td>Clean boundaries enable human trust in vault quality. Trust = adoption. Adoption = ROI.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Theoretical</div>
+            <p>v1.0 claimed "layer bleeding" causes active failures. <strong>That's theoretical — we have no observed instances.</strong> The <em>rule itself is sound</em> and worth keeping. The urgency was overstated. <strong>Implement the write-path whitelist as a preventive measure, not as a fix for an observed problem.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V8 — CONFIRMED -->
+      <tr>
+        <td><div class="feature-id">V8</div><div class="feature-name">80-cell matrix taxonomy</div><span class="badge confirmed">Confirmed</span></td>
+        <td>4 sub-systems × 5 work streams × 4 stages = 80 cells. Every work unit has a canonical address. Frontmatter encodes the address: <code>sub_system + work_stream + stage</code>.</td>
+        <td>Not required to instantiate all 80 cells. Most projects use 10–20 active cells. The taxonomy is the reference, not the mandate.</td>
+        <td>Without canonical addresses: work units lack references. Agents guess context. Bases queries return wrong results. Traceability breaks.</td>
+        <td>Assign each deliverable to its cell at planning time. Use the matrix as a checklist, not a requirement.</td>
+        <td>Navigate by cell address to find the right context instantly. No discovery needed.</td>
+        <td>Deterministic taxonomy = predictable agent navigation. Addresses compress context: "PD×EXECUTE×Build" says more than a filename.</td>
+        <td>Build a Bases view showing all 80 cells with current population count per cell. Use as project health indicator.</td>
+      </tr>
+
+      <!-- V9 — CORRECTED (478 files) -->
+      <tr class="row-corrected">
+        <td><div class="feature-id">V9</div><div class="feature-name">478-file pre-instantiation</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td>All 80 cells pre-populated with stub files at vault creation. Vault is fully navigable before any work starts. Agent paths always exist on first call.</td>
+        <td>Not required for the template to function. Our current template works with ~50 files and full agent support.</td>
+        <td>Without pre-instantiation: agents must create directories and files as they go → more tool calls, more path errors, more context-switching.</td>
+        <td>Clone the vault → all structure exists. No setup step for individual cells.</td>
+        <td>Navigate directly to any cell path without checking if it exists first. Lower error rate on file creation.</td>
+        <td>Pre-existence of all paths reduces agent tool calls at file creation time. Value is real for dense projects.</td>
+        <td>
+          <div class="correction-box">
+            <div class="correction-label">v1.1 Corrected — Opinion as Analysis</div>
+            <p>v1.0 said "478 files is too many." <strong>That was opinion with no supporting data.</strong> The actual question is: does 478 vs ~50 stubs reduce agent path errors in practice? We don't know. <strong>Design a test: 2 members use 478-file vault, 2 use 50-file vault. Measure tool call errors and agent path failures over 2 weeks before scaling.</strong></p>
+          </div>
+        </td>
+      </tr>
+
+      <!-- V10 — CONFIRMED -->
+      <tr>
+        <td><div class="feature-id">V10</div><div class="feature-name">Knowledge routing table</div><span class="badge confirmed">Confirmed</span></td>
+        <td>Static routing table in CLAUDE.md maps knowledge request types to specific vault paths. <code>obsidian read file="User"</code> returns owner context without search overhead.</td>
+        <td>Not a search function. It's a pre-computed index of <em>where to look</em> — not a way to discover unknown locations.</td>
+        <td>Without routing table: agents search for known context every session → unnecessary overhead for stable locations.</td>
+        <td>Maintain routing table when vault structure changes. Small maintenance cost.</td>
+        <td>Look up routing table first. Navigate directly to the known path. Use search only for discovery.</td>
+        <td>Eliminates rediscovery overhead for stable knowledge. Pre-computed index is faster than runtime search for known locations.</td>
+        <td>Map Vinh's routing table entries to our equivalent QMD queries. Identify gaps where we lack direct-path access. Add to SKILL.md as a startup optimization layer.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!-- ── SYNTHESIS ── -->
+<div class="section">
+  <div class="section-header">
+    <h2>Synthesis — What to Adopt from Vinh</h2>
+  </div>
+
+  <table class="feature-table">
+    <thead>
+      <tr>
+        <th style="width:80px">Vinh Feature</th>
+        <th style="width:100px">Adopt?</th>
+        <th>Rationale</th>
+        <th>Prerequisite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="feature-id">V1</div><div class="feature-name">Flywheel</div></td>
+        <td><span class="badge confirmed">Adopt mechanism</span></td>
+        <td>Per-session wins confirmed (S1, S3). The "flywheel" framing is speculative but the underlying mechanism is real. Autolinker already built.</td>
+        <td>Autolinker merge into this branch (copy from .worktrees/obsidian-cli/scripts/)</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V2</div><div class="feature-name">Templates</div></td>
+        <td><span class="badge confirmed">Adopt (tiered)</span></td>
+        <td>Frontmatter consistency is required for Bases. Adopt L1 tier (5 core templates) first. Ship rest progressively.</td>
+        <td>Define L1/L2/L3 template tiers. Don't ship all 41 on day 1.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V3</div><div class="feature-name">Kanban</div></td>
+        <td><span class="badge deferred">Evaluate (I2)</span></td>
+        <td>Agent writeability confirmed. Value depends on whether we want a local markdown task queue alongside ClickUp. Not a I1 need.</td>
+        <td>Test agent write → Kanban UI render first. Decide if this replaces any ClickUp usage.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V4</div><div class="feature-name">Bases dashboards</div></td>
+        <td><span class="badge confirmed">Adopt (subset)</span></td>
+        <td>ALPEI Master + Blocker + Approval Queue are the highest value. Requires V2 template adoption first for frontmatter consistency.</td>
+        <td>V2 templates must be in place. Ship 3 starter Bases (Master, Blocker, Approval).</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V5</div><div class="feature-name">3-layer arch</div></td>
+        <td><span class="badge confirmed">Adopt as rule</span></td>
+        <td>Sound design principle. Encode write-path whitelist in SKILL.md and add hookify guard.</td>
+        <td>Define write-path whitelist. Add to obsidian-security.md rule.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V6</div><div class="feature-name">Daily notes</div></td>
+        <td><span class="badge deferred">Defer (I2)</span></td>
+        <td>Fix /session-start and /session-end hooks first. Cold-start problem already 80% solved by existing 7 components.</td>
+        <td>Working hooks required before adding daily notes as third memory layer.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V7</div><div class="feature-name">Layer discipline</div></td>
+        <td><span class="badge confirmed">Adopt as rule</span></td>
+        <td>Preventive — not fixing an observed problem but preventing a future one. Low cost, high upside.</td>
+        <td>Write-path whitelist (same as V5). Hookify rule to warn on out-of-bounds writes.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V8</div><div class="feature-name">80-cell matrix</div></td>
+        <td><span class="badge confirmed">Adopt as reference</span></td>
+        <td>Taxonomy is already implicit in our ALPEI structure. Making it explicit in frontmatter + Bases adds queryability.</td>
+        <td>V2 templates must encode <code>sub_system</code>, <code>work_stream</code>, <code>stage</code> fields.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V9</div><div class="feature-name">478 stubs</div></td>
+        <td><span class="badge deferred">Test before adopting</span></td>
+        <td>Value unproven for our team size and project type. Run controlled A/B test (2 vs 2 members, 2 weeks) before committing.</td>
+        <td>Design and run the test. Don't scale to full team on hypothesis.</td>
+      </tr>
+      <tr>
+        <td><div class="feature-id">V10</div><div class="feature-name">Routing table</div></td>
+        <td><span class="badge confirmed">Adopt</span></td>
+        <td>Directly composable with our existing session startup. Map entries to QMD queries + direct paths. Low effort, high ROI.</td>
+        <td>Identify our equivalent of Vinh's routing table entries. Add to SKILL.md startup section.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 4 — PRIORITY RANKING (RICE)
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <h2>Implementation Priority — RICE Score</h2>
+  </div>
+
+  <div class="section-note">
+    <strong>Why RICE?</strong> Reach × Impact × Confidence ÷ Effort.
+    Confidence naturally down-weights speculative features (V1 flywheel, V7 layer bleed, V9 stubs) without manual bias.
+    Effort up-ranks one-line fixes over multi-day builds.
+    Three constraints override score: (1) P0 unblocking actions run first regardless of score,
+    (2) dependency ordering enforced within phases, (3) deferred items score 0 by definition.
+    <br><br>
+    <strong>Scale:</strong>
+    Reach 0–3 (never → every session) ·
+    Impact 1–5 (marginal → decisive/S2-level) ·
+    Confidence 0–1 (speculative → A/B confirmed) ·
+    Effort story points (1 = &lt;1hr · 2 = half-day · 3 = full day · 5 = multi-day · 8 = week+)
+  </div>
+
+  <!-- P0 prerequisite callout -->
+  <div class="ab-callout" style="margin-bottom:24px">
+    <h3>P0 — Unblocking Prerequisite (runs before all scores apply)</h3>
+    <p style="color:rgba(255,255,255,0.85); font-size:10pt; line-height:1.6;">
+      <strong style="color:var(--gold)">SKILL.md syntax rewrite</strong> — All CLI features use wrong syntax (<code>--flags</code> instead of <code>key=value</code>).
+      Until fixed, L1/L2/L5/L6/L8/L9/L10/L12/L13 are all non-functional regardless of RICE score.
+      Remove <code>graph:walk</code> (L3). Fix AP4 to opt-out (L8). Add <code>search:context</code> (L5). Add mandatory grep sweep (L9).
+      <br><strong style="color:var(--gold)">Effort: ~2hrs · Do this first, before anything else.</strong>
+    </p>
+  </div>
+
+  <table class="feature-table">
+    <thead>
+      <tr>
+        <th style="width:40px">#</th>
+        <th style="width:80px">Feature</th>
+        <th style="width:180px">Name</th>
+        <th style="width:50px; text-align:center">R<br><span style="font-weight:400;font-size:8pt;text-transform:none">0–3</span></th>
+        <th style="width:50px; text-align:center">I<br><span style="font-weight:400;font-size:8pt;text-transform:none">1–5</span></th>
+        <th style="width:50px; text-align:center">C<br><span style="font-weight:400;font-size:8pt;text-transform:none">0–1</span></th>
+        <th style="width:50px; text-align:center">E<br><span style="font-weight:400;font-size:8pt;text-transform:none">SP</span></th>
+        <th style="width:70px; text-align:center">Score<br><span style="font-weight:400;font-size:8pt;text-transform:none">R×I×C÷E</span></th>
+        <th style="width:90px">Phase</th>
+        <th>Rationale · Blocking dependencies</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- PHASE 1 — NOW (within P1-P3 SKILL.md pass) -->
+      <tr style="background:#E8F0E8">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--midnight-green); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--midnight-green)">
+          Phase 1 — Now · SKILL.md pass + autolinker merge · All unblocked after P0 syntax fix
+        </td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">1</td>
+        <td><span class="feature-id" style="font-size:10pt">L6</span></td>
+        <td><strong>Orphan detection</strong></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;color:var(--ruby);font-weight:700">5</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">10.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>S2: Grep found 5% of orphans; Obsidian found 100%. Structurally impossible to replicate with grep. Highest impact-to-effort ratio. No deps beyond P0 syntax fix.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">2</td>
+        <td><span class="feature-id" style="font-size:10pt">L5</span></td>
+        <td><strong>search:context command</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">9.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>Every research query benefits. Returns passage excerpts inline — eliminates follow-up read-file calls. Missing from SKILL.md entirely. One-line addition.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">3</td>
+        <td><span class="feature-id" style="font-size:10pt">L8</span></td>
+        <td><strong>AP4 opt-out model</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">9.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>Current SKILL.md has backwards model — most files inaccessible by default. Flip to <code>cli-blocked: true</code>. One section rewrite. Blocks graph traversal value if wrong.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">4</td>
+        <td><span class="feature-id" style="font-size:10pt">L12</span></td>
+        <td><strong>Vault targeting / worktree lifecycle</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">9.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>Documents a known-gotcha that silently returns 0 results. Prevents re-discovery. Add to SKILL.md warning section. Encoded in LP-6 learned pattern.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">5</td>
+        <td><span class="feature-id" style="font-size:10pt">L10</span></td>
+        <td><strong>QMD + Obsidian composability</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">9.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>3-tool routing (QMD → Obsidian → grep/.claude) must be documented or agents default to ad-hoc selection. One SKILL.md section. No new implementation needed.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">6</td>
+        <td><span class="feature-id" style="font-size:10pt">V10</span></td>
+        <td><strong>Knowledge routing table</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">9.0</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>Adopt from Vinh. Maps known knowledge locations to direct paths (no search overhead). Add to SKILL.md startup section. Directly composable with L10.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">7</td>
+        <td><span class="feature-id" style="font-size:10pt">L13</span></td>
+        <td><strong>Graceful degradation</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">5</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">7.5</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>S > E pillar: 8-member team cannot have broken sessions. Floor = grep must always work. Encode fallback logic in SKILL.md error handling section. Half-day to test properly.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">8</td>
+        <td><span class="feature-id" style="font-size:10pt">L2</span></td>
+        <td><strong>Outgoing-links traversal</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">0.8</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">7.2</td>
+        <td><span class="badge confirmed">Phase 1</span></td>
+        <td>Downstream impact analysis. C=0.8 because syntax not yet tested after P0 fix. Low effort once syntax is corrected. Add chained traversal pattern to examples.</td>
+      </tr>
+
+      <!-- PHASE 2 — NEXT (autolinker merge + graph population) -->
+      <tr style="background:#E8F0E8">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--midnight-green); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--midnight-green)">
+          Phase 2 — Next · Autolinker merge + graph population · L11 must complete before L1 and L9 reach full value
+        </td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">9</td>
+        <td><span class="feature-id" style="font-size:10pt">L11</span></td>
+        <td><strong>Auto-linker scripts</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">6.0</td>
+        <td><span class="badge built">Phase 2</span></td>
+        <td><strong>Blocker for L1, L9.</strong> Scripts built (528 lines), ran on 380 files in worktree. Just needs copy from <code>.worktrees/obsidian-cli/scripts/</code> + merge. Without this, backlinks return ~0 and graph traversal has nothing to traverse.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">10</td>
+        <td><span class="feature-id" style="font-size:10pt">L9</span></td>
+        <td><strong>.claude/ hybrid strategy</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">6.0</td>
+        <td><span class="badge confirmed">Phase 2</span></td>
+        <td>S4 proved Obsidian finds only 11% of .claude/ impact. Hybrid (obsidian + mandatory grep sweep) gets to ~95%. Encode as required step in SKILL.md workflow, not optional fallback.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">11</td>
+        <td><span class="feature-id" style="font-size:10pt">L1</span></td>
+        <td><strong>Backlinks traversal</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center">0.8</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">4.8</td>
+        <td><span class="badge confirmed">Phase 2</span></td>
+        <td><strong>Blocked by L11 (autolinker).</strong> S1: 2 calls vs 18 calls. C=0.8 because syntax fix needed first. Full value only after wikilinks are populated by autolinker pass.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">12</td>
+        <td><span class="feature-id" style="font-size:10pt">V5</span></td>
+        <td><strong>3-layer architecture rule</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">4.5</td>
+        <td><span class="badge confirmed">Phase 2</span></td>
+        <td>Adopt from Vinh. Write agent write-path whitelist into obsidian-security.md. Preventive — cheap to do now, expensive to clean up later. Needed before V4 Bases ships.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">13</td>
+        <td><span class="feature-id" style="font-size:10pt">L7</span></td>
+        <td><strong>Vault structure (Option C)</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700;color:var(--midnight-green)">3.0</td>
+        <td><span class="badge confirmed">Phase 2</span></td>
+        <td>Decision locked (Option C). Autolinker adds <code>zone:</code> + <code>subsystem:</code> frontmatter tags. No folder restructuring. Runs alongside L11 autolinker pass.</td>
+      </tr>
+
+      <!-- PHASE 3 — I1 STRETCH -->
+      <tr style="background:#E8F0E8">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--midnight-green); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--midnight-green)">
+          Phase 3 — I1 Stretch · After A/B re-test passes · Adopt Vinh's infra layer
+        </td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">14</td>
+        <td><span class="feature-id" style="font-size:10pt">V1</span></td>
+        <td><strong>Wikilink flywheel</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700">2.25</td>
+        <td><span class="badge corrected">Phase 3</span></td>
+        <td>Mechanism confirmed (per-session wins). Compounding claim unproven. Value: run autolinker retroactively. <strong>Blocked by L11.</strong> Design longitudinal measurement before claiming flywheel.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">15</td>
+        <td><span class="feature-id" style="font-size:10pt">V7</span></td>
+        <td><strong>Layer boundary discipline</strong></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700">2.25</td>
+        <td><span class="badge corrected">Phase 3</span></td>
+        <td>Rule is sound, urgency was overstated. Add hookify guard after V5 write-path whitelist is defined. C=0.5 because no observed violations yet — preventive, not reactive.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">16</td>
+        <td><span class="feature-id" style="font-size:10pt">V2</span></td>
+        <td><strong>Templates (L1 tier — 5 core)</strong></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center;font-weight:700">2.0</td>
+        <td><span class="badge confirmed">Phase 3</span></td>
+        <td>Required for V4 Bases to work (frontmatter consistency). Ship L1 tier only (5 templates). <strong>Blocker for V4.</strong> Effort is higher because requires member onboarding doc alongside.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">17</td>
+        <td><span class="feature-id" style="font-size:10pt">V4</span></td>
+        <td><strong>Bases dashboards (3 starters)</strong></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center;font-weight:700">2.0</td>
+        <td><span class="badge confirmed">Phase 3</span></td>
+        <td><strong>Blocked by V2</strong> (templates must populate frontmatter first). Ship: ALPEI Master + Blocker + Approval Queue. Decide at end of I1: interim vs permanent vs Notion.</td>
+      </tr>
+
+      <tr>
+        <td style="font-weight:700;text-align:center">18</td>
+        <td><span class="feature-id" style="font-size:10pt">V8</span></td>
+        <td><strong>80-cell matrix (Bases view)</strong></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">1.0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center;font-weight:700">2.0</td>
+        <td><span class="badge confirmed">Phase 3</span></td>
+        <td>Build Bases view showing 80-cell population count. <strong>Blocked by V4.</strong> Low urgency — health indicator, not a workflow enabler. Good I1 close artifact.</td>
+      </tr>
+
+      <!-- DEFERRED / I2 -->
+      <tr style="background:#F0EAF5">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--purple); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--deferred-border)">
+          Deferred — I2 · Fix prerequisites first
+        </td>
+      </tr>
+
+      <tr class="row-deferred">
+        <td style="font-weight:700;text-align:center">19</td>
+        <td><span class="feature-id" style="font-size:10pt">V3</span></td>
+        <td><strong>Kanban as agent queue</strong></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center;font-weight:700">0.33</td>
+        <td><span class="badge deferred">I2</span></td>
+        <td>Writeability confirmed but value vs ClickUp unclear. Test agent → Kanban write → UI render before committing. Not needed for I1 workflows.</td>
+      </tr>
+
+      <tr class="row-deferred">
+        <td style="font-weight:700;text-align:center">20</td>
+        <td><span class="feature-id" style="font-size:10pt">L4 / V6</span></td>
+        <td><strong>Daily notes (3rd memory layer)</strong></td>
+        <td style="text-align:center">0</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center;font-weight:700">0</td>
+        <td><span class="badge deferred">I2</span></td>
+        <td><strong>Blocked by: working /session-start + /session-end hooks.</strong> Cold-start already 80% solved by 7 existing components. Fix hooks first. Revisit in I2.</td>
+      </tr>
+
+      <!-- Test before deciding -->
+      <tr style="background:#FEF5F7">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--ruby); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--removed-border)">
+          Test-Gate · Do not implement until A/B evidence collected
+        </td>
+      </tr>
+
+      <tr class="row-removed">
+        <td style="font-weight:700;text-align:center">21</td>
+        <td><span class="feature-id" style="font-size:10pt">V9</span></td>
+        <td><strong>478-file pre-instantiation</strong></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.3</td>
+        <td style="text-align:center">8</td>
+        <td style="text-align:center;font-weight:700">0.075</td>
+        <td><span class="badge removed">Test-gate</span></td>
+        <td>Value claim = opinion with no data. Worst score in the set. Run controlled test (2 vs 2 members, 2 weeks) before deciding. High effort + low confidence = do not build speculatively.</td>
+      </tr>
+
+      <!-- Removed -->
+      <tr style="background:#FCE8EE">
+        <td colspan="10" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--ruby); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--removed-border)">
+          Removed · Do not implement
+        </td>
+      </tr>
+
+      <tr class="row-removed">
+        <td style="font-weight:700;text-align:center">—</td>
+        <td><span class="feature-id" style="font-size:10pt">L3</span></td>
+        <td><strong><strike>graph:walk</strike></strong></td>
+        <td style="text-align:center">0</td>
+        <td style="text-align:center">0</td>
+        <td style="text-align:center">0</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center;font-weight:700">0</td>
+        <td><span class="badge removed">Removed</span></td>
+        <td>Command does not exist. Never worked. Remove from SKILL.md. Replaced by L1+L2 chaining.</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- Phase summary -->
+  <div style="margin-top:24px; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;">
+
+    <div style="background:var(--midnight-green);color:var(--white);border-radius:8px;padding:16px 20px;">
+      <div style="font-size:10pt;font-weight:700;color:var(--gold);margin-bottom:8px;">Phase 1 — NOW</div>
+      <div style="font-size:9pt;line-height:1.7;color:rgba(255,255,255,0.85)">
+        P0: SKILL.md syntax rewrite<br>
+        #1 L6 Orphan detection<br>
+        #2 L5 search:context<br>
+        #3 L8 AP4 opt-out<br>
+        #4 L12 Vault targeting<br>
+        #5 L10 QMD composability<br>
+        #6 V10 Routing table<br>
+        #7 L13 Graceful degradation<br>
+        #8 L2 Outgoing-links
+      </div>
+    </div>
+
+    <div style="background:#1A3A30;color:var(--white);border-radius:8px;padding:16px 20px;">
+      <div style="font-size:10pt;font-weight:700;color:var(--gold);margin-bottom:8px;">Phase 2 — NEXT</div>
+      <div style="font-size:9pt;line-height:1.7;color:rgba(255,255,255,0.85)">
+        #9 L11 Autolinker merge ← <em>unblocks L1, V1</em><br>
+        #10 L9 .claude/ hybrid<br>
+        #11 L1 Backlinks traversal<br>
+        #12 V5 3-layer rule<br>
+        #13 L7 Vault structure C
+      </div>
+    </div>
+
+    <div style="background:#2A2A1A;color:var(--white);border-radius:8px;padding:16px 20px;">
+      <div style="font-size:10pt;font-weight:700;color:var(--gold);margin-bottom:8px;">Phase 3 — I1 STRETCH</div>
+      <div style="font-size:9pt;line-height:1.7;color:rgba(255,255,255,0.85)">
+        #14 V1 Flywheel measurement<br>
+        #15 V7 Layer discipline hookify<br>
+        #16 V2 Templates L1 tier ← <em>unblocks V4</em><br>
+        #17 V4 Bases 3 starters<br>
+        #18 V8 80-cell matrix view
+      </div>
+    </div>
+
+    <div style="background:#2A1A1A;color:var(--white);border-radius:8px;padding:16px 20px;">
+      <div style="font-size:10pt;font-weight:700;color:#F97066;margin-bottom:8px;">Deferred / Test-Gate</div>
+      <div style="font-size:9pt;line-height:1.7;color:rgba(255,255,255,0.85)">
+        V3 Kanban — test agent write first<br>
+        L4/V6 Daily notes — fix hooks first<br>
+        V9 478 stubs — A/B test required<br>
+        L3 graph:walk — <strong>REMOVED</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="page-footer">
+  <span><strong>LT Capital Partners</strong> · COE OPS</span>
+  <span>OPS_OE.6.4.LTC-PROJECT-TEMPLATE · Branch: I1/test/obsidian-ab</span>
+  <span>v1.1 · Draft · 2026-04-01 · Rebuild from session logs after branch reset</span>
+</div>
+
+</body>
+</html>

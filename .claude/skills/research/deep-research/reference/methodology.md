@@ -239,3 +239,13 @@ As results arrive:
 | Phase 6 → 7 | GATE | ≥1 gap identified and addressed |
 | Phase 7 → 8 | GATE | All Phase 6 gaps resolved |
 | Phase 8 → Delivery | GATE — Verify | All output contract items present |
+
+## Links
+
+- [[CLAUDE]]
+- [[VALIDATE]]
+- [[anti-patterns]]
+- [[documentation]]
+- [[report-generation]]
+- [[report_template]]
+- [[task]]

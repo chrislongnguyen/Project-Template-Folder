@@ -23,3 +23,7 @@ chore: session checkpoint — {brief description}
 ```
 
 **Note:** SPRINT-STATE.md must be in the same commit as the primary deliverable — they are one atomic unit.
+
+## Links
+
+- [[deliverable]]

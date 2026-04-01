@@ -103,3 +103,15 @@ Full rules: `.claude/rules/obsidian-security.md`
 - Security rules: `.claude/rules/obsidian-security.md`
 - CLI skill: `.claude/skills/obsidian/SKILL.md`
 - Tool routing: `.claude/rules/tool-routing.md`
+
+## Links
+
+- [[AP1]]
+- [[AP3]]
+- [[AP4]]
+- [[AP5]]
+- [[CLAUDE]]
+- [[SKILL]]
+- [[obsidian-security]]
+- [[security]]
+- [[tool-routing]]

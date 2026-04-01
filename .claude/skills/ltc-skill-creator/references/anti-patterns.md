@@ -37,3 +37,11 @@
 **Symptom:** Description says "Use for any coding task" or "Helps with development."
 **Why it fails:** Triggers too often, activating on unrelated requests. Dilutes the skill library — if everything triggers this skill, the signal-to-noise ratio drops to zero. Wastes context budget on false activations.
 **Fix:** Be specific about WHEN. List concrete scenarios, action verbs, and exclusions. A good description matches 3-5 specific user intents, not all possible intents.
+
+## Links
+
+- [[CHANGELOG]]
+- [[SKILL]]
+- [[documentation]]
+- [[project]]
+- [[task]]

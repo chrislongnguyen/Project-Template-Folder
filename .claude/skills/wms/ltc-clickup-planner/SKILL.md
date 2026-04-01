@@ -204,3 +204,21 @@ When the agent encounters a blocker (or user reports one):
 - **notion-planner** — plans on Notion (different WMS, same VANA principles)
 - **session-end** — vault logging, not ClickUp
 - **session-start** — reads tasks, doesn't modify ClickUp
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[create-flow]]
+- [[deliverable]]
+- [[documentation]]
+- [[field-map]]
+- [[increment]]
+- [[iteration]]
+- [[project]]
+- [[subtask]]
+- [[system-design]]
+- [[task]]
+- [[update-flow]]
+- [[workstream]]

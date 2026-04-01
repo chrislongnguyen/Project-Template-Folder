@@ -521,3 +521,13 @@ sub_system:
 | SustainAdv-AC1 | Adverb (S) | Principle P{n}(S) | T0.P3:R{r}:C{c} | {udo_short} |
 | Noun-AC1 | Noun | Component {layer}.{n} | T0.P4:R{r}:C{c} | {udo_short} |
 <!-- Every A.C. must have a complete chain. Broken chain = broken spec. -->
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[blocker]]
+- [[general-system]]
+- [[iteration]]
+- [[task]]
+- [[workstream]]

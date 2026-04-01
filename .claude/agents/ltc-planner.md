@@ -66,3 +66,17 @@ Before presenting DESIGN.md:
 | WebFetch | Retrieve a specific external URL (LTC framework doc, referenced specification) when the URL is known and content is needed verbatim. | For open-ended web research; use mcp__exa__web_search_exa instead. |
 | mcp__exa__web_search_exa | Look up external context needed for planning decisions — prior art, framework comparisons, naming conventions — when URL is not known. | For project-internal information; use Read or Grep instead. |
 | mcp__qmd__query | Search the local markdown knowledge base (sessions, decisions, daily logs) for prior decisions, patterns, or research relevant to the current design. | For external information not in the local corpus; use mcp__exa__web_search_exa instead. |
+
+## Links
+
+- [[DESIGN]]
+- [[EP-04]]
+- [[EP-07]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-reviewer]]
+- [[task]]
+- [[workstream]]

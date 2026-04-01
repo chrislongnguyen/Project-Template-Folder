@@ -135,3 +135,9 @@ If `qmd update && qmd embed` fails (npm error, model download timeout, permissio
 - **Google Drive sync lag** — After creating vault folders on Google Drive, cloud sync may take 30-60 seconds. Do not run `qmd update` immediately.
 - **QMD version mismatch** — If `qmd embed` fails, check the version. Versions below 0.5 do not support `embed`. Upgrade with `npm install -g @tobilu/qmd@latest`.
 - **LT-1 Path fabrication** — Agent assumes a Google Drive path exists based on common patterns without running the `ls` check. Always run discovery in Step 2 and use only actual output. If no Google Drive is found, do NOT guess — ask the user.
+
+## Links
+
+- [[CLAUDE]]
+- [[gotchas]]
+- [[migration-detection]]

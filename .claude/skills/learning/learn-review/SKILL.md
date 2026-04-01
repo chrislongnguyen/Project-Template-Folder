@@ -191,3 +191,9 @@ Review Results:
 - **Binary status only** — `approved` or `needs-revision`. No other values.
 
 Full list: [gotchas.md](gotchas.md)
+
+## Links
+
+- [[VALIDATE]]
+- [[blocker]]
+- [[gotchas]]

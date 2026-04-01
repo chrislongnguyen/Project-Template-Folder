@@ -79,3 +79,11 @@ For tasks that modify overlapping files, use `isolation: "worktree"` on the Agen
 ```
 **Agent Architecture:** Sub-Agents — 4 medium-complexity tasks; parallel execution reduces session context load (LT-2)
 ```
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[deliverable]]
+- [[simple]]
+- [[task]]

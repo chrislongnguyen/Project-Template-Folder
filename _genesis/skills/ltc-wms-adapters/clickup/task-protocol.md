@@ -470,3 +470,20 @@ After creating all entries, verify:
 - [ ] I/O contracts in Description for all items with dependencies; `waiting_on` set where Output→Input chain exists
 
 Report: `{N}/{N} items created. Validation: PASS/FAIL`
+
+## Links
+
+- [[CLAUDE]]
+- [[blocker]]
+- [[create-flow]]
+- [[deliverable]]
+- [[documentation]]
+- [[field-map]]
+- [[increment]]
+- [[iteration]]
+- [[naming-rules]]
+- [[project]]
+- [[standard]]
+- [[subtask]]
+- [[task]]
+- [[workstream]]

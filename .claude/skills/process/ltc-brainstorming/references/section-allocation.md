@@ -107,3 +107,12 @@ Run the deterministic validator:
 If source material for any group exceeds 30K tokens:
 1. Split the group into sub-groups
 2. Or summarize source material before dispatch (with explicit note that summarization occurred)
+
+## Links
+
+- [[SKILL]]
+- [[agent-system]]
+- [[general-system]]
+- [[iteration]]
+- [[standard]]
+- [[task]]

@@ -56,3 +56,17 @@ After producing each artifact:
 | Write | Create a new artifact file that does not exist on disk. | When the file already exists and only needs partial changes; use Edit instead. |
 | Bash | Run scripts for validation (template-check.sh, skill-validator.sh) or file operations not covered by other tools. | For reading or searching files — use Read or Grep; Bash is last resort for file I/O. |
 | Grep | Search file contents by pattern to locate a section, verify content presence, or confirm acceptance criteria. | When you know the exact file path and want the full content; use Read instead. |
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

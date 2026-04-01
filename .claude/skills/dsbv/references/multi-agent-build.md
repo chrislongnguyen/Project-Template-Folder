@@ -73,3 +73,14 @@ The synthesizer uses these tables to select best elements — not "pick longest 
 1. **All drafts converge** → Diversity added no value. Reduce N next time.
 2. **Sonnet quality floor** → Drafts too poor for synthesis. Fall back to single Opus.
 3. **Opus synthesis bias** → Favors "sounds best" over "is best." Mitigate: structured rubric scoring per dimension.
+
+## Links
+
+- [[ADR-001]]
+- [[CLAUDE]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[workstream]]

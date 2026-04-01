@@ -1870,3 +1870,18 @@ Each book in the curriculum will:
 ---
 
 _End of Document 3 (v1.1). This translation is complete. It provides the full architecture for the AI-Centric UEDS, resolves all 14 gaps (12 original + G13 UT#5 Theater + G14 Sequential Phase Addiction), and maps the curriculum structure. The next phase is Master Curriculum Map creation, informed by the architectural risks identified in §1.5b._
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[documentation]]
+- [[idea]]
+- [[iteration]]
+- [[methodology]]
+- [[task]]
+- [[workstream]]

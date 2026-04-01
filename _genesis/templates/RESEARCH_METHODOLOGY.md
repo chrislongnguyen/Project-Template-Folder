@@ -127,3 +127,10 @@ After synthesis, challenge your own output with these questions:
 - Never rely on parametric (training data) memory for factual claims
 - No single-source unsupported claims in final output
 - When evidence is insufficient, say so — do not fill gaps with confident-sounding prose
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[documentation]]
+- [[methodology]]

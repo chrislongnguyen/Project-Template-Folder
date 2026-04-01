@@ -29,3 +29,10 @@ Every principle MUST map to a UBS or UDS element. Priority: Sustainability > Eff
 
 ## ESD Methodology
 Phase 1 (Problem Discovery) → Phase 2 (System Design) → Phase 3 (VANA Requirements) → Build → Test
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[general-system]]
+- [[methodology]]

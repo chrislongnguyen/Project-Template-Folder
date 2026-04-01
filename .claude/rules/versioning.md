@@ -76,3 +76,11 @@ Update the corresponding row in `0-GOVERN/VERSION_REGISTRY.md` — version, stat
 | Forgetting `status` field | All three fields required: version + status + last_updated |
 | Relative dates ("today") | Always absolute: 2026-03-31 |
 | Skipping VERSION_REGISTRY update | Every workstream artifact edit must update the registry row |
+
+## Links
+
+- [[CHANGELOG]]
+- [[HISTORY_VERSION_CONTROL]]
+- [[VERSION_REGISTRY]]
+- [[iteration]]
+- [[workstream]]

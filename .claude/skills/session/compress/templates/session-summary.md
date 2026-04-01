@@ -28,5 +28,5 @@ importance: 3
 - [Paths to files created or modified]
 
 ## Links
-- Project: [[{canonical-UNG-key}]]
-- Related: [[]]
+
+- [[project]]

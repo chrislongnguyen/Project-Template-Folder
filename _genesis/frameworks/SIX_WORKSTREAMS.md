@@ -34,3 +34,8 @@ Life and work are uncertain — the most effective approach is to iterate across
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[project]]
+- [[workstream]]

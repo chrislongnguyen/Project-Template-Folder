@@ -65,3 +65,15 @@ Every check in VALIDATE.md must have:
 | Glob | Discover all files matching a pattern to verify every artifact listed in DESIGN.md exists on disk. | When the file path is already known; use Read directly. |
 | Grep | Search file contents for a specific string or pattern to confirm presence of required content (e.g., version frontmatter, brand colors). | When you want the full file; use Read instead. |
 | Bash | Run compliance scripts (skill-validator.sh, template-check.sh) and capture their exit code + output as evidence. | For reading or searching files — use Read or Grep; Bash is for executable checks only. |
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[versioning]]
+- [[workstream]]

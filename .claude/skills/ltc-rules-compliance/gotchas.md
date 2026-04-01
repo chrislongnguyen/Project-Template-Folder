@@ -9,3 +9,8 @@
 4. **Over-scoping every check** — Forcing all families on all tasks wastes time and causes noise. Use `NOT APPLICABLE` explicitly when a family is out of scope.
 
 5. **Security gate bypass** — Ignoring HIGH-risk confirmation requirements from `rules/security-rules.md` invalidates compliance. Always state whether explicit confirmation was present.
+
+## Links
+
+- [[security]]
+- [[security-rules]]

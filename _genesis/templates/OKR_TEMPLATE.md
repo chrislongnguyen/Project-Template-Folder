@@ -68,4 +68,8 @@ _[Objective statement]_
 
 ## Links
 
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
 - [[VANA_SPEC_TEMPLATE]]
+- [[iteration]]

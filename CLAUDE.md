@@ -113,3 +113,32 @@ Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Glob
 
 ## Template Version
 If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start. If behind, warn user. If missing, skip.
+
+## Links
+
+- [[CHANGELOG]]
+- [[DESIGN]]
+- [[DSBV_PROCESS]]
+- [[GLOBAL_CLAUDE_MD_EXAMPLE]]
+- [[HISTORY_VERSION_CONTROL]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[agent-diagnostic]]
+- [[agent-system]]
+- [[brand-identity]]
+- [[dsbv]]
+- [[general-system]]
+- [[ltc-builder]]
+- [[ltc-eop-gov]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[naming-rules]]
+- [[project]]
+- [[security]]
+- [[security-rules]]
+- [[standard]]
+- [[task]]
+- [[tool-routing]]
+- [[workstream]]

@@ -13,3 +13,8 @@ sub_system:
 > See `_shared/frameworks/EFFECTIVE_SYSTEM.md` for 7-component model.
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[EFFECTIVE_SYSTEM]]
+- [[project]]

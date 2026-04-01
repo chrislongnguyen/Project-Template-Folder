@@ -107,3 +107,14 @@ After the transition, verify:
 - [ ] No orphaned items
 
 Report: `Updated {item name} -> {new status}. Validation: PASS/FAIL`
+
+## Links
+
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[project]]
+- [[task]]

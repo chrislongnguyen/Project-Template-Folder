@@ -193,3 +193,15 @@ These are confirmed quirks that will cause silent failures or errors if not hand
 5. **Field IDs must be FULL UUIDs, not short prefixes.** Using a short prefix (e.g., `a382a103`) instead of the full UUID (e.g., `a382a103-456b-41a8-9b2a-8fa15a657ce4`) will cause field updates to silently fail or error. Exception: `URL Link` field (`b76eb12c`) is not a workspace-level field and uses its short ID.
 
 6. **502 Bad Gateway errors occur under parallel load.** If a ClickUp MCP call returns 502, retry once. If it fails again, back off and alert the user.
+
+## Links
+
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[gotchas]]
+- [[increment]]
+- [[project]]
+- [[subtask]]
+- [[task]]
+- [[workstream]]

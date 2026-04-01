@@ -61,3 +61,10 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** If the same page fails validation twice in sequence with the same or similar errors.
 
 **Fix:** Apply the escape hatch: after 2 validation failures, present partial output with `[NEEDS REVIEW]` flags on problematic cells. Report specific gaps to the user rather than retrying.
+
+## Links
+
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]

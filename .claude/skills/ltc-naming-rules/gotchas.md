@@ -9,3 +9,11 @@
 4. **Invented SCOPE when rules file is missing** — Guessing `OPS` vs `OPERATIONS` or inventing a new code creates non-portable keys. If Table 3a is unavailable, **HALT** and get confirmation from the user instead of fabricating codes.
 
 5. **Collision silence** — Creating a second repo or folder with the same canonical key as an existing asset breaks search and governance. Detect collisions on the target system; if unclear, ask rather than duplicate.
+
+## Links
+
+- [[deliverable]]
+- [[documentation]]
+- [[naming-rules]]
+- [[project]]
+- [[task]]

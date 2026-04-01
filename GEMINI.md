@@ -80,3 +80,18 @@ Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`
 
 ## Template Version
 If `./scripts/template-check.sh` exists, run it with `--quiet` at session start. If behind, warn user. If missing, skip silently.
+
+## Links
+
+- [[CHANGELOG]]
+- [[DESIGN]]
+- [[agent-diagnostic]]
+- [[agent-system]]
+- [[brand-identity]]
+- [[deliverable]]
+- [[general-system]]
+- [[naming-rules]]
+- [[project]]
+- [[security]]
+- [[security-rules]]
+- [[task]]

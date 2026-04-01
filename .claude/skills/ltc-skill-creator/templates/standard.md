@@ -56,3 +56,9 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 - [ ] Body is under 200 lines
 - [ ] Escape hatch defined for steps that can fail
 - [ ] MECE check done against sibling skills
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[gotchas]]

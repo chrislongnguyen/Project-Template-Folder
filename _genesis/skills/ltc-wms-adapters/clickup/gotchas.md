@@ -118,3 +118,10 @@ duplicate ClickUp items.
 **Fix:** Always check `.wms-sync.json` before creating. If a `wms_id` exists for the task,
 call `update_task` instead of `create_task`. See adapter.md §4 for the full idempotency
 protocol.
+
+## Links
+
+- [[adapter]]
+- [[field-map]]
+- [[standard]]
+- [[task]]

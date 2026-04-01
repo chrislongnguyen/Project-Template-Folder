@@ -16,3 +16,7 @@ Their content has been absorbed into canonical sources:
 | ai-centric-ueds.md | rules/agent-system.md (§3-4: 8 LTs + Two Operators) |
 
 These files are kept for historical reference only. Do not use them as canonical sources.
+
+## Links
+
+- [[agent-system]]

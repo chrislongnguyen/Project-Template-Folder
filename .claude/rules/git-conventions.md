@@ -74,3 +74,13 @@ After every commit that includes a workstream artifact:
 **PREFER** explicit per-file staging over `git add .`
 Classify first (type, scope) → stage by group → one commit per group.
 Use `/git-save` for the full guided flow.
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[SKILL]]
+- [[VERSION_REGISTRY]]
+- [[documentation]]
+- [[versioning]]
+- [[workstream]]

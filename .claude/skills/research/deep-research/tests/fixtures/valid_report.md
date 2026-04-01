@@ -117,3 +117,8 @@ All major claims verified across minimum 3 independent sources.
 |-------|----------|---------|--------------------------|------------|
 | Field advancing rapidly | Multiple studies | [1], [2], [3] | Yes — no counter-evidence found | High |
 | Scalability is key challenge | Industry reports | [4], [5], [6] | Yes — confirmed | High |
+
+## Links
+
+- [[anti-patterns]]
+- [[methodology]]

@@ -59,3 +59,17 @@ Before declaring a workstream complete:
 - [ ] No FAIL verdicts remain (all fixed or explicitly deferred with justification)
 - [ ] Next workstream's C1 (clear scope) and C2 (input materials) can be satisfied from this workstream's output
 - [ ] Human has approved the transition
+
+## Links
+
+- [[CHANGELOG]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[anti-patterns]]
+- [[deliverable]]
+- [[documentation]]
+- [[dsbv]]
+- [[task]]
+- [[workstream]]

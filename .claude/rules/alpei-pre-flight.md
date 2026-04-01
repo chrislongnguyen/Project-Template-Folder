@@ -32,3 +32,10 @@ If any check fails:
 1. State which check failed and why
 2. Propose the minimum fix to unblock
 3. Wait for human approval before proceeding
+
+## Links
+
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[dsbv]]
+- [[task]]
+- [[workstream]]

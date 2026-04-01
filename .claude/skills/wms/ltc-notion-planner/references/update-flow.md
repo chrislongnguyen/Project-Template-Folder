@@ -82,3 +82,10 @@ After applying the update, verify:
 - [ ] Parent item still mirrors Parent Task
 
 Report: `{item} updated → {new status}. Validation: PASS/FAIL`
+
+## Links
+
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[task]]

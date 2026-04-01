@@ -49,3 +49,12 @@ No genesis artifact changes without team consensus. This protects organizational
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[CLAUDE]]
+- [[dsbv]]
+- [[security]]
+- [[standard]]
+- [[versioning]]
+- [[workstream]]

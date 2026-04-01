@@ -124,3 +124,9 @@ The following are available as images in the ClickUp wiki — consult for design
 - Logo image files (Midnight Green and Gold variants)
 
 ClickUp location: [LTC ALIGN]_MEMBER GUIDES > [LTC ALL]_ALIGN - WIKI & GUIDES > 1. LTC's BRAND IDENTITY SYSTEM
+
+## Links
+
+- [[BRAND_GUIDE]]
+- [[DESIGN]]
+- [[workstream]]

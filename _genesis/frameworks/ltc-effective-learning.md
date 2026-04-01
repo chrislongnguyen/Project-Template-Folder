@@ -131,3 +131,11 @@ All in `0. REUSABLE RESOURCES/0.3. TEMPLATES/`
 - [[COE EFF_EFFECTIVENESS - AREA TRAINING MATERIALS -1. Truths We Need to Master to Succeed]] — 10 Ultimate Truths
 - [[ALPEI Framework by Sub-Systems]] — How LEARN fits in the 80-cell matrix
 - [[EFFECTIVE RISK MANAGEMENT - UBS & UDS Framework]] — Detailed UBS/UDS methodology
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[anti-patterns]]
+- [[blocker]]
+- [[methodology]]

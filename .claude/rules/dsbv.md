@@ -15,3 +15,12 @@ Every APEI workstream produces artifacts through DSBV: **Design → Sequence →
 
 **Skill:** `/dsbv` — full guided flow, single-phase commands, status view.
 **Process doc:** `_genesis/templates/DSBV_PROCESS.md` — phase details, multi-agent config, readiness conditions (C1-C6).
+
+## Links
+
+- [[DESIGN]]
+- [[DSBV_PROCESS]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[workstream]]

@@ -254,3 +254,28 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 Full process specification: `_genesis/templates/DSBV_PROCESS.md`
 
 **GATE — Verify:** At phase completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the phase is NOT complete. See gotchas.md for LT-1 hallucination pattern.
+
+## Links
+
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[DESIGN_TEMPLATE]]
+- [[DSBV_EVAL_TEMPLATE]]
+- [[DSBV_PROCESS]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[VERSION_REGISTRY]]
+- [[agent-dispatch]]
+- [[agent-system]]
+- [[context-packaging]]
+- [[deliverable]]
+- [[dsbv]]
+- [[general-system]]
+- [[gotchas]]
+- [[ltc-builder]]
+- [[ltc-reviewer]]
+- [[phase-execution-guide]]
+- [[task]]
+- [[workstream]]

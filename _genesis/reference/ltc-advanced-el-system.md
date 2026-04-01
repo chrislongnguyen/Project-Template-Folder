@@ -1009,3 +1009,15 @@ That document contains: minimal EP (3 principles), full EOP (RACI + all 8 steps 
 8. **ILE Strategy** — See `docs/ai/implementation/ile-effective-learning-contract.md` (minimal EP + full EOP + Strategy). Respect via: persistent reference, EOP as the flow (steps 1–8 with mandatory gates), principles in Agent behavior, RACI by design (no A write or switch without Learner approval).
 
 This document is the single markdown reference for the **LTC Advanced Effective Learning System**, with User/Action/Outcome at the start, UBS and UDS explained top-down, shared forces explained once with distinct UBS vs UDS roles, and a causal diagram reflecting the full relationship as in the source.
+
+## Links
+
+- [[DESIGN]]
+- [[README]]
+- [[SEQUENCE]]
+- [[blocker]]
+- [[friction]]
+- [[iteration]]
+- [[project]]
+- [[standard]]
+- [[task]]

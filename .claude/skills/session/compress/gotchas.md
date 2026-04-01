@@ -31,3 +31,9 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** After writing the file, verify all 6 frontmatter fields are present: `type`, `date`, `project`, `topics`, `outcome`, `importance`. Check that `outcome` is one of: shipped | progressed | blocked | explored. Check that `importance` is 1-5.
 
 **Fix:** Never skip fields. Use the template at `templates/session-summary.md` as the starting point — it has all required fields pre-populated with placeholder values.
+
+## Links
+
+- [[SKILL]]
+- [[project]]
+- [[session-summary]]

@@ -61,3 +61,9 @@ Output from this workstream feeds back into `1-ALIGN/` for the next iteration.
 - [ ] Lessons are captured in `_genesis/` for cross-project benefit
 - [ ] Templates and SOPs are updated, not just individual behavior
 - [ ] Automation implemented where human repetition was the bottleneck
+
+## Links
+
+- [[CHANGELOG]]
+- [[iteration]]
+- [[workstream]]

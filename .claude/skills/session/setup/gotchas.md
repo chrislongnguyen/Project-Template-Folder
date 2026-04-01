@@ -31,3 +31,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Check if QMD has already downloaded its embedding model. If `~/.cache/qmd/models/` is empty or missing, this is a first-time run.
 
 **Fix:** Before running `qmd embed`, warn the user: "First-time embedding downloads ~300MB of models. This may take a few minutes on a slow connection." Give them the option to skip and run it later.
+
+## Links
+
+- [[SKILL]]

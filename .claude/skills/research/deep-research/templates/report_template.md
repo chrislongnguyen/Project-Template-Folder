@@ -140,3 +140,9 @@ No ranges. No placeholders. No "etc." -->
 - **High:** 3+ independent sources, consistent findings
 - **Med:** 2 sources or minor contradictions
 - **Low:** Single source or significant contradictions
+
+## Links
+
+- [[anti-patterns]]
+- [[methodology]]
+- [[project]]

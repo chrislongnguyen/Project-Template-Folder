@@ -13,3 +13,9 @@ If the user has manual hooks in `~/.claude/settings.json` (legacy setup):
 
 If old skills exist in `~/.claude/skills/` (session-start, compress, resume, session-end):
 1. Warn: "Found old skill files in ~/.claude/skills/. Plugin skills will shadow them. Remove old copies to avoid confusion."
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[session-summary]]

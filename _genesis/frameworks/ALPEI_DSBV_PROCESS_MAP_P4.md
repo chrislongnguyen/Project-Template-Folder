@@ -164,3 +164,16 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 | `2-LEARN/specs/{slug}/vana-spec.md` | Downstream DSBV Design phases — initializes Design context for the consuming workstream |
 
 LEARN completes (S5) → run `/dsbv design` for the target downstream workstream.
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[dsbv]]
+- [[iteration]]
+- [[methodology]]
+- [[project]]
+- [[workstream]]

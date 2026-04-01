@@ -20,3 +20,8 @@ gh issue create \
 EOF
 )"
 ```
+
+## Links
+
+- [[project]]
+- [[workstream]]

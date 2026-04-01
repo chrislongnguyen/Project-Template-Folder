@@ -52,3 +52,9 @@ If file write fails (permission denied, vault path invalid, disk full): Do NOT s
 - **LT-1 Session summary inflation:** Agent invents accomplishments not in the conversation. Verify every bullet against actual tool calls and file edits in this session.
 
 Full list: [gotchas.md](gotchas.md)
+
+## Links
+
+- [[gotchas]]
+- [[project]]
+- [[session-summary]]

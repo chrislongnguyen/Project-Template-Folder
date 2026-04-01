@@ -75,3 +75,10 @@ When writing a plan, state the model assignment in the Agent Architecture sectio
 ```
 
 When the model is the default for that stage and task type, you may omit the explicit model name and just state the pattern. Only call out model choices when they deviate from stage defaults.
+
+## Links
+
+- [[DESIGN]]
+- [[deliverable]]
+- [[simple]]
+- [[task]]

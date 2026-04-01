@@ -206,3 +206,20 @@ See [gotchas.md](gotchas.md) — 10 observed failure patterns.
 - `scripts/citation_manager.py` — citation tracking
 - `scripts/md_to_html.py` — markdown to HTML conversion
 - `scripts/verify_html.py` — HTML output validation
+
+## Links
+
+- [[CLAUDE]]
+- [[SPIKE_TEMPLATE]]
+- [[VALIDATE]]
+- [[anti-patterns]]
+- [[context-packaging]]
+- [[dsbv]]
+- [[gotchas]]
+- [[ltc-explorer]]
+- [[methodology]]
+- [[report-generation]]
+- [[report_template]]
+- [[simple]]
+- [[standard]]
+- [[task]]

@@ -102,3 +102,14 @@ Used for Iteration-level items (LEP Deliverable group / phase).
 3. **Canonical Key is the idempotency key** — search by Canonical Key before creating.
 4. **Tags for MoSCoW** — Deliverables default to `Must Have`; Tasks/Sub-tasks require explicit MoSCoW tag.
 5. **Desired Outcomes and Acceptance Criteria** go in dedicated Notion properties, not just page body.
+
+## Links
+
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[iteration]]
+- [[naming-rules]]
+- [[project]]
+- [[task]]

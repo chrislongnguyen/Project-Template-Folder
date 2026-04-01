@@ -28,3 +28,10 @@
 
 ## Design Methodology (ESD)
 Phase 1: Problem Discovery → Phase 2: System Design → Phase 3: VANA Requirements (binary ACs)
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[general-system]]
+- [[methodology]]

@@ -61,3 +61,7 @@ Known failure patterns. Update when new issues are discovered.
 **How to detect:** After 2 failed attempts, review stalls. Or skipped questions have no `comprehension_q: skipped` in frontmatter.
 
 **Fix:** After 2 failed attempts, add `comprehension_q: skipped` to that P-page's frontmatter and move to the next question. Review can complete with skipped Qs.
+
+## Links
+
+- [[SKILL]]

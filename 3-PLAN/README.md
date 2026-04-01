@@ -65,3 +65,8 @@ It operationalizes the core equation: **Success = Efficient & Scalable Managemen
 - [ ] Architecture supports 3x and 10x scale
 - [ ] Plan accommodates iterative refinement
 - [ ] Knowledge artifacts are reusable across projects
+
+## Links
+
+- [[DESIGN]]
+- [[workstream]]

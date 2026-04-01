@@ -40,3 +40,10 @@ Traces any phenomenon (a blocker, a driver, a failure, an unexpected outcome) to
 
 - **kaizen** (`engine/skills/kaizen/SKILL.md`) — when a trace reveals a systemic pattern, use kaizen to diagnose and extract a permanent rule
 - **brainstorming** (`engine/skills/brainstorming/SKILL.md`) — when multiple causal candidates exist at the same level, use brainstorming to explore alternatives before committing
+
+## Links
+
+- [[CLAUDE]]
+- [[blocker]]
+- [[causal-chain-procedure]]
+- [[notation-validator]]

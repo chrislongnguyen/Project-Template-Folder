@@ -28,3 +28,12 @@ Why 7, not 8: In AI systems, EU = Agent (LLM model — uncontrollable, only iden
 - **Two Operators:** Human Director (Accountable, System 2 strengths, System 1 biases) + Agent (Responsible, architectural strengths, 8 LT limits)
 - **Component Priority:** EP → Input → EOP → EOE → EOT → Agent → EA
 - **Diagnostic Order:** When output fails, trace: EP → Input → EOP → EOE → EOT → Agent (blame model last)
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[EP-01]]
+- [[EP-10]]
+- [[agent-system]]
+- [[ltc-effective-agent-principles-registry]]

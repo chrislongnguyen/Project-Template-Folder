@@ -48,3 +48,12 @@ If you detect a chain-of-custody violation (e.g., building a PLAN artifact befor
 1. STOP — do not proceed
 2. Name the violation and the upstream dependency that is missing
 3. Propose: complete the upstream work first, or get explicit human override
+
+## Links
+
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[workstream]]

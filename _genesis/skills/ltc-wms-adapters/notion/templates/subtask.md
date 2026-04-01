@@ -34,3 +34,10 @@ Parent Task: {link to parent Task}
 ## Artifact (Output)
 
 - {**At completion:** link to the specific file or page produced}
+
+## Links
+
+- [[blocker]]
+- [[documentation]]
+- [[increment]]
+- [[task]]

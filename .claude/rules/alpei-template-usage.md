@@ -31,3 +31,37 @@ All templates are located at: `_genesis/templates/`
 ## Exception
 
 If no template exists for a specific deliverable type, create the artifact with proper YAML frontmatter (version, status, last_updated) and add a note flagging the gap so a template can be created in the next iteration.
+
+## Links
+
+- [[ADR_TEMPLATE]]
+- [[ARCHITECTURE_TEMPLATE]]
+- [[CHARTER_TEMPLATE]]
+- [[DESIGN]]
+- [[DESIGN_TEMPLATE]]
+- [[DRIVER_ENTRY_TEMPLATE]]
+- [[DSBV_CONTEXT_TEMPLATE]]
+- [[DSBV_EVAL_TEMPLATE]]
+- [[FEEDBACK_TEMPLATE]]
+- [[FORCE_ANALYSIS_TEMPLATE]]
+- [[METRICS_BASELINE_TEMPLATE]]
+- [[OKR_TEMPLATE]]
+- [[RESEARCH_METHODOLOGY]]
+- [[RESEARCH_TEMPLATE]]
+- [[RETRO_TEMPLATE]]
+- [[REVIEW_PACKAGE_TEMPLATE]]
+- [[REVIEW_TEMPLATE]]
+- [[RISK_ENTRY_TEMPLATE]]
+- [[ROADMAP_TEMPLATE]]
+- [[SEQUENCE]]
+- [[SOP_TEMPLATE]]
+- [[SPIKE_TEMPLATE]]
+- [[STANDUP_TEMPLATE]]
+- [[TEST_PLAN_TEMPLATE]]
+- [[VALIDATE]]
+- [[VANA_SPEC_TEMPLATE]]
+- [[WIKI_PAGE_TEMPLATE]]
+- [[deliverable]]
+- [[dsbv]]
+- [[iteration]]
+- [[workstream]]

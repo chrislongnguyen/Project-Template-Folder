@@ -51,3 +51,10 @@ LEARN is the centerpiece of ALPEI. It sits between ALIGN and PLAN because you mu
 - Framework references (10 UTs, ESD, ALPEI overview) → `_genesis/philosophy/`, `_genesis/frameworks/`, `_genesis/reference/`
 - Architecture Decision Records → `1-ALIGN/decisions/`
 - Risk/driver registers → `3-PLAN/risks/`, `3-PLAN/drivers/`
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[project]]
+- [[workstream]]

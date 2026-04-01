@@ -32,3 +32,14 @@ From recent file paths or conversation topic:
 | `blocked` | Could not proceed at all |
 | `confused` | Unclear what to do or where to look |
 | `annoying` | Works but frustrating |
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[dsbv]]
+- [[friction]]
+- [[idea]]
+- [[workstream]]

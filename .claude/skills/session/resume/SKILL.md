@@ -66,3 +66,10 @@ If vault path resolution fails (config missing, directory not found): Do NOT gue
 ## Gotchas
 
 - **LT-1 False recall:** Agent synthesizes plausible but wrong prior context from filenames alone. Always read the actual session file content, never infer from titles. A file named `2026-03-28-auth-refactor.md` does not mean auth was refactored — read the file.
+
+## Links
+
+- [[gotchas]]
+- [[project]]
+- [[standard]]
+- [[task]]

@@ -41,3 +41,12 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Did the user explicitly say they COULD NOT continue? Did they find a workaround?
 
 **Fix:** Default to "annoying" unless the user explicitly states they could not proceed. Reserve "blocked" for dead stops.
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[classification-guide]]
+- [[friction]]
+- [[idea]]
+- [[workstream]]

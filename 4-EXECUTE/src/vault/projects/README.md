@@ -14,3 +14,8 @@ Example: `OPS_OE.6.4/` for LTC Project Template notes.
 
 Agent writes land here under `projects/{project-id}/` (V5 whitelist).
 Notes in this folder are accessible via CLI by default (AP4 opt-out model).
+
+## Links
+
+- [[AP4]]
+- [[project]]

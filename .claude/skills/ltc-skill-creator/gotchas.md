@@ -7,3 +7,9 @@
 3. **Forgotten gotchas** — Skill ships without gotchas.md. The validator catches this (CHECK-05), but the fix is to TEST the skill once — even a mental walkthrough — and write down what went wrong or what was confusing. If nothing went wrong, write down what COULD go wrong.
 
 4. **Trigger collision** — New skill overlaps with an existing one. Both activate on the same user request, wasting context. Always run MECE check against sibling skills in the same directory before committing. If overlap exists, either merge or make descriptions mutually exclusive.
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[workstream]]

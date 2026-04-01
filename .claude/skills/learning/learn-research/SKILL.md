@@ -137,3 +137,15 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 - `references/research-agent-prompt.md` — full sub-agent prompt template with 6-section structure
 - `_genesis/templates/RESEARCH_METHODOLOGY.md` — shared methodology (multi-angle search, verification, anti-hallucination)
 - `2-LEARN/input/learn-input-{system-slug}.md` — system identity, personas, topics
+
+## Links
+
+- [[CLAUDE]]
+- [[RESEARCH_METHODOLOGY]]
+- [[context-packaging]]
+- [[dsbv]]
+- [[gotchas]]
+- [[ltc-explorer]]
+- [[methodology]]
+- [[project]]
+- [[research-agent-prompt]]

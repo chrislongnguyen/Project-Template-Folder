@@ -30,3 +30,7 @@ Example: `OPS_OE.6.4.LTC-PROJECT-TEMPLATE`
 
 - Prefer **3-part** whenever the item has a parent in context.
 - Resolve SCOPE using **longest match** from Table 3a first.
+
+## Links
+
+- [[naming-rules]]

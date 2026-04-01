@@ -91,3 +91,14 @@ Full edge cases: [protocol §7](./references/notion-task-protocol.md)
 - **session-end** — logs session summary to vault; does NOT create Notion tasks
 - **session-start** — reads Notion standup view; does NOT modify tasks
 - **learn-build-cycle** — may trigger `/plan` at State A exit to log planned tasks
+
+## Links
+
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[create-flow]]
+- [[deliverable]]
+- [[iteration]]
+- [[project]]
+- [[task]]
+- [[update-flow]]

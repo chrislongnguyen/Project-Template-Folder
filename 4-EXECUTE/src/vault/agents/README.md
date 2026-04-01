@@ -15,3 +15,9 @@ Contents: task summary, tool calls made, decisions reached, open questions.
 This is a V5 whitelisted write path — agents may create notes here.
 Notes are accessible via CLI by default (AP4 opt-out model).
 Sensitive agent outputs should have `cli-blocked: true` added by the vault owner.
+
+## Links
+
+- [[AP4]]
+- [[agent-system]]
+- [[task]]

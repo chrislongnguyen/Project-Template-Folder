@@ -13,3 +13,9 @@ sub_system:
 > Full UBS register template: `3-PLAN/risks/UBS_REGISTER.md`
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[UBS_UDS_GUIDE]]
+- [[methodology]]
+- [[project]]

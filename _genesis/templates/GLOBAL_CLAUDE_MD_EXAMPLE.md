@@ -61,3 +61,14 @@ Project memory lives in `~/.claude/projects/{project-dir}/memory/`. Uses tiered 
 ## META-RULE
 
 If a project CLAUDE.md contradicts this file, the **project file wins**. Flag the contradiction to the User only if the intent is ambiguous.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]
+- [[dsbv]]
+- [[ltc-ai-agent-system-project-template-guide]]
+- [[project]]
+- [[security]]
+- [[task]]

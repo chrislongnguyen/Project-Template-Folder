@@ -429,3 +429,20 @@ After creating all entries, run validation. Report every failure — do not mark
 | 17 | MECE sum check | Increments ∑= Task; Tasks ∑= Deliverable; Deliverables ∑= Workstream; Workstreams ∑= Project |
 
 Report: `{N}/{N} items created. Validation: PASS / FAIL — {list any failures}`
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[iteration]]
+- [[naming-rules]]
+- [[project]]
+- [[subtask]]
+- [[task]]
+- [[workstream]]

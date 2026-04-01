@@ -41,3 +41,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** In Pre-Checks, the agent should check for an existing file. If it exists but the agent proceeds with "Let's start fresh," update mode was skipped.
 
 **Fix:** Always run the Pre-Check file existence test. If the file exists, announce update mode, show current values as defaults, and let the user press Enter to keep or type to replace.
+
+## Links
+
+- [[SKILL]]

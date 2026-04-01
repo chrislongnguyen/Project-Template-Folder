@@ -59,3 +59,8 @@ Parent Iteration: {Master Plan Item link to parent Iteration}
 - {e.g., Wiki: [Session 3 — Input Engineering](notion-url) — training doc}
 - {e.g., Git: `research/amt/Doc-11-Session-3-Research.md` — research report}
 - {e.g., Skill: `_genesis/skills/ltc-notion-planner/` v1.1 — refactored skill}
+
+## Links
+
+- [[SKILL]]
+- [[iteration]]

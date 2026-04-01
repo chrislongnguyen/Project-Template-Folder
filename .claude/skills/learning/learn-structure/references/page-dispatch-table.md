@@ -63,3 +63,7 @@ Steps follow the DERISK-then-OPTIMIZE pattern:
 1. **DERISK steps first** — address UBS elements (failure prevention)
 2. **OPTIMIZE steps second** — leverage UDS elements (success acceleration)
 3. Each step references specific P1-P4 elements it acts on
+
+## Links
+
+- [[blocker]]

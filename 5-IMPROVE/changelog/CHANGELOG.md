@@ -42,3 +42,23 @@ last_updated: 2026-04-01
 ## [I0 — Scaffold] 2026-03-26
 
 Initial release. Folder structure, CLAUDE.md, safety model, basic rules.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[GIT_WORKFLOW]]
+- [[MIGRATION_GUIDE]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[brand-identity]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[security]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

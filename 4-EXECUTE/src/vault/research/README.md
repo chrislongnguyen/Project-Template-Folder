@@ -14,3 +14,8 @@ The vault copy is a readable mirror — the authoritative source is git.
 
 Naming convention: `{topic}-{YYYY-MM-DD}.md` or `{SCOPE}_{ID}-{topic}.md`.
 Notes are accessible via CLI by default (AP4 opt-out model).
+
+## Links
+
+- [[AP4]]
+- [[workstream]]

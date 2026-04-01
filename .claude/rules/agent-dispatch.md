@@ -36,3 +36,17 @@ When dispatching from a git worktree, ALL file paths in INPUT must be absolute.
 Relative paths resolve to the main repo, not the worktree — writes land in the wrong location silently.
 
 **Skill:** `/dsbv` — builds context-packaged Agent() calls for each DSBV phase.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[context-packaging]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]

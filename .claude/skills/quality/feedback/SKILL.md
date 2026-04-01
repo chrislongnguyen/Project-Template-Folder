@@ -72,3 +72,14 @@ and provide the issue body as copyable text instead.
 ## Format Reference
 
 See `_genesis/templates/FEEDBACK_TEMPLATE.md` for the canonical field schema.
+
+## Links
+
+- [[FEEDBACK_TEMPLATE]]
+- [[classification-guide]]
+- [[dsbv]]
+- [[friction]]
+- [[gotchas]]
+- [[idea]]
+- [[project]]
+- [[workstream]]

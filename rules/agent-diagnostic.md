@@ -144,3 +144,17 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 - Autonomous diagnostic agent: hooks into Action observation → traces to component via §3 order → proposes fix → optionally auto-remediates (with Human Director approval gate)
 - Review agent (like Cursor Review, post-session): scores component health, flags drift from EP, generates improvement tickets (see agent-system.md §5, Action component card)
 - Integration with observability stack: logging, metrics, tracing, alerting feed diagnostic data automatically
+
+## Links
+
+- [[AGENT_DIAGNOSTIC]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[GEMINI]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[general-system]]
+- [[iteration]]
+- [[task]]
+- [[workstream]]

@@ -84,3 +84,14 @@ If an increment verify command is missing or malformed (command not found, synta
 ## Gotchas
 
 - **LT-1 Status assertion without execution:** Agent updates status.json to "done" without actually running verify commands, inferring success from code inspection alone. Always execute the verify command via Bash tool and check its exit code. Reading the code is not the same as running it.
+
+## Links
+
+- [[CLAUDE]]
+- [[agent-system]]
+- [[general-system]]
+- [[gotchas]]
+- [[increment]]
+- [[security]]
+- [[security-rules]]
+- [[task]]

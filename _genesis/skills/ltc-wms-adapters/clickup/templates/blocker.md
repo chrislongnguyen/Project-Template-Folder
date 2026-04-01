@@ -39,3 +39,8 @@ Proposed resolution (if known). Updated when resolved.
 6. Parent Task can now proceed to completion
 
 Note: PJ Blocker does NOT require DESIRED OUTCOMES or ACCEPTANCE CRITERIA custom fields.
+
+## Links
+
+- [[documentation]]
+- [[task]]

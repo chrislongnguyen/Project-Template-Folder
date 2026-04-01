@@ -115,3 +115,14 @@ Call `/compress` to write the session summary to the Memory Vault.
 **GATE — Verify:** After Step 7, confirm the session file was written by reading it back. Run `git status` and confirm no uncommitted changes remain. If uncommitted changes exist, warn user before completing.
 
 If git commit fails (hook rejection, merge conflict, empty commit): Do NOT retry silently. Report the exact error. Offer: (a) fix the issue and re-commit, (b) skip commit and proceed to push check, (c) abort session-end. Do NOT force-commit or skip hooks.
+
+## Links
+
+- [[CLAUDE]]
+- [[commit-messages]]
+- [[deliverable]]
+- [[gotchas]]
+- [[learn-build-engine-close]]
+- [[project]]
+- [[task]]
+- [[wms-comments]]

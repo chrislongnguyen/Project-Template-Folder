@@ -120,3 +120,9 @@ then move to the next incomplete topic.
 ## Gotchas
 
 See [gotchas.md](gotchas.md) for common failure modes.
+
+## Links
+
+- [[DESIGN]]
+- [[dsbv]]
+- [[gotchas]]

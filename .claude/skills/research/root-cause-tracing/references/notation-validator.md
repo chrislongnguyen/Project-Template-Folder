@@ -52,3 +52,7 @@ When tracing to level 2+ (e.g., UBS.UD.UD), check if the cause also appears in t
 | Support System Belief | UBS.UD.UB | UDS.UB.UB | Weakens blockers; strengthens drivers |
 
 If you identify a new shared force not in this table, flag it to the Learner and record it via `/remember`.
+
+## Links
+
+- [[blocker]]

@@ -1,0 +1,222 @@
+{
+  "main": {
+    "id": "0904d354642b58d2",
+    "type": "split",
+    "children": [
+      {
+        "id": "227b2af74e8a4d28",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cbef9e81c5981d2e",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "413d537f6de19d2b",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f8a43590160beaf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "24db84d4bfdeb193",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "49bf0107761821a0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1293b4dd83e30480",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e80d1e6dddcac3a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "39b88c7edadcb505",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "462b6f30b26b3bea",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "b428b1611883b8d7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "79889c118f5aedd2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "002f404a0ccff1f2",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "46a3b5e64a26b1bf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "templater-obsidian:Templater": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "cbef9e81c5981d2e",
+  "lastOpenFiles": [
+    "_genesis/training/alpei-training-slides/src/slides/19b-gate-workflow.tsx",
+    "_genesis/tools/alpei-navigator.html",
+    "_genesis/tools",
+    "_genesis/sops/GIT_WORKFLOW.md",
+    "_genesis/guides/MIGRATION_GUIDE.md",
+    "_genesis/guides",
+    "_genesis/VERSION_REGISTRY.md",
+    "1-ALIGN/learning/specs",
+    "_genesis/training/alpei-training-slides/dist/assets/index-CvVsIyYC.js",
+    "_genesis/training/alpei-training-slides/dist/assets/index-BBjiPwhK.js",
+    "_genesis/training/alpei-training-slides/dist/assets/index-B8gzKwfp.css",
+    "_genesis/training/alpei-training-slides/src/slides/index.ts",
+    "_genesis/training/alpei-training-slides/src/slides/46-end.tsx",
+    "_genesis/training/alpei-training-slides/src/slides/45-mistakes.tsx",
+    "_genesis/training/alpei-training-slides/node_modules/recharts/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/recharts/CONTRIBUTING.md",
+    "_genesis/training/alpei-training-slides/node_modules/recharts/CHANGELOG.md",
+    "_genesis/training/alpei-training-slides/node_modules/react-dom/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/victory-vendor/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/victory-vendor/CHANGELOG.md",
+    "_genesis/training/alpei-training-slides/node_modules/dom-helpers/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/rollup/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/rollup/LICENSE.md",
+    "_genesis/training/alpei-training-slides/node_modules/vite/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/vite/LICENSE.md",
+    "_genesis/training/alpei-training-slides/node_modules/framer-motion/dom/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/framer-motion/client/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/jiti/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/d3-shape/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/d3-format/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/react-smooth/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/react-smooth/CHANGELOG.md",
+    "_genesis/training/alpei-training-slides/node_modules/motion-utils/LICENSE.md",
+    "_genesis/training/alpei-training-slides/node_modules/d3-time-format/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/postcss/README.md",
+    "_genesis/training/alpei-training-slides/node_modules/recharts-scale/README.md",
+    "tests/brand-identity/fixtures/bad-sample.svg",
+    "tests/brand-identity/fixtures/good-sample.svg"
+  ]
+}

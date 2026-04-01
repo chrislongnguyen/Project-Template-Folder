@@ -26,3 +26,8 @@ sub_system:
 
 ## BLOCKERS (need help with)
 - [Blocker 1] — UBS#: [Reference if applicable] — Need from: [Name/Team]
+
+## Links
+
+- [[blocker]]
+- [[task]]

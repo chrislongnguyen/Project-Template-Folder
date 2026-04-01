@@ -122,3 +122,14 @@ For Iteration 1, when you need to sync LEP tasks to Notion:
 3. Create Task Board entries following task-protocol.md hierarchy rules
 4. Set `Canonical Key` = task ID (D{n}-T{m}) for future idempotent sync compatibility
 5. Document any discovered property gaps in this adapter's §6 checklist above
+
+## Links
+
+- [[SKILL]]
+- [[blocker]]
+- [[deliverable]]
+- [[field-map]]
+- [[iteration]]
+- [[project]]
+- [[task]]
+- [[task-protocol]]

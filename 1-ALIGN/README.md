@@ -84,3 +84,8 @@ LEARN is embedded inside ALIGN because **learning is how you resolve unknowns be
 - [ ] OKRs can be cascaded to sub-teams
 - [ ] Decision records support onboarding new contributors
 - [ ] Learning output is reusable across related projects
+
+## Links
+
+- [[project]]
+- [[workstream]]

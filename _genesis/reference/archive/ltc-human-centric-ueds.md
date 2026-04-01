@@ -1541,3 +1541,21 @@ Every architectural element in this document traces to at least one UT/DT from D
 ---
 
 _End of Document 2. This file provides the complete human-centric UEDS architecture and systematically identifies every human weakness point. Document 3 (AI-Centric UEDS Translation) will use this gap map as its starting input — transforming every WES 4–5 workstream into an AI-native process while preserving what humans do best._
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[documentation]]
+- [[friction]]
+- [[idea]]
+- [[increment]]
+- [[iteration]]
+- [[methodology]]
+- [[project]]
+- [[simple]]
+- [[standard]]
+- [[task]]
+- [[workstream]]

@@ -88,3 +88,16 @@ Log grep results alongside vault results before drawing conclusions. If `.claude
 7. **obsidian-cli requires app check.** Before any obsidian-cli command, verify `obsidian --version 2>/dev/null` exits 0. If not running, fall back to Grep/Glob silently — do not error.
 8. **`.claude/` sweep is mandatory.** After every obsidian-cli search, grep `.claude/rules/` and `.claude/skills/` — not optional, not a fallback. See 3-Tool Routing Hierarchy above.
 
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[EP-04]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[project]]
+- [[task]]

@@ -309,3 +309,34 @@ Consumed by: human for final approval.
 | Name-drop references | EP-07 (amnesia) | Agent hasn't seen "AMT Session 3" | Load actual content, not names |
 | Use domain terms without definitions | LT-1 (hallucination) | Agent invents plausible names (e.g., "Entry Policy" instead of "Effective Principles") | Include canonical term list in INPUT when output must use exact terminology |
 | Relative paths in worktrees | LT-1 (path resolution) | Sub-agent resolves `_genesis/` or `rules/` to main repo, not worktree — writes land in wrong location | Always pass **absolute worktree path** in INPUT Context field: `Working directory: /full/path/to/.claude/worktrees/{name}` |
+
+## Links
+
+- [[ADR-001]]
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[DSBV_EVAL_TEMPLATE]]
+- [[EP-01]]
+- [[EP-03]]
+- [[EP-04]]
+- [[EP-05]]
+- [[EP-07]]
+- [[EP-08]]
+- [[EP-10]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[anti-patterns]]
+- [[deliverable]]
+- [[dsbv]]
+- [[general-system]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[project]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

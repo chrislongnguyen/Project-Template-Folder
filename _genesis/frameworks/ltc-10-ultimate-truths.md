@@ -91,3 +91,8 @@ Success must always include the three fundamental pillars of sustainability, eff
     3. Effective Thinking must be sustainable, efficient and scalable
     4. Effective Decision Making & Planning must be sustainable, efficient and scalable
     5. Effective Execution must be sustainable, efficient and scalable
+
+## Links
+
+- [[DESIGN]]
+- [[deliverable]]

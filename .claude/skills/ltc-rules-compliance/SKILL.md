@@ -62,3 +62,17 @@ If a required rule source is missing, unreadable, or contradictory: stop PASS/FA
 ## Gotchas
 
 See [gotchas.md](gotchas.md) for known failure patterns.
+
+## Links
+
+- [[CLAUDE]]
+- [[brand-identity]]
+- [[compliance-report]]
+- [[dsbv]]
+- [[gotchas]]
+- [[ltc-eop-gov]]
+- [[naming-rules]]
+- [[scope-matrix]]
+- [[security]]
+- [[security-rules]]
+- [[workstream]]

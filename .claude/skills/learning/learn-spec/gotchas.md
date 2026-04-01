@@ -51,3 +51,12 @@ Known failure patterns when executing this skill. Update when new issues are dis
 **How to detect:** Check that both files exist in `2-LEARN/specs/{slug}/`. Verify C1-C6 rows are all present.
 
 **Fix:** Both outputs are mandatory. If DSBV-READY is missing, the skill is incomplete — the Human Director cannot gate DSBV Design without it.
+
+## Links
+
+- [[DESIGN]]
+- [[DSBV_PROCESS]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[iteration]]

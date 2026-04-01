@@ -66,3 +66,8 @@ Exploit the ROOT PRINCIPLE (UDS.UD.Principles), not just copy tactics.
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]

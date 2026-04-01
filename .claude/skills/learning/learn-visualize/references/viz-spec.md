@@ -285,3 +285,7 @@ const GRAPH_DATA = {"nodes":[...],"edges":[...]};
 ```
 
 Replace `{system_name}`, `{slug}` with actual values from the input argument.
+
+## Links
+
+- [[SKILL]]

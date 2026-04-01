@@ -233,3 +233,15 @@ If gitleaks flags a legitimate string (e.g., a test fixture, documentation examp
 | Layer 1 (Structural) | `git status` should not show `.env`, `secrets/`, or `*.pem` files |
 | Layer 2 (Agent EP) | Check that CLAUDE.md/GEMINI.md contains the `## Security` section |
 | Layer 3 (Hook) | `pre-commit run --all-files` should complete without errors |
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[GEMINI]]
+- [[SECURITY_HIERARCHY]]
+- [[documentation]]
+- [[project]]
+- [[security]]
+- [[task]]
+- [[workstream]]

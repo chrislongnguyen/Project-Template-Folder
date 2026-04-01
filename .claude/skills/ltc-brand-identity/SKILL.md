@@ -54,3 +54,12 @@ If `rules/brand-identity.md` is missing or unreadable: apply the **CLAUDE.md** s
 ## Gotchas
 
 See [gotchas.md](gotchas.md) for known failure patterns.
+
+## Links
+
+- [[BRAND_GUIDE]]
+- [[CLAUDE]]
+- [[application-profiles]]
+- [[brand-identity]]
+- [[gotchas]]
+- [[palette-and-type]]

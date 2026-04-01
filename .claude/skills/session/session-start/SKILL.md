@@ -95,3 +95,9 @@ Do NOT proceed until recall output is presented to the user.
 If qmd query returns results that don't match the current repo (wrong project name, different context): Do NOT use them. Discard and fall back to directory listing. Do NOT blend context from a different project into the recall output.
 
 - **LT-1 Cross-project contamination:** Agent loads a session log from a different project with a similar name and presents it as this project's context. Always verify the `project` frontmatter field matches the current repo's UNG key before using any session file.
+
+## Links
+
+- [[CLAUDE]]
+- [[gotchas]]
+- [[project]]

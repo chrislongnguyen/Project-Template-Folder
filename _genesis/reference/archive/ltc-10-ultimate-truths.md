@@ -661,3 +661,16 @@ For each UT, a brief note on what changes when the primary Doer shifts from huma
 ---
 
 _End of Document 1. This file is the foundational reference for all subsequent documents (Doc 2–6). Every design decision in the AI-Centric OE System must trace back to at least one UT or DT in this codex._
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[deliverable]]
+- [[friction]]
+- [[iteration]]
+- [[task]]
+- [[workstream]]

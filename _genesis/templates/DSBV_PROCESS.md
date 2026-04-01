@@ -277,5 +277,19 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 
 ## Links
 
+- [[CLAUDE]]
+- [[DESIGN]]
 - [[DSBV_CONTEXT_TEMPLATE]]
 - [[DSBV_EVAL_TEMPLATE]]
+- [[EP-01]]
+- [[EP-10]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[dsbv]]
+- [[idea]]
+- [[iteration]]
+- [[simple]]
+- [[task]]
+- [[workstream]]

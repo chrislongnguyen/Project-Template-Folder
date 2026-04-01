@@ -16,3 +16,8 @@ Agents must not move or rename files out of inbox — promotion is a human actio
 Maximum 1 new note per agent session unless human grants a batch exception in-session.
 
 Notes are accessible via CLI by default (AP4 opt-out model).
+
+## Links
+
+- [[AP3]]
+- [[AP4]]

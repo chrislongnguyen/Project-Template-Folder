@@ -116,3 +116,13 @@ feat({workstream}): add {skill-name} skill
 ```
 
 Where `{workstream}` is the APEI workstream the skill belongs to (e.g., `align`, `improve`, `agent`).
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[anti-patterns]]
+- [[gotchas]]
+- [[simple]]
+- [[standard]]
+- [[workstream]]

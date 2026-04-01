@@ -76,3 +76,16 @@ See [references/anti-patterns.md](references/anti-patterns.md) for the 6 skill a
 
 - **/dsbv** — if the skill is part of a workstream artifact, run DSBV first to establish design context
 - **/feedback** — if the skill idea came from user frustration, capture it as feedback too
+
+## Links
+
+- [[DESIGN]]
+- [[anti-patterns]]
+- [[creation-procedure]]
+- [[dsbv]]
+- [[gotchas]]
+- [[idea]]
+- [[ltc-eop-gov]]
+- [[simple]]
+- [[standard]]
+- [[workstream]]

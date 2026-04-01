@@ -34,3 +34,8 @@ description: "{What this does and when. Use action verbs. Be specific about trig
 - [ ] `description` is 50+ characters with trigger language ("Use when...", "Create X when...")
 - [ ] Steps are concrete actions, not vague instructions
 - [ ] Separate `gotchas.md` file exists (even for simple skills)
+
+## Links
+
+- [[SKILL]]
+- [[gotchas]]

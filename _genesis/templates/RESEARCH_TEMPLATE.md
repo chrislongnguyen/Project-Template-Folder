@@ -13,3 +13,8 @@ sub_system:
 > Full CODE research template: `2-LEARN/templates/`
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[LEARNING_HIERARCHY]]
+- [[project]]

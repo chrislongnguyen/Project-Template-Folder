@@ -49,3 +49,8 @@ Level 3-4 is required for core architectural decisions.
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[anti-patterns]]
+- [[project]]

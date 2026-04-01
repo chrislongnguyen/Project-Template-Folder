@@ -135,5 +135,8 @@ Source: research spike §4.2 + Oasis Security CVE Feb 2026.
 - [[CLAUDE]]
 - [[SKILL]]
 - [[anti-patterns]]
+- [[friction]]
+- [[project]]
 - [[security]]
+- [[standard]]
 - [[task]]

@@ -43,3 +43,7 @@ page: P{m}
 ```
 
 If frontmatter already exists, update the `status:`, `reviewed_at:`, and `revision_note:` fields. Use the Edit tool for updates. Use the Edit tool with the first line for prepending new frontmatter.
+
+## Links
+
+- [[SKILL]]

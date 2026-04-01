@@ -280,3 +280,11 @@ done
 If any page fails, attempt to fix the specific errors (usually CAG tag formatting). Re-validate after fixes.
 
 Report results per the SKILL.md completion report format.
+
+## Links
+
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[standard]]
+- [[workstream]]

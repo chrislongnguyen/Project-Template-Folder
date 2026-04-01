@@ -14,3 +14,7 @@ Human creates each daily note manually or via Obsidian template.
 
 Files in this folder are accessible via CLI by default (AP4 opt-out model).
 To block a note: add `cli-blocked: true` to its frontmatter.
+
+## Links
+
+- [[AP4]]

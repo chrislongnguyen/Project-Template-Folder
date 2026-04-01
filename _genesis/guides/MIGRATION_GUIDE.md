@@ -196,3 +196,19 @@ claude
 
 **"My agent doesn't know the DSBV commands"**
 → Verify `.claude/skills/dsbv/SKILL.md` exists. If not, re-copy from Step 4.
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[README]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[brand-identity]]
+- [[dsbv]]
+- [[project]]
+- [[standard]]
+- [[versioning]]
+- [[workstream]]

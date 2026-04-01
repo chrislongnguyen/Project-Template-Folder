@@ -69,3 +69,15 @@ If the Plan Validation Checklist fails the same check 3 times in a row: Stop att
 ## 8. LT-1 Phantom file paths
 
 Agent generates plausible file paths in the plan (e.g., `src/auth/middleware.py:45-60`) that do not exist in the codebase. Before finalizing the plan, run Glob or Read on every "Modify" file path. If the file does not exist, either change it to "Create" or fix the path. Observed: agents frequently reference files by guessing from project structure rather than checking.
+
+## Links
+
+- [[EP-10]]
+- [[SKILL]]
+- [[agent-arch-decision-tree]]
+- [[deliverable]]
+- [[plan-validation-checklist]]
+- [[project]]
+- [[review-and-handoff]]
+- [[scope-exclusions-guide]]
+- [[task]]
