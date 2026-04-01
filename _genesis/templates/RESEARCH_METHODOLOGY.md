@@ -6,7 +6,7 @@ name: Research Methodology
 description: Shared research protocols — multi-angle search, source verification, anti-hallucination. Imported by any skill that performs research.
 type: template
 work_stream: learn
-stage: build
+stage: design
 sub_system: 
 ---
 # Research Methodology

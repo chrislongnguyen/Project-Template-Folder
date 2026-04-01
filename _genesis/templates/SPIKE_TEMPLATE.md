@@ -4,7 +4,7 @@ last_updated: 2026-03-30
 owner: "Long Nguyen"
 type: template
 work_stream: learn
-stage: build
+stage: design
 sub_system: 
 ---
 # SPIKE TEMPLATE
