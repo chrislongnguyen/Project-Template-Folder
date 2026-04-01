@@ -25,7 +25,7 @@ const gates = [
     num: 3,
     name: 'BUILD GATE',
     when: 'After artifacts produced',
-    approve: 'Zone artifacts vs DESIGN.md ACs',
+    approve: 'Workstream artifacts vs DESIGN.md ACs',
     decide: 'Are deliverables CORRECT? Approve → Validate unlocks',
     command: '/dsbv build',
   },
@@ -34,7 +34,7 @@ const gates = [
     name: 'VALIDATE GATE',
     when: 'After reviewer reports',
     approve: 'VALIDATE.md — per-criterion PASS/FAIL',
-    decide: 'All PASS → zone complete. FAIL → fix & re-validate',
+    decide: 'All PASS → workstream complete. FAIL → fix & re-validate',
     command: '/dsbv validate',
   },
 ];
@@ -204,7 +204,7 @@ export default function ApprovalGatesSlide() {
               color: colors.textDim,
               margin: 0,
             }}>
-              You make 4 decisions per zone. The AI does the work between gates. Nothing ships without your sign-off.
+              You make 4 decisions per workstream. The AI does the work between gates. Nothing ships without your sign-off.
             </p>
           </div>
         </AnimatedText>

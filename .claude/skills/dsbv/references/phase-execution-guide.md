@@ -8,7 +8,7 @@ A strong DESIGN.md has:
 - **Artifact inventory** — every deliverable named, with purpose and owner
 - **Per-artifact success rubric** — binary criteria, not vibes ("all fields validated against schema" not "good quality")
 - **Alignment table** — every completion condition maps to an artifact, every artifact maps to a condition. Zero orphans.
-- **Explicit out-of-scope** — what this zone will NOT produce, to prevent scope creep during Build
+- **Explicit out-of-scope** — what this workstream will NOT produce, to prevent scope creep during Build
 
 A weak DESIGN.md has:
 - Vague artifact names ("documentation", "tests")
@@ -17,9 +17,9 @@ A weak DESIGN.md has:
 
 ## Sequence Phase — Dependency Ordering
 
-Common dependency patterns per zone:
+Common dependency patterns per workstream:
 
-| Zone | Typical dependency chain |
+| Workstream | Typical dependency chain |
 |---|---|
 | ALIGN | Charter → Stakeholders → Requirements → OKRs → Decisions |
 | PLAN | Architecture → Risks (UBS) → Drivers (UDS) → Roadmap |
@@ -52,10 +52,10 @@ Each check in VALIDATE.md must have:
 
 **Red flag:** If every criterion is PASS and no evidence column exists, the validation was rubber-stamped. Re-run with evidence requirements.
 
-## Zone Transition Checklist
+## Workstream Transition Checklist
 
-Before declaring a zone complete:
+Before declaring a workstream complete:
 - [ ] VALIDATE.md exists with per-criterion verdicts + evidence
 - [ ] No FAIL verdicts remain (all fixed or explicitly deferred with justification)
-- [ ] Next zone's C1 (clear scope) and C2 (input materials) can be satisfied from this zone's output
+- [ ] Next workstream's C1 (clear scope) and C2 (input materials) can be satisfied from this workstream's output
 - [ ] Human has approved the transition

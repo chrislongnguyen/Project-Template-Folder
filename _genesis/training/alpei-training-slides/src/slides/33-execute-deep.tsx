@@ -4,7 +4,7 @@ import { AnimatedText, StaggerGroup, StaggerItem } from '../components/AnimatedT
 import { colors } from '../lib/theme';
 import { fadeInUp, fadeIn, staggerContainer } from '../lib/animations';
 
-const stages = ['DESIGN.md (ACs)', 'SEQUENCE.md (TASKS)', 'ZONE ARTIFACTS', 'VALIDATE.md'];
+const stages = ['DESIGN.md (ACs)', 'SEQUENCE.md (TASKS)', 'WORKSTREAM ARTIFACTS', 'VALIDATE.md'];
 
 const tableRows = [
   {
@@ -24,7 +24,7 @@ const tableRows = [
   {
     stage: 'BUILD',
     command: '/dsbv build execute',
-    template: 'Zone artifacts',
+    template: 'Workstream artifacts',
     pm: 'Monitor output',
     ai: 'Write code, run tests, build docs, self-verify, update versioning',
   },

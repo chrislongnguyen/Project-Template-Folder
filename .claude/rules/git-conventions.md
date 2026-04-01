@@ -23,22 +23,22 @@ type(scope): short description        ← ≤72 chars, imperative mood
 
 ## Canonical Scope List
 
-Use **exactly one** scope per commit. Scope = zone of primary change.
-NEVER use: `governance`, `zone0`, `APEI`, `scaffold`, `infra`, `LEP` or other ad-hoc scopes.
+Use **exactly one** scope per commit. Scope = workstream of primary change.
+NEVER use: `governance`, `workstream0`, `APEI`, `scaffold`, `infra`, `LEP` or other ad-hoc scopes.
 
-| Scope | Zone / Area |
+| Scope | Workstream / Area |
 |-------|-------------|
-| `govern` | Zone 0 — rules, hooks, agent config, scripts, GOVERN/ |
-| `align` | Zone 1 — charter, decisions, OKRs, stakeholders |
-| `learn` | Zone 2 — research, specs, learning pipeline, input/output |
-| `plan` | Zone 3 — architecture, risks, drivers, roadmap |
-| `execute` | Zone 4 — src, tests, config, docs |
-| `improve` | Zone 5 — changelog, metrics, retros, reviews |
+| `govern` | GOVERN workstream — rules, hooks, agent config, scripts, GOVERN/ |
+| `align` | ALIGN workstream — charter, decisions, OKRs, stakeholders |
+| `learn` | LEARN workstream — research, specs, learning pipeline, input/output |
+| `plan` | PLAN workstream — architecture, risks, drivers, roadmap |
+| `execute` | EXECUTE workstream — src, tests, config, docs |
+| `improve` | IMPROVE workstream — changelog, metrics, retros, reviews |
 | `genesis` | `_genesis/` — shared frameworks, brand, templates, reference |
 | `skills` | `.claude/skills/` — skill files specifically |
 | `rules` | `.claude/rules/` — rule files specifically |
 
-Multi-zone commits: use the **primary** zone only. Truly cross-cutting → `genesis`.
+Multi-workstream commits: use the **primary** workstream only. Truly cross-cutting → `genesis`.
 
 ## Commit Types
 
@@ -56,16 +56,16 @@ Multi-zone commits: use the **primary** zone only. Truly cross-cutting → `gene
 
 `.obsidian/` | `.env` | `.env.*` | `secrets/` | `TEMP/` | `*.tmp` | `node_modules/`
 
-## Pre-Commit Checks (zone .md artifacts only)
+## Pre-Commit Checks (workstream .md artifacts only)
 
-Before staging any modified `.md` zone artifact, verify:
+Before staging any modified `.md` workstream artifact, verify:
 1. `version` bumped (only if file was previously committed — see versioning.md)
 2. `status` is `Draft` or `Review` — NEVER self-set `Approved`
 3. `last_updated` = today's absolute date (YYYY-MM-DD)
 
-## Post-Commit Requirements (zone artifacts)
+## Post-Commit Requirements (workstream artifacts)
 
-After every commit that includes a zone artifact:
+After every commit that includes a workstream artifact:
 - Update `0-GOVERN/VERSION_REGISTRY.md` row (version, status, date)
 - Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 

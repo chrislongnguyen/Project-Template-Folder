@@ -95,7 +95,7 @@ VERIFY: How the agent self-checks before returning results
 
 ```
 EO:     Task file T3.1 written with all sections filled, no placeholders
-INPUT:  Context: DSBV Build phase for Zone 3.
+INPUT:  Context: DSBV Build phase for PLAN workstream.
         Files: SEQUENCE.md (task list), spec.md (acceptance criteria).
         Budget: ~10K tokens.
 EP:     EP-08 (Lean Output — signal only, no padding), EP-10 (Binary ACs — pass/fail only)

@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-30
 ---
-# ZONE 3 — EXECUTE (Deliver with Version Control)
+# EXECUTE workstream (Deliver with Version Control)
 
 > "Build it right, with the right tools, in the right environment."
 

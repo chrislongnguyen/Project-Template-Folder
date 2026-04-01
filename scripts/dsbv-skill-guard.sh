@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # version: 1.1 | last_updated: 2026-03-30
-# dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on zone artifacts
+# dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
 # (DSBV Rule, .claude/rules/dsbv.md)
 #
 # Behavior:
 #   1. Reads PreToolUse JSON from stdin (tool_name, tool_input.file_path)
-#   2. Checks if file is in a zone directory (1-ALIGN/, 3-PLAN/, 4-EXECUTE/, 5-IMPROVE/)
-#   3. If not a zone file → ALLOW (exit 0)
+#   2. Checks if file is in a workstream directory (1-ALIGN/, 3-PLAN/, 4-EXECUTE/, 5-IMPROVE/)
+#   3. If not a workstream file → ALLOW (exit 0)
 #   4. If a DSBV process file (DESIGN.md, SEQUENCE.md, VALIDATE.md) → ALLOW
-#   5. If zone's DESIGN.md exists → ALLOW (Design phase completed)
-#   6. If zone's DESIGN.md does NOT exist → BLOCK (exit 2)
+#   5. If workstream's DESIGN.md exists → ALLOW (Design phase completed)
+#   6. If workstream's DESIGN.md does NOT exist → BLOCK (exit 2)
 #
 # This enforces the OUTCOME (DESIGN.md exists) rather than the PROCESS
 # (skill was invoked). Rationale:
@@ -21,8 +21,8 @@
 #   - Per D6: hooks > rules > skills (this is the highest enforcement tier)
 #
 # Exit codes:
-#   0 = allow (file is not a zone artifact, or DESIGN.md exists)
-#   2 = block (zone artifact write without DESIGN.md)
+#   0 = allow (file is not a workstream artifact, or DESIGN.md exists)
+#   2 = block (workstream artifact write without DESIGN.md)
 #
 # Install: Add to .claude/settings.json PreToolUse hooks for Write|Edit matcher
 
@@ -42,26 +42,26 @@ if [[ -z "$FILE_PATH" ]]; then
     exit 0
 fi
 
-# --- Determine if this is a zone artifact ----------------------------------
+# --- Determine if this is a workstream artifact ----------------------------------
 
-# Extract zone from file path
+# Extract workstream from file path
 # Matches: /any/path/1-ALIGN/anything, /any/path/3-PLAN/anything, etc.
-ZONE=""
-ZONE_PATTERN=""
+WORKSTREAM=""
+WORKSTREAM_PATTERN=""
 if [[ "$FILE_PATH" =~ /1-ALIGN/ ]]; then
-    ZONE="1-ALIGN"
-    ZONE_PATTERN="align"
+    WORKSTREAM="1-ALIGN"
+    WORKSTREAM_PATTERN="align"
 elif [[ "$FILE_PATH" =~ /3-PLAN/ ]]; then
-    ZONE="3-PLAN"
-    ZONE_PATTERN="plan"
+    WORKSTREAM="3-PLAN"
+    WORKSTREAM_PATTERN="plan"
 elif [[ "$FILE_PATH" =~ /4-EXECUTE/ ]]; then
-    ZONE="4-EXECUTE"
-    ZONE_PATTERN="execute"
+    WORKSTREAM="4-EXECUTE"
+    WORKSTREAM_PATTERN="execute"
 elif [[ "$FILE_PATH" =~ /5-IMPROVE/ ]]; then
-    ZONE="5-IMPROVE"
-    ZONE_PATTERN="improve"
+    WORKSTREAM="5-IMPROVE"
+    WORKSTREAM_PATTERN="improve"
 else
-    # Not a zone file — allow (could be _shared/, scripts/, .claude/, etc.)
+    # Not a workstream file — allow (could be _shared/, scripts/, .claude/, etc.)
     exit 0
 fi
 
@@ -78,10 +78,10 @@ esac
 
 # --- Allow operational files (updated outside DSBV cycles) -----------------
 
-# Some zone files are operational — they get updated incrementally, not as
+# Some workstream files are operational — they get updated incrementally, not as
 # part of a DSBV Build phase. These include retrospectives, changelogs,
 # metrics, decision records, and learning outputs.
-RELATIVE_PATH="${FILE_PATH#*/${ZONE}/}"
+RELATIVE_PATH="${FILE_PATH#*/${WORKSTREAM}/}"
 case "$RELATIVE_PATH" in
     retrospectives/*|retros/*) exit 0 ;;    # Retros are IMPROVE operational
     changelog/*|CHANGELOG*) exit 0 ;;        # Changelogs are incremental
@@ -92,12 +92,12 @@ case "$RELATIVE_PATH" in
     skills/*) exit 0 ;;                      # Skills are operational tools, evolve incrementally
 esac
 
-# --- Check if DESIGN.md exists for this zone -------------------------------
+# --- Check if DESIGN.md exists for this workstream -------------------------------
 
-# Walk up from file path to find project root, then check zone's DESIGN.md
-# Strategy: find the zone directory in the path, then look for DESIGN.md there
-PROJECT_ROOT="${FILE_PATH%%/${ZONE}/*}"
-DESIGN_FILE="${PROJECT_ROOT}/${ZONE}/DESIGN.md"
+# Walk up from file path to find project root, then check workstream's DESIGN.md
+# Strategy: find the workstream directory in the path, then look for DESIGN.md there
+PROJECT_ROOT="${FILE_PATH%%/${WORKSTREAM}/*}"
+DESIGN_FILE="${PROJECT_ROOT}/${WORKSTREAM}/DESIGN.md"
 
 if [[ -f "$DESIGN_FILE" ]]; then
     # DESIGN.md exists — Design phase was completed, allow the write
@@ -109,18 +109,18 @@ fi
 # Provide actionable feedback to the agent via stderr (exit 2 sends stderr
 # as feedback to Claude, per Claude Code hooks specification)
 cat >&2 <<BLOCK_MSG
-BLOCKED: Writing to ${ZONE}/ without a DESIGN.md.
+BLOCKED: Writing to ${WORKSTREAM}/ without a DESIGN.md.
 
 The DSBV rule requires: "No ad-hoc artifacts. If work is not in DESIGN.md,
 it is not in scope."
 
 To fix this:
-  1. Run '/dsbv design ${ZONE_PATTERN}' to create the Design specification
+  1. Run '/dsbv design ${WORKSTREAM_PATTERN}' to create the Design specification
   2. Get human approval on the DESIGN.md
   3. Then proceed with Build phase writes
 
 This hook enforces the DSBV phase ordering:
-  Design (DESIGN.md) → Sequence → Build (zone artifacts) → Validate
+  Design (DESIGN.md) → Sequence → Build (workstream artifacts) → Validate
 
 File attempted: ${FILE_PATH}
 Expected first: ${DESIGN_FILE}

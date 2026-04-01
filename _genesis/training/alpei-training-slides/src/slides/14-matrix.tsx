@@ -4,14 +4,14 @@ import { AnimatedText } from '../components/AnimatedText';
 import { colors } from '../lib/theme';
 import { fadeInUp, staggerContainer } from '../lib/animations';
 
-const zones = ['ALIGN', 'LEARN', 'PLAN', 'EXECUTE', 'IMPROVE'];
+const workstreams = ['ALIGN', 'LEARN', 'PLAN', 'EXECUTE', 'IMPROVE'];
 const phases = ['DESIGN', 'SEQUENCE', 'BUILD', 'VALIDATE'];
 
 const cells: Record<string, string[]> = {
   ALIGN:   ['Charter + Force Analysis', 'OKR Register', 'Charter (final)', 'VALIDATE.md'],
   LEARN:   ['/learn pipeline', '/learn pipeline', 'UBS-UDS + EPs', '/learn:review'],
   PLAN:    ['UBS Register', 'Roadmap + Drivers', 'Architecture doc', 'VALIDATE.md'],
-  EXECUTE: ['DESIGN.md (ACs)', 'SEQUENCE.md (tasks)', 'Zone artifacts', 'VALIDATE.md'],
+  EXECUTE: ['DESIGN.md (ACs)', 'SEQUENCE.md (tasks)', 'Workstream artifacts', 'VALIDATE.md'],
   IMPROVE: ['Metrics Baseline', 'Retro Plan', 'Feedback Register', 'Version Review'],
 };
 
@@ -40,7 +40,7 @@ export default function MatrixSlide() {
             marginTop: '8px',
             letterSpacing: '0.04em',
           }}>
-            Each zone produces artifacts through 4 DSBV phases — agents assigned per phase
+            Each workstream produces artifacts through 4 DSBV phases — agents assigned per phase
           </p>
           <div style={{
             width: '80px',
@@ -107,7 +107,7 @@ export default function MatrixSlide() {
             </motion.div>
 
             {/* Data rows */}
-            {zones.map((ws, rowIdx) => (
+            {workstreams.map((ws, rowIdx) => (
               <motion.div
                 key={ws}
                 variants={fadeInUp}
@@ -122,7 +122,7 @@ export default function MatrixSlide() {
                 <div style={{
                   padding: '14px 14px',
                   background: 'rgba(242, 199, 92, 0.12)',
-                  borderRadius: rowIdx === zones.length - 1 ? '0 0 0 4px' : 0,
+                  borderRadius: rowIdx === workstreams.length - 1 ? '0 0 0 4px' : 0,
                   display: 'flex',
                   alignItems: 'center',
                 }}>
@@ -143,7 +143,7 @@ export default function MatrixSlide() {
                     padding: '14px 10px',
                     background: 'rgba(255, 255, 255, 0.03)',
                     borderRadius:
-                      rowIdx === zones.length - 1 && colIdx === 3
+                      rowIdx === workstreams.length - 1 && colIdx === 3
                         ? '0 0 4px 0' : 0,
                     display: 'flex',
                     alignItems: 'center',

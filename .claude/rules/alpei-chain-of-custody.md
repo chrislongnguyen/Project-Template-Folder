@@ -5,17 +5,17 @@ last_updated: 2026-03-30
 ---
 # ALPEI Chain-of-Custody — Always-On Rule
 
-Enforces upstream dependency ordering across zones, sub-systems, and DSBV phases.
+Enforces upstream dependency ordering across workstreams, sub-systems, and DSBV phases.
 
-## Zone Sequence (ALPEI)
+## Workstream Sequence (ALPEI)
 
 ALIGN → LEARN → PLAN → EXECUTE → IMPROVE
 
-- Zone N cannot start DSBV Build until Zone (N-1) has at least 1 validated artifact
-- Zone N's DESIGN.md must reference Zone (N-1) outputs as inputs. Named dependencies
+- Workstream N cannot start DSBV Build until Workstream (N-1) has at least 1 validated artifact
+- Workstream N's DESIGN.md must reference Workstream (N-1) outputs as inputs. Named dependencies
   (source: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § P4 — LEARN Data Flow):
 
-  | Consuming Zone | Required Input Artifact          | Source Zone |
+  | Consuming Workstream | Required Input Artifact          | Source Workstream |
   |----------------|----------------------------------|-------------|
   | ALIGN          | UBS analysis                     | LEARN       |
   | ALIGN          | Effective Principles             | LEARN       |
@@ -28,7 +28,7 @@ ALIGN → LEARN → PLAN → EXECUTE → IMPROVE
 
   Full dependency table: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § P4
 
-- Downstream zones inherit constraints from upstream zones — they do not override them
+- Downstream workstreams inherit constraints from upstream workstreams — they do not override them
 
 ## DSBV Phase Ordering
 
@@ -36,11 +36,11 @@ Design → Sequence → Build → Validate
 
 - No phase may be skipped
 - Each phase transition requires human approval (gate)
-- Validate must happen before a zone is marked complete
+- Validate must happen before a workstream is marked complete
 
-## Exception: Zone 0 GOVERN
+## Exception: GOVERN workstream
 
-Zone 0 (GOVERN) is operational infrastructure. Small patches (rule files, registry updates, agent config) do not require full DSBV cycles. GOVERN uses DSBV only for major structural changes.
+GOVERN workstream is operational infrastructure. Small patches (rule files, registry updates, agent config) do not require full DSBV cycles. GOVERN uses DSBV only for major structural changes.
 
 ## Violation Response
 

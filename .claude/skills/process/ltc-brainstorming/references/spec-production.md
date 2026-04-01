@@ -75,7 +75,7 @@ The OE.6.4 VANA-SPEC includes two NEW sections beyond the standard template:
 
 ### §0 Force Analysis (before §1)
 
-**Required content:** UBS(R), UBS(A), UDS(R), UDS(A), recursive decomposition (minimum 1 level), sigmoid zone classification, bottleneck identification, synergy check.
+**Required content:** UBS(R), UBS(A), UDS(R), UDS(A), recursive decomposition (minimum 1 level), sigmoid workstream classification, bottleneck identification, synergy check.
 
 Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §0 structure.
 

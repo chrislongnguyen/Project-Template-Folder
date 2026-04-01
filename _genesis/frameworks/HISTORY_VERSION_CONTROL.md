@@ -116,7 +116,7 @@ Sections 1-7 below cover the full technical specification — branching strategy
 
 ```
 main                        ← Stable, approved work only. Protected branch.
-  ├── I0-logic-scaffold   ← Iteration 0: ALIGN zone setup (pre-build framing)
+  ├── I0-logic-scaffold   ← Iteration 0: ALIGN workstream setup (pre-build framing)
   ├── I1-concept          ← Iteration 1: Sustainability — prove correctness
   ├── I2-prototype        ← Iteration 2: Efficiency — real data, outperform
   ├── I3-mve              ← Iteration 3: Full efficiency — production-grade
@@ -143,20 +143,20 @@ Format: `type(scope): description`
 | `docs` | Documentation-only changes (README, changelog) |
 | `chore` | Build, config, template maintenance |
 
-**Scope** = zone or subsystem: `ALIGN`, `PLAN`, `EXECUTE`, `IMPROVE`, or specific subsystem name.
+**Scope** = workstream or subsystem: `ALIGN`, `PLAN`, `EXECUTE`, `IMPROVE`, or specific subsystem name.
 
 **Examples:**
 ```
-feat(ALIGN): Zone 1 stakeholder analysis complete
+feat(ALIGN): ALIGN workstream stakeholder analysis complete
 fix(EXECUTE): correct CF2 acceptance criteria threshold
-refactor(PLAN): restructure EOP steps for Zone 2
+refactor(PLAN): restructure EOP steps for LEARN workstream
 docs(IMPROVE): update changelog for I2 cycle
 ```
 
 **Rules:**
 - Atomic commits — one logical change per commit.
-- Reference the zone and subsystem so `git log` is navigable.
-- Never combine cross-zone changes in a single commit.
+- Reference the workstream and subsystem so `git log` is navigable.
+- Never combine cross-workstream changes in a single commit.
 
 ---
 
@@ -195,7 +195,7 @@ Every decision must be traceable in the repo, not lost in chat sessions.
 # ADR-NNN: [Title]
 Status: [Proposed | Accepted | Deprecated | Superseded by ADR-NNN]
 Date: YYYY-MM-DD
-Zone: [ALIGN | PLAN | EXECUTE | IMPROVE]
+Workstream: [ALIGN | PLAN | EXECUTE | IMPROVE]
 
 ## Context
 [What forces led to this decision?]
@@ -215,14 +215,14 @@ Each iteration produces a Pull Request to main:
 
 | Iteration | PR Title Pattern | Merge Condition |
 |---|---|---|
-| I0 | `I0: Logic Scaffold — ALIGN zone setup` | Zone 1 artifacts reviewed and approved |
-| I1 | `I1: Concept — PLAN + first EXECUTE pass` | Zone 2+3 first pass, Zone 4 baseline eval |
-| I2 | `I2: Prototype — deep EXECUTE + EVALUATE` | All zones populated, eval metrics pass threshold |
+| I0 | `I0: Logic Scaffold — ALIGN workstream setup` | ALIGN workstream artifacts reviewed and approved |
+| I1 | `I1: Concept — PLAN + first EXECUTE pass` | LEARN workstream+3 first pass, EXECUTE workstream baseline eval |
+| I2 | `I2: Prototype — deep EXECUTE + EVALUATE` | All workstreams populated, eval metrics pass threshold |
 | I3 | `I3: MVE — IMPROVE cycle applied` | Changelog updated, regression check passed |
 | I4 | `I4: Leadership — final review and handoff` | All A.C. met, stakeholder sign-off |
 
 - PRs require at least one reviewer (Human Director or designated reviewer).
-- PR description must reference which zones were modified and link to relevant ADRs.
+- PR description must reference which workstreams were modified and link to relevant ADRs.
 - Squash merge to main to keep history clean.
 
 ---
@@ -234,12 +234,12 @@ Maintain `5-IMPROVE/changelog/CHANGELOG.md` with reverse-chronological entries:
 ```
 ## [I2] - 2026-03-25
 ### Added
-- CF2 optimized configuration for Zone 3
+- CF2 optimized configuration for PLAN workstream
 - ADR-003 documenting tool selection rationale
 ### Changed
-- Revised Zone 2 EOP step ordering based on eval feedback
+- Revised LEARN workstream EOP step ordering based on eval feedback
 ### Fixed
-- Corrected data schema in Zone 3 output contract
+- Corrected data schema in PLAN workstream output contract
 ```
 
 Update the changelog as part of every PR — not retroactively.

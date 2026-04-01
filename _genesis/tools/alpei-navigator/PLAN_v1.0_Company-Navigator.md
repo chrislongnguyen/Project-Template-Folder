@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: PENDING_DIRECTOR_APPROVAL
 director: Manh N.
-zone: 2-PLAN
+workstream: 2-PLAN
 project: LTC Company Navigator
 ---
 
@@ -80,7 +80,7 @@ Every resource in the company maps to one or more 7CS roles in one or more of th
 | DSBV_PROCESS | _shared/templates/DSBV_PROCESS.md | ALL D cells | Starting any DSBV phase |
 | DSBV_CONTEXT | _shared/templates/DSBV_CONTEXT_TEMPLATE.md | ALL B cells | Packaging context for Build |
 | DSBV_EVAL | _shared/templates/DSBV_EVAL_TEMPLATE.md | ALL V cells | Comparing multi-agent outputs |
-| DESIGN_TEMPLATE | _shared/templates/DESIGN_TEMPLATE.md | ALL D cells | Zone design specification (DSBV Phase 1) |
+| DESIGN_TEMPLATE | _shared/templates/DESIGN_TEMPLATE.md | ALL D cells | Workstream design specification (DSBV Phase 1) |
 | ADR_TEMPLATE | _shared/templates/ADR_TEMPLATE.md | A-B | Making strategic decisions |
 | VANA_SPEC | _shared/templates/VANA_SPEC_TEMPLATE.md | A-B, L-V | Defining acceptance criteria |
 | RISK_ENTRY | _shared/templates/RISK_ENTRY_TEMPLATE.md | P-B | Documenting risks |

@@ -2,7 +2,7 @@
 version: "1.3"
 status: Draft
 last_updated: 2026-03-30
-purpose: "Zone×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
+purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
 # VERSION REGISTRY
@@ -14,9 +14,9 @@ purpose: "Zone×phase progress dashboard — 22-row matrix (20 cells + 2 summary
 
 ---
 
-## Zone×Phase Progress Matrix
+## Workstream×Phase Progress Matrix
 
-| Zone×Phase            | Deliverable                            | Version | Status      | AC Pass | Last Updated | Map Cell |
+| Workstream×Phase            | Deliverable                            | Version | Status      | AC Pass | Last Updated | Map Cell |
 |-----------------------|----------------------------------------|---------|-------------|---------|--------------|----------|
 | 1-ALIGN × Design      | DESIGN.md                              | 1.4     | Draft       | —       | 2026-03-30   | TBD      |
 | 1-ALIGN × Sequence    | SEQUENCE.md                            | 1.3     | Draft       | —       | 2026-03-30   | TBD      |
@@ -41,13 +41,13 @@ purpose: "Zone×phase progress dashboard — 22-row matrix (20 cells + 2 summary
 
 ### Summary Rows (no DSBV expansion)
 
-| Zone          | Description                                        | Version | Status     | Last Updated |
+| Workstream          | Description                                        | Version | Status     | Last Updated |
 |---------------|----------------------------------------------------|---------|------------|--------------|
 | 0-GOVERN      | Operational infrastructure — CLAUDE.md, rules/, agents/, hooks/, 0-GOVERN/ | 1.x | Active | 2026-03-30 |
 | _genesis      | Reference layer — brand, frameworks, security, SOPs, templates, 5 Vinh PDFs | 1.x | Reference | 2026-03-30 |
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
-> **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream zone not yet Approved — cannot start.
+> **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.
 > **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`) is built.
 
 ---
@@ -75,7 +75,7 @@ Version labels from `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
 - **3-PLAN** UBS/UDS Registers are seeded from ALIGN but not yet in formal DSBV — status = Pending.
 - **4-EXECUTE** DESIGN.md exists (multi-agent orchestration context) but DSBV Sequence not yet started.
 - **5-IMPROVE** CHANGELOG.md initialized but DSBV has not formally started — status = Pending.
-- **Zone 0 GOVERN** does not use full DSBV for small patches — see `rules/alpei-chain-of-custody.md`.
+- **GOVERN workstream** does not use full DSBV for small patches — see `rules/alpei-chain-of-custody.md`.
 - **Map Cell column** populates as `P1-{A-E}{1-4}` after Consumer 1 ships. Row ordering: A=ALIGN, B=LEARN, C=PLAN, D=EXECUTE, E=IMPROVE; columns 1-4 = Design, Sequence, Build, Validate.
 - This file is updated manually at each milestone. Auto-derive rules for I2 in `0-GOVERN/designs/consumer-3-auto-derive-rules.md`.
 
@@ -83,10 +83,10 @@ Version labels from `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
 
 ## How Agents Update This File
 
-This registry uses a **22-row zone×phase matrix**: 20 cells (5 zones × 4 DSBV phases) plus 2 summary rows for 0-GOVERN and _genesis.
+This registry uses a **22-row workstream×phase matrix**: 20 cells (5 workstreams × 4 DSBV phases) plus 2 summary rows for 0-GOVERN and _genesis.
 
 **Per-cell update rules:**
-1. After editing any zone artifact: find the matching `Zone×Phase` row, update **Version + Status + AC Pass + Last Updated**.
+1. After editing any workstream artifact: find the matching `Workstream×Phase` row, update **Version + Status + AC Pass + Last Updated**.
 2. After a DSBV phase transition (human approval): update the Status column for the completed phase row (Draft → Review) and the next phase row (Pending/Not Started → Draft).
 3. After adding a key artifact to a Build cell: update the **Deliverable** column (comma-separated within the cell).
 4. After Consumer 1 ships: replace all `TBD` values in **Map Cell** with `P1-{A-E}{1-4}` grid references.
@@ -94,7 +94,7 @@ This registry uses a **22-row zone×phase matrix**: 20 cells (5 zones × 4 DSBV 
 6. Mirror major state changes in `5-IMPROVE/changelog/CHANGELOG.md`.
 
 **Column definitions:**
-- `Zone×Phase` — ALPEI zone name × DSBV phase label (20 combinations)
+- `Workstream×Phase` — ALPEI workstream name × DSBV phase label (20 combinations)
 - `Deliverable` — primary artifact name(s) for this cell
 - `Version` — current version of the primary artifact (`—` if none exists)
 - `Status` — one of exactly 6 values: `Not Started` | `Pending` | `Draft` | `Review` | `In Progress` | `Approved`

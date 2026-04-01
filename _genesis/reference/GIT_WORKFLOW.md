@@ -21,18 +21,18 @@ type(scope): short description
 
 **Types:** `feat` | `fix` | `refactor` | `docs` | `chore` | `test` | `cleanup`
 
-**Scopes — use zone name only:**
+**Scopes — use workstream name only:**
 
 ```
 ┌──────────┬────────────────────────────────────────────────────┐
 │ Scope    │ What it covers                                     │
 ├──────────┼────────────────────────────────────────────────────┤
-│ govern   │ Zone 0 — rules, hooks, agent config, scripts       │
-│ align    │ Zone 1 — charter, decisions, OKRs, stakeholders    │
-│ learn    │ Zone 2 — research, specs, learning pipeline        │
-│ plan     │ Zone 3 — architecture, risks, drivers, roadmap     │
-│ execute  │ Zone 4 — src, tests, config, docs                  │
-│ improve  │ Zone 5 — changelog, metrics, retros, reviews       │
+│ govern   │ GOVERN workstream — rules, hooks, agent config, scripts       │
+│ align    │ ALIGN workstream — charter, decisions, OKRs, stakeholders    │
+│ learn    │ LEARN workstream — research, specs, learning pipeline        │
+│ plan     │ PLAN workstream — architecture, risks, drivers, roadmap     │
+│ execute  │ EXECUTE workstream — src, tests, config, docs                  │
+│ improve  │ IMPROVE workstream — changelog, metrics, retros, reviews       │
 │ genesis  │ _genesis/ — shared frameworks, brand, templates    │
 │ skills   │ .claude/skills/ — skill files                      │
 │ rules    │ .claude/rules/ — rule files                        │
@@ -51,7 +51,7 @@ docs(genesis): update ALPEI process map P3 view
 
 ## Before You Commit — 3 Checks
 
-For every `.md` zone artifact you edited:
+For every `.md` workstream artifact you edited:
 
 1. **`version`** — bump it if the file was previously committed (e.g. `1.0` → `1.1`)
 2. **`status`** — must be `Draft` or `Review`. Never set `Approved` yourself.
@@ -61,7 +61,7 @@ For every `.md` zone artifact you edited:
 
 ## After You Commit — 2 Updates
 
-1. `0-GOVERN/VERSION_REGISTRY.md` — update the row for every zone artifact committed
+1. `0-GOVERN/VERSION_REGISTRY.md` — update the row for every workstream artifact committed
 2. `5-IMPROVE/changelog/CHANGELOG.md` — add an entry before creating any PR
 
 ---

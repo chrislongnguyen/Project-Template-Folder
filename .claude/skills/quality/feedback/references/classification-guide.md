@@ -11,19 +11,19 @@ From conversation context:
 - Frustration, confusion, breakage → `friction`
 - Suggestion, wish, "it would be nice if" → `idea`
 
-## Detect Zone
+## Detect Workstream
 
 From recent file paths or conversation topic:
 
-| Pattern | Zone label |
+| Pattern | Workstream label |
 |---------|-----------|
-| `1-ALIGN/`, charter, stakeholders, OKRs | `zone:align` |
-| `3-PLAN/`, risks, drivers, architecture | `zone:plan` |
-| `4-EXECUTE/`, src, tests, config | `zone:execute` |
-| `5-IMPROVE/`, changelog, retro, metrics | `zone:improve` |
-| `_genesis/`, frameworks, templates, SOPs | `zone:shared` |
-| `.claude/`, `rules/`, `CLAUDE.md`, skills, hooks | `zone:agent` |
-| DSBV process, `/dsbv`, DESIGN.md, SEQUENCE.md | `zone:agent` |
+| `1-ALIGN/`, charter, stakeholders, OKRs | `workstream:align` |
+| `3-PLAN/`, risks, drivers, architecture | `workstream:plan` |
+| `4-EXECUTE/`, src, tests, config | `workstream:execute` |
+| `5-IMPROVE/`, changelog, retro, metrics | `workstream:improve` |
+| `_genesis/`, frameworks, templates, SOPs | `workstream:shared` |
+| `.claude/`, `rules/`, `CLAUDE.md`, skills, hooks | `workstream:agent` |
+| DSBV process, `/dsbv`, DESIGN.md, SEQUENCE.md | `workstream:agent` |
 
 ## Detect Severity (friction only)
 

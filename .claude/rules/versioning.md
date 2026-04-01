@@ -49,7 +49,7 @@ creates    requests   (Agent NEVER
 - New files start as `Draft`
 - Editing an `Approved` file → new version, reset to `Draft`
 
-## After Editing Any Zone Artifact
+## After Editing Any Workstream Artifact
 
 Update the corresponding row in `0-GOVERN/VERSION_REGISTRY.md` — version, status, and date.
 
@@ -58,7 +58,7 @@ Update the corresponding row in `0-GOVERN/VERSION_REGISTRY.md` — version, stat
 1. `version` — follows 1.x (I1) convention, bumped only if previously committed
 2. `status` — not prematurely `Approved`
 3. `last_updated` — today's absolute date
-4. `0-GOVERN/VERSION_REGISTRY.md` — row updated if this is a zone artifact
+4. `0-GOVERN/VERSION_REGISTRY.md` — row updated if this is a workstream artifact
 
 ## PR-Level Requirements
 
@@ -75,4 +75,4 @@ Update the corresponding row in `0-GOVERN/VERSION_REGISTRY.md` — version, stat
 | Setting `status: Approved` without human | Only human approves. Agent sets Draft or Review. |
 | Forgetting `status` field | All three fields required: version + status + last_updated |
 | Relative dates ("today") | Always absolute: 2026-03-31 |
-| Skipping VERSION_REGISTRY update | Every zone artifact edit must update the registry row |
+| Skipping VERSION_REGISTRY update | Every workstream artifact edit must update the registry row |

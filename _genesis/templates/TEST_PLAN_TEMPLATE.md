@@ -37,7 +37,7 @@ owner: "Long Nguyen"
 
 ## SEQUENCE.md Acceptance Criteria Coverage
 
-> Every AC from `{zone}/SEQUENCE.md` must map to at least one test case.
+> Every AC from `{workstream}/SEQUENCE.md` must map to at least one test case.
 
 | SEQUENCE.md AC | Test Case(s) | Covered? |
 |----------------|-------------|---------|

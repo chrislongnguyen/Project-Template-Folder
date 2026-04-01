@@ -515,8 +515,8 @@ In a "Flow-to-Work" organization, physical resources must not be anchors that ti
     
     Our office space is not a collection of static departments; it is a flexible resource designed to support the two modes of our work: Deployment and Development.
     
-    *   Functional Zones (For Deployed Time): We allocate "War Rooms" and collaborative hot-desking areas where cross-functional squads can co-locate for the duration of a project. These spaces change as squads form and dissolve.
-    *   COE Zones (For Development Time): We dedicate specific zones for the Center of Excellence—spaces for training, mentorship, quiet deep work, and cultural bonding. This is the "community center" where members return to reconnect with their functional peers and recharge.
+    *   Functional Workstreams (For Deployed Time): We allocate "War Rooms" and collaborative hot-desking areas where cross-functional squads can co-locate for the duration of a project. These spaces change as squads form and dissolve.
+    *   COE Workstreams (For Development Time): We dedicate specific workstreams for the Center of Excellence—spaces for training, mentorship, quiet deep work, and cultural bonding. This is the "community center" where members return to reconnect with their functional peers and recharge.
     
 
 *   **3\. SECURE ASSET GOVERNANCE**
@@ -761,7 +761,7 @@ This statement encapsulates our commitment to providing the sophisticated invest
 **POLICIES:**
 1. Minimum 3 days/week in office for junior staff; 2 for seniors.
 2. Remote locations must have stable 50 Mbps internet.
-3. Time‑zones more than ± 3 h from HCMC require approval.
+3. Time‑workstreams more than ± 3 h from HCMC require approval.
 
 ✅ **WE DO:**
 *   Provide support for home‑office setup on a case‑by‑case basis.

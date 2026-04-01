@@ -9,12 +9,12 @@ owner: "Long Nguyen"
 
 ## 1. Introduction
 
-This document is the authoritative reference for how the LTC ALPEI framework and DSBV sub-process work together to produce zone artifacts. It serves three consumers:
+This document is the authoritative reference for how the LTC ALPEI framework and DSBV sub-process work together to produce workstream artifacts. It serves three consumers:
 
 
 | Consumer                  | Use                                                                                               |
 | ------------------------- | ------------------------------------------------------------------------------------------------- |
-| **PM / Team member**      | Orientation: understand what zone you are in, what phase is active, what gate you are approaching |
+| **PM / Team member**      | Orientation: understand what workstream you are in, what phase is active, what gate you are approaching |
 | **Agent (Sonnet / Opus)** | Context load: verify correct template, agent, and AC before producing any artifact                |
 | **Training deck author**  | Slide content: each P-section maps to one or more training slides                                 |
 
@@ -25,9 +25,9 @@ Template index: `_genesis/templates/README.md`.
 
 ---
 
-## 2. P1 — 5×4 Matrix: ALPEI Zones × DSBV Phases
+## 2. P1 — 5×4 Matrix: ALPEI Workstreams × DSBV Phases
 
-Every zone in the ALPEI system produces artifacts through the same four-phase DSBV sub-process: **Design → Sequence → Build → Validate**. The 5×4 matrix below makes that structure explicit — each cell names the template used, the deliverable path, the assigned agent, and the binary acceptance criterion for that zone-phase intersection. 
+Every workstream in the ALPEI system produces artifacts through the same four-phase DSBV sub-process: **Design → Sequence → Build → Validate**. The 5×4 matrix below makes that structure explicit — each cell names the template used, the deliverable path, the assigned agent, and the binary acceptance criterion for that workstream-phase intersection. 
 
 **Problem Diagnosis (PD)** serves as the worked example sub-system with all 20 cells filled; all other sub-systems (DP, DA, IDM) follow the identical pattern, substituting their own deliverable paths and domain-specific content.
 
@@ -38,7 +38,7 @@ Every zone in the ALPEI system produces artifacts through the same four-phase DS
 > Phases owned by **ltc-planner** (model: Opus). Produces DESIGN.md and SEQUENCE.md artifacts.
 
 
-| Zone          | Design (ltc-planner)                                                                                                                                                            | Sequence (ltc-planner)                                                                                                                                                                  |
+| Workstream          | Design (ltc-planner)                                                                                                                                                            | Sequence (ltc-planner)                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1-ALIGN**   | **Template:** CHARTER_TEMPLATE.md (T1) + FORCE_ANALYSIS_TEMPLATE.md (T4) **Deliverable:** `1-ALIGN/charter/CHARTER.md` **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** OKR_TEMPLATE.md (T3) **Deliverable:** `1-ALIGN/okrs/OKR_REGISTER.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
@@ -54,12 +54,12 @@ Every zone in the ALPEI system produces artifacts through the same four-phase DS
 > Build owned by **ltc-builder** (model: Sonnet). Validate owned by **ltc-reviewer** (model: Opus).
 
 
-| Zone          | Build (ltc-builder)                                                                                                                                                                                                                                                           | Validate (ltc-reviewer)                                                                                                                                                 |
+| Workstream          | Build (ltc-builder)                                                                                                                                                                                                                                                           | Validate (ltc-reviewer)                                                                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1-ALIGN**   | **Template:** CHARTER_TEMPLATE.md (T1) **Deliverable:** `1-ALIGN/charter/CHARTER.md` (final) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** REVIEW_TEMPLATE.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/output/{SUB}-UBS-UDS.md` · `2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md` · P0–P7 pages per topic | *Validation via `/learn:review` per topic — all P-pages reach `status: approved` before pipeline advances*                                                              |
 | **3-PLAN**    | **Template:** ARCHITECTURE_TEMPLATE.md (T2) **Deliverable:** `3-PLAN/architecture/ARCHITECTURE.md` **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** REVIEW_TEMPLATE.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
-| **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Zone artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** DSBV_EVAL_TEMPLATE.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
+| **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Workstream artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** DSBV_EVAL_TEMPLATE.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
 | **5-IMPROVE** | **Template:** TEST_PLAN_TEMPLATE.md (T8) + FEEDBACK_TEMPLATE.md **Deliverable:** `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** REVIEW_PACKAGE_TEMPLATE.md **Deliverable:** `5-IMPROVE/reviews/VERSION-REVIEW.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
 
 
@@ -72,7 +72,7 @@ Every zone in the ALPEI system produces artifacts through the same four-phase DS
 
 | Role             | Scope                                                                                                                                          |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **ltc-explorer** | Codebase exploration, existing template inventory, UBS/UDS signal gathering, source evaluation. Produces input notes only — no zone artifacts. |
+| **ltc-explorer** | Codebase exploration, existing template inventory, UBS/UDS signal gathering, source evaluation. Produces input notes only — no workstream artifacts. |
 
 
 ---
@@ -90,15 +90,15 @@ PD is the first sub-system and sets the version ceiling. DP, DA, and IDM follow 
 | **IDM**    | Informed Decision Making | DA Effective Principles | IDM version ≤ DA version                    |
 
 
-**Inheritance rule:** Each sub-system's Effective Principles (produced in Zone 2 LEARN Build) are inherited by the next sub-system as validated inputs. A downstream sub-system may not advance to a higher version than its upstream dependency. If PD is at v1.2, DP may not exceed v1.2.
+**Inheritance rule:** Each sub-system's Effective Principles (produced in LEARN workstream Build) are inherited by the next sub-system as validated inputs. A downstream sub-system may not advance to a higher version than its upstream dependency. If PD is at v1.2, DP may not exceed v1.2.
 
-> PD is the worked example showing all 20 cells. DP, DA, and IDM follow the identical zone × phase structure with their own deliverable paths and domain content.
+> PD is the worked example showing all 20 cells. DP, DA, and IDM follow the identical workstream × phase structure with their own deliverable paths and domain content.
 
 ---
 
-## 3. P2 — Version Progression: What Each Zone Produces at Each Depth
+## 3. P2 — Version Progression: What Each Workstream Produces at Each Depth
 
-The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any zone is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every zone-version intersection.
+The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every workstream-version intersection.
 
 Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
 
@@ -122,7 +122,7 @@ Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`
 
 ### 25-Cell Version-Depth Matrix
 
-> Rows = version level (I0–I4). Columns = ALPEI zone. Each cell = what that zone produces AT that version level.
+> Rows = version level (I0–I4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
 > Source: `UES_VERSION_BEHAVIORS.md` § per-work-stream tables.
 > **Traceability:** Each column maps to a work stream section in UES_VERSION_BEHAVIORS.md:
 > 1-ALIGN → §ALIGN WORK STREAM | 2-LEARN → §LEARN WORK STREAM | 3-PLAN → §PLAN WORK STREAM | 4-EXECUTE → §EXECUTE WORK STREAM | 5-IMPROVE → §IMPROVE WORK STREAM
@@ -183,7 +183,7 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 
 ---
 
-## 4. P3 — ALIGN Zone Walkthrough: How It Actually Works
+## 4. P3 — ALIGN Workstream Walkthrough: How It Actually Works
 
 When you run `/dsbv design align`, a structured sequence of agents, rules, and human gates activates — not a chat. Every artifact is produced under contract (DESIGN.md), every phase transition requires your approval, and five always-on rules enforce quality at every step. The walkthrough below traces exactly what happens, from the moment you type the command to the moment ALIGN is marked complete.
 
@@ -194,11 +194,11 @@ When you run `/dsbv design align`, a structured sequence of agents, rules, and h
 
 | #   | Phase      | Command                            | Agent                                                   | Produces                                                                                    | Rules That Fire                                                                                                                                                                                                                                                             | Gate                                                                                                                                               |
 | --- | ---------- | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0   | Pre-flight | *(auto — fires before every task)* | ltc-explorer (Haiku) can assist with pre-DSBV discovery | GREEN / RED status report                                                                   | **alpei-pre-flight** (6 checks: zone, alignment, risks, drivers, learning, version consistency) · **alpei-chain-of-custody** (upstream zone dependency check)                                                                                                               | RED on any check = STOP. Fix before proceeding.                                                                                                    |
+| 0   | Pre-flight | *(auto — fires before every task)* | ltc-explorer (Haiku) can assist with pre-DSBV discovery | GREEN / RED status report                                                                   | **alpei-pre-flight** (6 checks: workstream, alignment, risks, drivers, learning, version consistency) · **alpei-chain-of-custody** (upstream workstream dependency check)                                                                                                               | RED on any check = STOP. Fix before proceeding.                                                                                                    |
 | 1   | Design     | `/dsbv design align`               | **ltc-planner** (Opus)                                  | `1-ALIGN/DESIGN.md` — artifact inventory, per-artifact purpose, binary ACs, alignment table | **versioning** (new file → version 1.0 / status Draft) · **agent-dispatch** (5-field context package required)                                                                                                                                                              | **G1:** Human reviews DESIGN.md. Approves → Sequence unlocks. Requests changes → planner revises and re-presents.                                  |
 | 2   | Sequence   | `/dsbv sequence align`             | **ltc-planner** (Opus)                                  | `1-ALIGN/SEQUENCE.md` — ordered task list, dependencies, sizing, session plan               | **dsbv** (hard gate: approved DESIGN.md must exist) · **agent-dispatch** (5-field context package)                                                                                                                                                                          | **G2:** Human reviews SEQUENCE.md. Approves → Build unlocks. No approved DESIGN.md = error, not warning.                                           |
-| 3   | Build      | `/dsbv build align`                | **ltc-builder** (Sonnet)                                | Zone artifacts per SEQUENCE.md: charter, OKRs, decisions, stakeholder map                   | **versioning** (bump version + update last_updated on every file edit) · **alpei-chain-of-custody** (upstream check per task — Zone 0 GOVERN must have ≥1 validated artifact) · **agent-dispatch** (5-field context package; cost estimate shown before multi-agent launch) | **G3:** Human reviews Build output. Approves → Validate unlocks. ltc-builder does NOT approve its own work.                                        |
-| 4   | Validate   | `/dsbv validate align`             | **ltc-reviewer** (Opus)                                 | `1-ALIGN/VALIDATE.md` — per-criterion PASS / FAIL / PARTIAL with file-path evidence         | **dsbv** (hard gate: Validate must complete before zone is marked done) · **agent-dispatch** (5-field context package)                                                                                                                                                      | **G4:** Human reviews VALIDATE.md. All PASS → ALIGN marked complete. Any FAIL → ltc-builder fixes, re-validates. Human ONLY sets status: Approved. |
+| 3   | Build      | `/dsbv build align`                | **ltc-builder** (Sonnet)                                | Workstream artifacts per SEQUENCE.md: charter, OKRs, decisions, stakeholder map                   | **versioning** (bump version + update last_updated on every file edit) · **alpei-chain-of-custody** (upstream check per task — GOVERN workstream must have ≥1 validated artifact) · **agent-dispatch** (5-field context package; cost estimate shown before multi-agent launch) | **G3:** Human reviews Build output. Approves → Validate unlocks. ltc-builder does NOT approve its own work.                                        |
+| 4   | Validate   | `/dsbv validate align`             | **ltc-reviewer** (Opus)                                 | `1-ALIGN/VALIDATE.md` — per-criterion PASS / FAIL / PARTIAL with file-path evidence         | **dsbv** (hard gate: Validate must complete before workstream is marked done) · **agent-dispatch** (5-field context package)                                                                                                                                                      | **G4:** Human reviews VALIDATE.md. All PASS → ALIGN marked complete. Any FAIL → ltc-builder fixes, re-validates. Human ONLY sets status: Approved. |
 
 
 ---
@@ -211,7 +211,7 @@ When you run `/dsbv design align`, a structured sequence of agents, rules, and h
 | G1   | Human approves `1-ALIGN/DESIGN.md`                       | Sequence cannot start                              |
 | G2   | Human approves `1-ALIGN/SEQUENCE.md`                     | Build cannot start                                 |
 | G3   | Human approves Build output                              | Validate cannot start                              |
-| G4   | Human approves `1-ALIGN/VALIDATE.md` (all criteria PASS) | LEARN zone cannot start; ALIGN not marked complete |
+| G4   | Human approves `1-ALIGN/VALIDATE.md` (all criteria PASS) | LEARN workstream cannot start; ALIGN not marked complete |
 
 
 Gates are decision points, not labels. The system does not advance automatically — it stops and waits.
@@ -225,10 +225,10 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 
 | Rule                       | File                                      | What it enforces                                                                                                                                                                                                                                              |
 | -------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **alpei-pre-flight**       | `.claude/rules/alpei-pre-flight.md`       | 6 checks before every task: zone, alignment, risks, drivers, learning, version consistency. RED = stop.                                                                                                                                                       |
-| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Zone N cannot build until Zone N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips.                                                                                                                                 |
+| **alpei-pre-flight**       | `.claude/rules/alpei-pre-flight.md`       | 6 checks before every task: workstream, alignment, risks, drivers, learning, version consistency. RED = stop.                                                                                                                                                       |
+| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips.                                                                                                                                 |
 | **versioning**             | `.claude/rules/versioning.md`             | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. I1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved.                                                                                                         |
-| **dsbv**                   | `.claude/rules/dsbv.md`                   | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Zone N cannot reach Review until Zone N-1 has ≥1 Approved artifact.                                                                                                               |
+| **dsbv**                   | `.claude/rules/dsbv.md`                   | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact.                                                                                                               |
 | **agent-dispatch**         | `.claude/rules/agent-dispatch.md`         | Every Agent() call must: (1) name one of the 4 MECE agents, (2) use 5-field context package (EO → INPUT → EP → OUTPUT → VERIFY), (3) match model to agent file, (4) use absolute paths in worktrees. Enforced via PreToolUse hook — ad-hoc calls are blocked. |
 
 
@@ -239,7 +239,7 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 
 | Agent        | Model  | DSBV Phase        | Scope boundary                                                     |
 | ------------ | ------ | ----------------- | ------------------------------------------------------------------ |
-| ltc-explorer | Haiku  | Pre-DSBV          | Read-only research and discovery. Does NOT produce zone artifacts. |
+| ltc-explorer | Haiku  | Pre-DSBV          | Read-only research and discovery. Does NOT produce workstream artifacts. |
 | ltc-planner  | Opus   | Design + Sequence | Defines WHAT to build and in what order. Does NOT write artifacts. |
 | ltc-builder  | Sonnet | Build             | Produces artifacts per SEQUENCE.md. Does NOT design or review.     |
 | ltc-reviewer | Opus   | Validate          | Reviews against DESIGN.md criteria. Does NOT fix — reports only.   |
@@ -283,9 +283,9 @@ The PM makes three decisions in this exchange: approve Design, approve Sequence,
 
 ---
 
-## 5. P4 — LEARN Zone: Cross-Zone Data Flows
+## 5. P4 — LEARN Workstream: Cross-Workstream Data Flows
 
-LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stakeholder input and framework analysis into structured artifacts — UBS threat inventories, UDS driver inventories, and Effective Principles — that every downstream zone consumes. LEARN does not produce decisions or plans; it produces the evidence base that makes decisions and plans defensible. Two flows are upstream (LEARN feeds ALIGN and PLAN directly) and one is bidirectional (ALIGN charter scopes what LEARN researches; LEARN findings refine the charter).
+LEARN (LEARN workstream) is the research engine of the ALPEI system. It converts raw stakeholder input and framework analysis into structured artifacts — UBS threat inventories, UDS driver inventories, and Effective Principles — that every downstream workstream consumes. LEARN does not produce decisions or plans; it produces the evidence base that makes decisions and plans defensible. Two flows are upstream (LEARN feeds ALIGN and PLAN directly) and one is bidirectional (ALIGN charter scopes what LEARN researches; LEARN findings refine the charter).
 
 ---
 
@@ -293,7 +293,7 @@ LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stake
 
 ```
   ┌─────────────────────────────────────────────────────────────────────┐
-  │                        2-LEARN (Zone 2)                             │
+  │                        2-LEARN (LEARN workstream)                             │
   │                                                                     │
   │  output/                          research/                         │
   │  ├── PD-UBS-UDS.md                ├── PD-RESEARCH-SCOPE.md          │
@@ -303,7 +303,7 @@ LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stake
   └──────────┬──────────────────────┬──────────────────────────────────┘
              │                      │
     ┌────────▼────────┐    ┌────────▼────────┐
-    │ 1-ALIGN (Zone 1)│    │ 3-PLAN (Zone 3) │
+    │ 1-ALIGN (ALIGN workstream)│    │ 3-PLAN (PLAN workstream) │
     │                 │◄──►│                 │
     │ charter/        │ ^  │ risks/          │
     │ CHARTER.md      │ │  │ UBS_REGISTER.md │
@@ -320,19 +320,19 @@ LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stake
           Bidirectional:            │
           Charter scopes LEARN;     │ (feeds forward)
           LEARN refines Charter     ▼
-                              4-EXECUTE (Zone 4)
+                              4-EXECUTE (EXECUTE workstream)
                               (inherits all upstream constraints)
 ```
 
 **Flow legend:**
 
-- `──►` = unidirectional data flow (LEARN produces → zone consumes)
+- `──►` = unidirectional data flow (LEARN produces → workstream consumes)
 - `◄──►` = bidirectional dependency (Charter scopes LEARN; LEARN refines Charter)
 - `▼` = downstream inheritance (PLAN constraints propagate to EXECUTE)
 
 ---
 
-### Cross-Zone Flow Table
+### Cross-Workstream Flow Table
 
 
 | Flow | Source Artifact                             | Data Type                                          | Target Artifact                         | How Consumed                                                                                                              |
@@ -352,7 +352,7 @@ LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stake
 ### What Stays in LEARN vs. What Crosses Boundaries
 
 
-| Category             | Stays in 2-LEARN/                                          | Crosses to Other Zones                                                                           |
+| Category             | Stays in 2-LEARN/                                          | Crosses to Other Workstreams                                                                           |
 | -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | Raw input            | `input/raw/` — unprocessed transcripts, photos, recordings | No — raw data does not cross; only synthesized output does                                       |
 | Research methodology | `research/PD-RESEARCH-PLAN.md`                             | Partial — methodology rationale cross-references into `3-PLAN/architecture/ARCHITECTURE.md`      |
@@ -360,10 +360,10 @@ LEARN (Zone 2) is the research engine of the ALPEI system. It converts raw stake
 | Effective Principles | `output/PD-EFFECTIVE-PRINCIPLES.md`                        | Yes — crosses to `1-ALIGN/charter/CHARTER.md` and `3-PLAN/architecture/ARCHITECTURE.md`          |
 | Research evidence    | `research/PD-RESEARCH-SCOPE.md`                            | Yes — crosses to `1-ALIGN/decisions/ADR_*.md` as decision rationale                              |
 | VANA specifications  | `specs/`                                                   | No — VANA specs are internal to LEARN; they define what research must validate                   |
-| Archive / superseded | `archive/`                                                 | No — completed research stays archived in LEARN; downstream zones retain only what they consumed |
+| Archive / superseded | `archive/`                                                 | No — completed research stays archived in LEARN; downstream workstreams retain only what they consumed |
 
 
-**Boundary rule:** Only artifacts in `2-LEARN/output/` and `2-LEARN/research/` cross zone boundaries. Raw input and internal specs are consumed within LEARN and do not propagate.
+**Boundary rule:** Only artifacts in `2-LEARN/output/` and `2-LEARN/research/` cross workstream boundaries. Raw input and internal specs are consumed within LEARN and do not propagate.
 
 ---
 
@@ -395,7 +395,7 @@ LEARN and ALIGN have a two-way dependency that is intentional and bounded:
 
 ### LEARN → PLAN → EXECUTE Chain
 
-LEARN outputs do not skip zones. The propagation path is strictly sequential:
+LEARN outputs do not skip workstreams. The propagation path is strictly sequential:
 
 ```
 2-LEARN/output/PD-UBS-UDS.md
@@ -407,13 +407,13 @@ LEARN outputs do not skip zones. The propagation path is strictly sequential:
               └──► 4-EXECUTE/src/            (implementation must comply with architecture constraints)
 ```
 
-Zone 4 (EXECUTE) inherits from Zone 3 (PLAN), which inherits from Zone 2 (LEARN). EXECUTE does not read LEARN artifacts directly — it reads PLAN artifacts that were populated from LEARN. This one-hop indirection keeps EXECUTE focused on building, not researching.
+EXECUTE workstream inherits from PLAN workstream, which inherits from LEARN workstream. EXECUTE does not read LEARN artifacts directly — it reads PLAN artifacts that were populated from LEARN. This one-hop indirection keeps EXECUTE focused on building, not researching.
 
 ---
 
 ### LEARN Pipeline — The 6-Skill Mechanism
 
-LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream zone — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
+LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream workstream — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
 
 #### State Machine
 
@@ -424,7 +424,7 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 | S2    | Input exists; no research dir for slug                    | `/learn:research {slug}`                                              | `2-LEARN/research/{slug}/` — raw research files per topic              |
 | S3    | Research dir exists; ≥1 topic missing approved P-pages    | `/learn:structure {slug} {topic}` then `/learn:review {slug} {topic}` | `2-LEARN/research/{slug}/{topic}/P0–P7.md` all with `status: approved` |
 | S4    | All topics approved; no vana-spec exists                  | `/learn:spec {slug}`                                                  | `2-LEARN/specs/{slug}/vana-spec.md` + `DSBV-READY-{slug}.md`           |
-| S5    | Pipeline complete (vana-spec exists, all topics approved) | *(no skill — pipeline done)*                                          | Run `/dsbv design` for the target downstream zone                      |
+| S5    | Pipeline complete (vana-spec exists, all topics approved) | *(no skill — pipeline done)*                                          | Run `/dsbv design` for the target downstream workstream                      |
 
 
 #### P0–P7 Page Structure (per topic)
@@ -441,17 +441,17 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 | P7   | Topic Distilled Understanding | Synthesis: what this topic means for the project         |
 
 
-#### Zone-Crossing Outputs
+#### Workstream-Crossing Outputs
 
 
 | Output file                                    | Consumed by                                                                                                       |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `2-LEARN/output/{SUB}-UBS-UDS.md`              | `3-PLAN/risks/UBS_REGISTER.md` (UBS entries) · `3-PLAN/drivers/UDS_REGISTER.md` (UDS entries)                     |
 | `2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md` | `1-ALIGN/charter/CHARTER.md` (§Design Principles) · `3-PLAN/architecture/ARCHITECTURE.md` (component constraints) |
-| `2-LEARN/specs/{slug}/vana-spec.md`            | Downstream DSBV Design phases — initializes Design context for the consuming zone                                 |
+| `2-LEARN/specs/{slug}/vana-spec.md`            | Downstream DSBV Design phases — initializes Design context for the consuming workstream                                 |
 
 
-LEARN completes (S5) → run `/dsbv design` for the target downstream zone.
+LEARN completes (S5) → run `/dsbv design` for the target downstream workstream.
 
 ---
 
@@ -471,9 +471,9 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream zone.
 
 ---
 
-## 7. Routing Tables — Agent Dispatch by Zone × Phase
+## 7. Routing Tables — Agent Dispatch by Workstream × Phase
 
-> **Purpose:** Runtime lookup for agent dispatch and template selection. To find the correct template and agent for any task, grep `## Routing: {ZONE}` in this file, then read the row matching your current DSBV phase.
+> **Purpose:** Runtime lookup for agent dispatch and template selection. To find the correct template and agent for any task, grep `## Routing: {WORKSTREAM}` in this file, then read the row matching your current DSBV phase.
 >
 > **Lookup syntax:** `grep "## Routing: PLAN" _genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
 >
@@ -507,7 +507,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream zone.
 | S2    | Input exists; no `2-LEARN/research/{slug}/`          | `/learn:research {slug}`                                           | `2-LEARN/research/{slug}/`                                   | Research notes present per topic; each topic named              |
 | S3    | Research present; any topic missing approved P-pages | `/learn:structure {slug} {topic}` → `/learn:review {slug} {topic}` | `2-LEARN/research/{slug}/{topic}/P0–P7.md`                   | All P-pages present; all have `status: approved`                |
 | S4    | All topics approved; no vana-spec                    | `/learn:spec {slug}`                                               | `2-LEARN/specs/{slug}/vana-spec.md` · `DSBV-READY-{slug}.md` | VANA spec present; DSBV-READY file present                      |
-| S5    | Pipeline complete                                    | `/dsbv design [downstream zone]`                                   | See DSBV routing for target zone                             | LEARN outputs consumed by target zone Design phase              |
+| S5    | Pipeline complete                                    | `/dsbv design [downstream workstream]`                                   | See DSBV routing for target workstream                             | LEARN outputs consumed by target workstream Design phase              |
 
 
 ---
@@ -532,7 +532,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream zone.
 | -------- | ----------------------------------- | ------------ | ----------------------------------------- | ------------------------------------------------------------------- |
 | Design   | DESIGN_TEMPLATE.md                  | ltc-planner  | `4-EXECUTE/DESIGN.md`                      | All artifacts have binary ACs; no orphan conditions                 |
 | Sequence | DSBV_CONTEXT_TEMPLATE.md            | ltc-planner  | `4-EXECUTE/SEQUENCE.md`                    | Tasks ordered by dependency with input/output/AC/token estimate     |
-| Build    | (artifact-specific per SEQUENCE.md) | ltc-builder  | Zone artifacts per `4-EXECUTE/SEQUENCE.md` | Each artifact passes its SEQUENCE.md AC before next task begins     |
+| Build    | (artifact-specific per SEQUENCE.md) | ltc-builder  | Workstream artifacts per `4-EXECUTE/SEQUENCE.md` | Each artifact passes its SEQUENCE.md AC before next task begins     |
 | Validate | DSBV_EVAL_TEMPLATE.md               | ltc-reviewer | `4-EXECUTE/VALIDATE.md`                    | All SEQUENCE.md ACs addressed; no FAIL without documented exception |
 
 

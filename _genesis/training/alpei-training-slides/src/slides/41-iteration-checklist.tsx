@@ -13,13 +13,13 @@ const steps = [
   { step: 6,  desc: 'Run research pipeline',                  command: '/learn:research',          gate: '' },
   { step: 7,  desc: 'Structure UBS/UDS + EPs',                command: '/learn:structure',         gate: 'PM review' },
   { step: 8,  desc: 'Review learning outputs',                command: '/learn:review',            gate: 'Auto-check' },
-  { step: 9,  desc: 'Design plan zone',                       command: '/dsbv design plan',        gate: '' },
-  { step: 10, desc: 'Sequence plan zone tasks',               command: '/dsbv sequence plan',      gate: 'PM review' },
+  { step: 9,  desc: 'Design plan workstream',                       command: '/dsbv design plan',        gate: '' },
+  { step: 10, desc: 'Sequence plan workstream tasks',               command: '/dsbv sequence plan',      gate: 'PM review' },
   { step: 11, desc: 'Build plan artifacts',                   command: '/dsbv build plan',         gate: '' },
   { step: 12, desc: 'Validate plan completeness',             command: '/dsbv validate plan',      gate: 'Auto-check' },
-  { step: 13, desc: 'Build execute zone artifacts',           command: '/dsbv build execute',      gate: '' },
+  { step: 13, desc: 'Build execute workstream artifacts',           command: '/dsbv build execute',      gate: '' },
   { step: 14, desc: 'Validate execution deliverables',        command: '/dsbv validate execute',   gate: 'PM review' },
-  { step: 15, desc: 'Build improve zone',                     command: '/dsbv build improve',      gate: 'PM review' },
+  { step: 15, desc: 'Build improve workstream',                     command: '/dsbv build improve',      gate: 'PM review' },
   { step: 16, desc: 'Validate improve & close iteration',     command: '/dsbv validate improve',   gate: 'PM approval' },
 ];
 

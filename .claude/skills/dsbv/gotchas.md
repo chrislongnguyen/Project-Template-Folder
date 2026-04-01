@@ -8,7 +8,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 **What happens:** Agent jumps straight to Build or Sequence without producing a DESIGN.md, rationalizing that the task is too simple or the outcome is self-evident. This is the #1 DSBV failure mode — it bypasses scope definition, acceptance criteria, and the artifact inventory that downstream phases depend on.
 
-**How to detect:** Before entering any phase other than Design, check: does `{N}-{ZONE}/DESIGN.md` exist and have status Approved? If not, the agent skipped the gate.
+**How to detect:** Before entering any phase other than Design, check: does `{N}-{WORKSTREAM}/DESIGN.md` exist and have status Approved? If not, the agent skipped the gate.
 
 **Fix:** Hard-stop and return to Design. No DESIGN.md = no scope = no Build. Even a 10-line DESIGN.md with acceptance criteria is better than none. The readiness check C2 (scope loaded) exists precisely for this case.
 
@@ -16,7 +16,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ## 2. Running Build before Sequence is approved
 
-**What happens:** Agent produces zone artifacts in arbitrary order because it didn't wait for the human gate on SEQUENCE.md. Dependencies get violated — an artifact that depends on another is built first, creating rework or inconsistencies.
+**What happens:** Agent produces workstream artifacts in arbitrary order because it didn't wait for the human gate on SEQUENCE.md. Dependencies get violated — an artifact that depends on another is built first, creating rework or inconsistencies.
 
 **How to detect:** Check the DSBV phase ordering: Design (Approved) -> Sequence (Approved) -> Build -> Validate. If Build artifacts exist but SEQUENCE.md is missing or not Approved, the gate was skipped.
 
@@ -26,9 +26,9 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ## 3. Multi-agent Build launched without cost confirmation
 
-**What happens:** Agent spawns parallel sub-agents for a design-heavy zone (ALIGN, PLAN) without showing the cost estimate or getting human approval. This wastes tokens and may produce artifacts that conflict with each other.
+**What happens:** Agent spawns parallel sub-agents for a design-heavy workstream (ALIGN, PLAN) without showing the cost estimate or getting human approval. This wastes tokens and may produce artifacts that conflict with each other.
 
-**How to detect:** If the zone type is design-heavy and `--model` or `--teams` flags are in play, a cost confirmation prompt MUST appear before sub-agents launch. If artifacts suddenly appear without that confirmation, the gate was bypassed.
+**How to detect:** If the workstream type is design-heavy and `--model` or `--teams` flags are in play, a cost confirmation prompt MUST appear before sub-agents launch. If artifacts suddenly appear without that confirmation, the gate was bypassed.
 
 **Fix:** Before launching multi-agent Build, display: team count, model tier, estimated token cost, and the artifact-to-agent assignment. Wait for explicit human "go" before spawning. Single-agent sequential Build does not require cost confirmation.
 
@@ -36,11 +36,11 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ## 4. Treating Validate as a rubber stamp
 
-**What happens:** Agent marks validation as "all pass" without actually checking each criterion against DESIGN.md acceptance criteria. Errors propagate to the next zone because the quality gate was not enforced.
+**What happens:** Agent marks validation as "all pass" without actually checking each criterion against DESIGN.md acceptance criteria. Errors propagate to the next workstream because the quality gate was not enforced.
 
 **How to detect:** Compare the VALIDATE.md verdicts against the DESIGN.md acceptance criteria line by line. If VALIDATE.md has fewer checks than DESIGN.md has criteria, or all checks are "PASS" with no evidence, it was rubber-stamped.
 
-**Fix:** Validate must produce per-criterion evidence. Each acceptance criterion in DESIGN.md maps to a check in VALIDATE.md with a verdict (PASS/FAIL/PARTIAL) and a one-line justification. If any criterion fails, the zone cannot be marked complete.
+**Fix:** Validate must produce per-criterion evidence. Each acceptance criterion in DESIGN.md maps to a check in VALIDATE.md with a verdict (PASS/FAIL/PARTIAL) and a one-line justification. If any criterion fails, the workstream cannot be marked complete.
 
 ---
 

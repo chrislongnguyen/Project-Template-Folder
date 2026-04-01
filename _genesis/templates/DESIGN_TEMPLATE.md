@@ -2,11 +2,11 @@
 version: "1.0"
 last_updated: 2026-03-29
 owner: Long Nguyen
-zone: "{{ZONE}}"
+workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: Draft
 ---
-# DESIGN.md — {{ZONE}} Zone, {{ITERATION}}
+# DESIGN.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
 
 > DSBV Phase 1 artifact. This document is the contract. If it is not here, it is not in scope.
 
@@ -18,12 +18,12 @@ Answer before proceeding to DESIGN content.
 
 | Question | Answer |
 |----------|--------|
-| Q1: Are upstream zone outputs sufficient? (C1-C6 readiness) | YES / NO — _detail_ |
-| Q2: What is in scope for this zone-iteration? | _list_ |
+| Q1: Are upstream workstream outputs sufficient? (C1-C6 readiness) | YES / NO — _detail_ |
+| Q2: What is in scope for this workstream-iteration? | _list_ |
 | Q2b: What is explicitly OUT of scope? | _list_ |
 | Q3: Go/No-Go — proceed? | GO / NO-GO |
 
-> If any answer is NO → return to upstream zone. Do not design on shaky inputs.
+> If any answer is NO → return to upstream workstream. Do not design on shaky inputs.
 
 ---
 
@@ -31,7 +31,7 @@ Answer before proceeding to DESIGN content.
 
 High-level intent stated by Human Director (1-3 sentences). Agent expands below.
 
-**Intent:** _Human states what this zone must produce and why._
+**Intent:** _Human states what this workstream must produce and why._
 
 **Key constraints:**
 - _constraint 1_
@@ -72,7 +72,7 @@ Unified artifact-condition table. Every artifact has at least one condition. Eve
 
 ## Dependencies
 
-| Dependency | From Zone/Artifact | Status |
+| Dependency | From Workstream/Artifact | Status |
 |------------|-------------------|--------|
 | _dependency_ | _source_ | Ready / Pending |
 
@@ -85,9 +85,9 @@ Unified artifact-condition table. Every artifact has at least one condition. Eve
 | G1 | Design complete | Approve DESIGN.md to proceed to SEQUENCE |
 | G2 | Sequence complete | Approve task ordering and sizing |
 | G3 | Build complete | Approve all artifacts meet acceptance criteria |
-| G4 | Validate complete | Approve zone output; advance to next zone |
+| G4 | Validate complete | Approve workstream output; advance to next workstream |
 
-Additional zone-specific gates:
+Additional workstream-specific gates:
 - _gate description_
 
 ---

@@ -48,7 +48,7 @@ Every skill must pass `skill-validator.sh` before it ships.
 6. **Present to user** for approval. Show: directory tree, SKILL.md content, validator output.
    Do NOT commit until the user says "Approved" or equivalent.
 
-7. **Commit** the new skill with message: `feat(zone): add {skill-name} skill`
+7. **Commit** the new skill with message: `feat(workstream): add {skill-name} skill`
 
 ## Constraints
 
@@ -74,5 +74,5 @@ See [references/anti-patterns.md](references/anti-patterns.md) for the 6 skill a
 
 ## Related Skills
 
-- **/dsbv** — if the skill is part of a zone artifact, run DSBV first to establish design context
+- **/dsbv** — if the skill is part of a workstream artifact, run DSBV first to establish design context
 - **/feedback** — if the skill idea came from user frustration, capture it as feedback too

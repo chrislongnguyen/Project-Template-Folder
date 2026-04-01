@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-29
 owner: "Long Nguyen"
 type: [friction | idea]
-zone: [align | plan | execute | improve | shared | agent]
+workstream: [align | plan | execute | improve | shared | agent]
 severity: [blocked | confused | annoying | minor]  # friction only, omit for ideas
 date: YYYY-MM-DD
 author: [name or agent]

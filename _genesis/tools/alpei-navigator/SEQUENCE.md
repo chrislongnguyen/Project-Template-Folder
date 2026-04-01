@@ -2,7 +2,7 @@
 version: "1.0"
 status: Draft
 last_updated: 2026-03-31
-zone: Company-Navigator
+workstream: Company-Navigator
 dsbv_phase: Sequence
 ---
 
@@ -19,12 +19,12 @@ Phase A: VERIFICATION
                   │
 Phase B: DATA ARRAYS  ←──────┘
   B1 (skills) ──┐
-  B2 (templates)├──→ B5 (cross-cutting) ──→ B6 (zone/dsbv I/O)
+  B2 (templates)├──→ B5 (cross-cutting) ──→ B6 (workstream/dsbv I/O)
   B3 (frameworks)│
   B4 (rules) ───┘
                                               │
 Phase C: AGENT MODEL  ←──────────────────────┘
-  C1 (agent roster) ──→ C2 (cell-level agent) ──→ C3 (zone-level agent)
+  C1 (agent roster) ──→ C2 (cell-level agent) ──→ C3 (workstream-level agent)
                                                     │
 Phase D: GENERICIZATION  ←────────────────────────┘
   D1 (director name) ──┐
@@ -105,16 +105,16 @@ Mechanical JS array edits. Low risk — the architecture handles rendering autom
 | **Effort** | M |
 | **Blocks** | B5 |
 | **Depends on** | A2 |
-| **Risk** | LOW — but cell mapping requires judgment. Use template content to determine correct zone×phase. |
+| **Risk** | LOW — but cell mapping requires judgment. Use template content to determine correct workstream×phase. |
 
 ### B3 — Update FRAMEWORKS Array
 
 | Field | Value |
 |-------|-------|
-| **Description** | Add 7 new framework entries. The ALPEI_DSBV_PROCESS_MAP is the master process map — it goes in ALL cells. P1-P4 part views map to their specific zones. |
+| **Description** | Add 7 new framework entries. The ALPEI_DSBV_PROCESS_MAP is the master process map — it goes in ALL cells. P1-P4 part views map to their specific workstreams. |
 | **Input** | A2 verified diff, branch `_genesis/frameworks/*.md` files |
 | **Output** | Updated FRAMEWORKS array with 17 entries. Each entry has: id, name, desc, cells, role (all EP), insight. |
-| **AC** | `FRAMEWORKS.length === 17`. Every `_genesis/frameworks/*.md` (excluding README) has a corresponding entry. ALPEI_DSBV_PROCESS_MAP has `cells:["ALL"]`. Each P1-P4 view maps to the zones it covers. |
+| **AC** | `FRAMEWORKS.length === 17`. Every `_genesis/frameworks/*.md` (excluding README) has a corresponding entry. ALPEI_DSBV_PROCESS_MAP has `cells:["ALL"]`. Each P1-P4 view maps to the workstreams it covers. |
 | **Effort** | M |
 | **Blocks** | B5 |
 | **Depends on** | A2 |
@@ -148,14 +148,14 @@ Mechanical JS array edits. Low risk — the architecture handles rendering autom
 | **Depends on** | B1, B2, B3, B4 (needs final resource counts for environment audit) |
 | **Risk** | LOW |
 
-### B6 — Review ZONE_IO and DSBV_IO Objects
+### B6 — Review WORKSTREAM_IO and DSBV_IO Objects
 
 | Field | Value |
 |-------|-------|
-| **Description** | Verify zone input/output descriptions match current ALPEI flow. Check if new templates/frameworks change what flows between zones. |
+| **Description** | Verify workstream input/output descriptions match current ALPEI flow. Check if new templates/frameworks change what flows between workstreams. |
 | **Input** | Updated arrays from B1-B5, `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` |
-| **Output** | Updated ZONE_IO and DSBV_IO objects if needed. |
-| **AC** | ZONE_IO descriptions are consistent with ALPEI_DSBV_PROCESS_MAP P4 (data flow). DSBV_IO descriptions match DSBV_PROCESS.md. |
+| **Output** | Updated WORKSTREAM_IO and DSBV_IO objects if needed. |
+| **AC** | WORKSTREAM_IO descriptions are consistent with ALPEI_DSBV_PROCESS_MAP P4 (data flow). DSBV_IO descriptions match DSBV_PROCESS.md. |
 | **Effort** | S |
 | **Blocks** | C1 |
 | **Depends on** | B5 |
@@ -193,14 +193,14 @@ The highest-value teaching change. Every cell currently shows "Claude Opus/Sonne
 | **Depends on** | C1 |
 | **Risk** | LOW — single line change per function |
 
-### C3 — Update getZone7CS Agent Row
+### C3 — Update getWorkstream7CS Agent Row
 
 | Field | Value |
 |-------|-------|
-| **Description** | Replace the hardcoded `agent='Claude Opus/Sonnet'` in `getZone7CS()` with a summary showing all agents that operate in that zone: "ltc-planner (D,S) · ltc-builder (B) · ltc-reviewer (V)". |
+| **Description** | Replace the hardcoded `agent='Claude Opus/Sonnet'` in `getWorkstream7CS()` with a summary showing all agents that operate in that workstream: "ltc-planner (D,S) · ltc-builder (B) · ltc-reviewer (V)". |
 | **Input** | C1 AGENTS constant |
-| **Output** | Updated `getZone7CS()` function with agent summary string. |
-| **AC** | Expanding any zone's 7CS summary in Building view shows the full agent roster with phase assignments, not "Claude Opus/Sonnet". |
+| **Output** | Updated `getWorkstream7CS()` function with agent summary string. |
+| **AC** | Expanding any workstream's 7CS summary in Building view shows the full agent roster with phase assignments, not "Claude Opus/Sonnet". |
 | **Effort** | S |
 | **Blocks** | D1 |
 | **Depends on** | C2 |
@@ -261,7 +261,7 @@ Remove project-specific references so the Navigator works as a template artifact
 |-------|-------|
 | **Description** | Open the refitted HTML in a browser. Verify all 3 views render without JS errors. Check that new resources appear in correct cells. |
 | **Input** | Refitted HTML file |
-| **Output** | Screenshot or manual confirmation of: Building view (all 5 zones expand), Matrix view (20 cells populated), Resources view (dropdown shows all resources, heatmap lights up). |
+| **Output** | Screenshot or manual confirmation of: Building view (all 5 workstreams expand), Matrix view (20 cells populated), Resources view (dropdown shows all resources, heatmap lights up). |
 | **AC** | Browser console shows 0 JS errors. All 3 views render. At least 1 new template, 1 new framework, and 1 new rule appear in the correct cell when selected in Resources view. |
 | **Effort** | S |
 | **Blocks** | E2 |
@@ -319,7 +319,7 @@ Remove project-specific references so the Navigator works as a template artifact
 | ID | Risk | Likelihood | Impact | Mitigation |
 |----|------|-----------|--------|------------|
 | RR-1 | Old rule names have no branch equivalent (content lost) | Medium | High | A2 traces each old name to its current location (rule, framework, or CLAUDE.md section). Builder verifies no pedagogical gap. |
-| RR-2 | Cell mappings for new templates are wrong | Medium | Low | B2 requires reading template content to determine zone×phase. Validator checks in E1. |
+| RR-2 | Cell mappings for new templates are wrong | Medium | Low | B2 requires reading template content to determine workstream×phase. Validator checks in E1. |
 | RR-3 | JS syntax error in updated arrays breaks all views | Low | High | E1 smoke test catches this immediately. Builder uses browser dev tools during B-phase edits. |
 | RR-4 | Agent model change breaks brief generator's getCurrentState() | Low | Medium | C2 only touches the agent field. Brief generator reads from getCell7CS which is the same function. Verified in E2. |
 | RR-5 | connects references to removed skills cause dangling pointers | Medium | Low | B1 must also clean `connects` arrays in remaining skills that referenced phantoms (team-architect, team-reviewer, align-specialist). |

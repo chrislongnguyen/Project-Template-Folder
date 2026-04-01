@@ -14,13 +14,13 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ---
 
-## 2. Zone detection defaults to "zone:agent" too often
+## 2. Workstream detection defaults to "workstream:agent" too often
 
-**What happens:** When the conversation involves both zone artifacts AND agent config, Claude defaults to "zone:agent" because .claude/ files are more salient in recent context.
+**What happens:** When the conversation involves both workstream artifacts AND agent config, Claude defaults to "workstream:agent" because .claude/ files are more salient in recent context.
 
 **How to detect:** Check the ACTUAL file path or topic being discussed, not just the most recent tool call.
 
-**Fix:** Match the user's complaint against the zone table in classification-guide.md, not your recent activity.
+**Fix:** Match the user's complaint against the workstream table in classification-guide.md, not your recent activity.
 
 ---
 

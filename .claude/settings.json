@@ -67,7 +67,7 @@
             "type": "command",
             "command": "./scripts/dsbv-gate.sh",
             "timeout": 10,
-            "statusMessage": "Checking DSBV zone boundaries..."
+            "statusMessage": "Checking DSBV workstream boundaries..."
           },
           {
             "type": "command",

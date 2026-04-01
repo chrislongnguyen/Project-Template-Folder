@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 
 const layers = [
   {
-    label: '5 ALPEI ZONES',
+    label: '5 ALPEI WORKSTREAMS',
     items: ['ALIGN', 'LEARN', 'PLAN', 'EXECUTE', 'IMPROVE'],
     color: colors.gold,
   },
@@ -165,7 +165,7 @@ export default function ThreeLayersSlide() {
               letterSpacing: '-0.02em',
             }}
           >
-            5 ZONES × 4 PHASES = 20 CELLS
+            5 WORKSTREAMS × 4 PHASES = 20 CELLS
           </span>
         </motion.div>
       </div>

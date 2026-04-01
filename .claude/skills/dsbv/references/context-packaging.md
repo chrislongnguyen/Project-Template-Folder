@@ -44,8 +44,8 @@ The agent has ZERO memory of prior sessions or parent context.
 State only what is needed for THIS task — not project history.
 
 ### Files (EP-04: Load What You Need)
-Before listing files, look up the routing table for this zone × phase:
-  grep `## Routing: {zone}` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
+Before listing files, look up the routing table for this workstream × phase:
+  grep `## Routing: {workstream}` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
   → Template column = required Read files for this phase
   → Deliverable Path column = Write target
 Then list resolved paths explicitly (no relative paths in worktrees — see worktree rule).
@@ -115,7 +115,7 @@ Skills reference agent files instead of inline definitions.
 ### Files
 - Read: `.claude/agents/ltc-builder.md` — agent file to reference
 - Read: `.claude/skills/dsbv/SKILL.md` — file to modify
-- Read: `{zone}/SEQUENCE.md` — task T1.3 acceptance criteria
+- Read: `{workstream}/SEQUENCE.md` — task T1.3 acceptance criteria
 - Write: `.claude/skills/dsbv/SKILL.md` — modified in place
 
 ### Budget
@@ -209,11 +209,11 @@ file-path evidence, without rubber-stamping or missing criteria.
 ## 2. INPUT
 
 ### Context
-{Zone name} DSBV Build is complete. {N} artifacts produced.
+{Workstream name} DSBV Build is complete. {N} artifacts produced.
 Review against DESIGN.md success criteria.
 
 ### Files
-- Read: `{zone}/DESIGN.md` — the contract (success criteria)
+- Read: `{workstream}/DESIGN.md` — the contract (success criteria)
 - Read: {list of all produced artifacts, one per line}
 - Read: `_genesis/templates/DSBV_EVAL_TEMPLATE.md` — output format
 
@@ -234,7 +234,7 @@ Review against DESIGN.md success criteria.
 ## 4. OUTPUT
 
 ### Deliverable
-`{zone}/VALIDATE.md` — per-criterion verdict table.
+`{workstream}/VALIDATE.md` — per-criterion verdict table.
 Consumed by: human for gate approval, ltc-builder for fixes.
 
 ### Acceptance Criteria
@@ -262,7 +262,7 @@ each produced a complete draft. Synthesize best elements.
 
 ### Files
 - Read: {paths to all N draft files}
-- Read: `{zone}/DESIGN.md` — scoring criteria
+- Read: `{workstream}/DESIGN.md` — scoring criteria
 
 ### Budget
 ~40K tokens. All N drafts + DESIGN.md.

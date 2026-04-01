@@ -3,7 +3,7 @@ version: "1.1"
 last_updated: 2026-03-31
 status: PENDING_DIRECTOR_APPROVAL
 director: Manh N.
-zone: 4-IMPROVE
+workstream: 4-IMPROVE
 project: LTC Company Navigator
 ---
 
@@ -101,7 +101,7 @@ Open `LTC-COMPANY-NAVIGATOR.html` in your browser. Each fix below tells you exac
 
 - **What was wrong:** Clicking the feedback loop in Brief Mode showed "(no data)" instead of useful info.
 - **What was fixed:** Added specific descriptions so the brief panel shows what the feedback loop carries and which files it affects.
-- **How to verify:** Open navigator → click "Brief" pill → click the feedback loop at the bottom of Building view → the panel should show "Feedback loop: I-V validated results feed back to A-D..." and file path "CLAUDE.md (IMPROVE zone section)".
+- **How to verify:** Open navigator → click "Brief" pill → click the feedback loop at the bottom of Building view → the panel should show "Feedback loop: I-V validated results feed back to A-D..." and file path "CLAUDE.md (IMPROVE workstream section)".
 
 **T2. Close buttons now accessible (sidebar and brief panel)**
 
@@ -195,8 +195,8 @@ After completion, document:
 
 ```
 CHANGE = {
-  level:      Framework | Zone | Subsystem | Component
-  coordinate: e.g., "P-B:EOP" (Plan zone, Build phase, EOP slot)
+  level:      Framework | Workstream | Subsystem | Component
+  coordinate: e.g., "P-B:EOP" (Plan workstream, Build phase, EOP slot)
   action:     Add | Remove | Move | Modify
   target:     The specific resource being changed
 }
@@ -212,7 +212,7 @@ CHANGE = {
 
 **Part B: Interactive Export in Navigator HTML**
 - Add a "Brief" button/mode to the navigator
-- When active, clicking any element (skill, template, cell, zone) generates a pre-filled change brief
+- When active, clicking any element (skill, template, cell, workstream) generates a pre-filled change brief
 - Brief includes: the coordinate, current state (copied from the map data), and a description field
 - "Copy to Clipboard" button lets Director paste the brief into any AI session
 - AI agent receives the brief and knows: which level, which coordinate, what's currently there, what to change
@@ -222,10 +222,10 @@ CHANGE = {
 | Level | Coordinate Format | Example | What Changes |
 |-------|-------------------|---------|--------------|
 | Framework | `EP:{rule-name}` | `EP:brand-identity` | A constitutional rule or framework |
-| Zone | `{zone}:*` | `A:*` or `ALIGN:*` | Zone-level I/O, purpose, or structure |
-| Subsystem | `{zone}-{phase}` | `P-B` | A specific DSBV room's configuration |
-| Component | `{zone}-{phase}:{7CS}` | `P-B:EOP` | A specific 7CS slot in a specific room |
-| Resource | `{zone}-{phase}:{7CS}:{resource}` | `P-B:EOP:ltc-writing-plans` | A specific resource in a specific slot |
+| Workstream | `{workstream}:*` | `A:*` or `ALIGN:*` | Workstream-level I/O, purpose, or structure |
+| Subsystem | `{workstream}-{phase}` | `P-B` | A specific DSBV room's configuration |
+| Component | `{workstream}-{phase}:{7CS}` | `P-B:EOP` | A specific 7CS slot in a specific room |
+| Resource | `{workstream}-{phase}:{7CS}:{resource}` | `P-B:EOP:ltc-writing-plans` | A specific resource in a specific slot |
 
 **Example Briefs:**
 
@@ -251,12 +251,12 @@ Current State: deep-research is EOT in L-B and A-B
 Desired State: deep-research is EOT in P-B and A-B (removed from L-B)
 ```
 
-**Modifying a zone's I/O:**
+**Modifying a workstream's I/O:**
 ```
-Level: Zone
+Level: Workstream
 Coordinate: P:*
 Action: Modify
-Target: Zone Input
+Target: Workstream Input
 Description: Add compliance check results as additional input to PLAN
 Current State: Input is "LEARN knowledge + ALIGN requirements"
 Desired State: Input is "LEARN knowledge + ALIGN requirements + compliance baseline"
@@ -268,10 +268,10 @@ Desired State: Input is "LEARN knowledge + ALIGN requirements + compliance basel
 |------------------|-------------------------------------|
 | EP:{rule} | `rules/{rule}.md` |
 | EP:{framework} | `_genesis/frameworks/{framework}.md` |
-| {zone}:* | Zone folder structure + `CLAUDE.md` |
-| {zone}-{phase}:EOP (skill) | `.claude/skills/{skill}/SKILL.md` |
-| {zone}-{phase}:EOP (template) | `_genesis/templates/{template}.md` |
-| {zone}-{phase}:EOT | `.claude/settings.json` (tool permissions) |
-| {zone}-{phase}:EOE | `.claude/settings.json` (environment config) |
-| {zone}-{phase}:EP | `rules/*.md` or `_genesis/frameworks/*.md` |
+| {workstream}:* | Workstream folder structure + `CLAUDE.md` |
+| {workstream}-{phase}:EOP (skill) | `.claude/skills/{skill}/SKILL.md` |
+| {workstream}-{phase}:EOP (template) | `_genesis/templates/{template}.md` |
+| {workstream}-{phase}:EOT | `.claude/settings.json` (tool permissions) |
+| {workstream}-{phase}:EOE | `.claude/settings.json` (environment config) |
+| {workstream}-{phase}:EP | `rules/*.md` or `_genesis/frameworks/*.md` |
 | Navigator itself | `LTC-COMPANY-NAVIGATOR.html` (update data arrays) |

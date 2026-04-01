@@ -22,18 +22,18 @@ if [[ -f "$STATE_FILE" ]]; then
   HAS_STATE="yes (saved: ${LAST_SAVED:-unknown})"
 fi
 
-# Check DSBV progress — scan for DESIGN.md, SEQUENCE.md, VALIDATE.md in zone dirs
+# Check DSBV progress — scan for DESIGN.md, SEQUENCE.md, VALIDATE.md in workstream dirs
 DSBV_STATUS=""
-for zone_dir in "$PROJECT_ROOT"/0-GOVERN "$PROJECT_ROOT"/[1-4]-*/; do
-  if [[ -d "$zone_dir" ]]; then
-    zone_name=$(basename "$zone_dir")
+for workstream_dir in "$PROJECT_ROOT"/0-GOVERN "$PROJECT_ROOT"/[1-4]-*/; do
+  if [[ -d "$workstream_dir" ]]; then
+    workstream_name=$(basename "$workstream_dir")
     design="—"; sequence="—"; validate="—"
-    [[ -f "$zone_dir/DESIGN.md" ]] && design="✓"
-    [[ -f "$zone_dir/SEQUENCE.md" ]] && sequence="✓"
-    [[ -f "$zone_dir/VALIDATE.md" ]] && validate="✓"
-    # Only show zones with at least one DSBV artifact
+    [[ -f "$workstream_dir/DESIGN.md" ]] && design="✓"
+    [[ -f "$workstream_dir/SEQUENCE.md" ]] && sequence="✓"
+    [[ -f "$workstream_dir/VALIDATE.md" ]] && validate="✓"
+    # Only show workstreams with at least one DSBV artifact
     if [[ "$design" != "—" || "$sequence" != "—" || "$validate" != "—" ]]; then
-      DSBV_STATUS="${DSBV_STATUS}  ${zone_name}: D=${design} S=${sequence} B=? V=${validate}\n"
+      DSBV_STATUS="${DSBV_STATUS}  ${workstream_name}: D=${design} S=${sequence} B=? V=${validate}\n"
     fi
   fi
 done

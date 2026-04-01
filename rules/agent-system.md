@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-30
 ---
-<!-- Zone 0 agent-facing copy. Human-readable version: _genesis/frameworks/AGENT_SYSTEM.md -->
+<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/frameworks/AGENT_SYSTEM.md -->
 # LTC Agent System
 
 > Source of truth: Doc-9 (OPS_OE.6.0 research/amt/), Session 0 & Session 1 (Notion ALIGN Wiki)

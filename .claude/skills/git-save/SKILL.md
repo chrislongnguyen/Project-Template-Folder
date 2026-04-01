@@ -1,7 +1,7 @@
 # /git-save — LTC Git Save Workflow
 
 Classify, stage, commit, and optionally PR your current changes.
-LTC-aware: enforces zone scopes, version bump checks, and changelog hygiene.
+LTC-aware: enforces workstream scopes, version bump checks, and changelog hygiene.
 
 Reference: `.claude/rules/git-conventions.md` (canonical scope list + commit format).
 
@@ -61,7 +61,7 @@ If total changeset to main > 50 files or > 2000 lines:
 
 ## Step 4: Version Bump Check
 
-For every modified `.md` zone artifact (Zones 0–5, `_genesis/`):
+For every modified `.md` workstream artifact (Workstreams 0–5, `_genesis/`):
 
 - [ ] `version` bumped if file was previously committed (see `rules/versioning.md`)
 - [ ] `status` is `Draft` or `Review` — NEVER self-set `Approved`
@@ -76,7 +76,7 @@ For every modified `.md` zone artifact (Zones 0–5, `_genesis/`):
 Format: `type(scope): description`
 
 ```
-feat(align): add stakeholder analysis — Vinh input synthesis
+feat(align): add stakeholder analysis — input synthesis
 
 Captures S1-S4 stakeholder inputs into structured requirements.
 - CHARTER.md: add 4 stakeholder perspectives
@@ -108,7 +108,7 @@ git log --oneline -N   # N = new commits + 1
 
 ## Step 7: Post-Commit Checklist
 
-For every zone artifact committed:
+For every workstream artifact committed:
 - [ ] Update `0-GOVERN/VERSION_REGISTRY.md` — version, status, date columns
 - [ ] Update `5-IMPROVE/changelog/CHANGELOG.md` — add entry under current PR section
 
@@ -133,7 +133,7 @@ When creating a PR, show preview first:
 PR: "feat(align): stakeholder analysis + requirements"
 
 ## Summary
-- Add stakeholder input synthesis (Vinh S1-S4)
+- Add stakeholder input synthesis (S1-S4)
 - Derive 12 functional requirements
 - ADR-001: optional subsystem layer decision
 
@@ -144,7 +144,7 @@ PR: "feat(align): stakeholder analysis + requirements"
 
 ## Test plan
 - [ ] /dsbv validate align passes
-- [ ] All zone artifact versions consistent
+- [ ] All workstream artifact versions consistent
 ```
 
 Then:

@@ -5,7 +5,7 @@ status: Draft
 last_updated: 2026-03-29
 owner: Long Nguyen
 ---
-# DSBV Evaluation Protocol — [ZONE NAME]
+# DSBV Evaluation Protocol — [WORKSTREAM NAME]
 
 > For Validate phase. Covers multi-agent synthesis and single-agent validation.
 > Follow mechanically. Do not skip steps.
@@ -16,15 +16,15 @@ owner: Long Nguyen
 
 Score each dimension 0-10. Weighted average = final score. No half-points.
 
-### Universal Dimensions (all zones)
+### Universal Dimensions (all workstreams)
 
 | Dimension | Weight | 10/10 | 5/10 | 0/10 |
 |-----------|--------|-------|------|------|
 | **EO Clarity** | [%] | One sentence, testable, measurable condition | Vague but directional | Missing or contradictory |
 | **Coherence** | [%] | All artifacts cross-reference, no contradictions | Minor inconsistencies | Contradictions between core artifacts |
-| **Actionability** | [%] | Next zone starts without questions | Gaps remain, workarounds obvious | Next zone must redo this zone |
+| **Actionability** | [%] | Next workstream starts without questions | Gaps remain, workarounds obvious | Next workstream must redo this workstream |
 
-### Zone-Specific Dimensions (fill 3-4 per zone)
+### Workstream-Specific Dimensions (fill 3-4 per workstream)
 
 | Dimension | Weight | 10/10 | 5/10 | 0/10 |
 |-----------|--------|-------|------|------|
@@ -35,15 +35,15 @@ Score each dimension 0-10. Weighted average = final score. No half-points.
 
 [ALIGN: EU Coverage, UBS Depth, UDS Coverage, Requirements Quality | PLAN: Architecture Completeness, Risk Mitigation, Task Decomposition, Dependency Accuracy | EXECUTE: Code Quality, Test Coverage, Doc Completeness, Performance | IMPROVE: Insight Depth, Action Specificity, Metric Accuracy, Feedback Closure]
 
-**Weights must sum to 100%.** Typical: 30-40% universal + 60-70% zone-specific.
+**Weights must sum to 100%.** Typical: 30-40% universal + 60-70% workstream-specific.
 
 ---
 
-## 2. Multi-Agent Protocol (Design-Heavy Zones: ALIGN, PLAN)
+## 2. Multi-Agent Protocol (Design-Heavy Workstreams: ALIGN, PLAN)
 
-> For single-agent zones (EXECUTE, IMPROVE), skip to Section 3.
+> For single-agent workstreams (EXECUTE, IMPROVE), skip to Section 3.
 
-**Step 1 — Read all N team outputs.** Load each team's complete zone package. Note impressions, do not score yet.
+**Step 1 — Read all N team outputs.** Load each team's complete workstream package. Note impressions, do not score yet.
 
 **Step 2 — Score each team on each dimension (0-10).** One sentence justifying each score.
 
@@ -67,7 +67,7 @@ Team 2:    8     7     6         7.4
 
 ---
 
-## 3. Single-Agent Protocol (Execution-Heavy Zones: EXECUTE, IMPROVE)
+## 3. Single-Agent Protocol (Execution-Heavy Workstreams: EXECUTE, IMPROVE)
 
 **Step 1 — Score output on each dimension (0-10).** One sentence justifying each score.
 
@@ -110,7 +110,7 @@ UNIQUE INSIGHTS (1 team only):
 
 ## 5. Human Review Checklist
 
-> Adapt items to zone. Replace bracketed text with zone-specific checks.
+> Adapt items to workstream. Replace bracketed text with workstream-specific checks.
 
 - [ ] EO still makes sense to me as the project owner
 - [ ] No critical [stakeholder/component/artifact] is missing
@@ -118,8 +118,8 @@ UNIQUE INSIGHTS (1 team only):
 - [ ] [Quality check 2 — e.g., "Architecture handles known scale requirements"]
 - [ ] [Quality check 3 — e.g., "Tests cover acceptance criteria from requirements"]
 - [ ] Outputs achievable within constraints (time, budget, team)
-- [ ] A new team member could understand this zone's output
-- [ ] Next zone can start without asking me questions
+- [ ] A new team member could understand this workstream's output
+- [ ] Next workstream can start without asking me questions
 - [ ] All divergence flags reviewed and resolved (if multi-agent)
 
 ---
@@ -128,7 +128,7 @@ UNIQUE INSIGHTS (1 team only):
 
 | Weighted Average | Decision | Action |
 |------------------|----------|--------|
-| >= 8.0 | **APPROVE** | Proceed to next zone |
+| >= 8.0 | **APPROVE** | Proceed to next workstream |
 | 6.0 - 7.9 | **REVISE** | Address flagged dimensions, re-run on weak areas |
 | < 6.0 | **REJECT** | Re-run DSBV with improved context or approach |
 

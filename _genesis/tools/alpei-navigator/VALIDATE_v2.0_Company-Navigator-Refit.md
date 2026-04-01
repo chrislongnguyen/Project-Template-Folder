@@ -16,7 +16,7 @@ last_updated: 2026-03-31
 
 | AC ID | Description | Verdict | Evidence |
 |-------|-------------|---------|----------|
-| E1-1 | `#building-view` div exists | PASS | Line 249: `<div class="view active" id="view-building">` (id uses `view-building` convention; `bld-zones` container at line 266) |
+| E1-1 | `#building-view` div exists | PASS | Line 249: `<div class="view active" id="view-building">` (id uses `view-building` convention; `bld-workstreams` container at line 266) |
 | E1-2 | `#matrix-view` div exists | PASS | Line 292: `<div class="view" id="view-matrix">` |
 | E1-3 | `#resources-view` div exists | PASS | Line 306: `<div class="view" id="view-resources">` |
 | E1-4 | Brief pill exists in header | PASS | Line 196: `<div class="pill" onclick="toggleBriefMode()" id="pill-brief"...>Brief</div>` |
@@ -34,18 +34,18 @@ last_updated: 2026-03-31
 | E3-5 | "team-reviewer" — 0 occurrences | PASS | Grep returns 0 matches |
 | E4-1 | `const AGENTS` exists with D, S, B, V keys | PASS | Lines 421-426: `const AGENTS={D:'ltc-planner (Opus)',S:'ltc-planner (Opus)',B:'ltc-builder (Sonnet)',V:'ltc-reviewer (Opus)'}` |
 | E4-2 | `getCell7CS` uses AGENTS lookup | PASS | Lines 510-511: `const phase=cellId.split('-')[1]; let agent=AGENTS[phase]\|\|'ltc-planner (Opus)';` — dynamic lookup, not hardcoded |
-| E4-3 | `getZone7CS` shows full 4-agent roster | PASS | Line 478: `let agent='ltc-planner (D,S) · ltc-builder (B) · ltc-reviewer (V) · ltc-explorer (pre-DSBV)';` |
+| E4-3 | `getWorkstream7CS` shows full 4-agent roster | PASS | Line 478: `let agent='ltc-planner (D,S) · ltc-builder (B) · ltc-reviewer (V) · ltc-explorer (pre-DSBV)';` |
 | E4-4 | D-column cell renders ltc-planner, B-column renders ltc-builder | PASS | `AGENTS['D']='ltc-planner (Opus)'` and `AGENTS['B']='ltc-builder (Sonnet)'` — correct per agent roster |
 | E5-1 | `git-save` skill exists with cells=['E-S','I-B'], role='EOP' | PASS | Line 348: `{id:"git-save",...role:"EOP",cells:["E-S","I-B"],...}` |
 | E5-2 | `CHARTER_TEMPLATE` exists with cells=['A-D','A-B'] | PASS | Line 368: `{id:"CHARTER_TEMPLATE",...cells:["A-D","A-B"],role:"EOP"}` |
 | E5-3 | `ALPEI_DSBV_PROCESS_MAP` exists with cells=['ALL'] and insight | PASS | Line 390: `{id:"ALPEI_DSBV_PROCESS_MAP",...cells:["ALL"],role:"EP",insight:"The operational spine..."}` |
-| E5-4 | `dsbv` rule desc mentions "Design→Sequence→Build→Validate" | PASS | Line 399: `desc:"Every zone uses Design→Sequence→Build→Validate..."` |
+| E5-4 | `dsbv` rule desc mentions "Design→Sequence→Build→Validate" | PASS | Line 399: `desc:"Every workstream uses Design→Sequence→Build→Validate..."` |
 | E5-5 | `agent-dispatch` rule desc mentions "4 MECE agents" | PASS | Line 402: `desc:"Every Agent() call must name 1 of 4 MECE agents..."` |
 | E5-6 | `notion-mcp` cross-cutting exists, type='tool' | PASS | Line 416: `{id:"notion-mcp",name:"Notion (MCP)",...type:"tool"}` |
 | E5-7 | `exa-mcp` cross-cutting exists | PASS | Line 417: `{id:"exa-mcp",name:"Exa Web Search (MCP)",...type:"tool"}` |
 | E5-8 | `qmd-mcp` cross-cutting exists | PASS | Line 418: `{id:"qmd-mcp",name:"QMD Local Search (MCP)",...type:"tool"}` |
 | E6-1 | Left EP rail lists 8 rule names | PASS | Lines 255-262: 8 `ep-rule` divs — dsbv, alpei-chain-of-custody, alpei-pre-flight, agent-dispatch, git-conventions, versioning, memory-format, example-api-conventions |
-| E7-1 | `coordToPath()` function exists and handles patterns | PASS | Lines 764-790: function handles EP:, zone:*, ALPEI cell regex `[ALPEI]-[DSBV]`, and 3-part coordinates |
+| E7-1 | `coordToPath()` function exists and handles patterns | PASS | Lines 764-790: function handles EP:, workstream:*, ALPEI cell regex `[ALPEI]-[DSBV]`, and 3-part coordinates |
 | E7-2 | Brief template text uses "Human Director" not "Manh N." | PASS | Line 860: `- **Director:** Human Director` |
 | E7-3 | Brief markdown generation produces valid structure | PASS | Lines 843-888: `generateBriefMarkdown()` returns well-structured markdown with Metadata, Current State, Affected Files, Desired State, Acceptance Criteria, and Agent Instructions sections |
 | E8-1 | CSS variables present: --midnight, --gold, --gunmetal, --ruby, --green, --purple | PASS | Line 11: `:root{--midnight:#004851;--gold:#F2C75C;--gunmetal:#1D1F2A;--white:#FFFFFF;--ruby:#9B1842;--green:#69994D;--purple:#653469;...}` |

@@ -62,21 +62,21 @@ owner: "Long Nguyen"
 | UDS.R.1 | UDS.R.1.UD | Strengthens driver (amplify) | {what makes this driver stronger} |
 | UDS.R.1 | UDS.R.1.UB | Weakens driver (silent killer) | {what could undermine this driver} |
 
-### §0.3 Sigmoid Zone Classification
+### §0.3 Sigmoid Workstream Classification
 
 <!-- Classify each of the 8 universal system components
-     into Below Threshold / Leverage Zone / Saturated.
+     into Below Threshold / Leverage Workstream / Saturated.
      For AI agent systems, EU = Agent (LLM model), EI = Input. -->
 
-| Component | Current Zone | Signal | Action |
+| Component | Current Workstream | Signal | Action |
 |---|---|---|---|
-| EI (Effective Inputs) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EU (Effective User) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EA (Effective Action) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EP (Effective Principles) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EOE (Effective Operating Environment) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EOT (Effective Operating Tools) | {zone} | {evidence} | {invest / keep investing / move on} |
-| EOP (Effective Operating Procedure) | {zone} | {evidence} | {invest / keep investing / move on} |
+| EI (Effective Inputs) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EU (Effective User) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EA (Effective Action) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EP (Effective Principles) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EOE (Effective Operating Environment) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EOT (Effective Operating Tools) | {workstream} | {evidence} | {invest / keep investing / move on} |
+| EOP (Effective Operating Procedure) | {workstream} | {evidence} | {invest / keep investing / move on} |
 
 ### §0.4 Bottleneck Identification
 

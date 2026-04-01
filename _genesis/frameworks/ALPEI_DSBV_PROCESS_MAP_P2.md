@@ -6,11 +6,11 @@ type: reference
 source: "Derived from UES_VERSION_BEHAVIORS.md — no invented behaviors"
 ---
 
-# P2 — Version Progression: What Each Zone Produces at Each Depth
+# P2 — Version Progression: What Each Workstream Produces at Each Depth
 
 ## Introduction
 
-The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any zone is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every zone-version intersection.
+The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every workstream-version intersection.
 
 Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
 
@@ -32,7 +32,7 @@ Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`
 
 ## 25-Cell Version-Depth Matrix
 
-> Rows = version level (I0–I4). Columns = ALPEI zone. Each cell = what that zone produces AT that version level.
+> Rows = version level (I0–I4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
 > Source: `UES_VERSION_BEHAVIORS.md` § per-work-stream tables.
 
 | Version | 1-ALIGN | 2-LEARN | 3-PLAN | 4-EXECUTE | 5-IMPROVE |

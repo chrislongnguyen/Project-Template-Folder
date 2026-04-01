@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: COMPLETED
 director: Manh N.
-zone: 4-IMPROVE
+workstream: 4-IMPROVE
 project: Company Navigator Briefing System
 parent: Company Navigator v1.0
 ---
@@ -19,10 +19,10 @@ parent: Company Navigator v1.0
 
 ### V-2: Brief Generation (per coordinate level)
 1. **Framework level:** Click an EP rail rule (e.g., "brand-identity") — verify brief panel shows `EP:brand-identity`, level `framework`, current state from RULES array, file path `rules/brand-identity.md`
-2. **Zone level:** Click a zone header (e.g., "ALIGN") — verify brief shows `ALIGN:*`, level `zone`, I/O from ZONE_IO
+2. **Workstream level:** Click a workstream header (e.g., "ALIGN") — verify brief shows `ALIGN:*`, level `workstream`, I/O from WORKSTREAM_IO
 3. **Subsystem level:** Click a DSBV room header (e.g., "P-B") — verify brief shows `P-B`, level `subsystem`, lists skills/templates in that cell
 4. **Resource level:** Click a skill tag (e.g., "ltc-writing-plans" in P-B) — verify brief shows `P-B:EOP:ltc-writing-plans`, level `resource`, description matches SKILLS array
-5. **Zone-resource level:** Click a skill in the zone 7CS panel — verify brief shows `PLAN:EOP:ltc-writing-plans`, level `zone-resource`
+5. **Workstream-resource level:** Click a skill in the workstream 7CS panel — verify brief shows `PLAN:EOP:ltc-writing-plans`, level `workstream-resource`
 
 ### V-3: Director-Editable Fields
 1. Change Action dropdown to each option (Add, Remove, Move, Modify) — verify preview updates
@@ -50,7 +50,7 @@ parent: Company Navigator v1.0
 - [ ] Live preview updates as Director types
 
 ### Sustainability ACs
-- [ ] Every EP rail rule, zone header, DSBV room header, and resource tag has `data-brief-coord`
+- [ ] Every EP rail rule, workstream header, DSBV room header, and resource tag has `data-brief-coord`
 - [ ] `coordToPath()` correctly resolves all 5 coordinate levels to template file paths
 - [ ] `getCurrentState()` returns accurate data from JS arrays for all coordinate types
 
@@ -96,4 +96,4 @@ After the briefing system is used for 1 week:
 | Exception | Justification |
 |-----------|---------------|
 | Monospace font in `.bp-value` and `.bp-preview` | File paths and markdown preview require monospace for readability |
-| Feedback loop uses `IMPROVE:feedback-loop` coordinate | Not a standard ALPEI:DSBV coordinate — it's a cross-zone architectural element |
+| Feedback loop uses `IMPROVE:feedback-loop` coordinate | Not a standard ALPEI:DSBV coordinate — it's a cross-workstream architectural element |

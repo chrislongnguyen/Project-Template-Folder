@@ -1364,7 +1364,7 @@ E.8 Scale            4   ████████░░   HIGH
 
 AVERAGE WES: 3.83 — overall HIGH human weakness exposure
 
-CRITICAL ZONES (WES 5):
+CRITICAL WORKSTREAMS (WES 5):
   → Phase B: Finding Conditions (learning = max UBS opposition)
   → Stage 6: Reflect & Learn (reflection = max UBS opposition)
 
@@ -1372,7 +1372,7 @@ PATTERN: The most COGNITIVE phases (learning, reflection) are the
 most VULNERABLE to human weakness. The most PROCEDURAL phases
 (build, deliver, iterate) are the least vulnerable.
 
-IMPLICATION FOR AI: AI should be the primary doer in WES 4-5 zones.
+IMPLICATION FOR AI: AI should be the primary doer in WES 4-5 workstreams.
 Human should remain the director/reviewer (Accountable, not Responsible).
 ```
 
@@ -1540,4 +1540,4 @@ Every architectural element in this document traces to at least one UT/DT from D
 
 ---
 
-_End of Document 2. This file provides the complete human-centric UEDS architecture and systematically identifies every human weakness point. Document 3 (AI-Centric UEDS Translation) will use this gap map as its starting input — transforming every WES 4–5 zone into an AI-native process while preserving what humans do best._
+_End of Document 2. This file provides the complete human-centric UEDS architecture and systematically identifies every human weakness point. Document 3 (AI-Centric UEDS Translation) will use this gap map as its starting input — transforming every WES 4–5 workstream into an AI-native process while preserving what humans do best._

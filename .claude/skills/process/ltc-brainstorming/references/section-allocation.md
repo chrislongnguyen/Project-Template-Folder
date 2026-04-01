@@ -23,7 +23,7 @@ Each sub-agent receives ONLY the source material relevant to their group, plus t
 
 | Group | Required Source Material |
 |---|---|
-| 1 (Identity) | ELF output, domain context, stakeholder interviews, RACI inputs, agent-system.md §4 (UBS/UDS framework), general-system.md §5 (Force Analysis), SYSTEM-THINKING-DESIGN-NOTES-v2.md (sigmoid zones) |
+| 1 (Identity) | ELF output, domain context, stakeholder interviews, RACI inputs, agent-system.md §4 (UBS/UDS framework), general-system.md §5 (Force Analysis), SYSTEM-THINKING-DESIGN-NOTES-v2.md (sigmoid workstreams) |
 | 2 (Behavioral) | ELF output (functional requirements sections), user stories, use cases, existing API contracts |
 | 3 (Quality) | ELF output (quality/NFR sections), SLA requirements, performance targets, general-system.md §6 (S > E > Sc) |
 | 4 (Structural) | ELF output (architecture/component sections), existing codebase structure, technical constraints |

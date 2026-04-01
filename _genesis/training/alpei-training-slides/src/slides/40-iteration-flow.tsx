@@ -8,7 +8,7 @@ const workStreams = [
   { name: 'ALIGN', color: '#F2C75C', stages: ['Charter + Force Analysis', 'OKR Register', 'Charter (final)', 'VALIDATE.md'] },
   { name: 'LEARN', color: '#69C7CC', stages: ['/learn:input', '/learn:research', 'UBS-UDS + EPs', '/learn:review'] },
   { name: 'PLAN', color: '#69994D', stages: ['UBS Register', 'Roadmap + Drivers', 'Architecture', 'VALIDATE.md'] },
-  { name: 'EXECUTE', color: '#FF9D3B', stages: ['DESIGN.md (ACs)', 'SEQUENCE.md', 'Zone artifacts', 'VALIDATE.md'] },
+  { name: 'EXECUTE', color: '#FF9D3B', stages: ['DESIGN.md (ACs)', 'SEQUENCE.md', 'Workstream artifacts', 'VALIDATE.md'] },
   { name: 'IMPROVE', color: '#653469', stages: ['Metrics Baseline', 'Retro Plan', 'Feedback Register', 'Version Review'] },
 ];
 

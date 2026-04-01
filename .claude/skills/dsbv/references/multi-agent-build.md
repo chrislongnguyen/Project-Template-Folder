@@ -4,9 +4,9 @@ last_updated: 2026-03-30
 ---
 # Multi-Agent Build Reference
 
-> When to use: DSBV Build phase on design-heavy zones (ALIGN, PLAN).
+> When to use: DSBV Build phase on design-heavy workstreams (ALIGN, PLAN).
 > Pattern: Competing Hypotheses + Synthesis (ADR-001, Option C).
-> Single-agent Build for execution-heavy zones (EXECUTE, IMPROVE).
+> Single-agent Build for execution-heavy workstreams (EXECUTE, IMPROVE).
 
 ## Pattern: Competing Hypotheses + Synthesis
 
@@ -49,11 +49,11 @@ Default N=3 for I1. Scale up if outputs diverge significantly.
 
 ## When to Use Multi-Agent
 
-| Zone Type | Pattern | Rationale |
+| Workstream Type | Pattern | Rationale |
 |-----------|---------|-----------|
 | Design-heavy (ALIGN, PLAN) | Multi-agent (N=3) | Open-ended work benefits from diverse perspectives. Missing a risk has high blast radius. |
 | Execution-heavy (EXECUTE, IMPROVE) | Single-agent | Deterministic output — diversity adds cost, not quality. |
-| Zone 0 (Governance) | Single-agent | Config files and agent definitions are deterministic. |
+| GOVERN workstream | Single-agent | Config files and agent definitions are deterministic. |
 
 ## Self-Assessment Table (required per draft)
 

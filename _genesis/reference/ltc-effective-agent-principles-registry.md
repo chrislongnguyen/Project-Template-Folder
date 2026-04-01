@@ -5,7 +5,7 @@ owner: "Long Nguyen"
 ---
 # Effective Principles Registry — Agent-Readable Codex
 
-> **Purpose:** Canonical registry of all Effective Principles (EPs) extracted from the Agent Mastery Training Programme (AMT). Each EP is an actionable design principle grounded in one or more LLM Truths (LTs) or Universal Truths (UTs). Use these when designing systems, zones, skills, hooks, rules, or any artifact where the agent must compensate for structural AI limitations.
+> **Purpose:** Canonical registry of all Effective Principles (EPs) extracted from the Agent Mastery Training Programme (AMT). Each EP is an actionable design principle grounded in one or more LLM Truths (LTs) or Universal Truths (UTs). Use these when designing systems, workstreams, skills, hooks, rules, or any artifact where the agent must compensate for structural AI limitations.
 >
 > **How to use this file:**
 > - **Human Director:** Read the principle statement and "Without This" to understand what each EP protects against. Use the tag (DERISK/OUTPUT) to prioritise: DERISK principles are non-negotiable constraints; OUTPUT principles enable quality.
@@ -72,7 +72,7 @@ Source:       AMT session and section reference
 - The Derisk Checklist (Session 0 §4): Before delegating any task, list what can go wrong → which LT → which component should compensate → is it configured?
 - The Blame Diagnostic (Session 0 §4): When output is wrong, walk EP → Input → EOP → Environment → Tools → Agent. Blame the model only after checking all 5 other components.
 
-**APEI Application:** Every zone boundary is a derisk gate. Zone 2 exists because of this principle — no execution until risks are identified and mitigated.
+**APEI Application:** Every workstream boundary is a derisk gate. LEARN workstream exists because of this principle — no execution until risks are identified and mitigated.
 
 **Source:** AMT Session 0, §3
 
@@ -106,7 +106,7 @@ Source:       AMT session and section reference
 | LT-7 | Cost scales with token count | Budget | Input (lean context), EP (concise rules), Environment (budget limits) |
 | LT-8 | Alignment is approximate | Rule compliance under pressure | EP (clear boundaries), EOP (verification gates), Human oversight |
 
-**APEI Application:** Zone boundaries are context window boundaries (LT-2, LT-6). .exec/ files must be self-contained engineered Input because the Zone 3 agent cannot carry Zone 1 + Zone 2 context.
+**APEI Application:** Workstream boundaries are context window boundaries (LT-2, LT-6). .exec/ files must be self-contained engineered Input because the PLAN workstream agent cannot carry ALIGN workstream + LEARN workstream context.
 
 **Source:** AMT Session 0, §3 + §5
 
@@ -135,7 +135,7 @@ Source:       AMT session and section reference
 
 **Compensated by:** The 7-CS itself — the integration layer that connects the two operators. EP constrains both. EOP guides both. Environment protects both.
 
-**APEI Application:** Human Director owns ALIGN + PLAN (judgment-heavy). Agent Team owns EXECUTE (execution-heavy). Zone 4 IMPROVE is the feedback loop connecting them. RACI separation: R ≠ A (UT#9).
+**APEI Application:** Human Director owns ALIGN + PLAN (judgment-heavy). Agent Team owns EXECUTE (execution-heavy). IMPROVE workstream is the feedback loop connecting them. RACI separation: R ≠ A (UT#9).
 
 **Source:** AMT Session 0, §3 + §5
 
@@ -170,9 +170,9 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 **Patterns:**
 - The 200-Line CLAUDE.md (Session 0.5 §4): CLAUDE.md is a routing index, not a knowledge base. Route to `.claude/rules/` and `.claude/skills/` for details.
 - Context Layering (Session 3 §4): Structure context in tiers — always-loaded, on-demand, and agent-discovered.
-- Bookend Positioning (Session 3 §4): Place critical info at start and end of Input. Less critical in the middle (lower attention zone).
+- Bookend Positioning (Session 3 §4): Place critical info at start and end of Input. Less critical in the middle (lower attention workstream).
 
-**APEI Application:** Each zone loads only its own reference docs. Zone 2 does not carry Zone 1 artifacts into every session — only the distilled PLANNING_BASELINE.md. .exec/ task files embed only the relevant slice of risk/architecture, not the full registers.
+**APEI Application:** Each workstream loads only its own reference docs. LEARN workstream does not carry ALIGN workstream artifacts into every session — only the distilled PLANNING_BASELINE.md. .exec/ task files embed only the relevant slice of risk/architecture, not the full registers.
 
 **Source:** AMT Session 0.5, §3 + AMT Session 3, §4
 
@@ -200,7 +200,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 
 **Compensated by:** Environment (hooks, permissions — deterministic layer), EP (rules — high-reliability layer), EOP (skills — on-demand layer).
 
-**APEI Application:** Zone boundary gates (e.g., "no Zone 3 work without .exec/") must be hooks (deterministic), not CLAUDE.md instructions (probabilistic). The enforcement stack per zone: Hooks > Rules > Skills > CLAUDE.md.
+**APEI Application:** Workstream boundary gates (e.g., "no PLAN workstream work without .exec/") must be hooks (deterministic), not CLAUDE.md instructions (probabilistic). The enforcement stack per workstream: Hooks > Rules > Skills > CLAUDE.md.
 
 **Source:** AMT Session 0.5, §3
 
@@ -230,7 +230,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 
 **Compensated by:** Environment (setup order), EP (deny-before-allow rule), the 3-Layer Defense-in-Depth model (Layer 1: .gitignore passive defense → Layer 2: Agent EP self-enforcement → Layer 3: Pre-commit hook hard gate).
 
-**APEI Application:** When scaffolding a new project from this template, follow the 7-step order. When designing zone enforcement, install hooks (deterministic) before writing rules (probabilistic). Zone 0 (Agent Governance) exists because of this principle.
+**APEI Application:** When scaffolding a new project from this template, follow the 7-step order. When designing workstream enforcement, install hooks (deterministic) before writing rules (probabilistic). GOVERN workstream (Agent Governance) exists because of this principle.
 
 **Source:** AMT Session 0.5, §3 + §4
 
@@ -252,7 +252,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 - Session Handoff (Session 3 §4): At session end, capture what was done, what's pending, key decisions, traps, file paths. At session start, load this before anything else.
 - The `/session-start` and `/session-end` skills implement this pattern in the LTC system.
 
-**APEI Application:** Zone boundaries are session boundaries. The .exec/ task files must be self-contained because the Zone 3 agent has no memory of Zone 2 discussions. Every zone output must carry enough context for the next zone to work from scratch.
+**APEI Application:** Workstream boundaries are session boundaries. The .exec/ task files must be self-contained because the PLAN workstream agent has no memory of LEARN workstream discussions. Every workstream output must carry enough context for the next workstream to work from scratch.
 
 **Source:** AMT Session 3, §3
 
@@ -274,7 +274,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 - Context Layering (Session 3 §4): Always-loaded (CLAUDE.md, ~200 lines) → On-demand (path-scoped rules, skills) → Agent-discovered (subagent exploration).
 - Bookend Positioning (Session 3 §4): Critical info at start (primacy) and end (recency). Background in the middle.
 
-**APEI Application:** Each .exec/ task file embeds only the slice of risk/architecture relevant to THAT task — not the full UBS register. Zone README files route to artifacts, they don't duplicate content. The planning baseline is a distillation, not a copy of Zone 1.
+**APEI Application:** Each .exec/ task file embeds only the slice of risk/architecture relevant to THAT task — not the full UBS register. Workstream README files route to artifacts, they don't duplicate content. The planning baseline is a distillation, not a copy of ALIGN workstream.
 
 **Source:** AMT Session 3, §3
 
@@ -342,7 +342,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 - Scope Declaration at Spawn — every agent prompt begins with explicit scope boundary. If a task crosses boundaries, the agent surfaces a handoff request rather than resolving unilaterally.
 - MECE File Ownership — agents operating in parallel are assigned non-overlapping file targets. Shared files written by one designated agent per phase.
 
-**APEI Application:** Zone 1-2 (ALIGN, PLAN) are ltc-planner's domain. Zone 3 (EXECUTE) is ltc-builder's domain. Zone 4 (IMPROVE) is ltc-reviewer-initiated. Handoff artifacts (PLANNING_BASELINE.md, .exec/ task files) are the formal scope boundaries between zones.
+**APEI Application:** ALIGN workstream-2 (ALIGN, PLAN) are ltc-planner's domain. EXECUTE workstream is ltc-builder's domain. IMPROVE workstream is ltc-reviewer-initiated. Handoff artifacts (PLANNING_BASELINE.md, .exec/ task files) are the formal scope boundaries between workstreams.
 
 **Source:** Multi-agent orchestration design spec (2026-03-30) + AMT LT-8, LT-3.
 
@@ -364,7 +364,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 - AC Gate at Handoff — every inter-agent output includes acceptance criteria that the receiving agent or a verification hook checks before proceeding.
 - Context Packaging v2.0 — the 5-field template (EO, INPUT, EP, OUTPUT, VERIFY) ensures every sub-agent dispatch includes self-verification criteria.
 
-**APEI Application:** Zone boundaries are handoff points. Zone 1→2 handoff (PLANNING_BASELINE.md) must pass Zone 2 entry criteria. Zone 2→3 handoff (.exec/ files) must pass readiness checks. The SubagentStop hook enforces EP-12 deterministically at the sub-agent level.
+**APEI Application:** Workstream boundaries are handoff points. ALIGN workstream→2 handoff (PLANNING_BASELINE.md) must pass LEARN workstream entry criteria. LEARN workstream→3 handoff (.exec/ files) must pass readiness checks. The SubagentStop hook enforces EP-12 deterministically at the sub-agent level.
 
 **Source:** Multi-agent orchestration design spec (2026-03-30) + AMT LT-1, LT-5.
 
@@ -421,19 +421,19 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 
 ---
 
-## Part 4 — Cross-Reference: EP × APEI Zone
+## Part 4 — Cross-Reference: EP × APEI Workstream
 
-How each EP applies to each APEI zone:
+How each EP applies to each APEI workstream:
 
-| EP | Zone 0 (Governance) | Zone 1 (ALIGN) | Zone 2 (PLAN) | Zone 3 (EXECUTE) | Zone 4 (IMPROVE) |
+| EP | GOVERN workstream | ALIGN workstream | PLAN workstream | EXECUTE workstream | IMPROVE workstream |
 |----|-------------------|----------------|---------------|-----------------|-----------------|
 | EP-01 Brake Before Gas | Setup order: safety first | Validate problem before solving | Derisk before optimise (S→E→Sc) | Risk gates between tasks | Review before institutionalise |
 | EP-02 Know the Physics | Map every config to an LT | Understand domain constraints | Identify which LTs affect execution | Task files compensate for LTs | Log which LTs caused failures |
 | EP-03 Two Operators | Define R ≠ A (UT#9) | Human owns alignment decisions | Human owns plan approval | Agent owns task execution | Both contribute to retrospective |
 | EP-04 Load What You Need | CLAUDE.md ≤ 200 lines | Load only charter + requirements | Load only relevant risk/arch per WS | Task file = minimal viable context | Load only metrics + review data |
-| EP-05 Gates Before Guides | Hooks > Rules > Skills | Entry gate: charter must exist | Entry gate: Zone 1 complete | Entry gate: .exec/ must exist | Exit gate: review approved |
+| EP-05 Gates Before Guides | Hooks > Rules > Skills | Entry gate: charter must exist | Entry gate: ALIGN workstream complete | Entry gate: .exec/ must exist | Exit gate: review approved |
 | EP-06 Derisk-First Setup | Permissions → hooks → rules → skills | Risk conditions before OKRs | UBS register before architecture | Verify commands before coding | Failure log before improvements |
-| EP-07 Amnesia-First | Session start loads project state | Zone 1 artifacts self-contained | Planning baseline snapshots Zone 1 | .exec/ files self-contained | Review artifacts reference evidence |
+| EP-07 Amnesia-First | Session start loads project state | ALIGN workstream artifacts self-contained | Planning baseline snapshots ALIGN workstream | .exec/ files self-contained | Review artifacts reference evidence |
 | EP-08 Signal Over Volume | Route, don't duplicate | Requirements are VANA (minimal) | Task files embed relevant slice only | One task = one agent-session focus | Metrics are focused, not exhaustive |
 | EP-09 Decompose | Skills decompose complex procedures | Break requirements into VANA atoms | Break roadmap into ≤1hr tasks | One .exec/ task per agent session | Break retro into per-deliverable |
 | EP-10 Define Done | Every rule has a verification method | Requirements have binary ACs | Every task has AC + Verify command | Agent self-checks before reporting | Review has pass/fail criteria |
@@ -456,8 +456,8 @@ When something goes wrong, trace the symptom to the violated EP:
 | Agent drifts from instructions mid-task | EP-02 (Know the Physics, LT-8) — alignment is approximate | Add verification gates; shorter tasks |
 | Rushed delegation, errors compound | EP-01 (Brake Before Gas) — skipped derisk step | 30-second derisk checklist before delegating |
 | Human micromanages every step | EP-03 (Two Operators) — not trusting Agent strengths | Delegate analysis/execution; reserve judgment for yourself |
-| Executed plan missed a critical risk | EP-01 (Brake Before Gas) + EP-06 (Derisk-First) — skipped Zone 2 | Never skip from ALIGN to EXECUTE |
-| Zone 3 agent hallucinates requirements | EP-07 (Amnesia-First) + EP-08 (Signal Over Volume) — .exec/ files incomplete | .exec/ task files must be self-contained engineered Input |
+| Executed plan missed a critical risk | EP-01 (Brake Before Gas) + EP-06 (Derisk-First) — skipped LEARN workstream | Never skip from ALIGN to EXECUTE |
+| PLAN workstream agent hallucinates requirements | EP-07 (Amnesia-First) + EP-08 (Signal Over Volume) — .exec/ files incomplete | .exec/ task files must be self-contained engineered Input |
 
 ---
 
@@ -472,7 +472,7 @@ When something goes wrong, trace the symptom to the violated EP:
 | **DERISK** | EP tag: this principle mitigates a failure risk (manages UBS). Non-negotiable. |
 | **OUTPUT** | EP tag: this principle enables quality output (drives UDS). Important but secondary to DERISK. |
 | **VANA** | Verb-Adverb-Noun-Adjective — the requirements grammar from UT#3 |
-| **APEI** | Align-Plan-Execute-Improve — the 4-zone operating system for human-agent collaboration |
+| **APEI** | Align-Plan-Execute-Improve — the 4-workstream operating system for human-agent collaboration |
 | **UBS** | Ultimate Blocking System — root forces that block effective outcomes |
 | **UDS** | Ultimate Driving System — root forces that drive effective outcomes |
 | **S→E→Sc** | Sustainability → Efficiency → Scalability — the 3-pillar priority order from UT#5 |

@@ -7,7 +7,7 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 const mistakes = [
   {
     num: '01',
-    mistake: 'SKIPPING LEARN ZONE',
+    mistake: 'SKIPPING LEARN WORKSTREAM',
     why: 'Building without UBS/UDS analysis means solving the wrong problem.',
     fix: 'Always run /learn pipeline before starting PLAN. Chain-of-custody enforces this.',
   },
@@ -26,14 +26,14 @@ const mistakes = [
   {
     num: '04',
     mistake: 'IGNORING CHAIN-OF-CUSTODY',
-    why: 'Zone N cannot build until Zone N-1 has validated artifacts.',
+    why: 'Workstream N cannot build until Workstream N-1 has validated artifacts.',
     fix: 'alpei-chain-of-custody rule checks automatically. If it warns, fix upstream first.',
   },
   {
     num: '05',
     mistake: 'SKIPPING DSBV PHASES',
     why: 'Building without DESIGN.md means no ACs. No VALIDATE = unchecked work.',
-    fix: 'DSBV rule enforces: Design before Build, Validate before zone complete. No exceptions.',
+    fix: 'DSBV rule enforces: Design before Build, Validate before workstream complete. No exceptions.',
   },
 ];
 

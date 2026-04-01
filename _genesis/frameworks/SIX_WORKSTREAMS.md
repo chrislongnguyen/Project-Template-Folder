@@ -14,7 +14,7 @@ Life and work are uncertain — the most effective approach is to iterate across
 
 ---
 
-| # | Work Stream | Key Question | Zone in Project |
+| # | Work Stream | Key Question | Workstream in Project |
 |---|-------------|-------------|-----------------|
 | 1 | **Self/Team Alignment** | Are we solving the right problem? | `1-ALIGN/` |
 | 2 | **Risk Management** | What can go wrong? | `3-PLAN/risks/` + everywhere |
@@ -29,7 +29,7 @@ Life and work are uncertain — the most effective approach is to iterate across
 - A developer might discover new risks (WS2) during execution (WS6)
 - Learning (WS3) might invalidate a decision (WS5)
 - Stakeholder alignment (WS1) might shift after a review (WS4)
-- The structure supports moving between zones at any time
+- The structure supports moving between workstreams at any time
 
 ---
 

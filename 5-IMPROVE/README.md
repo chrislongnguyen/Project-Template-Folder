@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-30
 ---
-# ZONE 4 — IMPROVE (Learn & Grow — Loops Back to ALIGN)
+# IMPROVE workstream (Learn & Grow — Loops Back to ALIGN)
 
 > "What worked? What didn't? How do we make it stick?"
 
@@ -14,8 +14,8 @@ last_updated: 2026-03-30
 ## Purpose
 
 Nothing ships without a review. Nothing improves without a retrospective.
-This zone closes the loop: ALIGN → PLAN → EXECUTE → **IMPROVE** → (back to ALIGN).
-Output from this zone feeds back into `1-ALIGN/` for the next iteration.
+This workstream closes the loop: ALIGN → PLAN → EXECUTE → **IMPROVE** → (back to ALIGN).
+Output from this workstream feeds back into `1-ALIGN/` for the next iteration.
 
 ```
   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐

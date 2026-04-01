@@ -72,7 +72,7 @@ Every system has 6 components: Input, User, Action, Principles, Tools, Environme
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 When agent output is wrong: trace through 6 configurable components (EP → Input → EOP → Environment → Tools → Agent) before blaming the model.
 
-## Structure (4-Zone APEI)
+## Structure (4-Workstream APEI)
 `1-ALIGN/` alignment + learning | `3-PLAN/` architecture + risks | `4-EXECUTE/` src + tests | `5-IMPROVE/` changelog + retros | `_shared/` org knowledge | `rules/` agent rules
 
 ## Modular Rules & Skills

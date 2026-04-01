@@ -5,18 +5,18 @@ import { colors } from '../lib/theme';
 import { fadeInUp, fadeIn, staggerContainer } from '../lib/animations';
 
 const steps = [
-  { label: 'CHECK', command: '/dsbv status', desc: 'See current version for each zone', icon: '01' },
+  { label: 'CHECK', command: '/dsbv status', desc: 'See current version for each workstream', icon: '01' },
   { label: 'VALIDATE', command: '/dsbv validate improve', desc: 'Run validate gate check on deliverables', icon: '02' },
   { label: 'CLOSE', command: 'Close iteration via IMPROVE validate', desc: 'Close the current iteration cycle', icon: '03' },
   { label: 'ADVANCE', command: 'Update VERSION_REGISTRY', desc: 'Move to the next version level', icon: '04' },
 ];
 
 const checklist = [
-  { action: 'Confirm all zones complete', command: '/dsbv validate', approval: 'PM review' },
-  { action: 'Run validate for improve zone', command: '/dsbv validate improve', approval: 'VANA gate' },
+  { action: 'Confirm all workstreams complete', command: '/dsbv validate', approval: 'PM review' },
+  { action: 'Run validate for improve workstream', command: '/dsbv validate improve', approval: 'VANA gate' },
   { action: 'Verify chain-of-custody intact', command: '/dsbv status', approval: 'Auto-check' },
   { action: 'Close current iteration', command: 'Close iteration via IMPROVE validate', approval: 'PM sign-off' },
-  { action: 'Advance zone version', command: 'Update VERSION_REGISTRY', approval: 'PM approval' },
+  { action: 'Advance workstream version', command: 'Update VERSION_REGISTRY', approval: 'PM approval' },
 ];
 
 const vanaFails = [

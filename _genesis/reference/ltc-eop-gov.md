@@ -195,7 +195,7 @@ Good:
 
 **Why this matters:** AI models already have extensive general programming knowledge from training. A skill that repeats what the model already knows (how git commit works, what a function is, basic syntax) wastes context tokens without adding value. Wasted tokens are not neutral — they actively dilute the signal of the unique, project-specific content that the skill exists to provide. Every line should earn its place by containing knowledge the agent would not have otherwise.
 
-**Without this:** Your commit message skill spends 30 lines explaining what git commit does, what a commit message is, and why version control matters. The agent already knows all of this. The 5 lines that actually matter — your specific commit format convention (`type(zone): description`) — are buried in noise, and the agent sometimes ignores them in favor of its default format.
+**Without this:** Your commit message skill spends 30 lines explaining what git commit does, what a commit message is, and why version control matters. The agent already knows all of this. The 5 lines that actually matter — your specific commit format convention (`type(workstream): description`) — are buried in noise, and the agent sometimes ignores them in favor of its default format.
 
 **Implemented by:**
 - Design: For each line in SKILL.md, ask: "Would the agent do this differently without this line?" If no, delete the line. Focus on: project conventions, team-specific formats, domain terminology, non-obvious constraints, and hard-won lessons.
@@ -204,10 +204,10 @@ Good:
 **Example:**
 
 Bad:
-> `## How to Commit` / `Git is a version control system. To commit changes, use git commit -m "message". A good commit message explains what changed and why.` / `Use format: type(zone): description`
+> `## How to Commit` / `Git is a version control system. To commit changes, use git commit -m "message". A good commit message explains what changed and why.` / `Use format: type(workstream): description`
 
 Good:
-> `## Commit Format` / `ALWAYS: type(zone): description` / `Types: feat, fix, docs, refactor, test, chore` / `Zones: align, plan, execute, improve` / `Example: feat(align): add stakeholder analysis to charter`
+> `## Commit Format` / `ALWAYS: type(workstream): description` / `Types: feat, fix, docs, refactor, test, chore` / `Workstreams: align, plan, execute, improve` / `Example: feat(align): add stakeholder analysis to charter`
 
 
 **Validated:** Partial — /feedback retrofit confirmed structure; full validation pending on STANDARD/COMPLEX tier skills

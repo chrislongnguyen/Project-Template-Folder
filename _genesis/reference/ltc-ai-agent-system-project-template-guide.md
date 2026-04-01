@@ -11,7 +11,7 @@ audience: "Human users (primary), AI agents (secondary)"
 > **Who this is for:** Any LTC member working in a project that uses this template.
 > You do not need to be technical. If you can open a file and read markdown, you can use this.
 >
-> **AI agents:** Skip to §7 (Agent Zone Map) for a machine-readable structure lookup.
+> **AI agents:** Skip to §7 (Agent Workstream Map) for a machine-readable structure lookup.
 
 ---
 
@@ -66,30 +66,30 @@ project-root/
 ├── .cursor/rules/               ← Cursor IDE rules
 ├── rules/                       ← LTC-wide standards
 │
-├── 1-ALIGN/                     ← Zone 1: Choose the right outcome
+├── 1-ALIGN/                     ← ALIGN workstream: Choose the right outcome
 │   ├── charter/                 ← Why the project exists
 │   ├── decisions/               ← Architecture Decision Records
 │   └── okrs/                    ← Objectives & Key Results
 │
-├── 2-LEARN/                     ← Zone 2: Problem research workspace (ALPEI)
+├── 2-LEARN/                     ← LEARN workstream: Problem research workspace (ALPEI)
 │   ├── input/                   ← Raw WIP + scoping documents (no format enforcement)
 │   ├── research/                ← Structured synthesis + HTML visualizations
 │   ├── specs/                   ← VANA-SPEC extractions
 │   └── output/                  ← Final structured deliverables
 │
-├── 3-PLAN/                      ← Zone 3: Minimize risks before acting
+├── 3-PLAN/                      ← PLAN workstream: Minimize risks before acting
 │   ├── risks/                   ← UBS register (what can go wrong)
 │   ├── drivers/                 ← UDS register (what to leverage)
 │   ├── architecture/            ← System design
 │   └── roadmap/                 ← Sequenced plan
 │
-├── 4-EXECUTE/                   ← Zone 3: Build and deliver
+├── 4-EXECUTE/                   ← PLAN workstream: Build and deliver
 │   ├── src/                     ← Source code
 │   ├── tests/                   ← Test suites
 │   ├── config/                  ← Environment configuration
 │   └── docs/                    ← Delivery documentation
 │
-├── 5-IMPROVE/                   ← Zone 4: Learn and grow
+├── 5-IMPROVE/                   ← EXECUTE workstream: Learn and grow
 │   ├── changelog/               ← What changed
 │   ├── metrics/                 ← What we measured
 │   ├── retrospectives/          ← What we learned
@@ -109,9 +109,9 @@ project-root/
 
 ---
 
-## 4. Zone-by-Zone Reference
+## 4. Workstream-by-Workstream Reference
 
-### Zone 0 — Agent Governance
+### GOVERN workstream
 
 **What it is:** The configuration layer for AI agents. If something is wrong here, everything downstream is affected.
 
@@ -154,7 +154,7 @@ project-root/
 
 ---
 
-### Zone 1 — ALIGN (Choose the Right Outcome)
+### ALIGN workstream (Choose the Right Outcome)
 
 **What it answers:** "Are we solving the right problem? Is everyone aligned?"
 
@@ -172,11 +172,11 @@ project-root/
 
 ---
 
-### Zone 2 — LEARN (Problem Research Workspace)
+### LEARN workstream (Problem Research Workspace)
 
 **What it answers:** "What do we need to know before we plan or build?"
 
-Zone 2 is the dedicated research workspace in the ALPEI flow. It sits between ALIGN (right outcome) and PLAN (minimize risks). Learning outputs feed bidirectionally — back into ALIGN (refine charter/requirements) AND forward into PLAN (research inputs for risks/architecture).
+LEARN workstream is the dedicated research workspace in the ALPEI flow. It sits between ALIGN (right outcome) and PLAN (minimize risks). Learning outputs feed bidirectionally — back into ALIGN (refine charter/requirements) AND forward into PLAN (research inputs for risks/architecture).
 
 | Folder | What goes here | Example |
 |--------|---------------|---------|
@@ -195,7 +195,7 @@ Zone 2 is the dedicated research workspace in the ALPEI flow. It sits between AL
 
 To use it: open Claude Code in your project and type `/learn`. The orchestrator guides you through all 6 steps. You review and approve each output before moving on.
 
-**Bidirectional feed:** Research documents in `research/` use a `feeds:` frontmatter field (`ALIGN`, `PLAN`, or `ALIGN, PLAN`) to declare which downstream zone consumes them. This prevents orphaned research.
+**Bidirectional feed:** Research documents in `research/` use a `feeds:` frontmatter field (`ALIGN`, `PLAN`, or `ALIGN, PLAN`) to declare which downstream workstream consumes them. This prevents orphaned research.
 
 **When to add things here:**
 
@@ -205,9 +205,9 @@ To use it: open Claude Code in your project and type `/learn`. The orchestrator 
 
 ---
 
-### Zone 3 — PLAN (Minimize Failure Risks Before Acting)
+### PLAN workstream (Minimize Failure Risks Before Acting)
 
-**Note:** Zone 3 in ALPEI flow. Folder path remains `3-PLAN/` (filesystem numbering preserved from APEI baseline).
+**Note:** PLAN workstream in ALPEI flow. Folder path remains `3-PLAN/` (filesystem numbering preserved from APEI baseline).
 
 **What it answers:** "What can go wrong? What should we leverage? In what order?"
 
@@ -231,7 +231,7 @@ To use it: open Claude Code in your project and type `/learn`. The orchestrator 
 
 ---
 
-### Zone 3 — EXECUTE (Build and Deliver)
+### EXECUTE workstream (Build and Deliver)
 
 **What it answers:** "Is the thing built right? Does it trace back to requirements and risks?"
 
@@ -251,7 +251,7 @@ To use it: open Claude Code in your project and type `/learn`. The orchestrator 
 
 ---
 
-### Zone 4 — IMPROVE (Learn & Grow)
+### IMPROVE workstream (Learn & Grow)
 
 **What it answers:** "What worked? What didn't? What will we do differently?"
 
@@ -324,17 +324,17 @@ Each layer builds on the one before. Don't create a framework that contradicts p
 
 ### Using the DSBV Process
 
-Every zone produces artifacts through **Design → Sequence → Build → Validate**:
+Every workstream produces artifacts through **Design → Sequence → Build → Validate**:
 
 | Command | What it does |
 |---------|-------------|
 | `/dsbv` | Start a full guided DSBV cycle |
-| `/dsbv design align` | Run just the Design phase on Zone 1 |
-| `/dsbv status` | See progress across all zones |
+| `/dsbv design align` | Run just the Design phase on ALIGN workstream |
+| `/dsbv status` | See progress across all workstreams |
 
 **Rules:**
 - Design MUST complete before Build
-- Validate MUST happen before a zone is marked complete
+- Validate MUST happen before a workstream is marked complete
 - Each phase transition requires your explicit approval
 
 ### Using the Learning Pipeline
@@ -381,45 +381,45 @@ Additionally, `.claude/settings.json` provides platform-level deny/allow rules t
 
 ---
 
-## 7. Agent Zone Map (Machine-Readable Reference)
+## 7. Agent Workstream Map (Machine-Readable Reference)
 
 > **For AI agents.** Use this section when you need to resolve "where does this artifact go?"
 > or "what is the purpose of this folder?"
 
 ```yaml
-ZONE_MAP:
-  zone_0_governance:
+WORKSTREAM_MAP:
+  workstream_0_governance:
     paths: [CLAUDE.md, GEMINI.md, .claude/, .agents/, .cursor/, rules/]
     purpose: agent_configuration_and_safety
     artifacts: [settings, rules, skills, hooks, commands]
 
-  zone_1_align:
+  workstream_1_align:
     path: 1-ALIGN/
     subfolders: [charter/, decisions/, okrs/]
     purpose: choose_the_right_outcome
     key_artifacts: [PROJECT_CHARTER.md, ADR-*.md]
 
-  zone_2_learn:
+  workstream_2_learn:
     path: 2-LEARN/
     subfolders: [input/, research/, specs/, output/]
     purpose: problem_research_workspace
     key_artifacts: [research synthesis docs, VANA-SPEC files, HTML visualizations]
     has_learning_pipeline: true
-    feeds: [zone_1_align, zone_3_plan]
+    feeds: [workstream_1_align, workstream_3_plan]
 
-  zone_3_plan:
+  workstream_3_plan:
     path: 3-PLAN/
     subfolders: [risks/, drivers/, architecture/, roadmap/]
     purpose: minimize_failure_risks
     key_artifacts: [UBS_REGISTER.md, UDS_REGISTER.md, SYSTEM_DESIGN.md]
 
-  zone_4_execute:
+  workstream_4_execute:
     path: 4-EXECUTE/
     subfolders: [src/, tests/, config/, docs/]
     purpose: build_and_deliver
     key_artifacts: [source code, test suites, deployment configs]
 
-  zone_5_improve:
+  workstream_5_improve:
     path: 5-IMPROVE/
     subfolders: [changelog/, metrics/, retrospectives/, reviews/, risk-log/]
     purpose: learn_and_grow

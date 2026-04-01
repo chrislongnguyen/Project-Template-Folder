@@ -20,7 +20,7 @@ philosophy → principles → frameworks → derived artifacts
 
 | File | Description |
 |------|-------------|
-| ltc-ai-agent-system-project-template-guide.md | **User Guide** — full structure walkthrough, zone reference, common workflows, agent zone map |
+| ltc-ai-agent-system-project-template-guide.md | **User Guide** — full structure walkthrough, workstream reference, common workflows, agent workstream map |
 | ltc-effectiveness-guide.md | LTC Guide to Success — 10 Ultimate Truths |
 | ltc-effective-system-design.md | 3-phase ESD methodology reference |
 | ltc-effective-agent-principles-registry.md | EP-01 to EP-10 registry |

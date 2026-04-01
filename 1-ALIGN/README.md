@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-30
 ---
-# ZONE 1 — ALIGN (Choose the Right Outcome + Learn)
+# ALIGN workstream (Choose the Right Outcome + Learn)
 
 > "Are we solving the right problem? Is everyone aligned? Do we know enough?"
 
@@ -14,7 +14,7 @@ last_updated: 2026-03-30
 ## Purpose
 
 Before anything in this project moves forward, every item here must be green.
-This zone prevents the #1 risk in any project: **building the wrong thing**.
+This workstream prevents the #1 risk in any project: **building the wrong thing**.
 
 LEARN is embedded inside ALIGN because **learning is how you resolve unknowns before committing to a plan**. The learning pipeline identifies unknowns, targets research, and produces structured knowledge (ELF pages, VANA specs, GSD states) that directly transform into alignment artifacts.
 

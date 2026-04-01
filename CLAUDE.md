@@ -14,7 +14,7 @@ last_updated: 2026-03-30
 
 - **Name:** LTC Project Template
 - **Stack:** Markdown, Shell, Python
-- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 4-zone APEI structure with AI agent config pre-loaded.
+- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 4-workstream APEI structure with AI agent config pre-loaded.
 
 ## Build
 
@@ -66,7 +66,7 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
 ## DSBV Process (full spec: `_genesis/templates/DSBV_PROCESS.md`)
-Every zone uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No zone artifact is produced outside DSBV. Phase ordering enforced: Design before Build, Validate before zone complete.
+Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV. Phase ordering enforced: Design before Build, Validate before workstream complete.
 
 ## EOP Governance (full spec: `_genesis/reference/ltc-eop-gov.md`)
 Before creating or reviewing any skill, load `_genesis/reference/ltc-eop-gov.md`. Run `./scripts/skill-validator.sh <skill-dir>` before committing skill changes. Use `/ltc-skill-creator` for guided skill creation.
@@ -76,7 +76,7 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 
 ## Before Every Task — Pre-Flight Protocol
 
-1. **CHECK ZONE:** Which zone is this task in? Run `/dsbv status` to see current progress
+1. **CHECK WORKSTREAM:** Which workstream is this task in? Run `/dsbv status` to see current progress
 2. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
 3. **CHECK RISKS:** Read `3-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
 4. **CHECK DRIVERS:** Read `3-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
@@ -87,12 +87,12 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 ## Structure (5x4 Matrix)
 
 ```
-Zone 0 — Agent Governance         → CLAUDE.md, AGENTS.md, .claude/, rules/, 0-GOVERN/ (DSBV artifacts)
-Zone 1 — ALIGN (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs)
-Zone 2 — LEARN (Problem Research) → 2-LEARN/ (input, research, specs, output — learning pipeline outputs)
-Zone 3 — PLAN (Minimize Risks)    → 3-PLAN/ (architecture, risks, drivers, roadmap)
-Zone 4 — EXECUTE (Deliver)        → 4-EXECUTE/ (src, tests, config, docs)
-Zone 5 — IMPROVE (Learn & Grow)   → 5-IMPROVE/ (changelog, metrics, retros, reviews)
+GOVERN workstream         → CLAUDE.md, AGENTS.md, .claude/, rules/, 0-GOVERN/ (DSBV artifacts)
+ALIGN workstream (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs)
+LEARN workstream (Problem Research) → 2-LEARN/ (input, research, specs, output — learning pipeline outputs)
+PLAN workstream (Minimize Risks)    → 3-PLAN/ (architecture, risks, drivers, roadmap)
+EXECUTE workstream (Deliver)        → 4-EXECUTE/ (src, tests, config, docs)
+IMPROVE workstream (Learn & Grow)   → 5-IMPROVE/ (changelog, metrics, retros, reviews)
 Shared  — Org Knowledge Base      → _genesis/ (brand, frameworks, security, sops, templates)
 ```
 
@@ -104,9 +104,9 @@ Every artifact must be categorized: which subsystem x which workstream. No chat-
 Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_genesis/`
 
 ## Version Control (full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md`)
-- When editing any zone artifact, update its `version` and `last_updated` frontmatter
+- When editing any workstream artifact, update its `version` and `last_updated` frontmatter
 - Follow I0-I4 branching strategy — never commit directly to main
-- Commit messages: `type(zone): description` (e.g., `feat(align): add stakeholder analysis`)
+- Commit messages: `type(workstream): description` (e.g., `feat(align): add stakeholder analysis`)
 - Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 - Every decision with multiple viable options → ADR in `1-ALIGN/decisions/`
 - Chain of thought: document the "why" in the artifact, not just the "what"

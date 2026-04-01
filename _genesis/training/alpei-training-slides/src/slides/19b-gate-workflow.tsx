@@ -5,11 +5,11 @@ import { colors } from '../lib/theme';
 import { fadeInUp, staggerContainer } from '../lib/animations';
 
 const steps = [
-  { num: '1', actor: 'YOU', label: 'Run /dsbv design align', desc: 'Pre-flight checks fire automatically. Agent verifies zone, alignment, risks.', isHuman: true },
+  { num: '1', actor: 'YOU', label: 'Run /dsbv design align', desc: 'Pre-flight checks fire automatically. Agent verifies workstream, alignment, risks.', isHuman: true },
   { num: '2', actor: 'AGENT', label: 'ltc-planner drafts DESIGN.md', desc: 'Artifact inventory, binary acceptance criteria, alignment table. ~5 min.', isHuman: false },
   { num: '3', actor: 'YOU', label: 'Review DESIGN.md', desc: 'Check: Are these the right artifacts? Are ACs testable? Anything missing?', isHuman: true },
   { num: '4', actor: 'YOU', label: 'Approve or request changes', desc: 'Approve → Sequence unlocks. Changes → planner revises and re-presents.', isHuman: true },
-  { num: '5', actor: 'SYSTEM', label: 'Same pattern for G2, G3, G4', desc: '4 gates × 5 zones = 20 approval points per iteration.', isHuman: false },
+  { num: '5', actor: 'SYSTEM', label: 'Same pattern for G2, G3, G4', desc: '4 gates × 5 workstreams = 20 approval points per iteration.', isHuman: false },
 ];
 
 export default function GateWorkflowSlide() {
@@ -21,7 +21,7 @@ export default function GateWorkflowSlide() {
             HOW A GATE WORKS
           </h1>
           <p style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 'clamp(0.6rem, 0.9vw, 0.8rem)', color: colors.textDim, marginTop: '6px' }}>
-            Example: G1 Design Gate for ALIGN zone
+            Example: G1 Design Gate for ALIGN workstream
           </p>
           <div style={{ width: '80px', height: '3px', background: colors.gold, marginTop: '10px' }} />
         </AnimatedText>

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # version: 1.0 | last_updated: 2026-03-30
-# dsbv-gate.sh — Zone-boundary enforcement for DSBV/APEI flow
+# dsbv-gate.sh — Workstream-boundary enforcement for DSBV/APEI flow
 #
-# Ensures APEI zones are committed in order: ALIGN → PLAN → EXECUTE → IMPROVE.
-# A zone may only receive commits if the preceding zone has at least one artifact
+# Ensures APEI workstreams are committed in order: ALIGN → PLAN → EXECUTE → IMPROVE.
+# A workstream may only receive commits if the preceding workstream has at least one artifact
 # with status: Approved or status: Review in its YAML frontmatter.
 #
 # Usage:
@@ -12,8 +12,8 @@
 #   Manual check:  ./scripts/dsbv-gate.sh --check   (checks staged files, same behavior)
 #
 # Exit codes:
-#   0 = pass (no zone violations)
-#   1 = blocked (zone prerequisite not met)
+#   0 = pass (no workstream violations)
+#   1 = blocked (workstream prerequisite not met)
 
 set -euo pipefail
 
@@ -21,22 +21,22 @@ set -euo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# Ordered APEI zones — each requires the previous to have approved artifacts
-ZONES=("1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE")
+# Ordered APEI workstreams — each requires the previous to have approved artifacts
+WORKSTREAMS=("1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE")
 
 # --- Functions ----------------------------------------------------------------
 
-# Check if a zone directory has at least one .md file with status: Approved or Review
+# Check if a workstream directory has at least one .md file with status: Approved or Review
 # in YAML frontmatter (first 20 lines).
-zone_has_approved_artifact() {
-    local zone_dir="$1"
-    local zone_path="${PROJECT_ROOT}/${zone_dir}"
+workstream_has_approved_artifact() {
+    local workstream_dir="$1"
+    local workstream_path="${PROJECT_ROOT}/${workstream_dir}"
 
-    if [[ ! -d "$zone_path" ]]; then
+    if [[ ! -d "$workstream_path" ]]; then
         return 1
     fi
 
-    # Search all .md files in the zone (recursive) for status frontmatter
+    # Search all .md files in the workstream (recursive) for status frontmatter
     local found=0
     while IFS= read -r -d '' mdfile; do
         # Read first 20 lines — frontmatter lives at the top
@@ -44,13 +44,13 @@ zone_has_approved_artifact() {
             found=1
             break
         fi
-    done < <(find "$zone_path" -name '*.md' -type f -print0 2>/dev/null)
+    done < <(find "$workstream_path" -name '*.md' -type f -print0 2>/dev/null)
 
     [[ $found -eq 1 ]]
 }
 
-# Get the list of zones touched by staged files
-get_staged_zones() {
+# Get the list of workstreams touched by staged files
+get_staged_workstreams() {
     local staged_files
     staged_files="$(git -C "$PROJECT_ROOT" diff --cached --name-only 2>/dev/null || true)"
 
@@ -60,27 +60,27 @@ get_staged_zones() {
         return
     fi
 
-    local zones_touched=()
-    for zone in "${ZONES[@]}"; do
-        if echo "$staged_files" | grep -q "^${zone}/"; then
-            zones_touched+=("$zone")
+    local workstreams_touched=()
+    for workstream in "${WORKSTREAMS[@]}"; do
+        if echo "$staged_files" | grep -q "^${workstream}/"; then
+            workstreams_touched+=("$workstream")
         fi
     done
 
-    echo "${zones_touched[*]}"
+    echo "${workstreams_touched[*]}"
 }
 
-# Get the prerequisite zone for a given zone (the one before it in APEI order)
-get_prerequisite_zone() {
-    local target_zone="$1"
+# Get the prerequisite workstream for a given workstream (the one before it in APEI order)
+get_prerequisite_workstream() {
+    local target_workstream="$1"
     local prev=""
 
-    for zone in "${ZONES[@]}"; do
-        if [[ "$zone" == "$target_zone" ]]; then
+    for workstream in "${WORKSTREAMS[@]}"; do
+        if [[ "$workstream" == "$target_workstream" ]]; then
             echo "$prev"
             return
         fi
-        prev="$zone"
+        prev="$workstream"
     done
 
     echo ""
@@ -89,27 +89,27 @@ get_prerequisite_zone() {
 # --- Main ---------------------------------------------------------------------
 
 main() {
-    local zones_touched
-    zones_touched="$(get_staged_zones)"
+    local workstreams_touched
+    workstreams_touched="$(get_staged_workstreams)"
 
-    if [[ -z "$zones_touched" ]]; then
-        # No APEI zone files staged — gate passes
+    if [[ -z "$workstreams_touched" ]]; then
+        # No APEI workstream files staged — gate passes
         exit 0
     fi
 
     local blocked=0
 
-    for zone in $zones_touched; do
+    for workstream in $workstreams_touched; do
         local prereq
-        prereq="$(get_prerequisite_zone "$zone")"
+        prereq="$(get_prerequisite_workstream "$workstream")"
 
-        # First zone (ALIGN) has no prerequisite — always passes
+        # First workstream (ALIGN) has no prerequisite — always passes
         if [[ -z "$prereq" ]]; then
             continue
         fi
 
-        if ! zone_has_approved_artifact "$prereq"; then
-            echo "BLOCKED: Cannot commit to ${zone}/ — no approved artifacts found in ${prereq}/."
+        if ! workstream_has_approved_artifact "$prereq"; then
+            echo "BLOCKED: Cannot commit to ${workstream}/ — no approved artifacts found in ${prereq}/."
             echo "  Run '/dsbv validate $(echo "$prereq" | sed 's/^[0-9]-//' | tr '[:upper:]' '[:lower:]')' first."
             echo "  (Looking for 'status: Approved' or 'status: Review' in ${prereq}/ frontmatter)"
             echo ""
@@ -118,7 +118,7 @@ main() {
     done
 
     if [[ $blocked -eq 1 ]]; then
-        echo "DSBV zone-boundary check FAILED. Fix prerequisites before committing."
+        echo "DSBV workstream-boundary check FAILED. Fix prerequisites before committing."
         exit 1
     fi
 

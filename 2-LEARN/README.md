@@ -3,9 +3,9 @@ version: "1.0"
 last_updated: 2026-03-30
 owner: "Long Nguyen"
 ---
-# Zone 2 — LEARN (Research Your Problem Domain)
+# LEARN workstream (Research Your Problem Domain)
 
-> **This zone is your problem research workspace.** Everything here is about understanding the specific problem YOUR project solves — not about learning to use this template.
+> **This workstream is your problem research workspace.** Everything here is about understanding the specific problem YOUR project solves — not about learning to use this template.
 >
 > For template training materials, onboarding guides, and framework references → see `_genesis/training/` and `_genesis/reference/`.
 
@@ -30,7 +30,7 @@ owner: "Long Nguyen"
 2. **Quick research:** `/learn-research` — run just the research step
 3. **Formalize:** `/learn-spec` — convert notes to a VANA specification
 
-All `/learn-*` skill outputs land in this zone automatically.
+All `/learn-*` skill outputs land in this workstream automatically.
 
 ## LEARN in ALPEI Flow
 

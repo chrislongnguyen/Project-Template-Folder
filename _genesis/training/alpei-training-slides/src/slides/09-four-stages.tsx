@@ -23,7 +23,7 @@ const stages = [
     name: 'BUILD',
     purpose: 'Produce artifacts',
     question: 'Does each artifact pass its AC?',
-    output: 'Zone artifacts per SEQUENCE.md',
+    output: 'Workstream artifacts per SEQUENCE.md',
     intensity: 0.35,
   },
   {

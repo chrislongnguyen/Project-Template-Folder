@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: PENDING_DIRECTOR_APPROVAL
 director: Manh N.
-zone: 1-ALIGN
+workstream: 1-ALIGN
 project: LTC Company Navigator
 ---
 
@@ -21,7 +21,7 @@ project: LTC Company Navigator
 
 ### What the Director Already Understands
 - Vision, mission, and values of LTC
-- The 4-Zone model (ALIGN -> PLAN -> EXECUTE -> IMPROVE) — conceptual
+- The 4-Workstream model (ALIGN -> PLAN -> EXECUTE -> IMPROVE) — conceptual
 - DSBV process (Design -> Sequence -> Build -> Validate) — conceptual
 - Three Pillars: Sustainability > Efficiency > Scalability
 - Success Equation: Success = Efficient & Scalable Management of Failure Risks
@@ -86,7 +86,7 @@ A **comprehensive, interactive HTML file** that serves as the Director's primary
 The map is structured around three constitutional elements that DO NOT change:
 
 ### Element 1: ALPEI (5 Workstreams)
-| Workstream | Purpose | Zone Folder |
+| Workstream | Purpose | Workstream Folder |
 |-----------|---------|-------------|
 | ALIGN | Define the right outcome | 1-ALIGN/ |
 | LEARN | Acquire knowledge | 1-ALIGN/learning/ |

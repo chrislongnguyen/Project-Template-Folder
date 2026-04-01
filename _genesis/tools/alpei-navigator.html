@@ -26,7 +26,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 
 /* ========== BUILDING VIEW v2 ========== */
 
-/* Constitution wrapper — vertical EP borders around all zones */
+/* Constitution wrapper — vertical EP borders around all workstreams */
 .bld-wrapper{display:flex;gap:0;position:relative}
 .ep-rail{width:48px;background:var(--gunmetal);border:2px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:space-around;padding:8px 2px;flex-shrink:0;border-radius:6px}
 .ep-rail.left{border-radius:6px 0 0 6px;border-right:2px solid var(--gold)}
@@ -36,11 +36,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 
 .bld-center{flex:1;min-width:0}
 
-/* Zone floors */
-.zone-floor{border:1px solid var(--border);border-radius:0;overflow:hidden;background:var(--white)}
-.zone-floor+.zone-floor{border-top:none}
-.zone-floor:first-child{border-radius:6px 6px 0 0}
-.zone-floor:last-child{border-radius:0 0 6px 6px}
+/* Workstream floors */
+.workstream-floor{border:1px solid var(--border);border-radius:0;overflow:hidden;background:var(--white)}
+.workstream-floor+.workstream-floor{border-top:none}
+.workstream-floor:first-child{border-radius:6px 6px 0 0}
+.workstream-floor:last-child{border-radius:0 0 6px 6px}
 
 .zf-header{padding:10px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;border-bottom:1px solid rgba(0,0,0,.04)}
 .zf-header:hover{filter:brightness(1.05)}
@@ -52,12 +52,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 .zf-body{display:none;padding:10px 14px 14px}
 .zf-body.open{display:block}
 
-/* I/O Banner between zones */
+/* I/O Banner between workstreams */
 .io-banner{display:flex;align-items:center;gap:6px;padding:5px 14px;font-size:9px;color:#888;background:rgba(242,199,92,.04);border-bottom:1px solid rgba(242,199,92,.15)}
 .io-banner .io-arrow{color:var(--gold);font-size:14px;font-weight:700}
 .io-banner .io-label{font-weight:600;color:var(--midnight)}
 
-/* DSBV rooms inside zone */
+/* DSBV rooms inside workstream */
 .dsbv-rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .dsbv-room{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--white)}
 .dsbv-room-hdr{padding:5px 8px;font-size:9px;font-weight:700;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--border)}
@@ -76,12 +76,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 .cs7-val .r.ep{border-left:2px solid var(--ruby)}
 .cs7-val .io{color:var(--gunmetal);font-weight:500;font-size:8px}
 
-/* Zone-level 7CS summary */
-.zone-7cs{border:1px solid var(--gold);border-radius:5px;margin-bottom:10px;overflow:hidden}
-.zone-7cs-hdr{padding:6px 10px;background:rgba(242,199,92,.12);font-size:11px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(242,199,92,.15)}
-.zone-7cs-body{display:block;padding:0}
-.zone-7cs .cs7-row{min-height:30px}
-.zone-7cs .cs7-label{width:56px;font-size:9px;color:var(--midnight);font-weight:700;background:rgba(242,199,92,.06)}
+/* Workstream-level 7CS summary */
+.workstream-7cs{border:1px solid var(--gold);border-radius:5px;margin-bottom:10px;overflow:hidden}
+.workstream-7cs-hdr{padding:6px 10px;background:rgba(242,199,92,.12);font-size:11px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(242,199,92,.15)}
+.workstream-7cs-body{display:block;padding:0}
+.workstream-7cs .cs7-row{min-height:30px}
+.workstream-7cs .cs7-label{width:56px;font-size:9px;color:var(--midnight);font-weight:700;background:rgba(242,199,92,.06)}
 
 .subsystems-label{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin:8px 0 4px;padding-left:4px}
 
@@ -250,7 +250,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 
 <!-- ==================== VIEW 1: BUILDING ==================== -->
 <div class="view active" id="view-building">
-  <p style="font-size:10px;color:#888;margin-bottom:8px">EP rules (left &amp; right rails) govern ALL zones. Click any zone to expand its 4 DSBV subsystems, each showing the full 7CS skeleton.</p>
+  <p style="font-size:10px;color:#888;margin-bottom:8px">EP rules (left &amp; right rails) govern ALL workstreams. Click any workstream to expand its 4 DSBV subsystems, each showing the full 7CS skeleton.</p>
   <div class="bld-wrapper">
     <!-- LEFT EP RAIL -->
     <div class="ep-rail left">
@@ -264,8 +264,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
       <div class="ep-rule" data-brief-coord="EP:memory-format" data-brief-level="framework">memory-format</div>
     </div>
 
-    <!-- CENTER: Zone floors -->
-    <div class="bld-center" id="bld-zones"></div>
+    <!-- CENTER: Workstream floors -->
+    <div class="bld-center" id="bld-workstreams"></div>
 
     <!-- RIGHT EP RAIL -->
     <div class="ep-rail right">
@@ -283,7 +283,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
     </div>
   </div>
 
-  <div class="feedback-loop" data-brief-coord="IMPROVE:feedback-loop" data-brief-level="zone">
+  <div class="feedback-loop" data-brief-coord="IMPROVE:feedback-loop" data-brief-level="workstream">
     <span style="font-size:14px;color:var(--ruby)">&#8635;</span>
     <strong style="color:var(--ruby)"> FEEDBACK LOOP: I-V &rarr; A-D (next iteration)</strong>
     <span style="color:#888"> &mdash; improvements, lessons, updated UBS/UDS, metrics</span>
@@ -321,7 +321,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
 <script>
 // ========== DATA ==========
 const SKILLS=[
-{id:"dsbv",name:"dsbv",desc:"Runs DSBV sub-process within any APEI zone with human gates",role:"EOP",cells:["A-D","A-S","A-B","A-V","L-D","L-S","L-B","L-V","P-D","P-S","P-B","P-V","E-D","E-S","E-B","E-V","I-D","I-S","I-B","I-V"],cat:"Alignment",connects:["ltc-brainstorming"]},
+{id:"dsbv",name:"dsbv",desc:"Runs DSBV sub-process within any APEI workstream with human gates",role:"EOP",cells:["A-D","A-S","A-B","A-V","L-D","L-S","L-B","L-V","P-D","P-S","P-B","P-V","E-D","E-S","E-B","E-V","I-D","I-S","I-B","I-V"],cat:"Alignment",connects:["ltc-brainstorming"]},
 {id:"learn",name:"learn",desc:"State-aware orchestrator routing to correct sub-skill based on file system state",role:"EOP",cells:["L-D"],cat:"Learning",connects:["learn-input"]},
 {id:"learn-input",name:"learn-input",desc:"9-question interview capturing foundational inputs for learning pipeline",role:"EOP",cells:["L-D","L-S"],cat:"Learning",connects:["learn","learn-research"]},
 {id:"learn-research",name:"learn-research",desc:"Spawns parallel sub-agents for all active topics",role:"EOP",cells:["L-B"],cat:"Learning",connects:["learn-input","learn-structure"]},
@@ -347,13 +347,13 @@ const SKILLS=[
 {id:"setup",name:"setup",desc:"First-run Memory Vault configuration",role:"EOP",cells:["A-D","L-D","P-D","E-D","I-D"],cat:"Session",connects:["session-start"]},
 {id:"ltc-clickup-planner",name:"ltc-clickup-planner",desc:"ClickUp integration with VANA outcomes",role:"EOT",cells:["P-S","E-S","I-B"],cat:"WMS",connects:["ltc-notion-planner","session-end"]},
 {id:"ltc-notion-planner",name:"ltc-notion-planner",desc:"Notion integration with VANA outcomes",role:"EOT",cells:["P-S","E-S","I-B"],cat:"WMS",connects:["ltc-clickup-planner","session-end"]},
-{id:"git-save",name:"git-save",desc:"Classify, stage, commit, and optionally PR changes. LTC-aware: enforces zone scopes, version bump checks, changelog hygiene.",role:"EOP",cells:["E-S","I-B"],cat:"Process",connects:["session-end","ltc-clickup-planner"]}
+{id:"git-save",name:"git-save",desc:"Classify, stage, commit, and optionally PR changes. LTC-aware: enforces workstream scopes, version bump checks, changelog hygiene.",role:"EOP",cells:["E-S","I-B"],cat:"Process",connects:["session-end","ltc-clickup-planner"]}
 ];
 const TEMPLATES=[
 {id:"DSBV_PROCESS",name:"DSBV_PROCESS",desc:"DSBV workflow reference",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
 {id:"DSBV_CONTEXT",name:"DSBV_CONTEXT",desc:"Context package for Build",cells:["A-B","L-B","P-B","E-B","I-B"],role:"EOP"},
 {id:"DSBV_EVAL",name:"DSBV_EVAL",desc:"Validation protocol",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EOP"},
-{id:"DESIGN_TEMPLATE",name:"DESIGN_TEMPLATE",desc:"Zone design spec (DSBV Phase 1)",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
+{id:"DESIGN_TEMPLATE",name:"DESIGN_TEMPLATE",desc:"Workstream design spec (DSBV Phase 1)",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
 {id:"ADR_TEMPLATE",name:"ADR_TEMPLATE",desc:"Architecture Decision Record",cells:["A-D","A-B"],role:"EOP"},
 {id:"VANA_SPEC",name:"VANA_SPEC",desc:"System requirements + acceptance criteria",cells:["A-B","L-V"],role:"EOP"},
 {id:"RISK_ENTRY",name:"RISK_ENTRY",desc:"Risk register entry (UBS)",cells:["P-B"],role:"EOP"},
@@ -376,7 +376,7 @@ const TEMPLATES=[
 {id:"OKR_TEMPLATE",name:"OKR_TEMPLATE",desc:"OKR register — Objectives with Key Results, baseline, target, formula.",cells:["A-S","I-V"],role:"EOP"},
 {id:"TEST_PLAN_TEMPLATE",name:"TEST_PLAN_TEMPLATE",desc:"Test plan — cases, expected/actual, pass/fail, AC coverage.",cells:["I-D","I-B"],role:"EOP"},
 {id:"GLOBAL_CLAUDE_MD_EXAMPLE",name:"GLOBAL_CLAUDE_MD_EXAMPLE",desc:"Golden reference CLAUDE.md for new projects — brand, rules, agent config scaffold.",cells:["A-D"],role:"EOP"},
-{id:"README_TEMPLATES",name:"README (Templates Index)",desc:"Template directory catalog — which template serves which zone×phase.",cells:["A-D"],role:"EOP"}
+{id:"README_TEMPLATES",name:"README (Templates Index)",desc:"Template directory catalog — which template serves which workstream×phase.",cells:["A-D"],role:"EOP"}
 ];
 const FRAMEWORKS=[
 {id:"THREE_PILLARS",name:"THREE_PILLARS",desc:"S > E > Sc priority",cells:["ALL"],role:"EP",insight:"Derisk first, optimize second, scale third"},
@@ -389,18 +389,18 @@ const FRAMEWORKS=[
 {id:"AGENT_SYSTEM",name:"AGENT_SYSTEM",desc:"7-CS for AI",cells:["ALL"],role:"EP",insight:"Configure EP first, blame Agent last"},
 {id:"AGENT_DIAGNOSTIC",name:"AGENT_DIAGNOSTIC",desc:"Sequential blame",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EP",insight:"Most failures = Input or EOP"},
 {id:"HISTORY_VERSION_CONTROL",name:"HISTORY_VERSION_CONTROL",desc:"Git strategy",cells:["E-B","E-V"],role:"EP",insight:"Human promotes Draft\u2192Approved"},
-{id:"ALPEI_DSBV_PROCESS_MAP",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 zones \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every zone artifact routes through this map"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Zone \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P2",name:"Process Map P2: Version Progression",desc:"What each zone produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN zone \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P4",name:"Process Map P4: LEARN Data Flows",desc:"Cross-zone data flow \u2014 LEARN feeds ALIGN and PLAN with UBS, UDS, Effective Principles.",cells:["L-D","L-S","L-B","L-V","A-D","P-D"],role:"EP",insight:"LEARN is the research engine \u2014 downstream zones consume its outputs"},
-{id:"UES_VERSION_BEHAVIORS",name:"UES Version Behaviors",desc:"Version-specific behaviors per zone \u2014 what \u201cdone\u201d looks like at I0 through I4.",cells:["ALL"],role:"EP",insight:"Build deeper than your version = waste; shallower = gap"},
+{id:"ALPEI_DSBV_PROCESS_MAP",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 workstreams \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every workstream artifact routes through this map"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Workstream \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P2",name:"Process Map P2: Version Progression",desc:"What each workstream produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN workstream \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
+{id:"ALPEI_DSBV_PROCESS_MAP_P4",name:"Process Map P4: LEARN Data Flows",desc:"Cross-workstream data flow \u2014 LEARN feeds ALIGN and PLAN with UBS, UDS, Effective Principles.",cells:["L-D","L-S","L-B","L-V","A-D","P-D"],role:"EP",insight:"LEARN is the research engine \u2014 downstream workstreams consume its outputs"},
+{id:"UES_VERSION_BEHAVIORS",name:"UES Version Behaviors",desc:"Version-specific behaviors per workstream \u2014 what \u201cdone\u201d looks like at I0 through I4.",cells:["ALL"],role:"EP",insight:"Build deeper than your version = waste; shallower = gap"},
 {id:"README_FRAMEWORKS",name:"README (Frameworks Index)",desc:"Framework cascade: philosophy \u2192 principles \u2192 frameworks \u2192 artifacts (Layer 3 of 4).",cells:["ALL"],role:"EP",insight:"Frameworks sit between principles and artifacts \u2014 they guide, not prescribe"}
 ];
 const RULES=[
-{id:"dsbv",name:"DSBV Process",desc:"Every zone uses Design\u2192Sequence\u2192Build\u2192Validate. No ad-hoc artifacts. Phase ordering enforced with human gates.",cells:["ALL"],role:"EP"},
-{id:"alpei-chain-of-custody",name:"ALPEI Chain-of-Custody",desc:"Zone N cannot Build until Zone N-1 has \u22651 validated artifact. Upstream constraints inherited downstream.",cells:["ALL"],role:"EP"},
-{id:"alpei-pre-flight",name:"ALPEI Pre-Flight",desc:"7-step readiness check before ANY task: zone, alignment, risks, drivers, templates, learning, version consistency.",cells:["ALL"],role:"EP"},
+{id:"dsbv",name:"DSBV Process",desc:"Every workstream uses Design\u2192Sequence\u2192Build\u2192Validate. No ad-hoc artifacts. Phase ordering enforced with human gates.",cells:["ALL"],role:"EP"},
+{id:"alpei-chain-of-custody",name:"ALPEI Chain-of-Custody",desc:"Workstream N cannot Build until Workstream N-1 has \u22651 validated artifact. Upstream constraints inherited downstream.",cells:["ALL"],role:"EP"},
+{id:"alpei-pre-flight",name:"ALPEI Pre-Flight",desc:"7-step readiness check before ANY task: workstream, alignment, risks, drivers, templates, learning, version consistency.",cells:["ALL"],role:"EP"},
 {id:"agent-dispatch",name:"Agent Dispatch",desc:"Every Agent() call must name 1 of 4 MECE agents, use 5-field context package, match model tier. Enforced via PreToolUse hook.",cells:["ALL"],role:"EP"},
 {id:"git-conventions",name:"Git Conventions",desc:"Commit format type(scope): description. 9 canonical scopes. Staging rules. Skip list (.obsidian/, .env, secrets/).",cells:["ALL"],role:"EP"},
 {id:"versioning",name:"Versioning",desc:"Every .md has version + status + last_updated. MAJOR=iteration (I1=1.x). Agent sets Draft/Review. Human ONLY sets Approved.",cells:["ALL"],role:"EP"},
@@ -427,12 +427,12 @@ const AGENTS={
 };
 const AGENT_EXPLORER='ltc-explorer (Haiku) \u2014 Pre-DSBV research';
 
-const ZONE_FULL={A:'ALIGN',L:'LEARN',P:'PLAN',E:'EXECUTE',I:'IMPROVE'};
+const WORKSTREAM_FULL={A:'ALIGN',L:'LEARN',P:'PLAN',E:'EXECUTE',I:'IMPROVE'};
 const PHASE_FULL={D:'DESIGN',S:'SEQUENCE',B:'BUILD',V:'VALIDATE'};
 
 const CELL_7CS={
   'A-D':{
-    input:'Stakeholder brief + project scope \u00b7 Zone 0 GOVERN \u22651 validated artifact',
+    input:'Stakeholder brief + project scope \u00b7 GOVERN workstream \u22651 validated artifact',
     eop:['dsbv','ltc-brainstorming'],
     eot_templates:['DESIGN_TEMPLATE','CHARTER_TEMPLATE','FORCE_ANALYSIS_TEMPLATE','ADR_TEMPLATE'],
     eot_tools:[],
@@ -506,7 +506,7 @@ const CELL_7CS={
     eop:['dsbv','ltc-task-executor','git-save'],
     eot_templates:[],
     eot_tools:['Git / GitHub','Mermaid Chart (MCP)'],
-    eo:'Zone artifacts per SEQUENCE.md (version-stamped, checkpoint-committed)'
+    eo:'Workstream artifacts per SEQUENCE.md (version-stamped, checkpoint-committed)'
   },
   'E-V':{
     input:'EXECUTE.BUILD.EO: artifacts per SEQUENCE.md \u00b7 EXECUTE.DESIGN.EO: DESIGN.md \u00b7 PLAN: UBS_REGISTER.md',
@@ -585,7 +585,7 @@ const CELL_EOP_DESC={
   'P-V':'/dsbv validate plan \u2014 Verify architecture refs all UBS mitigations',
   'E-D':'/dsbv design execute \u2014 Define execution artifacts and binary ACs',
   'E-S':'/dsbv sequence execute \u2014 Order tasks by dependency with token estimates',
-  'E-B':'/dsbv build execute \u2014 Produce zone artifacts per SEQUENCE.md',
+  'E-B':'/dsbv build execute \u2014 Produce workstream artifacts per SEQUENCE.md',
   'E-V':'/dsbv validate execute \u2014 Verify all SEQUENCE.md ACs pass',
   'I-D':'/dsbv design improve \u2014 Define metrics baseline and improvement scope',
   'I-S':'/dsbv sequence improve \u2014 Plan retrospective format and participants',
@@ -602,24 +602,24 @@ const COL_NAMES={D:"DESIGN",S:"SEQUENCE",B:"BUILD",V:"VALIDATE"};
 const ROW_COLORS={A:"var(--green)",L:"var(--midnight)",P:"var(--gold)",E:"var(--purple)",I:"var(--ruby)"};
 const ROW_BG={A:"rgba(105,153,77,.06)",L:"rgba(0,72,81,.06)",P:"rgba(242,199,92,.04)",E:"rgba(101,52,105,.06)",I:"rgba(155,24,66,.04)"};
 
-// I/O between zones
-const ZONE_IO={
+// I/O between workstreams
+const WORKSTREAM_IO={
   A:{input:"Director mandate + IMPROVE.VALIDATE.EO: VERSION-REVIEW.md + FEEDBACK_REGISTER.md",output:"CHARTER.md \u00b7 OKR_REGISTER.md \u00b7 ADR_*.md \u00b7 VALIDATE.md \u2192 LEARN"},
   L:{input:"ALIGN.VALIDATE.EO: CHARTER.md + ADR_*.md + research questions",output:"{SUB}-UBS-UDS.md \u00b7 {SUB}-EFFECTIVE-PRINCIPLES.md \u00b7 vana-spec.md \u2192 PLAN + ALIGN"},
   P:{input:"LEARN.EO: {SUB}-UBS-UDS.md + {SUB}-EFFECTIVE-PRINCIPLES.md + ALIGN: CHARTER.md",output:"UBS_REGISTER.md \u00b7 UDS_REGISTER.md \u00b7 ARCHITECTURE.md \u00b7 ROADMAP.md \u2192 EXECUTE"},
-  E:{input:"PLAN.VALIDATE.EO: ARCHITECTURE.md + UBS_REGISTER.md + ROADMAP.md",output:"Zone artifacts per SEQUENCE.md \u00b7 VALIDATE.md \u2192 IMPROVE"},
+  E:{input:"PLAN.VALIDATE.EO: ARCHITECTURE.md + UBS_REGISTER.md + ROADMAP.md",output:"Workstream artifacts per SEQUENCE.md \u00b7 VALIDATE.md \u2192 IMPROVE"},
   I:{input:"EXECUTE.VALIDATE.EO: 4-EXECUTE/ deliverables + VALIDATE.md + OKR_REGISTER.md",output:"VERSION-REVIEW.md (GO/NO-GO) \u00b7 FEEDBACK_REGISTER.md \u2192 ALIGN (next iteration)"}
 };
 // I/O between DSBV phases
 const DSBV_IO={
-  D:{input:"Zone input + EP constraints",output:"Design spec + execution strategy"},
+  D:{input:"Workstream input + EP constraints",output:"Design spec + execution strategy"},
   S:{input:"Design spec",output:"Ordered task list + dependencies"},
-  B:{input:"Sequenced tasks + context package",output:"Zone artifacts (documents or code)"},
-  V:{input:"Built artifacts + acceptance criteria",output:"Approved artifacts \u2192 next zone input"}
+  B:{input:"Sequenced tasks + context package",output:"Workstream artifacts (documents or code)"},
+  V:{input:"Built artifacts + acceptance criteria",output:"Approved artifacts \u2192 next workstream input"}
 };
 
-// Zone-level 7CS: CURATED data per zone (not derived from filtering arrays)
-const ZONE_7CS={
+// Workstream-level 7CS: CURATED data per workstream (not derived from filtering arrays)
+const WORKSTREAM_7CS={
   A:{
     eop:'/dsbv design align (entry point)',
     eoe:'Claude Code (CLI) \u00b7 1-ALIGN/ directory \u00b7 G1\u2013G4 human gates \u00b7 Hooks: dsbv-skill-guard (Write|Edit), dsbv-gate (commit), verify-deliverables (SubagentStop)',
@@ -647,12 +647,12 @@ const ZONE_7CS={
   }
 };
 
-function getZone7CS(row){
+function getWorkstream7CS(row){
   let ep_rules=RULES.map(r=>r.name);
-  let input=ZONE_IO[row].input;
-  let z=ZONE_7CS[row];
+  let input=WORKSTREAM_IO[row].input;
+  let z=WORKSTREAM_7CS[row];
   let agent='ltc-planner (D,S) \u00b7 ltc-builder (B) \u00b7 ltc-reviewer (V) \u00b7 ltc-explorer (pre-DSBV)';
-  let eo=ZONE_IO[row].output;
+  let eo=WORKSTREAM_IO[row].output;
   return {ep_rules,input,eop:z.eop,eoe:z.eoe,eot:z.eot,agent,eo};
 }
 
@@ -692,31 +692,31 @@ function getCell7CS(cellId){
 
 // ========== BUILD BUILDING VIEW ==========
 function buildBuildingView(){
-  const container=document.getElementById('bld-zones');
+  const container=document.getElementById('bld-workstreams');
   let html='';
 
   ROWS.forEach((r,ri)=>{
-    // I/O banner above zone (except first)
+    // I/O banner above workstream (except first)
     if(ri>0){
       const prevR=ROWS[ri-1];
-      html+='<div class="io-banner"><span class="io-arrow">\u2193</span><span class="io-label">'+ROW_NAMES[prevR]+' \u2192 '+ROW_NAMES[r]+':</span> '+ZONE_IO[r].input+'</div>';
+      html+='<div class="io-banner"><span class="io-arrow">\u2193</span><span class="io-label">'+ROW_NAMES[prevR]+' \u2192 '+ROW_NAMES[r]+':</span> '+WORKSTREAM_IO[r].input+'</div>';
     }
 
-    html+='<div class="zone-floor" style="border-left:3px solid '+ROW_COLORS[r]+'">';
-    html+='<div class="zf-header" style="background:'+ROW_BG[r]+'" onclick="toggleZone(this)" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="zone">';
+    html+='<div class="workstream-floor" style="border-left:3px solid '+ROW_COLORS[r]+'">';
+    html+='<div class="zf-header" style="background:'+ROW_BG[r]+'" onclick="toggleWorkstream(this)" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="workstream">';
     html+='<h2 style="color:'+ROW_COLORS[r]+'">'+(5-ri)+'F: '+ROW_NAMES[r]+' \u2014 '+ROW_SUBS[r]+'</h2>';
-    html+='<span class="zf-io" title="Input">IN: '+ZONE_IO[r].input.substring(0,50)+'...</span>';
-    html+='<span class="zf-io" title="Output">OUT: '+ZONE_IO[r].output.substring(0,50)+'...</span>';
+    html+='<span class="zf-io" title="Input">IN: '+WORKSTREAM_IO[r].input.substring(0,50)+'...</span>';
+    html+='<span class="zf-io" title="Output">OUT: '+WORKSTREAM_IO[r].output.substring(0,50)+'...</span>';
     html+='<span class="arr">\u25B6</span>';
     html+='</div>';
 
     html+='<div class="zf-body">';
 
-    // ZONE-LEVEL 7CS (the "big system") — always open
-    const zcs=getZone7CS(r);
-    html+='<div class="zone-7cs">';
-    html+='<div class="zone-7cs-hdr" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="zone-7cs">\u2605 '+ROW_NAMES[r]+' \u2014 Zone System View</div>';
-    html+='<div class="zone-7cs-body"><div class="cs7">';
+    // WORKSTREAM-LEVEL 7CS (the "big system") — always open
+    const zcs=getWorkstream7CS(r);
+    html+='<div class="workstream-7cs">';
+    html+='<div class="workstream-7cs-hdr" data-brief-coord="'+ROW_NAMES[r]+':*" data-brief-level="workstream-7cs">\u2605 '+ROW_NAMES[r]+' \u2014 Workstream System View</div>';
+    html+='<div class="workstream-7cs-body"><div class="cs7">';
 
     html+='<div class="cs7-row"><div class="cs7-label">EP</div><div class="cs7-val">';
     html+=zcs.ep_rules.map(x=>'<span class="r ep" data-brief-coord="EP:'+x+'" data-brief-level="framework">'+x+'</span>').join('');
@@ -736,7 +736,7 @@ function buildBuildingView(){
 
     html+='<div class="cs7-row"><div class="cs7-label">EO \u2192</div><div class="cs7-val"><span class="io">'+zcs.eo+'</span></div></div>';
 
-    html+='</div></div></div>'; // cs7 + zone-7cs-body + zone-7cs
+    html+='</div></div></div>'; // cs7 + workstream-7cs-body + workstream-7cs
 
     if(r==='L'){
       // CHANGE 5: LEARN uses 5-stage pipeline, NOT 4 DSBV rooms
@@ -806,7 +806,7 @@ function buildBuildingView(){
         if(ci>0) html+='<div class="room-flow">\u2192</div>';
         const cellId=r+'-'+c;
         const cs=getCell7CS(cellId);
-        const cellHeader=ZONE_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
+        const cellHeader=WORKSTREAM_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
 
         html+='<div class="dsbv-room" style="flex:1">';
         html+='<div class="dsbv-room-hdr" style="background:'+ROW_BG[r]+';color:'+ROW_COLORS[r]+'" data-brief-coord="'+cellId+'" data-brief-level="subsystem">';
@@ -817,8 +817,8 @@ function buildBuildingView(){
         // 7CS skeleton — all 8 rows in order
         html+='<div class="cs7">';
 
-        // EP — inherited from zone (simplified per user request)
-        html+='<div class="cs7-row"><div class="cs7-label">EP</div><div class="cs7-val"><span class="r ep" style="font-style:italic">\u2191 Inherited from '+ZONE_FULL[r]+' zone (all '+cs.ep_rules.length+' rules)</span></div></div>';
+        // EP — inherited from workstream (simplified per user request)
+        html+='<div class="cs7-row"><div class="cs7-label">EP</div><div class="cs7-val"><span class="r ep" style="font-style:italic">\u2191 Inherited from '+WORKSTREAM_FULL[r]+' workstream (all '+cs.ep_rules.length+' rules)</span></div></div>';
 
         // Input
         html+='<div class="cs7-row"><div class="cs7-label">Input</div><div class="cs7-val"><span class="io">'+cs.input+'</span></div></div>';
@@ -854,13 +854,13 @@ function buildBuildingView(){
       html+='</div>'; // flex row
     }
     html+='</div>'; // zf-body
-    html+='</div>'; // zone-floor
+    html+='</div>'; // workstream-floor
   });
 
   container.innerHTML=html;
 }
 
-function toggleZone(hdr){
+function toggleWorkstream(hdr){
   const body=hdr.nextElementSibling;
   const arr=hdr.querySelector('.arr');
   body.classList.toggle('open');
@@ -885,7 +885,7 @@ function buildMatrix(){
       cell.onclick=function(){toggleCellDetail(cellId)};
       let sk=SKILLS.filter(s=>s.cells.includes(cellId));
       let tp=TEMPLATES.filter(t=>t.cells.includes(cellId));
-      const cellHeader=ZONE_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
+      const cellHeader=WORKSTREAM_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')';
       cell.innerHTML='<div class="cell-id">'+cellHeader+'</div><div class="cell-count">'+sk.length+' skills, '+tp.length+' tmpl</div>';
       g.appendChild(cell);
     });
@@ -901,7 +901,7 @@ function toggleCellDetail(cellId){
   if(detail.classList.contains('open')&&detail.dataset.cell===cellId){detail.classList.remove('open');return;}
   detail.dataset.cell=cellId;detail.classList.add('open');
   const cs=getCell7CS(cellId);
-  const cellHeader=ZONE_FULL[cellId[0]]+'.'+PHASE_FULL[cellId[2]]+' ('+cellId+')';
+  const cellHeader=WORKSTREAM_FULL[cellId[0]]+'.'+PHASE_FULL[cellId[2]]+' ('+cellId+')';
   detail.innerHTML='<h3>7CS: '+cellHeader+'</h3><div class="cs-grid">'+
     '<div class="cs-item"><h4>EP (Rules only)</h4><div class="cs-content">'+cs.ep_rules.map(e=>'<div class="cs-resource">'+e+'</div>').join('')+'</div></div>'+
     '<div class="cs-item"><h4>Input</h4><div class="cs-content"><strong>'+cs.input+'</strong></div></div>'+
@@ -981,7 +981,7 @@ document.body.addEventListener('click',function(e){
 },true);
 
 function coordToPath(coord){
-  if(coord==='IMPROVE:feedback-loop') return 'CLAUDE.md (IMPROVE zone section) + 4-IMPROVE/ artifacts';
+  if(coord==='IMPROVE:feedback-loop') return 'CLAUDE.md (IMPROVE workstream section) + 4-IMPROVE/ artifacts';
   if(coord.startsWith('EP:')){
     const name=coord.slice(3);
     if(RULES.find(r=>r.id===name)) return 'rules/'+name+'.md';
@@ -989,8 +989,8 @@ function coordToPath(coord){
     return 'rules/'+name+'.md (or _genesis/frameworks/)';
   }
   if(coord.endsWith(':*')){
-    const zone=coord.split(':')[0];
-    return zone+' zone folder/ + CLAUDE.md (zone section)';
+    const workstream=coord.split(':')[0];
+    return workstream+' workstream folder/ + CLAUDE.md (workstream section)';
   }
   const parts=coord.split(':');
   if(parts.length>=3){
@@ -1019,11 +1019,11 @@ function getCurrentState(coord,level){
     return '(not found in data)';
   }
   if(coord.endsWith(':*')){
-    const zoneName=coord.split(':')[0];
-    const zl=ROWS.find(r=>ROW_NAMES[r]===zoneName);
+    const workstreamName=coord.split(':')[0];
+    const zl=ROWS.find(r=>ROW_NAMES[r]===workstreamName);
     if(zl){
-      const io=ZONE_IO[zl];
-      return 'Zone: '+ROW_NAMES[zl]+' \u2014 '+ROW_SUBS[zl]+'\nInput: '+io.input+'\nOutput: '+io.output;
+      const io=WORKSTREAM_IO[zl];
+      return 'Workstream: '+ROW_NAMES[zl]+' \u2014 '+ROW_SUBS[zl]+'\nInput: '+io.input+'\nOutput: '+io.output;
     }
   }
   if(/^[ALPEI]-[DSBV]$/.test(coord)){

@@ -46,17 +46,17 @@ claude   # Opens Claude Code with CLAUDE.md auto-loaded
 
 Or open the project in AntiGravity / Cursor — each IDE loads its own rules automatically.
 
-### 5. Build your first zone
+### 5. Build your first workstream
 
-Every zone (ALIGN → PLAN → EXECUTE → IMPROVE) uses the **DSBV process** — Design, Sequence, Build, Validate:
+Every workstream (ALIGN → PLAN → EXECUTE → IMPROVE) uses the **DSBV process** — Design, Sequence, Build, Validate:
 
 ```
-/dsbv                    Start a guided DSBV cycle on any zone
-/dsbv design align       Run just the Design phase on the ALIGN zone
-/dsbv status             See current progress across all zones
+/dsbv                    Start a guided DSBV cycle on any workstream
+/dsbv design align       Run just the Design phase on the ALIGN workstream
+/dsbv status             See current progress across all workstreams
 ```
 
-DSBV guides you step by step: define what the zone must produce (Design), order the work (Sequence), execute it (Build), and verify quality (Validate). Each phase has a human gate — you review and approve before proceeding.
+DSBV guides you step by step: define what the workstream must produce (Design), order the work (Sequence), execute it (Build), and verify quality (Validate). Each phase has a human gate — you review and approve before proceeding.
 
 Start with ALIGN: `/dsbv design align` — it will ask you to describe your project's purpose in 1-3 sentences, then draft the specification for your review.
 
@@ -113,11 +113,11 @@ This runs a 6-step pipeline: scope → research → structure → review → spe
 │   │   ├── strategic-compact.sh    # Context limit warnings
 │   │   └── validate-frontmatter.sh # Version metadata gate
 │   ├── rules/
-│   │   ├── dsbv.md             # DSBV zone awareness    ← EPS (always-loaded)
+│   │   ├── dsbv.md             # DSBV workstream awareness    ← EPS (always-loaded)
 │   │   ├── versioning.md       # Version metadata rule  ← EPS (always-loaded)
 │   │   └── memory-format.md    # Memory structure guard ← EPS (always-loaded)
 │   └── skills/                 # 26 skills across 9 categories
-│       ├── dsbv/               #   /dsbv — zone production process
+│       ├── dsbv/               #   /dsbv — workstream production process
 │       ├── learning/           #   7 skills: /learn pipeline
 │       ├── process/            #   4 skills: brainstorming, planning, execution
 │       ├── session/            #   5 skills: start, end, compress, resume, setup
@@ -142,31 +142,31 @@ This runs a 6-step pipeline: scope → research → structure → review → spe
 │   ├── compliance/             #   (I2 placeholder)
 │   └── culture/                #   (I2 placeholder)
 │
-├── 1-ALIGN/                    # Zone 1: Right Outcome
+├── 1-ALIGN/                    # ALIGN workstream: Right Outcome
 │   ├── charter/                #   Project charter, stakeholders, requirements
 │   ├── decisions/              #   ADRs for multi-option choices
 │   └── okrs/                   #   Objectives + Key Results
 │
-├── 2-LEARN/                    # Zone 2: Problem Research (ALPEI)
+├── 2-LEARN/                    # LEARN workstream: Problem Research (ALPEI)
 │   ├── input/                  #     Scoping documents + raw WIP
 │   ├── research/               #     Structured research + HTML visualizations
 │   ├── specs/                  #     VANA-SPEC extractions
 │   └── output/                 #     Final structured deliverables
 │
-├── 3-PLAN/                     # Zone 2: Minimize Risks
+├── 3-PLAN/                     # LEARN workstream: Minimize Risks
 │   ├── architecture/           #   System design, ADRs, diagrams
 │   ├── risks/                  #   UBS register (blocking forces)
 │   ├── drivers/                #   UDS register (driving forces)
 │   └── roadmap/                #   Execution timeline
 │
-├── 4-EXECUTE/                  # Zone 3: Deliver
+├── 4-EXECUTE/                  # PLAN workstream: Deliver
 │   ├── src/                    #   Application code
 │   ├── tests/                  #   Unit, integration, e2e, quality gates
 │   ├── config/                 #   CI/CD, env, security config
 │   ├── docs/                   #   API docs, onboarding, runbooks
 │   └── scripts/                #   Build and deploy scripts
 │
-├── 5-IMPROVE/                  # Zone 4: Learn & Grow
+├── 5-IMPROVE/                  # EXECUTE workstream: Learn & Grow
 │   ├── changelog/              #   CHANGELOG.md (tier-tagged)
 │   ├── metrics/                #   Performance and quality metrics
 │   ├── retrospectives/         #   Sprint and project retros
@@ -200,7 +200,7 @@ All skills live in `.claude/skills/` and are invoked with `/skill-name`.
 
 | Category | Skills | Purpose |
 |----------|--------|---------|
-| **DSBV** | `/dsbv` | Zone production process — Design, Sequence, Build, Validate |
+| **DSBV** | `/dsbv` | Workstream production process — Design, Sequence, Build, Validate |
 | **Learning** | `/learn`, `/learn-input`, `/learn-research`, `/learn-structure`, `/learn-review`, `/learn-spec`, `/learn-visualize` | Research pipeline — from question to structured spec |
 | **Process** | `/ltc-brainstorming`, `/ltc-writing-plans`, `/ltc-execution-planner`, `/ltc-task-executor` | Structured thinking and execution |
 | **Session** | `/session-start`, `/session-end`, `/compress`, `/resume`, `/setup` | Session lifecycle management |

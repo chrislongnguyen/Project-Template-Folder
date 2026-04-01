@@ -25,7 +25,7 @@ For project-specific issues: use `gh issue create` directly in your repo.
 
 1. **Classify** the feedback using [references/classification-guide.md](references/classification-guide.md):
    - Detect **type** (friction vs idea) from conversation context
-   - Detect **zone** from recent file paths or topic
+   - Detect **workstream** from recent file paths or topic
    - Detect **severity** (friction only: blocked / confused / annoying)
 
 2. **Draft and confirm** with user (minimal input):
@@ -33,7 +33,7 @@ For project-specific issues: use `gh issue create` directly in your repo.
    ```
    Template feedback detected:
      Type:     friction
-     Zone:     agent
+     Workstream:     agent
      Severity: confused
      What:     [pre-filled from conversation context]
      Suggest:  [pre-filled or ask user]
@@ -47,7 +47,7 @@ For project-specific issues: use `gh issue create` directly in your repo.
    - Friction: [templates/friction.md](templates/friction.md)
    - Idea: [templates/idea.md](templates/idea.md)
 
-   Replace all placeholders (ZONE, SEVERITY, descriptions) with actual values.
+   Replace all placeholders (WORKSTREAM, SEVERITY, descriptions) with actual values.
 
 4. **Report** the issue URL back to the user.
 

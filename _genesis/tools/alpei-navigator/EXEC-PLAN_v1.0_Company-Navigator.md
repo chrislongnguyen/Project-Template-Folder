@@ -3,7 +3,7 @@ version: "1.1"
 last_updated: 2026-03-31
 status: PENDING_DIRECTOR_APPROVAL
 director: Manh N.
-zone: 3-EXECUTE
+workstream: 3-EXECUTE
 project: LTC Company Navigator
 ---
 
@@ -183,7 +183,7 @@ Read all source files from the OPS_OE master template (`/Users/nvdmm/OPS_OE.6.4.
 **Agent 1: Skills Data**
 - Read all 29 `SKILL.md` files in `.claude/skills/*/SKILL.md`
 - Read key `gotchas.md` files in `.claude/skills/*/gotchas.md`
-- Extract per skill: name, description, zone mapping, 7CS role, input/output connections
+- Extract per skill: name, description, workstream mapping, 7CS role, input/output connections
 - Validate against the mapping table in PLAN section 1.3
 
 **Agent 2: Templates, Frameworks, Rules Data**

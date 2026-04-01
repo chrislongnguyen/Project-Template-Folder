@@ -58,7 +58,7 @@ export default function ConnectionsSlide() {
               marginBottom: '28px',
             }}
           >
-            HOW ZONES CONNECT
+            HOW WORKSTREAMS CONNECT
           </h1>
         </AnimatedText>
 

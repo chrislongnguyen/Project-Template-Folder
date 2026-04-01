@@ -6,9 +6,9 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 
 const steps = [
   { num: '01', title: 'CLONE THE TEMPLATE', action: 'Clone the LTC Project Template repo', how: 'git clone → rename → open in your IDE', time: '2 min' },
-  { num: '02', title: 'RUN TEMPLATE CHECK', action: 'Verify all zones and configs are in place', how: './scripts/template-check.sh --quiet', time: '1 min' },
+  { num: '02', title: 'RUN TEMPLATE CHECK', action: 'Verify all workstreams and configs are in place', how: './scripts/template-check.sh --quiet', time: '1 min' },
   { num: '03', title: 'START CLAUDE CODE', action: 'Launch Claude Code in the repo root', how: 'Run: claude   — reads CLAUDE.md, loads rules', time: '1 min' },
-  { num: '04', title: 'CHECK DSBV STATUS', action: 'See where every zone stands', how: '/dsbv status — shows zone × phase progress', time: '2 min' },
+  { num: '04', title: 'CHECK DSBV STATUS', action: 'See where every workstream stands', how: '/dsbv status — shows workstream × phase progress', time: '2 min' },
   { num: '05', title: 'START ALIGN', action: 'Begin your first DSBV cycle', how: '/dsbv design align — pre-flight → DESIGN.md', time: '5 min' },
 ];
 

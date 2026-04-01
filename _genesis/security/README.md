@@ -7,7 +7,7 @@ owner: "Long Nguyen"
 
 **Purpose:** Security standards that protect LTC data, systems, and operations.
 
-**Cascade position:** Derived layer — applies protective constraints across all zones and projects.
+**Cascade position:** Derived layer — applies protective constraints across all workstreams and projects.
 
 ```
 philosophy → principles → frameworks → [security as derived protection layer]

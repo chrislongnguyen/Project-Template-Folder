@@ -17,10 +17,10 @@ The genesis layer is the immutable foundation that all LTC projects inherit from
 
 ```
 philosophy → principles → frameworks → derived artifacts
-(WHY)        (WHAT)       (HOW)        (rules, skills, zones)
+(WHY)        (WHAT)       (HOW)        (rules, skills, workstreams)
 ```
 
-Derived artifacts (CLAUDE.md rules, agent skills, zone templates) are downstream of this layer. Changes here propagate outward through team consensus.
+Derived artifacts (CLAUDE.md rules, agent skills, workstream templates) are downstream of this layer. Changes here propagate outward through team consensus.
 
 ## Improvement Flow
 

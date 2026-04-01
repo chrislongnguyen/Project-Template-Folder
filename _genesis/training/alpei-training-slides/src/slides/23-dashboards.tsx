@@ -5,7 +5,7 @@ import { colors } from '../lib/theme';
 import { fadeInUp, staggerContainer } from '../lib/animations';
 
 const categories = [
-  { name: 'VERSION REGISTRY', count: 5, items: ['Per-zone DSBV status', 'Version + status + date', 'Artifact inventory', 'Gate approval log', 'Chain-of-custody trail'], color: colors.gold },
+  { name: 'VERSION REGISTRY', count: 5, items: ['Per-workstream DSBV status', 'Version + status + date', 'Artifact inventory', 'Gate approval log', 'Chain-of-custody trail'], color: colors.gold },
   { name: 'ALWAYS-ON RULES', count: 5, items: ['alpei-pre-flight', 'alpei-chain-of-custody', 'versioning', 'dsbv', 'agent-dispatch'], color: colors.midnightLight },
   { name: 'SCRIPTS & CHECKS', count: 3, items: ['template-check.sh', 'skill-validator.sh', 'git-warn.sh hook'], color: colors.muted },
 ];
@@ -13,7 +13,7 @@ const categories = [
 const raciRows = [
   { role: 'PM (YOU)', dashboards: 'VERSION_REGISTRY, gate approvals, /dsbv status', access: 'Full' },
   { role: 'ltc-planner', dashboards: 'DESIGN.md, SEQUENCE.md creation', access: 'Read + Draft' },
-  { role: 'ltc-builder', dashboards: 'Zone artifact production per SEQUENCE.md', access: 'Read + Write' },
+  { role: 'ltc-builder', dashboards: 'Workstream artifact production per SEQUENCE.md', access: 'Read + Write' },
   { role: 'ltc-reviewer', dashboards: 'VALIDATE.md — per-criterion PASS/FAIL', access: 'Read + Report' },
 ];
 

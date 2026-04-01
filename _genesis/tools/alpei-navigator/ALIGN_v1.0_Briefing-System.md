@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: APPROVED
 director: Manh N.
-zone: 1-ALIGN
+workstream: 1-ALIGN
 project: Company Navigator Briefing System
 parent: Company Navigator v1.0
 ---
@@ -18,7 +18,7 @@ Director Manh N. — sole human Director operating an AI-agent company through t
 ### Situation
 - The Company Navigator (v1.0) gives the Director a visual map of the entire company using the 5x4x7CS hierarchy
 - The Director understands the company structure through the map
-- **BUT** when the Director wants to **change** something (add a skill, move a resource, restructure a zone), there is no structured way to brief AI agents
+- **BUT** when the Director wants to **change** something (add a skill, move a resource, restructure a workstream), there is no structured way to brief AI agents
 - The navigator has **hardcoded data** — changes to the actual template don't automatically reflect in the map
 - Briefs must work across **multiple AI tools** (Claude Code, Cursor, AntiGravity)
 
@@ -41,7 +41,7 @@ A **briefing system** with two integrated parts:
 - Click any element in the navigator -> generates a pre-filled change brief
 - Brief includes: coordinate, current state, desired state, affected file paths, step-by-step instructions, acceptance criteria
 - "Copy to Clipboard" -> paste into any AI session (Claude Code, Cursor, AntiGravity)
-- Works for all levels: resource, subsystem, zone, framework
+- Works for all levels: resource, subsystem, workstream, framework
 
 ### Part B: Map Auto-Regeneration
 - After executing a brief, the AI agent regenerates the navigator HTML as the final step
@@ -65,7 +65,7 @@ A **briefing system** with two integrated parts:
 |---|----------|-------------------|-----------|
 | 1 | Usage workflow | Mix of reactive (spot issue in map) and proactive (planned improvements) | Both patterns needed |
 | 2 | Executor tools | Multiple: Claude Code, Cursor, AntiGravity | Must be tool-agnostic |
-| 3 | Change frequency by size | All sizes equally (resource, zone, framework) | Full spectrum needed |
+| 3 | Change frequency by size | All sizes equally (resource, workstream, framework) | Full spectrum needed |
 | 4 | Brief contents | Full context + file paths + step-by-step instructions | Agent should need zero prior LTC knowledge |
 | 5 | Map sync | Auto-generate from template (agent regenerates after change) | No manual map updates |
 | 6 | Auto-gen approach | AI agent regenerates (not a build script) | Fully integrated workflow |
@@ -78,7 +78,7 @@ The 5x4x7CS hierarchy provides a universal address for any element in the compan
 
 ### Coordinate Format
 ```
-{level}:{zone}-{phase}:{7CS}:{resource}
+{level}:{workstream}-{phase}:{7CS}:{resource}
 ```
 
 ### Levels and Their Coordinates
@@ -86,11 +86,11 @@ The 5x4x7CS hierarchy provides a universal address for any element in the compan
 | Level | Coordinate Format | Example | What It Addresses |
 |-------|-------------------|---------|-------------------|
 | **Framework** | `EP:{name}` | `EP:brand-identity` | A constitutional rule or framework |
-| **Zone** | `{zone}:*` | `ALIGN:*` | Zone-level I/O, purpose, or structure |
-| **Zone 7CS** | `{zone}:{7CS}` | `PLAN:EOP` | A 7CS component at zone level |
-| **Subsystem** | `{zone}-{phase}` | `P-B` | A specific DSBV room |
-| **Component** | `{zone}-{phase}:{7CS}` | `P-B:EOP` | A 7CS slot in a specific room |
-| **Resource** | `{zone}-{phase}:{7CS}:{name}` | `P-B:EOP:ltc-writing-plans` | A specific resource in a specific slot |
+| **Workstream** | `{workstream}:*` | `ALIGN:*` | Workstream-level I/O, purpose, or structure |
+| **Workstream 7CS** | `{workstream}:{7CS}` | `PLAN:EOP` | A 7CS component at workstream level |
+| **Subsystem** | `{workstream}-{phase}` | `P-B` | A specific DSBV room |
+| **Component** | `{workstream}-{phase}:{7CS}` | `P-B:EOP` | A 7CS slot in a specific room |
+| **Resource** | `{workstream}-{phase}:{7CS}:{name}` | `P-B:EOP:ltc-writing-plans` | A specific resource in a specific slot |
 
 ### Actions
 
@@ -107,12 +107,12 @@ The 5x4x7CS hierarchy provides a universal address for any element in the compan
 |-------------------|-----------------|
 | `EP:{rule}` | `rules/{rule}.md` |
 | `EP:{framework}` | `_genesis/frameworks/{framework}.md` |
-| `{zone}:*` | Zone folder + `CLAUDE.md` zone section |
+| `{workstream}:*` | Workstream folder + `CLAUDE.md` workstream section |
 | `{z}-{p}:EOP:{skill}` | `.claude/skills/{skill}/SKILL.md` + `gotchas.md` + `references/` |
 | `{z}-{p}:EOP:{template}` | `_genesis/templates/{template}.md` |
 | `{z}-{p}:EOT:{mcp}` | `.claude/settings.json` (permissions) |
 | `{z}-{p}:EOE:{env}` | `.claude/settings.json` (environment) |
-| `{z}-{p}:EP:{rule}` | `rules/{rule}.md` (add zone-specific content) |
+| `{z}-{p}:EP:{rule}` | `rules/{rule}.md` (add workstream-specific content) |
 | Navigator data | `LTC-COMPANY-NAVIGATOR.html` (JS data arrays) |
 
 ---
@@ -128,7 +128,7 @@ The 5x4x7CS hierarchy provides a universal address for any element in the compan
 - Date: {auto}
 - Director: Manh N.
 - Coordinate: {auto from click}
-- Level: {Framework|Zone|Subsystem|Component|Resource}
+- Level: {Framework|Workstream|Subsystem|Component|Resource}
 
 ## Change
 - Action: {Add|Remove|Move|Modify}

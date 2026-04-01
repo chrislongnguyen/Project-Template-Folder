@@ -5,9 +5,9 @@ status: Draft
 last_updated: 2026-03-29
 owner: Long Nguyen
 ---
-# DSBV Context Package — [ZONE NAME]
+# DSBV Context Package — [WORKSTREAM NAME]
 
-> Input context for agents running DSBV Build phase on Zone [N].
+> Input context for agents running DSBV Build phase on Workstream [N].
 > Budget: ~4000 words. Every token costs signal-to-noise ratio.
 > Bookend pattern (LT-2): most critical content at start and end, least critical in middle.
 
@@ -46,7 +46,7 @@ owner: Long Nguyen
 
 ---
 
-## Section 3: What This Zone Must Produce
+## Section 3: What This Workstream Must Produce
 
 > The CONTRACT. CRITICAL: every artifact here MUST appear as a deliverable in Section 6.
 > If Section 3 lists 6 artifacts and Section 6 lists 5 deliverables, agents will skip one.
@@ -64,7 +64,7 @@ owner: Long Nguyen
 | A2 | [Name] | [path] | [Content] | C2: [What must be true] | [PASS/FAIL test] |
 | A2 | | | | C3: [Second condition for same artifact] | [PASS/FAIL test] |
 
-[Zone examples — ALIGN: Charter→EO+scope+RACI, Stakeholders→personas+anti-persona, Requirements→VANA+ACs, OKRs→formulas+pillars, Force Analysis→UBS+UDS, ADRs→D1-D10 decisions | PLAN: Architecture→components+interfaces, Roadmap→milestones, Registers→risks+drivers | EXECUTE: Source→code, Tests→coverage, Config→deploy, Docs→API | IMPROVE: Changelog→versions, Retro→lessons, Metrics→KRs]
+[Workstream examples — ALIGN: Charter→EO+scope+RACI, Stakeholders→personas+anti-persona, Requirements→VANA+ACs, OKRs→formulas+pillars, Force Analysis→UBS+UDS, ADRs→D1-D10 decisions | PLAN: Architecture→components+interfaces, Roadmap→milestones, Registers→risks+drivers | EXECUTE: Source→code, Tests→coverage, Config→deploy, Docs→API | IMPROVE: Changelog→versions, Retro→lessons, Metrics→KRs]
 
 **Alignment check (do this BEFORE presenting DESIGN.md):**
 - Count conditions with no artifact → must be 0
@@ -75,13 +75,13 @@ owner: Long Nguyen
 
 ## Section 4: Domain Context
 
-> Include ONLY what agents need for THIS zone. Every irrelevant paragraph degrades signal (LT-7).
-> Design-heavy zones: team quotes, strategic reasoning, debate resolutions.
-> Execution-heavy zones: architecture decisions, API specs, test strategies.
+> Include ONLY what agents need for THIS workstream. Every irrelevant paragraph degrades signal (LT-7).
+> Design-heavy workstreams: team quotes, strategic reasoning, debate resolutions.
+> Execution-heavy workstreams: architecture decisions, API specs, test strategies.
 
-### Prior Zone Output
+### Prior Workstream Output
 
-[Key outputs from preceding zone(s) that constrain or inform this zone's work.]
+[Key outputs from preceding workstream(s) that constrain or inform this workstream's work.]
 
 ### Team Context
 
@@ -124,9 +124,9 @@ owner: Long Nguyen
 
 ### Your Role
 
-[Multi-agent: "You are one of N agents, each independently producing a complete [ZONE] package. Outputs will be synthesized by an Opus agent using Competing Hypotheses."]
+[Multi-agent: "You are one of N agents, each independently producing a complete [WORKSTREAM] package. Outputs will be synthesized by an Opus agent using Competing Hypotheses."]
 
-[Single-agent: "You are the sole agent producing the [ZONE] artifacts. Output will be validated against the rubric by the Human Director."]
+[Single-agent: "You are the sole agent producing the [WORKSTREAM] artifacts. Output will be validated against the rubric by the Human Director."]
 
 ### Your Deliverables
 
@@ -135,14 +135,14 @@ owner: Long Nguyen
 
 ### What to Optimize For
 
-- [Primary: what makes THIS zone's output valuable]
+- [Primary: what makes THIS workstream's output valuable]
 - [Secondary: e.g., "find non-obvious risks" for ALIGN, "minimize coupling" for PLAN]
 - [Specificity: "vague outputs will be discarded during synthesis"]
 
 ### Constraints
 
 - [Hard constraints — what agents must NOT do]
-- [Scope boundaries — what belongs to other zones]
+- [Scope boundaries — what belongs to other workstreams]
 - Sustainability > Efficiency > Scalability in all prioritization
 - Do NOT propose changes to the 7-CS or 8 LLM Truths
 - All outputs must use the formats specified in Section 3

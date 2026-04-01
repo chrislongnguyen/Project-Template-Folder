@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-30
 ---
-# ZONE 2 — PLAN (Minimize Risks via Design)
+# PLAN workstream (Minimize Risks via Design)
 
 > "What can go wrong? What should we leverage? In what order?"
 
@@ -14,7 +14,7 @@ last_updated: 2026-03-30
 ## Purpose
 
 No code is written until the top risks are identified and mitigated.
-This zone translates learning + alignment from `1-ALIGN/` into actionable architecture and roadmaps.
+This workstream translates learning + alignment from `1-ALIGN/` into actionable architecture and roadmaps.
 It operationalizes the core equation: **Success = Efficient & Scalable Management of Failure Risks**.
 
 ```

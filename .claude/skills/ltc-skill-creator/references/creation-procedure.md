@@ -49,7 +49,7 @@ If unsure, start SIMPLE. Upgrade to STANDARD when SKILL.md exceeds 40 lines.
 
 | Skill Type | Location | Example |
 |-----------|----------|---------|
-| Zone-specific | `{N}-{ZONE}/skills/{name}/` | `5-IMPROVE/skills/feedback/` |
+| Workstream-specific | `{N}-{WORKSTREAM}/skills/{name}/` | `5-IMPROVE/skills/feedback/` |
 | Agent governance | `.claude/skills/{name}/` | `.claude/skills/ltc-skill-creator/` |
 | Cross-project shared | `_genesis/skills/{name}/` | `_genesis/skills/common-lint/` |
 
@@ -112,7 +112,7 @@ Wait for explicit approval before committing.
 ## Step 9: Commit
 
 ```
-feat({zone}): add {skill-name} skill
+feat({workstream}): add {skill-name} skill
 ```
 
-Where `{zone}` is the APEI zone the skill belongs to (e.g., `align`, `improve`, `agent`).
+Where `{workstream}` is the APEI workstream the skill belongs to (e.g., `align`, `improve`, `agent`).

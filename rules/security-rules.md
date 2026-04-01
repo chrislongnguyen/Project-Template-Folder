@@ -1,4 +1,4 @@
-<!-- Zone 0 agent-facing copy. Human-readable version: _genesis/security/SECURITY_HIERARCHY.md -->
+<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/security/SECURITY_HIERARCHY.md -->
 # LTC Security Rules — AI Agent Reference
 
 > Full reference for AI agent security behavior. Distilled rules are loaded via CLAUDE.md / GEMINI.md / .cursor/rules/ / .agents/rules/. This file provides the rationale, examples, and setup instructions.

@@ -12,7 +12,7 @@ last_updated: 2026-04-01
 
 ## Before You Start
 
-**What this does:** Brings your existing project structure in line with the I1 template — new zones, updated rules, agent system, DSBV workflow. Your project content is preserved.
+**What this does:** Brings your existing project structure in line with the I1 template — new workstreams, updated rules, agent system, DSBV workflow. Your project content is preserved.
 
 **What this does NOT do:** Delete your work, change your code, or modify your business logic.
 
@@ -87,7 +87,7 @@ The agent should copy these from the template:
 | `scripts/` | `scripts/` | **Copy** — template-check.sh, skill-validator.sh |
 | `tests/brand-identity/` | `tests/brand-identity/` | **Copy** — brand validation suite |
 
-### Step 5: Create missing zone folders
+### Step 5: Create missing workstream folders
 
 If your project uses the old structure (`docs/`, `_shared/`, numbered differently), the agent should:
 
@@ -121,11 +121,11 @@ Ensure these folders exist with a README.md in each:
   reviews/
 ```
 
-### Step 6: Move existing content to correct zones
+### Step 6: Move existing content to correct workstreams
 
 Tell your agent:
 
-> "Look at my existing project files. Move each file to the correct ALPEI zone
+> "Look at my existing project files. Move each file to the correct ALPEI workstream
 > based on its purpose. If unsure, ask me."
 
 Common mappings:
@@ -134,7 +134,7 @@ Common mappings:
 |---|---|---|
 | `docs/design/` | `1-ALIGN/charter/` or `3-PLAN/architecture/` | Design docs are either alignment (charter) or planning (architecture) |
 | `docs/adr/` | `1-ALIGN/decisions/` | ADRs live in ALIGN |
-| `research/` | `2-LEARN/research/` | Research is LEARN zone |
+| `research/` | `2-LEARN/research/` | Research is LEARN workstream |
 | `_shared/` | `_genesis/` | Shared resources renamed |
 | `src/`, `lib/` | `4-EXECUTE/src/` | Code stays in EXECUTE |
 | `tests/` | `4-EXECUTE/tests/` | Tests stay in EXECUTE |
@@ -172,13 +172,13 @@ claude
 
 | I0 (Scaffold) | I1 (Current) |
 |---|---|
-| 4 zones (0-3) + `_shared/` | 5 ALPEI zones (1-5) + `_genesis/` + `0-GOVERN` (builder only) |
-| No LEARN zone | LEARN is Zone 2 — research pipeline with 6 skills |
+| 4 workstreams (0-3) + `_shared/` | 5 ALPEI workstreams (1-5) + `_genesis/` + `0-GOVERN` (builder only) |
+| No LEARN workstream | LEARN is LEARN workstream — research pipeline with 6 skills |
 | No agent system | 4 MECE agents with scope boundaries |
 | No DSBV workflow | Design → Sequence → Build → Validate with human gates |
 | No enforcement | 5 always-on rules + 3 hooks |
 | Manual commits | /git-save with classification + version checks |
-| No templates | 27 templates covering all zone × phase intersections |
+| No templates | 27 templates covering all workstream × phase intersections |
 | No training | 47-slide interactive deck + Navigator HTML |
 
 ---
@@ -192,7 +192,7 @@ claude
 → Your project CLAUDE.md wins. Only add the sections you're missing (Structure, DSBV Process, Agent System). Don't overwrite your project-specific rules.
 
 **"I have files in locations the template doesn't expect"**
-→ That's fine. The template defines the standard structure, not a requirement. Move files if it makes sense for your project, leave them if it doesn't. The zones are guidelines, not enforcement.
+→ That's fine. The template defines the standard structure, not a requirement. Move files if it makes sense for your project, leave them if it doesn't. The workstreams are guidelines, not enforcement.
 
 **"My agent doesn't know the DSBV commands"**
 → Verify `.claude/skills/dsbv/SKILL.md` exists. If not, re-copy from Step 4.

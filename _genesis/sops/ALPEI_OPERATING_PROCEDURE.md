@@ -203,23 +203,23 @@ claude --version
 Run the following in Claude Code to verify everything works:
 
 ```
-/dsbv status    # Should display current APEI zone progress
+/dsbv status    # Should display current APEI workstream progress
 ```
 
 If this executes without errors, your workspace is ready.
 
 ## 3.3. REPO FOLDER STRUCTURE
 
-This template follows the APEI 5-zone structure:
+This template follows the APEI 5-workstream structure:
 
 ```
 PROJECT_ROOT/
 |
-|-- 0-GOVERN/              # Zone 0 — Agent governance (DSBV artifacts)
-|-- 1-ALIGN/               # Zone 1 — ALIGN (charter, decisions, okrs, learning)
-|-- 3-PLAN/                # Zone 2 — PLAN (architecture, risks, drivers, roadmap)
-|-- 4-EXECUTE/             # Zone 3 — EXECUTE (src, tests, config, docs)
-|-- 5-IMPROVE/             # Zone 4 — IMPROVE (changelog, metrics, retros, reviews)
+|-- 0-GOVERN/              # GOVERN workstream — Agent governance (DSBV artifacts)
+|-- 1-ALIGN/               # ALIGN workstream (charter, decisions, okrs, learning)
+|-- 3-PLAN/                # PLAN workstream (architecture, risks, drivers, roadmap)
+|-- 4-EXECUTE/             # EXECUTE workstream (src, tests, config, docs)
+|-- 5-IMPROVE/             # IMPROVE workstream (changelog, metrics, retros, reviews)
 |
 |-- _genesis/              # Shared org knowledge base
 |   |-- brand/             # LTC brand identity

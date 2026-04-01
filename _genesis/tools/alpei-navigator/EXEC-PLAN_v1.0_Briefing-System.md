@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: COMPLETED
 director: Manh N.
-zone: 3-EXECUTE
+workstream: 3-EXECUTE
 project: Company Navigator Briefing System
 ---
 
@@ -36,7 +36,7 @@ File size: 45KB -> 58KB (well under 200KB limit).
 
 ### 3. Data Attributes (~30 touch points)
 - Static EP rail rules: 16 elements with `data-brief-coord="EP:{name}"`
-- Building view: zone headers, zone 7CS headers, DSBV room headers, all resource tags
+- Building view: workstream headers, workstream 7CS headers, DSBV room headers, all resource tags
 - Matrix view: all 20 cells
 - Resources view: all 20 heatmap cells
 - All resource `.r` spans include coordinate + level

@@ -6,11 +6,11 @@ owner: Long Nguyen
 ---
 # _genesis/templates/ — Document & Process Templates
 
-**Purpose:** FORMATS — reusable document and process templates for LTC project zones.
+**Purpose:** FORMATS — reusable document and process templates for LTC project workstreams.
 
 **Cascade position:** Derived from `_genesis/frameworks/`. Templates instantiate framework patterns into concrete document structures.
 
-**Usage:** Copy template → fill placeholders → commit as zone artifact. Never edit originals in this directory.
+**Usage:** Copy template → fill placeholders → commit as workstream artifact. Never edit originals in this directory.
 
 ---
 
@@ -18,7 +18,7 @@ owner: Long Nguyen
 
 | Template | Purpose |
 |----------|---------|
-| `DESIGN_TEMPLATE.md` | DSBV Phase 1 artifact — zone design contract with Scope Check + Execution Strategy |
+| `DESIGN_TEMPLATE.md` | DSBV Phase 1 artifact — workstream design contract with Scope Check + Execution Strategy |
 | `DSBV_PROCESS.md` | DSBV sub-process definition — 4-stage workflow (Design, Sequence, Build, Validate) |
 | `DSBV_CONTEXT_TEMPLATE.md` | Context package structure for launching DSBV agents |
 | `DSBV_EVAL_TEMPLATE.md` | Evaluation rubric for comparing multi-agent outputs |
@@ -26,7 +26,7 @@ owner: Long Nguyen
 | `FEEDBACK_TEMPLATE.md` | Feedback capture for template-level improvement issues |
 | `RESEARCH_METHODOLOGY.md` | Research phase methodology and source evaluation criteria |
 | `RESEARCH_TEMPLATE.md` | Research output structure |
-| `RETRO_TEMPLATE.md` | Zone retrospective — lessons learned, root cause, mitigation |
+| `RETRO_TEMPLATE.md` | Workstream retrospective — lessons learned, root cause, mitigation |
 | `REVIEW_PACKAGE_TEMPLATE.md` | Review package for human approval gates |
 | `REVIEW_TEMPLATE.md` | Peer review structure |
 | `RISK_ENTRY_TEMPLATE.md` | UBS risk register entry format |
@@ -46,13 +46,13 @@ owner: Long Nguyen
 
 ---
 
-## Zone×Phase Index
+## Workstream×Phase Index
 
-> Look up the right template by ALPEI zone (row) and DSBV phase (column).
+> Look up the right template by ALPEI workstream (row) and DSBV phase (column).
 > "(new)" = added in A2 gap-fill. Use this table before reading the full Process Map.
 > Full context: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
 
-| Zone | Design (ltc-planner) | Sequence (ltc-planner) | Build (ltc-builder) | Validate (ltc-reviewer) |
+| Workstream | Design (ltc-planner) | Sequence (ltc-planner) | Build (ltc-builder) | Validate (ltc-reviewer) |
 |------|----------------------|------------------------|---------------------|-------------------------|
 | **1-ALIGN** | CHARTER_TEMPLATE.md (new)<br>FORCE_ANALYSIS_TEMPLATE.md (new) | OKR_TEMPLATE.md (new) | CHARTER_TEMPLATE.md (new) | REVIEW_TEMPLATE.md |
 | **2-LEARN** | _(see §P4 LEARN Pipeline)_ | _(see §P4 LEARN Pipeline)_ | `/learn pipeline` — entry: `/learn {slug}` → produces P0–P7 pages per topic | `/learn:review` — all P-pages reach `status: approved` |

@@ -7,7 +7,7 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 const categories = [
   {
     name: 'DSBV PROCESS',
-    desc: 'Run the 4-phase workflow for any zone',
+    desc: 'Run the 4-phase workflow for any workstream',
     count: 4,
     examples: ['/dsbv design', '/dsbv sequence', '/dsbv build', '/dsbv validate'],
   },

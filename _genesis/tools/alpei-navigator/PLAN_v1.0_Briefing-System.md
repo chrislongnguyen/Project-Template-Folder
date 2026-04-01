@@ -3,7 +3,7 @@ version: "1.0"
 last_updated: 2026-03-31
 status: PENDING_DIRECTOR_APPROVAL
 director: Manh N.
-zone: 2-PLAN
+workstream: 2-PLAN
 project: Company Navigator Briefing System
 parent: Company Navigator v1.0
 ---
@@ -108,8 +108,8 @@ Every briefable element gets two HTML attributes added during rendering:
 | Element Type | data-brief-coord | data-brief-level |
 |-------------|-----------------|-----------------|
 | EP rail rules (static HTML) | `EP:{rule-name}` | `framework` |
-| Zone header | `{ZONE}:*` | `zone` |
-| Zone 7CS header | `{ZONE}:*` | `zone-7cs` |
+| Workstream header | `{WORKSTREAM}:*` | `workstream` |
+| Workstream 7CS header | `{WORKSTREAM}:*` | `workstream-7cs` |
 | DSBV room header | `{z}-{p}` | `subsystem` |
 | Resource tag (.r.eop) in cell | `{z}-{p}:EOP:{name}` | `resource` |
 | Resource tag (.r.eot) in cell | `{z}-{p}:EOT:{name}` | `resource` |
@@ -117,7 +117,7 @@ Every briefable element gets two HTML attributes added during rendering:
 | Resource tag (.r) EOE in cell | `{z}-{p}:EOE:{name}` | `resource` |
 | Matrix cell | `{z}-{p}` | `subsystem` |
 | Heatmap cell | `{z}-{p}` | `subsystem` |
-| Zone-level 7CS resource tags | `{ZONE}:EOP:{name}` | `zone-resource` |
+| Workstream-level 7CS resource tags | `{WORKSTREAM}:EOP:{name}` | `workstream-resource` |
 
 ---
 
@@ -128,7 +128,7 @@ coordToPath(coord) resolves:
 
 EP:{rule}               -> rules/{rule}.md
 EP:{framework}          -> _genesis/frameworks/{framework}.md
-{zone}:*                -> <zone-folder>/ + CLAUDE.md
+{workstream}:*                -> <workstream-folder>/ + CLAUDE.md
 {z}-{p}                 -> (subsystem — multiple files)
 {z}-{p}:EOP:{skill}     -> .claude/skills/{skill}/SKILL.md
 {z}-{p}:EOP:{template}  -> _genesis/templates/{template}.md
@@ -207,7 +207,7 @@ After completing the changes:
 | R2 | Some elements don't have data attributes (missed during rendering) | MEDIUM | Test every element type in all 3 views |
 | R3 | Brief panel and sidebar both open simultaneously | LOW | Close sidebar when brief panel opens (and vice versa) |
 | R4 | Clipboard API blocked in some browsers | LOW | Fallback to `document.execCommand('copy')` with hidden textarea |
-| R5 | Zone-level resource tags share names across cells | MEDIUM | Zone-level tags use zone prefix (e.g., `PLAN:EOP:{name}`) not cell prefix |
+| R5 | Workstream-level resource tags share names across cells | MEDIUM | Workstream-level tags use workstream prefix (e.g., `PLAN:EOP:{name}`) not cell prefix |
 
 ---
 

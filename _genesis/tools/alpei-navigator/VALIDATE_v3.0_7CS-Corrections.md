@@ -16,31 +16,31 @@ last_updated: 2026-03-31
 
 | ID | Sub | Description | Verdict | Evidence (line) |
 |----|-----|-------------|---------|-----------------|
-| V1 | V1.1 | Building view DSBV room headers use dot notation `ZONE.PHASE (Z-P)` | PASS | L763: `ZONE_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')'` produces e.g. "ALIGN.DESIGN (A-D)" |
+| V1 | V1.1 | Building view DSBV room headers use dot notation `WORKSTREAM.PHASE (Z-P)` | PASS | L763: `WORKSTREAM_FULL[r]+'.'+PHASE_FULL[c]+' ('+cellId+')'` produces e.g. "ALIGN.DESIGN (A-D)" |
 | V1 | V1.2 | Matrix view cell headers use dot notation | PASS | L843: same pattern as building view |
-| V1 | V1.3 | Matrix detail view uses dot notation | PASS | L859: `ZONE_FULL[cellId[0]]+'.'+PHASE_FULL[cellId[2]]+' ('+cellId+')'` |
-| V1 | V1.4 | Verified 3+ cells: ALIGN.DESIGN (A-D), PLAN.BUILD (P-B), EXECUTE.VALIDATE (E-V) | PASS | L432-433: `ZONE_FULL` and `PHASE_FULL` constants correctly defined |
+| V1 | V1.3 | Matrix detail view uses dot notation | PASS | L859: `WORKSTREAM_FULL[cellId[0]]+'.'+PHASE_FULL[cellId[2]]+' ('+cellId+')'` |
+| V1 | V1.4 | Verified 3+ cells: ALIGN.DESIGN (A-D), PLAN.BUILD (P-B), EXECUTE.VALIDATE (E-V) | PASS | L432-433: `WORKSTREAM_FULL` and `PHASE_FULL` constants correctly defined |
 | V2 | V2.1 | `getCell7CS()` EP row renders ONLY the 8 `.claude/rules/` entries | PASS | L612: `let ep_rules=RULES.map(r=>r.name);` — RULES array has exactly 8 entries |
-| V2 | V2.2 | `getZone7CS()` EP row renders ONLY rules, NOT frameworks | PASS | L580: `let ep_rules=RULES.map(r=>r.name);` — no FRAMEWORKS reference |
+| V2 | V2.2 | `getWorkstream7CS()` EP row renders ONLY rules, NOT frameworks | PASS | L580: `let ep_rules=RULES.map(r=>r.name);` — no FRAMEWORKS reference |
 | V2 | V2.3 | THREE_PILLARS, EFFECTIVE_SYSTEM, AGENT_SYSTEM, COGNITIVE_BIASES not in EP row JS rendering | PASS | EP rendering at L669, L776, L861 all use `ep_rules` (sourced from RULES only) |
 | V2 | V2.4 | FRAMEWORKS data array still exists for Resources view | PASS | L382-399: 17 FRAMEWORKS entries intact |
 | V2 | V2.W | Static right EP rail still shows frameworks (THREE_PILLARS, AGENT_SYSTEM, etc.) under "EFFECTIVE PRINCIPLES" label | **WARN** | L272-284: Right `.ep-rail` div contains framework names. Not in JS EP rows, but visually labeled as EP. This is an architectural design choice (principles encompass both rules and frameworks), but may confuse users expecting EP = rules only. Left rail = 8 rules, right rail = 10 frameworks. |
 | V3 | V3.1 | CELL_7CS has entries for 16 cells (all except L-* which uses pipeline) | PASS | 16 entries: A-D, A-S, A-B, A-V, P-D, P-S, P-B, P-V, E-D, E-S, E-B, E-V, I-D, I-S, I-B, I-V |
-| V3 | V3.2 | A-D Input references specific files, not "Director mandate" | PASS | L437: `'Stakeholder brief + project scope · Zone 0 GOVERN ≥1 validated artifact · LEARN outputs if available: 2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md'` |
+| V3 | V3.2 | A-D Input references specific files, not "Director mandate" | PASS | L437: `'Stakeholder brief + project scope · GOVERN workstream ≥1 validated artifact · LEARN outputs if available: 2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md'` |
 | V3 | V3.3 | P-B Input references specific upstream files (ARCHITECTURE, UBS_REGISTER) | PASS | L479: `'PLAN.SEQUENCE.EO: ROADMAP.md (approved) · PLAN.DESIGN.EO: UBS_REGISTER.md · LEARN: EFFECTIVE-PRINCIPLES.md · ALIGN: CHARTER.md'` |
 | V3 | V3.4 | E-V Input references EXECUTE artifacts + DESIGN.md ACs | PASS | L514: `'EXECUTE.BUILD.EO: artifacts per SEQUENCE.md · EXECUTE.DESIGN.EO: DESIGN.md · PLAN: UBS_REGISTER.md'` |
 | V3 | V3.5 | I-V Input references FEEDBACK_REGISTER + METRICS_BASELINE | PASS | L542: `'IMPROVE.BUILD.EO: FEEDBACK_REGISTER.md · METRICS_BASELINE.md · RETRO-PLAN.md · OKR_REGISTER.md'` |
-| V3 | V3.6 | EO fields name specific file paths, not "Zone artifacts" | PASS | All 16 CELL_7CS EO fields contain specific paths (e.g. `'1-ALIGN/DESIGN.md'`, `'3-PLAN/architecture/ARCHITECTURE.md'`, `'5-IMPROVE/reviews/VERSION-REVIEW.md'`) |
+| V3 | V3.6 | EO fields name specific file paths, not "Workstream artifacts" | PASS | All 16 CELL_7CS EO fields contain specific paths (e.g. `'1-ALIGN/DESIGN.md'`, `'3-PLAN/architecture/ARCHITECTURE.md'`, `'5-IMPROVE/reviews/VERSION-REVIEW.md'`) |
 | V4 | V4.1 | Templates render in EOT row (not EOP row) in `getCell7CS()` | PASS | L626: `eot_tmpl=(data.eot_templates||[])` feeds into `eot` array; L793: EOT row renders `cs.eot` |
 | V4 | V4.2 | Skills appear in EOP row | PASS | L618-620: `eop_named` + `eop_extra` = skills; L783: EOP row renders `cs.eop_skills` |
 | V4 | V4.3 | CELL_7CS uses `eot_templates` (not `eop_templates`) | PASS | All 16 entries use `eot_templates`; zero occurrences of `eop_templates` |
-| V5 | V5.1 | LEARN zone does NOT have 4 DSBV rooms | PASS | L695: `if(r==='L')` branch renders pipeline instead of DSBV rooms |
+| V5 | V5.1 | LEARN workstream does NOT have 4 DSBV rooms | PASS | L695: `if(r==='L')` branch renders pipeline instead of DSBV rooms |
 | V5 | V5.2 | LEARN has 5-stage pipeline: S1 through S5 | PASS | L698-736: `learnStages` array has S1, S2, S3, S4, S5 |
 | V5 | V5.3 | CSS class `.learn-pipeline` exists | PASS | L179: `.learn-pipeline{display:flex;flex-direction:column;gap:4px}` |
 | V5 | V5.4 | S1 (/learn:input) and S5 (/learn:spec) present | PASS | L699: S1 label `'S1: /learn:input'`; L729: S5 label `'S5: /learn:spec'` |
-| V6 | V6.1 | `.zone-7cs-body` has `display:block` (always open) | PASS | L82: `.zone-7cs-body{display:block;padding:0}` |
-| V6 | V6.2 | No `onclick="toggle7CS"` on zone 7CS headers | PASS | L665: zone-7cs-hdr has no onclick attribute; grep confirms zero matches |
-| V6 | V6.3 | No toggle arrow in zone 7CS headers | PASS | L665: header uses star character only, no `▶` |
+| V6 | V6.1 | `.workstream-7cs-body` has `display:block` (always open) | PASS | L82: `.workstream-7cs-body{display:block;padding:0}` |
+| V6 | V6.2 | No `onclick="toggle7CS"` on workstream 7CS headers | PASS | L665: workstream-7cs-hdr has no onclick attribute; grep confirms zero matches |
+| V6 | V6.3 | No toggle arrow in workstream 7CS headers | PASS | L665: header uses star character only, no `▶` |
 | V7 | V7.1 | SKILLS=27 | PASS | Counted 27 `{id:` in SKILLS array |
 | V7 | V7.2 | TEMPLATES=27 | PASS | Counted 27 `{id:` in TEMPLATES array |
 | V7 | V7.3 | FRAMEWORKS=17 | PASS | Counted 17 `{id:` in FRAMEWORKS array |
@@ -64,7 +64,7 @@ The static HTML building view has two EP rails:
 - **Left rail** (L256-266): 8 `.claude/rules/` entries — correct
 - **Right rail** (L272-284): 10 `_genesis/frameworks/` entries — labeled "EFFECTIVE PRINCIPLES"
 
-The JS-rendered 7CS EP rows inside cells and zones correctly show ONLY the 8 rules. The right rail is a *visual design element* (constitutional border), not a 7CS EP row. However, the shared "EFFECTIVE PRINCIPLES" label on both rails may create ambiguity about what EP contains.
+The JS-rendered 7CS EP rows inside cells and workstreams correctly show ONLY the 8 rules. The right rail is a *visual design element* (constitutional border), not a 7CS EP row. However, the shared "EFFECTIVE PRINCIPLES" label on both rails may create ambiguity about what EP contains.
 
 **Impact:** Low. The right rail is architecturally intentional (EP encompasses both enforcement rules and guiding frameworks). No functional bug. Flag for user decision: keep as dual-rail design, or relabel right rail to "FRAMEWORKS" to distinguish from EP rows.
 

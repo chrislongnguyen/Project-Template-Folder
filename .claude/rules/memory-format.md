@@ -27,6 +27,6 @@ When reading or writing to any `memory/MEMORY.md` file, preserve this exact 3-se
 
 When creating MEMORY.md for a new project, include these starter entries in the Topic Index. Claude and AutoDream will add more as the project evolves.
 
-- `learned_patterns.md` — Recurring patterns discovered during execution (APEI Zone 4 IMPROVE)
-- `key_decisions.md` — Architecture Decision Records and rationale (APEI Zone 1 ALIGN)
-- `common_pitfalls.md` — UBS entries that materialized during execution (APEI Zone 2 PLAN)
+- `learned_patterns.md` — Recurring patterns discovered during execution (APEI IMPROVE workstream)
+- `key_decisions.md` — Architecture Decision Records and rationale (APEI ALIGN workstream)
+- `common_pitfalls.md` — UBS entries that materialized during execution (APEI PLAN workstream)

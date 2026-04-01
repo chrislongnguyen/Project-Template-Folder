@@ -352,7 +352,7 @@ Priority determines execution order when multiple items are equally ready (no de
 | --------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | **Iteration**   | Build-cycle scope — what this iteration delivers as a whole. Broadest after Project. | `Long has reliably a data acquisition pipeline that is complete and tested.` |
 | **Deliverable** | User-facing outcome for the whole deliverable. Broad.            | `Long has reliably an auto-ingestion pipeline that is idempotent and auditable.` |
-| **Task**        | One verb — what this task accomplishes toward the Deliverable.   | `Long configures correctly the cron scheduler that is timezone-aware.`           |
+| **Task**        | One verb — what this task accomplishes toward the Deliverable.   | `Long configures correctly the cron scheduler that is timeworkstream-aware.`           |
 | **Sub-task**    | One verb inherited from the parent Task's VANA. Narrowest scope. | `Long validates thoroughly the cron trigger that is deterministic.`              |
 
 <aside>

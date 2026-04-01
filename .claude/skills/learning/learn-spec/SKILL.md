@@ -102,14 +102,14 @@ Generated: {date} | Skill: /learn:spec
 | C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/output/{slug}/ |
 | C3 | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
 | C4 | Process definition loaded | GREEN | _genesis/templates/DSBV_PROCESS.md exists |
-| C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA zones |
+| C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA workstreams |
 | C6 | Evaluation protocol defined | GREEN | DSBV_PROCESS.md §Validate |
 
 All C1-C6 GREEN → DSBV Design phase may begin.
 
-## P-page → Zone Mapping
+## P-page → Workstream Mapping
 
-| P-page | Zone Artifact | Feeds Into |
+| P-page | Workstream Artifact | Feeds Into |
 |--------|--------------|------------|
 | P0 (System Context) | System identity, scope | DESIGN.md §1 |
 | P1 (Blockers/UBS) | UBS entries | 3-PLAN/risks/UBS_REGISTER.md |
