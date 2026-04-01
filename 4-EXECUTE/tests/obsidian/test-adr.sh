@@ -5,7 +5,7 @@ PROJ="$(cd "$(dirname "$0")/../../.." && pwd)"
 ADR="$PROJ/1-ALIGN/decisions/ADR-002-obsidian-cli.md"
 PASS=0; FAIL=0; TOTAL=4
 
-check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; ((PASS++)); else echo "  FAIL: $1"; ((FAIL++)); fi; }
+check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }
 
 echo "=== A1: ADR-002 Validation ==="
 check "AC-12 Status=Approved + Option B" "grep -q 'status: Approved' '$ADR' && grep -q 'Option B' '$ADR'"

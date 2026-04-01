@@ -7,7 +7,7 @@ AUTOLINKER="$PROJ/scripts/obsidian-autolinker.py"
 ALIAS_SEEDER="$PROJ/scripts/obsidian-alias-seeder.py"
 PASS=0; FAIL=0; TOTAL=4
 
-check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; ((PASS++)); else echo "  FAIL: $1"; ((FAIL++)); fi; }
+check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }
 
 echo "=== A6: Autolinker + Frontmatter Schema ==="
 check "AC-38 Scripts are valid Python" "python3 -c \"import ast; ast.parse(open('$AUTOLINKER').read())\" && python3 -c \"import ast; ast.parse(open('$ALIAS_SEEDER').read())\""

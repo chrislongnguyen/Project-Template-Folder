@@ -6,7 +6,7 @@ PROJ="$(cd "$(dirname "$0")/../../.." && pwd)"
 SKILL="$PROJ/.claude/skills/obsidian/SKILL.md"
 PASS=0; FAIL=0; TOTAL=3
 
-check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; ((PASS++)); else echo "  FAIL: $1"; ((FAIL++)); fi; }
+check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }
 
 echo "=== A2: Graceful Degradation ==="
 check "Fallback section exists" "grep -qi 'fallback' '$SKILL'"

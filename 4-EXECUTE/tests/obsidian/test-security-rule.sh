@@ -5,7 +5,7 @@ PROJ="$(cd "$(dirname "$0")/../../.." && pwd)"
 RULE="$PROJ/.claude/rules/obsidian-security.md"
 PASS=0; FAIL=0; TOTAL=5
 
-check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; ((PASS++)); else echo "  FAIL: $1"; ((FAIL++)); fi; }
+check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }
 
 echo "=== A4: Security Rule Validation ==="
 check "AC-16 AP1-AP5 present (≥5 entries)" "[ \$(grep -c 'AP[1-5]' '$RULE') -ge 5 ]"

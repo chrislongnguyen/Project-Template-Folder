@@ -5,7 +5,7 @@ PROJ="$(cd "$(dirname "$0")/../../.." && pwd)"
 RULE="$PROJ/.claude/rules/alpei-template-usage.md"
 PASS=0; FAIL=0; TOTAL=3
 
-check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; ((PASS++)); else echo "  FAIL: $1"; ((FAIL++)); fi; }
+check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }
 
 echo "=== A8: Template Routing Rule ==="
 check "AC-42 Rule file exists with version frontmatter" "test -f '$RULE' && grep -q 'version:' '$RULE'"
