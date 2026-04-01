@@ -1,10 +1,21 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "1.1"
+status: Draft
+last_updated: 2026-04-01
 ---
-# LTC Project Template
+# LTC Project Template — Iteration 1 (Concept)
 
-Standard project scaffold for LT Capital Partners. Use this template to start any new project with LTC's global rules, safety guardrails, and AI agent configuration pre-loaded.
+Standard project scaffold for LT Capital Partners. Clone this to start any new project with the ALPEI workstream structure, DSBV production process, and AI agent configuration pre-loaded.
+
+**Iteration 1 focus: Sustainability** — human adoption first. The template gives you a structure that agents follow and humans can verify.
+
+## Must-Read Before Starting
+
+| # | Resource | How to access | Time |
+|---|----------|---------------|------|
+| 1 | **Training Deck** (47 slides) | `cd _genesis/training/alpei-training-slides && npm install && npm run dev` → open `http://localhost:5173` | 30 min |
+| 2 | **ALPEI Navigator** (interactive map) | Open `_genesis/tools/alpei-navigator.html` in any browser (no install needed) | 10 min |
+| 3 | **Migration Guide** (I0 → I1) | Read `_genesis/guides/MIGRATION_GUIDE.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
 
 ## Quick Start
 
@@ -153,20 +164,20 @@ This runs a 6-step pipeline: scope → research → structure → review → spe
 │   ├── specs/                  #     VANA-SPEC extractions
 │   └── output/                 #     Final structured deliverables
 │
-├── 3-PLAN/                     # LEARN workstream: Minimize Risks
+├── 3-PLAN/                     # PLAN workstream: Minimize Risks
 │   ├── architecture/           #   System design, ADRs, diagrams
 │   ├── risks/                  #   UBS register (blocking forces)
 │   ├── drivers/                #   UDS register (driving forces)
 │   └── roadmap/                #   Execution timeline
 │
-├── 4-EXECUTE/                  # PLAN workstream: Deliver
+├── 4-EXECUTE/                  # EXECUTE workstream: Deliver
 │   ├── src/                    #   Application code
 │   ├── tests/                  #   Unit, integration, e2e, quality gates
 │   ├── config/                 #   CI/CD, env, security config
 │   ├── docs/                   #   API docs, onboarding, runbooks
 │   └── scripts/                #   Build and deploy scripts
 │
-├── 5-IMPROVE/                  # EXECUTE workstream: Learn & Grow
+├── 5-IMPROVE/                  # IMPROVE workstream: Learn & Grow
 │   ├── changelog/              #   CHANGELOG.md (tier-tagged)
 │   ├── metrics/                #   Performance and quality metrics
 │   ├── retrospectives/         #   Sprint and project retros
