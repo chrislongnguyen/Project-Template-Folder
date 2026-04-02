@@ -1,9 +1,9 @@
 ---
 name: obsidian-cli
 description: Use when searching the Obsidian vault semantically, traversing backlinks, accessing daily notes, or finding knowledge graph connections — when Obsidian is running. Falls back to Grep/Glob silently if not running.
-version: "1.2"
+version: "1.3"
 status: Draft
-last_updated: "2026-04-01"
+last_updated: "2026-04-02"
 ---
 # /obsidian — Obsidian CLI Integration
 
@@ -233,6 +233,21 @@ obsidian search:context query="ADR decision" | jq '.results[].excerpt'
 
 **Opt-out privacy — AP4.** Notes with `cli-blocked: true` are off-limits. Default is accessible. Never look for `cli-allowed: true` — that field does not exist in the current model.
 
+**1-note-per-session limit — AP3.** Never reorganize, rename, or bulk-write more than 1 note at a time into the main vault. All proposed multi-note changes must land in `inbox/` staging area first. Human reviews and promotes to main vault. Exception: user grants explicit batch override in-session.
+
+**Write-path whitelist — V5.** Agents write ONLY to these 4 paths:
+
+| Path | Purpose |
+|------|---------|
+| `vault/inbox/` | Staging area for all agent-created notes |
+| `vault/agents/` | Agent session logs and outputs |
+| `vault/projects/{project-id}/` | Project-scoped notes linked to a specific repo |
+| `vault/daily/` | Daily log appends only (append mode) |
+
+Writes to `vault/knowledge/`, `vault/personal/`, or any path outside this whitelist require explicit human override in-session.
+
+**Knowledge layer is read-only — V7.** Vault content outside the V5 whitelist paths is the Knowledge layer — curated, human-authored content. Agents do not write to the Knowledge layer. If a task requires it, draft in `vault/inbox/` and request human promotion.
+
 **Worktrees are invisible.** See Vault Targeting section above. Build-phase work in a worktree must use grep, not obsidian CLI.
 
 Full security rules: `.claude/rules/obsidian-security.md`
@@ -241,22 +256,7 @@ Full security rules: `.claude/rules/obsidian-security.md`
 
 ## References
 
-- Security rules: [`.claude/rules/obsidian-security.md`](../../rules/obsidian-security.md) — AP1-AP5 enforcement
+- Security rules: [`.claude/rules/obsidian-security.md`](../../rules/obsidian-security.md) — AP1+L9 always-on; AP2-AP5, V5, V7 in Gotchas above
 - Vault scaffold: [`4-EXECUTE/src/vault/VAULT_GUIDE.md`](../../../4-EXECUTE/src/vault/VAULT_GUIDE.md) — setup, plugins, folder structure
 - Tool routing: [`rules/tool-routing.md`](../../rules/tool-routing.md) — when obsidian-cli vs Grep/Glob
 
-## Links
-
-- [[AP1]]
-- [[AP2]]
-- [[AP4]]
-- [[AP5]]
-- [[CLAUDE]]
-- [[VALIDATE]]
-- [[VAULT_GUIDE]]
-- [[gotchas]]
-- [[obsidian-security]]
-- [[security]]
-- [[standard]]
-- [[task]]
-- [[tool-routing]]
