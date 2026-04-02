@@ -16,10 +16,14 @@ TESTS=(
   "test-tool-routing.sh"
   "test-frontmatter-schema.sh"
   "test-template-routing.sh"
+  "test-n1-compress.sh"
+  "test-n2-resume.sh"
+  "test-n3-staleness.sh"
+  "test-n4-deprecation.sh"
 )
 
 echo "╔══════════════════════════════════════════════════════╗"
-echo "║  Obsidian CLI — Acceptance Test Suite (44 ACs)      ║"
+echo "║  Obsidian CLI — Acceptance Test Suite (67 ACs)      ║"
 echo "╚══════════════════════════════════════════════════════╝"
 echo ""
 
