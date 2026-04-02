@@ -3,7 +3,7 @@ last_updated: 2026-03-29
 owner: "Long Nguyen"
 name: session-start
 version: 2.0.0
-description: "Brief recall at session start. Use when the user says 'Start session' — queries the vault sessions collection for recent context and outputs a ≤10 line summary. Use at the start of every work session in any repo before touching anything."
+description: "[DEPRECATED] Use /resume instead. This skill is retained for reference only. Session startup context is now handled by the SessionStart hook (resume-check.sh) + /resume skill."
 ---
 # /session-start — Brief Recall
 
