@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: align
+stage: design
+sub_system: 
 ---
 # CHARTER TEMPLATE (T1)
 > Stub template — populate during ALIGN Design and Build phases.
@@ -69,3 +73,11 @@ _[Describe the expected outcome here.]_
 |------|----------|------|--------|
 | G1 (Design) | _[name]_ | _[YYYY-MM-DD]_ | Draft |
 | G3 (Build final) | _[name]_ | _[YYYY-MM-DD]_ | Draft |
+
+## Links
+
+- [[DESIGN]]
+- [[DESIGN_TEMPLATE]]
+- [[dsbv]]
+- [[iteration]]
+- [[project]]

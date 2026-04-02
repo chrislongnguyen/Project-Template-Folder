@@ -92,3 +92,14 @@ Cover BOTH R ({raci_r}) and A ({raci_a}) perspectives in every section.
 
 After writing, report: file path, source count, any [NEEDS REVIEW] sections, status.
 ```
+
+## Links
+
+- [[CLAUDE]]
+- [[RESEARCH_METHODOLOGY]]
+- [[SKILL]]
+- [[context-packaging]]
+- [[dsbv]]
+- [[ltc-explorer]]
+- [[methodology]]
+- [[task]]

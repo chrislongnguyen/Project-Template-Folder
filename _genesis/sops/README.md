@@ -28,3 +28,11 @@ SOPs are executed as-written. Deviations require an ADR in `1-ALIGN/decisions/`.
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[CODE_REVIEW_SOP]]
+- [[DEPLOYMENT_SOP]]
+- [[DISCUSSION_SOP]]
+- [[project]]
+- [[standard]]

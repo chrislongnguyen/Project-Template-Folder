@@ -25,3 +25,19 @@ Tier tags: [T1:REPLACE] [T2:MERGE] [T3:ADD-ONLY]
 - [T1:REPLACE] `.agents/rules/brand-identity.md` — Tenorite → Inter
 - [T2:MERGE] `README.md` — Added "Keeping Your Repo Updated" section, Inter/Work Sans in rules table
 - [T2:MERGE] `.gitignore` — Added .template-version exclusion
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[GEMINI]]
+- [[README]]
+- [[agent-diagnostic]]
+- [[agent-system]]
+- [[brand-identity]]
+- [[general-system]]
+- [[methodology]]
+- [[naming-rules]]
+- [[project]]
+- [[security-rules]]
+- [[template-version]]

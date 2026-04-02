@@ -299,3 +299,16 @@ Okay, I agree. We’ll probably discuss the specific process this afternoon. For
 
 Everyone (01:11:30):
 Sounds good. Good work. Let’s give him a round of applause. Thank you.
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[idea]]
+- [[project]]
+- [[security]]
+- [[simple]]
+- [[standard]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

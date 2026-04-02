@@ -31,3 +31,9 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Check the generation log — WMS sync should only appear AFTER all 10 readiness checks pass. If `wms-sync` appears before `readiness-check`, the ordering is wrong.
 
 **Fix:** Never trigger WMS sync until all 10 readiness checks exit 0. If readiness checks fail after 3 retries, present the .exec/ files to the Human Director WITHOUT syncing to WMS.
+
+## Links
+
+- [[SKILL]]
+- [[deliverable]]
+- [[task]]

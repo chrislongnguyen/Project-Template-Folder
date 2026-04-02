@@ -160,3 +160,21 @@ If sub-agent dispatch fails (agent returns empty, times out, or produces malform
 ## Gotchas
 
 - **LT-1 Template placeholder residue:** Agent generates .exec/ files that still contain template placeholders like `{TASK_NAME}`, `{AC_ID}`, or `[FILL]` because it copied from the template without fully substituting. After generation, search all .exec/ files for curly-brace placeholders and bracket tags — any found means generation is incomplete.
+
+## Links
+
+- [[CLAUDE]]
+- [[EP-09]]
+- [[EP-10]]
+- [[agent-readiness-checks]]
+- [[agent-system]]
+- [[context-packaging]]
+- [[deliverable]]
+- [[dsbv]]
+- [[exec-file-format]]
+- [[general-system]]
+- [[gotchas]]
+- [[ltc-builder]]
+- [[project]]
+- [[task]]
+- [[wms-sync-protocol]]

@@ -30,3 +30,11 @@ philosophy → principles → frameworks → [security as derived protection lay
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[DATA_CLASSIFICATION]]
+- [[NAMING_CONVENTION]]
+- [[SECURITY_HIERARCHY]]
+- [[project]]
+- [[security]]

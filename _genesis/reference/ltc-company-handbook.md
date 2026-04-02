@@ -1454,3 +1454,19 @@ System Identification Name Format: \[SYSTEM ID\]\_Domain Name / Unit Group Name 
 | 2.0 | 25 November | All LTC Members | Updated organizational structure with Corporate Affairs function | All LTC Members |
 
 _Next review: January 2026_
+
+## Links
+
+- [[CONTRIBUTING]]
+- [[DESIGN]]
+- [[GEMINI]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[documentation]]
+- [[friction]]
+- [[license]]
+- [[project]]
+- [[security]]
+- [[simple]]
+- [[standard]]

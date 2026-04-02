@@ -180,3 +180,16 @@ During any conversation, suggest `/git-save` when:
 | Feature/fix just completed | "That looks done — want to commit and maybe PR?" |
 | Before risky operation (rebase, reset) | "Let me commit first so nothing is lost." |
 | Branch > 10 commits ahead of main, no PR | "Your branch is N commits ahead with no PR. Create one?" |
+
+## Links
+
+- [[ADR-001]]
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[VALIDATE]]
+- [[VERSION_REGISTRY]]
+- [[blocker]]
+- [[dsbv]]
+- [[git-conventions]]
+- [[versioning]]
+- [[workstream]]

@@ -29,3 +29,13 @@ Core principle: Success = Efficient & Scalable Management of Failure Risks (S > 
 - **3 Pillars:** Sustainability > Efficiency > Scalability — priority order, never reversed
 - **VANA Grammar:** Verb + Adverb + Noun + Adjective — each with binary A.C.s
 - **Iteration Gates:** I1(Concept/Sustainability) → I2(Prototype/Efficiency) → I3(MVE/Scalability) → I4(Leadership)
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[general-system]]
+- [[iteration]]
+- [[ltc-effective-system-design]]
+- [[ltc-effectiveness-guide]]
+- [[methodology]]

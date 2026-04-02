@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: align
+stage: design
+sub_system: 
 ---
 # FORCE ANALYSIS TEMPLATE (T4)
 > Stub template — populate during ALIGN Design and PLAN Design phases.
@@ -69,3 +73,9 @@ _[e.g., "Adopt a multi-agent DSBV workflow for all LTC projects."]_
 | Restraining forces (UBS) | `3-PLAN/risks/UBS_REGISTER.md` |
 | Driving forces (UDS) | `3-PLAN/drivers/UDS_REGISTER.md` |
 | Key findings | `1-ALIGN/charter/CHARTER.md` §Design Principles |
+
+## Links
+
+- [[DESIGN]]
+- [[RISK_ENTRY_TEMPLATE]]
+- [[dsbv]]

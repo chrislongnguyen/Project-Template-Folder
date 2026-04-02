@@ -163,3 +163,12 @@ Next: /learn:review
 - [Structuring Procedure](./references/structuring-procedure.md) — detailed per-page generation instructions
 - [Validation Rules](./references/validation-rules.md) — CAG regex, column/row count checks
 - [Page Dispatch Table](./references/page-dispatch-table.md) — page → structure mapping
+
+## Links
+
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[page-dispatch-table]]
+- [[structure-rules]]
+- [[structuring-procedure]]
+- [[validation-rules]]

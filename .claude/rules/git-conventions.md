@@ -69,8 +69,13 @@ After every commit that includes a workstream artifact:
 - Update `_genesis/VERSION_REGISTRY.md` row (version, status, date)
 - Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 
+## Branch Strategy
+
+Never commit directly to main. Follow I0-I4 branching — see `_genesis/sops/GIT_WORKFLOW.md`.
+
 ## Staging Rule
 
 **PREFER** explicit per-file staging over `git add .`
 Classify first (type, scope) → stage by group → one commit per group.
 Use `/git-save` for the full guided flow.
+

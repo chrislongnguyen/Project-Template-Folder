@@ -149,3 +149,8 @@ RESULT: 9/10 checks passed, 1 failed
 3. Re-run the full 10-point check
 4. Maximum 3 retry attempts
 5. After 3 failures: present .exec/ directory with readiness report to Human Director
+
+## Links
+
+- [[DESIGN]]
+- [[task]]

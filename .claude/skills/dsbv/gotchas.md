@@ -61,3 +61,16 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** After any phase claim, run Glob/Read on the expected artifact (e.g., `DESIGN.md`, `SEQUENCE.md`, `VALIDATE.md`). If it doesn't exist, the phase is not complete.
 
 **Fix:** Always verify with Glob/Read. The GATE — Verify in SKILL.md enforces this: if the file does not exist, the phase is NOT complete regardless of what was discussed.
+
+## Links
+
+- [[DESIGN]]
+- [[DSBV_PROCESS]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[dsbv]]
+- [[simple]]
+- [[task]]
+- [[workstream]]

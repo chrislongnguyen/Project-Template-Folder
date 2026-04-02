@@ -69,3 +69,11 @@ If a sub-agent fails or returns empty/generic output: Do NOT retry the same prom
 ## 8. LT-1 Requirements invention
 
 Agent adds requirements during VANA-SPEC generation that were never discussed or approved during the brainstorming dialogue. Every AC in sections 2-5 must trace to a specific point in the conversation where the user agreed to it. If you cannot point to the message where this requirement was established, remove it from the spec and flag it as a candidate for the user to confirm.
+
+## Links
+
+- [[DESIGN]]
+- [[EP-10]]
+- [[SKILL]]
+- [[simple]]
+- [[task]]

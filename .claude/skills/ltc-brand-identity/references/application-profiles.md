@@ -17,3 +17,8 @@ Condensed from `rules/brand-identity.md`. If anything disagrees, the rules file 
 ## MS Office–aligned (Excel, Word, PPT themes)
 
 - Use the **MS Office Theme** slots from `rules/brand-identity.md` (Accent 1–6 order) when setting theme colors in tools that mirror that model.
+
+## Links
+
+- [[brand-identity]]
+- [[palette-and-type]]

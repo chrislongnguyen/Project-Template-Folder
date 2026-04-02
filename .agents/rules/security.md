@@ -21,3 +21,9 @@ Full spec: `rules/security-rules.md`
 - Warn before overwriting non-git-tracked files
 - Never force-push without confirming remote state
 - Flag files that cannot be easily recreated
+
+## Links
+
+- [[project]]
+- [[security-rules]]
+- [[task]]

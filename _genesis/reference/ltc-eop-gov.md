@@ -322,3 +322,19 @@ Multi-agent skill orchestration: how skills behave when multiple agents share a 
 *Codex maintained by: Long Nguyen + Claude (Research & Governance Agent)*
 *Source material: AMT Session 4 (EOP), Anthropic Claude Code team practices, LTC Effective Principles Registry*
 *Update protocol: When a new EOP principle is validated, add to this codex and update skill-validator.sh.*
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[README]]
+- [[SKILL]]
+- [[documentation]]
+- [[gotchas]]
+- [[iteration]]
+- [[project]]
+- [[simple]]
+- [[standard]]
+- [[versioning]]
+- [[workstream]]

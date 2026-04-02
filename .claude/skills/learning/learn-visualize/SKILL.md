@@ -118,3 +118,9 @@ Open index.html in a browser to view. No build step required.
 - **Self-contained HTML only** — no local npm build, no node_modules, no separate JS files. The output must open directly in a browser without any build step.
 - **CAG prefix parsing** — row IDs use dot notation (`UBS.R.1`, `EP.3`, `EOE.2`). Parse the prefix, not the full row label. Edges come from col 12/13, not from proximity in the table.
 - **Pillar column** — S/E/Sc comes from col 15 of the 17-column format. Do not infer pillar from row label text.
+
+## Links
+
+- [[brand-identity]]
+- [[gotchas]]
+- [[viz-spec]]

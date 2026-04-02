@@ -29,3 +29,8 @@ Full spec: `rules/agent-diagnostic.md`
 | Shallow/circular reasoning | EOP (steps too large?), Environment (extended thinking?) |
 | Wrong tool selection | Tools (too many?), EOP (tool guidance?) |
 | Director rejects correct output | Human UBS — System 1 biases overriding evaluation |
+
+## Links
+
+- [[SKILL]]
+- [[task]]

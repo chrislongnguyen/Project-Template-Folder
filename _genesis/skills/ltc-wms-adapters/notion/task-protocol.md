@@ -534,3 +534,18 @@ After creating any entry, verify **all** of the following:
 - [ ] **MoSCoW tag set:** Tags include MoSCoW priority — `Must Have` for Deliverables, explicit choice for Tasks & Sub-tasks
 - [ ] **VANA coherence:** Desired Outcomes sentence is grammatically valid and scoped to the Item Level
 - [ ] **Template used:** Page body matches the correct template for the Item Level
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[iteration]]
+- [[project]]
+- [[security]]
+- [[standard]]
+- [[task]]

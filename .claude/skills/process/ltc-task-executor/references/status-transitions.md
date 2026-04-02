@@ -30,3 +30,8 @@ failed → in_progress (rework — Human Director approval)
 - "failed" tasks require Human Director approval before retry
 - Completed increments within a failed task are preserved (no rollback)
 - WMS sync happens on EVERY status change
+
+## Links
+
+- [[increment]]
+- [[task]]

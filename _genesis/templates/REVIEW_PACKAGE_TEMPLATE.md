@@ -2,6 +2,10 @@
 version: "1.1"
 last_updated: 2026-03-30
 owner: "Long Nguyen"
+type: template
+work_stream: improve
+stage: validate
+sub_system: 
 ---
 <!-- NOTE: This template is a REFERENCE FORMAT document. It is NOT read programmatically
      by 4-EXECUTE/scripts/generate-review-package.py. The script generates output independently.
@@ -48,3 +52,9 @@ owner: "Long Nguyen"
 - [ ] Code changes needed — specify tasks to rework
 - [ ] Plan is wrong — re-enter Stage 3
 - [ ] Spec is wrong — re-enter Stage 1
+
+## Links
+
+- [[VALIDATE]]
+- [[deliverable]]
+- [[task]]

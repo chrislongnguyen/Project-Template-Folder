@@ -2,6 +2,10 @@
 version: "1.0"
 last_updated: 2026-03-29
 owner: "Long Nguyen"
+type: template
+work_stream: align
+stage: design
+sub_system: 
 ---
 # VANA-SPEC: {system_name}
 
@@ -517,3 +521,13 @@ owner: "Long Nguyen"
 | SustainAdv-AC1 | Adverb (S) | Principle P{n}(S) | T0.P3:R{r}:C{c} | {udo_short} |
 | Noun-AC1 | Noun | Component {layer}.{n} | T0.P4:R{r}:C{c} | {udo_short} |
 <!-- Every A.C. must have a complete chain. Broken chain = broken spec. -->
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[blocker]]
+- [[general-system]]
+- [[iteration]]
+- [[task]]
+- [[workstream]]

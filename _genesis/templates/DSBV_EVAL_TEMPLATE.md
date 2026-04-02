@@ -4,6 +4,10 @@ iteration: "I1: Concept"
 status: Draft
 last_updated: 2026-03-29
 owner: Long Nguyen
+type: template
+work_stream: govern
+stage: validate
+sub_system: 
 ---
 # DSBV Evaluation Protocol — [WORKSTREAM NAME]
 
@@ -139,3 +143,12 @@ UNIQUE INSIGHTS (1 team only):
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[VALIDATE]]
+- [[dsbv]]
+- [[iteration]]
+- [[project]]
+- [[task]]
+- [[workstream]]

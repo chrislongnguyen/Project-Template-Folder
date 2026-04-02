@@ -30,3 +30,8 @@
 - Human under pressure/fatigue → delegate to Agent
 - Needs values/judgment/expertise → Human decides, Agent gathers
 - Both → Agent structures data, Human makes judgment call
+
+## Links
+
+- [[SKILL]]
+- [[task]]

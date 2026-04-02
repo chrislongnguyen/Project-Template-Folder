@@ -3,7 +3,7 @@ last_updated: 2026-03-29
 owner: "Long Nguyen"
 name: session-start
 version: 2.0.0
-description: "Brief recall at session start. Use when the user says 'Start session' — queries the vault sessions collection for recent context and outputs a ≤10 line summary. Use at the start of every work session in any repo before touching anything."
+description: "[DEPRECATED] Use /resume instead. This skill is retained for reference only. Session startup context is now handled by the SessionStart hook (resume-check.sh) + /resume skill."
 ---
 # /session-start — Brief Recall
 
@@ -95,3 +95,9 @@ Do NOT proceed until recall output is presented to the user.
 If qmd query returns results that don't match the current repo (wrong project name, different context): Do NOT use them. Discard and fall back to directory listing. Do NOT blend context from a different project into the recall output.
 
 - **LT-1 Cross-project contamination:** Agent loads a session log from a different project with a similar name and presents it as this project's context. Always verify the `project` frontmatter field matches the current repo's UNG key before using any session file.
+
+## Links
+
+- [[CLAUDE]]
+- [[gotchas]]
+- [[project]]

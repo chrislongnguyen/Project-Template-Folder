@@ -26,3 +26,8 @@ Source: `rules/naming-rules.md` §6.
 6. **Check** Git length **≤ 50** characters for repos (2-part); abbreviate per §3 platform rules if needed.
 7. **Render** to target platform (Section 3 in rules doc).
 8. **Check** collisions on the target platform — disambiguate NAME or append `-NN` as last resort; **HALT** and ask if unresolved.
+
+## Links
+
+- [[VALIDATE]]
+- [[naming-rules]]

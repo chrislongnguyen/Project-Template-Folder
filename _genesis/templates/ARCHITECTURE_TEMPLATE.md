@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: plan
+stage: design
+sub_system: 
 ---
 # ARCHITECTURE TEMPLATE (T2)
 > Stub template — populate during PLAN Build phase.
@@ -67,3 +71,10 @@ _[Describe the architecture here.]_
 
 - _[question 1]_
 - _[question 2]_
+
+## Links
+
+- [[ADR_TEMPLATE]]
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[DESIGN]]
+- [[blocker]]

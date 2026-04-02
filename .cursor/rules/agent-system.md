@@ -26,3 +26,7 @@ Each component compensates for specific LTs. Action is never configured — trac
 1. **Brake Before Gas** — derisk first, then drive output
 2. **Know the Physics** — the 8 LTs are constraints, not bugs; stop trying to change them
 3. **Two Operators, One System** — Human (judgment, biases) + Agent (execution, 8 LTs) compensate for each other
+
+## Links
+
+- [[task]]

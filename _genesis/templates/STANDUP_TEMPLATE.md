@@ -2,6 +2,10 @@
 version: "1.0"
 last_updated: 2026-03-29
 owner: "Long Nguyen"
+type: template
+work_stream: execute
+stage: build
+sub_system: 
 ---
 # DAILY STANDUP TEMPLATE
 ## Done / WIP / Blocker Format
@@ -22,3 +26,8 @@ owner: "Long Nguyen"
 
 ## BLOCKERS (need help with)
 - [Blocker 1] — UBS#: [Reference if applicable] — Need from: [Name/Team]
+
+## Links
+
+- [[blocker]]
+- [[task]]

@@ -367,3 +367,23 @@ Agent files: `.claude/agents/ltc-{name}.md`. Each file declares model, tools, an
 - Trace failures back to the 6 input components via the blame diagnostic: EP, Input, EOP, EOE, EOT, Agent (in that order)
 - Log key decision points for post-mortem analysis
 - Design monitoring that catches failures before they reach EO
+
+## Links
+
+- [[AGENT_SYSTEM]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[EP-11]]
+- [[EP-12]]
+- [[EP-13]]
+- [[GEMINI]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[task]]
+- [[workstream]]

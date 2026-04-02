@@ -182,3 +182,10 @@ git commit -m "{type(scope): description}"
 **Overall: {PASS / WARN / FAIL}**
 
 {If WARN or FAIL: describe issues and resolution or escalation rationale}
+
+## Links
+
+- [[DESIGN]]
+- [[deliverable]]
+- [[project]]
+- [[task]]

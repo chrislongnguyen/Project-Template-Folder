@@ -190,3 +190,12 @@ Full list: [gotchas.md](gotchas.md)
 - Do NOT skip the examples — non-tech users need them
 - Do NOT generate research or Effective Learning pages — this command captures input only
 - Do NOT overwrite an existing file without announcing update mode first
+
+## Links
+
+- [[CLAUDE]]
+- [[contract-examples]]
+- [[gotchas]]
+- [[iteration]]
+- [[standard]]
+- [[versioning]]

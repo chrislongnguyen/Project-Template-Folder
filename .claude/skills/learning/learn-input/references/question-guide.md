@@ -28,3 +28,7 @@ If user gives partial answers, prompt for missing fields specifically.
 | T0-T5 | Production system, comprehensive understanding, multi-team use |
 
 Default recommendation: T0 for first-time users, T0-T2 for experienced users.
+
+## Links
+
+- [[CLAUDE]]

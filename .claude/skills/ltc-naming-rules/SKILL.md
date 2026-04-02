@@ -55,3 +55,17 @@ If `rules/naming-rules.md` is missing: **do not invent SCOPE or FA codes.** Stop
 ## Gotchas
 
 See [gotchas.md](gotchas.md) for known failure patterns.
+
+## Links
+
+- [[NAMING_CONVENTION]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[forms-and-separators]]
+- [[gotchas]]
+- [[naming-rules]]
+- [[platform-rendering]]
+- [[pre-creation-checklist]]
+- [[project]]
+- [[security]]
+- [[task]]

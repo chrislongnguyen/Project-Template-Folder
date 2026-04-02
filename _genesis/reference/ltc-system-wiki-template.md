@@ -281,3 +281,15 @@ owner: "Long Nguyen"
 - Deadlock Resolution: `[ If the Responsible and Accountable parties cannot agree, the decision is escalated to the [MGT STRATEGY] Strategy Steering Committee for a simple majority vote. ]`
 - Crisis Protocol: `[ If a "Catastrophic" risk (identified in Section 0.6) materializes (e.g., Data Breach, Regulatory Raid), stop this procedure immediately and trigger the [FA 4.18] Crisis Management Plan. Contact: [MGT LEGAL]. ]`
 
+## Links
+
+- [[DESIGN]]
+- [[GEMINI]]
+- [[blocker]]
+- [[documentation]]
+- [[methodology]]
+- [[project]]
+- [[simple]]
+- [[standard]]
+- [[task]]
+- [[workstream]]

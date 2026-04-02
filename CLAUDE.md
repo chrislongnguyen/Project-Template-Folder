@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "1.1"
+status: Draft
+last_updated: 2026-04-02
 ---
 # CLAUDE.md — LTC Project Template
 
@@ -14,7 +15,7 @@ last_updated: 2026-03-30
 
 - **Name:** LTC Project Template
 - **Stack:** Markdown, Shell, Python
-- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 4-workstream APEI structure with AI agent config pre-loaded.
+- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 5-workstream ALPEI structure with AI agent config pre-loaded.
 
 ## Build
 
@@ -28,7 +29,7 @@ last_updated: 2026-03-30
 - Write tests for new functionality
 - Commit atomic changes with descriptive messages
 - PREFER editing existing files over creating new ones
-- If anything contradicts this file, flag the contradiction before proceeding
+- Document the "why" in artifacts, not just the "what"
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)
 
@@ -51,13 +52,11 @@ All LTC items follow UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. Load `rules/naming-rules.m
 - **Secrets:** NEVER hardcode secrets in source/prompts/tool args. Use `.env` or `secrets/` via env vars. Scan output for secret patterns before completing any task
 - **LOW risk** (read, search, lint, test): proceed without confirmation
 - **MEDIUM risk** (edit, commit, install): proceed, user can review
-- **HIGH risk** (delete, push, force ops, deploy, touch .env/secrets/): ALWAYS require explicit user confirmation
-- **Blast radius:** Operate within project dir only. Prefer branches over main. Prefer reversible actions
-- Full spec covers backup awareness, PII handling, external API rules
+- **HIGH risk** (delete, push, force ops, deploy, touch .env/secrets/): ALWAYS require explicit confirmation. Prefer branches, prefer reversible.
+- Full spec covers blast radius, backup awareness, PII handling, external API rules
 
 ## Agent System (full spec: `rules/agent-system.md`)
-8 LLM Truths + 7-CS (AI specialization of the universal 8-component model). Load full spec for details.
-Multi-agent roster: ltc-planner (Opus, Design+Seq), ltc-builder (Sonnet, Build), ltc-reviewer (Opus, Validate), ltc-explorer (Haiku, Research). Agent files: `.claude/agents/`. Tool routing: `rules/tool-routing.md`.
+8 LLM Truths + 7-CS. Agent roster in auto-loaded `agent-dispatch.md`. Agent files: `.claude/agents/`. Tool routing: `rules/tool-routing.md`.
 
 ## System Design (full spec: `rules/general-system.md`)
 Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + force analysis + VANA requirements. Load BEFORE designing any system or writing any spec.
@@ -66,7 +65,10 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
 ## DSBV Process (full spec: `_genesis/templates/DSBV_PROCESS.md`)
-Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV. Phase ordering enforced: Design before Build, Validate before workstream complete.
+Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV.
+- Phase ordering: Design before Build, Validate before workstream complete.
+- APEI flow constraint: workstream N cannot reach Review until N-1 has ≥1 Approved artifact.
+- Human gates: each phase transition requires explicit human approval.
 
 ## EOP Governance (full spec: `_genesis/reference/ltc-eop-gov.md`)
 Before creating or reviewing any skill, load `_genesis/reference/ltc-eop-gov.md`. Run `./scripts/skill-validator.sh <skill-dir>` before committing skill changes. Use `/ltc-skill-creator` for guided skill creation.
@@ -76,13 +78,17 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 
 ## Before Every Task — Pre-Flight Protocol
 
-1. **CHECK WORKSTREAM:** Which workstream is this task in? Run `/dsbv status` to see current progress
-2. **CHECK ALIGNMENT:** Read `1-ALIGN/charter/` — understand purpose, stakeholders, success criteria
-3. **CHECK RISKS:** Read `3-PLAN/risks/UBS_REGISTER.md` — what can go wrong with this task
-4. **CHECK DRIVERS:** Read `3-PLAN/drivers/UDS_REGISTER.md` — what you can leverage
-5. **CHECK LEARNING:** Scan `2-LEARN/` — prior research, specs, and reference materials
-6. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
-7. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
+1. **WORKSTREAM** — `/dsbv status` to identify. If ambiguous, ask.
+2. **ALIGNMENT** — `1-ALIGN/charter/` EO, stakeholders, success criteria. Every task traces to an objective.
+3. **RISKS** — `3-PLAN/risks/UBS_REGISTER.md`. Human adoption first (S > E > Sc).
+4. **DRIVERS** — `3-PLAN/drivers/UDS_REGISTER.md`.
+5. **TEMPLATES** — grep `## Routing:` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`, load before proceeding.
+6. **LEARNING** — `2-LEARN/`. Don't reinvent what exists.
+7. **VERSION** — metadata consistent with DSBV phase, no cross-workstream regression.
+8. **EXECUTE** — Sustainability > Efficiency > Scalability.
+9. **DOCUMENT** — decisions in `1-ALIGN/decisions/` for non-trivial choices.
+
+If any check fails: state which check and why → propose minimum fix → wait for human approval.
 
 ## Structure (5×4×4 Matrix)
 
@@ -104,13 +110,6 @@ Every artifact must be categorized: which subsystem x which workstream. No chat-
 ## Modular Rules & Skills
 Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_genesis/`
 
-## Version Control (full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md`)
-- When editing any workstream artifact, update its `version` and `last_updated` frontmatter
-- Follow I0-I4 branching strategy — never commit directly to main
-- Commit messages: `type(workstream): description` (e.g., `feat(align): add stakeholder analysis`)
-- Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
-- Every decision with multiple viable options → ADR in `1-ALIGN/decisions/`
-- Chain of thought: document the "why" in the artifact, not just the "what"
-
 ## Template Version
 If `./scripts/template-check.sh` exists, run `./scripts/template-check.sh --quiet` at session start. If behind, warn user. If missing, skip.
+

@@ -170,3 +170,15 @@ After creating all entries, verify per [protocol §8](./notion-task-protocol.md)
 - [ ] **Completion cascade:** If any created item is `Done`, verify per [protocol §0.5](./notion-task-protocol.md) that all `Must Have` children are resolved
 
 Report: `{N}/{N} items created. Validation: PASS/FAIL`
+
+## Links
+
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[deliverable]]
+- [[iteration]]
+- [[project]]
+- [[subtask]]
+- [[task]]

@@ -218,3 +218,18 @@ Recommendation: {adjustment for next project}
 | **Tools (C5)** | ClickUp MCP only | Write, Edit, Bash (no ClickUp) | ClickUp API (curl) |
 | **Agent (C6)** | Sonnet | Lead: Sonnet · Coders: Sonnet · Reviewers: Opus | N/A (code) |
 | **Action (C7)** | ClickUp items created | Code written + tested + reviewed | ClickUp synced + calibration |
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[create-flow]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[project]]
+- [[task]]
+- [[update-flow]]

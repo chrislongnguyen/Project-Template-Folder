@@ -24,3 +24,11 @@ Full rules: `rules/naming-rules.md` §2–3.
 ## Google Drive
 
 - Similar bracket patterns; optional decorators (`[RESTRICTED]_`, owner tags, version suffixes). Title Case allowed; `AND` may appear as `&`.
+
+## Links
+
+- [[deliverable]]
+- [[increment]]
+- [[naming-rules]]
+- [[project]]
+- [[task]]

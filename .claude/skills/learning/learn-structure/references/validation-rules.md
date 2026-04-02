@@ -123,3 +123,7 @@ bash 2-LEARN/scripts/validate-learning-page.sh <page-file> <page-type> <topic-de
 # Example:
 bash 2-LEARN/scripts/validate-learning-page.sh 2-LEARN/output/data-foundation/T0.P0-overview-and-summary.md P0 T0
 ```
+
+## Links
+
+- [[blocker]]

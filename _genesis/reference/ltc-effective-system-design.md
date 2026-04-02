@@ -1058,3 +1058,19 @@ Structural gaps between ELF and ESD and how each is bridged.
 *Version: 2.0 | Date: 2026-02-28 | Status: Active Reference*
 *Use after ELF Learning phase is complete. Do not use during learning.*
 *Updates require User approval. Managed alongside `templates/system-wiki-template.md`.*
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[iteration]]
+- [[methodology]]
+- [[project]]
+- [[security]]
+- [[system-design]]
+- [[workstream]]

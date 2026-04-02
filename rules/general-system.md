@@ -293,3 +293,16 @@ Every organization operates through a value chain of six interdependent layers. 
 **OE (L2) builds systems. UE (L3) serves users. Know where your system sits.** OE does not serve the end-user directly — it serves the builder. UE is built BY OE FOR a named User Persona.
 
 **Causal ordering:** You cannot build UE systems (L3) without OE capability (L2). You cannot build OE capability without People Development (L1). You cannot develop people without Strategic Alignment (L0). Each layer enables the one above it; skip a layer and the chain breaks.
+
+## Links
+
+- [[DESIGN]]
+- [[EFFECTIVE_SYSTEM]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[blocker]]
+- [[documentation]]
+- [[methodology]]
+- [[task]]
+- [[workstream]]

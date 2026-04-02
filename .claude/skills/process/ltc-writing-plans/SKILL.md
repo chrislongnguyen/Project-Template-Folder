@@ -206,3 +206,19 @@ After plan passes validation, run the review loop and offer execution options.
 - **Orphan tasks / unmapped ACs** — tasks that map to no AC = scope creep. ACs with no task = coverage gap. Build the AC Coverage table and verify bidirectional mapping.
 
 Full list (5 patterns): [gotchas.md](gotchas.md)
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[agent-arch-decision-tree]]
+- [[deliverable]]
+- [[dsbv]]
+- [[gotchas]]
+- [[idea]]
+- [[ltc-planner]]
+- [[plan-validation-checklist]]
+- [[review-and-handoff]]
+- [[scope-exclusions-guide]]
+- [[task]]

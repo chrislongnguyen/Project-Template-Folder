@@ -2,6 +2,10 @@
 version: "1.1"
 last_updated: 2026-03-30
 owner: "Long Nguyen"
+type: template
+work_stream: learn
+stage: design
+sub_system: 
 ---
 # SPIKE TEMPLATE
 > Stub template — populate during project setup.
@@ -9,3 +13,10 @@ owner: "Long Nguyen"
 > Full spike template with hypothesis + premises: `3-PLAN/learning/spikes/`
 
 <!-- TODO: Fill in during ALIGN phase -->
+
+## Links
+
+- [[CRITICAL_THINKING]]
+- [[DESIGN]]
+- [[methodology]]
+- [[project]]

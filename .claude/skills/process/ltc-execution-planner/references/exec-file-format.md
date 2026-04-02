@@ -196,3 +196,11 @@ Template location: `3-PLAN/skills/ltc-execution-planner/templates/deliverable.md
 ## JSON Schema Validation
 
 Use `3-PLAN/skills/ltc-execution-planner/templates/status-schema.json` to validate status.json files programmatically. The schema enforces all required fields, enum values, and pattern constraints.
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[project]]
+- [[task]]

@@ -264,3 +264,13 @@ Tag format: `v{ITERATION}.0.0`
 - MAJOR = iteration number (I1=1, I2=2, I3=3, I4=4)
 - MINOR = 0 (reserved for future sub-iteration use)
 - PATCH = hotfixes within an iteration
+
+## Links
+
+- [[CHANGELOG]]
+- [[README]]
+- [[deliverable]]
+- [[iteration]]
+- [[project]]
+- [[standard]]
+- [[workstream]]

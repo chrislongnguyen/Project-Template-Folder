@@ -61,3 +61,10 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** YAML parser fails or returns unexpected fields.
 
 **Fix:** Do NOT attempt to fix frontmatter inline. Copy the file, fix the copy, validate, then replace. Direct editing of corrupted YAML risks losing the task definition.
+
+## Links
+
+- [[SKILL]]
+- [[VALIDATE]]
+- [[increment]]
+- [[task]]

@@ -94,3 +94,8 @@
 
 - {explicitly what this task does NOT do}
 - {boundary with adjacent tasks}
+
+## Links
+
+- [[deliverable]]
+- [[increment]]

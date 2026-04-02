@@ -31,3 +31,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Output contains raw frontmatter, full file contents, or unstructured paragraphs from vault files.
 
 **Fix:** Extract the 4 key fields from the session file, discard everything else, format as the recall template.
+
+## Links
+
+- [[SKILL]]

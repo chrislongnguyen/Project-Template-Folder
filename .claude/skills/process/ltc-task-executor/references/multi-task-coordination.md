@@ -26,3 +26,9 @@ When a task fails (increment verify fails after max retries):
 4. Create a follow-up task entry if the failure is recoverable
 5. Do NOT retry silently — escalate to the Human Director
 6. Continue with other independent tasks that are not blocked by the failed task
+
+## Links
+
+- [[blocker]]
+- [[increment]]
+- [[task]]

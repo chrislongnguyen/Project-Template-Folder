@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: plan
+stage: build
+sub_system: 
 ---
 # DRIVER ENTRY TEMPLATE (T5)
 > Stub template — populate during PLAN Sequence and PLAN Build phases.
@@ -52,3 +56,8 @@ _[Description of the driver and its root enabler.]_
 | Current status | _[Active / Monitoring / Realized / Expired]_ |
 | Last reviewed | _[YYYY-MM-DD]_ |
 | Notes | _[any context]_ |
+
+## Links
+
+- [[RISK_ENTRY_TEMPLATE]]
+- [[SEQUENCE]]

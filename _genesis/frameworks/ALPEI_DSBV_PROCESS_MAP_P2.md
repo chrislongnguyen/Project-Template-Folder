@@ -140,3 +140,14 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 ---
 
 *Source: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md` — all 25 cells and sub-system inheritance table trace directly to that document. No behaviors invented.*
+
+## Links
+
+- [[DESIGN]]
+- [[UES_VERSION_BEHAVIORS]]
+- [[blocker]]
+- [[iteration]]
+- [[methodology]]
+- [[project]]
+- [[task]]
+- [[workstream]]

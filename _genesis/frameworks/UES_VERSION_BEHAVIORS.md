@@ -125,3 +125,17 @@ Use this quick reference to calibrate your deliverables:
 - `_genesis/sops/ALPEI_OPERATING_PROCEDURE.md` — Full ALPEI SOP with work stream, stage, and sub-system guide
 - `_genesis/frameworks/HISTORY_VERSION_CONTROL.md` — Version progression and iteration management
 - `/dsbv` — Guided DSBV flow (our equivalent of `/ues-*` work stream commands)
+
+## Links
+
+- [[ALPEI_OPERATING_PROCEDURE]]
+- [[DESIGN]]
+- [[HISTORY_VERSION_CONTROL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[dsbv]]
+- [[iteration]]
+- [[methodology]]
+- [[project]]
+- [[task]]
+- [[versioning]]

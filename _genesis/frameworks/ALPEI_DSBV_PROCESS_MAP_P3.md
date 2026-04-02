@@ -98,3 +98,23 @@ The PM makes three decisions in this exchange: approve Design, approve Sequence,
 ---
 
 *Connects to: P1 (ALPEI workstream map), P2 (DSBV phase overview), P4 (LEARN → ALIGN + PLAN data flow)*
+
+## Links
+
+- [[ADR-001]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[DSBV_CONTEXT_TEMPLATE]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[agent-dispatch]]
+- [[alpei-chain-of-custody]]
+- [[alpei-pre-flight]]
+- [[dsbv]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
+- [[task]]
+- [[versioning]]
+- [[workstream]]

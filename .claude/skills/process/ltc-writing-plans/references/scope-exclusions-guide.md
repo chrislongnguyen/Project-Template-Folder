@@ -151,3 +151,15 @@ More entries are better than fewer, but only if each entry is specific. Vague en
 - [ ] No entries repeat plan-level rules (DRY, TDD, atomic commits) — those apply everywhere
 - [ ] Each entry reflects a real decision made during plan design (not boilerplate)
 - [ ] At least 2 entries per deliverable (per validation Check 7)
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[adapter]]
+- [[anti-patterns]]
+- [[deliverable]]
+- [[field-map]]
+- [[iteration]]
+- [[simple]]
+- [[task]]

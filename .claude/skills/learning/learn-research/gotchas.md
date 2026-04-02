@@ -51,3 +51,8 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Check frontmatter `source_count` in each output file.
 
 **Fix:** The HARD-GATE in Step 4 blocks progression. User must explicitly choose option (a) re-research or (b) proceed with `limited-sources` flag.
+
+## Links
+
+- [[SKILL]]
+- [[methodology]]

@@ -2,6 +2,10 @@
 version: "1.0"
 last_updated: 2026-03-30
 purpose: "Template for LTC members to create their personal ~/.claude/CLAUDE.md"
+type: template
+work_stream: govern
+stage: design
+sub_system: 
 ---
 # CLAUDE.md — Global ({YOUR_NAME}, LTC Partners)
 
@@ -57,3 +61,14 @@ Project memory lives in `~/.claude/projects/{project-dir}/memory/`. Uses tiered 
 ## META-RULE
 
 If a project CLAUDE.md contradicts this file, the **project file wins**. Flag the contradiction to the User only if the intent is ambiguous.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]
+- [[dsbv]]
+- [[ltc-ai-agent-system-project-template-guide]]
+- [[project]]
+- [[security]]
+- [[task]]

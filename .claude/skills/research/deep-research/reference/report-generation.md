@@ -191,3 +191,12 @@ Present to user:
 2. Folder path with all three formats
 3. Source quality summary (count, avg credibility)
 4. Next steps if relevant
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[anti-patterns]]
+- [[methodology]]
+- [[report_template]]
+- [[task]]

@@ -25,3 +25,9 @@ Run this sequence for each compliance request.
    - Ensure every `FAIL` has at least one action owner + next step
    - Ensure every `WARN` has explicit follow-up condition
    - Publish with `templates/compliance-report.md`
+
+## Links
+
+- [[SEQUENCE]]
+- [[compliance-report]]
+- [[scope-matrix]]

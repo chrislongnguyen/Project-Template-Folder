@@ -41,3 +41,9 @@ Sync WMS after every task status transition during execution:
 **Reason:** {1-line summary}
 **Blockers:** {description, or "none"}
 ```
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[task]]

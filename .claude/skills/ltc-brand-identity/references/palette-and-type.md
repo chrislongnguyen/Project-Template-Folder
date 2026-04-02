@@ -34,3 +34,7 @@
 4. Dark Purple `#653469`
 
 Full 20-color table and function assignments: `rules/brand-identity.md` sections 2–3.
+
+## Links
+
+- [[brand-identity]]

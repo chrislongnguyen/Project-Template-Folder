@@ -95,3 +95,11 @@ When presenting approaches to the user:
 2. **Show the matrix** (simplified — 3-4 rows, not the full template) for each approach
 3. **Explicitly name what you're sacrificing** and why the trade-off is worth it
 4. **Flag any approach where sustainability is questionable** — the user should know the risk
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[general-system]]
+- [[simple]]
+- [[task]]

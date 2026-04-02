@@ -32,3 +32,7 @@ RECALL — {repo-name}
 - Never use HTML entities (`&nbsp;` etc.)
 - Never include standup sections (DONE, BLOCKED, DOING, IN REVIEW, PROPOSED, DISCUSSION)
 - Synthesize — do not dump raw qmd/vault content
+
+## Links
+
+- [[standard]]

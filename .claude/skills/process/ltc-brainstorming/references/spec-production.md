@@ -86,3 +86,18 @@ Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the 
 Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §6 structure.
 
 **Apply META-RULE 4 (VANA DECOMPOSE) and META-RULE 5 (DEFINE DONE) throughout all AC sections.**
+
+## Links
+
+- [[CLAUDE]]
+- [[EP-08]]
+- [[EP-10]]
+- [[VANA_SPEC_TEMPLATE]]
+- [[context-packaging]]
+- [[dsbv]]
+- [[iteration]]
+- [[ltc-builder]]
+- [[project]]
+- [[section-allocation]]
+- [[standard]]
+- [[workstream]]

@@ -31,3 +31,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 **How to detect:** Check the user's language before updating WMS status. Phrases like "needs review", "needs another look", "not finished", "in review" all indicate the work is NOT done.
 
 **Fix:** Default to "In Review" unless the user explicitly says the work is complete/done. When in doubt, ask. Never upgrade status beyond what the user stated.
+
+## Links
+
+- [[SKILL]]

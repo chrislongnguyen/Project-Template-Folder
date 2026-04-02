@@ -31,3 +31,9 @@ philosophy → principles → frameworks → [brand as derived identity layer]
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[BRAND_GUIDE]]
+- [[NAMING_CONVENTION]]
+- [[security]]

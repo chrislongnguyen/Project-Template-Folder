@@ -80,3 +80,8 @@ Shared force: {Yes/No — if yes, state both notations}
 ```
 
 Present this to the Learner before proceeding to the next level.
+
+## Links
+
+- [[VALIDATE]]
+- [[blocker]]

@@ -145,3 +145,13 @@ I4 Gate Criteria: "All I1-I3 ACs pass eval + Human Director sign-off on SPAWNED 
 
 **INPUT CONTRACT:** Copy table from learn-input §3 (fields: source, schema, validation, error, sla, version).
 **OUTPUT CONTRACT:** Copy table from learn-input §4 (fields: consumer, schema, validation, error, sla, version).
+
+## Links
+
+- [[CLAUDE]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[iteration]]
+- [[workstream]]

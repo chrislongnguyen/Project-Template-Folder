@@ -135,3 +135,9 @@ All in `0. REUSABLE RESOURCES/0.3. TEMPLATES/`
 - [[COE EFF_EFFECTIVENESS - AREA TRAINING MATERIALS -1. Truths We Need to Master to Succeed]] — 10 Ultimate Truths
 - [[EFFECTIVE LEARNING - Learning Hierarchy & CODE Template]] — How to learn effectively to produce quality UBS/UDS/EP
 - [[ALPEI Framework by Sub-Systems]] — How risk management fits across all 80 cells
+
+## Links
+
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[blocker]]

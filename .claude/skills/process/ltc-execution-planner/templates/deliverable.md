@@ -32,3 +32,8 @@
 
 - **In scope:** {what this deliverable covers}
 - **Out of scope:** {explicit boundaries with other deliverables}
+
+## Links
+
+- [[project]]
+- [[task]]

@@ -170,3 +170,15 @@ ClickUp, draft the full plan on screen and confirm the target List with the user
 
 Note: LEP does not use PJ Workstream (that's an OE.6.3 ClickUp concept). LEP Deliverables
 map directly under PJ Projects in the ClickUp hierarchy.
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[deliverable]]
+- [[field-map]]
+- [[gotchas]]
+- [[project]]
+- [[task]]
+- [[task-protocol]]
+- [[workstream]]

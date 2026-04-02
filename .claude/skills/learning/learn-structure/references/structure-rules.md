@@ -98,3 +98,9 @@ Components follow a 3-layer structure:
 1. **Foundational (INFRA):** Infrastructure that must exist first
 2. **Operational (WORKSPACE):** Day-to-day working environment
 3. **Enabling (INTEL):** Intelligence/analytics that amplify the other layers
+
+## Links
+
+- [[SKILL]]
+- [[VALIDATE]]
+- [[blocker]]

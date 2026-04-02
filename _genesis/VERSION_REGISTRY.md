@@ -116,3 +116,20 @@ New file in I1        → version: "1.0"
 Committed at 1.Y      → next meaningful edit → "1.(Y+1)"
 Wrong MAJOR (2.x)     → correct to 1.x (this is not a normal bump — it is a fix)
 ```
+
+## Links
+
+- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[UES_VERSION_BEHAVIORS]]
+- [[VALIDATE]]
+- [[alpei-chain-of-custody]]
+- [[deliverable]]
+- [[dsbv]]
+- [[iteration]]
+- [[security]]
+- [[workstream]]

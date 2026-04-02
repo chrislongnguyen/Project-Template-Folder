@@ -7,3 +7,9 @@
 3. **Chart library defaults** — Chart.js, Recharts, and similar default to a non-LTC palette. Explicitly set `color` / `backgroundColor` arrays from the LTC hex list in `rules/brand-identity.md`, not the library defaults.
 
 4. **“Brand” collision with learn-visualize** — `/learn:visualize` already loads `rules/brand-identity.md` for map UIs. This skill is the general entry for *any* visual artifact; use both when building the learn map so structure comes from learn-visualize and cross-check brand with this skill.
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[brand-identity]]

@@ -56,3 +56,9 @@ notation (`UBS.R.1`).
 
 **Rule:** Node ID = CAG prefix only (e.g., `UBS.R.1`, `EP.3`). Label = row subject text.
 Parse edges from col 12/13 using the same CAG prefix notation.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[brand-identity]]

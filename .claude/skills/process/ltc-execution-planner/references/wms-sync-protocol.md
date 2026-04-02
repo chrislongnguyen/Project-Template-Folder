@@ -111,3 +111,10 @@ When creating WMS items during Stage 4 generation:
 5. Cache all WMS IDs in `.wms-sync.json`
 
 This order ensures parent items exist before children reference them.
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[deliverable]]
+- [[task]]

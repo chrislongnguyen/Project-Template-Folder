@@ -21,3 +21,8 @@
 **Key decisions:** {D-IDs + 1-line summary, or "none"}
 **Next:** {OPS-NN+1} — {next page title}
 ```
+
+## Links
+
+- [[standard]]
+- [[task]]

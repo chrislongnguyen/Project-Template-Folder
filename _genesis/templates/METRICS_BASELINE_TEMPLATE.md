@@ -3,6 +3,10 @@ version: "1.0"
 status: Draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
+type: template
+work_stream: improve
+stage: build
+sub_system: 
 ---
 # METRICS BASELINE TEMPLATE (T7)
 > Stub template — populate during IMPROVE Design and IMPROVE Build phases.
@@ -59,3 +63,8 @@ owner: "Long Nguyen"
 | Date | Metric | Actual Value | Notes |
 |------|--------|-------------|-------|
 | _[YYYY-MM-DD]_ | _[name]_ | _[value]_ | _[context]_ |
+
+## Links
+
+- [[DESIGN]]
+- [[iteration]]

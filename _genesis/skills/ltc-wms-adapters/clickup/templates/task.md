@@ -61,3 +61,10 @@ Note: A Task has 3 types of children at the same level:
 - **PJ Increment** (1..N) — the testable work
 - **PJ Documentation** (1) — reference doc for this Task's subsystem
 - **PJ Blocker** (0..N) — reactive, created when blockers are discovered
+
+## Links
+
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]

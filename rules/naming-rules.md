@@ -319,3 +319,17 @@ Before creating ANY named item on ANY platform, the agent MUST:
 8. **Check** for name collisions on the target platform
 
 If a collision is detected, disambiguate by adjusting NAME. As a last resort, append `-NN` suffix. Never create duplicates — halt and ask the user.
+
+## Links
+
+- [[NAMING_CONVENTION]]
+- [[VALIDATE]]
+- [[blocker]]
+- [[deliverable]]
+- [[documentation]]
+- [[increment]]
+- [[project]]
+- [[security]]
+- [[standard]]
+- [[task]]
+- [[workstream]]

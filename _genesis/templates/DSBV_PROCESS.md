@@ -4,6 +4,10 @@ iteration: "I1: Concept"
 status: Draft
 last_updated: 2026-03-30
 owner: Long Nguyen
+type: template
+work_stream: govern
+stage: design
+sub_system: 
 ---
 # DSBV Process — Design, Sequence, Build, Validate
 
@@ -270,3 +274,22 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 
 **Source:** ADR-001 (Competing Hypotheses + Synthesis), DSBV Best Practices Report (2026-03-26, 42 sources)
 **Governed by:** 7-CS Agent System, 8 LLM Truths, EP-01 through EP-10
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[DSBV_CONTEXT_TEMPLATE]]
+- [[DSBV_EVAL_TEMPLATE]]
+- [[EP-01]]
+- [[EP-10]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[dsbv]]
+- [[idea]]
+- [[iteration]]
+- [[simple]]
+- [[task]]
+- [[workstream]]
