@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="version" content="1.3">
+<meta name="version" content="1.4">
 <meta name="status" content="Draft">
 <meta name="last-updated" content="2026-04-02">
-<title>Obsidian Feature Analysis — CODE Framework v1.3</title>
+<title>Obsidian Feature Analysis — CODE Framework v1.4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -317,11 +317,12 @@
   <h1>Obsidian Feature Analysis — CODE Framework</h1>
   <div class="subtitle">Feature tracking: Long's approach (L1–L13) + Vinh's approach (V1–V10) + New research synthesis (N1–N9) · Human Adoption as top UBS</div>
   <div class="meta-row">
-    <span><strong>Version:</strong> 1.2</span>
+    <span><strong>Version:</strong> 1.4</span>
     <span><strong>Status:</strong> Draft</span>
-    <span><strong>Updated:</strong> 2026-04-01</span>
+    <span><strong>Updated:</strong> 2026-04-02</span>
     <span><strong>Branch:</strong> I1/feat/obsidian-cli</span>
     <span><strong>v1.3 change:</strong> N9 GitNexus added (TEST-GATE) · 3 HIGH blockers documented · 4-tool routing designed</span>
+    <span><strong>v1.4 change:</strong> N1–N8 Cycle scores added · Cycle 3 V-series RICE scored</span>
   </div>
 </div>
 
@@ -697,6 +698,11 @@
     <thead>
       <tr>
         <th class="col-id">Feature</th>
+        <th style="width:50px; text-align:center">R</th>
+        <th style="width:50px; text-align:center">I</th>
+        <th style="width:50px; text-align:center">C</th>
+        <th style="width:50px; text-align:center">E</th>
+        <th style="width:70px; text-align:center">Score</th>
         <th class="col-what">What Is It</th>
         <th class="col-not">What It's Not</th>
         <th class="col-without">Without It</th>
@@ -711,6 +717,11 @@
       <!-- V1 — CORRECTED (Phase 3) -->
       <tr class="row-corrected">
         <td><div class="feature-id">V1</div><div class="feature-name">Wikilink flywheel</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.75</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center; font-weight:700; color:var(--midnight-green)">2.3</td>
         <td>Each wikilink added = a cached relationship that agents follow instead of re-discovering. Auto-linker runs once → permanent enrichment.</td>
         <td>Not a self-sustaining system by itself. Links must be maintained as files are renamed or removed.</td>
         <td>Agents re-discover relationships every session via grep. No compounding benefit over time.</td>
@@ -728,6 +739,11 @@
       <!-- V2 — CORRECTED (Phase 3) -->
       <tr class="row-corrected">
         <td><div class="feature-id">V2</div><div class="feature-name">41 Templater templates</div><span class="badge corrected">v1.1 Corrected</span></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">0.75</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center; font-weight:700; color:var(--midnight-green)">3.4</td>
         <td>Comprehensive Obsidian Templater template set covering every ALPEI stage × workstream combination. Each template enforces the correct frontmatter schema for Bases queries.</td>
         <td>Not arbitrary note-creation shortcuts. Templates encode the 80-cell matrix's required metadata structure.</td>
         <td>Without templates, notes have inconsistent frontmatter → Bases filters break → dashboards show wrong data.</td>
@@ -745,6 +761,11 @@
       <!-- V3 — CORRECTED (Deferred) -->
       <tr class="row-corrected">
         <td><div class="feature-id">V3</div><div class="feature-name">12 Kanban boards</div><span class="badge deferred">Deferred I2</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.25</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center; font-weight:700; color:var(--ruby)">0.3</td>
         <td>12 Kanban boards (one per sub-system × workstream) where tasks are plain markdown. Agents can read and write task cards directly.</td>
         <td>Not a replacement for ClickUp at team scale. No cross-member assignments, no notifications, no external integrations.</td>
         <td>Without local Kanban: agent task queues live only in ClickUp — requires API calls. Local markdown is faster and offline-capable.</td>
@@ -757,6 +778,11 @@
       <!-- V4 — CONFIRMED (Phase 3) -->
       <tr>
         <td><div class="feature-id">V4</div><div class="feature-name">14 Obsidian Bases dashboards</div><span class="badge confirmed">Phase 3</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center; font-weight:700; color:var(--ruby)">1.3</td>
         <td>Database-view dashboards filtering frontmatter across all vault files. ALPEI Master, Blocker, Approval Queue, Standup, Version Progress, Stage Board, + 5 workstream overviews + 3 operational.</td>
         <td>Not a replacement for ClickUp at team scale (no assignments, no cross-system notifications). Solo / ≤3-person teams: Bases may suffice. Team of 8: supplement only.</td>
         <td>Without Bases: no queryable project state. Must manually open files to find blockers, pending approvals, or version status.</td>
@@ -769,6 +795,11 @@
       <!-- V6 — CORRECTED (Deferred) -->
       <tr class="row-corrected">
         <td><div class="feature-id">V6</div><div class="feature-name">Session startup via daily notes</div><span class="badge deferred">Deferred I2</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.25</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center; font-weight:700; color:var(--ruby)">0.5</td>
         <td><code>obsidian daily:read silent</code> at session start loads yesterday's journal. Captures micro-decisions not summarized in session logs (meeting notes, async decisions, reading notes).</td>
         <td>Not the only cold-start solution. One of many context-loading mechanisms, not the primary one.</td>
         <td>Agent misses intra-day context that wasn't captured in formal session logs. Small gap in practice.</td>
@@ -786,6 +817,11 @@
       <!-- V8 — CONFIRMED (Phase 3) -->
       <tr>
         <td><div class="feature-id">V8</div><div class="feature-name">80-cell matrix taxonomy</div><span class="badge confirmed">Phase 3</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.5</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center; font-weight:700; color:var(--midnight-green)">2.0</td>
         <td>4 sub-systems × 5 workstreams × 4 stages = 80 cells. Every work unit has a canonical address. Frontmatter encodes: <code>sub_system + work_stream + stage</code>.</td>
         <td>Not required to instantiate all 80 cells. Most projects use 10–20 active cells. The taxonomy is the reference, not the mandate.</td>
         <td>Without canonical addresses: work units lack references. Agents guess context. Bases queries return wrong results. Traceability breaks.</td>
@@ -798,6 +834,11 @@
       <!-- V9 — CORRECTED (Test-Gate) -->
       <tr class="row-removed">
         <td><div class="feature-id">V9</div><div class="feature-name">478-file pre-instantiation</div><span class="badge removed">Test-Gate</span></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">0.25</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center; font-weight:700; color:var(--ruby)">0.4</td>
         <td>All 80 cells pre-populated with stub files at vault creation. Vault is fully navigable before any work starts. Agent paths always exist on first call.</td>
         <td>Not required for the template to function. Our current template works with ~50 files and full agent support.</td>
         <td>Without pre-instantiation: agents must create directories and files as they go → more tool calls, more path errors, more context-switching.</td>
@@ -814,12 +855,17 @@
 
       <!-- N9 — GitNexus Code Knowledge Graph (TEST-GATE) -->
       <tr style="background:#FDF0E8">
-        <td colspan="8" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--ruby); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--ruby)">
+        <td colspan="13" style="padding:6px 12px; font-size:9pt; font-weight:700; color:var(--ruby); letter-spacing:0.05em; text-transform:uppercase; border-bottom:2px solid var(--ruby)">
           TEST-GATE — Do Not Implement Until Blockers Resolved
         </td>
       </tr>
       <tr class="row-removed">
         <td><div class="feature-id">N9</div><div class="feature-name">GitNexus Code Knowledge Graph</div><span class="badge removed">Test-Gate</span></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center">0.25</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center; font-weight:700; color:var(--ruby)">0.6</td>
         <td>GitNexus indexes code files (.py, .sh, .ts, .html) into a knowledge graph — call chains, imports, clusters, execution flows — exposed via MCP. Closes the S1/S4 gap where Obsidian can't see non-.md files. 20K+ GitHub stars.</td>
         <td>Not a replacement for Obsidian (doesn't parse .md wikilinks) or QMD (no semantic search over sessions). Code-only graph. Does NOT handle markdown→code traceability (issue #157 open).</td>
         <td>Agents use brute-force grep for code dependencies. A/B test: Grep found +7 non-md files (S1) and +8 (S4) that Obsidian missed. As EXECUTE grows beyond 75+ code files, grep becomes O(n²).</td>
@@ -1128,7 +1174,7 @@
 <div class="page-footer">
   <span><strong>LT Capital Partners</strong> · COE OPS</span>
   <span>OPS_OE.6.4.LTC-PROJECT-TEMPLATE · Branch: I1/feat/obsidian-cli</span>
-  <span>v1.2 · Draft · 2026-04-01 · N1–N8 added · Human Adoption as top UBS · 15 features marked Done</span>
+  <span>v1.4 · Draft · 2026-04-02 · N1–N8 Cycle scores added · Cycle 3 V-series RICE scored</span>
 </div>
 
 </body>
