@@ -1,11 +1,11 @@
 ---
-version: "1.2"
+version: "1.3"
 status: Draft
-last_updated: 2026-03-31
+last_updated: 2026-04-02
 ---
 # Versioning — Always-On Rule
 
-Full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md` | Registry: `0-GOVERN/VERSION_REGISTRY.md`
+Full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md` | Registry: `_genesis/VERSION_REGISTRY.md`
 
 ## Required Metadata by File Type
 
@@ -51,14 +51,14 @@ creates    requests   (Agent NEVER
 
 ## After Editing Any Workstream Artifact
 
-Update the corresponding row in `0-GOVERN/VERSION_REGISTRY.md` — version, status, and date.
+Update the corresponding row in `_genesis/VERSION_REGISTRY.md` — version, status, and date.
 
 ## Pre-Commit Checklist
 
 1. `version` — follows 1.x (I1) convention, bumped only if previously committed
 2. `status` — not prematurely `Approved`
 3. `last_updated` — today's absolute date
-4. `0-GOVERN/VERSION_REGISTRY.md` — row updated if this is a workstream artifact
+4. `_genesis/VERSION_REGISTRY.md` — row updated if this is a workstream artifact
 
 ## PR-Level Requirements
 

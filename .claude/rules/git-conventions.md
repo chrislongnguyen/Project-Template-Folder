@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: Draft
-last_updated: 2026-03-31
+last_updated: 2026-04-02
 ---
 
 # Git Conventions — Always-On Rule
@@ -66,7 +66,7 @@ Before staging any modified `.md` workstream artifact, verify:
 ## Post-Commit Requirements (workstream artifacts)
 
 After every commit that includes a workstream artifact:
-- Update `0-GOVERN/VERSION_REGISTRY.md` row (version, status, date)
+- Update `_genesis/VERSION_REGISTRY.md` row (version, status, date)
 - Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 
 ## Staging Rule

@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: Draft
-last_updated: 2026-04-01
+last_updated: 2026-04-02
 ---
 
 # Git Workflow — LTC Members
@@ -133,7 +133,7 @@ For every `.md` workstream artifact you edited:
 
 ## After You Commit — 2 Updates
 
-1. `0-GOVERN/VERSION_REGISTRY.md` — update the row for every workstream artifact committed
+1. `_genesis/VERSION_REGISTRY.md` — update the row for every workstream artifact committed
 2. `5-IMPROVE/changelog/CHANGELOG.md` — add an entry before creating any PR
 
 ---

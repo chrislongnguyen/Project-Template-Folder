@@ -1,8 +1,7 @@
 ---
-
-## version: "1.4"
+version: "1.5"
 status: Draft
-last_updated: 2026-03-31
+last_updated: 2026-04-02
 owner: "Long Nguyen"
 
 # ALPEI-DSBV Process Map
@@ -44,7 +43,7 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
 | **3-PLAN**    | **Template:** FORCE_ANALYSIS_TEMPLATE.md (T4) + RISK_ENTRY_TEMPLATE.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** ROADMAP_TEMPLATE.md (T6) + DRIVER_ENTRY_TEMPLATE.md (T5) **Deliverable:** `3-PLAN/roadmap/ROADMAP.md` **AC:** Milestones map to iteration. Drivers have leverage actions. |
 | **4-EXECUTE** | **Template:** DESIGN_TEMPLATE.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** DSBV_CONTEXT_TEMPLATE.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
-| **5-IMPROVE** | **Template:** METRICS_BASELINE_TEMPLATE.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** RETRO_TEMPLATE.md **Deliverable:** `5-IMPROVE/retros/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
+| **5-IMPROVE** | **Template:** METRICS_BASELINE_TEMPLATE.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** RETRO_TEMPLATE.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
 
 
 ---
@@ -544,7 +543,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 | Phase    | Template(s)                                  | Agent        | Deliverable Path                         | AC                                                             |
 | -------- | -------------------------------------------- | ------------ | ---------------------------------------- | -------------------------------------------------------------- |
 | Design   | METRICS_BASELINE_TEMPLATE.md                 | ltc-planner  | `5-IMPROVE/metrics/METRICS_BASELINE.md`  | Each metric has current value, target, and measurement method  |
-| Sequence | RETRO_TEMPLATE.md                            | ltc-planner  | `5-IMPROVE/retros/RETRO-PLAN.md`         | Retro format defined; participants identified                  |
+| Sequence | RETRO_TEMPLATE.md                            | ltc-planner  | `5-IMPROVE/retrospectives/RETRO-PLAN.md` | Retro format defined; participants identified                  |
 | Build    | TEST_PLAN_TEMPLATE.md · FEEDBACK_TEMPLATE.md | ltc-builder  | `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` | Feedback has category, severity, and status per entry          |
 | Validate | REVIEW_PACKAGE_TEMPLATE.md                   | ltc-reviewer | `5-IMPROVE/reviews/VERSION-REVIEW.md`    | Three Pillars scored; version advancement decision: GO / NO-GO |
 

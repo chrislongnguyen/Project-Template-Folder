@@ -84,16 +84,17 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 6. **EXECUTE** with 3 pillars: Sustainability > Efficiency > Scalability
 7. **DOCUMENT** decisions in `1-ALIGN/decisions/` for non-trivial architectural choices
 
-## Structure (5x4 Matrix)
+## Structure (5×4×4 Matrix)
+
+5 workstreams × 4 DSBV stages × 4 sub-systems (PD→DP→DA→IDM)
 
 ```
-GOVERN workstream         → CLAUDE.md, AGENTS.md, .claude/, rules/, 0-GOVERN/ (DSBV artifacts)
 ALIGN workstream (Right Outcome)    → 1-ALIGN/ (charter, decisions, okrs)
-LEARN workstream (Problem Research) → 2-LEARN/ (input, research, specs, output — learning pipeline outputs)
+LEARN workstream (Problem Research) → 2-LEARN/ (input, research, specs, output — learning pipeline)
 PLAN workstream (Minimize Risks)    → 3-PLAN/ (architecture, risks, drivers, roadmap)
 EXECUTE workstream (Deliver)        → 4-EXECUTE/ (src, tests, config, docs)
 IMPROVE workstream (Learn & Grow)   → 5-IMPROVE/ (changelog, metrics, retros, reviews)
-Shared  — Org Knowledge Base      → _genesis/ (brand, frameworks, security, sops, templates)
+Agent config & rules (operational)  → CLAUDE.md, AGENTS.md, .claude/, _genesis/
 ```
 
 **Core Equation:** Success = Efficient & Scalable Management of Failure Risks

@@ -1,6 +1,6 @@
 ---
-version: "1.2"
-last_updated: 2026-03-31
+version: "1.3"
+last_updated: 2026-04-02
 type: governance
 classification: INTERNAL
 owner: LTC ALL
@@ -215,7 +215,6 @@ This template follows the APEI 5-workstream structure:
 ```
 PROJECT_ROOT/
 |
-|-- 0-GOVERN/              # GOVERN workstream — Agent governance (DSBV artifacts)
 |-- 1-ALIGN/               # ALIGN workstream (charter, decisions, okrs, learning)
 |-- 3-PLAN/                # PLAN workstream (architecture, risks, drivers, roadmap)
 |-- 4-EXECUTE/             # EXECUTE workstream (src, tests, config, docs)
@@ -1046,7 +1045,7 @@ Vinh's workspace provides 41 Templater templates `[Obsidian-specific — adapt t
 | **DESIGN** | ALIGN Master Plan (VANA) | `1-ALIGN/charter/` |
 | **DESIGN** | OKR | `1-ALIGN/okrs/` |
 | **PRODUCTION** | Alignment Lock & Sign-Off | `1-ALIGN/charter/` |
-| **AUDIT** | Alignment Audit Report | `0-GOVERN/` (DSBV validate artifact) |
+| **AUDIT** | Alignment Audit Report | `1-ALIGN/VALIDATE.md` |
 
 ### LEARN TEMPLATES (9)
 
@@ -1060,7 +1059,7 @@ Vinh's workspace provides 41 Templater templates `[Obsidian-specific — adapt t
 | **PRODUCTION** | Effective System Design (UES) | Load `rules/general-system.md` |
 | **PRODUCTION** | Research (CODE Framework) | `/deep-research` skill |
 | **PRODUCTION** | Spike Investigation | `1-ALIGN/learning/` |
-| **AUDIT** | Learning Audit Report | `0-GOVERN/` (DSBV validate artifact) |
+| **AUDIT** | Learning Audit Report | `2-LEARN/VALIDATE.md` |
 
 ### PLAN TEMPLATES (6)
 
@@ -1071,7 +1070,7 @@ Vinh's workspace provides 41 Templater templates `[Obsidian-specific — adapt t
 | **DESIGN** | Architecture Decision Record | `1-ALIGN/decisions/` |
 | **PRODUCTION** | UBS Risk Entry | `3-PLAN/risks/UBS_REGISTER.md` |
 | **PRODUCTION** | UDS Driver Entry | `3-PLAN/drivers/UDS_REGISTER.md` |
-| **AUDIT** | Planning Audit Report | `0-GOVERN/` (DSBV validate artifact) |
+| **AUDIT** | Planning Audit Report | `3-PLAN/VALIDATE.md` |
 
 ### EXECUTE TEMPLATES (5)
 
@@ -1081,7 +1080,7 @@ Vinh's workspace provides 41 Templater templates `[Obsidian-specific — adapt t
 | **DESIGN** | Technical Design Document | `4-EXECUTE/` |
 | **PRODUCTION** | Execution Progress Tracker | `4-EXECUTE/` |
 | **PRODUCTION** | Daily Standup | `4-EXECUTE/` |
-| **AUDIT** | Execution Audit Report | `0-GOVERN/` (DSBV validate artifact) |
+| **AUDIT** | Execution Audit Report | `4-EXECUTE/VALIDATE.md` |
 
 ### IMPROVE TEMPLATES (6)
 
@@ -1091,7 +1090,7 @@ Vinh's workspace provides 41 Templater templates `[Obsidian-specific — adapt t
 | **DESIGN** | Feedback Analysis Design | `5-IMPROVE/` |
 | **PRODUCTION** | Feedback Register | `5-IMPROVE/` |
 | **PRODUCTION** | Sprint Review | `5-IMPROVE/reviews/` |
-| **AUDIT** | Improvement Audit Report | `0-GOVERN/` (DSBV validate artifact) |
+| **AUDIT** | Improvement Audit Report | `5-IMPROVE/VALIDATE.md` |
 | **AUDIT** | Retrospective | `5-IMPROVE/retros/` |
 
 ## 12.2. TEMPLATE COUNT SUMMARY

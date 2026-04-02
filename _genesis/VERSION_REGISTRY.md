@@ -1,7 +1,7 @@
 ---
-version: "1.3"
+version: "1.4"
 status: Draft
-last_updated: 2026-03-30
+last_updated: 2026-04-02
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
@@ -43,7 +43,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 
 | Workstream          | Description                                        | Version | Status     | Last Updated |
 |---------------|----------------------------------------------------|---------|------------|--------------|
-| 0-GOVERN      | Operational infrastructure — CLAUDE.md, rules/, agents/, hooks/, 0-GOVERN/ | 1.x | Active | 2026-03-30 |
+| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-02 |
 | _genesis      | Reference layer — brand, frameworks, security, SOPs, templates, 5 Vinh PDFs | 1.x | Reference | 2026-03-30 |
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
@@ -77,13 +77,13 @@ Version labels from `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
 - **5-IMPROVE** CHANGELOG.md initialized but DSBV has not formally started — status = Pending.
 - **GOVERN workstream** does not use full DSBV for small patches — see `rules/alpei-chain-of-custody.md`.
 - **Map Cell column** populates as `P1-{A-E}{1-4}` after Consumer 1 ships. Row ordering: A=ALIGN, B=LEARN, C=PLAN, D=EXECUTE, E=IMPROVE; columns 1-4 = Design, Sequence, Build, Validate.
-- This file is updated manually at each milestone. Auto-derive rules for I2 in `0-GOVERN/designs/consumer-3-auto-derive-rules.md`.
+- This file is updated manually at each milestone. Auto-derive rules for I2 are deferred to I2 planning.
 
 ---
 
 ## How Agents Update This File
 
-This registry uses a **22-row workstream×phase matrix**: 20 cells (5 workstreams × 4 DSBV phases) plus 2 summary rows for 0-GOVERN and _genesis.
+This registry uses a **22-row workstream×phase matrix**: 20 cells (5 workstreams × 4 DSBV phases) plus 2 summary rows for GOVERN infrastructure and _genesis.
 
 **Per-cell update rules:**
 1. After editing any workstream artifact: find the matching `Workstream×Phase` row, update **Version + Status + AC Pass + Last Updated**.

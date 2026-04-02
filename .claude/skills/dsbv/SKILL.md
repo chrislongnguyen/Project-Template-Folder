@@ -1,7 +1,7 @@
 ---
-version: "1.2"
+version: "1.3"
 status: Draft
-last_updated: 2026-03-30
+last_updated: 2026-04-02
 owner: "Long Nguyen"
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
@@ -191,7 +191,7 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 
 ## Status Command
 
-`/dsbv status` reads `0-GOVERN/VERSION_REGISTRY.md` and renders the 20-row cell-level progress table.
+`/dsbv status` reads `_genesis/VERSION_REGISTRY.md` and renders the 20-row cell-level progress table.
 
 **Full output format:**
 
@@ -227,7 +227,7 @@ Next gate: 2-LEARN × Validate → human approval required
 
 **Single-workstream summary (backward-compatible):** `/dsbv status [workstream]` filters to 4 rows for that workstream only, preserving the same column structure.
 
-**Data source:** All values read from `0-GOVERN/VERSION_REGISTRY.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
+**Data source:** All values read from `_genesis/VERSION_REGISTRY.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
 
 **Status vocabulary (6 values only):** `Not Started` | `Pending` | `Draft` | `Review` | `In Progress` | `Approved`
 - `Pending` = upstream workstream not Approved — this cell cannot start yet
