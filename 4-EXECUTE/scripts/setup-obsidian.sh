@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: draft | last_updated: 2026-04-03
+# version: 2.1 | status: draft | last_updated: 2026-04-03
 # setup-obsidian.sh — one-command installer for LTC Obsidian workspace
 # Copies Bases and Templater templates into an Obsidian vault's .obsidian/ directory
 
@@ -22,9 +22,9 @@ VAULT_ROOT="$(cd "$VAULT_ROOT" 2>/dev/null && pwd)" || {
   exit 1
 }
 
-# Target directories inside the vault
-TARGET_BASES="$VAULT_ROOT/0-REUSABLE-RESOURCES/bases"
-TARGET_TEMPLATES="$VAULT_ROOT/0-REUSABLE-RESOURCES/templates"
+# Target directories inside the vault (_genesis/ is the canonical shared resources folder)
+TARGET_BASES="$VAULT_ROOT/_genesis/obsidian/bases"
+TARGET_TEMPLATES="$VAULT_ROOT/_genesis/obsidian/templates"
 TARGET_OBSIDIAN="$VAULT_ROOT/.obsidian"
 
 # Verify source directories exist
@@ -88,7 +88,7 @@ echo "     - Templater"
 echo "     - Dataview"
 echo "     - Obsidian Kanban"
 echo "  3. Reload Obsidian (Ctrl+R or Cmd+R)"
-echo "  4. Open 0-REUSABLE-RESOURCES/bases/ — dashboards will load"
+echo "  4. Open _genesis/obsidian/bases/ — dashboards will load"
 echo "  5. New note? Use Templater → ues-deliverable or daily-note template"
 
 exit 0

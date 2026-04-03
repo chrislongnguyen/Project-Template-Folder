@@ -1,5 +1,5 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
@@ -70,9 +70,9 @@ vault/
 │   ├── .gitkeep               (Git tracks this empty dir)
 │   └── (Agent-write-only; PM reviews and approves moves to canonical folders)
 │
-└── 0-REUSABLE-RESOURCES/      Shared templates & bases library
+└── _genesis/obsidian/         Obsidian-specific resources (canonical shared folder)
     ├── templates/             Templater auto-fill templates (T1-T6)
-    │   └── .gitkeep           (Git tracks this empty dir)
+    └── bases/                 14 Obsidian Bases dashboards
     │
     └── bases/                 All 14 Obsidian Bases dashboards
         └── .gitkeep           (Git tracks this empty dir)
@@ -98,8 +98,8 @@ vault/
 | **THINGS** | Reference items, tools, resource pointers | PM only |
 | **AI-AGENT-MEMORY** | Agent session logs, memories, context (append-only) | Agent only |
 | **inbox** | Agent staging area for proposed artifacts | Agent only |
-| **0-REUSABLE-RESOURCES/templates** | 6 Templater templates for artifact auto-fill | PM setup (agent reads) |
-| **0-REUSABLE-RESOURCES/bases** | 14 Obsidian Bases dashboards | PM setup (agent reads) |
+| **_genesis/obsidian/templates** | 6 Templater templates for artifact auto-fill | PM setup (agent reads) |
+| **_genesis/obsidian/bases** | 14 Obsidian Bases dashboards | PM setup (agent reads) |
 
 ---
 
@@ -110,8 +110,8 @@ All folders are version-controlled via Git. Empty directories require a `.gitkee
 **Folders that MUST have `.gitkeep` files:**
 - `inbox/` — Agent staging area
 - `AI-AGENT-MEMORY/` — Agent session logs
-- `0-REUSABLE-RESOURCES/templates/` — Templates library
-- `0-REUSABLE-RESOURCES/bases/` — Bases library
+- `_genesis/obsidian/templates/` — Templates library
+- `_genesis/obsidian/bases/` — Bases library
 
 **Other folders:** Created by `setup-vault.sh` with `mkdir -p` (no `.gitkeep` needed initially; they become non-empty when PMs add content)
 

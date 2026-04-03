@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: draft | last_updated: 2026-04-03
+# version: 2.1 | status: draft | last_updated: 2026-04-03
 #
 # setup-vault.sh — Idempotent Obsidian Vault Folder Creation
 #
@@ -46,11 +46,6 @@ FOLDERS=(
   "inbox"
 )
 
-# Nested folders under 0-REUSABLE-RESOURCES
-REUSABLE_NESTED=(
-  "templates"
-  "bases"
-)
 
 # ─────────────────────────────────────────────────────────────
 # VALIDATION
@@ -73,25 +68,10 @@ for folder in "${FOLDERS[@]}"; do
   }
 done
 
-# Create 0-REUSABLE-RESOURCES and nested templates/ + bases/
-mkdir -p "$VAULT_ROOT/0-REUSABLE-RESOURCES" || {
-  echo "ERROR: Failed to create folder '$VAULT_ROOT/0-REUSABLE-RESOURCES'" >&2
-  exit 1
-}
-
-for nested in "${REUSABLE_NESTED[@]}"; do
-  mkdir -p "$VAULT_ROOT/0-REUSABLE-RESOURCES/$nested" || {
-    echo "ERROR: Failed to create folder '$VAULT_ROOT/0-REUSABLE-RESOURCES/$nested'" >&2
-    exit 1
-  }
-done
-
 # Add .gitkeep files to folders that must be tracked (empty folders need this for Git)
 GITKEEP_FOLDERS=(
   "inbox"
   "AI-AGENT-MEMORY"
-  "0-REUSABLE-RESOURCES/templates"
-  "0-REUSABLE-RESOURCES/bases"
 )
 
 for folder in "${GITKEEP_FOLDERS[@]}"; do
@@ -107,5 +87,5 @@ done
 # ─────────────────────────────────────────────────────────────
 
 echo "✓ Vault folder structure created successfully at $VAULT_ROOT"
-echo "  Created 17 folders + 4 .gitkeep files"
+echo "  Created 14 folders + 2 .gitkeep files"
 exit 0
