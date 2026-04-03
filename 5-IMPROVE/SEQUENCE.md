@@ -1,13 +1,13 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: IMPROVE
 iteration: "{{ITERATION}}"
 owner: "{{OWNER}}"
 ---
 
-> Source template: `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md`
+> Source template: `_genesis/templates/dsbv-context-template.md`
 
 # DSBV Context Package — IMPROVE Workstream
 

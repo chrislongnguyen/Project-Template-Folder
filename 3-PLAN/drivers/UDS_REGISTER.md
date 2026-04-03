@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: PLAN
 owner: "{{OWNER}}"
@@ -8,7 +8,7 @@ owner: "{{OWNER}}"
 # UDS Driver Register — PLAN Workstream
 
 > User-Driven Strengths (UDS) register. One entry per identified driver or enabling force.
-> Source template: `_genesis/templates/DRIVER_ENTRY_TEMPLATE.md`
+> Source template: `_genesis/templates/driver-entry-template.md`
 > Methodology: `_genesis/frameworks/` UBS/UDS guide.
 > Counterpart: `3-PLAN/risks/UBS_REGISTER.md` (threats). This register covers opportunities/drivers.
 

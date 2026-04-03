@@ -34,13 +34,13 @@ Known failure patterns when executing this skill. Update when new issues are dis
 
 ---
 
-## 4. DSBV_PROCESS.md missing (C4 RED)
+## 4. dsbv-process.md missing (C4 RED)
 
-**What happens:** Agent marks C4 GREEN without verifying `_genesis/templates/DSBV_PROCESS.md` exists.
+**What happens:** Agent marks C4 GREEN without verifying `_genesis/templates/dsbv-process.md` exists.
 
 **How to detect:** C4 is GREEN but the file doesn't exist on disk.
 
-**Fix:** Run `ls _genesis/templates/DSBV_PROCESS.md` before writing the Readiness Package. If missing, set C4 to RED and halt — DSBV cannot start without the process definition.
+**Fix:** Run `ls _genesis/templates/dsbv-process.md` before writing the Readiness Package. If missing, set C4 to RED and halt — DSBV cannot start without the process definition.
 
 ---
 
@@ -55,7 +55,7 @@ Known failure patterns when executing this skill. Update when new issues are dis
 ## Links
 
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[dsbv]]

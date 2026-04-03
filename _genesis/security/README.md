@@ -17,9 +17,9 @@ philosophy → principles → frameworks → [security as derived protection lay
 
 | File | Description |
 |------|-------------|
-| SECURITY_HIERARCHY.md | 3-layer defense model + 6 security rules + blast-radius model |
-| DATA_CLASSIFICATION.md | 5-level data classification scheme (PUBLIC → TOP SECRET) |
-| NAMING_CONVENTION.md | Universal Naming Grammar (UNG) for all platforms and tools |
+| security-hierarchy.md | 3-layer defense model + 6 security rules + blast-radius model |
+| data-classification.md | 5-level data classification scheme (PUBLIC → TOP SECRET) |
+| naming-convention.md | Universal Naming Grammar (UNG) for all platforms and tools |
 
 ## Rules
 
@@ -33,8 +33,8 @@ philosophy → principles → frameworks → [security as derived protection lay
 
 ## Links
 
-- [[DATA_CLASSIFICATION]]
-- [[NAMING_CONVENTION]]
-- [[SECURITY_HIERARCHY]]
+- [[data-classification]]
+- [[naming-convention]]
+- [[security-hierarchy]]
 - [[project]]
 - [[security]]

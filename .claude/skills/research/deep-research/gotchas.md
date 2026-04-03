@@ -46,13 +46,13 @@ Known failure patterns from observed executions. Update this file when new issue
 
 ---
 
-## 5. report_template.md not loaded before writing (observed: 2026-03-28)
+## 5. report-template.md not loaded before writing (observed: 2026-03-28)
 
-**What happens:** Agent derives report structure from methodology.md or memory instead of loading report_template.md first. This causes missing required subsections (e.g., "Counterevidence Register" flagged by validate_report.py).
+**What happens:** Agent derives report structure from methodology.md or memory instead of loading report-template.md first. This causes missing required subsections (e.g., "Counterevidence Register" flagged by validate_report.py).
 
 **How to detect:** If `scripts/validate_report.py` flags missing sections that are in the template, the template wasn't loaded.
 
-**Fix:** Phase 8 MUST load `templates/report_template.md` FIRST, before generating any section. The template defines the required structure — methodology.md defines the process.
+**Fix:** Phase 8 MUST load `templates/report-template.md` FIRST, before generating any section. The template defines the required structure — methodology.md defines the process.
 
 ---
 
@@ -108,11 +108,11 @@ Known failure patterns from observed executions. Update this file when new issue
 
 ## 11. McKinsey template used as content structure guide (observed: 2026-03-28)
 
-**What happens:** Agent uses mckinsey_report_template.html to determine report section structure instead of report_template.md. The McKinsey template is for HTML rendering (colors, grid, metrics dashboard) — NOT content structure. report_template.md defines per-section guidance, per-finding sub-blocks (Key Evidence + Implications + Sources), Counterevidence Register, and Claims-Evidence Table format.
+**What happens:** Agent uses mckinsey_report_template.html to determine report section structure instead of report-template.md. The McKinsey template is for HTML rendering (colors, grid, metrics dashboard) — NOT content structure. report-template.md defines per-section guidance, per-finding sub-blocks (Key Evidence + Implications + Sources), Counterevidence Register, and Claims-Evidence Table format.
 
-**How to detect:** If validate_report.py flags missing sections (like "Counterevidence Register") that exist in report_template.md but not in the McKinsey template.
+**How to detect:** If validate_report.py flags missing sections (like "Counterevidence Register") that exist in report-template.md but not in the McKinsey template.
 
-**Fix:** Phase 8 Step 1 now explicitly says: load report_template.md as EXCLUSIVE content guide. McKinsey template used only in Step 4 for HTML visual styling.
+**Fix:** Phase 8 Step 1 now explicitly says: load report-template.md as EXCLUSIVE content guide. McKinsey template used only in Step 4 for HTML visual styling.
 
 ---
 
@@ -130,5 +130,5 @@ Known failure patterns from observed executions. Update this file when new issue
 - [[SKILL]]
 - [[methodology]]
 - [[report-generation]]
-- [[report_template]]
+- [[report-template]]
 - [[standard]]

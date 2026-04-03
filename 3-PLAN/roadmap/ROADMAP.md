@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: PLAN
 owner: "{{OWNER}}"
@@ -8,7 +8,7 @@ owner: "{{OWNER}}"
 # ROADMAP — PLAN Workstream
 
 > Milestone table and iteration mapping for project delivery.
-> Source template: `_genesis/templates/ROADMAP_TEMPLATE.md`
+> Source template: `_genesis/templates/roadmap-template.md`
 > Scope inherited from LEARN — do not plan work outside the researched boundary.
 > Driver alignment required: milestones must trace to `3-PLAN/drivers/UDS_REGISTER.md`.
 

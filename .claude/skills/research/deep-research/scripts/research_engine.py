@@ -376,7 +376,7 @@ Updated findings, sources, and synthesis with improvements documented.
 
 Your task: Deliver professional, actionable research report
 
-## Generate Complete Report using templates/report_template.md
+## Generate Complete Report using templates/report-template.md
 
 Structure: Executive Summary → §1 Context (Q1-Q3) → §2 Mechanics (Q4-Q6) → §3 Application (Q7-Q8) → §4 Mastery (Q9-Q12) → Sources → Methodology
 

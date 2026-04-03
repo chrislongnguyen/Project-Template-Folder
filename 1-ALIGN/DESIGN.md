@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: ALIGN
 iteration: "{{ITERATION}}"
@@ -9,7 +9,7 @@ owner: "{{OWNER}}"
 # DESIGN.md — ALIGN Workstream, {{ITERATION}}
 
 > DSBV Phase 1 artifact. This document is the contract. If it is not here, it is not in scope.
-> Source template: `_genesis/templates/DESIGN_TEMPLATE.md`
+> Source template: `_genesis/templates/design-template.md`
 
 ---
 
@@ -100,7 +100,7 @@ Additional workstream-specific gates:
 | C1 | Clear scope — in/out written down | <!-- GREEN / RED --> |
 | C2 | Input materials curated — reading list assembled | <!-- GREEN / RED --> |
 | C3 | Success rubric defined — per-artifact criteria | <!-- GREEN / RED --> |
-| C4 | Process definition loaded — DSBV_PROCESS.md in context | <!-- GREEN / RED --> |
+| C4 | Process definition loaded — dsbv-process.md in context | <!-- GREEN / RED --> |
 | C5 | Prompt engineered — context fits effective window | <!-- GREEN / RED --> |
 | C6 | Evaluation protocol defined — how Human reviews output | <!-- GREEN / RED --> |
 

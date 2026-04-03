@@ -10,7 +10,7 @@ check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1))
 echo "=== A3: Vault Scaffold Validation ==="
 check "AC-32 Required folders exist (≥6 items)" "[ \$(ls '$VAULT' 2>/dev/null | wc -l) -ge 6 ]"
 check "AC-33 READMEs have zone: frontmatter (≥5)" "[ \$(grep -rl 'zone:' '$VAULT'/*/README.md 2>/dev/null | wc -l) -ge 5 ]"
-check "AC-34 VAULT_GUIDE covers Option C" "grep -qi 'flat\|frontmatter.*tag\|Option C' '$VAULT/VAULT_GUIDE.md'"
+check "AC-34 VAULT_GUIDE covers Option C" "grep -qi 'flat\|frontmatter.*tag\|Option C' '$VAULT/vault-guide.md'"
 
 echo "--- $PASS/$TOTAL passed ---"
 [ "$FAIL" -eq 0 ]

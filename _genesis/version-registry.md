@@ -1,6 +1,6 @@
 ---
 version: "1.5"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
@@ -66,7 +66,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 ## Sub-System Version Progression
 
 4 sub-systems × 5 UES iteration levels. PD (Problem Diagnosis) governs all downstream sub-systems.
-Version labels from `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
+Version labels from `_genesis/frameworks/ues-version-behaviors.md`.
 
 | Sub-System                          | Logic Scaffold (PD) | Concept (DP)  | Prototype (DA) | MVE (IDM)  | Leadership     |
 |-------------------------------------|---------------------|---------------|----------------|------------|----------------|
@@ -136,7 +136,7 @@ Wrong MAJOR (2.x)     → correct to 1.x (this is not a normal bump — it is a 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[SKILL]]
-- [[UES_VERSION_BEHAVIORS]]
+- [[ues-version-behaviors]]
 - [[VALIDATE]]
 - [[alpei-chain-of-custody]]
 - [[deliverable]]

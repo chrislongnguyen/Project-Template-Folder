@@ -1,6 +1,6 @@
 ---
 version: "1.1"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -81,7 +81,7 @@ sub_system:
 
 ## Links
 
-- [[REVIEW_TEMPLATE]]
+- [[review-template]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[deliverable]]

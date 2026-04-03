@@ -71,11 +71,11 @@ and provide the issue body as copyable text instead.
 
 ## Format Reference
 
-See `_genesis/templates/FEEDBACK_TEMPLATE.md` for the canonical field schema.
+See `_genesis/templates/feedback-template.md` for the canonical field schema.
 
 ## Links
 
-- [[FEEDBACK_TEMPLATE]]
+- [[feedback-template]]
 - [[classification-guide]]
 - [[dsbv]]
 - [[friction]]

@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: PLAN
 owner: "{{OWNER}}"
@@ -8,7 +8,7 @@ owner: "{{OWNER}}"
 # ARCHITECTURE — PLAN Workstream
 
 > Overall architecture document: components, interfaces, data flows.
-> Source template: `_genesis/templates/ARCHITECTURE_TEMPLATE.md`
+> Source template: `_genesis/templates/architecture-template.md`
 > Reference: P4 cross-workstream flow table in `_genesis/frameworks/alpei-dsbv-process-map.md`.
 > UBS mitigations must trace to `3-PLAN/risks/UBS_REGISTER.md`.
 

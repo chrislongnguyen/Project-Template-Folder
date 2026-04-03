@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -77,5 +77,5 @@ _[e.g., "Adopt a multi-agent DSBV workflow for all LTC projects."]_
 ## Links
 
 - [[DESIGN]]
-- [[RISK_ENTRY_TEMPLATE]]
+- [[risk-entry-template]]
 - [[dsbv]]

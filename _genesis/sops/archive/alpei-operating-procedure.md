@@ -18,7 +18,7 @@ status: Deprecated
 >
 > **DEPRECATION NOTICE (2026-03-31):** This SOP is a historical reference from Vinh's branch.
 > Its content has been absorbed into the canonical system: `/dsbv` skill, `.claude/agents/`,
-> `.claude/rules/`, `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`, and the forthcoming
+> `.claude/rules/`, `_genesis/frameworks/ues-version-behaviors.md`, and the forthcoming
 > `_genesis/frameworks/alpei-dsbv-process-map.md`. Do NOT use as authoritative source for
 > new work. Use `/dsbv` as the operating procedure.
 
@@ -1229,7 +1229,7 @@ If you encounter an issue not covered here:
 > - `_genesis/reference/` — Ultimate Truths training materials PDF
 > - `_genesis/reference/` — Effective System Design PDF
 > - `_genesis/reference/` — UES Versioning PDF
-> - `_genesis/frameworks/UES_VERSION_BEHAVIORS.md` — Version-specific deliverables matrix
+> - `_genesis/frameworks/ues-version-behaviors.md` — Version-specific deliverables matrix
 > - `_genesis/frameworks/HISTORY_VERSION_CONTROL.md` — Branching strategy and version control
 > - `_genesis/sops/` — Other LTC SOPs
 > - `rules/brand-identity.md` — LTC brand identity
@@ -1237,14 +1237,14 @@ If you encounter an issue not covered here:
 
 ## Links
 
-- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[alpei-dsbv-process-map]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[HISTORY_VERSION_CONTROL]]
+- [[history-version-control]]
 - [[SEQUENCE]]
 - [[SKILL]]
-- [[UES_VERSION_BEHAVIORS]]
+- [[ues-version-behaviors]]
 - [[VALIDATE]]
 - [[blocker]]
 - [[brand-identity]]

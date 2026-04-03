@@ -213,9 +213,9 @@ As results arrive:
 
 **Objective:** Deliver professional, actionable research
 
-**Step 1:** Load `templates/report_template.md` — EXCLUSIVE content structure guide (sections, per-finding sub-block pattern, Counterevidence Register, Claims-Evidence Table).
+**Step 1:** Load `templates/report-template.md` — EXCLUSIVE content structure guide (sections, per-finding sub-block pattern, Counterevidence Register, Claims-Evidence Table).
 
-**Step 2:** Generate report using progressive section assembly per `reference/report-generation.md`. Section order must match report_template.md: Executive Summary → §1 Context → §2 Mechanics → §3 Application → §4 Mastery → Sources → Methodology. One Write/Edit per section — prevents LT-2 degradation.
+**Step 2:** Generate report using progressive section assembly per `reference/report-generation.md`. Section order must match report-template.md: Executive Summary → §1 Context → §2 Mechanics → §3 Application → §4 Mastery → Sources → Methodology. One Write/Edit per section — prevents LT-2 degradation.
 
 **Step 3:** Run validation scripts. If unavailable, manual verification.
 
@@ -247,5 +247,5 @@ As results arrive:
 - [[anti-patterns]]
 - [[documentation]]
 - [[report-generation]]
-- [[report_template]]
+- [[report-template]]
 - [[task]]

@@ -1,10 +1,25 @@
 ---
-version: "1.1"
-status: Draft
+version: "1.2"
+status: draft
 last_updated: 2026-04-03
 ---
 
 # CHANGELOG
+
+## [I2 — Prototype] 2026-04-03 — Naming Convention + Versioning Rule Expansion
+
+**Branch:** `I2/chore/naming-convention`
+
+### Added
+- `_genesis/security/naming-convention.md` §7-§11: Naming Boundary Table (R1), Workstream Folder Naming (R2), Internal System ID Convention (R3), Skill Prefix Registry (R5), Template File Location (R6)
+- `.claude/rules/versioning.md`: Frontmatter Value Casing section (R4 — lowercase mandate, YAML boolean hazard), `iteration_name` field documentation with enum table, updated Pre-Commit Checklist item 4
+- `.claude/settings.json`: PreToolUse + PostToolUse Write hooks for `naming-lint.sh` (filename casing enforcement)
+
+### Changed
+- `versioning.md` "The 3 Fields" table expanded to "The 4 Fields" (added `iteration_name`); status lifecycle diagram updated to lowercase values
+- `versioning.md` Common Mistakes: 2 new entries for uppercase status and `iteration_name` misuse
+
+---
 
 ## [I2 — Prototype] 2026-04-03 — _genesis/ Cleanup + Blueprint Restructure
 
@@ -19,7 +34,7 @@ last_updated: 2026-04-03
 
 ### Removed / Archived
 - 6 ALL_CAPS framework duplicates archived to `_genesis/frameworks/archive/`
-- `UES_VERSION_BEHAVIORS.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`)
+- `ues-version-behaviors.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`)
 - `sops/ALPEI_OPERATING_PROCEDURE.md` archived to `sops/archive/` (self-marked DEPRECATED)
 
 ---
@@ -65,8 +80,8 @@ Initial release. Folder structure, CLAUDE.md, safety model, basic rules.
 
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[GIT_WORKFLOW]]
-- [[MIGRATION_GUIDE]]
+- [[git-workflow]]
+- [[migration-guide]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]

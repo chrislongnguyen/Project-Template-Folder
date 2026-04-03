@@ -1,7 +1,7 @@
 ---
 version: "1.3"
 iteration: "I1: Concept"
-status: Draft
+status: draft
 last_updated: 2026-03-30
 owner: Long Nguyen
 type: template
@@ -39,7 +39,7 @@ Each workstream runs all 4 DSBV phases internally. The workstream determines the
 - Run `/dsbv status` to see current progress across all workstreams
 - Run `./scripts/dsbv-gate.sh` to manually check workstream-boundary readiness
 - Skill definition: `.claude/skills/dsbv/SKILL.md` | Rule: `.claude/rules/dsbv.md`
-- Context template: `_shared/templates/DSBV_CONTEXT_TEMPLATE.md` | Evaluation template: `_shared/templates/DSBV_EVAL_TEMPLATE.md`
+- Context template: `_shared/templates/dsbv-context-template.md` | Evaluation template: `_shared/templates/dsbv-eval-template.md`
 
 ---
 
@@ -212,7 +212,7 @@ All conditions must be GREEN before starting a DSBV cycle.
 | C1 | **Clear scope** | Workstream identified. What is in scope and out of scope is written down. |
 | C2 | **Input materials curated** | Agent reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
 | C3 | **Success rubric defined** | How to judge output quality. Per-artifact criteria, not vibes. |
-| C4 | **Process definition loaded** | This document (DSBV_PROCESS.md) is in agent context. |
+| C4 | **Process definition loaded** | This document (dsbv-process.md) is in agent context. |
 | C5 | **Prompt engineered** | Context package fits within effective window. Irrelevant material removed. |
 | C6 | **Evaluation protocol defined** | How Opus compares competing outputs (for design-heavy). How Human reviews final output. |
 
@@ -264,8 +264,8 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 |----------|------|
 | DSBV Skill | `.claude/skills/dsbv/SKILL.md` |
 | DSBV Rule | `.claude/rules/dsbv.md` |
-| Context Template | `_shared/templates/DSBV_CONTEXT_TEMPLATE.md` |
-| Evaluation Template | `_shared/templates/DSBV_EVAL_TEMPLATE.md` |
+| Context Template | `_shared/templates/dsbv-context-template.md` |
+| Evaluation Template | `_shared/templates/dsbv-eval-template.md` |
 | Workstream-Boundary Gate | `scripts/dsbv-gate.sh` |
 | Design-Phase Guard | `scripts/dsbv-skill-guard.sh` |
 | ALIGN Retrospective | `5-IMPROVE/retrospectives/DSBV_ALIGN_RETRO.md` |
@@ -279,8 +279,8 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_CONTEXT_TEMPLATE]]
-- [[DSBV_EVAL_TEMPLATE]]
+- [[dsbv-context-template]]
+- [[dsbv-eval-template]]
 - [[EP-01]]
 - [[EP-10]]
 - [[SEQUENCE]]

@@ -19,7 +19,7 @@ tool-preference: "Exa MCP and WebSearch are peers. Exa for speed; WebSearch for 
 Request Analysis
 ├─ Simple lookup? → STOP: Use WebSearch, not this skill
 ├─ Debugging? → STOP: Use standard tools, not this skill
-├─ Binary hypothesis to test? → Use SPIKE template (templates/SPIKE_TEMPLATE.md)
+├─ Binary hypothesis to test? → Use SPIKE template (templates/spike-template.md)
 │   ("Can we...?" / "Does X work?" / "Is Y feasible?")
 └─ Topic to understand? → CONTINUE (12-question CODE research)
 
@@ -119,14 +119,14 @@ Address every gap from Phase 6. Conduct targeted research if needed. For each ga
 
 ### Phase 8: PACKAGE
 
-**Step 1:** Load [report_template.md](./templates/report_template.md) — this is the EXCLUSIVE content structure guide. It defines: required sections (1-4 mapping to 12 CODE questions), per-finding sub-block pattern (Finding → Key Evidence → Implications → Sources), Counterevidence Register in §2.3, and Claims-Evidence Table in Methodology.
+**Step 1:** Load [report-template.md](./templates/report-template.md) — this is the EXCLUSIVE content structure guide. It defines: required sections (1-4 mapping to 12 CODE questions), per-finding sub-block pattern (Finding → Key Evidence → Implications → Sources), Counterevidence Register in §2.3, and Claims-Evidence Table in Methodology.
 
 **Step 2:** Generate report using progressive section assembly per [report-generation.md](./reference/report-generation.md):
 - One section per Write/Edit call (not monolithic write)
 - 80%+ narrative prose, <20% bullets
 - Per-section quality check before moving to next
 
-**Step 3:** Validate — run `scripts/validate_report.py` + `scripts/verify_citations.py`. If scripts not found: manually verify citations and section completeness against report_template.md.
+**Step 3:** Validate — run `scripts/validate_report.py` + `scripts/verify_citations.py`. If scripts not found: manually verify citations and section completeness against report-template.md.
 
 **Step 4:** Generate HTML — use `scripts/md_to_html.py`, then inject into [mckinsey_report_template.html](./templates/mckinsey_report_template.html) for visual styling only. The McKinsey template is for HTML rendering (colors, grid, dashboard) — NOT content structure.
 
@@ -138,7 +138,7 @@ Address every gap from Phase 6. Conduct targeted research if needed. For each ga
 
 ## Output Contract
 
-Report structure defined by [report_template.md](./templates/report_template.md):
+Report structure defined by [report-template.md](./templates/report-template.md):
 
 | Section | Requirement |
 |---|---|
@@ -160,7 +160,7 @@ Report structure defined by [report_template.md](./templates/report_template.md)
 - <5 sources after exhaustive search → report limitation, request user direction
 - 5-10 sources → note in limitations, proceed with extra verification
 - Sub-agent returns empty/error → do NOT silently generate content yourself. Report which agent failed, offer: retry once, proceed without that section (mark `[INCOMPLETE]`), or ask user
-- Scripts not found → perform manual verification: check each [N] has a Sources entry, verify section completeness against report_template.md, assess credibility in prose. Note: "Validation scripts unavailable — manual verification performed" in Methodology
+- Scripts not found → perform manual verification: check each [N] has a Sources entry, verify section completeness against report-template.md, assess credibility in prose. Note: "Validation scripts unavailable — manual verification performed" in Methodology
 - PDF skill unavailable → deliver Markdown + HTML, note PDF pending
 - Critic agent fails (Phase 6) → re-prompt once with specific sections. If second attempt fails: perform self-critique, document limitation ("No independent critic — self-review only") in Methodology
 - Search tools unavailable (Exa/WebSearch) → stop, report to user. Research cannot proceed without search capability
@@ -175,10 +175,10 @@ Confirm ALL before presenting:
 2. `scripts/validate_report.py` exits 0 (or manual verification done if scripts unavailable)
 3. Source credibility scores present (from script or manual assessment)
 4. Output directory exists with at least Markdown + HTML (PDF noted if pending)
-5. Report structure matches [report_template.md](./templates/report_template.md) sections — Glob the file, check section headers
+5. Report structure matches [report-template.md](./templates/report-template.md) sections — Glob the file, check section headers
 6. (deep/full) Phase 6 critique artifact exists — point to the agent output or temp file
 7. (deep/full) Every Phase 6 gap has disposition — list gap → resolution mapping
-8. Process self-check: Did I load report_template.md? Did I use progressive section generation? Did I run source_evaluator?
+8. Process self-check: Did I load report-template.md? Did I use progressive section generation? Did I run source_evaluator?
 
 If any check fails, fix before delivery.
 
@@ -194,8 +194,8 @@ See [gotchas.md](gotchas.md) — 10 observed failure patterns.
 
 - [Methodology](./reference/methodology.md) — 8-phase pipeline, retrieval protocol, FFS pattern
 - [Report Generation](./reference/report-generation.md) — progressive assembly, HTML/PDF output
-- [Report Template](./templates/report_template.md) — **EXCLUSIVE content structure guide** (sections, per-finding format, Claims-Evidence Table)
-- [SPIKE Template](./templates/SPIKE_TEMPLATE.md) — binary hypothesis investigation
+- [Report Template](./templates/report-template.md) — **EXCLUSIVE content structure guide** (sections, per-finding format, Claims-Evidence Table)
+- [SPIKE Template](./templates/spike-template.md) — binary hypothesis investigation
 - [McKinsey HTML Template](./templates/mckinsey_report_template.html) — HTML visual styling ONLY (not content structure)
 
 ## Scripts (Python stdlib only)
@@ -210,7 +210,7 @@ See [gotchas.md](gotchas.md) — 10 observed failure patterns.
 ## Links
 
 - [[CLAUDE]]
-- [[SPIKE_TEMPLATE]]
+- [[spike-template]]
 - [[VALIDATE]]
 - [[anti-patterns]]
 - [[context-packaging]]
@@ -219,7 +219,7 @@ See [gotchas.md](gotchas.md) — 10 observed failure patterns.
 - [[ltc-explorer]]
 - [[methodology]]
 - [[report-generation]]
-- [[report_template]]
+- [[report-template]]
 - [[simple]]
 - [[standard]]
 - [[task]]

@@ -1,6 +1,6 @@
 ---
 version: "1.2"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 ---
 

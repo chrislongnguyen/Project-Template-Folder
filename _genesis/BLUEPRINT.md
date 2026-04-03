@@ -1,6 +1,6 @@
 ---
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 owner: "Long Nguyen"
 workstream: GOVERN

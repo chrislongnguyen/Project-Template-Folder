@@ -1,6 +1,6 @@
 ---
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 type: validate
 design_ref: "_genesis/DESIGN-genesis-blueprint-cleanup.md"

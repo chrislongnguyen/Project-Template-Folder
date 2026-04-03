@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-01
 ---
 # VAULT_GUIDE — LTC Obsidian Vault
@@ -23,7 +23,7 @@ vault/
   agents/      ← agent session logs
   research/    ← research notes
   inbox/       ← staging area for new/unreviewed notes
-  VAULT_GUIDE.md
+  vault-guide.md
 ```
 
 Benefits over folder mirrors:
@@ -68,7 +68,7 @@ The Obsidian CLI integration requires the Local REST API plugin.
    ```bash
    obsidian --version 2>/dev/null && echo "CLI ready" || echo "Obsidian not running"
    ```
-6. Point the vault path to this directory (the parent of `VAULT_GUIDE.md`)
+6. Point the vault path to this directory (the parent of `vault-guide.md`)
 
 ### Fallback Mode
 

@@ -1,8 +1,8 @@
 ---
-name: obsidian-cli
+name: obsidian
 description: Use when searching the Obsidian vault semantically, traversing backlinks, accessing daily notes, or finding knowledge graph connections — when Obsidian is running. Falls back to Grep/Glob silently if not running.
 version: "1.3"
-status: Draft
+status: draft
 last_updated: "2026-04-02"
 ---
 # /obsidian — Obsidian CLI Integration
@@ -257,6 +257,6 @@ Full security rules: `.claude/rules/obsidian-security.md`
 ## References
 
 - Security rules: [`.claude/rules/obsidian-security.md`](../../rules/obsidian-security.md) — AP1+L9 always-on; AP2-AP5, V5, V7 in Gotchas above
-- Vault scaffold: [`4-EXECUTE/src/vault/VAULT_GUIDE.md`](../../../4-EXECUTE/src/vault/VAULT_GUIDE.md) — setup, plugins, folder structure
+- Vault scaffold: [`4-EXECUTE/src/vault/vault-guide.md`](../../../4-EXECUTE/src/vault/vault-guide.md) — setup, plugins, folder structure
 - Tool routing: [`rules/tool-routing.md`](../../rules/tool-routing.md) — when obsidian-cli vs Grep/Glob
 
