@@ -1,7 +1,7 @@
 ---
 
 ## version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: IMPROVE
 iteration: "{{ITERATION}}"
@@ -86,4 +86,3 @@ owner: "{{OWNER}}"
 - Code changes needed — specify tasks to rework
 - Plan is wrong — re-enter Stage 3
 - Spec is wrong — re-enter Stage 1
-
