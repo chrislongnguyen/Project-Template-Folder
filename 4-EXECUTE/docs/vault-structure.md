@@ -1,11 +1,13 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
+sub_system: problem-diagnosis
 work_stream: execute
 stage: build
-iteration_name: prototype
+iteration: 2
+ues_version: prototype
 ---
 
 # Vault Folder Structure
