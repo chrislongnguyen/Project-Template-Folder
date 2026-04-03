@@ -48,7 +48,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
 > **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.
-> **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`) is built.
+> **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/alpei-dsbv-process-map.md`) is built.
 
 ---
 

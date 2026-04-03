@@ -50,7 +50,7 @@ owner: Long Nguyen
 
 > Look up the right template by ALPEI workstream (row) and DSBV phase (column).
 > "(new)" = added in A2 gap-fill. Use this table before reading the full Process Map.
-> Full context: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
+> Full context: `_genesis/frameworks/alpei-dsbv-process-map.md`
 
 | Workstream | Design (ltc-planner) | Sequence (ltc-planner) | Build (ltc-builder) | Validate (ltc-reviewer) |
 |------|----------------------|------------------------|---------------------|-------------------------|
@@ -60,4 +60,4 @@ owner: Long Nguyen
 | **4-EXECUTE** | DESIGN_TEMPLATE.md | DSBV_CONTEXT_TEMPLATE.md | _(artifact-specific per SEQUENCE.md)_ | DSBV_EVAL_TEMPLATE.md |
 | **5-IMPROVE** | METRICS_BASELINE_TEMPLATE.md (new) | RETRO_TEMPLATE.md | TEST_PLAN_TEMPLATE.md (new)<br>FEEDBACK_TEMPLATE.md | REVIEW_PACKAGE_TEMPLATE.md |
 
-> Full LEARN pipeline: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` §P4 LEARN Pipeline
+> Full LEARN pipeline: `_genesis/frameworks/alpei-dsbv-process-map.md` §P4 LEARN Pipeline

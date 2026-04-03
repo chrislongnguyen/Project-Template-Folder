@@ -9,7 +9,7 @@ owner: "{{OWNER}}"
 
 > Overall architecture document: components, interfaces, data flows.
 > Source template: `_genesis/templates/ARCHITECTURE_TEMPLATE.md`
-> Reference: P4 cross-workstream flow table in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`.
+> Reference: P4 cross-workstream flow table in `_genesis/frameworks/alpei-dsbv-process-map.md`.
 > UBS mitigations must trace to `3-PLAN/risks/UBS_REGISTER.md`.
 
 <!-- TODO: Fill in during PLAN Build phase -->
@@ -54,7 +54,7 @@ owner: "{{OWNER}}"
 
 ## Data Flows
 
-> ASCII or table form. Reference P4 cross-workstream flow table in ALPEI_DSBV_PROCESS_MAP.md.
+> ASCII or table form. Reference P4 cross-workstream flow table in alpei-dsbv-process-map.md.
 
 ```
 [Component A] ──► [Component B] ──► [Component C]

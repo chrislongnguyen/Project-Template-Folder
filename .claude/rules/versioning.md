@@ -5,7 +5,7 @@ last_updated: 2026-04-02
 ---
 # Versioning — Always-On Rule
 
-Full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md` | Registry: `_genesis/VERSION_REGISTRY.md`
+Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesis/VERSION_REGISTRY.md`
 
 ## Required Metadata by File Type
 

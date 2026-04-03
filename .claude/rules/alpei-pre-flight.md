@@ -19,7 +19,7 @@ Before ANY task, verify these 7 conditions. If any is RED, fix it before proceed
 
 5. **CHECK TEMPLATES:** Identify which templates apply to this workstream × phase.
    Lookup: grep `## Routing: {workstream}` in
-   `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`, find the row matching the
+   `_genesis/frameworks/alpei-dsbv-process-map.md`, find the row matching the
    current DSBV phase, read the Template column. Load those templates before proceeding.
 
 6. **CHECK LEARNING:** Scan `2-LEARN/` — prior research, specs, training materials, and reference content. Do not reinvent what already exists.

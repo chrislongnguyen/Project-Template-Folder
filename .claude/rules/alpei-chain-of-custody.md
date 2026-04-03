@@ -13,7 +13,7 @@ ALIGN → LEARN → PLAN → EXECUTE → IMPROVE
 
 - Workstream N cannot start DSBV Build until Workstream (N-1) has at least 1 validated artifact
 - Workstream N's DESIGN.md must reference Workstream (N-1) outputs as inputs. Named dependencies
-  (source: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § P4 — LEARN Data Flow):
+  (source: `_genesis/frameworks/alpei-dsbv-process-map.md` § P4 — LEARN Data Flow):
 
   | Consuming Workstream | Required Input Artifact          | Source Workstream |
   |----------------|----------------------------------|-------------|
@@ -26,7 +26,7 @@ ALIGN → LEARN → PLAN → EXECUTE → IMPROVE
   | EXECUTE        | Risk Register                    | PLAN        |
   | IMPROVE        | Metrics baseline                 | EXECUTE     |
 
-  Full dependency table: `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § P4
+  Full dependency table: `_genesis/frameworks/alpei-dsbv-process-map.md` § P4
 
 - Downstream workstreams inherit constraints from upstream workstreams — they do not override them
 

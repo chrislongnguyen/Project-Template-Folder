@@ -474,7 +474,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 > **Purpose:** Runtime lookup for agent dispatch and template selection. To find the correct template and agent for any task, grep `## Routing: {WORKSTREAM}` in this file, then read the row matching your current DSBV phase.
 >
-> **Lookup syntax:** `grep "## Routing: PLAN" _genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
+> **Lookup syntax:** `grep "## Routing: PLAN" _genesis/frameworks/alpei-dsbv-process-map.md`
 >
 > **Update rule (DD-3):** When a new template is added, add a row to its Routing section and update `_genesis/templates/README.md`. No changes to rules or skill files — they reference this map by anchor.
 

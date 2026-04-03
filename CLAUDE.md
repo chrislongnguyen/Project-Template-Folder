@@ -104,7 +104,7 @@ Every artifact must be categorized: which subsystem x which workstream. No chat-
 ## Modular Rules & Skills
 Path-scoped rules: `.claude/rules/` | On-demand skills: `.claude/skills/` | Global: `_genesis/`
 
-## Version Control (full spec: `_genesis/frameworks/HISTORY_VERSION_CONTROL.md`)
+## Version Control (full spec: `_genesis/frameworks/history-version-control.md`)
 - When editing any workstream artifact, update its `version` and `last_updated` frontmatter
 - Follow I0-I4 branching strategy — never commit directly to main
 - Commit messages: `type(workstream): description` (e.g., `feat(align): add stakeholder analysis`)
