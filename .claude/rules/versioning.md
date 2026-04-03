@@ -1,7 +1,7 @@
 ---
-version: "1.3"
+version: "1.4"
 status: Draft
-last_updated: 2026-04-02
+last_updated: 2026-04-03
 ---
 # Versioning — Always-On Rule
 
@@ -76,3 +76,9 @@ Update the corresponding row in `_genesis/VERSION_REGISTRY.md` — version, stat
 | Forgetting `status` field | All three fields required: version + status + last_updated |
 | Relative dates ("today") | Always absolute: 2026-03-31 |
 | Skipping VERSION_REGISTRY update | Every workstream artifact edit must update the registry row |
+
+## Version Awareness
+
+Before producing any deliverable, verify current iteration. I1 = Concept (correct + safe only).
+I2 = Prototype (+ efficient). Do not produce artifacts beyond current iteration scope.
+Reference: `_genesis/frameworks/ltc-ues-version-behaviors.md` 25-cell matrix.

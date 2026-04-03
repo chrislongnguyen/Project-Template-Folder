@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: Draft
-last_updated: 2026-03-30
+last_updated: 2026-04-03
 ---
 # ALPEI Chain-of-Custody — Always-On Rule
 
@@ -48,3 +48,10 @@ If you detect a chain-of-custody violation (e.g., building a PLAN artifact befor
 1. STOP — do not proceed
 2. Name the violation and the upstream dependency that is missing
 3. Propose: complete the upstream work first, or get explicit human override
+
+## Sub-System Sequence
+
+PD → DP → DA → IDM. Downstream sub-system cannot exceed upstream version.
+PD Effective Principles govern all downstream sub-systems.
+Violation: same STOP protocol as workstream violations — state the violation,
+name the missing upstream artifact, wait for human override.
