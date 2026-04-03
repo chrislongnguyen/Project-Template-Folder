@@ -73,25 +73,6 @@ views:
       status: Filled
       version: Unique
 
-  - type: kanban
-    name: "KANBAN BY STATUS"
-    groupBy: status
-    order:
-      - file.name
-      - work_stream
-      - stage
-      - version
-      - formula.days_since_update
-
-  - type: kanban
-    name: "KANBAN BY STAGE"
-    groupBy: stage
-    order:
-      - file.name
-      - work_stream
-      - status
-      - version
-
   - type: table
     name: "BY WORK STREAM"
     groupBy:
@@ -103,6 +84,18 @@ views:
       - stage
       - version
       - status
+
+  - type: table
+    name: "BY STAGE"
+    groupBy:
+      property: stage
+      direction: ASC
+    order:
+      - file.name
+      - work_stream
+      - status
+      - version
+      - formula.days_since_update
 
   - type: table
     name: "BY STATUS"

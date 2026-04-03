@@ -1,216 +1,44 @@
 /* ============================================================
-   LTC Bases Theme — Dark + Brand Colors
-   Enable via: Settings → Appearance → CSS Snippets
+   LTC Bases Theme — Minimal targeted overrides
+   Enable: Settings → Appearance → CSS Snippets → ltc-bases-colors
    ============================================================ */
 
-/* ── FONTS ────────────────────────────────────────────────── */
+/* Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-.bases-view,
-.bases-view * {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-/* ── DARK BACKGROUND ──────────────────────────────────────── */
-.bases-view {
-  background-color: #1D1F2A;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-/* Table container */
-.bases-view .bases-table-container,
-.bases-view table {
-  background-color: #1D1F2A;
-}
-
-/* ── TABLE HEADER ─────────────────────────────────────────── */
-.bases-view thead th,
-.bases-view .bases-table-head th {
-  background-color: #004851;
-  color: #F2C75C;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-bottom: 2px solid #F2C75C;
-  padding: 10px 12px;
-}
-
-/* ── TABLE ROWS ───────────────────────────────────────────── */
-.bases-view tbody tr,
-.bases-view .bases-table-row {
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: background 0.15s ease;
-}
-
-.bases-view tbody tr:hover,
-.bases-view .bases-table-row:hover {
-  background-color: rgba(0, 72, 81, 0.25);
-}
-
-/* File name links → Gold */
-.bases-view td a,
-.bases-view .bases-cell a {
-  color: #F2C75C;
-  font-weight: 500;
-  text-decoration: none;
-}
-.bases-view td a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* Body text */
-.bases-view td,
-.bases-view .bases-cell {
-  color: #B2B5BE;
-  padding: 8px 12px;
-}
-
-/* ── OPTION / BADGE COLORS ────────────────────────────────── */
-/* Obsidian Bases uses .option-color-{name} classes on badge spans */
-
-/* STATUS — draft */
-.option-color-gray {
-  background-color: #2e2e3a !important;
-  color: #9299a5 !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* STATUS — in-progress */
-.option-color-blue {
-  background-color: #162040 !important;
-  color: #69C7CC !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* STATUS — in-review / stage: build */
-.option-color-orange {
-  background-color: #3a1e00 !important;
-  color: #FF9D3B !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* STATUS — validated / stage: validate */
-.option-color-green {
-  background-color: #0d2e0d !important;
-  color: #69994D !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* STAGE — design / workstream: plan */
-.option-color-yellow {
-  background-color: #2e2500 !important;
+/* ── FILE LINKS → Gold ──────────────────────────────────────*/
+.internal-link {
   color: #F2C75C !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
+}
+.internal-link:hover {
+  color: #ffffff !important;
 }
 
-/* STAGE — sequence / workstream: learn */
-.option-color-cyan {
-  background-color: #002e2e !important;
-  color: #69C7CC !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* WORKSTREAM — align */
-.option-color-purple {
-  background-color: #1e0e2e !important;
-  color: #9949B8 !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* WORKSTREAM — improve */
-.option-color-pink {
-  background-color: #2e0e1a !important;
-  color: #E87299 !important;
-  border-radius: 4px;
-  padding: 2px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* ── KANBAN BOARD ─────────────────────────────────────────── */
-.bases-view .bases-kanban-container {
-  display: flex;
-  gap: 12px;
-  padding: 8px 0;
-  overflow-x: auto;
-}
-
-/* Kanban column */
-.bases-view .bases-kanban-group {
-  background-color: #252830;
-  border-radius: 8px;
-  min-width: 240px;
-  padding: 8px;
-}
-
-/* Kanban column header */
-.bases-view .bases-kanban-group-header {
+/* ── BASES TABLE HEADER → Midnight Green bg, Gold text ─────*/
+.bases-view-header,
+th.bases-column-header {
+  background-color: #004851 !important;
+  color: #F2C75C !important;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 8px 12px;
-  border-radius: 6px;
-  margin-bottom: 8px;
 }
 
-/* Kanban card */
-.bases-view .bases-kanban-card {
-  background-color: #1D1F2A;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 6px;
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  transition: border-color 0.15s ease, transform 0.1s ease;
+/* ── ROW HOVER → subtle Midnight Green tint ─────────────────*/
+.bases-row:hover {
+  background-color: rgba(0, 72, 81, 0.15) !important;
 }
 
-.bases-view .bases-kanban-card:hover {
-  border-color: #F2C75C;
-  transform: translateY(-1px);
-}
-
-/* ── GROUP HEADERS (table groupBy) ────────────────────────── */
-.bases-view .bases-group-header,
-.bases-view tr.bases-group-row td {
-  background-color: #004851;
-  color: #F2C75C;
+/* ── GROUP SECTION HEADERS ───────────────────────────────── */
+.bases-group-header-row td,
+.bases-section-header {
+  background-color: #004851 !important;
+  color: #F2C75C !important;
   font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 11px;
   letter-spacing: 0.05em;
-  padding: 6px 12px;
-  border-radius: 4px;
+  text-transform: uppercase;
 }
-
-/* ── SCROLLBAR ────────────────────────────────────────────── */
-.bases-view ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-.bases-view ::-webkit-scrollbar-track { background: #1D1F2A; }
-.bases-view ::-webkit-scrollbar-thumb { background: #004851; border-radius: 3px; }
-.bases-view ::-webkit-scrollbar-thumb:hover { background: #F2C75C; }

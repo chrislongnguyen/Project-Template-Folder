@@ -53,40 +53,29 @@ properties:
     displayName: "VERSION"
   formula.days_in_stage:
     displayName: "DAYS IN STAGE"
-  formula.pipeline_position:
-    displayName: "PIPELINE"
 
 views:
-  - type: kanban
-    name: "PIPELINE BOARD"
-    groupBy: stage
-    order:
-      - file.name
-      - work_stream
-      - status
-      - version
-      - formula.days_in_stage
-
-  - type: kanban
-    name: "STATUS BOARD"
-    groupBy: status
-    order:
-      - file.name
-      - work_stream
-      - stage
-      - formula.days_in_stage
-
   - type: table
-    name: "STAGE PIPELINE"
+    name: "PIPELINE (by stage)"
     groupBy:
       property: stage
       direction: ASC
     order:
       - file.name
-      - sub_system
       - work_stream
-      - version
       - status
+      - version
+      - formula.days_in_stage
+
+  - type: table
+    name: "BY STATUS"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - work_stream
+      - stage
       - formula.days_in_stage
 
   - type: table
