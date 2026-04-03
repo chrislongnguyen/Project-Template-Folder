@@ -1,0 +1,38 @@
+filters:
+  and:
+    - file.inFolder("DAILY-NOTES")
+    - 'file.ext == "md"'
+
+formulas:
+  word_estimate: '(file.size / 5).round(0)'
+  day_of_week: 'if(file.basename, date(file.basename).format("dddd"), "")'
+
+properties:
+  file.name:
+    displayName: "DATE"
+  formula.day_of_week:
+    displayName: "DAY"
+  formula.word_estimate:
+    displayName: "~WORDS"
+  file.mtime:
+    displayName: "LAST MODIFIED"
+  file.size:
+    displayName: "SIZE"
+
+views:
+  - type: table
+    name: "ALL NOTES"
+    limit: 60
+    order:
+      - file.name
+      - formula.day_of_week
+      - formula.word_estimate
+      - file.mtime
+    summaries:
+      formula.word_estimate: Average
+
+  - type: list
+    name: "DATE LIST"
+    order:
+      - file.name
+      - formula.day_of_week

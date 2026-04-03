@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.1 | status: draft | last_updated: 2026-04-03
+# version: 2.2 | status: draft | last_updated: 2026-04-03
 # setup-obsidian.sh — one-command installer for LTC Obsidian workspace
 # Copies Bases and Templater templates into an Obsidian vault's .obsidian/ directory
 
@@ -66,6 +66,14 @@ cat > "$PLUGINS_FILE" << 'EOF'
   "obsidian-kanban"
 ]
 EOF
+
+# Install CSS snippet
+SRC_SNIPPET="$PROJECT_ROOT/_genesis/obsidian/ltc-bases-colors.css"
+TARGET_SNIPPETS="$VAULT_ROOT/.obsidian/snippets"
+if [[ -f "$SRC_SNIPPET" ]]; then
+  mkdir -p "$TARGET_SNIPPETS"
+  cp -f "$SRC_SNIPPET" "$TARGET_SNIPPETS/ltc-bases-colors.css"
+fi
 
 # Count files for summary
 BASE_COUNT=$(find "$TARGET_BASES" -name "*.base" -type f | wc -l)

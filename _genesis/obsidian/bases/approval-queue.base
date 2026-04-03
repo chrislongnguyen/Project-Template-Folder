@@ -1,0 +1,68 @@
+filters:
+  and:
+    - 'type == "ues-deliverable"'
+    - or:
+        - 'status == "draft"'
+        - 'status == "in-review"'
+        - 'status == "in-progress"'
+
+formulas:
+  days_waiting: '(now() - file.mtime).days.round(0)'
+  urgency: 'if((now() - file.mtime).days > 7, "OVERDUE", if((now() - file.mtime).days > 3, "ATTENTION", "OK"))'
+
+properties:
+  file.name:
+    displayName: "DELIVERABLE"
+  status:
+    displayName: "STATUS"
+  sub_system:
+    displayName: "SUB-SYSTEM"
+  work_stream:
+    displayName: "WORK STREAM"
+  stage:
+    displayName: "STAGE"
+  formula.days_waiting:
+    displayName: "DAYS WAITING"
+  formula.urgency:
+    displayName: "URGENCY"
+
+views:
+  - type: table
+    name: "PENDING REVIEW"
+    filters:
+      and:
+        - 'status == "in-review"'
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - stage
+      - formula.days_waiting
+      - formula.urgency
+
+  - type: table
+    name: "DRAFTS NEEDING REVIEW"
+    filters:
+      and:
+        - 'status == "draft"'
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - stage
+      - formula.days_waiting
+    summaries:
+      formula.days_waiting: Average
+
+  - type: table
+    name: "ALL PENDING"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - stage
+      - formula.days_waiting
+      - formula.urgency

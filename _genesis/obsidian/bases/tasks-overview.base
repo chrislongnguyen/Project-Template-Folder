@@ -1,0 +1,41 @@
+filters:
+  and:
+    - file.inFolder("MISC-TASKS")
+    - 'file.ext == "md"'
+
+formulas:
+  days_old: '(now() - file.ctime).days.round(0)'
+  days_since_update: '(now() - file.mtime).days.round(0)'
+
+properties:
+  file.name:
+    displayName: "TASK"
+  status:
+    displayName: "STATUS"
+  priority:
+    displayName: "PRIORITY"
+  formula.days_old:
+    displayName: "DAYS OLD"
+  formula.days_since_update:
+    displayName: "LAST TOUCHED"
+  file.mtime:
+    displayName: "MODIFIED"
+
+views:
+  - type: table
+    name: "ALL TASKS"
+    order:
+      - file.name
+      - status
+      - priority
+      - formula.days_old
+      - formula.days_since_update
+    groupBy:
+      property: status
+      direction: ASC
+
+  - type: list
+    name: "TASK LIST"
+    order:
+      - file.name
+      - status
