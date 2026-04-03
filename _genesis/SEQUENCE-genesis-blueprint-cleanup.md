@@ -1,6 +1,6 @@
 ---
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 owner: "Long Nguyen"
 workstream: GOVERN
@@ -100,7 +100,7 @@ STEP  AGENT     TYPE              COMMIT MESSAGE                        GATE
    - `COGNITIVE_BIASES.md` → `archive/COGNITIVE_BIASES.md`
    - `CRITICAL_THINKING.md` → `archive/CRITICAL_THINKING.md`
    - `UBS_UDS_GUIDE.md` → `archive/UBS_UDS_GUIDE.md`
-4. **Delete** `UES_VERSION_BEHAVIORS.md` (exact duplicate — `git rm`)
+4. **Delete** `ues-version-behaviors.md` (exact duplicate — `git rm`)
 5. Commit
 
 **Verify:** `ls _genesis/frameworks/` shows no ALL_CAPS files except the 9 to-be-renamed in Step 4
@@ -150,11 +150,11 @@ Update ALL occurrences of old names in:
 - `.claude/skills/dsbv/SKILL.md` (lines 91, 132, 180)
 - `.claude/skills/dsbv/references/context-packaging.md` (line 48)
 - `3-PLAN/architecture/ARCHITECTURE.md` (lines 12, 57)
-- `_genesis/VERSION_REGISTRY.md` (line 51)
+- `_genesis/version-registry.md` (line 51)
 - `_genesis/tools/alpei-navigator.html` (lines 276, 385, 392-396)
 - `_genesis/templates/README.md` (lines 53, 63)
-- `_genesis/templates/ARCHITECTURE_TEMPLATE.md` (line 44)
-- `_genesis/templates/RESEARCH_TEMPLATE.md` (line 8)
+- `_genesis/templates/architecture-template.md` (line 44)
+- `_genesis/templates/research-template.md` (line 8)
 - `_genesis/principles/README.md` (line 22)
 - `_genesis/frameworks/README.md` (multiple)
 - `_genesis/sops/archive/ALPEI_OPERATING_PROCEDURE.md` (line 22 — update even in archive)
@@ -228,7 +228,7 @@ Reference: `_genesis/frameworks/ltc-ues-version-behaviors.md` 25-cell matrix.
 1. `_genesis/README.md` — update file index (Blueprint now in root, frameworks count = 18)
 2. `_genesis/frameworks/README.md` — update inventory to reflect 18 canonical kebab-case files + archive/
 3. `_genesis/guides/MIGRATION_GUIDE.md` — add "v2.0 Changes" section with rename table (all 9 renames)
-4. `_genesis/VERSION_REGISTRY.md` — update rows for all modified files
+4. `_genesis/version-registry.md` — update rows for all modified files
 5. Memory Vault `MEMORY.md` Briefing Card — update Current state date to 2026-04-03, state = "Build complete"
 
 ---

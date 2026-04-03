@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-01
 source: "Vinh Nguyen (CIO), branch Vinh-ALPEI-AI-Operating-System"
 ---

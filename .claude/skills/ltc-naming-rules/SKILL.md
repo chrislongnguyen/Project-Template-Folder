@@ -23,7 +23,7 @@ correct 2-part vs 3-part form, and platform-appropriate rendering — without gu
 ## Steps
 
 1. **Load source of truth**
-   Read [rules/naming-rules.md](../../../rules/naming-rules.md) from the repo root. Optional: [_genesis/security/NAMING_CONVENTION.md](../../../_genesis/security/NAMING_CONVENTION.md) for human-oriented prose.
+   Read [rules/naming-rules.md](../../../rules/naming-rules.md) from the repo root. Optional: [_genesis/security/naming-convention.md](../../../_genesis/security/naming-convention.md) for human-oriented prose.
 
 2. **Pick form and compose**
    Reference: [references/forms-and-separators.md](references/forms-and-separators.md) — default **3-part** with parent; **2-part** only for true top-level items. Use **longest matching SCOPE** from Table 3a (`COE_EFF` before `COE`).
@@ -58,7 +58,7 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 ## Links
 
-- [[NAMING_CONVENTION]]
+- [[naming-convention]]
 - [[VALIDATE]]
 - [[deliverable]]
 - [[forms-and-separators]]

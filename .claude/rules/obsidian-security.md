@@ -1,6 +1,6 @@
 ---
 version: "1.3"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 ---
 # Obsidian Security — Always-On Rule

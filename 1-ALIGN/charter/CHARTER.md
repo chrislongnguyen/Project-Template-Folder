@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: ALIGN
 owner: "{{OWNER}}"
@@ -9,7 +9,7 @@ owner: "{{OWNER}}"
 
 > Stub template — populate during ALIGN Design and Build phases.
 > Cell(s) enabled: 1-ALIGN × Design, 1-ALIGN × Build
-> Source template: `_genesis/templates/CHARTER_TEMPLATE.md`
+> Source template: `_genesis/templates/charter-template.md`
 
 <!-- TODO: Fill in during ALIGN Design phase -->
 

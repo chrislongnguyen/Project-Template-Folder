@@ -1,4 +1,4 @@
-<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/security/NAMING_CONVENTION.md -->
+<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/security/naming-convention.md -->
 # LTC Naming Rules (Universal Naming Grammar)
 
 > Source of truth: OPS_OE.6.0 docs/governance/LTC-UNIVERSAL-NAMING-GRAMMAR-v1.md
@@ -322,7 +322,7 @@ If a collision is detected, disambiguate by adjusting NAME. As a last resort, ap
 
 ## Links
 
-- [[NAMING_CONVENTION]]
+- [[naming-convention]]
 - [[VALIDATE]]
 - [[blocker]]
 - [[deliverable]]

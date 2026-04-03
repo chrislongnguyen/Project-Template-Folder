@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-30
 description: "P3 — ALIGN Workstream Walkthrough: how agents, skills, rules, and gates run ALIGN through DSBV. Training deck content."
 ---
@@ -104,7 +104,7 @@ The PM makes three decisions in this exchange: approve Design, approve Sequence,
 - [[ADR-001]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_CONTEXT_TEMPLATE]]
+- [[dsbv-context-template]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[agent-dispatch]]

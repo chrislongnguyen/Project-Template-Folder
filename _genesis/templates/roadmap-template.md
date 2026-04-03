@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -71,5 +71,5 @@ M1 ──► M2 ──► M3 ──► Release
 ## Links
 
 - [[SEQUENCE]]
-- [[SOP_TEMPLATE]]
+- [[sop-template]]
 - [[iteration]]

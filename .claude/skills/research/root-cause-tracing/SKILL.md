@@ -2,7 +2,7 @@
 version: "1.0"
 last_updated: 2026-03-29
 owner: "Long Nguyen"
-name: trace
+name: root-cause-tracing
 description: ILE causal chain reasoning using UBS/UDS recursive dot-notation. This skill should be used when tracing phenomena to ultimate causes — for Phase C page content (cols 4, 5, 10, 11), debugging learning difficulties, or analyzing system failures. NOT generic 5 Whys. Output maps directly to the 17-column table format.
 ---
 # Root-Cause Tracing — ILE Causal Chain Analysis

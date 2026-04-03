@@ -10,7 +10,7 @@ sub_system:
 # REVIEW TEMPLATE
 > Stub template — populate during project setup.
 > See `_shared/frameworks/` for LTC methodology.
-> Full sprint/execution review template: `5-IMPROVE/reviews/REVIEW_TEMPLATE.md`
+> Full sprint/execution review template: `5-IMPROVE/reviews/review-template.md`
 
 <!-- TODO: Fill in during ALIGN phase -->
 

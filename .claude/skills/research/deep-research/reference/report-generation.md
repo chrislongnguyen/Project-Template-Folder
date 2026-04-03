@@ -47,7 +47,7 @@ Generate each section individually. Write to file immediately after each section
 
 Each Write/Edit call contains ONE section (keep under ~2,000 words per call).
 
-### Section Order (matches report_template.md)
+### Section Order (matches report-template.md)
 
 1. **Executive Summary** (50-250 words) → Write to file (creates file)
 2. **§1 Context** — 1.1 Why This Matters (Q1), 1.2 What Is It (Q2), 1.3 Landscape & Alternatives (Q3) → Edit/append
@@ -57,7 +57,7 @@ Each Write/Edit call contains ONE section (keep under ~2,000 words per call).
 6. **Sources** (ALL citations — no ranges, no placeholders) → Edit/append
 7. **Methodology** (process, Claims-Evidence Table, confidence scale) → Edit/append
 
-For major findings within each section, use the per-finding sub-block pattern from report_template.md:
+For major findings within each section, use the per-finding sub-block pattern from report-template.md:
 Finding → Key Evidence → Implications → Sources.
 
 ### Citation Tracking
@@ -198,5 +198,5 @@ Present to user:
 - [[SKILL]]
 - [[anti-patterns]]
 - [[methodology]]
-- [[report_template]]
+- [[report-template]]
 - [[task]]

@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -59,5 +59,5 @@ _[Description of the driver and its root enabler.]_
 
 ## Links
 
-- [[RISK_ENTRY_TEMPLATE]]
+- [[risk-entry-template]]
 - [[SEQUENCE]]

@@ -109,7 +109,7 @@ git log --oneline -N   # N = new commits + 1
 ## Step 7: Post-Commit Checklist
 
 For every workstream artifact committed:
-- [ ] Update `_genesis/VERSION_REGISTRY.md` — version, status, date columns
+- [ ] Update `_genesis/version-registry.md` — version, status, date columns
 - [ ] Update `5-IMPROVE/changelog/CHANGELOG.md` — add entry under current PR section
 
 If this is a PR: changelog update is **required** before creating the PR.
@@ -187,7 +187,7 @@ During any conversation, suggest `/git-save` when:
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[VALIDATE]]
-- [[VERSION_REGISTRY]]
+- [[version-registry]]
 - [[blocker]]
 - [[dsbv]]
 - [[git-conventions]]

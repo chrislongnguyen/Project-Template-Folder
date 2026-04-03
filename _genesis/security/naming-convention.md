@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+status: draft
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 ---
 # LTC Naming Convention (Universal Naming Grammar)
@@ -327,6 +328,150 @@ Before creating ANY named item on ANY platform, the agent MUST:
 8. **Check** for name collisions on the target platform
 
 If a collision is detected, disambiguate by adjusting NAME. As a last resort, append `-NN` suffix. Never create duplicates — halt and ask the user.
+
+---
+
+## 7. Naming Boundary Table (R1)
+
+Which surfaces use UNG (Canonical Key) vs. kebab-case vs. other formats.
+
+| Surface | Naming Format | Notes |
+|---|---|---|
+| Git repos | UNG — 2-part Canonical Key | ALL CAPS, max 50 chars, no spaces |
+| ClickUp projects | UNG — 2-part with `[GROUP]` bracket | Spaces in display name per §3 |
+| Google Drive folders | UNG — 2-part or 3-part with optional decorators | Title Case allowed; see §3 |
+| Workstream folders | `{N}-{NAME}/` format | See §8. NOT UNG. |
+| `.claude/skills/` | kebab-case | `{prefix}-{skill-name}` or bare kebab; see §9, §10 |
+| `.claude/rules/` | kebab-case | e.g. `naming-rules.md`, `agent-dispatch.md` |
+| `.claude/agents/` | kebab-case | e.g. `ltc-builder.md`, `ltc-reviewer.md` |
+| `scripts/` | kebab-case | e.g. `template-check.sh`, `skill-validator.sh` |
+| Frontmatter keys | snake_case | e.g. `last_updated`, `owner`, `version` |
+| Frontmatter values | Free text (quoted string) | Dates: YYYY-MM-DD absolute |
+| Python identifiers | snake_case (variables, functions) / PascalCase (classes) | PEP 8; see §9 code exception |
+| JavaScript identifiers | camelCase (variables, functions) / PascalCase (classes) | See §9 code exception |
+
+**Rule:** UNG applies to externally visible, platform-registered names (repos, projects, Drive). kebab-case governs internal system artifacts (skills, rules, agents, scripts). These two namespaces do not mix.
+
+---
+
+## 8. Workstream Folder Naming (R2)
+
+Workstream root folders follow a fixed numeric-prefix format.
+
+### Format
+
+```
+{N}-{NAME}/
+```
+
+Where:
+- `{N}` = a non-padded integer (e.g. `1`, `2`, `10`)
+- `{NAME}` = ALL CAPS, words joined with `-`, no spaces
+
+**Regex:**
+```
+^[0-9]+-[A-Z][A-Z-]*/$
+```
+
+**Valid examples:**
+```
+1-ALIGN/
+2-LEARN/
+3-PLAN/
+4-EXECUTE/
+5-IMPROVE/
+```
+
+### Rejected Pattern: `{N}. {NAME}/`
+
+The dot-space separator format (e.g. `1. ALIGN/`, `2. LEARN/`) is explicitly rejected. Three failure modes:
+
+1. **Shell quoting** — spaces in folder names require quoting or escaping in every shell command (`cd "1. ALIGN"` vs. `cd 1-ALIGN`). Unquoted paths silently resolve incorrectly in scripts.
+2. **URL encoding** — spaces become `%20` in GitHub file browser URLs, REST API paths, and any web-rendered link, degrading readability and copy-paste reliability.
+3. **GitHub API incompatibility** — the GitHub Contents API and tree endpoints treat space-containing paths as distinct from their encoded equivalents, causing mismatches between client requests and server responses.
+
+**Agent rule:** If a folder name is found using the dot-space pattern, flag it as a naming violation. Do not create new folders in this format.
+
+---
+
+## 9. Internal System ID Convention (R3)
+
+All internal LTC system artifacts — items that are machine-referenced rather than platform-registered — use **kebab-case** as the default identifier format.
+
+### Governed Item Types
+
+| Item Type | Location | Example |
+|---|---|---|
+| Skill files / directories | `.claude/skills/` | `dsbv-builder/`, `vault-search.md` |
+| Agent files | `.claude/agents/` | `ltc-planner.md`, `ltc-reviewer.md` |
+| Rule files | `.claude/rules/` | `agent-dispatch.md`, `versioning.md` |
+| Shell scripts | `scripts/` | `template-check.sh`, `skill-validator.sh` |
+| Config files | repo root, `_genesis/` | `ltc-eop-gov.md`, `context-packaging.md` |
+| Markdown reference docs | `_genesis/`, `.claude/` | `alpei-dsbv-process-map.md` (all-caps exception for established legacy files) |
+
+**Default:** new internal files use lowercase kebab-case. ALL CAPS filenames are legacy and should not be created for new artifacts.
+
+### Code Identifier Exception
+
+kebab-case is not valid inside source code. Use language-idiomatic conventions:
+
+| Language | Variables & Functions | Classes | Constants |
+|---|---|---|---|
+| Python | `snake_case` | `PascalCase` | `UPPER_SNAKE_CASE` |
+| JavaScript / TypeScript | `camelCase` | `PascalCase` | `UPPER_SNAKE_CASE` |
+| Shell | `snake_case` | N/A | `UPPER_SNAKE_CASE` |
+
+**Agent rule:** The kebab-case rule applies to filenames and directory names. Never force kebab-case on Python or JavaScript identifiers inside source files.
+
+---
+
+## 10. Skill Prefix Registry (R5)
+
+`.claude/skills/` directories use optional prefixes to signal domain ownership. The registry has exactly **5 slots**. All current prefixes are allocated.
+
+| Slot | Prefix | Domain | Example Skills |
+|---|---|---|---|
+| 1 | `ltc-` | LTC governance, brand, template operations | `ltc-skill-creator`, `ltc-git-save` |
+| 2 | `dsbv-` | DSBV process execution | `dsbv-builder`, `dsbv-reviewer` |
+| 3 | `vault-` | Obsidian vault operations | `vault-search`, `vault-sync` |
+| 4 | `gws-` | Google Workspace integrations | `gws-drive`, `gws-calendar` |
+| 5 | (none) | General utility (no prefix) | `feedback`, `quality`, `memory` |
+
+### Rules
+
+- **New prefix requires explicit approval.** To add a sixth prefix: propose to Long Nguyen (project owner), document rationale, receive explicit approval, then update this registry before using the prefix in any skill.
+- Prefixes are not decorative — they declare ownership and load scope. An unregistered prefix is a naming violation.
+- Slot 5 (no prefix) is for cross-cutting utility skills that do not belong to any single domain.
+
+---
+
+## 11. Template File Location (R6)
+
+All reusable template files belong in:
+
+```
+_genesis/templates/
+```
+
+Filenames within this directory use **kebab-case** (see §9). Example:
+
+```
+_genesis/templates/charter-template.md
+_genesis/templates/ubs-register-template.md
+_genesis/templates/dsbv-design-template.md
+```
+
+### Rejected Pattern: `TEMPLATES - {name}` Filename Prefix
+
+Using a filename prefix such as `TEMPLATES - Charter.md` or `TEMPLATES - UBS Register.md` to identify template files is explicitly rejected. Three reasons:
+
+1. **Spaces in filenames** — the `TEMPLATES - ` prefix embeds spaces, requiring shell quoting on every reference. Any script or agent that references the file without quoting will silently resolve to a wrong or non-existent path.
+2. **Grep noise** — searching for template content (e.g. `grep -r "charter" _genesis/`) returns false positives from the prefix itself, polluting results and making file discovery unreliable for agents operating on pattern search.
+3. **URL encoding** — same mechanism as §8: spaces in filenames become `%20` in GitHub URLs, API paths, and any rendered link, breaking copy-paste and programmatic access.
+
+**Agent rule:** When asked to locate or create a template, look in `_genesis/templates/` first. Do not create template files with a `TEMPLATES - ` prefix in their name. If such a file is found in the repo, flag it as a naming violation and propose relocation to `_genesis/templates/` with a kebab-case filename.
+
+---
 
 ## Links
 

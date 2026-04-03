@@ -101,9 +101,9 @@ Generated: {date} | Skill: /learn:spec
 | C1 | Clear scope | GREEN | VANA-SPEC §1 defines system boundary |
 | C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/output/{slug}/ |
 | C3 | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
-| C4 | Process definition loaded | GREEN | _genesis/templates/DSBV_PROCESS.md exists |
+| C4 | Process definition loaded | GREEN | _genesis/templates/dsbv-process.md exists |
 | C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA workstreams |
-| C6 | Evaluation protocol defined | GREEN | DSBV_PROCESS.md §Validate |
+| C6 | Evaluation protocol defined | GREEN | dsbv-process.md §Validate |
 
 All C1-C6 GREEN → DSBV Design phase may begin.
 
@@ -158,7 +158,7 @@ Next: /learn:handoff {slug}
 - **Hallucinated ACs** — every AC traces to page:row:col. Empty source → `[NEEDS REVIEW]`, never invent.
 - **Missing I4 ACs** — SPAWNED (P5 NEXT cells) and Hardening (P0 RACI(I)) are mandatory.
 - **Vague VANA Words** — "Process" and "Handle" are banned. Use specific verbs.
-- **C4 check** — if `_genesis/templates/DSBV_PROCESS.md` is missing, flag RED and halt.
+- **C4 check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt.
 
 Full list: [gotchas.md](gotchas.md)
 
@@ -177,7 +177,7 @@ Full list: [gotchas.md](gotchas.md)
 ## Links
 
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[dsbv]]

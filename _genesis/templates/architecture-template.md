@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -74,7 +74,7 @@ _[Describe the architecture here.]_
 
 ## Links
 
-- [[ADR_TEMPLATE]]
+- [[adr-template]]
 - [[alpei-dsbv-process-map]]
 - [[DESIGN]]
 - [[blocker]]

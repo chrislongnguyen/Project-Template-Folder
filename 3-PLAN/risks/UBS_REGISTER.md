@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: PLAN
 owner: "{{OWNER}}"
@@ -8,7 +8,7 @@ owner: "{{OWNER}}"
 # UBS Risk Register — PLAN Workstream
 
 > User Blockers and Setbacks (UBS) register. One entry per identified risk.
-> Source template: `_genesis/templates/RISK_ENTRY_TEMPLATE.md`
+> Source template: `_genesis/templates/risk-entry-template.md`
 > Methodology: `_genesis/frameworks/` UBS/UDS guide.
 > Prioritization: Sustainability > Efficiency > Scalability. Human adoption risks take priority over agent-facing risks.
 

@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 type: template
@@ -71,5 +71,5 @@ _[Objective statement]_
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[VANA_SPEC_TEMPLATE]]
+- [[vana-spec-template]]
 - [[iteration]]

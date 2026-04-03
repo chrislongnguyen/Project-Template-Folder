@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: ALIGN
 owner: "{{OWNER}}"
@@ -9,7 +9,7 @@ owner: "{{OWNER}}"
 
 > Stub template — populate during ALIGN Sequence and IMPROVE Validate phases.
 > Cell(s) enabled: 1-ALIGN × Sequence, 5-IMPROVE × Validate
-> Source template: `_genesis/templates/OKR_TEMPLATE.md`
+> Source template: `_genesis/templates/okr-template.md`
 
 <!-- TODO: Fill in during ALIGN Sequence phase -->
 

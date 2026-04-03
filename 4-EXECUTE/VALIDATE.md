@@ -1,6 +1,6 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: EXECUTE
 iteration: "{{ITERATION}}"
@@ -9,7 +9,7 @@ owner: "{{OWNER}}"
 
 # DSBV Evaluation Protocol — EXECUTE Workstream
 
-> Source template: `_genesis/templates/DSBV_EVAL_TEMPLATE.md`
+> Source template: `_genesis/templates/dsbv-eval-template.md`
 
 > For Validate phase. Covers multi-agent synthesis and single-agent validation.
 > Follow mechanically. Do not skip steps.

@@ -1,6 +1,6 @@
 ---
 version: "1.3"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
 iteration: I1
@@ -357,7 +357,7 @@ All outputs land in `2-LEARN/`. If you stop mid-pipeline, the outputs already sa
 | Agent system | `rules/agent-system.md` |
 | System design | `rules/general-system.md` |
 | Agent diagnostics | `rules/agent-diagnostic.md` |
-| DSBV process | `_genesis/templates/DSBV_PROCESS.md` |
+| DSBV process | `_genesis/templates/dsbv-process.md` |
 | EOP governance | `_genesis/reference/ltc-eop-gov.md` |
 | Any skill | `.claude/skills/{category}/{skill-name}/SKILL.md` |
 | Project charter | `1-ALIGN/charter/` |
@@ -468,7 +468,7 @@ _Guide maintained by OPS Process. Template: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](ht
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[EP-01]]
 - [[EP-10]]
 - [[GEMINI]]

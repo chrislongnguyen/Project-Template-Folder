@@ -1,13 +1,13 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: IMPROVE
 iteration: "{{ITERATION}}"
 owner: "{{OWNER}}"
 ---
 
-> Source template: `_genesis/templates/RETRO_TEMPLATE.md`
+> Source template: `_genesis/templates/retro-template.md`
 
 # Retrospective — {{ITERATION}}
 

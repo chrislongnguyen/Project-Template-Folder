@@ -1,12 +1,12 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 workstream: IMPROVE
 owner: "{{OWNER}}"
 ---
 
-> Source template: `_genesis/templates/METRICS_BASELINE_TEMPLATE.md`
+> Source template: `_genesis/templates/metrics-baseline-template.md`
 
 # Metrics Baseline
 

@@ -18,7 +18,7 @@ Spawn one sub-agent per topic — all topics launch simultaneously.
 
 **Agent dispatch:** Use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) for each research sub-agent. Haiku model, read-only tools, Exa MCP or WebSearch (both available). **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
 
-> Load `_genesis/templates/RESEARCH_METHODOLOGY.md` before executing research.
+> Load `_genesis/templates/research-methodology.md` before executing research.
 
 ## Arguments
 
@@ -135,13 +135,13 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 ## References
 
 - `references/research-agent-prompt.md` — full sub-agent prompt template with 6-section structure
-- `_genesis/templates/RESEARCH_METHODOLOGY.md` — shared methodology (multi-angle search, verification, anti-hallucination)
+- `_genesis/templates/research-methodology.md` — shared methodology (multi-angle search, verification, anti-hallucination)
 - `2-LEARN/input/learn-input-{system-slug}.md` — system identity, personas, topics
 
 ## Links
 
 - [[CLAUDE]]
-- [[RESEARCH_METHODOLOGY]]
+- [[research-methodology]]
 - [[context-packaging]]
 - [[dsbv]]
 - [[gotchas]]

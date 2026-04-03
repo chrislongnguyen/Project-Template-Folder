@@ -1,6 +1,6 @@
 ---
 version: "1.1"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 ---
 
@@ -8,7 +8,7 @@ last_updated: 2026-04-03
 
 > For LTC members whose projects were cloned from the **I0 scaffold** (or earlier).
 > Your AI agent can execute this guide. Paste these instructions or say:
-> "Read `_genesis/guides/MIGRATION_GUIDE.md` and execute it for my project."
+> "Read `_genesis/guides/migration-guide.md` and execute it for my project."
 
 ## Before You Start
 
@@ -205,7 +205,7 @@ All references to old names have been updated across: `.claude/rules/`, `.claude
 | `CRITICAL_THINKING.md` | `ltc-effective-thinking.md` |
 | `UBS_UDS_GUIDE.md` | `ltc-ubs-uds-framework.md` |
 
-`UES_VERSION_BEHAVIORS.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`).
+`ues-version-behaviors.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`).
 
 ### SOP Archived
 
