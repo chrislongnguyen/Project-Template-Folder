@@ -14,7 +14,7 @@ last_updated: 2026-03-30
 
 - **Name:** LTC Project Template
 - **Stack:** Markdown, Shell, Python
-- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 4-workstream APEI structure with AI agent config pre-loaded.
+- **Purpose:** Standard project scaffold for LTC Partners — a thinking system that captures decisions, risks, and "why" in a 5-workstream ALPEI structure with AI agent config pre-loaded.
 
 ## Build
 
