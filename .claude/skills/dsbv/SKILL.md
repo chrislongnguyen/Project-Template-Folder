@@ -88,7 +88,7 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 **Steps:**
 1. Ask the user for their high-level intent (1-3 sentences about what this workstream should accomplish)
 2. Look up the Design template: grep `## Routing: {workstream}` in
-   `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`, Design row, Template column.
+   `_genesis/frameworks/alpei-dsbv-process-map.md`, Design row, Template column.
    Default: `DESIGN_TEMPLATE.md` if routing table not yet populated for this workstream.
 3. Draft DESIGN.md: artifact inventory, per-artifact purpose, success rubric, acceptance criteria
 4. **Alignment check (mandatory before presenting):**
@@ -129,7 +129,7 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
 **Workstream-aware behavior:**
 
 For the current workstream's Build-phase template and agent, look up:
-`_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § `## Routing: {WORKSTREAM}`, Build row.
+`_genesis/frameworks/alpei-dsbv-process-map.md` § `## Routing: {WORKSTREAM}`, Build row.
 
 | Workstream type | Default pattern | Why |
 |---|---|---|
@@ -177,7 +177,7 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 **Steps:**
 1. Dispatch to `ltc-reviewer` with: DESIGN.md, list of produced artifacts, workstream context
 2. ltc-reviewer loads the Validate-phase template from
-   `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md` § `## Routing: {WORKSTREAM}`, Validate row, Template column.
+   `_genesis/frameworks/alpei-dsbv-process-map.md` § `## Routing: {WORKSTREAM}`, Validate row, Template column.
    Default: `DSBV_EVAL_TEMPLATE.md` if routing table not yet populated for this workstream.
 3. Check **Completeness** — all artifacts listed in DESIGN.md are present
 4. Check **Quality** — each artifact passes its success rubric

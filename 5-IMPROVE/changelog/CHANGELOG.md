@@ -1,10 +1,28 @@
 ---
-version: "1.0"
+version: "1.1"
 status: Draft
-last_updated: 2026-04-01
+last_updated: 2026-04-03
 ---
 
 # CHANGELOG
+
+## [I2 — Prototype] 2026-04-03 — _genesis/ Cleanup + Blueprint Restructure
+
+**Branch:** `I2/chore/genesis-blueprint-cleanup`
+
+### Changed
+- Blueprint relocated from `1-ALIGN/charter/BLUEPRINT.md` → `_genesis/BLUEPRINT.md` (bedrock, not iteration-scoped)
+- Blueprint restructured: Part 3 Operating Model (new), Part 5 rewritten as VANA+ACs (71 lines, down from ~175), Decisions section removed
+- 9 ALL_CAPS framework files renamed to kebab-case (content-free rename commits for merge-friendly history)
+- 3 existing rules enhanced (+11 lines total): VANA gate in `dsbv.md`, sub-system sequence in `alpei-chain-of-custody.md`, version awareness in `versioning.md`
+- `APEI` → `ALPEI` typo fixed in `dsbv.md` (line 9) and `CLAUDE.md` (line 17)
+
+### Removed / Archived
+- 6 ALL_CAPS framework duplicates archived to `_genesis/frameworks/archive/`
+- `UES_VERSION_BEHAVIORS.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`)
+- `sops/ALPEI_OPERATING_PROCEDURE.md` archived to `sops/archive/` (self-marked DEPRECATED)
+
+---
 
 ## [I1 — Concept] 2026-04-01
 

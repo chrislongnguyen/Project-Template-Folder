@@ -9,7 +9,7 @@ sub_system:
 ---
 # RESEARCH TEMPLATE
 > Stub template — populate during project setup.
-> See `_shared/frameworks/LEARNING_HIERARCHY.md` for depth levels.
+> See `_genesis/frameworks/learning-hierarchy.md` for depth levels.
 > Full CODE research template: `2-LEARN/templates/`
 
 <!-- TODO: Fill in during ALIGN phase -->

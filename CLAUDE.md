@@ -67,8 +67,9 @@ Trace 6 configurable components before blaming the model. Derisk checklist + sym
 ## DSBV Process (full spec: `_genesis/templates/DSBV_PROCESS.md`)
 Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV.
 - Phase ordering: Design before Build, Validate before workstream complete.
-- APEI flow constraint: workstream N cannot reach Review until N-1 has ≥1 Approved artifact.
+- ALPEI flow constraint: workstream N cannot reach Review until N-1 has ≥1 Approved artifact.
 - Human gates: each phase transition requires explicit human approval.
+- VANA gate: at Validate phase, verify deliverable against VANA criteria for current UES version. No VANA criteria met = not done. Ref: `_genesis/frameworks/ltc-ues-versioning.md`
 
 ## EOP Governance (full spec: `_genesis/reference/ltc-eop-gov.md`)
 Before creating or reviewing any skill, load `_genesis/reference/ltc-eop-gov.md`. Run `./scripts/skill-validator.sh <skill-dir>` before committing skill changes. Use `/ltc-skill-creator` for guided skill creation.
@@ -79,10 +80,10 @@ When a user expresses frustration, confusion, or suggests an improvement, offer:
 ## Before Every Task — Pre-Flight Protocol
 
 1. **WORKSTREAM** — `/dsbv status` to identify. If ambiguous, ask.
-2. **ALIGNMENT** — `1-ALIGN/charter/` EO, stakeholders, success criteria. Every task traces to an objective.
+2. **ALIGNMENT** — `_genesis/BLUEPRINT.md` + `1-ALIGN/charter/` for EO, stakeholders, success criteria. Every task traces to an objective.
 3. **RISKS** — `3-PLAN/risks/UBS_REGISTER.md`. Human adoption first (S > E > Sc).
 4. **DRIVERS** — `3-PLAN/drivers/UDS_REGISTER.md`.
-5. **TEMPLATES** — grep `## Routing:` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`, load before proceeding.
+5. **TEMPLATES** — grep `## Routing:` in `_genesis/frameworks/alpei-dsbv-process-map.md`, load before proceeding.
 6. **LEARNING** — `2-LEARN/`. Don't reinvent what exists.
 7. **VERSION** — metadata consistent with DSBV phase, no cross-workstream regression.
 8. **EXECUTE** — Sustainability > Efficiency > Scalability.

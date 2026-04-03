@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+status: Draft
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 ---
 # frameworks/ — HOW
@@ -17,16 +18,27 @@ philosophy → principles → [frameworks] → derived artifacts
 
 | File | Description |
 |------|-------------|
-| AGENT_SYSTEM.md | 7-CS agent specialization model (AI implementation of 8-component) |
-| AGENT_DIAGNOSTIC.md | Trace 6 configurable components before blaming the model |
-| EFFECTIVE_SYSTEM.md | Universal 8-component system design (EI→EU→EA→EO + EP→EOE→EOT→EOP) |
-| HISTORY_VERSION_CONTROL.md | Git strategy, commits, PRs, tags, ADRs, APEI flow constraint |
-| THREE_PILLARS.md | Sustainability > Efficiency > Scalability priority model |
-| SIX_WORKSTREAMS.md | 6-workstream organizational model |
-| UBS_UDS_GUIDE.md | Force analysis — UBS (risks) and UDS (drivers) |
-| LEARNING_HIERARCHY.md | ELF learning hierarchy |
-| CRITICAL_THINKING.md | Critical thinking framework |
-| COGNITIVE_BIASES.md | Cognitive bias catalog |
+| agent-system.md | 7-CS agent specialization model (AI implementation of 8-component) |
+| agent-diagnostic.md | Trace 6 configurable components before blaming the model |
+| history-version-control.md | Git strategy, commits, PRs, tags, ADRs, ALPEI flow constraint |
+| learning-hierarchy.md | ELF learning hierarchy |
+| alpei-dsbv-process-map.md | Master routing: 5 workstreams × 4 phases = 20 cells |
+| alpei-dsbv-process-map-p1.md | 5×4 Matrix — template, deliverable, agent, AC per cell |
+| alpei-dsbv-process-map-p2.md | Version Progression — 25-cell matrix (I0→I4) |
+| alpei-dsbv-process-map-p3.md | ALIGN Walkthrough — step-by-step trace |
+| alpei-dsbv-process-map-p4.md | LEARN Data Flows — cross-workstream data flow |
+| ltc-10-ultimate-truths.md | 10 Ultimate Truths (Vinh canonical source) |
+| ltc-alpei-framework-overview.md | ALPEI framework overview |
+| ltc-alpei-framework-by-subsystems.md | ALPEI framework by sub-systems |
+| ltc-effective-system-design-blueprint.md | Universal 8-component system design |
+| ltc-effective-thinking.md | Effective thinking + cognitive biases + critical thinking |
+| ltc-effective-learning.md | Effective learning framework |
+| ltc-ubs-uds-framework.md | Force analysis — UBS (risks) and UDS (drivers) |
+| ltc-ues-version-behaviors.md | 25-cell version behaviors matrix |
+| ltc-ues-versioning.md | UES versioning — VANA criteria per version level |
+| **archive/** | 6 superseded ALL_CAPS duplicates (git-recoverable) — do not load |
+
+**Total:** 18 canonical files + README + archive/ (6 archived)
 
 ---
 

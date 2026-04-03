@@ -45,7 +45,7 @@ State only what is needed for THIS task — not project history.
 
 ### Files (EP-04: Load What You Need)
 Before listing files, look up the routing table for this workstream × phase:
-  grep `## Routing: {workstream}` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`
+  grep `## Routing: {workstream}` in `_genesis/frameworks/alpei-dsbv-process-map.md`
   → Template column = required Read files for this phase
   → Deliverable Path column = Write target
 Then list resolved paths explicitly (no relative paths in worktrees — see worktree rule).

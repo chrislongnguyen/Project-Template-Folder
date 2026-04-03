@@ -1,3 +1,5 @@
+<!-- ARCHIVED 2026-04-03 — Superseded by ltc-ubs-uds-framework.md. Do not load. -->
+
 ---
 version: "1.0"
 last_updated: 2026-03-29

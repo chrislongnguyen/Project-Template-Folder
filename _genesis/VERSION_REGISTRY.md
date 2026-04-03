@@ -1,7 +1,7 @@
 ---
-version: "1.4"
+version: "1.5"
 status: Draft
-last_updated: 2026-04-02
+last_updated: 2026-04-03
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
@@ -43,12 +43,23 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 
 | Workstream          | Description                                        | Version | Status     | Last Updated |
 |---------------|----------------------------------------------------|---------|------------|--------------|
-| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-02 |
-| _genesis      | Reference layer — brand, frameworks, security, SOPs, templates, 5 Vinh PDFs | 1.x | Reference | 2026-03-30 |
+| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-03 |
+| _genesis      | Reference layer — BLUEPRINT.md, brand, frameworks (18 canonical), security, SOPs, templates, 5 Vinh PDFs | 2.0 | Draft | 2026-04-03 |
+
+### Recently Modified Files (I2 Cleanup — 2026-04-03)
+
+| File | Version | Status | Last Updated |
+|------|---------|--------|--------------|
+| `_genesis/BLUEPRINT.md` | 2.0 | Draft | 2026-04-03 |
+| `.claude/rules/dsbv.md` | 1.1 | Draft | 2026-04-03 |
+| `.claude/rules/alpei-chain-of-custody.md` | 1.2 | Draft | 2026-04-03 |
+| `.claude/rules/versioning.md` | 1.4 | Draft | 2026-04-03 |
+| `_genesis/DESIGN-genesis-blueprint-cleanup.md` | 1.2 | Draft | 2026-04-03 |
+| `_genesis/SEQUENCE-genesis-blueprint-cleanup.md` | 2.0 | Draft | 2026-04-03 |
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
 > **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.
-> **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`) is built.
+> **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/alpei-dsbv-process-map.md`) is built.
 
 ---
 

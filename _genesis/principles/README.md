@@ -19,7 +19,7 @@ philosophy → [principles] → frameworks → derived artifacts
 |------|-------------|
 | ltc-effective-agent-principles-registry.md | EP-01 to EP-10 — the 10 Effective Principles |
 | ltc-eop-gov.md | Effective Operating Principle governance model |
-| AGENT_DIAGNOSTIC.md | 6-component diagnostic framework for agent failures |
+| agent-diagnostic.md | 6-component diagnostic framework for agent failures |
 
 Files will be migrated here from `reference/` during restructuring.
 

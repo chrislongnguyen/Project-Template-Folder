@@ -273,13 +273,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:#1D1F2A;font-size
       <div class="ep-rule" data-brief-coord="EP:THREE_PILLARS" data-brief-level="framework">THREE_PILLARS</div>
       <div class="ep-rule" data-brief-coord="EP:SIX_WORKSTREAMS" data-brief-level="framework">SIX_WORKSTREAMS</div>
       <div class="ep-rule" data-brief-coord="EP:UBS_UDS_GUIDE" data-brief-level="framework">UBS_UDS_GUIDE</div>
-      <div class="ep-rule" data-brief-coord="EP:LEARNING_HIERARCHY" data-brief-level="framework">LEARNING_HIERARCHY</div>
+      <div class="ep-rule" data-brief-coord="EP:learning-hierarchy" data-brief-level="framework">learning-hierarchy</div>
       <div class="ep-rule" data-brief-coord="EP:CRITICAL_THINKING" data-brief-level="framework">CRITICAL_THINKING</div>
       <div class="ep-rule" data-brief-coord="EP:COGNITIVE_BIASES" data-brief-level="framework">COGNITIVE_BIASES</div>
       <div class="ep-rule" data-brief-coord="EP:EFFECTIVE_SYSTEM" data-brief-level="framework">EFFECTIVE_SYSTEM</div>
-      <div class="ep-rule" data-brief-coord="EP:AGENT_SYSTEM" data-brief-level="framework">AGENT_SYSTEM</div>
-      <div class="ep-rule" data-brief-coord="EP:AGENT_DIAGNOSTIC" data-brief-level="framework">AGENT_DIAGNOSTIC</div>
-      <div class="ep-rule" data-brief-coord="EP:HISTORY_VERSION_CONTROL" data-brief-level="framework">VERSION_CONTROL</div>
+      <div class="ep-rule" data-brief-coord="EP:agent-system" data-brief-level="framework">agent-system</div>
+      <div class="ep-rule" data-brief-coord="EP:agent-diagnostic" data-brief-level="framework">agent-diagnostic</div>
+      <div class="ep-rule" data-brief-coord="EP:history-version-control" data-brief-level="framework">history-version-control</div>
     </div>
   </div>
 
@@ -383,18 +383,18 @@ const FRAMEWORKS=[
 {id:"THREE_PILLARS",name:"THREE_PILLARS",desc:"S > E > Sc priority",cells:["ALL"],role:"EP",insight:"Derisk first, optimize second, scale third"},
 {id:"SIX_WORKSTREAMS",name:"SIX_WORKSTREAMS",desc:"6 concurrent streams",cells:["ALL"],role:"EP",insight:"Self-Alignment, Risk, Learning, Thinking, Decisions, Execution"},
 {id:"UBS_UDS_GUIDE",name:"UBS_UDS_GUIDE",desc:"Blockers vs Drivers",cells:["P-D","P-B","I-B"],role:"EP",insight:"Manage risks first, leverage drivers second"},
-{id:"LEARNING_HIERARCHY",name:"LEARNING_HIERARCHY",desc:"Knowledge\u2192Expertise",cells:["L-D","L-B"],role:"EP",insight:"Min depth = Level 2 (Understanding)"},
+{id:"learning-hierarchy",name:"learning-hierarchy",desc:"Knowledge\u2192Expertise",cells:["L-D","L-B"],role:"EP",insight:"Min depth = Level 2 (Understanding)"},
 {id:"CRITICAL_THINKING",name:"CRITICAL_THINKING",desc:"5-step reasoning",cells:["A-D","P-D","I-D"],role:"EP",insight:"Deduction > abduction > induction"},
 {id:"COGNITIVE_BIASES",name:"COGNITIVE_BIASES",desc:"5 key biases",cells:["A-D","L-D","P-D"],role:"EP",insight:"Personal UBS = psychological biases"},
 {id:"EFFECTIVE_SYSTEM",name:"EFFECTIVE_SYSTEM",desc:"8-component model",cells:["ALL"],role:"EP",insight:"Every system = 8 components"},
-{id:"AGENT_SYSTEM",name:"AGENT_SYSTEM",desc:"7-CS for AI",cells:["ALL"],role:"EP",insight:"Configure EP first, blame Agent last"},
-{id:"AGENT_DIAGNOSTIC",name:"AGENT_DIAGNOSTIC",desc:"Sequential blame",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EP",insight:"Most failures = Input or EOP"},
-{id:"HISTORY_VERSION_CONTROL",name:"HISTORY_VERSION_CONTROL",desc:"Git strategy",cells:["E-B","E-V"],role:"EP",insight:"Human promotes Draft\u2192Approved"},
-{id:"ALPEI_DSBV_PROCESS_MAP",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 workstreams \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every workstream artifact routes through this map"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Workstream \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P2",name:"Process Map P2: Version Progression",desc:"What each workstream produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN workstream \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
-{id:"ALPEI_DSBV_PROCESS_MAP_P4",name:"Process Map P4: LEARN Data Flows",desc:"Cross-workstream data flow \u2014 LEARN feeds ALIGN and PLAN with UBS, UDS, Effective Principles.",cells:["L-D","L-S","L-B","L-V","A-D","P-D"],role:"EP",insight:"LEARN is the research engine \u2014 downstream workstreams consume its outputs"},
+{id:"agent-system",name:"agent-system",desc:"7-CS for AI",cells:["ALL"],role:"EP",insight:"Configure EP first, blame Agent last"},
+{id:"agent-diagnostic",name:"agent-diagnostic",desc:"Sequential blame",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EP",insight:"Most failures = Input or EOP"},
+{id:"history-version-control",name:"history-version-control",desc:"Git strategy",cells:["E-B","E-V"],role:"EP",insight:"Human promotes Draft\u2192Approved"},
+{id:"alpei-dsbv-process-map",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 workstreams \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every workstream artifact routes through this map"},
+{id:"alpei-dsbv-process-map-p1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Workstream \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
+{id:"alpei-dsbv-process-map-p2",name:"Process Map P2: Version Progression",desc:"What each workstream produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
+{id:"alpei-dsbv-process-map-p3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN workstream \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
+{id:"alpei-dsbv-process-map-p4",name:"Process Map P4: LEARN Data Flows",desc:"Cross-workstream data flow \u2014 LEARN feeds ALIGN and PLAN with UBS, UDS, Effective Principles.",cells:["L-D","L-S","L-B","L-V","A-D","P-D"],role:"EP",insight:"LEARN is the research engine \u2014 downstream workstreams consume its outputs"},
 {id:"UES_VERSION_BEHAVIORS",name:"UES Version Behaviors",desc:"Version-specific behaviors per workstream \u2014 what \u201cdone\u201d looks like at I0 through I4.",cells:["ALL"],role:"EP",insight:"Build deeper than your version = waste; shallower = gap"},
 {id:"README_FRAMEWORKS",name:"README (Frameworks Index)",desc:"Framework cascade: philosophy \u2192 principles \u2192 frameworks \u2192 artifacts (Layer 3 of 4).",cells:["ALL"],role:"EP",insight:"Frameworks sit between principles and artifacts \u2014 they guide, not prescribe"}
 ];

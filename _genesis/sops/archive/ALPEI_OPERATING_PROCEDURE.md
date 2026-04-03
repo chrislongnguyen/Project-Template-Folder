@@ -19,7 +19,7 @@ status: Deprecated
 > **DEPRECATION NOTICE (2026-03-31):** This SOP is a historical reference from Vinh's branch.
 > Its content has been absorbed into the canonical system: `/dsbv` skill, `.claude/agents/`,
 > `.claude/rules/`, `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`, and the forthcoming
-> `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`. Do NOT use as authoritative source for
+> `_genesis/frameworks/alpei-dsbv-process-map.md`. Do NOT use as authoritative source for
 > new work. Use `/dsbv` as the operating procedure.
 
 > **Adaptation notes:** Obsidian wikilinks replaced with plain references. Obsidian-specific tooling
