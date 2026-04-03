@@ -1,0 +1,63 @@
+filters:
+  and:
+    - 'type == "ues-deliverable"'
+    - not:
+        - 'status == "validated"'
+        - 'status == "archived"'
+
+formulas:
+  days_stale: '(now() - file.mtime).days.round(0)'
+  risk_level: 'if((now() - file.mtime).days > 14, "BLOCKED", if((now() - file.mtime).days > 7, "AT RISK", if((now() - file.mtime).days > 3, "MONITOR", "ON TRACK")))'
+
+properties:
+  file.name:
+    displayName: "DELIVERABLE"
+  status:
+    displayName: "STATUS"
+  sub_system:
+    displayName: "SUB-SYSTEM"
+  work_stream:
+    displayName: "WORK STREAM"
+  stage:
+    displayName: "STAGE"
+  formula.days_stale:
+    displayName: "DAYS STALE"
+  formula.risk_level:
+    displayName: "RISK LEVEL"
+
+views:
+  - type: table
+    name: "ALL ITEMS BY RISK"
+    order:
+      - formula.days_stale
+      - file.name
+      - formula.risk_level
+      - status
+      - sub_system
+      - work_stream
+    summaries:
+      formula.days_stale: Average
+
+  - type: table
+    name: "BY SUB-SYSTEM"
+    groupBy:
+      property: sub_system
+      direction: ASC
+    order:
+      - file.name
+      - formula.risk_level
+      - formula.days_stale
+      - status
+      - work_stream
+
+  - type: table
+    name: "BY WORK STREAM"
+    groupBy:
+      property: work_stream
+      direction: ASC
+    order:
+      - file.name
+      - formula.risk_level
+      - formula.days_stale
+      - status
+      - sub_system

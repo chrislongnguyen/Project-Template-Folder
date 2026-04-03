@@ -1,0 +1,68 @@
+filters:
+  and:
+    - file.inFolder("1-ALIGN")
+    - 'file.ext == "md"'
+
+formulas:
+  days_since_update: '(now() - file.mtime).days.round(0)'
+  size_kb: '(file.size / 1024).round(1)'
+
+properties:
+  file.name:
+    displayName: "FILE"
+  file.folder:
+    displayName: "SECTION"
+  status:
+    displayName: "STATUS"
+  sub_system:
+    displayName: "SUB-SYSTEM"
+  formula.days_since_update:
+    displayName: "DAYS SINCE UPDATE"
+  formula.size_kb:
+    displayName: "SIZE (KB)"
+
+views:
+  - type: table
+    name: "ALL ALIGNMENT ITEMS"
+    order:
+      - file.name
+      - file.folder
+      - status
+      - sub_system
+      - formula.days_since_update
+      - formula.size_kb
+    groupBy:
+      property: file.folder
+      direction: ASC
+
+  - type: table
+    name: "ROLES & HANDBOOK"
+    filters:
+      or:
+        - file.inFolder("1.1. ROLES")
+        - file.inFolder("1.2. ORGANIZATION HANDBOOK")
+    order:
+      - file.name
+      - file.folder
+      - formula.days_since_update
+
+  - type: table
+    name: "WIKI & SOPs"
+    filters:
+      and:
+        - file.inFolder("1.3. OPERATIONAL WIKI & SOPs")
+    order:
+      - file.name
+      - formula.days_since_update
+      - formula.size_kb
+
+  - type: table
+    name: "INITIATIVES & PROJECTS"
+    filters:
+      and:
+        - file.inFolder("1.5. INITIATIVES & PROJECTS")
+    order:
+      - file.name
+      - file.folder
+      - status
+      - formula.days_since_update
