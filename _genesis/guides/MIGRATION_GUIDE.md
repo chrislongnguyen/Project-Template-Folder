@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: Draft
-last_updated: 2026-04-01
+last_updated: 2026-04-03
 ---
 
 # Migration Guide — Upgrading to ALPEI Template I1
@@ -165,6 +165,51 @@ claude
 # Start your first DSBV cycle:
 /dsbv design align
 ```
+
+---
+
+## v2.0 Changes (2026-04-03) — _genesis/ Cleanup + Blueprint Restructure
+
+### Blueprint Relocated
+
+`1-ALIGN/charter/BLUEPRINT.md` → `_genesis/BLUEPRINT.md`
+
+Blueprint is bedrock philosophy (I0–I4), not iteration-scoped alignment. A redirect stub remains at the old location.
+
+### Framework Files Renamed (ALL_CAPS → kebab-case)
+
+| Old Name | New Name |
+|----------|----------|
+| `AGENT_SYSTEM.md` | `agent-system.md` |
+| `AGENT_DIAGNOSTIC.md` | `agent-diagnostic.md` |
+| `LEARNING_HIERARCHY.md` | `learning-hierarchy.md` |
+| `HISTORY_VERSION_CONTROL.md` | `history-version-control.md` |
+| `ALPEI_DSBV_PROCESS_MAP.md` | `alpei-dsbv-process-map.md` |
+| `ALPEI_DSBV_PROCESS_MAP_P1.md` | `alpei-dsbv-process-map-p1.md` |
+| `ALPEI_DSBV_PROCESS_MAP_P2.md` | `alpei-dsbv-process-map-p2.md` |
+| `ALPEI_DSBV_PROCESS_MAP_P3.md` | `alpei-dsbv-process-map-p3.md` |
+| `ALPEI_DSBV_PROCESS_MAP_P4.md` | `alpei-dsbv-process-map-p4.md` |
+
+All references to old names have been updated across: `.claude/rules/`, `.claude/skills/`, `CLAUDE.md`, `3-PLAN/architecture/`, `_genesis/tools/`, `_genesis/templates/`, `_genesis/principles/`.
+
+### Frameworks Archived
+
+6 ALL_CAPS duplicates moved to `_genesis/frameworks/archive/` (git-recoverable):
+
+| Archived File | Superseded By |
+|--------------|---------------|
+| `THREE_PILLARS.md` | `ltc-10-ultimate-truths.md` + BLUEPRINT Part 1 |
+| `SIX_WORKSTREAMS.md` | `ltc-alpei-framework-overview.md` + CLAUDE.md Structure |
+| `EFFECTIVE_SYSTEM.md` | `ltc-effective-system-design-blueprint.md` |
+| `COGNITIVE_BIASES.md` | `ltc-effective-thinking.md` + `agent-system.md` §4 |
+| `CRITICAL_THINKING.md` | `ltc-effective-thinking.md` |
+| `UBS_UDS_GUIDE.md` | `ltc-ubs-uds-framework.md` |
+
+`UES_VERSION_BEHAVIORS.md` deleted (exact duplicate of `ltc-ues-version-behaviors.md`).
+
+### SOP Archived
+
+`sops/ALPEI_OPERATING_PROCEDURE.md` → `sops/archive/ALPEI_OPERATING_PROCEDURE.md` (self-marked DEPRECATED)
 
 ---
 

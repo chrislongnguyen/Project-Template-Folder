@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+status: Draft
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 derived_from:
   - "Vinh ALPEI Overview PDF"
@@ -32,19 +33,23 @@ No genesis artifact changes without team consensus. This protects organizational
 
 ## Categories
 
-| Dir          | Layer         | Purpose                                              |
+| File/Dir     | Layer         | Purpose                                              |
 |--------------|---------------|------------------------------------------------------|
+| BLUEPRINT.md | BEDROCK       | Canonical philosophy, principles, operating model, roadmap (I0–I4) |
 | philosophy/  | WHY           | Core beliefs, cognitive truths, 3 Pillars            |
 | principles/  | WHAT          | EP registry EP-01–EP-10, EOP-GOV, Agent Diagnostic   |
-| frameworks/  | HOW           | Agent System 7-CS, ESD, UBS/UDS, Six Workstreams     |
+| frameworks/  | HOW           | 18 canonical kebab-case files + archive/ (6 superseded) |
 | brand/       | IDENTITY      | Brand Guide, colors, naming convention               |
 | security/    | PROTECTION    | Data classification, security hierarchy              |
-| sops/        | PROCESS       | Standard operating procedures                       |
+| sops/        | PROCESS       | Standard operating procedures + archive/             |
 | templates/   | FORMATS       | DSBV process, document templates (Agent E)           |
+| guides/      | ONBOARDING    | Migration guides for template upgrades               |
 | governance/  | AUTHORITY     | Decision rights, RACI, escalation paths              |
 | compliance/  | OBLIGATIONS   | Regulatory, audit, legal obligations                 |
 | culture/     | VALUES        | Behavioral norms, collaboration standards            |
 | reference/   | SUPPLEMENTARY | Handbook, external refs, archive                    |
+
+> Note: `DESIGN-genesis-blueprint-cleanup.md` and `SEQUENCE-genesis-blueprint-cleanup.md` are present in root during the I2 cleanup branch — remove after merge to main.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+status: Draft
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 ---
 # frameworks/ — HOW
@@ -35,7 +36,9 @@ philosophy → principles → [frameworks] → derived artifacts
 | ltc-ubs-uds-framework.md | Force analysis — UBS (risks) and UDS (drivers) |
 | ltc-ues-version-behaviors.md | 25-cell version behaviors matrix |
 | ltc-ues-versioning.md | UES versioning — VANA criteria per version level |
-| **archive/** | Superseded duplicates (git-recoverable) — do not load |
+| **archive/** | 6 superseded ALL_CAPS duplicates (git-recoverable) — do not load |
+
+**Total:** 18 canonical files + README + archive/ (6 archived)
 
 ---
 
