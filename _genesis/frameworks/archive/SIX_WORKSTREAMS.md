@@ -1,3 +1,5 @@
+<!-- ARCHIVED 2026-04-03 — Superseded by ltc-alpei-framework-overview.md. Do not load. -->
+
 ---
 version: "1.2"
 last_updated: 2026-03-30
