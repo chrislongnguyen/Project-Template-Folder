@@ -59,8 +59,7 @@ properties:
 views:
   - type: kanban
     name: "PIPELINE BOARD"
-    groupBy:
-      property: stage
+    groupBy: stage
     order:
       - file.name
       - work_stream
@@ -70,8 +69,7 @@ views:
 
   - type: kanban
     name: "STATUS BOARD"
-    groupBy:
-      property: status
+    groupBy: status
     order:
       - file.name
       - work_stream
