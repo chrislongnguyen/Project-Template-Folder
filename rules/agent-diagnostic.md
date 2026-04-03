@@ -147,7 +147,7 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 
 ## Links
 
-- [[AGENT_DIAGNOSTIC]]
+- [[agent-diagnostic]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]

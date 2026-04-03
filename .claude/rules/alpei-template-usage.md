@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: Draft
-last_updated: 2026-04-02
+last_updated: 2026-04-03
 ---
 
 # ALPEI Template Usage — Always-On Rule
@@ -10,6 +10,6 @@ Before creating any ALPEI workstream deliverable, check for a template first —
 
 Applies to all 5 workstreams: ALIGN, LEARN, PLAN, EXECUTE, IMPROVE. Each workstream has DSBV phase-specific templates.
 
-Full lookup table (workstream × DSBV phase → template): loaded via `/dsbv` or grep `## Routing:` in `_genesis/frameworks/ALPEI_DSBV_PROCESS_MAP.md`.
+Full lookup table (workstream × DSBV phase → template): loaded via `/dsbv` or grep `## Routing:` in `_genesis/frameworks/alpei-dsbv-process-map.md`.
 
 Exception: if no template exists, create with proper YAML frontmatter and flag the gap.

@@ -9,14 +9,14 @@ sub_system:
 ---
 # SPIKE TEMPLATE
 > Stub template — populate during project setup.
-> See `_shared/frameworks/CRITICAL_THINKING.md` for reasoning methodology.
+> See `_genesis/frameworks/ltc-effective-thinking.md` for reasoning methodology.
 > Full spike template with hypothesis + premises: `3-PLAN/learning/spikes/`
 
 <!-- TODO: Fill in during ALIGN phase -->
 
 ## Links
 
-- [[CRITICAL_THINKING]]
+- [[ltc-effective-thinking]]
 - [[DESIGN]]
 - [[methodology]]
 - [[project]]

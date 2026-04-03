@@ -257,7 +257,7 @@ Full process specification: `_genesis/templates/DSBV_PROCESS.md`
 
 ## Links
 
-- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[alpei-dsbv-process-map]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

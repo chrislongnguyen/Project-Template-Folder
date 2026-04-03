@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 ---
 # philosophy/ — WHY
@@ -18,8 +18,8 @@ owner: "Long Nguyen"
 | File | Description |
 |------|-------------|
 | ltc-effectiveness-guide.md | 10 Ultimate Truths + 8-component ESD model |
-| COGNITIVE_BIASES.md | Catalog of cognitive biases to counter in decisions |
-| THREE_PILLARS.md | Sustainability > Efficiency > Scalability |
+| ltc-effective-thinking.md | Catalog of cognitive biases to counter in decisions (supersedes archived cognitive-biases) |
+| ltc-10-ultimate-truths.md | Sustainability > Efficiency > Scalability (supersedes archived three-pillars) |
 
 Files will be migrated here from `reference/` and `frameworks/` during restructuring.
 
@@ -29,6 +29,6 @@ Files will be migrated here from `reference/` and `frameworks/` during restructu
 
 ## Links
 
-- [[COGNITIVE_BIASES]]
-- [[THREE_PILLARS]]
+- [[ltc-effective-thinking]]
+- [[ltc-10-ultimate-truths]]
 - [[ltc-effectiveness-guide]]

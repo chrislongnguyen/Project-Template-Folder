@@ -9,7 +9,7 @@ const checks = [
   { num: 2, name: 'CHECK ALIGNMENT', ensures: 'Read 1-ALIGN/charter/ — understand EO, stakeholders, success criteria.' },
   { num: 3, name: 'CHECK RISKS', ensures: 'Read 3-PLAN/risks/UBS_REGISTER.md — what can go wrong?' },
   { num: 4, name: 'CHECK DRIVERS', ensures: 'Read 3-PLAN/drivers/UDS_REGISTER.md — what forces to leverage.' },
-  { num: 5, name: 'CHECK TEMPLATES', ensures: 'Identify which templates apply from ALPEI_DSBV_PROCESS_MAP.md.' },
+  { num: 5, name: 'CHECK TEMPLATES', ensures: 'Identify which templates apply from alpei-dsbv-process-map.md.' },
   { num: 6, name: 'CHECK LEARNING', ensures: "Scan 2-LEARN/ — prior research, specs. Don't reinvent." },
   { num: 7, name: 'VERSION CONSISTENCY', ensures: 'Workstream versions consistent with DSBV phase. No regressions.' },
 ];

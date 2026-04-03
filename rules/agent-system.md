@@ -370,7 +370,7 @@ Agent files: `.claude/agents/ltc-{name}.md`. Each file declares model, tools, an
 
 ## Links
 
-- [[AGENT_SYSTEM]]
+- [[agent-system]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[EP-11]]

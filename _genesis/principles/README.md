@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-04-03
 owner: "Long Nguyen"
 ---
 # principles/ — WHAT
@@ -29,7 +29,7 @@ Files will be migrated here from `reference/` during restructuring.
 
 ## Links
 
-- [[AGENT_DIAGNOSTIC]]
+- [[agent-diagnostic]]
 - [[EP-01]]
 - [[EP-10]]
 - [[ltc-effective-agent-principles-registry]]

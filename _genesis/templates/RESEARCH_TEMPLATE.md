@@ -16,5 +16,5 @@ sub_system:
 
 ## Links
 
-- [[LEARNING_HIERARCHY]]
+- [[learning-hierarchy]]
 - [[project]]

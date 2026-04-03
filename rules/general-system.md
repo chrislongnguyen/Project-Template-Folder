@@ -1,4 +1,4 @@
-<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/frameworks/EFFECTIVE_SYSTEM.md -->
+<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/frameworks/ltc-effective-system-design-blueprint.md -->
 # LTC General System
 
 > Source of truth: ESD Framework (OPS_OE.6.1 templates/), 10 Ultimate Truths (BOOK-00), Spec-Gap-Analysis (OPS_OE.6.1 research/), Whiteboard Template (ClickUp)
@@ -297,7 +297,7 @@ Every organization operates through a value chain of six interdependent layers. 
 ## Links
 
 - [[DESIGN]]
-- [[EFFECTIVE_SYSTEM]]
+- [[ltc-effective-system-design-blueprint]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[agent-system]]

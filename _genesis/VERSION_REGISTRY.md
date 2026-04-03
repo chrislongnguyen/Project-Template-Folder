@@ -130,7 +130,7 @@ Wrong MAJOR (2.x)     → correct to 1.x (this is not a normal bump — it is a 
 
 ## Links
 
-- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[alpei-dsbv-process-map]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

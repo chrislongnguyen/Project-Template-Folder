@@ -10,11 +10,11 @@ sub_system:
 # SOP TEMPLATE
 > Stub template — populate during project setup.
 > See `_shared/sops/` for existing SOPs.
-> See `_shared/frameworks/EFFECTIVE_SYSTEM.md` for 7-component model.
+> See `_genesis/frameworks/ltc-effective-system-design-blueprint.md` for 8-component model.
 
 <!-- TODO: Fill in during ALIGN phase -->
 
 ## Links
 
-- [[EFFECTIVE_SYSTEM]]
+- [[ltc-effective-system-design-blueprint]]
 - [[project]]

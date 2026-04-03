@@ -313,7 +313,7 @@ Consumed by: human for final approval.
 ## Links
 
 - [[ADR-001]]
-- [[ALPEI_DSBV_PROCESS_MAP]]
+- [[alpei-dsbv-process-map]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[DSBV_EVAL_TEMPLATE]]
