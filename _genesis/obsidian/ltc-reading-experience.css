@@ -1,0 +1,127 @@
+/* ============================================================
+   LTC Reading Experience — Minimal overrides on top of Obsidian defaults
+   Only touches: full-width, header gold accents, table scroll, bases sticky
+   Everything else: Obsidian handles it fine — don't override.
+   Version: 3.0
+   ============================================================ */
+
+/* ── FULL WIDTH LAYOUT ────────────────────────────────────── */
+body {
+  --file-line-width: 10000px !important;
+}
+
+/* ── LTC BRAND — Colors + Typography (from BRAND_GUIDE.md §5) ── */
+/* Type scale ratios from brand: T=2.9x H1=1.82x H2=1.45x H3=1.27x H4=1.0x body */
+body {
+  --ltc-gold: #F2C75C;
+  --ltc-midnight: #004851;
+
+  /* Fonts — Inter for all text, override any theme */
+  --font-text: "Inter", system-ui, -apple-system, sans-serif !important;
+  --font-interface: "Inter", system-ui, -apple-system, sans-serif !important;
+  --font-monospace: "JetBrains Mono", "Fira Code", monospace !important;
+  --inline-title-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h1-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h2-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h3-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h4-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h5-font: "Inter", system-ui, -apple-system, sans-serif !important;
+  --h6-font: "Inter", system-ui, -apple-system, sans-serif !important;
+
+  /* Heading sizes — brand ratios applied to Obsidian base font */
+  --h1-size: 1.82em !important;
+  --h2-size: 1.45em !important;
+  --h3-size: 1.27em !important;
+  --h4-size: 1.0em !important;
+  --h5-size: 0.95em !important;
+  --h6-size: 0.9em !important;
+
+  /* Heading weight + color — all Bold 700, Midnight Green per brand */
+  --h1-weight: 700 !important;
+  --h2-weight: 700 !important;
+  --h3-weight: 700 !important;
+  --h4-weight: 700 !important;
+  --h5-weight: 700 !important;
+  --h6-weight: 700 !important;
+  --h1-color: #004851 !important;
+  --h2-color: #004851 !important;
+  --h3-color: #004851 !important;
+  --h4-color: #004851 !important;
+  --h5-color: #004851 !important;
+  --h6-color: #004851 !important;
+
+  /* Inline title (filename as title) */
+  --inline-title-size: 2.9em !important;
+  --inline-title-weight: 700 !important;
+  --inline-title-color: #004851 !important;
+
+  /* Body text color */
+  --text-normal: #1D1F2A !important;
+}
+
+/* Dark mode overrides — headings stay readable */
+.theme-dark {
+  --h1-color: #F2C75C !important;
+  --h2-color: #F2C75C !important;
+  --h3-color: #e0d8c8 !important;
+  --h4-color: #e0d8c8 !important;
+  --h5-color: #e0d8c8 !important;
+  --h6-color: #e0d8c8 !important;
+  --inline-title-color: #F2C75C !important;
+  --text-normal: #ddd !important;
+}
+
+/* ── HEADER ACCENTS — gold underline/border, no size override ── */
+.markdown-reading-view h1,
+.markdown-source-view .cm-header-1 {
+  border-bottom: 2px solid var(--ltc-gold) !important;
+  padding-bottom: 4px !important;
+}
+
+.markdown-reading-view h2,
+.markdown-source-view .cm-header-2 {
+  border-left: 3px solid var(--ltc-gold) !important;
+  padding-left: 8px !important;
+}
+
+/* ── TABLES — horizontal scroll instead of truncation ─────── */
+.markdown-reading-view .table-wrapper,
+.markdown-reading-view .markdown-preview-sizer > div:has(> table) {
+  overflow-x: auto !important;
+}
+
+.markdown-reading-view table {
+  min-width: max-content !important;
+}
+
+.markdown-reading-view table th {
+  background: var(--ltc-midnight) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  padding: 8px 12px !important;
+  white-space: nowrap !important;
+}
+.theme-dark .markdown-reading-view table th {
+  color: var(--ltc-gold) !important;
+}
+
+.markdown-reading-view table td {
+  padding: 6px 12px !important;
+}
+
+/* ── BASES — sticky table headers ─────────────────────────── */
+.bases-view .bases-thead {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+}
+
+/* ── CALLOUTS — gold accent ───────────────────────────────── */
+.callout {
+  border-left-color: var(--ltc-gold) !important;
+}
+
+/* ── CHECKBOXES — gold accent ─────────────────────────────── */
+.task-list-item input[type="checkbox"] {
+  accent-color: var(--ltc-gold) !important;
+}
