@@ -12,23 +12,23 @@ const actions = [
   },
   {
     num: '02',
-    action: 'Check the blocker dashboard',
-    detail: 'anything red means action needed',
+    action: 'Open C4-blocker-dashboard — scan for red items',
+    detail: 'anything red means action needed today',
   },
   {
     num: '03',
-    action: 'Browse the master dashboard',
-    detail: 'get the full lay of the land',
+    action: 'Open C1-master-dashboard — full project overview',
+    detail: 'all workstreams, stages, and statuses in one view',
   },
   {
     num: '04',
-    action: 'Open a deliverable file',
-    detail: 'see how frontmatter drives the dashboards',
+    action: 'Open any deliverable file and inspect its frontmatter',
+    detail: 'this metadata is what drives every dashboard column',
   },
   {
     num: '05',
-    action: 'In Claude Code terminal: run /dsbv status',
-    detail: 'see your DSBV pipeline',
+    action: 'In Claude Code: type /dsbv status',
+    detail: 'shows your Design-Sequence-Build-Validate pipeline at a glance',
   },
 ];
 

@@ -225,7 +225,7 @@ export default function StandupMasterSlide() {
                     marginBottom: '6px',
                   }}
                 >
-                  Color-coded by workstream:
+                  Color-coded pills: gold = 1-align, purple = 2-learn, teal = 3-plan, green = 4-execute, ruby = 5-improve
                 </div>
                 <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
                   {workstreamColors.map((ws) => (

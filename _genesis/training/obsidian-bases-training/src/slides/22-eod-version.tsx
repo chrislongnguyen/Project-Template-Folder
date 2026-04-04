@@ -58,9 +58,9 @@ function WorkflowBar({ active }: { active: Phase }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const subSystems = [
-  { label: '1-PD', name: 'Principles & Design', color: colors.gold },
-  { label: '2-DP', name: 'Decision Process', color: colors.midnightLight },
-  { label: '3-DA', name: 'Data & Analytics', color: colors.green },
+  { label: '1-PD', name: 'Problem Diagnosis', color: colors.gold },
+  { label: '2-DP', name: 'Data Pipeline', color: colors.midnightLight },
+  { label: '3-DA', name: 'Data Analysis', color: colors.green },
   { label: '4-IDM', name: 'Insights & Decision Making', color: colors.purple },
 ];
 
@@ -109,7 +109,7 @@ export default function EodVersionSlide() {
                 marginBottom: '6px',
               }}
             >
-              Dashboard 10 of 11 · End of Day
+              End of Day · Reflection
             </span>
             <h1
               style={{
@@ -266,7 +266,7 @@ export default function EodVersionSlide() {
               {[
                 'Check if any sub-system is stuck at the same version too long',
                 'End of day reflection: did I advance at least 1 item today?',
-                'In terminal: /git-save to commit your progress',
+                'In Claude Code terminal, type /git-save — this commits your day\'s work safely',
               ].map((action, i) => (
                 <div
                   key={i}
@@ -326,7 +326,7 @@ export default function EodVersionSlide() {
               }}
             >
               <img
-                src="/screenshots/12-version-progress.png"
+                src="/screenshots/08-version-progress.png"
                 alt="Version Progress Dashboard"
                 style={{
                   width: '100%',

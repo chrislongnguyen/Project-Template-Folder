@@ -19,7 +19,7 @@ const timeBlocks = [
     duration: '15–30 MIN',
     color: colors.midnightLight,
     items: [
-      'Review master-dashboard → report status per workstream',
+      'Review C1-master-dashboard → report status per workstream',
       'Check C7-dependency-tracker → any upstream blockers?',
     ],
   },
@@ -28,7 +28,7 @@ const timeBlocks = [
     duration: 'FLEXIBLE',
     color: colors.green,
     items: [
-      'Use stage-pipeline → track D→S→B→V progress',
+      'Use C2-stage-pipeline → track D→S→B→V progress',
       'Drill into workstream overviews → focus on your active stream',
     ],
   },

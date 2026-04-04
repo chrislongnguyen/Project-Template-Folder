@@ -6,18 +6,18 @@ import { fadeInUp } from '../lib/animations';
 
 const bullets = [
   'A .base file is a live query over your vault',
-  'It reads YAML frontmatter from your .md files',
+  'It reads frontmatter — the metadata block at the top of every .md file, written in YAML (key: value pairs between --- markers)',
   'It renders as interactive tables, cards, or lists',
   "Formulas compute values like 'days stale' or 'risk level'",
   'Views let you slice the same data multiple ways',
 ];
 
 const yamlLines = [
-  { key: 'type:', value: 'ues-deliverable' },
-  { key: 'status:', value: 'in-progress' },
-  { key: 'work_stream:', value: 'execute' },
-  { key: 'stage:', value: 'build' },
-  { key: 'sub_system:', value: 'DP' },
+  { key: 'type:', value: 'ues-deliverable', comment: '← UES = User Enablement System — marks this as a project deliverable' },
+  { key: 'status:', value: 'in-progress', comment: '' },
+  { key: 'work_stream:', value: '4-execute', comment: '' },
+  { key: 'stage:', value: 'build', comment: '' },
+  { key: 'sub_system:', value: '2-DP', comment: '' },
 ];
 
 export default function WhatIsABaseSlide() {
@@ -147,19 +147,34 @@ export default function WhatIsABaseSlide() {
                 ---
               </p>
               {yamlLines.map((line) => (
-                <p
-                  key={line.key}
-                  style={{
-                    fontFamily: "'Courier New', Courier, monospace",
-                    fontSize: 'clamp(0.6rem, 0.85vw, 0.72rem)',
-                    margin: '2px 0',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  <span style={{ color: colors.midnightLight }}>{line.key}</span>
-                  {' '}
-                  <span style={{ color: colors.gold }}>{line.value}</span>
-                </p>
+                <div key={line.key}>
+                  <p
+                    style={{
+                      fontFamily: "'Courier New', Courier, monospace",
+                      fontSize: 'clamp(0.6rem, 0.85vw, 0.72rem)',
+                      margin: '2px 0',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    <span style={{ color: colors.midnightLight }}>{line.key}</span>
+                    {' '}
+                    <span style={{ color: colors.gold }}>{line.value}</span>
+                  </p>
+                  {line.comment ? (
+                    <p
+                      style={{
+                        fontFamily: "'Courier New', Courier, monospace",
+                        fontSize: 'clamp(0.5rem, 0.7vw, 0.6rem)',
+                        color: 'rgba(255,255,255,0.35)',
+                        margin: '0 0 4px 0',
+                        fontStyle: 'italic',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {line.comment}
+                    </p>
+                  ) : null}
+                </div>
               ))}
               <p
                 style={{
@@ -239,7 +254,7 @@ export default function WhatIsABaseSlide() {
               fontStyle: 'italic',
             }}
           >
-            You navigate your project through frontmatter, not folder structure. Dashboards find files BY their metadata.
+            You navigate your project through file metadata (frontmatter), not folder structure. Dashboards find files BY their metadata.
           </p>
         </motion.div>
       </div>

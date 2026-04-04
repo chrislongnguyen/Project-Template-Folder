@@ -72,6 +72,12 @@ const raciRows: RaciRow[] = [
     agent: 'Builds the .base file',
     pmIsActor: true,
   },
+  {
+    activity: 'Choose UES version level (I1 Concept, I2 Prototype…)',
+    pm: 'YOU set at project start',
+    agent: 'Respects your choice',
+    pmIsActor: true,
+  },
 ];
 
 export default function WhoDoesWhatSlide() {

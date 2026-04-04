@@ -59,8 +59,8 @@ function WorkflowBar({ active }: { active: Phase }) {
 
 const triagePanels = [
   {
-    label: 'INBOX',
-    file: '06-inbox-overview.png',
+    label: 'TASKS',
+    file: '16-tasks-overview.png',
     color: colors.gold,
     actions: [
       'Process captures: file to correct workstream, or archive',
@@ -69,7 +69,7 @@ const triagePanels = [
   },
   {
     label: 'PEOPLE',
-    file: '14-people-directory.png',
+    file: '17-people-directory.png',
     color: colors.midnightLight,
     actions: [
       'Review stakeholder contacts — anyone you haven\'t engaged recently?',
@@ -78,7 +78,7 @@ const triagePanels = [
   },
   {
     label: 'DAILY NOTES',
-    file: '17-daily-notes-index.png',
+    file: '15-daily-notes-index.png',
     color: colors.purple,
     actions: [
       'Scan the week\'s notes — any patterns or recurring blockers?',
@@ -132,7 +132,7 @@ export default function WeeklyTriageSlide() {
                 marginBottom: '6px',
               }}
             >
-              Dashboards 9–11 of 11 · Weekly
+              Weekly · Triage &amp; Review
             </span>
             <h1
               style={{

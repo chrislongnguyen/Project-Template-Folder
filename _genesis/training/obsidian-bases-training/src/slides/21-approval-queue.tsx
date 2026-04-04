@@ -108,7 +108,7 @@ export default function ApprovalQueueSlide() {
                 marginBottom: '6px',
               }}
             >
-              Dashboard 9 of 11 · Approval
+              Dashboard 11 of 11 · Approval
             </span>
             <h1
               style={{
@@ -244,7 +244,7 @@ export default function ApprovalQueueSlide() {
               {[
                 'Open the file in Obsidian',
                 'Read the content — does it meet acceptance criteria?',
-                'If YES: change status: in-review → status: validated in the frontmatter',
+                'To approve: switch to Source View (pencil icon) → find the status: line → change in-review to validated → save',
                 'If NO: add a comment, leave as in-review, tell the agent what to fix',
               ].map((action, i) => (
                 <div
@@ -308,7 +308,7 @@ export default function ApprovalQueueSlide() {
                   marginBottom: '4px',
                 }}
               >
-                RACI: Accountable
+                YOUR ROLE: ACCOUNTABLE
               </span>
               <span
                 style={{
@@ -319,7 +319,7 @@ export default function ApprovalQueueSlide() {
                   lineHeight: 1.5,
                 }}
               >
-                ONLY YOU CAN APPROVE. Agents write, request review, and surface items. You are the gate.
+                RACI (Responsible, Accountable, Consulted, Informed) — You are Accountable for approvals. ONLY YOU CAN APPROVE. Agents write, request review, and surface items. You are the gate.
               </span>
             </div>
           </motion.div>
@@ -341,7 +341,7 @@ export default function ApprovalQueueSlide() {
               }}
             >
               <img
-                src="/screenshots/08-approval-all.png"
+                src="/screenshots/09-approval-all.png"
                 alt="Approval Queue Dashboard"
                 style={{
                   width: '100%',

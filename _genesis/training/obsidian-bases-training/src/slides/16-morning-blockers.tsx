@@ -316,7 +316,7 @@ export default function MorningBlockersSlide() {
               }}
             >
               <img
-                src="/screenshots/04-blocker-risk.png"
+                src="/screenshots/06-blocker-risk.png"
                 alt="Blocker Dashboard"
                 style={{
                   width: '100%',

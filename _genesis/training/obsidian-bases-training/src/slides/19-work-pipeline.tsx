@@ -265,7 +265,7 @@ export default function WorkPipelineSlide() {
               </div>
               {[
                 'Identify your active item — what stage is it in?',
-                'In terminal, run /dsbv build to advance it',
+                'In Claude Code terminal, type /dsbv build — this tells your AI agent to advance the deliverable to the next stage',
                 'After agent completes work, check this dashboard — did the stage move?',
               ].map((action, i) => (
                 <div

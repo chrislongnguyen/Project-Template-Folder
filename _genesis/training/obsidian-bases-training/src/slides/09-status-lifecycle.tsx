@@ -95,9 +95,21 @@ export default function StatusLifecycleSlide() {
               width: '60px',
               height: '3px',
               background: colors.gold,
-              marginBottom: '40px',
+              marginBottom: '16px',
             }}
           />
+          <p
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 400,
+              fontSize: 'clamp(0.6rem, 0.85vw, 0.72rem)',
+              color: colors.textDim,
+              margin: '0 0 24px 0',
+              fontStyle: 'italic',
+            }}
+          >
+            Status = the lifecycle state of a deliverable. Agents advance it; only you can approve.
+          </p>
         </AnimatedText>
 
         {/* Flow diagram */}

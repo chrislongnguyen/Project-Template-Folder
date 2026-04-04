@@ -5,11 +5,11 @@ import { colors } from '../lib/theme';
 import { staggerContainer, fadeInUp } from '../lib/animations';
 
 const yamlFields = [
-  { key: 'type:', value: 'ues-deliverable' },
-  { key: 'status:', value: 'in-progress' },
-  { key: 'stage:', value: 'build' },
-  { key: 'work_stream:', value: '4-execute' },
-  { key: 'sub_system:', value: '2-DP' },
+  { key: 'type:', value: 'ues-deliverable', comment: '← UES = User Enablement System' },
+  { key: 'status:', value: 'in-progress', comment: '' },
+  { key: 'stage:', value: 'build', comment: '' },
+  { key: 'work_stream:', value: '4-execute', comment: '' },
+  { key: 'sub_system:', value: '2-DP', comment: '' },
 ];
 
 const routes = [
@@ -167,19 +167,34 @@ export default function FrontmatterToDashboardSlide() {
                 ---
               </p>
               {yamlFields.map((f) => (
-                <p
-                  key={f.key}
-                  style={{
-                    fontFamily: "'Courier New', Courier, monospace",
-                    fontSize: 'clamp(0.5rem, 0.7vw, 0.6rem)',
-                    margin: '2px 0',
-                    lineHeight: 1.7,
-                  }}
-                >
-                  <span style={{ color: colors.midnightLight }}>{f.key}</span>
-                  {' '}
-                  <span style={{ color: colors.gold }}>{f.value}</span>
-                </p>
+                <div key={f.key}>
+                  <p
+                    style={{
+                      fontFamily: "'Courier New', Courier, monospace",
+                      fontSize: 'clamp(0.5rem, 0.7vw, 0.6rem)',
+                      margin: '2px 0',
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    <span style={{ color: colors.midnightLight }}>{f.key}</span>
+                    {' '}
+                    <span style={{ color: colors.gold }}>{f.value}</span>
+                  </p>
+                  {f.comment ? (
+                    <p
+                      style={{
+                        fontFamily: "'Courier New', Courier, monospace",
+                        fontSize: 'clamp(0.42rem, 0.58vw, 0.5rem)',
+                        color: 'rgba(255,255,255,0.3)',
+                        margin: '0 0 3px 0',
+                        fontStyle: 'italic',
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {f.comment}
+                    </p>
+                  ) : null}
+                </div>
               ))}
               <p
                 style={{

@@ -11,7 +11,7 @@ const visible = [
   },
   {
     headline: 'LTC brand CSS theme',
-    detail: '`_genesis/obsidian/ltc-bases-colors.css` — color-coded pills for status, stage, workstream',
+    detail: "Color-coded badges (called 'pills') for status, stage, and workstream in dashboard tables",
   },
   {
     headline: 'Wikilinks & backlinks across all files',
@@ -25,8 +25,8 @@ const visible = [
 
 const invisible = [
   {
-    headline: 'QMD search engine',
-    detail: 'Local semantic search across your entire vault — finds meaning, not just keywords',
+    headline: 'QMD (Query Markdown) — semantic search',
+    detail: 'Searches your vault by meaning, not just keywords. Runs locally on your machine.',
   },
   {
     headline: '3-tier search routing',
@@ -38,7 +38,7 @@ const invisible = [
   },
   {
     headline: 'Agent skill: /obsidian',
-    detail: 'Type /obsidian in Claude Code to search your vault semantically',
+    detail: 'Type /obsidian in Claude Code terminal to search your vault. Agent handles the rest.',
   },
 ];
 

@@ -321,7 +321,7 @@ export default function StandupDependenciesSlide() {
               }}
             >
               <img
-                src="/screenshots/09-dependency-pipeline.png"
+                src="/screenshots/10-dependency-pipeline.png"
                 alt="Dependency Tracker"
                 style={{
                   width: '100%',

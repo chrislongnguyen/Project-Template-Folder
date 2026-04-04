@@ -8,7 +8,7 @@ const fields = [
   {
     key: 'type:',
     value: 'ues-deliverable',
-    annotation: 'Which dashboards pick this up',
+    annotation: 'UES (User Enablement System) — marks this as a project deliverable',
     color: colors.gold,
   },
   {
@@ -38,13 +38,13 @@ const fields = [
   {
     key: 'sub_system:',
     value: '2-DP',
-    annotation: '1-PD/2-DP/3-DA/4-IDM classification',
+    annotation: '1-PD/2-DP/3-DA/4-IDM classification (defined on next slide)',
     color: colors.purple,
   },
   {
-    key: 'iteration:',
-    value: 'I2',
-    annotation: 'Current iteration level',
+    key: 'ues_version:',
+    value: 'prototype',
+    annotation: 'UES version level: logic-scaffold → concept → prototype → mve → leadership',
     color: colors.textDim,
   },
   {

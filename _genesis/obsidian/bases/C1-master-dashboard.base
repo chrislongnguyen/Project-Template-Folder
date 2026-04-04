@@ -49,8 +49,8 @@ properties:
       - value: archived
         color: gray
     displayName: STATUS
-  iteration:
-    displayName: ITERATION
+  ues_version:
+    displayName: UES VERSION
   formula.days_since_update:
     displayName: DAYS STALE
   formula.alpei_cell:
@@ -67,11 +67,15 @@ views:
       - stage
       - version
       - status
-      - iteration
+      - ues_version
       - formula.days_since_update
     sort:
-      - property: sub_system
+      - property: ues_version
         direction: DESC
+      - property: sub_system
+        direction: ASC
+      - property: work_stream
+        direction: ASC
     summaries:
       status: Filled
       version: Unique
@@ -86,6 +90,9 @@ views:
       - stage
       - version
       - status
+      - ues_version
+      - ues_version
+      - last_updated
     sort:
       - property: formula.ws_order
         direction: ASC
@@ -131,7 +138,7 @@ views:
       - sub_system
       - file.name
       - work_stream
-      - iteration
+      - ues_version
       - status
       - stage
       - ues_version

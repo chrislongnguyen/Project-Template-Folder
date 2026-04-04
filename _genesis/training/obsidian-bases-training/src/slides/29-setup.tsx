@@ -15,15 +15,15 @@ const steps = [
   },
   {
     num: '03',
-    text: 'Settings → Community Plugins → turn off Restricted Mode',
+    text: 'Settings → Community Plugins → turn off Restricted Mode. This allows community plugins to run — it is safe here because our repo includes security rules.',
   },
   {
     num: '04',
-    text: 'Install & enable: Bases (dashboards), Terminal (Claude Code in Obsidian), Templater (template insertion)',
+    text: 'Install & enable: Bases (dashboards), Terminal (Claude Code in Obsidian), Templater (template insertion). Templater lets you create new files from 13 pre-built templates — press Ctrl+T (or Cmd+T) to insert one.',
   },
   {
     num: '05',
-    text: 'Settings → Appearance → CSS Snippets → enable "ltc-bases-colors"',
+    text: 'Settings → Appearance → CSS Snippets → enable "ltc-bases-colors". CSS snippets customize how Obsidian looks — this one adds LTC brand colors to your dashboard tables.',
   },
   {
     num: '06',

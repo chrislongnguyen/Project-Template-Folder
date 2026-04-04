@@ -264,11 +264,45 @@ export default function MorningStandupSlide() {
             style={{
               flex: 1,
               display: 'flex',
-              alignItems: 'center',
+              flexDirection: 'column',
+              gap: '10px',
               justifyContent: 'center',
               position: 'relative',
             }}
           >
+            {/* FULL STATUS callout */}
+            <div
+              style={{
+                padding: '8px 12px',
+                borderRadius: '5px',
+                background: `${colors.midnightLight}18`,
+                border: `1px solid ${colors.midnightLight}50`,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 700,
+                  fontSize: 'clamp(0.45rem, 0.65vw, 0.58rem)',
+                  color: colors.midnightLight,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                }}
+              >
+                Alt view: FULL STATUS
+              </span>
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: 'clamp(0.45rem, 0.65vw, 0.58rem)',
+                  color: colors.textDim,
+                  marginLeft: '6px',
+                }}
+              >
+                Switch to FULL STATUS for standup: grouped by sub-system (product), shows what each product team delivered.
+              </span>
+            </div>
             <div
               style={{
                 width: '100%',
@@ -279,7 +313,7 @@ export default function MorningStandupSlide() {
               }}
             >
               <img
-                src="/screenshots/05-standup-activity.png"
+                src="/screenshots/04-standup-activity.png"
                 alt="Standup Preparation Dashboard"
                 style={{
                   width: '100%',
