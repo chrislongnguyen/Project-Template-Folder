@@ -1,0 +1,146 @@
+filters:
+  and:
+    - type == "ues-deliverable"
+formulas:
+  days_since_update: (now() - file.mtime).days.round(0)
+  alpei_cell: if(sub_system, sub_system + " / " + work_stream + " / " + stage, "")
+  ws_order: if(work_stream == "1-align", 1, if(work_stream == "2-learn", 2, if(work_stream == "3-plan", 3, if(work_stream == "4-execute", 4, if(work_stream == "5-improve", 5, 9)))))
+properties:
+  file.name:
+    displayName: DELIVERABLE
+  sub_system:
+    displayName: SUB-SYSTEM
+  work_stream:
+    options:
+      - value: 1-align
+        color: blue
+      - value: 2-learn
+        color: cyan
+      - value: 3-plan
+        color: yellow
+      - value: 4-execute
+        color: orange
+      - value: 5-improve
+        color: green
+    displayName: WORK STREAM
+  stage:
+    options:
+      - value: design
+        color: purple
+      - value: sequence
+        color: blue
+      - value: build
+        color: green
+      - value: validate
+        color: red
+    displayName: STAGE
+  version:
+    displayName: VERSION
+  status:
+    options:
+      - value: draft
+        color: gray
+      - value: in-progress
+        color: yellow
+      - value: in-review
+        color: purple
+      - value: validated
+        color: green
+      - value: archived
+        color: gray
+    displayName: STATUS
+  iteration:
+    displayName: ITERATION
+  formula.days_since_update:
+    displayName: DAYS STALE
+  formula.alpei_cell:
+    displayName: ALPEI CELL
+  formula.ws_order:
+    displayName: WS ORDER
+views:
+  - type: table
+    name: ALL DELIVERABLES
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - stage
+      - version
+      - status
+      - iteration
+      - formula.days_since_update
+    sort:
+      - property: sub_system
+        direction: DESC
+    summaries:
+      status: Filled
+      version: Unique
+  - type: table
+    name: BY WORK STREAM
+    groupBy:
+      property: work_stream
+      direction: ASC
+    order:
+      - file.name
+      - sub_system
+      - stage
+      - version
+      - status
+    sort:
+      - property: formula.ws_order
+        direction: ASC
+  - type: table
+    name: BY STAGE
+    groupBy:
+      property: stage
+      direction: ASC
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - status
+      - version
+      - formula.days_since_update
+  - type: table
+    name: BY STATUS
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - version
+      - formula.days_since_update
+  - type: table
+    name: RECENT UPDATES
+    order:
+      - file.mtime
+      - file.name
+      - formula.days_since_update
+      - status
+      - sub_system
+      - work_stream
+    limit: 20
+  - type: table
+    name: BY SUB-SYSTEM
+    groupBy:
+      property: sub_system
+      direction: ASC
+    order:
+      - sub_system
+      - file.name
+      - work_stream
+      - iteration
+      - status
+      - stage
+      - ues_version
+      - version
+      - last_updated
+      - formula.days_since_update
+    sort: []
+    columnSize:
+      note.stage: 158
+      note.ues_version: 243
+      note.version: 181
+      note.last_updated: 269

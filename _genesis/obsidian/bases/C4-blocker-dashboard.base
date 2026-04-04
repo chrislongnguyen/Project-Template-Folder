@@ -1,33 +1,30 @@
 filters:
   and:
-    - 'type == "ues-deliverable"'
+    - type == "ues-deliverable"
     - not:
-        - 'status == "validated"'
-        - 'status == "archived"'
-
+        - status == "validated"
+        - status == "archived"
 formulas:
-  days_stale: '(now() - file.mtime).days.round(0)'
-  risk_level: 'if((now() - file.mtime).days > 14, "BLOCKED", if((now() - file.mtime).days > 7, "AT RISK", if((now() - file.mtime).days > 3, "MONITOR", "ON TRACK")))'
-
+  days_stale: (now() - file.mtime).days.round(0)
+  risk_level: if((now() - file.mtime).days > 14, "BLOCKED", if((now() - file.mtime).days > 7, "AT RISK", if((now() - file.mtime).days > 3, "MONITOR", "ON TRACK")))
 properties:
   file.name:
-    displayName: "DELIVERABLE"
+    displayName: DELIVERABLE
   status:
-    displayName: "STATUS"
+    displayName: STATUS
   sub_system:
-    displayName: "SUB-SYSTEM"
+    displayName: SUB-SYSTEM
   work_stream:
-    displayName: "WORK STREAM"
+    displayName: WORK STREAM
   stage:
-    displayName: "STAGE"
+    displayName: STAGE
   formula.days_stale:
-    displayName: "DAYS STALE"
+    displayName: DAYS STALE
   formula.risk_level:
-    displayName: "RISK LEVEL"
-
+    displayName: RISK LEVEL
 views:
   - type: table
-    name: "ALL ITEMS BY RISK"
+    name: ALL ITEMS BY RISK
     order:
       - formula.days_stale
       - file.name
@@ -37,9 +34,8 @@ views:
       - work_stream
     summaries:
       formula.days_stale: Average
-
   - type: table
-    name: "BY SUB-SYSTEM"
+    name: BY SUB-SYSTEM
     groupBy:
       property: sub_system
       direction: ASC
@@ -49,9 +45,8 @@ views:
       - formula.days_stale
       - status
       - work_stream
-
   - type: table
-    name: "BY WORK STREAM"
+    name: BY WORK STREAM
     groupBy:
       property: work_stream
       direction: ASC

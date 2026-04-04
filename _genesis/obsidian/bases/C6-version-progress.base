@@ -1,45 +1,43 @@
 filters:
   and:
-    - 'type == "ues-deliverable"'
-
+    - type == "ues-deliverable"
 formulas:
-  days_at_version: '(now() - file.mtime).days.round(0)'
-  version_order: 'if(version == "logic-scaffold", "1", if(version == "concept", "2", if(version == "prototype", "3", if(version == "mve", "4", if(version == "leadership", "5", "0")))))'
-
+  days_at_version: (now() - file.mtime).days.round(0)
+  version_order: if(version == "logic-scaffold", "1", if(version == "concept", "2", if(version == "prototype", "3", if(version == "mve", "4", if(version == "leadership", "5", "0")))))
 properties:
   file.name:
-    displayName: "DELIVERABLE"
+    displayName: DELIVERABLE
   sub_system:
-    displayName: "SUB-SYSTEM"
+    displayName: SUB-SYSTEM
   work_stream:
-    displayName: "WORK STREAM"
+    displayName: WORK STREAM
   version:
-    displayName: "VERSION"
+    displayName: VERSION
   status:
-    displayName: "STATUS"
+    displayName: STATUS
   formula.days_at_version:
-    displayName: "DAYS AT VERSION"
+    displayName: DAYS AT VERSION
   formula.version_order:
     displayName: "VERSION #"
-
 views:
   - type: table
-    name: "VERSION MATRIX"
+    name: VERSION MATRIX
     groupBy:
       property: sub_system
       direction: ASC
     order:
       - file.name
       - version
-      - formula.version_order
       - work_stream
       - status
       - formula.days_at_version
+    sort:
+      - property: formula.version_order
+        direction: ASC
     summaries:
       version: Unique
-
   - type: table
-    name: "BY VERSION LEVEL"
+    name: BY VERSION LEVEL
     groupBy:
       property: version
       direction: ASC
@@ -49,12 +47,14 @@ views:
       - work_stream
       - status
       - formula.days_at_version
-
   - type: table
-    name: "ADVANCEMENT CANDIDATES"
+    name: ADVANCEMENT CANDIDATES
     order:
       - formula.days_at_version
       - file.name
       - sub_system
       - version
       - status
+    sort:
+      - property: formula.version_order
+        direction: ASC

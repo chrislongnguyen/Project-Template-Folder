@@ -1,0 +1,99 @@
+filters:
+  and:
+    - type == "ues-deliverable"
+formulas:
+  days_stale: (now() - file.mtime).days.round(0)
+  dependency_status: if(work_stream == "4-execute" and (now() - file.mtime).days > 7, "CHECK UPSTREAM", if(work_stream == "3-plan" and (now() - file.mtime).days > 7, "CHECK UPSTREAM", if((now() - file.mtime).days > 14, "STALE", if((now() - file.mtime).days > 3, "MONITOR", "OK"))))
+  ws_order: if(work_stream == "1-align", 1, if(work_stream == "2-learn", 2, if(work_stream == "3-plan", 3, if(work_stream == "4-execute", 4, if(work_stream == "5-improve", 5, 9)))))
+properties:
+  file.name:
+    displayName: DELIVERABLE
+  work_stream:
+    options:
+      - value: 1-align
+        color: blue
+      - value: 2-learn
+        color: cyan
+      - value: 3-plan
+        color: yellow
+      - value: 4-execute
+        color: orange
+      - value: 5-improve
+        color: green
+    displayName: WORK STREAM
+  stage:
+    options:
+      - value: design
+        color: yellow
+      - value: sequence
+        color: cyan
+      - value: build
+        color: orange
+      - value: validate
+        color: green
+    displayName: STAGE
+  status:
+    options:
+      - value: draft
+        color: gray
+      - value: in-progress
+        color: blue
+      - value: in-review
+        color: orange
+      - value: validated
+        color: green
+      - value: archived
+        color: gray
+    displayName: STATUS
+  formula.days_stale:
+    displayName: DAYS STALE
+  formula.dependency_status:
+    displayName: DEP STATUS
+  formula.ws_order:
+    displayName: WS ORDER
+views:
+  - type: table
+    name: PIPELINE VIEW
+    groupBy:
+      property: work_stream
+      direction: ASC
+    order:
+      - file.name
+      - stage
+      - status
+      - formula.days_stale
+      - formula.dependency_status
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: BLOCKED ITEMS
+    filters:
+      and:
+        - or:
+            - formula.dependency_status == "CHECK UPSTREAM"
+            - formula.dependency_status == "STALE"
+    order:
+      - formula.days_stale
+      - file.name
+      - work_stream
+      - stage
+      - formula.dependency_status
+    summaries:
+      formula.days_stale: Average
+  - type: table
+    name: CHAIN OF CUSTODY
+    groupBy:
+      property: stage
+      direction: ASC
+    order:
+      - formula.ws_order
+      - file.name
+      - work_stream
+      - status
+      - formula.days_stale
+    sort:
+      - property: status
+        direction: DESC
+      - property: work_stream
+        direction: DESC

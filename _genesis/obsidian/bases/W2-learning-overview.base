@@ -1,31 +1,31 @@
 filters:
   and:
     - file.inFolder("2-LEARN")
-    - 'file.ext == "md"'
-
+    - file.ext == "md"
 formulas:
-  days_since_update: '(now() - file.mtime).days.round(0)'
-  size_kb: '(file.size / 1024).round(1)'
-
+  days_since_update: (now() - file.mtime).days.round(0)
+  size_kb: (file.size / 1024).round(1)
 properties:
   file.name:
-    displayName: "FILE"
+    displayName: FILE
   file.folder:
-    displayName: "TOPIC"
+    displayName: TOPIC
   sub_system:
-    displayName: "SUB-SYSTEM"
+    displayName: SUB-SYSTEM
   stage:
-    displayName: "STAGE"
+    displayName: STAGE
   status:
-    displayName: "STATUS"
+    displayName: STATUS
   formula.days_since_update:
-    displayName: "DAYS SINCE UPDATE"
+    displayName: DAYS SINCE UPDATE
   formula.size_kb:
-    displayName: "SIZE (KB)"
-
+    displayName: SIZE (KB)
 views:
   - type: table
-    name: "ALL LEARNING ITEMS"
+    name: ALL LEARNING ITEMS
+    groupBy:
+      property: file.folder
+      direction: ASC
     order:
       - file.name
       - file.folder
@@ -34,12 +34,8 @@ views:
       - status
       - formula.days_since_update
       - formula.size_kb
-    groupBy:
-      property: file.folder
-      direction: ASC
-
   - type: table
-    name: "BY SUB-SYSTEM"
+    name: BY SUB-SYSTEM
     groupBy:
       property: sub_system
       direction: ASC
@@ -49,9 +45,8 @@ views:
       - stage
       - status
       - formula.days_since_update
-
   - type: cards
-    name: "KNOWLEDGE CARDS"
+    name: KNOWLEDGE CARDS
     order:
       - file.name
       - file.folder

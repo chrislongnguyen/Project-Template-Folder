@@ -1,25 +1,22 @@
 filters:
   and:
     - file.inFolder("0.2. TEMPLATES")
-    - 'file.ext == "md"'
-
+    - file.ext == "md"
 formulas:
-  size_kb: '(file.size / 1024).round(1)'
-  days_since_update: '(now() - file.mtime).days.round(0)'
-
+  size_kb: (file.size / 1024).round(1)
+  days_since_update: (now() - file.mtime).days.round(0)
 properties:
   file.name:
-    displayName: "TEMPLATE"
+    displayName: TEMPLATE
   formula.size_kb:
-    displayName: "SIZE (KB)"
+    displayName: SIZE (KB)
   formula.days_since_update:
-    displayName: "DAYS SINCE UPDATE"
+    displayName: DAYS SINCE UPDATE
   file.mtime:
-    displayName: "LAST MODIFIED"
-
+    displayName: LAST MODIFIED
 views:
   - type: table
-    name: "ALL TEMPLATES"
+    name: ALL TEMPLATES
     order:
       - file.name
       - formula.size_kb
@@ -27,9 +24,8 @@ views:
       - file.mtime
     summaries:
       formula.size_kb: Sum
-
   - type: cards
-    name: "TEMPLATE CARDS"
+    name: TEMPLATE CARDS
     order:
       - file.name
       - formula.size_kb

@@ -1,124 +1,123 @@
 filters:
   and:
-    - 'type == "ues-deliverable"'
-
+    - type == "ues-deliverable"
 formulas:
-  days_in_stage: '(now() - file.mtime).days.round(0)'
-  stage_order: 'if(stage == "design", "1", if(stage == "sequence", "2", if(stage == "build", "3", if(stage == "validate", "4", "0"))))'
-  pipeline_position: 'if(stage, stage + " (" + work_stream + ")", "")'
-
+  days_in_stage: (now() - file.mtime).days.round(0)
+  stage_order: if(stage == "design", "1", if(stage == "sequence", "2", if(stage == "build", "3", if(stage == "validate", "4", "0"))))
+  pipeline_position: if(stage, stage + " (" + work_stream + ")", "")
 properties:
   file.name:
-    displayName: "DELIVERABLE"
+    displayName: DELIVERABLE
   stage:
-    displayName: "STAGE"
     options:
       - value: design
-        color: yellow
+        color: purple
       - value: sequence
-        color: cyan
+        color: blue
       - value: build
-        color: orange
-      - value: validate
         color: green
+      - value: validate
+        color: red
+    displayName: STAGE
   status:
-    displayName: "STATUS"
     options:
       - value: draft
         color: gray
       - value: in-progress
-        color: blue
+        color: yellow
       - value: in-review
-        color: orange
+        color: purple
       - value: validated
         color: green
       - value: archived
         color: gray
+    displayName: STATUS
   sub_system:
-    displayName: "SUB-SYSTEM"
+    displayName: SUB-SYSTEM
   work_stream:
-    displayName: "WORK STREAM"
     options:
-      - value: align
+      - value: 1-align
         color: blue
-      - value: learn
+      - value: 2-learn
         color: cyan
-      - value: plan
+      - value: 3-plan
         color: yellow
-      - value: execute
+      - value: 4-execute
         color: orange
-      - value: improve
+      - value: 5-improve
         color: green
+    displayName: WORK STREAM
   version:
-    displayName: "VERSION"
+    displayName: VERSION
   formula.days_in_stage:
-    displayName: "DAYS IN STAGE"
-
+    displayName: DAYS IN STAGE
 views:
   - type: table
-    name: "PIPELINE (by stage)"
+    name: PIPELINE (by stage)
     groupBy:
       property: stage
       direction: ASC
     order:
       - file.name
+      - sub_system
       - work_stream
       - status
       - version
       - formula.days_in_stage
-
+    sort:
+      - property: work_stream
+        direction: DESC
+      - property: sub_system
+        direction: DESC
   - type: table
-    name: "BY STATUS"
+    name: BY STATUS
     groupBy:
       property: status
       direction: ASC
     order:
       - file.name
+      - sub_system
       - work_stream
       - stage
       - formula.days_in_stage
-
   - type: table
-    name: "DESIGN ITEMS"
+    name: DESIGN ITEMS
     filters:
       and:
-        - 'stage == "design"'
+        - stage == "design"
     order:
       - file.name
       - sub_system
       - work_stream
       - status
       - formula.days_in_stage
-
   - type: table
-    name: "SEQUENCE ITEMS"
+    name: SEQUENCE ITEMS
     filters:
       and:
-        - 'stage == "sequence"'
+        - stage == "sequence"
     order:
       - file.name
       - sub_system
       - work_stream
       - status
       - formula.days_in_stage
-
   - type: table
-    name: "BUILD ITEMS"
+    name: BUILD ITEMS
     filters:
       and:
-        - 'stage == "build"'
+        - stage == "build"
     order:
       - file.name
       - sub_system
       - work_stream
       - status
       - formula.days_in_stage
-
   - type: table
-    name: "VALIDATE ITEMS"
+    name: VALIDATE ITEMS
     filters:
       and:
-        - 'stage == "validate"'
+        - stage == "validate"
     order:
       - file.name
       - sub_system

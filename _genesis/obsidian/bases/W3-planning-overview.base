@@ -1,32 +1,32 @@
 filters:
   and:
-    - file.inFolder("4-EXECUTE")
-    - 'file.ext == "md"'
-
+    - file.inFolder("3-PLAN")
+    - file.ext == "md"
 formulas:
-  days_since_update: '(now() - file.mtime).days.round(0)'
-
+  days_since_update: (now() - file.mtime).days.round(0)
 properties:
   file.name:
-    displayName: "FILE"
+    displayName: FILE
   file.folder:
-    displayName: "SUB-SYSTEM FOLDER"
+    displayName: SUB-SYSTEM FOLDER
   sub_system:
-    displayName: "SUB-SYSTEM"
+    displayName: SUB-SYSTEM
   stage:
-    displayName: "STAGE"
+    displayName: STAGE
   version:
-    displayName: "VERSION"
+    displayName: VERSION
   status:
-    displayName: "STATUS"
+    displayName: STATUS
   iteration:
-    displayName: "ITERATION"
+    displayName: ITERATION
   formula.days_since_update:
-    displayName: "DAYS SINCE UPDATE"
-
+    displayName: DAYS SINCE UPDATE
 views:
   - type: table
-    name: "ALL EXECUTION ITEMS"
+    name: ALL PLANNING ITEMS
+    groupBy:
+      property: file.folder
+      direction: ASC
     order:
       - file.name
       - file.folder
@@ -36,12 +36,8 @@ views:
       - status
       - iteration
       - formula.days_since_update
-    groupBy:
-      property: file.folder
-      direction: ASC
-
   - type: table
-    name: "BY STAGE"
+    name: BY STAGE
     groupBy:
       property: stage
       direction: ASC
@@ -51,9 +47,8 @@ views:
       - version
       - status
       - formula.days_since_update
-
   - type: table
-    name: "BY STATUS"
+    name: BY STATUS
     groupBy:
       property: status
       direction: ASC
@@ -63,15 +58,12 @@ views:
       - stage
       - version
       - formula.days_since_update
-
   - type: table
-    name: "ACTIVE WORK"
+    name: KANBAN BOARDS
     filters:
-      or:
-        - 'status == "in-progress"'
-        - 'status == "draft"'
+      and:
+        - file.name.contains("Board")
     order:
       - file.name
-      - sub_system
-      - stage
+      - file.folder
       - formula.days_since_update

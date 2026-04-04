@@ -1,0 +1,47 @@
+filters:
+  and:
+    - file.inFolder("PEOPLE")
+    - file.ext == "md"
+formulas:
+  days_since_contact: (now() - file.mtime).days.round(0)
+properties:
+  file.name:
+    displayName: PERSON
+  role:
+    displayName: ROLE
+  organization:
+    displayName: ORGANIZATION
+  formula.days_since_contact:
+    displayName: DAYS SINCE CONTACT
+  file.mtime:
+    displayName: LAST UPDATED
+views:
+  - type: table
+    name: ALL CONTACTS
+    order:
+      - file.name
+      - role
+      - organization
+      - formula.days_since_contact
+      - file.mtime
+    summaries:
+      formula.days_since_contact: Average
+  - type: table
+    name: BY ORGANIZATION
+    groupBy:
+      property: organization
+      direction: ASC
+    order:
+      - file.name
+      - role
+      - formula.days_since_contact
+      - file.mtime
+  - type: table
+    name: RECENTLY ACTIVE
+    order:
+      - file.mtime
+      - file.name
+      - role
+      - organization
+      - formula.days_since_contact
+    limit: 10
