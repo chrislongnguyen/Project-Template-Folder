@@ -9,7 +9,7 @@ last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: project-index
 work_stream: <% tp.system.prompt("Primary work stream (e.g. execute)") %>
 stage: build
-sub_system: problem-diagnosis
+sub_system: PD
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
 ues_version: <% tp.system.suggester(["logic-scaffold","concept","prototype","mve","leadership"], ["logic-scaffold","concept","prototype","mve","leadership"]) %>
 ---

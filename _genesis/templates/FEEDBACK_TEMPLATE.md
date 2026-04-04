@@ -1,13 +1,13 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: [friction | idea]
 workstream: [align | plan | execute | improve | shared | agent]
 severity: [blocked | confused | annoying | minor]  # friction only, omit for ideas
 date: YYYY-MM-DD
 author: [name or agent]
-work_stream: improve
+work_stream: 5-improve
 stage: build
 sub_system: 
 ---

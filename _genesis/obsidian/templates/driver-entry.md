@@ -7,9 +7,9 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: driver
-work_stream: plan
+work_stream: 3-plan
 stage: design
-sub_system: problem-diagnosis
+sub_system: 1-PD
 iteration: 2
 ues_version: prototype
 ---

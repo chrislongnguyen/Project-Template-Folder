@@ -1,9 +1,9 @@
 ---
-version: "1.1"
-last_updated: 2026-03-30
+version: "1.2"
+last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: template
-work_stream: improve
+work_stream: 5-improve
 stage: validate
 sub_system: 
 ---
