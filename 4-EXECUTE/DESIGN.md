@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 4-execute
 stage: design
 sub_system: 2-DP
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # DESIGN.md — Execute Workstream, I2
@@ -53,9 +53,9 @@ owner: "Long Nguyen"
 |-------|-------|
 | Pattern | Sequential build — data layer first, then API, then front-end |
 | Why this pattern | Dependencies are linear: front-end cannot render without API; API requires data pipeline |
-| Agent config | Single builder (Minh Tran) coordinating 3 specialists |
+| Agent config | Single builder (Long Nguyen) coordinating 3 specialists |
 | Git strategy | Feature branches per component; merge to `I2/execute` when tested |
-| Human gates | G3 = Minh Tran + Anh Vinh UAT sign-off |
+| Human gates | G3 = Long Nguyen + Anh Vinh UAT sign-off |
 
 ---
 

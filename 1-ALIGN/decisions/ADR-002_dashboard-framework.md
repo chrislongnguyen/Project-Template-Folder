@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 1-align
 stage: build
 sub_system: 3-DA
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # ADR-002 — Dashboard Framework: React+D3 vs Streamlit

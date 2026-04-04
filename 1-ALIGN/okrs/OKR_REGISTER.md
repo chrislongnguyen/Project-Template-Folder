@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 1-align
 stage: build
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # OKR Register — LTC Portfolio Dashboard, I2
@@ -18,7 +18,7 @@ owner: "Long Nguyen"
 | Sub-system | PD (Problem Diagnosis) |
 | Iteration | I2 |
 | Review cadence | Weekly (Fridays) |
-| Owner | Minh Tran |
+| Owner | Long Nguyen |
 
 ## Objectives
 

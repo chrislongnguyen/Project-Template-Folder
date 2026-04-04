@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 3-plan
 stage: sequence
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Roadmap — LTC Portfolio Dashboard, I2
@@ -22,9 +22,9 @@ I2 scope: Prototype (correct + efficient). Deliver working dashboard used daily 
 | M1 — Bloomberg B-PIPE integration live | 2026-03-21 | Done | Data Engineer |
 | M2 — Risk engine CVaR calculation validated | 2026-03-28 | Done | Quant Analyst |
 | M3 — NAV + P&L panels in staging | 2026-04-07 | In Progress | Frontend Dev |
-| M4 — Full dashboard UAT with PM team | 2026-04-14 | Not Started | Minh Tran |
+| M4 — Full dashboard UAT with PM team | 2026-04-14 | Not Started | Long Nguyen |
 | M5 — Production deployment | 2026-04-21 | Not Started | Backend Dev |
-| M6 — I2 retrospective + metrics baseline | 2026-04-25 | Not Started | Minh Tran |
+| M6 — I2 retrospective + metrics baseline | 2026-04-25 | Not Started | Long Nguyen |
 
 ## Sprint Plan
 

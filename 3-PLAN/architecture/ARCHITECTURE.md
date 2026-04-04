@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 3-plan
 stage: build
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Architecture — LTC Portfolio Dashboard
@@ -17,7 +17,7 @@ owner: "Long Nguyen"
 |-------|-------|
 | Sub-system | PD — governs overall system design |
 | Version | I2 |
-| Owner | Minh Tran |
+| Owner | Long Nguyen |
 | Last reviewed | 2026-04-03 |
 
 ## Architecture Summary

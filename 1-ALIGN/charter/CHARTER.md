@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 1-align
 stage: validate
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Charter — LTC Portfolio Dashboard
@@ -17,7 +17,7 @@ owner: "Long Nguyen"
 |-------|-------|
 | Project name | LTC Portfolio Dashboard |
 | Scope code (UNG) | INVTECH_DA.2.1.LTC-PORTFOLIO-DASHBOARD |
-| Owner | Minh Tran |
+| Owner | Long Nguyen |
 | Iteration | I2 |
 | Last reviewed | 2026-04-03 |
 
@@ -30,7 +30,7 @@ A real-time investment portfolio dashboard that consolidates Bloomberg data, int
 | Role | Name | Involvement |
 |------|------|-------------|
 | Sponsor | Anh Vinh | Strategic approval, budget sign-off |
-| PM | Minh Tran | Day-to-day ownership, ALPEI coordination |
+| PM | Long Nguyen | Day-to-day ownership, ALPEI coordination |
 | Consumer | Investment Team (6 PMs) | Primary dashboard users |
 
 ## Scope

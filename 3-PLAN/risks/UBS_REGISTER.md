@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 3-plan
 stage: build
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # UBS Risk Register — LTC Portfolio Dashboard, I2
@@ -24,7 +24,7 @@ owner: "Long Nguyen"
 | Probability | Medium |
 | Impact | High — renders the entire I2 deliverable unused |
 | Mitigation | Co-design 2 sessions with PM leads; keep Excel export available in I2; dashboard shows same numbers as Excel for first 2 weeks |
-| Owner | Minh Tran |
+| Owner | Long Nguyen |
 | Status | Open |
 
 ### UBS-002 — Bloomberg WebSocket Instability
@@ -59,8 +59,8 @@ owner: "Long Nguyen"
 | Description | Enterprise Bloomberg seat covers 6 concurrent users; dashboard may exceed this if all PMs + ops team connect simultaneously |
 | Probability | Low |
 | Impact | Low — additional seat cost ~$18K/year |
-| Mitigation | Monitor concurrent sessions in middleware; alert Minh Tran if > 5 active; negotiate additional seats in I3 if needed |
-| Owner | Minh Tran |
+| Mitigation | Monitor concurrent sessions in middleware; alert Long Nguyen if > 5 active; negotiate additional seats in I3 if needed |
+| Owner | Long Nguyen |
 | Status | Monitoring |
 
 ## Links

@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 1-align
 stage: validate
 sub_system: 1-PD
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # ADR-001 — Data Source Selection: Bloomberg vs Reuters

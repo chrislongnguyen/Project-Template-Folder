@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 5-improve
 stage: validate
 sub_system: 4-IDM
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Retrospective — I1 (Concept Phase)
@@ -17,8 +17,8 @@ owner: "Long Nguyen"
 |-------|-------|
 | Iteration | I1 |
 | Retro date | 2026-03-10 |
-| Facilitator | Minh Tran |
-| Participants | Minh Tran, Anh Vinh, Data Engineer, Quant Analyst |
+| Facilitator | Long Nguyen |
+| Participants | Long Nguyen, Anh Vinh, Data Engineer, Quant Analyst |
 
 ## What Went Well
 
@@ -40,9 +40,9 @@ owner: "Long Nguyen"
 
 | Action | Owner | Due Date | Status |
 |--------|-------|----------|--------|
-| Invite 2 PM leads to weekly syncs | Minh Tran | 2026-03-17 | Done |
+| Invite 2 PM leads to weekly syncs | Long Nguyen | 2026-03-17 | Done |
 | Provision staging server before Sprint 1 | Data Engineer | 2026-03-14 | Done |
-| Add architecture scope table to DESIGN.md template | Minh Tran | 2026-03-21 | Done |
+| Add architecture scope table to DESIGN.md template | Long Nguyen | 2026-03-21 | Done |
 
 ## I1 OKR Scoring
 

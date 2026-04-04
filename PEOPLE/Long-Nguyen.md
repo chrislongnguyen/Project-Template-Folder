@@ -3,7 +3,7 @@ role: PM
 organization: LTC Partners
 tags: [ltc-team, portfolio-dashboard]
 ---
-# Minh Tran
+# Long Nguyen
 
 ## Contact
 

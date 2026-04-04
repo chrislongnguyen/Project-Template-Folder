@@ -6,7 +6,7 @@ last_updated: 2026-04-04
 work_stream: 5-improve
 stage: design
 sub_system: 4-IDM
-iteration: I2
+ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Metrics Baseline — LTC Portfolio Dashboard, I2
@@ -18,7 +18,7 @@ owner: "Long Nguyen"
 | Sub-system | IDM (Insights & Decision Making) |
 | Iteration | I2 |
 | Baseline date | 2026-04-04 |
-| Owner | Minh Tran |
+| Owner | Long Nguyen |
 
 ## Pillar Metrics
 
@@ -44,7 +44,7 @@ owner: "Long Nguyen"
 | Metric | Tool | Steps | Responsible |
 |--------|------|-------|-------------|
 | Uptime | UptimeRobot | 1. Check dashboard URL every 60s. 2. Alert Minh if downtime > 2 min | Data Engineer |
-| PM time-to-NAV | Manual stopwatch | 1. PM opens fresh browser. 2. Navigate to NAV panel. 3. Record time to confirmed number | Minh Tran (UAT facilitator) |
+| PM time-to-NAV | Manual stopwatch | 1. PM opens fresh browser. 2. Navigate to NAV panel. 3. Record time to confirmed number | Long Nguyen (UAT facilitator) |
 | Tick latency | Middleware logs | 1. Extract `ts_bloomberg` and `ts_render` from logs. 2. Compute P95 in Python | Data Engineer |
 
 ## Baseline Snapshot
