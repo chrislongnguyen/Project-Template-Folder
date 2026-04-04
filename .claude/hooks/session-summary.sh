@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | last_updated: 2026-03-29
+# version: 1.1 | last_updated: 2026-04-04
 # session-summary.sh — Stop hook
 # Auto-generates a session summary to the vault on session end.
 # Triggers QMD index refresh if available.
@@ -23,7 +23,12 @@ fi
 [[ -z "$CHANGED" && -z "$RECENT_COMMITS" ]] && exit 0
 
 # Vault path resolution — AFTER QMD refresh (graceful exit if vault not found)
-source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/config.sh"
+# Resolve config.sh relative to this script's location (works in both plugin and project mode)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_LIB="${CLAUDE_PLUGIN_ROOT:-$SCRIPT_DIR}/hooks/lib/config.sh"
+[[ -f "$CONFIG_LIB" ]] || CONFIG_LIB="$SCRIPT_DIR/lib/config.sh"
+[[ -f "$CONFIG_LIB" ]] || exit 0
+source "$CONFIG_LIB"
 
 SESSIONS_DIR="$VAULT/07-Claude/sessions"
 mkdir -p "$SESSIONS_DIR"
