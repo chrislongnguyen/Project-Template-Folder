@@ -3,7 +3,7 @@ version: "1.0"
 status: draft
 last_updated: 2026-04-01
 type: improve
-work_stream: IMPROVE
+work_stream: 5-improve
 stage: Design
 sub_system: obsidian-cli
 ---

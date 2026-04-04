@@ -1,48 +1,46 @@
 ---
-version: "1.0"
-status: draft
-last_updated: 2026-04-02
-workstream: ALIGN
-owner: "{{OWNER}}"
+type: ues-deliverable
+version: "2.2"
+status: in-progress
+last_updated: 2026-04-04
+work_stream: 1-align
+stage: build
+sub_system: 1-PD
+iteration: I2
+owner: "Long Nguyen"
 ---
-# OKR TEMPLATE (T3)
-
-> Stub template — populate during ALIGN Sequence and IMPROVE Validate phases.
-> Cell(s) enabled: 1-ALIGN × Sequence, 5-IMPROVE × Validate
-> Source template: `_genesis/templates/OKR_TEMPLATE.md`
-
-<!-- TODO: Fill in during ALIGN Sequence phase -->
+# OKR Register — LTC Portfolio Dashboard, I2
 
 ## OKR Register Identity
 
 | Field | Value |
 |-------|-------|
-| Sub-system | <!-- [name] --> |
-| Iteration | <!-- [I1 / I2 / I3 / I4] --> |
-| Review cadence | <!-- [weekly / sprint / monthly] --> |
-| Owner | <!-- [name] --> |
+| Sub-system | PD (Problem Diagnosis) |
+| Iteration | I2 |
+| Review cadence | Weekly (Fridays) |
+| Owner | Minh Tran |
 
 ## Objectives
 
-### Objective 1 — [Title]
+### Objective 1 — Deliver a Live Portfolio Dashboard PMs Actually Use
 
-> Qualitative statement of what we want to achieve. Ambitious but achievable within the iteration.
-
-<!-- [Objective statement] -->
+PMs have a single, trusted screen to monitor portfolio health in real time, replacing the current Excel morning routine.
 
 | Key Result | Baseline | Target | Formula / Measurement | Status |
 |------------|----------|--------|-----------------------|--------|
-| KR 1.1 | <!-- [current value] --> | <!-- [target value] --> | <!-- [how measured] --> | Draft |
-| KR 1.2 | <!-- [current value] --> | <!-- [target value] --> | <!-- [how measured] --> | Draft |
+| KR 1.1 — PM time-to-NAV retrieval | 15 min | < 2 min | Timed UAT session average | In Progress |
+| KR 1.2 — Daily active PM users | 0 | 5 of 6 PMs | Login analytics (weekly avg) | Draft |
+| KR 1.3 — Dashboard uptime | N/A | 99.5% | Uptime monitoring tool | Draft |
 
-### Objective 2 — [Title]
+### Objective 2 — Establish Reliable Bloomberg Data Pipeline
 
-<!-- [Objective statement] -->
+The data pipeline delivers accurate, sub-second market data with defined fallback behavior under failure.
 
 | Key Result | Baseline | Target | Formula / Measurement | Status |
 |------------|----------|--------|-----------------------|--------|
-| KR 2.1 | <!-- [current value] --> | <!-- [target value] --> | <!-- [how measured] --> | Draft |
-| KR 2.2 | <!-- [current value] --> | <!-- [target value] --> | <!-- [how measured] --> | Draft |
+| KR 2.1 — Data freshness (P95 latency) | N/A | < 500ms | Pipeline telemetry logs | In Progress |
+| KR 2.2 — Pipeline error rate | N/A | < 0.5% / day | Error log count / total requests | Draft |
+| KR 2.3 — Fallback activation rate | N/A | < 2 events / week | Incident log | Draft |
 
 ## Scoring Guide
 
@@ -56,11 +54,15 @@ owner: "{{OWNER}}"
 
 ## Version Advancement Check
 
-> Reviewed during 5-IMPROVE Validate. All KRs must be scored before GO/NO-GO decision.
+> To be completed during 5-IMPROVE Validate at end of I2.
 
 | KR | Score | GO / NO-GO |
 |----|-------|-----------|
-| KR 1.1 | <!-- [0.0–1.0] --> | <!-- [GO / NO-GO] --> |
-| KR 1.2 | <!-- [0.0–1.0] --> | <!-- [GO / NO-GO] --> |
-| KR 2.1 | <!-- [0.0–1.0] --> | <!-- [GO / NO-GO] --> |
-| KR 2.2 | <!-- [0.0–1.0] --> | <!-- [GO / NO-GO] --> |
+| KR 1.1 | — | — |
+| KR 1.2 | — | — |
+| KR 2.1 | — | — |
+
+## Links
+
+- [[CHARTER]]
+- [[METRICS_BASELINE]]

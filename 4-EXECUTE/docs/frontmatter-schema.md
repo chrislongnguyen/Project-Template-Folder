@@ -3,8 +3,8 @@ version: "2.1"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
-sub_system: problem-diagnosis
-work_stream: execute
+sub_system: 1-PD
+work_stream: 4-execute
 stage: build
 iteration: 2
 ues_version: prototype
@@ -66,7 +66,7 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
-sub_system: problem-diagnosis
+sub_system: PD
 work_stream: execute
 stage: build
 iteration: 2

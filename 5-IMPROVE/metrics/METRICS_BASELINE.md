@@ -1,63 +1,61 @@
 ---
-version: "1.0"
+type: ues-deliverable
+version: "2.0"
 status: draft
-last_updated: 2026-04-02
-workstream: IMPROVE
-owner: "{{OWNER}}"
+last_updated: 2026-04-04
+work_stream: 5-improve
+stage: design
+sub_system: 4-IDM
+iteration: I2
+owner: "Long Nguyen"
 ---
-
-> Source template: `_genesis/templates/METRICS_BASELINE_TEMPLATE.md`
-
-# Metrics Baseline
-
-> Populate during IMPROVE Design and IMPROVE Build phases.
-> Three Pillars priority: Sustainability (S) → Efficiency (E) → Scalability (Sc).
-> Do NOT overwrite baseline snapshot rows — append new readings as new rows.
+# Metrics Baseline — LTC Portfolio Dashboard, I2
 
 ## Metrics Baseline Identity
 
 | Field | Value |
 |-------|-------|
-| Sub-system | _[name]_ |
-| Iteration | _[I1 / I2 / I3 / I4]_ |
-| Baseline date | _[YYYY-MM-DD]_ |
-| Owner | _[name]_ |
+| Sub-system | IDM (Insights & Decision Making) |
+| Iteration | I2 |
+| Baseline date | 2026-04-04 |
+| Owner | Minh Tran |
 
 ## Pillar Metrics
 
-> Only measure pillars active at your current iteration (I1=S, I2=S+E, I3=S+E, I4=S+E+Sc).
+> I2 activates Sustainability (S) + Efficiency (E) metrics.
 
 ### Sustainability Metrics
 
 | Metric | Current Value | Target | Formula | Measurement Method | Cadence |
 |--------|--------------|--------|---------|-------------------|---------|
-| _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
-| _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
+| Dashboard uptime | N/A (not live) | 99.5% | (total minutes - downtime) / total minutes | Uptime monitoring (UptimeRobot) | Daily |
+| PM daily active users | 0 | 5 of 6 | Unique logins / 6 PMs | Auth log query | Weekly |
+| Data freshness (P95 tick latency) | N/A | < 500ms | P95 of tick-to-render timestamps | Middleware telemetry | Per sprint |
 
 ### Efficiency Metrics (I2+)
 
 | Metric | Current Value | Target | Formula | Measurement Method | Cadence |
 |--------|--------------|--------|---------|-------------------|---------|
-| _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
-
-### Scalability Metrics (I4+)
-
-| Metric | Current Value | Target | Formula | Measurement Method | Cadence |
-|--------|--------------|--------|---------|-------------------|---------|
-| _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
+| PM time-to-NAV | 15 min (Excel baseline) | < 2 min | Timed UAT session average | Stopwatch during UAT | Per UAT session |
+| Pipeline error rate | N/A | < 0.5% / day | Error events / total requests | Error log count | Daily |
 
 ## Measurement Runbook
 
-> How to collect each metric — exact steps, tool used, who runs it.
-
 | Metric | Tool | Steps | Responsible |
 |--------|------|-------|-------------|
-| _[name]_ | _[tool]_ | _[1. ... 2. ...]_ | _[role]_ |
+| Uptime | UptimeRobot | 1. Check dashboard URL every 60s. 2. Alert Minh if downtime > 2 min | Data Engineer |
+| PM time-to-NAV | Manual stopwatch | 1. PM opens fresh browser. 2. Navigate to NAV panel. 3. Record time to confirmed number | Minh Tran (UAT facilitator) |
+| Tick latency | Middleware logs | 1. Extract `ts_bloomberg` and `ts_render` from logs. 2. Compute P95 in Python | Data Engineer |
 
 ## Baseline Snapshot
 
-> One-time reading taken before improvement work begins. Do not overwrite — append new readings as a new row.
-
 | Date | Metric | Actual Value | Notes |
 |------|--------|-------------|-------|
-| _[YYYY-MM-DD]_ | _[name]_ | _[value]_ | _[context]_ |
+| 2026-04-04 | PM time-to-NAV | 15 min | Excel baseline (pre-dashboard) |
+| 2026-04-04 | PM daily users | 0 | Dashboard not yet live |
+
+## Links
+
+- [[OKR_REGISTER]]
+- [[RETRO-I1]]
+- [[CHARTER]]

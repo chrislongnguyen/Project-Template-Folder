@@ -3,11 +3,11 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
-work_stream: execute
+work_stream: 4-execute
 stage: validate
 iteration: 2
 ues_version: prototype
-sub_system: problem-diagnosis
+sub_system: 1-PD
 ---
 
 # VALIDATE.md — EXECUTE Workstream, I2: Obsidian Bases Integration
@@ -96,8 +96,8 @@ sub_system: problem-diagnosis
 
 | # | Severity | Artifact | Issue | Fix Required |
 |---|----------|----------|-------|--------------|
-| B1 | FAIL | `4-EXECUTE/docs/frontmatter-schema.md` | Frontmatter declares `type: ues-deliverable` but is missing 3 of 9 required fields: `sub_system`, `iteration`, `ues_version`. The schema spec itself violates its own schema. | Add `sub_system: problem-diagnosis`, `iteration: 2`, `ues_version: prototype` to frontmatter. |
-| B2 | FAIL | `4-EXECUTE/docs/vault-structure.md` | Frontmatter declares `type: ues-deliverable` but uses `iteration_name: prototype` instead of `iteration: 2`, and is missing `sub_system`, `ues_version`. 3 of 9 required fields absent or wrong key. | Replace `iteration_name: prototype` with `iteration: 2`. Add `sub_system: problem-diagnosis`, `ues_version: prototype`. |
+| B1 | FAIL | `4-EXECUTE/docs/frontmatter-schema.md` | Frontmatter declares `type: ues-deliverable` but is missing 3 of 9 required fields: `sub_system`, `iteration`, `ues_version`. The schema spec itself violates its own schema. | Add `sub_system: PD`, `iteration: 2`, `ues_version: prototype` to frontmatter. |
+| B2 | FAIL | `4-EXECUTE/docs/vault-structure.md` | Frontmatter declares `type: ues-deliverable` but uses `iteration_name: prototype` instead of `iteration: 2`, and is missing `sub_system`, `ues_version`. 3 of 9 required fields absent or wrong key. | Replace `iteration_name: prototype` with `iteration: 2`. Add `sub_system: PD`, `ues_version: prototype`. |
 
 ## Non-Blocking Notes
 
