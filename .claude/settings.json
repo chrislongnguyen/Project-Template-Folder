@@ -31,6 +31,12 @@
             "command": "./.claude/hooks/resume-check.sh",
             "timeout": 5,
             "statusMessage": "Loading session context..."
+          },
+          {
+            "type": "command",
+            "command": "./.claude/hooks/session-reconstruct.sh",
+            "timeout": 10,
+            "statusMessage": "Reconstructing session state..."
           }
         ]
       }
@@ -55,6 +61,18 @@
             "command": "./.claude/hooks/save-context-state.sh",
             "timeout": 10,
             "statusMessage": "Saving context state before compaction..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/session-summary.sh",
+            "timeout": 10,
+            "statusMessage": "Saving session summary..."
           }
         ]
       }
@@ -96,6 +114,29 @@
             "command": "./.claude/hooks/verify-agent-dispatch.sh",
             "timeout": 5,
             "statusMessage": "Verifying agent dispatch context packaging..."
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/strategic-compact.sh",
+            "timeout": 5,
+            "statusMessage": "Checking context saturation..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/state-saver.sh",
+            "timeout": 10,
+            "statusMessage": "Saving session state..."
           }
         ]
       }

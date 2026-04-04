@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
-# version: 1.1 | last_updated: 2026-03-29
+# version: 1.2 | last_updated: 2026-04-04
 # session-reconstruct.sh — SessionStart hook (Layer 2 reconstruction)
 # Emits git state + cross-project landscape + last session summary as JSON
 # for the Claude Code plugin system.
+#
+# NOTE: This hook reads from ~/.claude/projects/ (Claude Code's own memory)
+# and git state. No vault dependency — works on any machine with Claude Code.
+#
+# Dedup: if a global version is running via CLAUDE_PLUGIN_ROOT, skip this one.
 set -euo pipefail
+
+# Dedup guard: skip if global/plugin version is handling this event
+if [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]] && [[ -x "${CLAUDE_PLUGIN_ROOT}/hooks/session-reconstruct.sh" ]]; then
+  exit 0
+fi
 
 PROJECTS_DIR="$HOME/.claude/projects"
 
