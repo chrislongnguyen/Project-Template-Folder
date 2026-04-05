@@ -25,7 +25,7 @@ Search depth: {search_depth} ({min_searches} angles, {min_sources}+ sources)
 
 ## Research Methodology
 
-Load and follow `_genesis/templates/RESEARCH_METHODOLOGY.md`:
+Load and follow `_genesis/templates/research-methodology.md`:
 - Multi-angle search: decompose into {min_searches} distinct angles
 - Source verification: cross-reference core claims, flag single-source
 - Anti-hallucination: FFS quality gate, credibility tracking, red team critique
@@ -96,7 +96,7 @@ After writing, report: file path, source count, any [NEEDS REVIEW] sections, sta
 ## Links
 
 - [[CLAUDE]]
-- [[RESEARCH_METHODOLOGY]]
+- [[research-methodology]]
 - [[SKILL]]
 - [[context-packaging]]
 - [[dsbv]]

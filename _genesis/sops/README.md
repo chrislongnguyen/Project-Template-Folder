@@ -17,9 +17,9 @@ philosophy → principles → frameworks → [sops as derived process layer]
 
 | File | Description |
 |------|-------------|
-| CODE_REVIEW_SOP.md | Standard procedure for code review sessions |
-| DEPLOYMENT_SOP.md | Standard procedure for deploying project artifacts |
-| DISCUSSION_SOP.md | Standard procedure for team discussions and decision meetings |
+| code-review-sop.md | Standard procedure for code review sessions |
+| deployment-sop.md | Standard procedure for deploying project artifacts |
+| discussion-sop.md | Standard procedure for team discussions and decision meetings |
 
 ## Usage
 
@@ -31,8 +31,8 @@ SOPs are executed as-written. Deviations require an ADR in `1-ALIGN/decisions/`.
 
 ## Links
 
-- [[CODE_REVIEW_SOP]]
-- [[DEPLOYMENT_SOP]]
-- [[DISCUSSION_SOP]]
+- [[code-review-sop]]
+- [[deployment-sop]]
+- [[discussion-sop]]
 - [[project]]
 - [[standard]]

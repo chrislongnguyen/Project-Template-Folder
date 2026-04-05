@@ -97,6 +97,17 @@
     ],
     "PreToolUse": [
       {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/naming-lint.sh",
+            "timeout": 5,
+            "statusMessage": "Checking filename naming convention..."
+          }
+        ]
+      },
+      {
         "matcher": "Bash(git commit *)",
         "hooks": [
           {
@@ -171,6 +182,17 @@
       }
     ],
     "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/naming-lint.sh",
+            "timeout": 5,
+            "statusMessage": "Linting frontmatter casing..."
+          }
+        ]
+      },
       {
         "matcher": "Agent",
         "hooks": [

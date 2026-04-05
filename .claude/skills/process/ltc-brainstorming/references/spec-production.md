@@ -77,13 +77,13 @@ The OE.6.4 VANA-SPEC includes two NEW sections beyond the standard template:
 
 **Required content:** UBS(R), UBS(A), UDS(R), UDS(A), recursive decomposition (minimum 1 level), sigmoid workstream classification, bottleneck identification, synergy check.
 
-Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §0 structure.
+Use the extended template at `_genesis/templates/vana-spec-template.md` for the full §0 structure.
 
 ### §6 System Boundaries (new position; old §6+ shift down)
 
 **Required content:** Layer 1 (What Flows), Layer 2 (How It Flows Reliably), Layer 3 (How You Verify), Layer 4 (How It Fails Gracefully), Integration Chain, Feedback Loops.
 
-Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §6 structure.
+Use the extended template at `_genesis/templates/vana-spec-template.md` for the full §6 structure.
 
 **Apply META-RULE 4 (VANA DECOMPOSE) and META-RULE 5 (DEFINE DONE) throughout all AC sections.**
 
@@ -92,7 +92,7 @@ Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the 
 - [[CLAUDE]]
 - [[EP-08]]
 - [[EP-10]]
-- [[VANA_SPEC_TEMPLATE]]
+- [[vana-spec-template]]
 - [[context-packaging]]
 - [[dsbv]]
 - [[iteration]]

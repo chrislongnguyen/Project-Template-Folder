@@ -71,5 +71,5 @@ _[Objective statement]_
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[VANA_SPEC_TEMPLATE]]
+- [[vana-spec-template]]
 - [[iteration]]

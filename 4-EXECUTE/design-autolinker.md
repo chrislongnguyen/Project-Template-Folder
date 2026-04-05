@@ -55,7 +55,7 @@ Convert the 1,100+ markdown files in any ALPEI project into a connected Obsidian
 **Alignment check:**
 - [ ] Orphan conditions = 0 — all 16 ACs map to a named artifact
 - [ ] Orphan artifacts = 0 — all 5 artifacts have ACs
-- [ ] 5 artifacts here = 5 tasks in SEQUENCE_AUTOLINKER.md (to be verified at G2)
+- [ ] 5 artifacts here = 5 tasks in sequence-autolinker.md (to be verified at G2)
 
 ---
 
@@ -174,8 +174,8 @@ commit proceeds
 
 | Gate | Trigger | Decision Required |
 |------|---------|-------------------|
-| G1 | This DESIGN_AUTOLINKER.md | Approve scope, artifacts, ACs → proceed to SEQUENCE |
-| G2 | SEQUENCE_AUTOLINKER.md complete | Approve task order → proceed to Build |
+| G1 | This design-autolinker.md | Approve scope, artifacts, ACs → proceed to SEQUENCE |
+| G2 | sequence-autolinker.md complete | Approve task order → proceed to Build |
 | G3 | Build complete | Review all artifacts, run test suite → proceed to Validate |
 | G4 | VALIDATE_AUTOLINKER.md complete | Approve → run one-shot on repo, enable hook, commit results |
 
@@ -211,7 +211,7 @@ commit proceeds
 - [[DESIGN]]
 - [[README]]
 - [[SEQUENCE]]
-- [[SEQUENCE_AUTOLINKER]]
+- [[sequence-autolinker]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[documentation]]

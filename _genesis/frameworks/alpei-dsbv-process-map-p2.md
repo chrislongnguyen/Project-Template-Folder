@@ -1,9 +1,9 @@
 ---
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-03-31
 type: reference
-source: "Derived from UES_VERSION_BEHAVIORS.md — no invented behaviors"
+source: "Derived from ues-version-behaviors.md — no invented behaviors"
 ---
 
 # P2 — Version Progression: What Each Workstream Produces at Each Depth
@@ -12,7 +12,7 @@ source: "Derived from UES_VERSION_BEHAVIORS.md — no invented behaviors"
 
 The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every workstream-version intersection.
 
-Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
+Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`.
 
 ---
 
@@ -33,7 +33,7 @@ Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`
 ## 25-Cell Version-Depth Matrix
 
 > Rows = version level (I0–I4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
-> Source: `UES_VERSION_BEHAVIORS.md` § per-work-stream tables.
+> Source: `ues-version-behaviors.md` § per-work-stream tables.
 
 | Version | 1-ALIGN | 2-LEARN | 3-PLAN | 4-EXECUTE | 5-IMPROVE |
 |---------|---------|---------|--------|-----------|-----------|
@@ -139,12 +139,12 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 
 ---
 
-*Source: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md` — all 25 cells and sub-system inheritance table trace directly to that document. No behaviors invented.*
+*Source: `_genesis/frameworks/ues-version-behaviors.md` — all 25 cells and sub-system inheritance table trace directly to that document. No behaviors invented.*
 
 ## Links
 
 - [[DESIGN]]
-- [[UES_VERSION_BEHAVIORS]]
+- [[ues-version-behaviors]]
 - [[blocker]]
 - [[iteration]]
 - [[methodology]]

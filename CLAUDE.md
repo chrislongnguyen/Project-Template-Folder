@@ -1,13 +1,13 @@
 ---
 version: "1.1"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 ---
 # CLAUDE.md — LTC Project Template
 
 > Claude Code agent rules. Loaded every session. Keep under 100 lines; details go to `.claude/rules/`.
 > Members: global `~/.claude/CLAUDE.md` handles identity, communication, model routing.
-> This file handles project structure, rules, and processes. Template: `_genesis/templates/GLOBAL_CLAUDE_MD_EXAMPLE.md`.
+> This file handles project structure, rules, and processes. Template: `_genesis/templates/global-claude-md-example.md`.
 
 <!-- ── CUSTOMIZE AFTER CLONING (replace placeholders) ──────────────── -->
 
@@ -64,7 +64,7 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
-## DSBV Process (full spec: `_genesis/templates/DSBV_PROCESS.md`)
+## DSBV Process (full spec: `_genesis/templates/dsbv-process.md`)
 Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV.
 - Phase ordering: Design before Build, Validate before workstream complete.
 - ALPEI flow constraint: workstream N cannot reach Review until N-1 has ≥1 Approved artifact.

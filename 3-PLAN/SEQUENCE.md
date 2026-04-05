@@ -11,7 +11,7 @@ owner: "{{OWNER}}"
 > Input context for agents running DSBV Build phase on the PLAN workstream.
 > Budget: ~4000 words. Every token costs signal-to-noise ratio.
 > Bookend pattern (LT-2): most critical content at start and end, least critical in middle.
-> Source template: `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md`
+> Source template: `_genesis/templates/dsbv-context-template.md`
 
 ---
 

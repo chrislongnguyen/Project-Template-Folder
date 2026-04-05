@@ -1,6 +1,6 @@
 ---
 version: "1.1"
-status: Draft
+status: draft
 last_updated: 2026-04-01
 ---
 # LTC Project Template — Iteration 1 (Concept)
@@ -15,7 +15,7 @@ Standard project scaffold for LT Capital Partners. Clone this to start any new p
 |---|----------|---------------|------|
 | 1 | **Training Deck** (47 slides) | `cd _genesis/training/alpei-training-slides && npm install && npm run dev` → open `http://localhost:5173` | 30 min |
 | 2 | **ALPEI Navigator** (interactive map) | Open `_genesis/tools/alpei-navigator.html` in any browser (no install needed) | 10 min |
-| 3 | **Migration Guide** (I0 → I1) | Read `_genesis/guides/MIGRATION_GUIDE.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
+| 3 | **Migration Guide** (I0 → I1) | Read `_genesis/guides/migration-guide.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
 
 ## Quick Start
 
@@ -71,17 +71,17 @@ DSBV guides you step by step: define what the workstream must produce (Design), 
 
 Start with ALIGN: `/dsbv design align` — it will ask you to describe your project's purpose in 1-3 sentences, then draft the specification for your review.
 
-Full process: `_genesis/templates/DSBV_PROCESS.md` | Skill: `.claude/skills/dsbv/SKILL.md`
+Full process: `_genesis/templates/dsbv-process.md` | Skill: `.claude/skills/dsbv/SKILL.md`
 
 ### Already have a project? Migrate to I1
 
 If your project was cloned from the I0 scaffold (or set up before this template existed), see the migration guide:
 
 ```
-_genesis/guides/MIGRATION_GUIDE.md
+_genesis/guides/migration-guide.md
 ```
 
-Your AI agent can execute it: *"Read `_genesis/guides/MIGRATION_GUIDE.md` and execute it for my project."*
+Your AI agent can execute it: *"Read `_genesis/guides/migration-guide.md` and execute it for my project."*
 
 ### 6. Research before you build
 
@@ -273,7 +273,7 @@ philosophy → principles → frameworks → derived artifacts
 | Philosophy | `_genesis/philosophy/` | WHY we do things — core beliefs |
 | Principles | `_genesis/principles/` | WHAT we commit to — non-negotiable standards |
 | Frameworks | `_genesis/frameworks/` | HOW we model systems — 11 frameworks (3 pillars, 6 workstreams, UBS/UDS, etc.) |
-| Brand | `_genesis/brand/` | Visual identity — colors.json, BRAND_GUIDE.md, assets/ |
+| Brand | `_genesis/brand/` | Visual identity — colors.json, brand-guide.md, assets/ |
 | Security | `_genesis/security/` | Data classification, naming convention, security hierarchy |
 | SOPs | `_genesis/sops/` | Standard operating procedures (code review, deployment, discussion) |
 | Templates | `_genesis/templates/` | 18 templates — DSBV process, VANA-SPEC, ADR, research, review, and more |
@@ -393,13 +393,13 @@ _Template maintained by OPS Process. Source: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](h
 
 ## Links
 
-- [[BRAND_GUIDE]]
+- [[brand-guide]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[GEMINI]]
-- [[MIGRATION_GUIDE]]
+- [[migration-guide]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]

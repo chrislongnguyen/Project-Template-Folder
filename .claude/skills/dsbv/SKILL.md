@@ -1,6 +1,6 @@
 ---
 version: "1.3"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 owner: "Long Nguyen"
 name: dsbv
@@ -59,7 +59,7 @@ Before ANY phase, verify these conditions. If any is RED, tell the user what is 
 | C1 | **Clear scope** | Workstream identified. In-scope and out-of-scope are written down. |
 | C2 | **Input materials curated** | Reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
 | C3 | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
-| C4 | **Process definition loaded** | `_genesis/templates/DSBV_PROCESS.md` is in context. |
+| C4 | **Process definition loaded** | `_genesis/templates/dsbv-process.md` is in context. |
 | C5 | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
 | C6 | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
 
@@ -89,7 +89,7 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 1. Ask the user for their high-level intent (1-3 sentences about what this workstream should accomplish)
 2. Look up the Design template: grep `## Routing: {workstream}` in
    `_genesis/frameworks/alpei-dsbv-process-map.md`, Design row, Template column.
-   Default: `DESIGN_TEMPLATE.md` if routing table not yet populated for this workstream.
+   Default: `design-template.md` if routing table not yet populated for this workstream.
 3. Draft DESIGN.md: artifact inventory, per-artifact purpose, success rubric, acceptance criteria
 4. **Alignment check (mandatory before presenting):**
    - For every completion condition: which artifact satisfies it? Write the mapping.
@@ -178,7 +178,7 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 1. Dispatch to `ltc-reviewer` with: DESIGN.md, list of produced artifacts, workstream context
 2. ltc-reviewer loads the Validate-phase template from
    `_genesis/frameworks/alpei-dsbv-process-map.md` § `## Routing: {WORKSTREAM}`, Validate row, Template column.
-   Default: `DSBV_EVAL_TEMPLATE.md` if routing table not yet populated for this workstream.
+   Default: `dsbv-eval-template.md` if routing table not yet populated for this workstream.
 3. Check **Completeness** — all artifacts listed in DESIGN.md are present
 4. Check **Quality** — each artifact passes its success rubric
 5. Check **Coherence** — artifacts do not contradict each other
@@ -191,7 +191,7 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 
 ## Status Command
 
-`/dsbv status` reads `_genesis/VERSION_REGISTRY.md` and renders the 20-row cell-level progress table.
+`/dsbv status` reads `_genesis/version-registry.md` and renders the 20-row cell-level progress table.
 
 **Full output format:**
 
@@ -227,7 +227,7 @@ Next gate: 2-LEARN × Validate → human approval required
 
 **Single-workstream summary (backward-compatible):** `/dsbv status [workstream]` filters to 4 rows for that workstream only, preserving the same column structure.
 
-**Data source:** All values read from `_genesis/VERSION_REGISTRY.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
+**Data source:** All values read from `_genesis/version-registry.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
 
 **Status vocabulary (6 values only):** `Not Started` | `Pending` | `Draft` | `Review` | `In Progress` | `Approved`
 - `Pending` = upstream workstream not Approved — this cell cannot start yet
@@ -251,7 +251,7 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 
 ## Process Reference
 
-Full process specification: `_genesis/templates/DSBV_PROCESS.md`
+Full process specification: `_genesis/templates/dsbv-process.md`
 
 **GATE — Verify:** At phase completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the phase is NOT complete. See gotchas.md for LT-1 hallucination pattern.
 
@@ -261,12 +261,12 @@ Full process specification: `_genesis/templates/DSBV_PROCESS.md`
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DESIGN_TEMPLATE]]
-- [[DSBV_EVAL_TEMPLATE]]
-- [[DSBV_PROCESS]]
+- [[design-template]]
+- [[dsbv-eval-template]]
+- [[dsbv-process]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[VERSION_REGISTRY]]
+- [[version-registry]]
 - [[agent-dispatch]]
 - [[agent-system]]
 - [[context-packaging]]

@@ -220,7 +220,7 @@ Review against DESIGN.md success criteria.
 ### Files
 - Read: `{workstream}/DESIGN.md` — the contract (success criteria)
 - Read: {list of all produced artifacts, one per line}
-- Read: `_genesis/templates/DSBV_EVAL_TEMPLATE.md` — output format
+- Read: `_genesis/templates/dsbv-eval-template.md` — output format
 
 ### Budget
 ~30K tokens. Load DESIGN.md + all artifacts.
@@ -321,7 +321,7 @@ Consumed by: human for final approval.
 - [[alpei-dsbv-process-map]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_EVAL_TEMPLATE]]
+- [[dsbv-eval-template]]
 - [[EP-01]]
 - [[EP-03]]
 - [[EP-04]]

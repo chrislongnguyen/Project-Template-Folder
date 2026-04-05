@@ -7,7 +7,7 @@ workstream: IMPROVE
 iteration: "{{ITERATION}}"
 owner: "{{OWNER}}"
 
-> Source template: `_genesis/templates/REVIEW_PACKAGE_TEMPLATE.md`
+> Source template: `_genesis/templates/review-package-template.md`
 
 # Version Review: {{PROJECT_NAME}} — {{ITERATION}}
 

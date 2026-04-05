@@ -81,7 +81,7 @@ sub_system:
 
 ## Links
 
-- [[REVIEW_TEMPLATE]]
+- [[review-template]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[deliverable]]

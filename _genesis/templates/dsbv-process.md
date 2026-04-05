@@ -212,7 +212,7 @@ All conditions must be GREEN before starting a DSBV cycle.
 | C1 | **Clear scope** | Workstream identified. What is in scope and out of scope is written down. |
 | C2 | **Input materials curated** | Agent reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
 | C3 | **Success rubric defined** | How to judge output quality. Per-artifact criteria, not vibes. |
-| C4 | **Process definition loaded** | This document (DSBV_PROCESS.md) is in agent context. |
+| C4 | **Process definition loaded** | This document (dsbv-process.md) is in agent context. |
 | C5 | **Prompt engineered** | Context package fits within effective window. Irrelevant material removed. |
 | C6 | **Evaluation protocol defined** | How Opus compares competing outputs (for design-heavy). How Human reviews final output. |
 
@@ -279,8 +279,8 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DSBV_CONTEXT_TEMPLATE]]
-- [[DSBV_EVAL_TEMPLATE]]
+- [[dsbv-context-template]]
+- [[dsbv-eval-template]]
 - [[EP-01]]
 - [[EP-10]]
 - [[SEQUENCE]]

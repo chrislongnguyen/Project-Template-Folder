@@ -77,7 +77,7 @@ _[Describe the expected outcome here.]_
 ## Links
 
 - [[DESIGN]]
-- [[DESIGN_TEMPLATE]]
+- [[design-template]]
 - [[dsbv]]
 - [[iteration]]
 - [[project]]

@@ -1,6 +1,6 @@
 ---
 version: "1.5"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 owner: "Long Nguyen"
 
@@ -18,7 +18,7 @@ This document is the authoritative reference for how the LTC ALPEI framework and
 | **Training deck author**  | Slide content: each P-section maps to one or more training slides                                 |
 
 
-Source of truth for version behaviors: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
+Source of truth for version behaviors: `_genesis/frameworks/ues-version-behaviors.md`.
 Skill entry point: `/dsbv` — guided flow for Design → Sequence → Build → Validate.
 Template index: `_genesis/templates/README.md`.
 
@@ -39,11 +39,11 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 | Workstream          | Design (ltc-planner)                                                                                                                                                            | Sequence (ltc-planner)                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1-ALIGN**   | **Template:** CHARTER_TEMPLATE.md (T1) + FORCE_ANALYSIS_TEMPLATE.md (T4) **Deliverable:** `1-ALIGN/charter/CHARTER.md` **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** OKR_TEMPLATE.md (T3) **Deliverable:** `1-ALIGN/okrs/OKR_REGISTER.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
+| **1-ALIGN**   | **Template:** charter-template.md (T1) + force-analysis-template.md (T4) **Deliverable:** `1-ALIGN/charter/CHARTER.md` **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** okr-template.md (T3) **Deliverable:** `1-ALIGN/okrs/OKR_REGISTER.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
-| **3-PLAN**    | **Template:** FORCE_ANALYSIS_TEMPLATE.md (T4) + RISK_ENTRY_TEMPLATE.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** ROADMAP_TEMPLATE.md (T6) + DRIVER_ENTRY_TEMPLATE.md (T5) **Deliverable:** `3-PLAN/roadmap/ROADMAP.md` **AC:** Milestones map to iteration. Drivers have leverage actions. |
-| **4-EXECUTE** | **Template:** DESIGN_TEMPLATE.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** DSBV_CONTEXT_TEMPLATE.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
-| **5-IMPROVE** | **Template:** METRICS_BASELINE_TEMPLATE.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** RETRO_TEMPLATE.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
+| **3-PLAN**    | **Template:** force-analysis-template.md (T4) + risk-entry-template.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** roadmap-template.md (T6) + driver-entry-template.md (T5) **Deliverable:** `3-PLAN/roadmap/ROADMAP.md` **AC:** Milestones map to iteration. Drivers have leverage actions. |
+| **4-EXECUTE** | **Template:** design-template.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** dsbv-context-template.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
+| **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** retro-template.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
 
 
 ---
@@ -55,11 +55,11 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 | Workstream          | Build (ltc-builder)                                                                                                                                                                                                                                                           | Validate (ltc-reviewer)                                                                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1-ALIGN**   | **Template:** CHARTER_TEMPLATE.md (T1) **Deliverable:** `1-ALIGN/charter/CHARTER.md` (final) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** REVIEW_TEMPLATE.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
+| **1-ALIGN**   | **Template:** charter-template.md (T1) **Deliverable:** `1-ALIGN/charter/CHARTER.md` (final) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** review-template.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/output/{SUB}-UBS-UDS.md` · `2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md` · P0–P7 pages per topic | *Validation via `/learn:review` per topic — all P-pages reach `status: approved` before pipeline advances*                                                              |
-| **3-PLAN**    | **Template:** ARCHITECTURE_TEMPLATE.md (T2) **Deliverable:** `3-PLAN/architecture/ARCHITECTURE.md` **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** REVIEW_TEMPLATE.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
-| **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Workstream artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** DSBV_EVAL_TEMPLATE.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
-| **5-IMPROVE** | **Template:** TEST_PLAN_TEMPLATE.md (T8) + FEEDBACK_TEMPLATE.md **Deliverable:** `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** REVIEW_PACKAGE_TEMPLATE.md **Deliverable:** `5-IMPROVE/reviews/VERSION-REVIEW.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
+| **3-PLAN**    | **Template:** architecture-template.md (T2) **Deliverable:** `3-PLAN/architecture/ARCHITECTURE.md` **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** review-template.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
+| **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Workstream artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** dsbv-eval-template.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
+| **5-IMPROVE** | **Template:** test-plan-template.md (T8) + feedback-template.md **Deliverable:** `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** review-package-template.md **Deliverable:** `5-IMPROVE/reviews/VERSION-REVIEW.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
 
 
 ---
@@ -99,7 +99,7 @@ PD is the first sub-system and sets the version ceiling. DP, DA, and IDM follow 
 
 The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every workstream-version intersection.
 
-Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`.
+Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`.
 
 ---
 
@@ -122,8 +122,8 @@ Source of truth for all 25 cells: `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`
 ### 25-Cell Version-Depth Matrix
 
 > Rows = version level (I0–I4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
-> Source: `UES_VERSION_BEHAVIORS.md` § per-work-stream tables.
-> **Traceability:** Each column maps to a work stream section in UES_VERSION_BEHAVIORS.md:
+> Source: `ues-version-behaviors.md` § per-work-stream tables.
+> **Traceability:** Each column maps to a work stream section in ues-version-behaviors.md:
 > 1-ALIGN → §ALIGN WORK STREAM | 2-LEARN → §LEARN WORK STREAM | 3-PLAN → §PLAN WORK STREAM | 4-EXECUTE → §EXECUTE WORK STREAM | 5-IMPROVE → §IMPROVE WORK STREAM
 
 
@@ -459,13 +459,13 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Item                                       | Path                                                                                                                                                                                                                                     |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Version Behaviors (source of truth for P2) | `_genesis/frameworks/UES_VERSION_BEHAVIORS.md`                                                                                                                                                                                           |
-| DSBV sub-process definition                | `_genesis/templates/DSBV_PROCESS.md`                                                                                                                                                                                                     |
+| Version Behaviors (source of truth for P2) | `_genesis/frameworks/ues-version-behaviors.md`                                                                                                                                                                                           |
+| DSBV sub-process definition                | `_genesis/templates/dsbv-process.md`                                                                                                                                                                                                     |
 | Template index                             | `_genesis/templates/README.md`                                                                                                                                                                                                           |
 | ALPEI always-on rules                      | `.claude/rules/alpei-pre-flight.md` · `.claude/rules/alpei-chain-of-custody.md` · `.claude/rules/versioning.md` · `.claude/rules/dsbv.md` · `.claude/rules/agent-dispatch.md`                                                            |
 | Agent definitions                          | `.claude/agents/ltc-planner.md` · `.claude/agents/ltc-builder.md` · `.claude/agents/ltc-reviewer.md` · `.claude/agents/ltc-explorer.md`                                                                                                  |
 | DSBV skill entry point                     | `.claude/skills/dsbv/`                                                                                                                                                                                                                   |
-| Gap-fill templates (T1–T8)                 | `_genesis/templates/CHARTER_TEMPLATE.md` · `ARCHITECTURE_TEMPLATE.md` · `OKR_TEMPLATE.md` · `FORCE_ANALYSIS_TEMPLATE.md` · `DRIVER_ENTRY_TEMPLATE.md` · `ROADMAP_TEMPLATE.md` · `METRICS_BASELINE_TEMPLATE.md` · `TEST_PLAN_TEMPLATE.md` |
+| Gap-fill templates (T1–T8)                 | `_genesis/templates/charter-template.md` · `architecture-template.md` · `okr-template.md` · `force-analysis-template.md` · `driver-entry-template.md` · `roadmap-template.md` · `metrics-baseline-template.md` · `test-plan-template.md` |
 
 
 ---
@@ -485,10 +485,10 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                                      | Agent        | Deliverable Path                     | AC                                                       |
 | -------- | ------------------------------------------------ | ------------ | ------------------------------------ | -------------------------------------------------------- |
-| Design   | CHARTER_TEMPLATE.md · FORCE_ANALYSIS_TEMPLATE.md | ltc-planner  | `1-ALIGN/charter/CHARTER.md`         | Charter has EO, stakeholders, and VANA criteria          |
-| Sequence | OKR_TEMPLATE.md                                  | ltc-planner  | `1-ALIGN/okrs/OKR_REGISTER.md`       | All objectives have ≥1 KR with baseline and target       |
-| Build    | CHARTER_TEMPLATE.md                              | ltc-builder  | `1-ALIGN/charter/CHARTER.md` (final) | Signed off by PM; version frontmatter present            |
-| Validate | REVIEW_TEMPLATE.md                               | ltc-reviewer | `1-ALIGN/VALIDATE.md`                | All DESIGN.md criteria PASS or have documented exception |
+| Design   | charter-template.md · force-analysis-template.md | ltc-planner  | `1-ALIGN/charter/CHARTER.md`         | Charter has EO, stakeholders, and VANA criteria          |
+| Sequence | okr-template.md                                  | ltc-planner  | `1-ALIGN/okrs/OKR_REGISTER.md`       | All objectives have ≥1 KR with baseline and target       |
+| Build    | charter-template.md                              | ltc-builder  | `1-ALIGN/charter/CHARTER.md` (final) | Signed off by PM; version frontmatter present            |
+| Validate | review-template.md                               | ltc-reviewer | `1-ALIGN/VALIDATE.md`                | All DESIGN.md criteria PASS or have documented exception |
 
 
 ---
@@ -516,10 +516,10 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                                         | Agent        | Deliverable Path                      | AC                                                              |
 | -------- | --------------------------------------------------- | ------------ | ------------------------------------- | --------------------------------------------------------------- |
-| Design   | FORCE_ANALYSIS_TEMPLATE.md · RISK_ENTRY_TEMPLATE.md | ltc-planner  | `3-PLAN/risks/UBS_REGISTER.md`        | Every UBS entry has a mitigation                                |
-| Sequence | ROADMAP_TEMPLATE.md · DRIVER_ENTRY_TEMPLATE.md      | ltc-planner  | `3-PLAN/roadmap/ROADMAP.md`           | Milestones map to iteration; drivers have leverage actions      |
-| Build    | ARCHITECTURE_TEMPLATE.md                            | ltc-builder  | `3-PLAN/architecture/ARCHITECTURE.md` | Components, interfaces, and data flows present                  |
-| Validate | REVIEW_TEMPLATE.md                                  | ltc-reviewer | `3-PLAN/VALIDATE.md`                  | Architecture references UBS mitigations; no orphaned components |
+| Design   | force-analysis-template.md · risk-entry-template.md | ltc-planner  | `3-PLAN/risks/UBS_REGISTER.md`        | Every UBS entry has a mitigation                                |
+| Sequence | roadmap-template.md · driver-entry-template.md      | ltc-planner  | `3-PLAN/roadmap/ROADMAP.md`           | Milestones map to iteration; drivers have leverage actions      |
+| Build    | architecture-template.md                            | ltc-builder  | `3-PLAN/architecture/ARCHITECTURE.md` | Components, interfaces, and data flows present                  |
+| Validate | review-template.md                                  | ltc-reviewer | `3-PLAN/VALIDATE.md`                  | Architecture references UBS mitigations; no orphaned components |
 
 
 ---
@@ -529,10 +529,10 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                         | Agent        | Deliverable Path                          | AC                                                                  |
 | -------- | ----------------------------------- | ------------ | ----------------------------------------- | ------------------------------------------------------------------- |
-| Design   | DESIGN_TEMPLATE.md                  | ltc-planner  | `4-EXECUTE/DESIGN.md`                      | All artifacts have binary ACs; no orphan conditions                 |
-| Sequence | DSBV_CONTEXT_TEMPLATE.md            | ltc-planner  | `4-EXECUTE/SEQUENCE.md`                    | Tasks ordered by dependency with input/output/AC/token estimate     |
+| Design   | design-template.md                  | ltc-planner  | `4-EXECUTE/DESIGN.md`                      | All artifacts have binary ACs; no orphan conditions                 |
+| Sequence | dsbv-context-template.md            | ltc-planner  | `4-EXECUTE/SEQUENCE.md`                    | Tasks ordered by dependency with input/output/AC/token estimate     |
 | Build    | (artifact-specific per SEQUENCE.md) | ltc-builder  | Workstream artifacts per `4-EXECUTE/SEQUENCE.md` | Each artifact passes its SEQUENCE.md AC before next task begins     |
-| Validate | DSBV_EVAL_TEMPLATE.md               | ltc-reviewer | `4-EXECUTE/VALIDATE.md`                    | All SEQUENCE.md ACs addressed; no FAIL without documented exception |
+| Validate | dsbv-eval-template.md               | ltc-reviewer | `4-EXECUTE/VALIDATE.md`                    | All SEQUENCE.md ACs addressed; no FAIL without documented exception |
 
 
 ---
@@ -542,38 +542,38 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                                  | Agent        | Deliverable Path                         | AC                                                             |
 | -------- | -------------------------------------------- | ------------ | ---------------------------------------- | -------------------------------------------------------------- |
-| Design   | METRICS_BASELINE_TEMPLATE.md                 | ltc-planner  | `5-IMPROVE/metrics/METRICS_BASELINE.md`  | Each metric has current value, target, and measurement method  |
-| Sequence | RETRO_TEMPLATE.md                            | ltc-planner  | `5-IMPROVE/retrospectives/RETRO-PLAN.md` | Retro format defined; participants identified                  |
-| Build    | TEST_PLAN_TEMPLATE.md · FEEDBACK_TEMPLATE.md | ltc-builder  | `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` | Feedback has category, severity, and status per entry          |
-| Validate | REVIEW_PACKAGE_TEMPLATE.md                   | ltc-reviewer | `5-IMPROVE/reviews/VERSION-REVIEW.md`    | Three Pillars scored; version advancement decision: GO / NO-GO |
+| Design   | metrics-baseline-template.md                 | ltc-planner  | `5-IMPROVE/metrics/METRICS_BASELINE.md`  | Each metric has current value, target, and measurement method  |
+| Sequence | retro-template.md                            | ltc-planner  | `5-IMPROVE/retrospectives/RETRO-PLAN.md` | Retro format defined; participants identified                  |
+| Build    | test-plan-template.md · feedback-template.md | ltc-builder  | `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` | Feedback has category, severity, and status per entry          |
+| Validate | review-package-template.md                   | ltc-reviewer | `5-IMPROVE/reviews/VERSION-REVIEW.md`    | Three Pillars scored; version advancement decision: GO / NO-GO |
 
 ## Links
 
 - [[ADR-001]]
-- [[ARCHITECTURE_TEMPLATE]]
+- [[architecture-template]]
 - [[CHANGELOG]]
-- [[CHARTER_TEMPLATE]]
+- [[charter-template]]
 - [[CLAUDE]]
 - [[DESIGN]]
-- [[DESIGN_TEMPLATE]]
-- [[DRIVER_ENTRY_TEMPLATE]]
-- [[DSBV_CONTEXT_TEMPLATE]]
-- [[DSBV_EVAL_TEMPLATE]]
-- [[DSBV_PROCESS]]
-- [[FEEDBACK_TEMPLATE]]
-- [[FORCE_ANALYSIS_TEMPLATE]]
-- [[METRICS_BASELINE_TEMPLATE]]
-- [[OKR_TEMPLATE]]
+- [[design-template]]
+- [[driver-entry-template]]
+- [[dsbv-context-template]]
+- [[dsbv-eval-template]]
+- [[dsbv-process]]
+- [[feedback-template]]
+- [[force-analysis-template]]
+- [[metrics-baseline-template]]
+- [[okr-template]]
 - [[README]]
-- [[RETRO_TEMPLATE]]
-- [[REVIEW_PACKAGE_TEMPLATE]]
-- [[REVIEW_TEMPLATE]]
-- [[RISK_ENTRY_TEMPLATE]]
-- [[ROADMAP_TEMPLATE]]
+- [[retro-template]]
+- [[review-package-template]]
+- [[review-template]]
+- [[risk-entry-template]]
+- [[roadmap-template]]
 - [[SEQUENCE]]
 - [[SKILL]]
-- [[TEST_PLAN_TEMPLATE]]
-- [[UES_VERSION_BEHAVIORS]]
+- [[test-plan-template]]
+- [[ues-version-behaviors]]
 - [[VALIDATE]]
 - [[agent-dispatch]]
 - [[alpei-chain-of-custody]]

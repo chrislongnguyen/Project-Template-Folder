@@ -4,7 +4,7 @@ last_updated: 2026-04-04
 owner: Long Nguyen
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
-status: Draft
+status: draft
 type: template
 work_stream: 0-govern
 stage: design
@@ -103,7 +103,7 @@ Additional workstream-specific gates:
 | C1 | Clear scope — in/out written down | GREEN / RED |
 | C2 | Input materials curated — reading list assembled | GREEN / RED |
 | C3 | Success rubric defined — per-artifact criteria | GREEN / RED |
-| C4 | Process definition loaded — DSBV_PROCESS.md in context | GREEN / RED |
+| C4 | Process definition loaded — dsbv-process.md in context | GREEN / RED |
 | C5 | Prompt engineered — context fits effective window | GREEN / RED |
 | C6 | Evaluation protocol defined — how Human reviews output | GREEN / RED |
 
@@ -112,7 +112,7 @@ Additional workstream-specific gates:
 ## Links
 
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[EP-01]]
 - [[EP-03]]
 - [[EP-04]]

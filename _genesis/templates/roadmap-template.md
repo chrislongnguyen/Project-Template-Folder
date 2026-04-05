@@ -71,5 +71,5 @@ M1 ──► M2 ──► M3 ──► Release
 ## Links
 
 - [[SEQUENCE]]
-- [[SOP_TEMPLATE]]
+- [[sop-template]]
 - [[iteration]]

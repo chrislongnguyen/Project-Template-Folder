@@ -8,8 +8,8 @@ owner: "{{OWNER}}"
 # VALIDATE.md — ALIGN Workstream
 
 > DSBV Phase 4 artifact. Review output against DESIGN.md acceptance criteria before advancing.
-> Source template: `_genesis/templates/REVIEW_TEMPLATE.md`
-> Full sprint/execution review template: `5-IMPROVE/reviews/REVIEW_TEMPLATE.md`
+> Source template: `_genesis/templates/review-template.md`
+> Full sprint/execution review template: `5-IMPROVE/reviews/review-template.md`
 
 <!-- TODO: Fill in during ALIGN Validate phase (G4 gate) -->
 
@@ -45,7 +45,7 @@ owner: "{{OWNER}}"
 | C1 | Clear scope — in/out written down | <!-- GREEN / RED --> |
 | C2 | Input materials curated — reading list assembled | <!-- GREEN / RED --> |
 | C3 | Success rubric defined — per-artifact criteria | <!-- GREEN / RED --> |
-| C4 | Process definition loaded — DSBV_PROCESS.md in context | <!-- GREEN / RED --> |
+| C4 | Process definition loaded — dsbv-process.md in context | <!-- GREEN / RED --> |
 | C5 | Prompt engineered — context fits effective window | <!-- GREEN / RED --> |
 | C6 | Evaluation protocol defined — how Human reviews output | <!-- GREEN / RED --> |
 

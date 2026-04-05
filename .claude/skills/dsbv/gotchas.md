@@ -44,13 +44,13 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ---
 
-## 5. Not loading C4 (DSBV_PROCESS.md) before starting
+## 5. Not loading C4 (dsbv-process.md) before starting
 
-**What happens:** Agent proceeds with stale or missing process knowledge because it didn't read `_genesis/templates/DSBV_PROCESS.md` as required by readiness check C4. Phase definitions, gate rules, and multi-agent patterns are then applied from memory, which may be outdated or wrong.
+**What happens:** Agent proceeds with stale or missing process knowledge because it didn't read `_genesis/templates/dsbv-process.md` as required by readiness check C4. Phase definitions, gate rules, and multi-agent patterns are then applied from memory, which may be outdated or wrong.
 
-**How to detect:** Readiness check C4 requires DSBV_PROCESS.md to be loaded. If the agent cannot cite specific phase rules or readiness conditions (C1-C6) from the process doc, it likely skipped the load.
+**How to detect:** Readiness check C4 requires dsbv-process.md to be loaded. If the agent cannot cite specific phase rules or readiness conditions (C1-C6) from the process doc, it likely skipped the load.
 
-**Fix:** Before entering any DSBV phase, run the full readiness check. C4 specifically requires loading `_genesis/templates/DSBV_PROCESS.md`. If the file is missing or unreadable, STOP and alert the user — do not guess at process rules.
+**Fix:** Before entering any DSBV phase, run the full readiness check. C4 specifically requires loading `_genesis/templates/dsbv-process.md`. If the file is missing or unreadable, STOP and alert the user — do not guess at process rules.
 
 ---
 
@@ -65,7 +65,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 ## Links
 
 - [[DESIGN]]
-- [[DSBV_PROCESS]]
+- [[dsbv-process]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]

@@ -8,7 +8,7 @@ owner: "{{OWNER}}"
 # ADR Register — ALIGN Workstream
 
 > Architecture Decision Records track non-trivial decisions with multiple viable options.
-> Source template: `_genesis/templates/ADR_TEMPLATE.md`
+> Source template: `_genesis/templates/adr-template.md`
 
 ---
 
@@ -34,7 +34,7 @@ Every decision with multiple viable options produces an ADR in this directory. A
 ## ADR File Convention
 
 - **Filename:** `ADR-{NNN}-{short-slug}.md` (e.g., `ADR-001-database-selection.md`)
-- **Template:** Use `_genesis/templates/ADR_TEMPLATE.md` for each individual ADR
+- **Template:** Use `_genesis/templates/adr-template.md` for each individual ADR
 - **Location:** `1-ALIGN/decisions/`
 - **Archive:** Deprecated or superseded ADRs move to `1-ALIGN/decisions/archive/`
 

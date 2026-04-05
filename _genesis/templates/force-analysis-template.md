@@ -77,5 +77,5 @@ _[e.g., "Adopt a multi-agent DSBV workflow for all LTC projects."]_
 ## Links
 
 - [[DESIGN]]
-- [[RISK_ENTRY_TEMPLATE]]
+- [[risk-entry-template]]
 - [[dsbv]]

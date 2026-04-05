@@ -6,12 +6,12 @@ workstream: IMPROVE
 owner: "{{OWNER}}"
 ---
 
-> Source template: `_genesis/templates/FEEDBACK_TEMPLATE.md`
+> Source template: `_genesis/templates/feedback-template.md`
 
 # Feedback Register
 
 > Running log of friction and improvement ideas across all workstreams.
-> Individual feedback entries follow the format in `_genesis/templates/FEEDBACK_TEMPLATE.md`.
+> Individual feedback entries follow the format in `_genesis/templates/feedback-template.md`.
 > Aggregate this register at each retrospective — high-severity items → action items.
 
 ## Register

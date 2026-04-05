@@ -74,7 +74,7 @@ _[Describe the architecture here.]_
 
 ## Links
 
-- [[ADR_TEMPLATE]]
+- [[adr-template]]
 - [[alpei-dsbv-process-map]]
 - [[DESIGN]]
 - [[blocker]]

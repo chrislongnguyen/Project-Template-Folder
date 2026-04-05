@@ -1,6 +1,6 @@
 ---
 version: "1.2"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 ---
 
@@ -133,7 +133,7 @@ For every `.md` workstream artifact you edited:
 
 ## After You Commit — 2 Updates
 
-1. `_genesis/VERSION_REGISTRY.md` — update the row for every workstream artifact committed
+1. `_genesis/version-registry.md` — update the row for every workstream artifact committed
 2. `5-IMPROVE/changelog/CHANGELOG.md` — add an entry before creating any PR
 
 ---
@@ -155,7 +155,7 @@ Conventions: `.claude/rules/git-conventions.md` | Versioning: `.claude/rules/ver
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[SKILL]]
-- [[VERSION_REGISTRY]]
+- [[version-registry]]
 - [[git-conventions]]
 - [[iteration]]
 - [[project]]

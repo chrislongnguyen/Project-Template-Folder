@@ -1,6 +1,6 @@
 ---
 version: "1.2"
-status: Draft
+status: draft
 last_updated: 2026-04-03
 owner: "Long Nguyen"
 workstream: GOVERN
@@ -101,7 +101,7 @@ their content into canonical files.
 | COGNITIVE_BIASES.md | SUBSET | Already covered by rules/agent-system.md §4 (6 biases). Archive. |
 | CRITICAL_THINKING.md | 100% SUBSET | Archive. Canonical: ltc-effective-thinking.md |
 | UBS_UDS_GUIDE.md | SUBSET | Archive. Canonical: ltc-ubs-uds-framework.md |
-| UES_VERSION_BEHAVIORS.md | EXACT DUPLICATE | Delete (no unique value to preserve). |
+| ues-version-behaviors.md | EXACT DUPLICATE | Delete (no unique value to preserve). |
 
 Archive header format:
 ```markdown
@@ -269,10 +269,10 @@ content changes to preserve git rename tracking for downstream project merges.
 | | `.claude/skills/dsbv/SKILL.md` (lines 91, 132, 180) |
 | | `.claude/skills/dsbv/references/context-packaging.md` (line 48) |
 | | `3-PLAN/architecture/ARCHITECTURE.md` (lines 12, 57) |
-| | `_genesis/VERSION_REGISTRY.md` (line 51) |
+| | `_genesis/version-registry.md` (line 51) |
 | | `_genesis/tools/alpei-navigator.html` (lines 392-396) |
 | | `_genesis/templates/README.md` (lines 53, 63) |
-| | `_genesis/templates/ARCHITECTURE_TEMPLATE.md` (line 44) |
+| | `_genesis/templates/architecture-template.md` (line 44) |
 | | `_genesis/frameworks/README.md` (multiple lines) |
 | | `_genesis/sops/ALPEI_OPERATING_PROCEDURE.md` (line 22) — being archived, update anyway |
 | `HISTORY_VERSION_CONTROL.md` | `CLAUDE.md` (line 107) |
@@ -284,7 +284,7 @@ content changes to preserve git rename tracking for downstream project merges.
 | | `_genesis/principles/README.md` (line 22) |
 | | `_genesis/frameworks/README.md` |
 | `LEARNING_HIERARCHY.md` | `_genesis/tools/alpei-navigator.html` (lines 276, 385) |
-| | `_genesis/templates/RESEARCH_TEMPLATE.md` (line 8 — uses stale `_shared/` path) |
+| | `_genesis/templates/research-template.md` (line 8 — uses stale `_shared/` path) |
 | | `_genesis/frameworks/README.md` |
 
 **Verification:** After rename commit, `grep -r "ALPEI_DSBV_PROCESS_MAP\|AGENT_SYSTEM\|AGENT_DIAGNOSTIC\|LEARNING_HIERARCHY\|HISTORY_VERSION_CONTROL" . --include='*.md' --include='*.html' --include='*.tsx'` must return zero hits outside `archive/`.
@@ -580,7 +580,7 @@ Rating: PASS WITH CONDITIONS. 1 blocker + 3 important + 4 minor found. All resol
 2. **FIXED:** File count arithmetic corrected: 26 → 19 (18 canonical + README), not 16.
    Delta is -7 active (-27%), not -10 (-38%).
 3. **FIXED:** Expanded D7 reference table to include ALL locations referencing old names:
-   `3-PLAN/architecture/`, `_genesis/VERSION_REGISTRY.md`, `_genesis/tools/alpei-navigator.html`,
+   `3-PLAN/architecture/`, `_genesis/version-registry.md`, `_genesis/tools/alpei-navigator.html`,
    `_genesis/templates/`, `_genesis/principles/`, `rules/agent-system.md`, `rules/agent-diagnostic.md`.
    Added verification grep command.
 4. **FIXED:** CLAUDE.md line 17 "APEI" → "ALPEI" typo noted for correction in Step 6.

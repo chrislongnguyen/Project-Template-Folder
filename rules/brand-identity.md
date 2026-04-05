@@ -1,4 +1,4 @@
-<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/brand/BRAND_GUIDE.md -->
+<!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/brand/brand-guide.md -->
 # LTC Brand Identity Rules
 
 > Source of truth: ClickUp Wiki — [LTC ALL]_WIKI > 1. LTC's BRAND IDENTITY SYSTEM (verify this path is current — Notion is now the primary WMS)
@@ -127,6 +127,6 @@ ClickUp location: [LTC ALIGN]_MEMBER GUIDES > [LTC ALL]_ALIGN - WIKI & GUIDES > 
 
 ## Links
 
-- [[BRAND_GUIDE]]
+- [[brand-guide]]
 - [[DESIGN]]
 - [[workstream]]

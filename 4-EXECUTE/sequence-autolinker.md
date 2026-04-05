@@ -8,7 +8,7 @@ feature: "Obsidian Auto-Linker (Self-Discovering Wikilink System)"
 ---
 # SEQUENCE workstream: Obsidian Auto-Linker
 
-> Build order for DESIGN_AUTOLINKER.md artifacts A1-A5. Each task must pass its ACs before the next begins.
+> Build order for design-autolinker.md artifacts A1-A5. Each task must pass its ACs before the next begins.
 > Agent: ltc-builder (Sonnet). Validator: ltc-reviewer (Opus).
 
 ---
@@ -43,7 +43,7 @@ A2 (Alias seeder)
 
 ### T1 — Write Alias Seeder Script
 
-**Input:** DESIGN_AUTOLINKER.md §Phase 1 step 1, existing repo .md files with frontmatter
+**Input:** design-autolinker.md §Phase 1 step 1, existing repo .md files with frontmatter
 **What to produce:**
 - `scripts/obsidian-alias-seeder.py` — scans repo for target files (ADRs, registers, frameworks), adds `aliases:` to their YAML frontmatter
 - `--dry-run` mode that reports without modifying
@@ -60,7 +60,7 @@ python3 scripts/obsidian-alias-seeder.py && test $(grep -r "^aliases:" --include
 
 ### T2 — Write Auto-Linker Script
 
-**Input:** DESIGN_AUTOLINKER.md §Phase 1-3 (DISCOVER → SCAN → WRITE), A2 alias seeder output
+**Input:** design-autolinker.md §Phase 1-3 (DISCOVER → SCAN → WRITE), A2 alias seeder output
 **What to produce:**
 - `scripts/obsidian-autolinker.py` — 3-phase engine:
   - Phase 1 DISCOVER: build target_map from aliases + filenames + content IDs + framework names
@@ -158,7 +158,7 @@ grep -qi "clone\|template\|your project" 4-EXECUTE/docs/AUTOLINKER_README.md && 
 
 - [[ADR-002]]
 - [[DESIGN]]
-- [[DESIGN_AUTOLINKER]]
+- [[design-autolinker]]
 - [[README]]
 - [[SEQUENCE]]
 - [[documentation]]

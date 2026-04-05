@@ -9,8 +9,8 @@ owner: "{{OWNER}}"
 # VALIDATE.md — PLAN Workstream
 
 > DSBV Phase 4 artifact. Validates all PLAN artifacts against acceptance criteria in DESIGN.md.
-> Source template: `_genesis/templates/REVIEW_TEMPLATE.md`
-> Full sprint/execution review template: `5-IMPROVE/reviews/REVIEW_TEMPLATE.md`
+> Source template: `_genesis/templates/review-template.md`
+> Full sprint/execution review template: `5-IMPROVE/reviews/review-template.md`
 
 <!-- TODO: Fill in during PLAN Validate phase -->
 

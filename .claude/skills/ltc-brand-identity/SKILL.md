@@ -22,7 +22,7 @@ approved colors, typography, and logo treatment instead of generic defaults.
 ## Steps
 
 1. **Load canonical rules**
-   Read [rules/brand-identity.md](../../../rules/brand-identity.md) from the repo root (source of truth). Optional human-oriented detail: [_genesis/brand/BRAND_GUIDE.md](../../../_genesis/brand/BRAND_GUIDE.md) if present.
+   Read [rules/brand-identity.md](../../../rules/brand-identity.md) from the repo root (source of truth). Optional human-oriented detail: [_genesis/brand/brand-guide.md](../../../_genesis/brand/brand-guide.md) if present.
 
 2. **Choose application profile**
    Reference: [references/application-profiles.md](references/application-profiles.md) — web, print-like, or MS Office theme slots.
@@ -57,7 +57,7 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 ## Links
 
-- [[BRAND_GUIDE]]
+- [[brand-guide]]
 - [[CLAUDE]]
 - [[application-profiles]]
 - [[brand-identity]]

@@ -1,6 +1,6 @@
 ---
 version: "1.1"
-status: Draft
+status: draft
 last_updated: 2026-04-02
 ---
 
@@ -66,12 +66,12 @@ Before staging any modified `.md` workstream artifact, verify:
 ## Post-Commit Requirements (workstream artifacts)
 
 After every commit that includes a workstream artifact:
-- Update `_genesis/VERSION_REGISTRY.md` row (version, status, date)
+- Update `_genesis/version-registry.md` row (version, status, date)
 - Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
 
 ## Branch Strategy
 
-Never commit directly to main. Follow I0-I4 branching — see `_genesis/sops/GIT_WORKFLOW.md`.
+Never commit directly to main. Follow I0-I4 branching — see `_genesis/sops/git-workflow.md`.
 
 ## Staging Rule
 

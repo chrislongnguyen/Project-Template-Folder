@@ -1,11 +1,11 @@
 ---
-version: "1.4"
-status: Draft
+version: "1.5"
+status: draft
 last_updated: 2026-04-03
 ---
 # Versioning — Always-On Rule
 
-Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesis/VERSION_REGISTRY.md`
+Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesis/version-registry.md`
 
 ## Required Metadata by File Type
 
@@ -13,6 +13,30 @@ Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesi
 - **Shell/Python (`.sh`, `.py`):** Comment header `# version: X.Y | status: Draft | last_updated: YYYY-MM-DD`
 - **HTML:** `<meta>` tags for version, status, last-updated
 - **JSON/YAML/TOML config, binaries:** Exempt — git history is sufficient
+
+## Frontmatter Value Casing
+
+All frontmatter values MUST be lowercase. Obsidian Bases filters are case-sensitive; mixed-case values cause silent query failures.
+
+```yaml
+# WRONG
+status: Draft
+iteration_name: Concept
+
+# CORRECT
+status: draft
+iteration_name: concept
+```
+
+YAML boolean hazard: values like `true`, `false`, `yes`, `no` are natively boolean in YAML. If used as string metadata, quote them to prevent type coercion.
+
+```yaml
+# WRONG — parsed as boolean true
+reviewed: yes
+
+# CORRECT — preserved as string
+reviewed: "yes"
+```
 
 ## LTC Version Number Convention
 
@@ -28,37 +52,62 @@ Whitespace / typo only  → no bump
 
 Git tags use `v{ITERATION}.0.0` format (e.g., v1.0.0 = I1 merged to main). File versions and git tags are separate systems.
 
-## The 3 Fields
+## The 4 Fields
 
-| Field | What it tracks | Who sets it |
-|-------|---------------|-------------|
-| `version` | Committed content state (MAJOR.MINOR per convention above) | Agent |
-| `status` | Lifecycle: `Draft` \| `Review` \| `Approved` | Agent sets Draft/Review. **Human ONLY sets Approved.** |
-| `last_updated` | Today's absolute date (YYYY-MM-DD) | Agent — update on every edit |
+| Field | What it tracks | Who sets it | Required |
+|-------|---------------|-------------|----------|
+| `version` | Committed content state (MAJOR.MINOR per convention above) | Agent | Yes |
+| `status` | Lifecycle: `draft` \| `review` \| `approved` (lowercase) | Agent sets draft/review. **Human ONLY sets approved.** | Yes |
+| `last_updated` | Today's absolute date (YYYY-MM-DD) | Agent — update on every edit | Yes |
+| `iteration_name` | Semantic label for the iteration — supplementary only | Agent | No |
+
+`iteration_name` enum values (lowercase):
+
+| Value | Iteration |
+|-------|-----------|
+| `logic-scaffold` | I0 |
+| `concept` | I1 |
+| `prototype` | I2 |
+| `mve` | I3 |
+| `leadership` | I4 |
+
+Numeric `version` is primary (sortable, CI/CD compatible). `iteration_name` is supplementary metadata for human readability and Obsidian filtering. Never use `iteration_name` as a substitute for `version`.
+
+Example showing both fields together:
+
+```yaml
+---
+version: "1.4"
+status: draft
+last_updated: 2026-04-03
+iteration_name: concept
+---
+```
 
 ## Status Lifecycle
 
 ```
-Draft ──→ Review ──→ Approved
+draft ──→ review ──→ approved
   ↑          ↑           ↑
 Agent      Agent      HUMAN ONLY
 creates    requests   (Agent NEVER
 & edits    review      self-approves)
 ```
 
-- New files start as `Draft`
-- Editing an `Approved` file → new version, reset to `Draft`
+- New files start as `draft`
+- Editing an `approved` file → new version, reset to `draft`
 
 ## After Editing Any Workstream Artifact
 
-Update the corresponding row in `_genesis/VERSION_REGISTRY.md` — version, status, and date.
+Update the corresponding row in `_genesis/version-registry.md` — version, status, and date.
 
 ## Pre-Commit Checklist
 
 1. `version` — follows 1.x (I1) convention, bumped only if previously committed
-2. `status` — not prematurely `Approved`
+2. `status` — lowercase (`draft` or `review`), not prematurely `approved`
 3. `last_updated` — today's absolute date
-4. `_genesis/VERSION_REGISTRY.md` — row updated if this is a workstream artifact
+4. All frontmatter values lowercase (R4)
+5. `_genesis/version-registry.md` — row updated if this is a workstream artifact
 
 ## PR-Level Requirements
 
@@ -72,10 +121,12 @@ Update the corresponding row in `_genesis/VERSION_REGISTRY.md` — version, stat
 | Using `version: "2.0"` for I1 content | I1 = 1.x always. 2.x is for I2. |
 | Using `version: "0.1"` | LTC does not use 0.x. New file in I1 = "1.0". |
 | Bumping version on uncommitted rewrite | No bump — it was never committed at the prior number |
-| Setting `status: Approved` without human | Only human approves. Agent sets Draft or Review. |
-| Forgetting `status` field | All three fields required: version + status + last_updated |
+| Setting `status: Approved` without human | Only human approves. Agent sets draft or review. |
+| Forgetting `status` field | All four fields (version + status + last_updated) required; iteration_name optional |
 | Relative dates ("today") | Always absolute: 2026-03-31 |
-| Skipping VERSION_REGISTRY update | Every workstream artifact edit must update the registry row |
+| Skipping version-registry update | Every workstream artifact edit must update the registry row |
+| Using `status: Draft` (uppercase) | All frontmatter values lowercase: `status: draft` |
+| Using `iteration_name` without numeric `version` | `version` is primary and always required; `iteration_name` is supplementary only |
 
 ## Version Awareness
 
