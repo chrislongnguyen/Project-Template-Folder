@@ -134,7 +134,7 @@ Shipping constraint:
 | Dependency | Status |
 |---|---|
 | `.claude/hooks/lib/config.sh` — vault resolution | Ready |
-| `scripts/setup-vault.sh` — vault folder scaffold | Ready |
+| `scripts/setup-vault.sh` — vault folder scaffold (migrated from `4-EXECUTE/scripts/`) | Ready |
 | `scripts/status-guard.sh` + `scripts/link-validator.sh` — smoke test S4 | Ready |
 | `.claude/settings.json` — smoke test S5 | Ready |
 
