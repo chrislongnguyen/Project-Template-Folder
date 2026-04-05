@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: Draft
-last_updated: 2026-04-03
+last_updated: 2026-04-05
 ---
 
 # Migration Guide — Upgrading to ALPEI Template I1
@@ -165,6 +165,55 @@ claude
 # Start your first DSBV cycle:
 /dsbv design align
 ```
+
+---
+
+## Memory Vault Setup (I2 — all members)
+
+The memory-vault hook system ships with the template. Hooks write session summaries, state, and captures to a vault directory on your machine. This section gets you set up in under 5 minutes.
+
+### First time (new clone or new machine)
+
+```bash
+# In Claude Code:
+/setup
+```
+
+This runs 4 steps automatically:
+1. Configures your vault path → writes `~/.config/memory-vault/config.sh`
+2. Creates vault folder structure (`inbox/`, `AI-AGENT-MEMORY/`, etc.)
+3. Checks QMD search index (skips gracefully if not installed)
+4. Runs smoke test — confirms 5 checks pass
+
+### Existing members upgrading from I2 (2026-04-05 commit)
+
+`setup-vault.sh` moved from `4-EXECUTE/scripts/` → `scripts/`. Run `/setup` once after pulling — it auto-detects and fixes stale path references.
+
+Or verify manually:
+
+```bash
+./scripts/smoke-test.sh   # shows pass/fail for each check with fix hints
+```
+
+### Smoke test reference (5 checks)
+
+| Check | What it verifies | Fix if failing |
+|---|---|---|
+| S1 | `~/.config/memory-vault/config.sh` exists | Run `/setup` step 1 |
+| S2 | Vault path resolves to existing directory | Check MEMORY_VAULT_PATH in config file |
+| S3 | `inbox/` and `AI-AGENT-MEMORY/` exist in vault | Run `./scripts/setup-vault.sh <path>` |
+| S4 | Pre-commit scripts present and executable | `git pull origin I2/feat/obsidian-bases` |
+| S5 | PostToolUse + SubagentStop + SessionStart wired | Pull latest settings.json |
+
+### QMD (optional but recommended)
+
+QMD enables semantic search over your vault content via `mcp__qmd__query`. Install from the Extension Registry, then:
+
+```bash
+qmd index <your-vault-path>
+```
+
+Re-index periodically as your vault grows (hooks write new files every session).
 
 ---
 
