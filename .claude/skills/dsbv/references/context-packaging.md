@@ -1,7 +1,7 @@
 ---
-version: "1.4"
+version: "1.5"
 status: Draft
-last_updated: 2026-03-31
+last_updated: 2026-04-05
 ---
 # Context Packaging Template — Sub-Agent Invocation
 
@@ -79,6 +79,11 @@ Two sub-sections:
 ### Deliverable
 What artifact is produced, in what format, at what file path.
 Who consumes it downstream (next agent or human).
+
+**Completion report rule (ltc-builder / ltc-reviewer):** Your response IS the
+completion report — the orchestrator reads your output directly. Do NOT route
+or defer ("report sent to ltc-planner"). Write the report now. Format:
+`DONE: <artifact-path> | ACs: <pass-count>/<total> | Blockers: <none or list>`
 
 ### Acceptance Criteria (EP-10: Define Done)
 Binary tests the agent self-verifies before completing.
