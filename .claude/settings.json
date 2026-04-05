@@ -37,6 +37,12 @@
             "command": "./.claude/hooks/session-reconstruct.sh",
             "timeout": 10,
             "statusMessage": "Reconstructing session state..."
+          },
+          {
+            "type": "command",
+            "command": "./scripts/pkb-lint.sh",
+            "timeout": 10,
+            "statusMessage": "Checking PKB health..."
           }
         ]
       }
@@ -70,9 +76,21 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/session-summary.sh",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && ./.claude/hooks/session-summary.sh'",
             "timeout": 10,
             "statusMessage": "Saving session summary..."
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && ./scripts/pkb-ingest-reminder.sh'",
+            "timeout": 5,
+            "statusMessage": "Checking for uningested knowledge..."
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && ./scripts/pkb-lint.sh'",
+            "timeout": 10,
+            "statusMessage": "Checking PKB health..."
           }
         ]
       }
