@@ -14,8 +14,8 @@ secrets/
 *.pfx
 *.jks
 
-# Personal Knowledge Base — private, never commit
-PERSONAL-KNOWLEDGE-BASE/
+# Personal Knowledge Base — captured/ is gitignored (raw sources, often large)
+PERSONAL-KNOWLEDGE-BASE/captured/
 
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json
