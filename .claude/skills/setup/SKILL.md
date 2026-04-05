@@ -1,7 +1,7 @@
 ---
 name: setup
 version: "1.0"
-status: Draft
+status: draft
 last_updated: 2026-04-05
 description: "Configure the LTC memory-vault harness on a fresh clone. Writes vault config, scaffolds vault folders, checks QMD, runs smoke test. Use when onboarding to a new machine or after cloning the project template."
 trigger: "/setup | set up my vault | configure memory vault | configure my vault | onboard"

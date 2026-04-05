@@ -1,7 +1,7 @@
 ---
 name: template-check
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-05
 description: "Dry-run template sync report. Use when user says: template check, check template, what's new in template, template diff, template status."
 agents:
