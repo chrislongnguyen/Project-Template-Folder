@@ -63,3 +63,5 @@
 **Root cause:** QMD needs `qmd embed` after new files are added to update vector index.
 **Fix:** After ingest, remind user to run `qmd embed` (or it runs automatically on next session start if configured). The post-validation `pkb-lint.sh` check will warn about unembedded files in future versions.
 **EP:** EP-14 (Script-First Delegation) — embedding is a deterministic operation.
+**Post-ingest command:** `qmd update distilled && qmd embed` — add to Validation Gate if QMD distilled collection is configured.
+**Recovery:** If `qmd embed` fails with UNIQUE constraint errors, run `qmd embed -f` once to rebuild (takes ~5min on M3).
