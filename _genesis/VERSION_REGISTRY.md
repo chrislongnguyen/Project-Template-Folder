@@ -66,6 +66,13 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `_genesis/SEQUENCE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/VALIDATE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/DESIGN-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
+| `.claude/skills/setup/SKILL.md` | 1.0 | Draft | 2026-04-05 |
+| `scripts/smoke-test.sh` | 1.0 | Draft | 2026-04-05 |
+| `scripts/setup-vault.sh` | 2.1 | Draft | 2026-04-05 |
+| `scripts/setup-obsidian.sh` | 2.2 | Draft | 2026-04-05 |
+| `scripts/migrate-status.sh` | 2.0 | Draft | 2026-04-05 |
+| `_genesis/SEQUENCE-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
+| `_genesis/VALIDATE-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
 > **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.

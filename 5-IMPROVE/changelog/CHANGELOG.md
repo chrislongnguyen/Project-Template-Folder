@@ -6,6 +6,19 @@ last_updated: 2026-04-03
 
 # CHANGELOG
 
+## [I2 — Prototype] 2026-04-05 — EP-12/EP-13 + /setup Skill + Script Migration
+
+**Branch:** `I2/feat/obsidian-bases`
+
+### Added (Cycle B — /setup Skill)
+- `/setup` skill (`skills/setup/SKILL.md` v1.0): 4-step guided onboarding — vault config, scaffold, QMD check, smoke test
+- `scripts/smoke-test.sh` v1.0: standalone 5-check harness health verifier
+
+### Refactored
+- `setup-vault.sh`, `setup-obsidian.sh`, `migrate-status.sh`: moved from `4-EXECUTE/scripts/` → `scripts/` (template infrastructure belongs in top-level scripts/, not workstream execution)
+
+---
+
 ## [I2 — Prototype] 2026-04-05 — EP-12/EP-13 Layer 1 Enforcement + Cycle B Design
 
 **Branch:** `I2/feat/obsidian-bases`
