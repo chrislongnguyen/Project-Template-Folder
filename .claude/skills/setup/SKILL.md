@@ -18,7 +18,29 @@ Safe to run twice — all steps are idempotent.
 
 ## Pre-Flight
 
-Before starting, confirm you are in the project root:
+### Migration Check (run first, once)
+
+Check for the old `4-EXECUTE/scripts/setup-vault.sh` path — it moved to `scripts/` in I2:
+
+```bash
+# 1. Remove stale copy if it somehow still exists
+if [ -f "4-EXECUTE/scripts/setup-vault.sh" ]; then
+  echo "⚠ Found stale 4-EXECUTE/scripts/setup-vault.sh — removing (moved to scripts/)"
+  rm 4-EXECUTE/scripts/setup-vault.sh
+fi
+
+# 2. Scan for references to the old path in common locations
+grep -r "4-EXECUTE/scripts/setup-vault" . \
+  --include="*.sh" --include="*.md" --include="*.json" \
+  -l 2>/dev/null | grep -v ".git"
+```
+
+If files reference the old path: show them and offer to sed-replace in-place.
+If nothing found: skip silently.
+
+### Project Root Check
+
+Confirm you are in the project root:
 
 ```bash
 git rev-parse --show-toplevel   # should return the project directory
