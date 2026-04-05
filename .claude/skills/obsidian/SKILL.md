@@ -1,9 +1,9 @@
 ---
 name: obsidian-cli
-description: Use when searching the Obsidian vault semantically, traversing backlinks, accessing daily notes, or finding knowledge graph connections — when Obsidian is running. Falls back to Grep/Glob silently if not running.
-version: "1.3"
+description: Use for graph traversal (backlinks, outgoing-links, orphans) — Obsidian's unique value vs QMD/Grep. QMD handles semantic search; Grep handles exact-match. Obsidian is Priority 2 for structural graph relationships only, when the app is running.
+version: "1.4"
 status: Draft
-last_updated: "2026-04-02"
+last_updated: "2026-04-05"
 ---
 # /obsidian — Obsidian CLI Integration
 
@@ -105,7 +105,7 @@ All commands use `key=value` syntax. The app must be running.
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `obsidian search:context query="X"` | Primary search — returns excerpts inline alongside file paths | `obsidian search:context query="ADR decision obsidian"` |
+| `obsidian search:context query="X"` | Vault-scoped keyword/semantic search — use QMD first; fall back to this when Obsidian-only context is needed | `obsidian search:context query="ADR decision obsidian"` |
 | `obsidian backlinks path="X"` | Find all notes linking to a given note | `obsidian backlinks path="projects/APEI.md"` |
 | `obsidian outgoing-links path="X"` | Get all links from a note | `obsidian outgoing-links path="projects/APEI.md"` |
 | `obsidian orphans` | Find files with no inbound or outbound links | `obsidian orphans` |
@@ -147,6 +147,8 @@ obsidian orphans
 ```
 
 Returns a list of file paths. Use to identify isolated notes that may be stale, unlinked, or missing categorization.
+
+**Repo-scoped alternative (no app dependency):** `scripts/orphan-detect.sh` (D2 harness) detects orphaned `.md` files in the repo without requiring Obsidian to be running. Prefer this for CI or Build-phase work. `obsidian orphans` covers the broader vault (notes outside the repo) — use it when vault-wide coverage is needed.
 
 ---
 
