@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-04-05
 owner: "Long Nguyen"
 name: ltc-clickup-planner
 description: >
@@ -202,8 +202,8 @@ When the agent encounters a blocker (or user reports one):
 ## Related Skills
 
 - **notion-planner** — plans on Notion (different WMS, same VANA principles)
-- **session-end** — vault logging, not ClickUp
-- **session-start** — reads tasks, doesn't modify ClickUp
+- **compress** (`/compress`) — vault logging, not ClickUp
+- **resume** (`/resume`) — reads tasks, doesn't modify ClickUp
 
 ## Links
 
