@@ -43,7 +43,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 
 | Workstream          | Description                                        | Version | Status     | Last Updated |
 |---------------|----------------------------------------------------|---------|------------|--------------|
-| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-03 |
+| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-05 |
 | _genesis      | Reference layer — BLUEPRINT.md, brand, frameworks (18 canonical), security, SOPs, templates, 5 Vinh PDFs | 2.0 | Draft | 2026-04-03 |
 
 ### Recently Modified Files (I2 Cleanup — 2026-04-03)
@@ -56,6 +56,16 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `.claude/rules/versioning.md` | 1.4 | Draft | 2026-04-03 |
 | `_genesis/DESIGN-genesis-blueprint-cleanup.md` | 1.2 | Draft | 2026-04-03 |
 | `_genesis/SEQUENCE-genesis-blueprint-cleanup.md` | 2.0 | Draft | 2026-04-03 |
+| `.claude/hooks/verify-deliverables.sh` | 1.2 | Draft | 2026-04-05 |
+| `.claude/hooks/nesting-depth-guard.sh` | 1.0 | Draft | 2026-04-05 |
+| `.claude/agents/ltc-builder.md` | 1.3 | Draft | 2026-04-05 |
+| `.claude/agents/ltc-reviewer.md` | 1.3 | Draft | 2026-04-05 |
+| `.claude/agents/ltc-explorer.md` | 1.3 | Draft | 2026-04-05 |
+| `.claude/agents/ltc-planner.md` | 1.3 | Draft | 2026-04-05 |
+| `_genesis/DESIGN-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
+| `_genesis/SEQUENCE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
+| `_genesis/VALIDATE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
+| `_genesis/DESIGN-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
 
 > **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
 > **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.

@@ -6,6 +6,23 @@ last_updated: 2026-04-03
 
 # CHANGELOG
 
+## [I2 — Prototype] 2026-04-05 — EP-12/EP-13 Layer 1 Enforcement + Cycle B Design
+
+**Branch:** `I2/feat/obsidian-bases`
+
+### Added
+- EP-12 Blockers gate: `verify-deliverables.sh` v1.2 — parses DONE format Blockers field, blocks (exit 1) if non-none/non-warn; scope note: build/validate loop only
+- EP-13 observer: `nesting-depth-guard.sh` v1.0 — PostToolUse hook logs every Agent() dispatch, warns if CLAUDE_PARENT_AGENT_ID set; honest #40580 gap documented
+- EP-13 constraints: all 4 agent files v1.3 — leaf nodes (builder/reviewer/explorer) get NEVER call Agent(); ltc-planner gets authorized orchestrator exception + one-level-deep limit
+- settings.json: PostToolUse Agent → nesting-depth-guard.sh wired
+- DSBV artifacts: DESIGN + SEQUENCE + VALIDATE for EP-12/EP-13 cycle (17/17 ACs pass)
+- Cycle B DESIGN draft: `/setup` skill + smoke-test.sh (2 deliverables, 17 ACs)
+
+### Fixed
+- Duplicate version/last_updated frontmatter fields in all 4 agent files
+
+---
+
 ## [I2 — Prototype] 2026-04-03 — _genesis/ Cleanup + Blueprint Restructure
 
 **Branch:** `I2/chore/genesis-blueprint-cleanup`
