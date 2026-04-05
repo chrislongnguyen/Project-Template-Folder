@@ -1,7 +1,7 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
-last_updated: 2026-04-03
+last_updated: 2026-04-05
 owner: "Long Nguyen"
 workstream: GOVERN
 type: charter
@@ -134,19 +134,22 @@ PD's Effective Principles always take precedence. If a downstream sub-system's d
 
 ### PRINCIPLE 7: THREE LEVELS OF FOLDER DEPTH, FRONTMATTER FOR THE REST
 
-Physical folder structure encodes at most 3 dimensions:
+Physical folder structure encodes at most 3 dimensions (4 for EXECUTE code):
 
 ```
-Level 1: ALPEI workstream (1-ALIGN, 2-LEARN, 3-PLAN, 4-EXECUTE, 5-IMPROVE)
-Level 2: Sub-system (PD, DP, DA, IDM) or cross-cutting (_cross)
-Level 3: Files
+L1: Workstream    1-ALIGN, 2-LEARN, 3-PLAN, 4-EXECUTE, 5-IMPROVE
+L2: Subsystem     1-PD, 2-DP, 3-DA, 4-IDM, _cross (swappable per FA)
+L3: Files         {sub}-{name}.md (documents)
+L3: Code type     src, tests, config, notebooks, docs (EXECUTE only → L4: files)
 ```
 
-DSBV stage, 8-component model, UES version, iteration number, and status are encoded in YAML frontmatter. Obsidian Bases dashboards provide multiple views over this frontmatter without physical folder nesting.
+Iteration, DSBV stage, status, UES version, and 8-component model are encoded in YAML frontmatter. Obsidian Bases dashboards provide multi-dimensional views over frontmatter without physical folder nesting.
 
-**Why:** Game repos use deep nesting because binary assets have no searchable metadata. Markdown files have unlimited frontmatter — folder depth duplicates what metadata already provides. HCI research: beyond 3-4 levels, navigation time increases superlinearly (Allen, 1984). Obsidian community consensus: max 2-3 levels (forum surveys, 2022-2025). 160 empty folders at I0 paralyzes junior PMs (GAN analysis, this session).
+**Why not deeper:** Empirical testing (40 AI task sessions, 16 disk verifications, 4 falsification tests on `archive/I2/improve/filesystem-depth-test`) proved AI agents perform equally at any depth. However, encoding temporal dimensions (iteration, DSBV stage) as folders forces file duplication or misleading locations. Frontmatter preserves single-source-of-truth. Additionally: 3-layer structure = 46 directories vs 6-layer = 400 directories. UBS-1 (junior PM paralysis) is directly disabled by fewer empty folders.
 
-**Decision made:** 3-level structure won the adversarial GAN analysis 25/28 vs 18/28. The one concession: 4-EXECUTE may have a 4th level for code (src/tests/config) but NOT for documents.
+**Why not flatter:** Subsystem folders (L2) encode the sequential dependency chain (Principle 6: PD governs all). Removing L2 would lose this structural enforcement and require agents to read frontmatter before every file operation to determine domain.
+
+**Full spec:** `3-PLAN/_cross/filesystem-blueprint.md` | **Routing rule:** `rules/filesystem-routing.md`
 
 ---
 
@@ -385,27 +388,34 @@ status: draft             # S2 vocabulary: draft | in-progress | in-review | val
                           # (human only sets: validated)
 last_updated: 2026-04-03  # Always absolute date
 type: ues-deliverable     # ues-deliverable | template | learning-source | reference
-sub_system: PD  # problem-diagnosis | data-pipeline | data-analysis | insights-decision-making
+sub_system: 1-PD  # 1-PD | 2-DP | 3-DA | 4-IDM | _cross
 work_stream: 3-PLAN       # 1-ALIGN | 2-LEARN | 3-PLAN | 4-EXECUTE | 5-IMPROVE
 stage: design             # design | sequence | build | validate
 component: EI             # EI | EU | EA | EO | EP | EOE | EOT | EOP (optional)
-iteration: 1              # 0-4
-ues_version: concept      # logic-scaffold | concept | prototype | mve | leadership
+iteration: 1              # 0=scaffold | 1=concept | 2=prototype | 3=mve | 4=leadership
 ---
 ```
 
-### TABLE 3: 3-LEVEL FOLDER STRUCTURE
+### TABLE 3: FOLDER STRUCTURE (3-LAYER DOCS / 4-LAYER CODE)
 
 ```
 project-root/
-├── 1-ALIGN/{PD,DP,DA,IDM,_cross}/files.md    ← Level 3: files
-├── 2-LEARN/{PD,DP,DA,IDM,_cross}/files.md
-├── 3-PLAN/{PD,DP,DA,IDM,_cross}/files.md
-├── 4-EXECUTE/{PD,DP,DA,IDM}/src|tests|config/ ← Level 4: code only
-├── 5-IMPROVE/{PD,DP,DA,IDM,_cross}/files.md
-├── _genesis/                                   ← Shared frameworks
-└── .claude/                                    ← Agent config
+├── 1-ALIGN/{1-PD,2-DP,3-DA,4-IDM,_cross}/files.md    ← L3: subsystem-prefixed docs
+├── 2-LEARN/{1-PD,2-DP,3-DA,4-IDM,_cross}/files.md
+├── 3-PLAN/{1-PD,2-DP,3-DA,4-IDM,_cross}/files.md
+├── 4-EXECUTE/{1-PD,2-DP,3-DA,4-IDM}/                  ← L3: code type folders
+│   └── {src,tests,config,notebooks,docs}/files         ← L4: code files
+├── 5-IMPROVE/{1-PD,2-DP,3-DA,4-IDM,_cross}/files.md
+├── _genesis/                                            ← Shared frameworks
+├── .claude/                                             ← Agent config
+├── DAILY-NOTES/                                         ← PM personal
+├── MISC-TASKS/                                          ← PM personal
+└── inbox/                                               ← PM personal
 ```
+
+Subsystems are numbered to enforce sequential dependency (Principle 6).
+Default subsystems (UE/Investment): PD, DP, DA, IDM. Swappable per functional area.
+Full routing table: `rules/filesystem-routing.md`
 
 ### TABLE 4: AGENT ROSTER
 

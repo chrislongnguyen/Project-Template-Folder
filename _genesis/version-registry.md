@@ -1,7 +1,7 @@
 ---
 version: "1.5"
 status: draft
-last_updated: 2026-04-03
+last_updated: 2026-04-05
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
@@ -26,7 +26,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | 2-LEARN × Sequence    | SEQUENCE.md                            | 1.1     | Approved    | —       | 2026-03-30   | TBD      |
 | 2-LEARN × Build       | input/, research/, specs/, output/     | 1.x     | In Progress | —       | 2026-03-30   | TBD      |
 | 2-LEARN × Validate    | VALIDATE.md                            | —       | Not Started | —       | —            | TBD      |
-| 3-PLAN × Design       | DESIGN.md                              | —       | Pending     | —       | —            | TBD      |
+| 3-PLAN × Design       | filesystem-blueprint.md                | 1.0     | draft       | —       | 2026-04-04   | TBD      |
 | 3-PLAN × Sequence     | SEQUENCE.md                            | —       | Pending     | —       | —            | TBD      |
 | 3-PLAN × Build        | UBS/UDS Registers, Architecture        | —       | Pending     | —       | —            | TBD      |
 | 3-PLAN × Validate     | VALIDATE.md                            | —       | Pending     | —       | —            | TBD      |
