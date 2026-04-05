@@ -92,6 +92,30 @@
             "command": "bash -c 'if git diff --cached --name-only | grep -qE \"(SKILL\\.md|/skills/)\"; then ./scripts/skill-validator.sh --staged; fi'",
             "timeout": 15,
             "statusMessage": "Validating skill quality (EOP governance)..."
+          },
+          {
+            "type": "command",
+            "command": "./scripts/link-validator.sh --staged",
+            "timeout": 3,
+            "statusMessage": "Checking for broken wikilinks..."
+          },
+          {
+            "type": "command",
+            "command": "./scripts/registry-sync-check.sh",
+            "timeout": 3,
+            "statusMessage": "Checking VERSION_REGISTRY sync..."
+          },
+          {
+            "type": "command",
+            "command": "./scripts/status-guard.sh",
+            "timeout": 3,
+            "statusMessage": "Blocking agent self-approve..."
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'if git diff --cached --name-only | grep -qE \"^[1-5]-|^_genesis/\"; then git diff --cached --name-only | grep -q \"CHANGELOG.md\" || { echo \"WARN: workstream artifact staged but CHANGELOG.md not updated\" >&2; }; fi'",
+            "timeout": 3,
+            "statusMessage": "Checking changelog hygiene..."
           }
         ]
       },
@@ -137,6 +161,12 @@
             "command": "./.claude/hooks/state-saver.sh",
             "timeout": 10,
             "statusMessage": "Saving session state..."
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\"; if [[ \"$FILE\" == *.md ]]; then ./scripts/ripple-check.sh \"$(basename \"$FILE\")\" . | head -20; fi'",
+            "timeout": 5,
+            "statusMessage": "Checking backlink ripple..."
           }
         ]
       }

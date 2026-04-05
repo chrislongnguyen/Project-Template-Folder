@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# version: 1.0 | last_updated: 2026-03-30
+# version: 1.1 | status: Draft | last_updated: 2026-04-05
 # verify-deliverables.sh — SubagentStop hook
 # Checks that sub-agent output references expected deliverables before completing.
+# Also checks context packaging markers (## 1. EO, ## 5. VERIFY) per agent-dispatch.md.
 # Non-blocking failure: logs warning but does not block (human reviews).
 # Blocking failure: if AC check file exists and any AC is FAIL, blocks with message.
+#
+# NOTE: PreToolUse exit codes are IGNORED for Agent() calls (GitHub #40580).
+# This SubagentStop hook is the only enforcement point for context packaging.
 set -euo pipefail
 
 # Read hook input from stdin (JSON)
@@ -23,6 +27,24 @@ fi
 PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
 if [[ -z "$PROJECT_ROOT" ]]; then
   exit 0
+fi
+
+# Check context packaging markers in sub-agent output
+# These markers indicate the agent was invoked with the 5-field template
+CP_WARNINGS=""
+if [[ -n "$LAST_MESSAGE" ]]; then
+  if ! echo "$LAST_MESSAGE" | grep -q "## 1\. EO"; then
+    CP_WARNINGS="${CP_WARNINGS}\n  - Missing '## 1. EO' — agent may not have received context package"
+  fi
+  if ! echo "$LAST_MESSAGE" | grep -q "## 5\. VERIFY"; then
+    CP_WARNINGS="${CP_WARNINGS}\n  - Missing '## 5. VERIFY' — agent may not have self-verified"
+  fi
+fi
+
+if [[ -n "$CP_WARNINGS" ]]; then
+  echo "⚠ Context packaging check for '${AGENT_TYPE}':${CP_WARNINGS}" >&2
+  echo "Agent output may lack structured verification. Review before trusting." >&2
+  # Non-blocking: warn only (context packaging is best-effort due to #40580)
 fi
 
 # Check for AC verification file: .claude/ac/<agent-type>.json
