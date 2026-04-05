@@ -25,8 +25,8 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# Repo root is two levels up from 4-EXECUTE/scripts/ (scripts/ → 4-EXECUTE/ → repo root)
-REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+# Repo root is one level up from scripts/ (migrated from 4-EXECUTE/scripts/ in prior commit)
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 WORKSTREAM_DIRS=(
   "1-ALIGN"
@@ -141,16 +141,11 @@ for dir in "${WORKSTREAM_DIRS[@]}"; do
   while IFS= read -r -d '' file; do
     total_files=$((total_files + 1))
 
-    # Capture pre-count of changes by checking before vs after (dry-run)
-    before_count=$changed_files
-    migrate_file "$file"
-    # If migrate_file printed CHANGED, bump counter
-    # We detect this by re-checking; simpler: count lines with CHANGED in output
-    # Since migrate_file logs inline, we track via a flag approach:
-    # Re-check: grep status lines for old values
+    # Check for old status values BEFORE migration
     if grep -q "^status: Draft\|^status: Review\|^status: Approved" "$file" 2>/dev/null; then
       changed_files=$((changed_files + 1))
     fi
+    migrate_file "$file"
   done < <(find "$target" -name "*.md" -not -path "*/node_modules/*" -print0)
 done
 
