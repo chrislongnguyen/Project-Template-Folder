@@ -199,7 +199,7 @@ Open Obsidian → Settings → Community Plugins → Browse. Install these 4:
 | Plugin | Search for | What to configure |
 |---|---|---|
 | **Dataview** | `dataview` | Settings → Enable JavaScript Queries → ON. This powers `dashboard.md`. |
-| **Learnie** | `learnie` | Settings → Review folder → `PERSONAL-KNOWLEDGE-BASE/distilled/`. Filter → `review: true`. This enables spaced repetition. |
+| **Spaced Repetition** | `obsidian-spaced-repetition` | Settings → Note folder → `PERSONAL-KNOWLEDGE-BASE/distilled/`. Filter → `review: true`. This enables spaced repetition flashcards and review scheduling. |
 | **Canvas Mindmap** | `canvas-mindmap` | No config needed. Open `knowledge-map.canvas` to start. Adds keyboard mind mapping to Canvas. |
 | **PDF++** | `pdf-plus` | Settings → Highlight export folder → `PERSONAL-KNOWLEDGE-BASE/captured/`. Lets you annotate PDFs and send highlights to captured/. |
 
@@ -265,7 +265,7 @@ Together they ensure: nothing is forgotten (hook), nothing is shallow (dashboard
 | Save something from a session | Tell the agent: "save this to captured/" |
 | Turn raw sources into knowledge | Run `/ingest` |
 | See my learning stats | Open `dashboard.md` in Obsidian |
-| Review what I've learned | Open Learnie panel in Obsidian |
+| Review what I've learned | Open Spaced Repetition panel in Obsidian |
 | See knowledge connections | Open `knowledge-map.canvas` |
 | Check wiki health | Run `./scripts/pkb-lint.sh` |
 | Create an output from my knowledge | Write to `expressed/` |
