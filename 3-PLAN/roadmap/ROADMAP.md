@@ -6,7 +6,6 @@ last_updated: 2026-04-04
 work_stream: 3-PLAN
 stage: sequence
 sub_system: 1-PD
-ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Roadmap — LTC Portfolio Dashboard, I2

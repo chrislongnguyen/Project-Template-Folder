@@ -6,7 +6,6 @@ last_updated: 2026-04-04
 work_stream: 4-EXECUTE
 stage: build
 sub_system: 2-DP
-ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Portfolio Data Ingestion — Implementation Notes

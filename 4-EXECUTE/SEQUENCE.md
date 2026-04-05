@@ -7,7 +7,6 @@ sub_system: 1-PD
 work_stream: 4-EXECUTE
 stage: sequence
 iteration: 2
-ues_version: prototype
 ---
 
 # SEQUENCE.md — EXECUTE Workstream, I2: Obsidian Bases Integration

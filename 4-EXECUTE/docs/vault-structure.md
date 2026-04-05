@@ -7,7 +7,6 @@ sub_system: 1-PD
 work_stream: 4-EXECUTE
 stage: build
 iteration: 2
-ues_version: prototype
 ---
 
 # Vault Folder Structure

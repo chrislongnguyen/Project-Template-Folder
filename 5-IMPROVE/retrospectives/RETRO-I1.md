@@ -6,7 +6,6 @@ last_updated: 2026-04-04
 work_stream: 5-IMPROVE
 stage: validate
 sub_system: 4-IDM
-ues_version: prototype
 owner: "Long Nguyen"
 ---
 # Retrospective — I1 (Concept Phase)

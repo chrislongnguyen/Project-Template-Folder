@@ -1,13 +1,12 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
-last_updated: 2026-04-03
+last_updated: 2026-04-05
 type: ues-deliverable
 sub_system: 1-PD
 work_stream: 4-EXECUTE
 stage: build
 iteration: 2
-ues_version: prototype
 ---
 
 # Frontmatter Schema — Canonical Spec (S2)
@@ -28,8 +27,7 @@ ues_version: prototype
 | `sub_system` | string | YES | `problem-diagnosis` \| `data-pipeline` \| `data-analysis` \| `insights-decision-making` | `problem-diagnosis` | Lowercase kebab. Maps to the 4-subsystem pipeline (PD→DP→DA→IDM). |
 | `work_stream` | string | YES | `align` \| `learn` \| `plan` \| `execute` \| `improve` | `execute` | Lowercase ALPEI name. Drives per-workstream Bases (B8–B12). |
 | `stage` | string | YES | `design` \| `sequence` \| `build` \| `validate` | `design` | Lowercase DSBV stage. `validate` is canonical (not `audit`). |
-| `iteration` | integer | YES | `0` \| `1` \| `2` \| `3` \| `4` | `2` | Integer (no quotes). Matches I0-I4 iteration. |
-| `ues_version` | string | YES | `logic-scaffold` \| `concept` \| `prototype` \| `mve` \| `leadership` | `prototype` | Lowercase kebab. Matches iteration: I0=logic-scaffold, I1=concept, I2=prototype, I3=mve, I4=leadership. |
+| `iteration` | integer | YES | `0` \| `1` \| `2` \| `3` \| `4` | `2` | Integer (no quotes). Matches I0-I4 iteration. 0=scaffold, 1=concept, 2=prototype, 3=mve, 4=leadership. |
 
 ---
 
@@ -70,7 +68,6 @@ sub_system: PD
 work_stream: 4-EXECUTE
 stage: build
 iteration: 2
-ues_version: prototype
 ---
 ```
 
@@ -106,5 +103,5 @@ Excluded: `.claude/`, `_genesis/`, `node_modules/`
 | Artifact | How It Uses This Schema |
 |----------|------------------------|
 | A3 — 14 Obsidian Bases | Filter expressions reference exact field names and S2 values from this table |
-| A4 — 6 Templater Templates | `tp.*` calls populate all 9 required fields; defaults match this spec |
+| A4 — 6 Templater Templates | `tp.*` calls populate all 8 required fields; defaults match this spec |
 | A6 — Frontmatter Validation Test | Validates each field name, type, and value range against this spec |

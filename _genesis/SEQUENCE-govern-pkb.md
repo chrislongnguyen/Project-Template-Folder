@@ -1,6 +1,6 @@
 ---
 version: "2.0"
-status: Approved
+status: validated
 last_updated: 2026-04-05
 owner: Long Nguyen
 workstream: GOVERN

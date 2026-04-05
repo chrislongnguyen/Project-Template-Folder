@@ -6,7 +6,6 @@ last_updated: 2026-04-04
 work_stream: 4-EXECUTE
 stage: design
 sub_system: 2-DP
-ues_version: prototype
 owner: "Long Nguyen"
 ---
 # DESIGN.md — Execute Workstream, I2

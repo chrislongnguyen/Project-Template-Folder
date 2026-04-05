@@ -11,7 +11,6 @@ work_stream: 3-PLAN
 stage: design
 sub_system: 1-PD
 iteration: 2
-ues_version: prototype
 ---
 
 # <% tp.file.title %>

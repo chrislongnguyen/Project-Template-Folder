@@ -2,7 +2,6 @@
 version: "2.1"
 status: draft
 last_updated: 2026-04-03
-iteration_name: prototype
 ---
 
 # Memory Vault — New Member Setup Guide

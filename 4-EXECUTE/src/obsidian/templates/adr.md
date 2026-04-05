@@ -11,7 +11,6 @@ work_stream: 1-ALIGN
 stage: design
 sub_system: <% tp.system.prompt("Sub-system (e.g. problem-diagnosis)") %>
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
-ues_version: <% tp.system.suggester(["logic-scaffold","concept","prototype","mve","leadership"], ["logic-scaffold","concept","prototype","mve","leadership"]) %>
 ---
 
 # <% tp.file.title %>

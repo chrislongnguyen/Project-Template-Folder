@@ -11,7 +11,6 @@ work_stream: <% tp.system.prompt("Primary work stream (e.g. 4-EXECUTE)") %>
 stage: build
 sub_system: PD
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
-ues_version: <% tp.system.suggester(["logic-scaffold","concept","prototype","mve","leadership"], ["logic-scaffold","concept","prototype","mve","leadership"]) %>
 ---
 
 # <% tp.file.title %> — Project Index

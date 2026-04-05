@@ -193,7 +193,6 @@ topics: [naming-convention, ung, sustainability, efficiency, scalability, gan-fr
 
 ```yaml
 version: "1.3"                # Machine: sortable, comparable
-iteration_name: "concept"     # Human: governance stage label
 ```
 
 Both systems coexist. Neither replaces the other.

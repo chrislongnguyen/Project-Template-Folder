@@ -6,7 +6,6 @@ type: ues-deliverable
 work_stream: 4-EXECUTE
 stage: validate
 iteration: 2
-ues_version: prototype
 sub_system: 1-PD
 ---
 

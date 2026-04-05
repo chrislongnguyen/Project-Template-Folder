@@ -11,7 +11,6 @@ work_stream: <% tp.system.suggester(["1-ALIGN","2-LEARN","3-PLAN","4-EXECUTE","5
 stage: <% tp.system.suggester(["design","sequence","build","validate"], ["design","sequence","build","validate"]) %>
 sub_system: <% tp.system.suggester(["problem-diagnosis","data-pipeline","data-analysis","insights-decision-making"], ["problem-diagnosis","data-pipeline","data-analysis","insights-decision-making"]) %>
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
-ues_version: <% tp.system.suggester(["logic-scaffold","concept","prototype","mve","leadership"], ["logic-scaffold","concept","prototype","mve","leadership"]) %>
 ---
 
 # <% tp.file.title %>

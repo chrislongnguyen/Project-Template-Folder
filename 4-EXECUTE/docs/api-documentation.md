@@ -6,7 +6,6 @@ last_updated: 2026-04-04
 work_stream: 4-EXECUTE
 stage: design
 sub_system: 3-DA
-ues_version: prototype
 owner: "Long Nguyen"
 ---
 # API Documentation — Portfolio Dashboard Internal API

@@ -11,7 +11,6 @@ sub_system: 1-PD
 work_stream: 1-ALIGN
 stage: build
 iteration: 2
-ues_version: prototype
 ---
 
 # <% tp.date.now("YYYY-MM-DD") %> — Daily Standup
