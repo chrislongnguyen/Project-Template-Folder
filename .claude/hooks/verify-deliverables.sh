@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
-# version: 1.1 | status: Draft | last_updated: 2026-04-05
+# version: 1.2 | status: Draft | last_updated: 2026-04-05
 # verify-deliverables.sh — SubagentStop hook
 # Checks that sub-agent output references expected deliverables before completing.
 # Also checks context packaging markers (## 1. EO, ## 5. VERIFY) per agent-dispatch.md.
+# EP-12 (Verified Handoff): checks DONE format Blockers field — blocks if non-none/non-warn.
 # Non-blocking failure: logs warning but does not block (human reviews).
-# Blocking failure: if AC check file exists and any AC is FAIL, blocks with message.
+# Blocking failure: EP-12 Blockers non-none (exit 1) | AC file pattern missing (exit 2).
+#
+# EP-12 SCOPE: Applies to ltc-builder and ltc-reviewer outputs only (DONE format required).
+# ltc-planner and ltc-explorer produce full content reports — exempt. Their handoffs rely
+# on human gates G1+G2 in the DSBV process. This is intentional, not a gap.
 #
 # NOTE: PreToolUse exit codes are IGNORED for Agent() calls (GitHub #40580).
 # This SubagentStop hook is the only enforcement point for context packaging.
@@ -45,6 +50,29 @@ if [[ -n "$CP_WARNINGS" ]]; then
   echo "⚠ Context packaging check for '${AGENT_TYPE}':${CP_WARNINGS}" >&2
   echo "Agent output may lack structured verification. Review before trusting." >&2
   # Non-blocking: warn only (context packaging is best-effort due to #40580)
+fi
+
+# EP-12 (Verified Handoff): parse DONE format Blockers field
+# Format: DONE: <path> | ACs: <x>/<y> | Blockers: <none | WARN ... | FAIL ...>
+# Applies to ltc-builder and ltc-reviewer only (per sub-agent-output.md).
+# ltc-planner and ltc-explorer are exempt — they produce full content, not DONE reports.
+if [[ -n "$LAST_MESSAGE" ]]; then
+  DONE_LINE=$(echo "$LAST_MESSAGE" | grep -E "^DONE:" | head -1 || true)
+  if [[ -n "$DONE_LINE" ]] && echo "$DONE_LINE" | grep -q "Blockers:"; then
+    BLOCKERS=$(echo "$DONE_LINE" | sed 's/.*Blockers: *//' | xargs)
+    if [[ -z "$BLOCKERS" ]]; then
+      echo "⚠ EP-12 — DONE format incomplete: Blockers field is empty. Review before treating as done." >&2
+    elif echo "$BLOCKERS" | grep -qi "^none"; then
+      : # Clean handoff — all ACs pass, no blockers
+    elif echo "$BLOCKERS" | grep -qi "WARN"; then
+      echo "⚠ EP-12 — Handoff has warnings (non-blocking): ${BLOCKERS}" >&2
+    else
+      echo "✗ EP-12 — Handoff blocked. Sub-agent reported unresolved blockers:" >&2
+      echo "  ${BLOCKERS}" >&2
+      echo "  Resolve blockers before treating this output as ground truth (EP-12: Verified Handoff)." >&2
+      exit 1
+    fi
+  fi
 fi
 
 # Check for AC verification file: .claude/ac/<agent-type>.json

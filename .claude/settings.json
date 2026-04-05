@@ -154,6 +154,17 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/nesting-depth-guard.sh",
+            "timeout": 5,
+            "statusMessage": "EP-13: logging Agent() dispatch..."
+          }
+        ]
+      },
+      {
         "matcher": "Write|Edit",
         "hooks": [
           {
