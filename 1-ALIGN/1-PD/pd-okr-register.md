@@ -2,26 +2,26 @@
 version: "2.0"
 status: draft
 last_updated: 2026-04-05
-work_stream: 3-PLAN
-stage: validate
-type: dsbv-validate
-sub_system: _cross
+work_stream: 1-ALIGN
+stage: build
+type: okr
+sub_system: 1-PD
 iteration: 2
 ---
 
-# DSBV VALIDATE — PLAN
+# OKR Register — Problem Diagnosis
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Objectives
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## Key Results
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## Alignment to Charter
 
 <!-- TODO: Fill during DSBV Build -->
 

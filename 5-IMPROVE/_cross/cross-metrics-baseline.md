@@ -2,26 +2,30 @@
 version: "2.0"
 status: draft
 last_updated: 2026-04-05
-work_stream: 3-PLAN
-stage: validate
-type: dsbv-validate
+work_stream: 5-IMPROVE
+stage: build
+type: metrics
 sub_system: _cross
 iteration: 2
 ---
 
-# DSBV VALIDATE — PLAN
+# Metrics Baseline
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Sustainability Metrics
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## Efficiency Metrics
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## Scalability Metrics
+
+<!-- TODO: Fill during DSBV Build -->
+
+## Collection Schedule
 
 <!-- TODO: Fill during DSBV Build -->
 

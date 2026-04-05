@@ -3,25 +3,25 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-05
 work_stream: 3-PLAN
-stage: validate
-type: dsbv-validate
-sub_system: _cross
+stage: build
+type: risk-register
+sub_system: 1-PD
 iteration: 2
 ---
 
-# DSBV VALIDATE — PLAN
+# Risk Register (UBS) — Problem Diagnosis
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Risk Register
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## Risk Heat Map
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## Mitigation Plans
 
 <!-- TODO: Fill during DSBV Build -->
 

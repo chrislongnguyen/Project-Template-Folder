@@ -2,26 +2,26 @@
 version: "2.0"
 status: draft
 last_updated: 2026-04-05
-work_stream: 3-PLAN
-stage: validate
-type: dsbv-validate
+work_stream: 5-IMPROVE
+stage: build
+type: feedback-register
 sub_system: _cross
 iteration: 2
 ---
 
-# DSBV VALIDATE — PLAN
+# Feedback Register
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Feedback Log
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## Triage Process
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## Resolution Tracking
 
 <!-- TODO: Fill during DSBV Build -->
 

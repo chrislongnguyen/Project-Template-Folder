@@ -2,26 +2,26 @@
 version: "2.0"
 status: draft
 last_updated: 2026-04-05
-work_stream: 3-PLAN
-stage: validate
-type: dsbv-validate
+work_stream: 5-IMPROVE
+stage: build
+type: changelog
 sub_system: _cross
 iteration: 2
 ---
 
-# DSBV VALIDATE — PLAN
+# Project Changelog
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Unreleased
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## I2: Prototype
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## I1: Concept
 
 <!-- TODO: Fill during DSBV Build -->
 

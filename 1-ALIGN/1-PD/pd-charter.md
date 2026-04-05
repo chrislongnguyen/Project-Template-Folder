@@ -3,25 +3,37 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-05
 work_stream: 1-ALIGN
-stage: validate
-type: dsbv-validate
-sub_system: _cross
+stage: build
+type: charter
+sub_system: 1-PD
 iteration: 2
 ---
 
-# DSBV VALIDATE — ALIGN
+# Charter — Problem Diagnosis
 
 > Template — populate during DSBV Build phase.
 
-## Validation Criteria
+## Project Identity
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Evidence Matrix
+## Expected Outcome (EO)
 
 <!-- TODO: Fill during DSBV Build -->
 
-## Verdict
+## Scope
+
+<!-- TODO: Fill during DSBV Build -->
+
+## Stakeholders
+
+<!-- TODO: Fill during DSBV Build -->
+
+## Success Criteria
+
+<!-- TODO: Fill during DSBV Build -->
+
+## Constraints
 
 <!-- TODO: Fill during DSBV Build -->
 
