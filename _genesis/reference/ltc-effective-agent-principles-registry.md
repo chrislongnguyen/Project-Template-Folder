@@ -1,5 +1,6 @@
 ---
 version: "1.1"
+status: Draft
 last_updated: 2026-04-05
 owner: "Long Nguyen"
 ---

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | last_updated: 2026-04-04
+# version: 1.3 | status: Draft | last_updated: 2026-04-05
 # session-reconstruct.sh — SessionStart hook (Layer 2 reconstruction)
 # Emits git state + cross-project landscape + last session summary as JSON
 # for the Claude Code plugin system.

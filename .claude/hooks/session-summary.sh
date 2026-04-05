@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-# version: 1.1 | last_updated: 2026-04-04
+# version: 1.2 | status: Draft | last_updated: 2026-04-05
 # session-summary.sh — Stop hook
 # Auto-generates a session summary to the vault on session end.
 # Triggers QMD index refresh if available.
 set -euo pipefail
+
+# Dedup guard: skip if global/plugin version is handling this event
+if [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]] && [[ -x "${CLAUDE_PLUGIN_ROOT}/hooks/session-summary.sh" ]]; then
+  exit 0
+fi
 
 DATE=$(date +%Y-%m-%d)
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)

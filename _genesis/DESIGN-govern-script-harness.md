@@ -1,7 +1,7 @@
 ---
-version: "2.2"
+version: "2.3"
 status: Draft
-last_updated: 2026-04-04
+last_updated: 2026-04-05
 owner: Long Nguyen
 workstream: GOVERN
 iteration: I2
@@ -79,7 +79,7 @@ Dedup guard: each hook checks `$CLAUDE_PLUGIN_ROOT` — if global version is run
 
 | # | Artifact | Path | Purpose | ACs |
 |---|----------|------|---------|-----|
-| A0a | Fix session-reconstruct.sh | `.claude/hooks/session-reconstruct.sh` | Add `config.sh` source so vault path resolves via `/setup` config, not hardcoded | AC-0a: Sources `.claude/hooks/lib/config.sh`. AC-0b: Graceful exit if vault not configured (exit 0, no error). AC-0c: Dedup guard present (skip if `$CLAUDE_PLUGIN_ROOT` global version exists) |
+| A0a | Fix session-reconstruct.sh | `.claude/hooks/session-reconstruct.sh` | Add dedup guard. NOTE: This script reads `.claude/projects/` (local memory), NOT the vault — no config.sh source needed. | AC-0a: ~~Sources `.claude/hooks/lib/config.sh`~~ REVISED: No vault dependency — reads project-local memory only. AC-0b: Graceful exit if vault not configured (exit 0, no error). AC-0c: Dedup guard present (skip if `$CLAUDE_PLUGIN_ROOT` global version exists) |
 | A0b | Wire all 4 hooks | `.claude/settings.json` update | Connect session-summary (Stop), state-saver (PostToolUse), session-reconstruct (SessionStart), strategic-compact (PreToolUse) | AC-0d: `session-summary.sh` fires on Stop event. AC-0e: `state-saver.sh` fires on PostToolUse `Write\|Edit`. AC-0f: `session-reconstruct.sh` fires on SessionStart (after resume-check.sh). AC-0g: `strategic-compact.sh` fires on PreToolUse. AC-0h: All 4 have timeout ≤10s. AC-0i: All 4 have dedup guards. AC-0j: Works on fresh clone where member ran `/setup` — vault writes land in configured path. AC-0k: Works on fresh clone where member did NOT run `/setup` — hooks exit 0 silently, no crash |
 
 ### D1: Foundation Scripts (utilities others depend on)
@@ -105,7 +105,7 @@ Dedup guard: each hook checks `$CLAUDE_PLUGIN_ROOT` — if global version is run
 | # | Artifact | Path | Purpose | ACs |
 |---|----------|------|---------|-----|
 | A9 | PostToolUse hook config | `.claude/settings.json` update | Wire ripple-check into PostToolUse on Edit/Write of .md | AC-24: PostToolUse fires on `Edit\|Write` matching .md files. AC-25: ripple-check.sh runs and outputs to stdout (agent sees it). AC-26: Timeout 5s, graceful exit on non-.md files |
-| A10 | Pre-commit chain update | `.claude/settings.json` update | Add link-validator + registry-sync + status-guard + changelog-check to commit gate | AC-27: All 4 checks fire on `Bash(git commit *)`. AC-28: Existing dsbv-gate.sh + skill-validator.sh preserved (not replaced). AC-29: Total chain timeout <15s |
+| A10 | Pre-commit chain update | `.claude/settings.json` update | Add link-validator + registry-sync + status-guard + changelog-check to commit gate | AC-27: All 4 checks fire on `Bash(git commit *)`. AC-28: Existing dsbv-gate.sh + skill-validator.sh preserved (not replaced). AC-29: NEW checks total timeout <15s (pre-existing dsbv-gate + skill-validator are out of scope) |
 | A11 | verify-deliverables.sh extension | `.claude/hooks/verify-deliverables.sh` | Extend SubagentStop hook to also check context packaging markers (mitigates #40580) | AC-30: Checks for `## 1. EO` and `## 5. VERIFY` in sub-agent output. AC-31: Documents PreToolUse limitation in header comment. AC-32: Existing AC-pattern checks preserved |
 
 ### D4: Documentation & Principles

@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-# version: 1.2 | last_updated: 2026-04-04
+# version: 1.3 | status: Draft | last_updated: 2026-04-05
 # state-saver.sh — PostToolUse hook (Write|Edit|MultiEdit)
 # Snapshots current git state to the vault for crash recovery.
 set -euo pipefail
+
+# Dedup guard: skip if global/plugin version is handling this event
+if [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]] && [[ -x "${CLAUDE_PLUGIN_ROOT}/hooks/state-saver.sh" ]]; then
+  exit 0
+fi
 
 # Debounce: skip if last write was < 30 seconds ago (avoids Drive latency on every edit)
 DEBOUNCE_FILE="/tmp/claude-state-saver-debounce"
