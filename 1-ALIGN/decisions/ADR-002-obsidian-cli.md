@@ -1,6 +1,6 @@
 ---
 version: "1.2"
-status: approved
+status: validated
 last_updated: 2026-04-01
 owner: Long Nguyen
 aliases: ["ADR-002", "ADR-002-obsidian-cli"]

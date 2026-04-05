@@ -1,9 +1,9 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "1.1"
+last_updated: 2026-04-04
 purpose: "Template for LTC members to create their personal ~/.claude/CLAUDE.md"
 type: template
-work_stream: govern
+work_stream: 0-govern
 stage: design
 sub_system: 
 ---

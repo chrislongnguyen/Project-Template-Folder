@@ -1,6 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+status: Draft
+last_updated: 2026-04-05
 owner: "Long Nguyen"
 ---
 # Effective Principles Registry — Agent-Readable Codex
@@ -34,8 +35,9 @@ owner: "Long Nguyen"
 | EP-11 | EOE | Agent Role Separation | DERISK | LT-8 + LT-3 | Each agent has a declared scope boundary; cross-boundary actions require explicit handoff. |
 | EP-12 | Input | Verified Handoff | DERISK | LT-1 + LT-5 | Output passing between agents must pass receiving agent's ACs before being treated as ground truth. |
 | EP-13 | Agent | Orchestrator Authority | OUTPUT | UT#9 + EP-03 | Exactly one orchestrator owns decomposition and synthesis. Sub-agents are R only, never A. |
+| EP-14 | EOP | Script-First Delegation | DERISK | LT-8 + EP-05 | Delegate deterministic checks to shell scripts; reserve agent judgment for tasks requiring interpretation. |
 
-**Distribution:** 10 DERISK, 3 OUTPUT. This reflects UT#5: managing failure risk is more important than maximising output. The two new DERISK principles (EP-11, EP-12) address multi-agent coordination risks.
+**Distribution:** 11 DERISK, 3 OUTPUT. This reflects UT#5: managing failure risk is more important than maximising output. EP-14 formalises the script-first enforcement pattern from the GOVERN DSBV script harness.
 
 ---
 
@@ -392,6 +394,28 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 
 ---
 
+### EP-14: Script-First Delegation [DERISK]
+
+**Component:** EOP (governs how enforcement procedures are implemented)
+
+**Statement:** Delegate deterministic checks to shell scripts; reserve agent judgment for tasks requiring interpretation.
+
+**Grounded in:** LT-8 (alignment is approximate — agent-based enforcement is probabilistic, ~85–95% reliable depending on mechanism tier) + EP-05 (Gates Before Guides — deterministic mechanisms must handle non-negotiable constraints). Shell scripts are free, instant, 100% reliable, and produce zero token cost. The 80/20 Script Rule: approximately 80% of enforcement checks are deterministic (version field present, file exists, pattern matched) and belong in scripts, not agents.
+
+**Without this:** The agent burns tokens performing checks that `grep` could do in milliseconds. Worse, probabilistic enforcement occasionally misses what a script catches every time. A missing `version` field in frontmatter costs 0ms and 0 tokens to detect with grep; asking an agent to check it costs ~500 tokens and fails ~5% of the time under context pressure.
+
+**Compensated by:** Hook system (scripts fire deterministically on tool events — PreToolUse, PostToolUse, PreCompact, Stop), pre-commit chain (gitleaks, versioning-guard, status-guard run before any commit), PostToolUse observers (watch agent writes and fire corrective scripts automatically).
+
+**Patterns:**
+- The 80/20 Script Rule: Before writing a CLAUDE.md rule or skill, ask "Is this check deterministic?" If yes (grep-able, file-existence, format-validation), implement as a shell script, not an agent instruction.
+- The Hook Chain: Compose small, single-responsibility scripts into event-driven pipelines. Each hook does one thing and exits with a meaningful code. The agent handles only what scripts cannot — interpretation, judgment, synthesis.
+
+**APEI Application:** GOVERN workstream installs scripts first, then rules, then skills — following the EP-06 setup order. Script harness (D1–D5) implements this pattern: foundation scripts (D1) → status governance (D2) → ripple enforcement (D3) → session governance (D4) → integration (D5). Every deterministic enforcement check in the DSBV harness is a shell script; the agent is invoked only for review, synthesis, and judgment tasks.
+
+**Source:** GOVERN DSBV D2–D3 script harness design (2026-04-04).
+
+---
+
 ## Part 3 — Coverage Map
 
 ### Sessions Written vs. Components Covered
@@ -437,6 +461,10 @@ How each EP applies to each APEI workstream:
 | EP-08 Signal Over Volume | Route, don't duplicate | Requirements are VANA (minimal) | Task files embed relevant slice only | One task = one agent-session focus | Metrics are focused, not exhaustive |
 | EP-09 Decompose | Skills decompose complex procedures | Break requirements into VANA atoms | Break roadmap into ≤1hr tasks | One .exec/ task per agent session | Break retro into per-deliverable |
 | EP-10 Define Done | Every rule has a verification method | Requirements have binary ACs | Every task has AC + Verify command | Agent self-checks before reporting | Review has pass/fail criteria |
+| EP-11 Agent Role Separation | Agent files declare tools allowlist; scope boundaries are deterministic | ltc-planner owns ALIGN decisions; handoff artifacts mark boundaries | ltc-planner owns PLAN; builds .exec/ handoff package | ltc-builder owns EXECUTE; cannot make architectural decisions | ltc-reviewer owns validation; cannot edit artifacts under review |
+| EP-12 Verified Handoff | Inter-hook outputs carry exit code contracts; receiving script checks | PLANNING_BASELINE.md passes LEARN entry criteria before handoff | .exec/ task files pass readiness check before EXECUTE | Agent self-verifies against AC + Verify command before done | Review artifacts reference evidence; ltc-reviewer checks before Approved |
+| EP-13 Orchestrator Authority | DSBV skill owns decomposition + synthesis; sub-agents are R only | Human Director is A; ltc-planner is synthesis authority for ALIGN | Human Director is A; ltc-planner synthesises PLAN from inputs | ltc-builder executes R tasks; no architectural decisions | ltc-reviewer synthesises findings; Human Director approves changes |
+| EP-14 Script-First Delegation | Hook chain fires scripts before agent for all deterministic checks | Entry gate scripts check charter existence, not agent inference | Readiness-check script validates .exec/ fields deterministically | Versioning-guard, status-guard run as pre-commit scripts | Review scripts (metric thresholds, format checks) precede agent review |
 
 ---
 
@@ -458,6 +486,8 @@ When something goes wrong, trace the symptom to the violated EP:
 | Human micromanages every step | EP-03 (Two Operators) — not trusting Agent strengths | Delegate analysis/execution; reserve judgment for yourself |
 | Executed plan missed a critical risk | EP-01 (Brake Before Gas) + EP-06 (Derisk-First) — skipped LEARN workstream | Never skip from ALIGN to EXECUTE |
 | PLAN workstream agent hallucinates requirements | EP-07 (Amnesia-First) + EP-08 (Signal Over Volume) — .exec/ files incomplete | .exec/ task files must be self-contained engineered Input |
+| Agent burns tokens checking version fields, file existence, pattern matching | EP-14 (Script-First Delegation) — deterministic check delegated to agent | Move check to a shell script; invoke via hook or pre-commit |
+| Hook enforces a rule but agent overrides it in next action | EP-05 (Gates Before Guides) + EP-14 (Script-First Delegation) — hook not blocking | Ensure hook exits non-zero to block the tool call, not just warn |
 
 ---
 

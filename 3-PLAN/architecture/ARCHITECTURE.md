@@ -1,88 +1,85 @@
 ---
-version: "1.0"
-status: draft
-last_updated: 2026-04-02
-workstream: PLAN
-owner: "{{OWNER}}"
+type: ues-deliverable
+version: "2.1"
+status: in-review
+last_updated: 2026-04-04
+work_stream: 3-plan
+stage: build
+sub_system: 1-PD
+ues_version: prototype
+owner: "Long Nguyen"
 ---
-# ARCHITECTURE — PLAN Workstream
-
-> Overall architecture document: components, interfaces, data flows.
-> Source template: `_genesis/templates/architecture-template.md`
-> Reference: P4 cross-workstream flow table in `_genesis/frameworks/alpei-dsbv-process-map.md`.
-> UBS mitigations must trace to `3-PLAN/risks/UBS_REGISTER.md`.
-
-<!-- TODO: Fill in during PLAN Build phase -->
-
----
+# Architecture — LTC Portfolio Dashboard
 
 ## Architecture Identity
 
 | Field | Value |
 |-------|-------|
-| Sub-system | _[name]_ |
-| Version | _[I1 / I2 / I3 / I4]_ |
-| Owner | _[name]_ |
-| Last reviewed | _[YYYY-MM-DD]_ |
-
----
+| Sub-system | PD — governs overall system design |
+| Version | I2 |
+| Owner | Long Nguyen |
+| Last reviewed | 2026-04-03 |
 
 ## Architecture Summary
 
-> One paragraph describing the overall structure and governing design principle.
-
-<!-- TODO: Describe the architecture here. -->
-
----
+Three-tier architecture: Bloomberg B-PIPE as data source, a Node.js middleware layer for WebSocket fan-out and risk model orchestration, and a React+D3 front-end. The middleware is stateless — all persistence delegated to a PostgreSQL positions database updated nightly from internal OMS exports.
 
 ## Components
 
 | Component | Responsibility | Owner |
 |-----------|---------------|-------|
-| _[name]_ | _[what it does]_ | _[role]_ |
-| _[name]_ | _[what it does]_ | _[role]_ |
-
----
+| Bloomberg B-PIPE Client | WebSocket subscription; raw tick data ingestion | Data Engineer |
+| Risk Engine (Python) | CVaR / VaR calculation on position snapshots | Quant Analyst |
+| Node.js Middleware | WebSocket fan-out, REST API for historical queries | Backend Dev |
+| React+D3 Front-End | Dashboard rendering, panel layout, user interactions | Frontend Dev |
+| PostgreSQL DB | Nightly position snapshots, historical P&L | Data Engineer |
 
 ## Interfaces
 
 | From | To | Data / Signal | Protocol |
 |------|----|---------------|----------|
-| _[component]_ | _[component]_ | _[what crosses]_ | _[how]_ |
-
----
+| Bloomberg B-PIPE | Node.js Middleware | Tick data (price, volume) | WebSocket |
+| Node.js Middleware | React Front-End | Live NAV, P&L updates | WebSocket (SSE fallback) |
+| Node.js Middleware | Risk Engine | Position snapshot | REST POST |
+| Risk Engine | Node.js Middleware | CVaR / VaR result | REST JSON response |
+| PostgreSQL DB | Node.js Middleware | Historical positions | SQL query |
 
 ## Data Flows
 
-> ASCII or table form. Reference P4 cross-workstream flow table in alpei-dsbv-process-map.md.
-
 ```
-[Component A] ──► [Component B] ──► [Component C]
+Bloomberg B-PIPE
+      |
+      v (WebSocket)
+Node.js Middleware ──► React+D3 Front-End (live panels)
+      |
+      v (REST)
+Risk Engine (Python) ──► Node.js ──► React (VaR panel)
+      |
+PostgreSQL DB ──► Node.js (historical queries)
 ```
-
----
 
 ## Effective Principle Mapping
 
-> Each design decision must cite the EP that governs it. Source: `2-LEARN/output/[SUBSYSTEM]-EFFECTIVE-PRINCIPLES.md`.
-
 | Decision | Governing EP | Source |
 |----------|-------------|--------|
-| _[decision]_ | _[EP name]_ | _[path]_ |
-
----
+| CVaR as primary metric | EP-PD-01 | 2-LEARN/research/PD-portfolio-risk-models.md |
+| WebSocket pass-through (Pattern A) | EP-DP-01 | 2-LEARN/research/DP-data-pipeline-patterns.md |
+| Stateless middleware | EP-PD-02 | 2-LEARN/research/PD-portfolio-risk-models.md |
 
 ## UBS Mitigation References
 
-> Architecture must reference UBS mitigations from `3-PLAN/risks/UBS_REGISTER.md`.
-
 | UBS Entry | Mitigation in Architecture | Register Ref |
 |-----------|---------------------------|-------------|
-| _[blocker]_ | _[how architecture addresses it]_ | _[UBS-###]_ |
-
----
+| Bloomberg WebSocket drop | SSE fallback + stale-data warning in UI | UBS-002 |
+| Risk engine timeout | 30s timeout; cached last-known VaR displayed | UBS-003 |
 
 ## Open Questions
 
-<!-- TODO: question 1 -->
-<!-- TODO: question 2 -->
+- Q1: Should the Risk Engine run as a sidecar or a separate service?
+- Q2: PDF export — headless Chrome or server-side canvas?
+
+## Links
+
+- [[ADR-001_data-source-selection]]
+- [[ADR-002_dashboard-framework]]
+- [[UBS_REGISTER]]

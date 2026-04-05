@@ -1,76 +1,58 @@
 ---
-version: "1.0"
+type: ues-deliverable
+version: "2.0"
 status: draft
-last_updated: 2026-04-02
-workstream: PLAN
-owner: "{{OWNER}}"
+last_updated: 2026-04-04
+work_stream: 3-plan
+stage: sequence
+sub_system: 1-PD
+ues_version: prototype
+owner: "Long Nguyen"
 ---
-# ROADMAP — PLAN Workstream
+# Roadmap — LTC Portfolio Dashboard, I2
 
-> Milestone table and iteration mapping for project delivery.
-> Source template: `_genesis/templates/roadmap-template.md`
-> Scope inherited from LEARN — do not plan work outside the researched boundary.
-> Driver alignment required: milestones must trace to `3-PLAN/drivers/UDS_REGISTER.md`.
+## Iteration Summary
 
-<!-- TODO: Fill in during PLAN Sequence phase -->
+I2 scope: Prototype (correct + efficient). Deliver working dashboard used daily by at least 5 of 6 PMs by end of I2.
 
----
+## Milestones
 
-## Roadmap Identity
+| Milestone | Target Date | Status | Owner |
+|-----------|-------------|--------|-------|
+| M1 — Bloomberg B-PIPE integration live | 2026-03-21 | Done | Data Engineer |
+| M2 — Risk engine CVaR calculation validated | 2026-03-28 | Done | Quant Analyst |
+| M3 — NAV + P&L panels in staging | 2026-04-07 | In Progress | Frontend Dev |
+| M4 — Full dashboard UAT with PM team | 2026-04-14 | Not Started | Long Nguyen |
+| M5 — Production deployment | 2026-04-21 | Not Started | Backend Dev |
+| M6 — I2 retrospective + metrics baseline | 2026-04-25 | Not Started | Long Nguyen |
 
-| Field | Value |
-|-------|-------|
-| Sub-system | _[name]_ |
-| Iteration scope | _[I1 / I2 / I3 / I4]_ |
-| Owner | _[name]_ |
-| Research scope inherited from | `2-LEARN/research/[SUBSYSTEM]-RESEARCH-SCOPE.md` |
+## Sprint Plan
 
----
+### Sprint 1 (2026-03-10 – 2026-03-21)
+- Set up Bloomberg B-PIPE WebSocket client
+- Build Node.js middleware skeleton
+- Charter + ADR-001 validated
 
-## Iteration Map
+### Sprint 2 (2026-03-24 – 2026-04-04)
+- Risk engine implementation (CVaR/VaR)
+- NAV panel front-end
+- Architecture document drafted
 
-> Each iteration = one ALPEI cycle (ALIGN → LEARN → PLAN → EXECUTE → IMPROVE).
-> Scope inherited from LEARN — do not plan work outside the researched boundary.
+### Sprint 3 (2026-04-07 – 2026-04-18)
+- Sector allocation treemap
+- VaR dashboard panel
+- UAT sessions with PM leads
 
-| Iteration | Focus | Key Milestone | Done When |
-|-----------|-------|--------------|-----------|
-| I1 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I2 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I3 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I4 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
+## Dependencies
 
----
+| Dependency | Source | Required By |
+|------------|--------|-------------|
+| Bloomberg B-PIPE credentials | Bloomberg Rep | M1 — DONE |
+| Staging server provisioning | IT Ops | M3 |
+| PM availability for UAT | Anh Vinh (schedule approval) | M4 |
 
-## Current Iteration Detail — _[I1 / I2 / ...]_
+## Links
 
-### Milestones
-
-| # | Milestone | Owner | Target date | Depends on | Done when |
-|---|-----------|-------|-------------|------------|-----------|
-| M1 | _[name]_ | _[role]_ | _[YYYY-MM-DD]_ | [M0 / none] | _[binary test]_ |
-| M2 | _[name]_ | _[role]_ | _[YYYY-MM-DD]_ | M1 | _[binary test]_ |
-| M3 | _[name]_ | _[role]_ | _[YYYY-MM-DD]_ | M2 | _[binary test]_ |
-
-### Critical Path
-
-```
-M1 ──► M2 ──► M3 ──► Release
-```
-
-### Dependency Map
-
-| Milestone | Upstream dependency | Risk if delayed |
-|-----------|-------------------|----------------|
-| M1 | _[what must exist before M1 can start]_ | _[impact]_ |
-| M2 | M1 complete | _[impact]_ |
-
----
-
-## Driver Alignment
-
-> Milestones must align to drivers in `3-PLAN/drivers/UDS_REGISTER.md`.
-
-| Milestone | Leverages Driver | Driver ID |
-|-----------|----------------|-----------|
-| M1 | _[driver name]_ | _[UDS-###]_ |
-| M2 | _[driver name]_ | _[UDS-###]_ |
+- [[CHARTER]]
+- [[ARCHITECTURE]]
+- [[OKR_REGISTER]]

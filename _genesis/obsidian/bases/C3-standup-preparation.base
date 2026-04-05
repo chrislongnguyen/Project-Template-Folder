@@ -1,0 +1,68 @@
+filters:
+  and:
+    - type == "ues-deliverable"
+formulas:
+  days_since_touch: (now() - file.mtime).days.round(0)
+  activity_band: if((now() - file.mtime).days < 1, "TODAY", if((now() - file.mtime).days <= 3, "LAST 3 DAYS", if((now() - file.mtime).days <= 7, "THIS WEEK", "OLDER")))
+properties:
+  file.name:
+    displayName: DELIVERABLE
+  status:
+    displayName: STATUS
+  sub_system:
+    displayName: SUB-SYSTEM
+  work_stream:
+    displayName: WORK STREAM
+  stage:
+    displayName: STAGE
+  version:
+    displayName: VERSION
+  formula.days_since_touch:
+    displayName: DAYS AGO
+  formula.activity_band:
+    displayName: ACTIVITY
+views:
+  - type: table
+    name: RECENT ACTIVITY
+    order:
+      - file.mtime
+      - file.name
+      - status
+      - sub_system
+      - work_stream
+      - stage
+    sort:
+      - property: status
+        direction: ASC
+      - property: work_stream
+        direction: ASC
+    limit: 20
+  - type: table
+    name: IN PROGRESS
+    filters:
+      or:
+        - status == "in-progress"
+        - status == "draft"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - sub_system
+      - work_stream
+      - formula.days_since_touch
+  - type: table
+    name: FULL STATUS
+    groupBy:
+      property: sub_system
+      direction: ASC
+    order:
+      - file.name
+      - work_stream
+      - status
+      - stage
+      - formula.activity_band
+      - formula.days_since_touch
+    sort:
+      - property: stage
+        direction: DESC

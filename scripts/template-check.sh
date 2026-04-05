@@ -1,179 +1,158 @@
 #!/usr/bin/env bash
+# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# LTC Project Template — Deterministic Categorization Script
+# Compares local file tree to template remote via git ls-tree.
+# Outputs valid JSON to stdout. Self-validates bucket counts.
 set -euo pipefail
 
-# LTC Project Template — Staleness Checker
-# Uses gh CLI (Contents API) to fetch remote template files — no separate PAT needed.
+# --- Defaults ---
+REMOTE="template"
+BRANCH="main"
+TEMPLATE_URL="https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git"
 
-TEMPLATE_REPO="Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE"
-LOCAL_VERSION_FILE=".template-version"
-
-# --- Flag parsing ---
-MODE="default"
-for arg in "$@"; do
-  case "$arg" in
-    --quiet) MODE="quiet" ;;
-    --diff)  MODE="diff" ;;
-    --init)  MODE="init" ;;
-    *)       echo "Usage: $0 [--quiet|--diff|--init]"; exit 2 ;;
+# --- Arg parsing ---
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --remote) REMOTE="$2"; shift 2 ;;
+    --branch) BRANCH="$2"; shift 2 ;;
+    *) echo "Usage: $0 [--remote <name>] [--branch <name>]" >&2; exit 2 ;;
   esac
 done
 
-# --- Helpers ---
+# --- Require jq ---
+if ! command -v jq &>/dev/null; then
+  echo "Error: jq is required. Install: brew install jq" >&2
+  exit 2
+fi
 
-fetch_remote() {
-  local file_path="$1"
-  gh api "repos/${TEMPLATE_REPO}/contents/${file_path}?ref=main" \
-    --jq '.content' 2>/dev/null | base64 -d 2>/dev/null
+# --- Ensure remote exists ---
+if ! git remote get-url "$REMOTE" &>/dev/null; then
+  git remote add "$REMOTE" "$TEMPLATE_URL"
+fi
+git fetch "$REMOTE" --quiet
+
+REF="${REMOTE}/${BRANCH}"
+
+# --- Build file lists ---
+TEMPLATE_FILES=$(git ls-tree -r --name-only "$REF")
+LOCAL_FILES=$(git ls-files)
+
+# --- Classification helpers ---
+
+# Security-sensitive: NEVER auto-add
+is_security_sensitive() {
+  local f="$1"
+  [[ "$f" == .env* ]] || \
+  [[ "$f" == secrets/** ]] || \
+  [[ "$f" =~ \.pem$ ]] || \
+  [[ "$f" =~ \.key$ ]] || \
+  [[ "$f" =~ \.p12$ ]] || \
+  [[ "$f" =~ \.pfx$ ]]
 }
 
-# Compare semver: returns 0 if $1 < $2, 1 otherwise
-# Splits on "." and compares each numeric segment
-semver_lt() {
-  local IFS='.'
-  local -a a=($1) b=($2)
-  for i in 0 1 2; do
-    local ai="${a[$i]:-0}" bi="${b[$i]:-0}"
-    if (( ai < bi )); then return 0; fi
-    if (( ai > bi )); then return 1; fi
-  done
-  return 1  # equal — not less than
+# Agent/infra config: review-required (not auto-add)
+is_review_required() {
+  local f="$1"
+  [[ "$f" == .claude/** ]] || \
+  [[ "$f" == .agents/** ]] || \
+  [[ "$f" == .cursor/** ]] || \
+  [[ "$f" == .github/** ]] || \
+  [[ "$f" == rules/** ]] || \
+  [[ "$f" == _genesis/** ]] || \
+  [[ "$f" == scripts/** ]] || \
+  [[ "$f" == "CLAUDE.md" ]] || \
+  [[ "$f" == "GEMINI.md" ]] || \
+  [[ "$f" == ".mcp.json" ]] || \
+  [[ "$f" == ".pre-commit-config.yaml" ]] || \
+  [[ "$f" == ".gitignore" ]] || \
+  [[ "$f" == ".gitleaks.toml" ]] || \
+  [[ "$f" == "VERSION" ]] || \
+  [[ "$f" == ".templateignore" ]]
 }
 
-# --- Main ---
-
-do_init() {
-  local remote_version
-  remote_version=$(fetch_remote "VERSION" | tr -d '[:space:]') || true
-  if [[ -z "$remote_version" ]]; then
-    echo "Error: Could not fetch template VERSION (offline or auth required)."
-    echo "Hint: Run: gh auth login"
-    exit 2
-  fi
-  echo "$remote_version" > "$LOCAL_VERSION_FILE"
-  echo "Initialized .template-version to ${remote_version}"
-  exit 0
+file_exists_locally() {
+  echo "$LOCAL_FILES" | grep -qxF "$1"
 }
 
-main() {
-  # Verify gh CLI is available and authenticated
-  if ! command -v gh &>/dev/null; then
-    echo "Error: gh CLI not found. Install: https://cli.github.com"
-    exit 2
-  fi
-  if ! gh auth status &>/dev/null 2>&1; then
-    echo "Error: gh CLI not authenticated."
-    echo "  Run: gh auth login"
-    echo "  Then retry: $0 $*"
-    exit 2
-  fi
+content_differs() {
+  ! git diff --quiet "$REF" -- "$1" 2>/dev/null
+}
 
-  if [[ "$MODE" == "init" ]]; then
-    do_init
-  fi
+# --- Categorize ---
+auto_add=()
+flagged_security=()
+flagged_review=()
+merge=()
+unchanged=()
 
-  # Step 1: Read local version
-  if [[ ! -f "$LOCAL_VERSION_FILE" ]]; then
-    echo "No .template-version found."
-    echo "Run: $0 --init"
-    exit 2
-  fi
-  local local_version
-  local_version=$(cat "$LOCAL_VERSION_FILE" | tr -d '[:space:]')
+while IFS= read -r f; do
+  [[ -z "$f" ]] && continue
 
-  # Step 2: Fetch remote version
-  local remote_version
-  remote_version=$(fetch_remote "VERSION" | tr -d '[:space:]') || true
-
-  if [[ -z "$remote_version" ]]; then
-    echo "LTC Project Template — Update Check"
-    echo "  Local version:    ${local_version}"
-    echo "  Template version: (offline — could not reach GitHub)"
-    echo "  Status:           Unknown. Check manually or retry with network."
-    echo ""
-    echo "  Hint: Run: gh auth login"
-    exit 0
-  fi
-
-  # Step 3: Compare
-  if semver_lt "$local_version" "$remote_version"; then
-    # Quiet mode: one-liner only, no header
-    if [[ "$MODE" == "quiet" ]]; then
-      echo "⚠ Template v${remote_version} available (you're on v${local_version}). Run ./scripts/template-check.sh for details."
-      exit 1
+  if ! file_exists_locally "$f"; then
+    # New file — classify by sensitivity
+    if is_security_sensitive "$f"; then
+      flagged_security+=("$f")
+    elif is_review_required "$f"; then
+      flagged_review+=("$f")
+    else
+      auto_add+=("$f")
     fi
-
-    echo "LTC Project Template — Update Check"
-    echo "  Local version:    ${local_version}"
-    echo "  Template version: ${remote_version}"
-    echo "  Status:           ⚠ Outdated (local ${local_version} → latest ${remote_version})"
-
-    # Step 4: Fetch and parse CHANGELOG for versions between local and remote
-    local changelog
-    changelog=$(fetch_remote "CHANGELOG.md") || true
-    if [[ -n "$changelog" ]]; then
-      echo ""
-      echo "  Changes since ${local_version}:"
-      # POSIX-compatible awk (no 3-arg match — works on macOS BSD awk)
-      echo "$changelog" | awk -v local="$local_version" '
-        /^## \[/ {
-          # Extract version: find "[", grab until "]"
-          s = $0
-          i = index(s, "[")
-          if (i > 0) {
-            s = substr(s, i+1)
-            j = index(s, "]")
-            if (j > 0) ver = substr(s, 1, j-1); else ver = ""
-          } else ver = ""
-          if (ver != "" && ver != local) {
-            # Extract date after "— "
-            d = ""
-            k = index($0, "— ")
-            if (k > 0) d = substr($0, k+4, 10)
-            in_range = 1
-            printf "    [%s] %s\n", ver, d
-          } else {
-            in_range = 0
-          }
-        }
-      '
-    fi
-
-    if [[ "$MODE" == "diff" ]]; then
-      echo ""
-      echo "  Changed files (${local_version} → ${remote_version}):"
-      # POSIX-compatible awk (no 3-arg match — works on macOS BSD awk)
-      echo "$changelog" | awk -v local="$local_version" '
-        /^## \[/ {
-          s = $0; i = index(s, "[")
-          if (i > 0) { s = substr(s, i+1); j = index(s, "]"); ver = (j>0) ? substr(s,1,j-1) : "" } else ver = ""
-          in_range = (ver != "" && ver != local) ? 1 : 0
-        }
-        /^- \[T[123]:/ && in_range {
-          # Extract tier tag: first [...] on the line
-          s = $0; i = index(s, "[")
-          if (i > 0) { s = substr(s, i+1); j = index(s, "]"); tier = (j>0) ? substr(s,1,j-1) : "" } else tier = ""
-          # Extract file path between backticks
-          s = $0; i = index(s, "`")
-          if (i > 0) { s = substr(s, i+1); j = index(s, "`"); f = (j>0) ? substr(s,1,j-1) : "" } else f = ""
-          if (tier != "" && f != "") printf "    [%-12s] %s\n", tier, f
-        }
-      '
-      exit 1
-    fi
-
-    echo ""
-    echo "  Run: $0 --diff"
-    echo "  to see file-level changes."
-    exit 1
   else
-    if [[ "$MODE" != "quiet" ]]; then
-      echo "LTC Project Template — Update Check"
-      echo "  Local version:    ${local_version}"
-      echo "  Template version: ${remote_version}"
-      echo "  Status:           ✓ Up to date"
+    # File exists locally — check content
+    if content_differs "$f"; then
+      merge+=("$f")
+    else
+      unchanged+=("$f")
     fi
-    exit 0
   fi
+done <<< "$TEMPLATE_FILES"
+
+# --- Self-validate: bucket counts must equal total template files ---
+total_template=$(echo "$TEMPLATE_FILES" | grep -c . || true)
+total_bucketed=$(( ${#auto_add[@]} + ${#flagged_security[@]} + ${#flagged_review[@]} + ${#merge[@]} + ${#unchanged[@]} ))
+
+if [[ "$total_template" -ne "$total_bucketed" ]]; then
+  echo "Error: bucket mismatch — template=$total_template bucketed=$total_bucketed" >&2
+  exit 1
+fi
+
+# --- Build JSON output ---
+to_json_array() {
+  local arr=("$@")
+  if [[ ${#arr[@]} -eq 0 ]]; then
+    echo "[]"
+    return
+  fi
+  printf '%s\n' "${arr[@]}" | jq -R . | jq -s .
 }
 
-main "$@"
+AUTO_JSON=$(to_json_array "${auto_add[@]+"${auto_add[@]}"}")
+SEC_JSON=$(to_json_array "${flagged_security[@]+"${flagged_security[@]}"}")
+REV_JSON=$(to_json_array "${flagged_review[@]+"${flagged_review[@]}"}")
+MERGE_JSON=$(to_json_array "${merge[@]+"${merge[@]}"}")
+UNCHANGED_JSON=$(to_json_array "${unchanged[@]+"${unchanged[@]}"}")
+
+jq -n \
+  --argjson auto_add "$AUTO_JSON" \
+  --argjson security_sensitive "$SEC_JSON" \
+  --argjson review_required "$REV_JSON" \
+  --argjson merge "$MERGE_JSON" \
+  --argjson unchanged "$UNCHANGED_JSON" \
+  --argjson total "$total_template" \
+  '{
+    stats: {
+      total_template_files: $total,
+      auto_add: ($auto_add | length),
+      flagged_security_sensitive: ($security_sensitive | length),
+      flagged_review_required: ($review_required | length),
+      merge: ($merge | length),
+      unchanged: ($unchanged | length)
+    },
+    auto_add: $auto_add,
+    flagged: {
+      security_sensitive: $security_sensitive,
+      review_required: $review_required
+    },
+    merge: $merge,
+    unchanged: $unchanged
+  }'

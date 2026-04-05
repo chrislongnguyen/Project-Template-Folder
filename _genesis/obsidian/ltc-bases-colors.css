@@ -1,0 +1,175 @@
+/* ============================================================
+   LTC Bases Theme v2.6 — Colorful Obsidian Bases tables
+   Enable: Settings → Appearance → CSS Snippets → ltc-bases-colors
+   ============================================================ */
+
+/* ── LTC BRAND TOKENS ──────────────────────────────────────── */
+:root {
+  --ltc-midnight: #004851;
+  --ltc-gold: #F2C75C;
+  --ltc-gunmetal: #1D1F2A;
+  --ltc-ruby: #9B1842;
+  --ltc-green: #69994D;
+  --ltc-purple: #653469;
+  --ltc-white: #FFFFFF;
+}
+
+/* ============================================================
+   TABLE STRUCTURE — header, rows, hover, borders
+   ============================================================ */
+
+/* Variable overrides on the view container */
+.bases-view {
+  --bases-table-header-background: var(--ltc-midnight) !important;
+  --bases-table-header-background-hover: rgba(0, 72, 81, 0.8) !important;
+  --bases-table-header-color: var(--ltc-gold) !important;
+  --bases-table-header-weight: 700 !important;
+  --bases-table-row-background-hover: rgba(0, 72, 81, 0.12) !important;
+  --bases-table-cell-shadow-focus: 0 0 0 2px var(--ltc-gold) !important;
+  --bases-table-border-color: rgba(0, 72, 81, 0.2) !important;
+}
+
+/* Header row — Midnight Green background */
+.bases-view .bases-thead {
+  background: var(--ltc-midnight) !important;
+}
+
+/* Header labels — Gold text */
+.bases-view .bases-table-header-label {
+  color: var(--ltc-gold) !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+/* Header icons — Gold */
+.bases-view .bases-table-header-icon svg {
+  color: var(--ltc-gold) !important;
+  stroke: var(--ltc-gold) !important;
+}
+
+/* ── ZEBRA STRIPING ────────────────────────────────────────── */
+.bases-view .bases-tbody .bases-tr:nth-child(even) {
+  background: rgba(0, 72, 81, 0.05) !important;
+}
+
+/* ── ROW HOVER — Midnight Green tint ───────────────────────── */
+.bases-view .bases-tbody .bases-tr:hover {
+  background: rgba(0, 72, 81, 0.12) !important;
+}
+
+/* ── FILE LINKS → Gold ─────────────────────────────────────── */
+.bases-view .internal-link {
+  color: var(--ltc-gold) !important;
+  font-weight: 600 !important;
+}
+.bases-view .internal-link:hover {
+  color: var(--ltc-white) !important;
+  text-decoration: underline !important;
+}
+
+/* ── TOOLBAR — subtle accent bar ───────────────────────────── */
+.bases-toolbar {
+  border-bottom: 2px solid var(--ltc-gold) !important;
+}
+
+/* Toolbar buttons hover → Gold */
+.bases-toolbar .text-icon-button:hover {
+  color: var(--ltc-gold) !important;
+}
+
+/* ── GROUP / SECTION HEADERS ───────────────────────────────── */
+.bases-view .bases-group-header-row .bases-td,
+.bases-view .bases-group {
+  background: var(--ltc-midnight) !important;
+  color: var(--ltc-gold) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* ── SELECTED CELL ACCENT — Gold ring ──────────────────────── */
+.bases-view .bases-td.mod-active {
+  box-shadow: 0 0 0 2px var(--ltc-gold) !important;
+}
+
+/* ── COLUMN-SPECIFIC — bold key columns ────────────────────── */
+.bases-view .bases-td[data-property="stage"],
+.bases-view .bases-td[data-property="status"],
+.bases-view .bases-td[data-property="work_stream"] {
+  font-weight: 600 !important;
+}
+
+/* ============================================================
+   MULTI-SELECT PILLS — tag/badge styling
+   ============================================================ */
+.bases-view .multi-select-pill {
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.03em !important;
+  border-radius: 4px !important;
+  padding: 2px 8px !important;
+}
+
+/* ── Stage pills ───────────────────────────────────────────── */
+.bases-view [data-property="stage"] .multi-select-pill[data-option-value="design"] {
+  background: var(--ltc-purple) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="stage"] .multi-select-pill[data-option-value="sequence"] {
+  background: var(--ltc-midnight) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="stage"] .multi-select-pill[data-option-value="build"] {
+  background: var(--ltc-green) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="stage"] .multi-select-pill[data-option-value="validate"] {
+  background: var(--ltc-ruby) !important;
+  color: var(--ltc-white) !important;
+}
+
+/* ── Status pills ──────────────────────────────────────────── */
+.bases-view [data-property="status"] .multi-select-pill[data-option-value="draft"] {
+  background: rgba(29, 31, 42, 0.5) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="status"] .multi-select-pill[data-option-value="in-progress"] {
+  background: var(--ltc-gold) !important;
+  color: var(--ltc-gunmetal) !important;
+}
+.bases-view [data-property="status"] .multi-select-pill[data-option-value="in-review"] {
+  background: var(--ltc-purple) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="status"] .multi-select-pill[data-option-value="validated"] {
+  background: var(--ltc-green) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="status"] .multi-select-pill[data-option-value="archived"] {
+  background: rgba(29, 31, 42, 0.35) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ── Work stream pills ─────────────────────────────────────── */
+.bases-view [data-property="work_stream"] .multi-select-pill[data-option-value="1-align"] {
+  background: var(--ltc-gold) !important;
+  color: var(--ltc-gunmetal) !important;
+}
+.bases-view [data-property="work_stream"] .multi-select-pill[data-option-value="2-learn"] {
+  background: var(--ltc-purple) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="work_stream"] .multi-select-pill[data-option-value="3-plan"] {
+  background: var(--ltc-midnight) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="work_stream"] .multi-select-pill[data-option-value="4-execute"] {
+  background: var(--ltc-green) !important;
+  color: var(--ltc-white) !important;
+}
+.bases-view [data-property="work_stream"] .multi-select-pill[data-option-value="5-improve"] {
+  background: var(--ltc-ruby) !important;
+  color: var(--ltc-white) !important;
+}

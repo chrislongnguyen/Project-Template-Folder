@@ -1,11 +1,11 @@
 ---
-version: "1.0"
+version: "1.1"
 iteration: "I1: Concept"
-status: draft
-last_updated: 2026-03-29
+status: Draft
+last_updated: 2026-04-04
 owner: Long Nguyen
 type: template
-work_stream: govern
+work_stream: 0-govern
 stage: validate
 sub_system: 
 ---

@@ -1,12 +1,12 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
+version: "1.1"
+last_updated: 2026-04-04
 owner: Long Nguyen
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: draft
 type: template
-work_stream: govern
+work_stream: 0-govern
 stage: design
 sub_system: 
 ---

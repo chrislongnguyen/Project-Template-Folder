@@ -1,10 +1,10 @@
 ---
-version: "1.0"
-status: draft
-last_updated: 2026-03-31
+version: "1.1"
+status: Draft
+last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: template
-work_stream: plan
+work_stream: 3-plan
 stage: design
 sub_system: 
 ---

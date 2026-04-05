@@ -1,0 +1,39 @@
+filters:
+  and:
+    - file.inFolder("AI-AGENT-MEMORY")
+    - file.ext == "md"
+formulas:
+  days_old: (now() - file.ctime).days.round(0)
+  size_kb: (file.size / 1024).round(1)
+properties:
+  file.name:
+    displayName: SESSION
+  file.ctime:
+    displayName: CREATED
+  formula.days_old:
+    displayName: DAYS AGO
+  formula.size_kb:
+    displayName: SIZE KB
+  file.mtime:
+    displayName: LAST MODIFIED
+views:
+  - type: table
+    name: ALL SESSIONS
+    order:
+      - file.ctime
+      - file.name
+      - formula.days_old
+      - formula.size_kb
+      - file.mtime
+    limit: 30
+    summaries:
+      formula.size_kb: Average
+  - type: table
+    name: RECENT
+    order:
+      - file.ctime
+      - file.name
+      - formula.days_old
+      - formula.size_kb
+      - file.mtime
+    limit: 10

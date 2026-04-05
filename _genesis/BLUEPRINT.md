@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
 last_updated: 2026-04-03
 owner: "Long Nguyen"
@@ -381,10 +381,11 @@ Every workstream artifact MUST include this frontmatter:
 ```yaml
 ---
 version: "1.0"           # MAJOR = iteration (I1=1.x), MINOR = edit count
-status: Draft             # Draft | Review | Approved (human only)
+status: draft             # S2 vocabulary: draft | in-progress | in-review | validated | archived
+                          # (human only sets: validated)
 last_updated: 2026-04-03  # Always absolute date
 type: ues-deliverable     # ues-deliverable | template | learning-source | reference
-sub_system: problem-diagnosis  # problem-diagnosis | data-pipeline | data-analysis | insights-decision-making
+sub_system: PD  # problem-diagnosis | data-pipeline | data-analysis | insights-decision-making
 work_stream: plan         # align | learn | plan | execute | improve
 stage: design             # design | sequence | build | validate
 component: EI             # EI | EU | EA | EO | EP | EOE | EOT | EOP (optional)

@@ -1,0 +1,59 @@
+filters:
+  and:
+    - file.inFolder("inbox")
+    - file.ext == "md"
+formulas:
+  days_old: (now() - file.ctime).days.round(0)
+  days_since_update: (now() - file.mtime).days.round(0)
+properties:
+  file.name:
+    displayName: ITEM
+  status:
+    displayName: STATUS
+  tags:
+    displayName: TAGS
+  file.ctime:
+    displayName: CAPTURED
+  formula.days_old:
+    displayName: DAYS OLD
+  formula.days_since_update:
+    displayName: LAST TOUCHED
+views:
+  - type: table
+    name: ALL ITEMS
+    order:
+      - file.name
+      - status
+      - tags
+      - file.ctime
+      - formula.days_old
+      - formula.days_since_update
+    limit: 30
+    summaries:
+      formula.days_old: Average
+    columnSize:
+      note.tags: 584
+  - type: table
+    name: UNPROCESSED
+    filters:
+      and:
+        - not:
+            - status == "processed"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - tags
+      - formula.days_old
+      - formula.days_since_update
+  - type: table
+    name: BY TAG
+    groupBy:
+      property: tags
+      direction: ASC
+    order:
+      - file.name
+      - status
+      - formula.days_old
+      - formula.days_since_update

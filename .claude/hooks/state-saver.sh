@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-# version: 1.1 | last_updated: 2026-03-29
+# version: 1.3 | status: Draft | last_updated: 2026-04-05
 # state-saver.sh — PostToolUse hook (Write|Edit|MultiEdit)
 # Snapshots current git state to the vault for crash recovery.
 set -euo pipefail
+
+# Dedup guard: skip if global/plugin version is handling this event
+if [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]] && [[ -x "${CLAUDE_PLUGIN_ROOT}/hooks/state-saver.sh" ]]; then
+  exit 0
+fi
 
 # Debounce: skip if last write was < 30 seconds ago (avoids Drive latency on every edit)
 DEBOUNCE_FILE="/tmp/claude-state-saver-debounce"
@@ -14,7 +19,12 @@ if [[ -f "$DEBOUNCE_FILE" ]]; then
 fi
 touch "$DEBOUNCE_FILE"
 
-source "${CLAUDE_PLUGIN_ROOT}/hooks/lib/config.sh"
+# Resolve config.sh relative to this script (works in both plugin and project mode)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_LIB="${CLAUDE_PLUGIN_ROOT:-$SCRIPT_DIR}/hooks/lib/config.sh"
+[[ -f "$CONFIG_LIB" ]] || CONFIG_LIB="$SCRIPT_DIR/lib/config.sh"
+[[ -f "$CONFIG_LIB" ]] || exit 0
+source "$CONFIG_LIB"
 
 STATE_DIR="$VAULT/07-Claude/state"
 mkdir -p "$STATE_DIR"

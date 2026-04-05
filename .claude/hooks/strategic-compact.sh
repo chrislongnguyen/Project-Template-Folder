@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-# version: 1.0 | last_updated: 2026-03-29
+# version: 1.2 | status: Draft | last_updated: 2026-04-05
 # strategic-compact.sh — PreToolUse hook
 # Counts heavy tool calls and warns when context may be approaching limits.
 # Triggers state-saver at threshold intervals.
 set -euo pipefail
+
+# Dedup guard: skip if global/plugin version is handling this event
+if [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]] && [[ -x "${CLAUDE_PLUGIN_ROOT}/hooks/strategic-compact.sh" ]]; then
+  exit 0
+fi
 
 THRESHOLD=200
 HEAVY_TOOLS="Read|Bash|WebFetch|WebSearch|Agent"
@@ -25,7 +30,9 @@ count=$((count + 1))
 echo "$count" > "$COUNTER_FILE"
 
 if (( count % THRESHOLD == 0 )); then
-  STATE_SAVER="${CLAUDE_PLUGIN_ROOT}/hooks/state-saver.sh"
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  STATE_SAVER="${CLAUDE_PLUGIN_ROOT:-$SCRIPT_DIR}/hooks/state-saver.sh"
+  [[ -x "$STATE_SAVER" ]] || STATE_SAVER="$SCRIPT_DIR/state-saver.sh"
   if [[ -x "$STATE_SAVER" ]]; then
     bash "$STATE_SAVER" 2>/dev/null
   fi

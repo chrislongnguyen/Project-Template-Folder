@@ -1,11 +1,11 @@
 ---
-version: "1.3"
+version: "1.4"
 iteration: "I1: Concept"
-status: draft
-last_updated: 2026-03-30
+status: Draft
+last_updated: 2026-04-04
 owner: Long Nguyen
 type: template
-work_stream: govern
+work_stream: 0-govern
 stage: design
 sub_system: 
 ---
@@ -39,7 +39,7 @@ Each workstream runs all 4 DSBV phases internally. The workstream determines the
 - Run `/dsbv status` to see current progress across all workstreams
 - Run `./scripts/dsbv-gate.sh` to manually check workstream-boundary readiness
 - Skill definition: `.claude/skills/dsbv/SKILL.md` | Rule: `.claude/rules/dsbv.md`
-- Context template: `_shared/templates/dsbv-context-template.md` | Evaluation template: `_shared/templates/dsbv-eval-template.md`
+- Context template: `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` | Evaluation template: `_genesis/templates/DSBV_EVAL_TEMPLATE.md`
 
 ---
 
@@ -264,8 +264,8 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 |----------|------|
 | DSBV Skill | `.claude/skills/dsbv/SKILL.md` |
 | DSBV Rule | `.claude/rules/dsbv.md` |
-| Context Template | `_shared/templates/dsbv-context-template.md` |
-| Evaluation Template | `_shared/templates/dsbv-eval-template.md` |
+| Context Template | `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` |
+| Evaluation Template | `_genesis/templates/DSBV_EVAL_TEMPLATE.md` |
 | Workstream-Boundary Gate | `scripts/dsbv-gate.sh` |
 | Design-Phase Guard | `scripts/dsbv-skill-guard.sh` |
 | ALIGN Retrospective | `5-IMPROVE/retrospectives/DSBV_ALIGN_RETRO.md` |
