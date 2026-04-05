@@ -7,7 +7,7 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: decision
-work_stream: 1-align
+work_stream: 1-ALIGN
 stage: design
 sub_system: <% tp.system.prompt("Sub-system (e.g. problem-diagnosis)") %>
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>

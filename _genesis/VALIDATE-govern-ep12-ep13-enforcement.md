@@ -6,7 +6,7 @@ owner: Long Nguyen
 workstream: GOVERN
 iteration: I2
 type: ues-deliverable
-work_stream: 0-govern
+work_stream: 0-GOVERN
 stage: validate
 ---
 # VALIDATE.md — GOVERN: EP-12/EP-13 Layer 1 Enforcement

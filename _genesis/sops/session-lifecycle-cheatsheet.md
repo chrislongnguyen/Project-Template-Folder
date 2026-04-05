@@ -3,7 +3,7 @@ version: "1.0"
 status: draft
 last_updated: 2026-04-02
 type: sop
-work_stream: govern
+work_stream: 0-GOVERN
 stage: build
 sub_system: session-lifecycle
 ---

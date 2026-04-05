@@ -7,7 +7,7 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: ues-deliverable
-work_stream: 3-plan
+work_stream: 3-PLAN
 stage: build
 sub_system: <% tp.system.suggester(["1-PD (Problem Diagnosis)", "2-DP (Data Pipeline)", "3-DA (Data Analysis)", "4-IDM (Insights & Decisions)"], ["1-PD", "2-DP", "3-DA", "4-IDM"]) %>
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>

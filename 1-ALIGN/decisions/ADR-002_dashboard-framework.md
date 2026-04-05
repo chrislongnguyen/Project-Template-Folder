@@ -3,7 +3,7 @@ type: ues-deliverable
 version: "2.1"
 status: in-review
 last_updated: 2026-04-04
-work_stream: 1-align
+work_stream: 1-ALIGN
 stage: build
 sub_system: 3-DA
 ues_version: prototype

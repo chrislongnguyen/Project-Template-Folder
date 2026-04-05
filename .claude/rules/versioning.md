@@ -16,17 +16,21 @@ Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesi
 
 ## Frontmatter Value Casing
 
-All frontmatter values MUST be lowercase. Obsidian Bases filters are case-sensitive; mixed-case values cause silent query failures.
+Frontmatter values MUST be lowercase — except `work_stream`, which uses numbered SCREAMING format to match folder names (e.g. `1-ALIGN`, `3-PLAN`). Obsidian Bases filters are case-sensitive; inconsistent casing causes silent query failures.
 
 ```yaml
 # WRONG
 status: Draft
 iteration_name: Concept
+work_stream: 1-align
 
 # CORRECT
 status: draft
 iteration_name: concept
+work_stream: 1-ALIGN
 ```
+
+`work_stream` canonical values: `0-GOVERN` | `1-ALIGN` | `2-LEARN` | `3-PLAN` | `4-EXECUTE` | `5-IMPROVE`
 
 YAML boolean hazard: values like `true`, `false`, `yes`, `no` are natively boolean in YAML. If used as string metadata, quote them to prevent type coercion.
 
@@ -106,7 +110,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 1. `version` — follows 1.x (I1) convention, bumped only if previously committed
 2. `status` — lowercase (`draft` or `review`), not prematurely `approved`
 3. `last_updated` — today's absolute date
-4. All frontmatter values lowercase (R4)
+4. All frontmatter values lowercase (R4) — except `work_stream` which uses numbered SCREAMING (`1-ALIGN`)
 5. `_genesis/version-registry.md` — row updated if this is a workstream artifact
 
 ## PR-Level Requirements

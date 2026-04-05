@@ -6,7 +6,7 @@ workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: draft
 type: template
-work_stream: 0-govern
+work_stream: 0-GOVERN
 stage: design
 sub_system: 
 ---

@@ -7,7 +7,7 @@ workstream: [align | plan | execute | improve | shared | agent]
 severity: [blocked | confused | annoying | minor]  # friction only, omit for ideas
 date: YYYY-MM-DD
 author: [name or agent]
-work_stream: 5-improve
+work_stream: 5-IMPROVE
 stage: build
 sub_system: 
 ---

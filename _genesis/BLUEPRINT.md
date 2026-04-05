@@ -386,7 +386,7 @@ status: draft             # S2 vocabulary: draft | in-progress | in-review | val
 last_updated: 2026-04-03  # Always absolute date
 type: ues-deliverable     # ues-deliverable | template | learning-source | reference
 sub_system: PD  # problem-diagnosis | data-pipeline | data-analysis | insights-decision-making
-work_stream: plan         # align | learn | plan | execute | improve
+work_stream: 3-PLAN       # 1-ALIGN | 2-LEARN | 3-PLAN | 4-EXECUTE | 5-IMPROVE
 stage: design             # design | sequence | build | validate
 component: EI             # EI | EU | EA | EO | EP | EOE | EOT | EOP (optional)
 iteration: 1              # 0-4

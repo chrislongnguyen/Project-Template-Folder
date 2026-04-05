@@ -1,6 +1,6 @@
 ---
 type: framework
-work_stream: learn
+work_stream: 2-LEARN
 sub_system: effective_risk_management
 ---
 

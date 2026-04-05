@@ -3,7 +3,7 @@ version: "1.2"
 last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: template
-work_stream: 2-learn
+work_stream: 2-LEARN
 stage: build
 sub_system: 
 ---

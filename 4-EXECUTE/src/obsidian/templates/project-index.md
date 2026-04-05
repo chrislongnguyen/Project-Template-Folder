@@ -7,7 +7,7 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: project-index
-work_stream: <% tp.system.prompt("Primary work stream (e.g. execute)") %>
+work_stream: <% tp.system.prompt("Primary work stream (e.g. 4-EXECUTE)") %>
 stage: build
 sub_system: PD
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>

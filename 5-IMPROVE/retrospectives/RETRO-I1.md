@@ -3,7 +3,7 @@ type: ues-deliverable
 version: "2.1"
 status: validated
 last_updated: 2026-04-04
-work_stream: 5-improve
+work_stream: 5-IMPROVE
 stage: validate
 sub_system: 4-IDM
 ues_version: prototype

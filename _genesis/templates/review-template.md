@@ -3,7 +3,7 @@ version: "1.2"
 last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: template
-work_stream: 5-improve
+work_stream: 5-IMPROVE
 stage: validate
 sub_system: 
 ---

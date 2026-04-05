@@ -5,7 +5,7 @@ status: Draft
 last_updated: 2026-04-04
 owner: Long Nguyen
 type: template
-work_stream: 0-govern
+work_stream: 0-GOVERN
 stage: design
 sub_system: 
 ---

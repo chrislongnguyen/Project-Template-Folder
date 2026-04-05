@@ -6,7 +6,7 @@ owner: Long Nguyen
 workstream: GOVERN
 iteration: I2
 type: ues-deliverable
-work_stream: 0-govern
+work_stream: 0-GOVERN
 stage: sequence
 sub_system:
 ---

@@ -4,7 +4,7 @@ status: Draft
 last_updated: 2026-04-04
 owner: "Long Nguyen"
 type: template
-work_stream: 1-align
+work_stream: 1-ALIGN
 stage: design
 sub_system: 
 ---

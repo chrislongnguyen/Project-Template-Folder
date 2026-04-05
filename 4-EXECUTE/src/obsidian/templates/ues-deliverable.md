@@ -7,7 +7,7 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: ues-deliverable
-work_stream: <% tp.system.suggester(["align","learn","plan","execute","improve"], ["align","learn","plan","execute","improve"]) %>
+work_stream: <% tp.system.suggester(["1-ALIGN","2-LEARN","3-PLAN","4-EXECUTE","5-IMPROVE"], ["1-ALIGN","2-LEARN","3-PLAN","4-EXECUTE","5-IMPROVE"]) %>
 stage: <% tp.system.suggester(["design","sequence","build","validate"], ["design","sequence","build","validate"]) %>
 sub_system: <% tp.system.suggester(["problem-diagnosis","data-pipeline","data-analysis","insights-decision-making"], ["problem-diagnosis","data-pipeline","data-analysis","insights-decision-making"]) %>
 iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>

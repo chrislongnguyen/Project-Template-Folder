@@ -3,7 +3,7 @@ type: ues-deliverable
 version: "2.0"
 status: in-progress
 last_updated: 2026-04-04
-work_stream: 2-learn
+work_stream: 2-LEARN
 stage: build
 sub_system: 2-DP
 ues_version: prototype

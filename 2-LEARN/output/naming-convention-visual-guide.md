@@ -3,7 +3,7 @@ version: "1.0"
 status: draft
 last_updated: 2026-04-03
 type: learning-output
-work_stream: learn
+work_stream: 2-LEARN
 stage: build
 title: "Naming Convention Visual Guide — Quick Reference"
 topics: [naming-convention, ung, visual-guide, cheat-sheet]

@@ -3,7 +3,7 @@ version: "1.0"
 status: draft
 last_updated: 2026-04-03
 type: learning-output
-work_stream: learn
+work_stream: 2-LEARN
 stage: build
 source_type: gan-analysis
 title: "Naming Convention GAN Synthesis — S x E x Sc Analysis"

@@ -7,7 +7,7 @@ version: "1.0"
 status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: risk
-work_stream: 3-plan
+work_stream: 3-PLAN
 stage: design
 sub_system: 1-PD
 iteration: 2

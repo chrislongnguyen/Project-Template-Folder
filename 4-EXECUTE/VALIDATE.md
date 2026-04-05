@@ -3,7 +3,7 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-03
 type: ues-deliverable
-work_stream: 4-execute
+work_stream: 4-EXECUTE
 stage: validate
 iteration: 2
 ues_version: prototype

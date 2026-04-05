@@ -8,7 +8,7 @@ status: draft
 last_updated: <% tp.date.now("YYYY-MM-DD") %>
 type: daily-note
 sub_system: 1-PD
-work_stream: 1-align
+work_stream: 1-ALIGN
 stage: build
 iteration: 2
 ues_version: prototype
