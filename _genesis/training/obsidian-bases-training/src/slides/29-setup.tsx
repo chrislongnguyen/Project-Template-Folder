@@ -27,10 +27,14 @@ const steps = [
   },
   {
     num: '06',
-    text: '(Optional) Install: Local REST API (enables /obsidian CLI search), Dataview (advanced queries)',
+    text: 'Install Obsidian Web Clipper browser extension — press ⌥⇧O on any web page to clip articles directly to captured/ folder for /ingest',
   },
   {
     num: '07',
+    text: '(Optional) Install: Local REST API (/obsidian search), Dataview (PKB dashboard), Spaced Repetition (knowledge review)',
+  },
+  {
+    num: '08',
     text: 'Navigate to _genesis/obsidian/bases/ → click any .base file to verify',
   },
 ];
@@ -89,7 +93,7 @@ export default function SetupSlide() {
                 margin: 0,
               }}
             >
-              APPENDIX: SETUP &amp; INSTALL
+              OBSIDIAN SETUP &amp; INSTALL
             </h1>
           </div>
           <div

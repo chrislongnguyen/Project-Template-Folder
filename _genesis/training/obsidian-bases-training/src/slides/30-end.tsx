@@ -2,6 +2,16 @@ import { motion } from 'framer-motion';
 import { SlideLayout } from '../components/SlideLayout';
 import { colors } from '../lib/theme';
 
+const summaryLines = [
+  { label: 'Your morning:', desc: 'C3 → C4 → C1 (5 minutes, full picture)' },
+  { label: 'Your thinking:', desc: '/ltc-brainstorming (structured, not blank-page)' },
+  { label: 'Your design:', desc: '/dsbv design → ALIGN first (define before you build)' },
+  { label: 'Your work:', desc: '/dsbv build (agent writes, you review)' },
+  { label: 'Your knowledge:', desc: '/ingest (compounds, never evaporates)' },
+  { label: 'Your approvals:', desc: 'C5 (you are the gate, dashboards remind you)' },
+  { label: 'Your context:', desc: '/compress + /resume (nothing lost between days)' },
+];
+
 export default function EndSlide() {
   return (
     <SlideLayout>
@@ -46,7 +56,7 @@ export default function EndSlide() {
           zIndex: 1,
         }}
       >
-        {/* OBSIDIAN BASES — large gold gradient text */}
+        {/* ITERATION 2: EFFICIENT — large gold gradient text */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +64,7 @@ export default function EndSlide() {
           style={{
             fontFamily: 'Inter, sans-serif',
             fontWeight: 800,
-            fontSize: 'clamp(4rem, 10vw, 8rem)',
+            fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
             lineHeight: 0.95,
             letterSpacing: '-0.03em',
             background: `linear-gradient(135deg, ${colors.gold} 0%, #e6b84d 40%, ${colors.goldDim} 100%)`,
@@ -64,32 +74,56 @@ export default function EndSlide() {
             margin: 0,
           }}
         >
-          OBSIDIAN BASES
+          ITERATION 2: EFFICIENT
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          style={{
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 800,
-            fontSize: 'clamp(0.9rem, 2vw, 1.5rem)',
-            color: colors.text,
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            marginTop: '20px',
-          }}
-        >
-          Your dashboards are only as good as your frontmatter.
-        </motion.p>
+        {/* 6-line summary */}
+        <div style={{ marginTop: '24px' }}>
+          {summaryLines.map((line, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+              style={{
+                display: 'flex',
+                gap: '10px',
+                marginBottom: '8px',
+                alignItems: 'baseline',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 700,
+                  fontSize: 'clamp(0.65rem, 1vw, 0.85rem)',
+                  color: colors.gold,
+                  minWidth: '140px',
+                  flexShrink: 0,
+                }}
+              >
+                {line.label}
+              </span>
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: 'clamp(0.65rem, 1vw, 0.85rem)',
+                  color: colors.textDim,
+                  lineHeight: 1.5,
+                }}
+              >
+                {line.desc}
+              </span>
+            </motion.div>
+          ))}
+        </div>
 
         {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
           style={{
             fontFamily: 'Inter, sans-serif',
             fontWeight: 400,

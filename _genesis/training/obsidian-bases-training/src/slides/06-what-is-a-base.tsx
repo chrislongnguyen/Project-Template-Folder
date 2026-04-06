@@ -15,7 +15,7 @@ const bullets = [
 const yamlLines = [
   { key: 'type:', value: 'ues-deliverable', comment: '← UES = User Enablement System — marks this as a project deliverable' },
   { key: 'status:', value: 'in-progress', comment: '' },
-  { key: 'work_stream:', value: '4-execute', comment: '' },
+  { key: 'work_stream:', value: '4-EXECUTE', comment: '' },
   { key: 'stage:', value: 'build', comment: '' },
   { key: 'sub_system:', value: '2-DP', comment: '' },
 ];

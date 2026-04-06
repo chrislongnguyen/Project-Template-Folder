@@ -1,12 +1,12 @@
 import { SectionDivider } from '../components/SectionDivider';
 import { colors } from '../lib/theme';
 
-export default function SectionFrontmatter() {
+export default function SectionQmdSlide() {
   return (
     <SectionDivider
-      number={3}
-      title="THE FRONTMATTER SYSTEM"
-      subtitle="The metadata that powers every dashboard"
+      number={6}
+      title="QMD & Memory Vault"
+      subtitle="How semantic search powers auto-recall across sessions"
       accentColor={colors.midnightLight}
     />
   );

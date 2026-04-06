@@ -4,9 +4,9 @@ import { colors } from '../lib/theme';
 export default function SectionStartSlide() {
   return (
     <SectionDivider
-      number={4}
-      title="GETTING STARTED"
-      subtitle="Your first actions + how to customize"
+      number={8}
+      title="Getting Started"
+      subtitle="Setup, first actions, and reference"
       accentColor={colors.gold}
     />
   );

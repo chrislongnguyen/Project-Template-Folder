@@ -1,12 +1,12 @@
 import { SectionDivider } from '../components/SectionDivider';
 import { colors } from '../lib/theme';
 
-export default function SectionFoundations() {
+export default function SectionSkillsSlide() {
   return (
     <SectionDivider
-      number={2}
-      title="FOUNDATIONS"
-      subtitle="Understanding your tools before using them"
+      number={7}
+      title="Upgraded Skills"
+      subtitle="/ltc-brainstorming Discovery Protocol + all new commands"
       accentColor={colors.gold}
     />
   );

@@ -64,7 +64,7 @@ export default function TitleSlide() {
             margin: 0,
           }}
         >
-          OBSIDIAN BASES
+          ITERATION 2: EFFICIENT
         </motion.h1>
 
         {/* Subtitle */}
@@ -75,14 +75,14 @@ export default function TitleSlide() {
           style={{
             fontFamily: 'Inter, sans-serif',
             fontWeight: 800,
-            fontSize: 'clamp(1rem, 2.2vw, 1.6rem)',
+            fontSize: 'clamp(0.8rem, 1.6vw, 1.2rem)',
             color: colors.text,
             textTransform: 'uppercase',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.08em',
             marginTop: '20px',
           }}
         >
-          Your Project Dashboard System
+          Your Project Operating System — Now With Dashboards, Knowledge Base &amp; Agent Skills
         </motion.p>
 
         {/* Tagline */}
@@ -99,8 +99,40 @@ export default function TitleSlide() {
             letterSpacing: '0.05em',
           }}
         >
-          18 live dashboards — powered by your file metadata
+          Dashboards + PKB + Skills + Filesystem
         </motion.p>
+
+        {/* Iteration progression bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.85 }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginTop: '20px',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 'clamp(0.6rem, 0.9vw, 0.76rem)',
+          }}
+        >
+          <span style={{ color: colors.muted, fontWeight: 400 }}>I1 Sustainable</span>
+          <span style={{ color: colors.textDim, opacity: 0.5 }}>──►</span>
+          <span
+            style={{
+              color: colors.gold,
+              fontWeight: 700,
+              background: 'rgba(242, 199, 92, 0.12)',
+              padding: '2px 10px',
+              borderRadius: '3px',
+              border: `1px solid rgba(242, 199, 92, 0.3)`,
+            }}
+          >
+            I2 Efficient
+          </span>
+          <span style={{ color: colors.textDim, opacity: 0.5 }}>──►</span>
+          <span style={{ color: colors.muted, fontWeight: 400 }}>I3 Scalable</span>
+        </motion.div>
 
         {/* Decorative divider */}
         <motion.div
