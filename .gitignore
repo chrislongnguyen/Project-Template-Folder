@@ -14,9 +14,6 @@ secrets/
 *.pfx
 *.jks
 
-# Personal Knowledge Base — private, never commit
-PERSONAL-KNOWLEDGE-BASE/
-
 # Personal agent config (Job Site personal overrides)
 .claude/settings.local.json
 .claude/worktrees/

@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"sources-group","type":"group","x":-430,"y":-350,"width":710,"height":180,"label":"Sources (2 captured)"},
+		{"id":"topics-group","type":"group","x":420,"y":-350,"width":410,"height":250,"label":"knowledge-systems/ (1 page, L4)"},
+		{"id":"captured","type":"text","text":"## captured/\n\n**C — Capture Facts & Data**\n\nDrop raw sources here:\n- PDFs, articles, docs\n- Session transcripts\n- Web Clipper exports","x":-400,"y":0,"width":300,"height":200,"color":"4"},
+		{"id":"distilled","type":"text","text":"## distilled/\n\n**O+D — Organise + Distil**\n\nLLM writes wiki pages here:\n- Entity pages (what is X?)\n- Synthesis pages (what did I learn?)\n- L1→L4 depth progression","x":50,"y":0,"width":300,"height":200,"color":"6"},
+		{"id":"expressed","type":"text","text":"## expressed/\n\n**E — Express Expertise**\n\nArtifacts produced from knowledge:\n- Reports, summaries\n- Team docs, deliverables\n- Seeds for 2-LEARN/input/","x":500,"y":0,"width":300,"height":200,"color":"1"},
+		{"id":"qmd","type":"text","text":"## QMD\n\nIndexes distilled/\nAuto-recall in future sessions\nSemantic + keyword search","x":50,"y":280,"width":300,"height":100,"color":"5"},
+		{"id":"page-karpathy","type":"file","file":"PERSONAL-KNOWLEDGE-BASE/distilled/knowledge-systems/karpathy-llm-wiki-pattern.md","x":450,"y":-320,"width":350,"height":200},
+		{"id":"src-thread","type":"file","file":"PERSONAL-KNOWLEDGE-BASE/captured/Thread by @karpathy.md","x":-400,"y":-320,"width":300,"height":120},
+		{"id":"src-gist","type":"file","file":"PERSONAL-KNOWLEDGE-BASE/captured/llm-wiki.md","x":-50,"y":-320,"width":300,"height":120},
+		{"id":"ingest","type":"text","text":"## /ingest\n\nReads captured/ → writes distilled/\nL1-L4 depth targets\nUpdates _index.md + _log.md","x":-150,"y":-140,"width":250,"height":120,"color":"3"}
+	],
+	"edges":[
+		{"id":"captured-to-ingest","fromNode":"captured","fromSide":"top","toNode":"ingest","toSide":"left","label":"source"},
+		{"id":"ingest-to-distilled","fromNode":"ingest","fromSide":"right","toNode":"distilled","toSide":"top","label":"distil"},
+		{"id":"distilled-to-expressed","fromNode":"distilled","fromSide":"right","toNode":"expressed","toSide":"left","label":"produce"},
+		{"id":"distilled-to-qmd","fromNode":"distilled","fromSide":"bottom","toNode":"qmd","toSide":"top","label":"index"},
+		{"id":"src-thread-to-page","fromNode":"src-thread","fromSide":"right","toNode":"page-karpathy","toSide":"left","label":"ingested into"},
+		{"id":"src-gist-to-page","fromNode":"src-gist","fromSide":"right","toNode":"page-karpathy","toSide":"left","label":"ingested into"}
+	]
+}
