@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.2 | status: draft | last_updated: 2026-04-03
+# version: 2.3 | status: draft | last_updated: 2026-04-06
 # setup-obsidian.sh — one-command installer for LTC Obsidian workspace
 # Copies Bases and Templater templates into an Obsidian vault's .obsidian/ directory
 
@@ -9,9 +9,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-# Source and target locations
-SRC_BASES="$PROJECT_ROOT/4-EXECUTE/src/obsidian/bases"
-SRC_TEMPLATES="$PROJECT_ROOT/4-EXECUTE/src/obsidian/templates"
+# Source and target locations (I2: moved from 4-EXECUTE/src/ to _genesis/)
+SRC_BASES="$PROJECT_ROOT/_genesis/obsidian/bases"
+SRC_TEMPLATES="$PROJECT_ROOT/_genesis/obsidian/templates"
 
 # Optional: accept VAULT_ROOT as argument, default to current directory
 VAULT_ROOT="${1:-.}"
