@@ -863,12 +863,13 @@ Open `PERSONAL-KNOWLEDGE-BASE/dashboard.md` in Obsidian to see:
 ```
 YOUR MARKDOWN FILES          QMD ENGINE              YOUR AGENT
 ┌─────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│ distilled/       │     │  BM25 keyword    │     │ "Based on your   │
-│ sessions/        │ ──► │  + vector embed  │ ──► │  wiki page on X, │
-│ conversations/   │     │  + reranking     │     │  the answer is…" │
-│ decisions/       │     │                  │     │                  │
-└─────────────────┘     └──────────────────┘     └──────────────────┘
-  You write/ingest        Indexes locally          Searches automatically
+│ distilled/              │     │  BM25 keyword    │     │ "Based on your   │
+│ sessions/               │ ──► │  + vector embed  │ ──► │  wiki page on X, │
+│ conversations/          │     │  + reranking     │     │  the answer is…" │
+│ decisions/              │     │                  │     │                  │
+│ 2-LEARN/_cross/output/  │     │                  │     │                  │
+└────────────────────────┘     └──────────────────┘     └──────────────────┘
+  You write/ingest/research     Indexes locally          Searches automatically
 ```
 
 ### Three search types
@@ -895,7 +896,7 @@ YOUR MACHINE
 │         └── decisions/      (decision records)            │
 │                                                          │
 │  Tier 3: QMD Search Layer                                │
-│    └── Indexes all Tier 2 markdown + PKB distilled/      │
+│    └── Indexes Tier 2 + PKB distilled/ + 2-LEARN output  │
 │         ├── lex search (keyword)                          │
 │         ├── vec search (semantic)                         │
 │         └── hyde search (hypothetical document)           │
@@ -903,9 +904,14 @@ YOUR MACHINE
 │  PKB Indexing (after each /ingest)                       │
 │    └── PERSONAL-KNOWLEDGE-BASE/distilled/ → QMD          │
 │         ├── qmd collection add distilled .                │
-│         ├── qmd update distilled                          │
-│         └── qmd embed  (vectorizes for semantic search)   │
+│         ├── qmd update && qmd embed                       │
 │         Auto-runs on SessionStop hook — no manual step    │
+│                                                          │
+│  LEARN Indexing (after /learn:structure)                  │
+│    └── 2-LEARN/_cross/output/ → QMD (collection: learn)  │
+│         Structured P-pages (P0-P5) per topic              │
+│         Auto-indexed on SessionStop — weight 1.5          │
+│         "What did we learn about X?" auto-recalls         │
 │                                                          │
 │  Auto-Recall (MCP Integration)                           │
 │    └── QMD is available as an MCP server — the agent     │
