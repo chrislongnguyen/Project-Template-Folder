@@ -1,9 +1,18 @@
+---
+version: "2.1"
+status: draft
+last_updated: 2026-04-06
+work_stream: _genesis
+type: training
+audience: "LTC Members (new + upgrading from I1)"
+reading_time: "30 min"
+---
+
 # ITERATION 2: EFFICIENT — TRAINING DECK
 
-> **Audience:** LTC Members (new + upgrading from I1) | **Version:** 2.1 | **Date:** 2026-04-06 | **Status:** draft
 > **Format:** Slide deck (each `## heading` = one slide, separated by `---`)
 > **Brand:** Inter font | Midnight Green `#004851` | Gold `#F2C75C` | Ruby Red `#9B1842`
-> **Reading time:** ~30 min | **Quick Start:** 10 min to migrated + first dashboard
+> **Quick Start:** 10 min to migrated + first dashboard
 
 ---
 
