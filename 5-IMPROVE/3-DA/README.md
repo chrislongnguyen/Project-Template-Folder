@@ -1,41 +1,40 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 5-IMPROVE
-stage: build
-type: readme
 sub_system: 3-DA
+type: template
 iteration: 2
 ---
 
-# 5-IMPROVE / 3-DA — Data Analysis Improvement
+# 3-DA — Data Analysis | IMPROVE Workstream
 
-## Purpose
+> "Without DA-IMPROVE, the retrospective loop produces feelings instead of findings — IDM cannot recommend prioritized improvements without analyzed evidence."
 
-Captures improvement artifacts for the Data Analysis subsystem: model accuracy metrics, methodology retrospectives, visualization feedback, and changelogs for analytical framework changes.
-
-DA sits between DP (upstream pipeline) and IDM (downstream decision-making). Improvement findings here address analytical quality, methodology drift, and communication of insights. When DP pipeline changes alter the data shape, DA must evaluate whether existing models and visualizations remain valid.
+DA-IMPROVE interprets the metrics and retrospective data from DP: it identifies trends, surfaces root causes, and produces prioritized improvement findings that IDM can act on. Without this analysis, improvement decisions are driven by recency bias rather than systemic pattern.
 
 ## Cascade Position
 
 ```
-5-IMPROVE/2-DP  ──►  5-IMPROVE/3-DA  ──►  5-IMPROVE/4-IDM
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
 ```
 
-DA improvement artifacts are inputs to IDM retros when analytical changes affect the quality or framing of decision inputs.
+Receives from upstream: `dp-metrics.md`, `dp-changelog.md`, `dp-retro-template.md` from `5-IMPROVE/2-DP/`.
+Produces for downstream: `da-metrics.md`, `da-changelog.md`, `da-retro-template.md` — consumed by 4-IDM as analyzed findings with priority rankings for the next iteration's improvement backlog.
 
 ## Contents
 
-| Artifact Type     | Naming Pattern              | Description                                              |
-|-------------------|-----------------------------|----------------------------------------------------------|
-| Changelog         | `da-changelog.md`           | Versioned record of model, methodology, and viz changes  |
-| Metrics           | `da-metrics.md`             | Accuracy, coverage, and insight-to-decision conversion   |
-| Retrospective     | `da-retro-{YYYY-QN}.md`     | Quarterly retro for analytical quality and methodology   |
-| Feedback          | `da-feedback-{YYYY-MM}.md`  | Feedback from IDM on decision-readiness of outputs       |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Changelog | `da-changelog.md` | Version history and analytical change narrative for the DA subsystem |
+| Metrics | `da-metrics.md` | Analyzed metrics — trends, deviations, and root cause notes |
+| Retro template | `da-retro-template.md` | Structured retrospective template scoped to DA analytical processes |
 
-## Notes
+## Pre-Flight Checklist
 
-- Methodology changes (new frameworks, dropped models) must be logged in `da-changelog.md` with rationale before rollout.
-- Visualization feedback from stakeholders routes through IDM feedback first — only DA-specific viz issues land here.
-- Accuracy metrics must reference the target baseline set in `3-PLAN/` — do not set new targets here without PLAN workstream update.
+- [ ] Confirm every metric deviation has a root cause hypothesis — not just a number
+- [ ] Verify trend analysis spans at least two comparable data points (current vs. prior iteration)
+- [ ] Confirm retro findings are categorized by subsystem — PD, DP, DA, or IDM
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

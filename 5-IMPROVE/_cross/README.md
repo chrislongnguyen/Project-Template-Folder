@@ -1,44 +1,35 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 5-IMPROVE
-stage: build
-type: readme
 sub_system: _cross
+type: template
 iteration: 2
 ---
 
-# 5-IMPROVE / _cross — Cross-Cutting Improvement
+# _cross — Cross-Cutting | IMPROVE Workstream
 
-## Purpose
+> "Without _cross-IMPROVE, workstream-level health is invisible — subsystem metrics exist but no one can see the aggregate system performance or cross-cutting failure patterns."
 
-Captures system-wide improvement artifacts that span multiple subsystems or apply to the IMPROVE workstream as a whole: cross-subsystem metrics, shared feedback registers, iteration changelogs, and retrospectives that cannot be cleanly assigned to a single subsystem.
+_cross-IMPROVE holds improvement artifacts that aggregate across all four subsystems or that track workstream-level health that no single subsystem owns. Without it, feedback patterns that span multiple subsystems go undetected.
 
-Cross-cutting artifacts aggregate signals from all four subsystem improvement tracks. They are the synthesis layer — not a replacement for subsystem-level detail.
+## Scope
 
-## Cascade Position
-
-```
-5-IMPROVE/1-PD  ──┐
-5-IMPROVE/2-DP  ──┤──►  5-IMPROVE/_cross  (aggregate + synthesize)
-5-IMPROVE/3-DA  ──┤
-5-IMPROVE/4-IDM ──┘
-```
-
-Cross artifacts are produced after subsystem artifacts, not before. They summarize and surface patterns that individual subsystems cannot see in isolation.
+Cross-cutting artifacts in IMPROVE capture what no single subsystem can see alone: workstream-wide changelog narrative, aggregated metrics baseline, and feedback signals collected across PD, DP, DA, and IDM. In this workstream, cross-cutting means any improvement artifact that requires comparing or combining results across subsystems.
 
 ## Contents
 
-| Artifact Type      | Naming Pattern                    | Description                                              |
-|--------------------|-----------------------------------|----------------------------------------------------------|
-| Feedback Register  | `cross-feedback-register.md`      | Shared feedback triage across all subsystems             |
-| Iteration Changelog| `cross-changelog-{YYYY-QN}.md`    | Quarterly summary of changes across all subsystems       |
-| Cross Retro        | `cross-retro-{YYYY-QN}.md`        | System-wide retrospective spanning all subsystems        |
-| System Metrics     | `cross-metrics.md`                | Aggregate health metrics across the 4-subsystem chain    |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Cross changelog | `cross-changelog.md` | Workstream-level change history — aggregated narrative across all subsystems |
+| Cross metrics baseline | `cross-metrics-baseline.md` | Aggregated health metrics — workstream-level targets and actuals |
+| Feedback register | `cross-feedback-register.md` | Captured feedback from stakeholders and users spanning all subsystems |
 
-## Notes
+## Pre-Flight Checklist
 
-- The feedback register (`cross-feedback-register.md`) is the first stop for feedback that cannot be immediately attributed to a subsystem. Triage assigns it downstream.
-- Cross changelogs summarize — they do not replace subsystem changelogs. Both must exist for a complete record.
-- Cross retros are quarterly. Subsystem retros may run more frequently.
+- [ ] Confirm cross-metrics-baseline.md rolls up from all four subsystem metrics files
+- [ ] Verify feedback-register captures signals from both human users and agent outputs
+- [ ] Confirm no artifact here duplicates content already owned by a single subsystem
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

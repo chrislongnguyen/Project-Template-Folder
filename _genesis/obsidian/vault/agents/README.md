@@ -1,23 +1,42 @@
 ---
-version: "1.0"
+version: "2.0"
 status: draft
-last_updated: 2026-04-01
-zone: govern
-subsystem: agent-system
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
-# agents/
 
-Agent session logs and outputs.
+# agents
 
-Each session creates one note: `{agent-name}-{YYYY-MM-DD}-{session-id}.md`.
-Contents: task summary, tool calls made, decisions reached, open questions.
+> "What has the AI agent produced that needs human review?"
 
-This is a V5 whitelisted write path — agents may create notes here.
-Notes are accessible via CLI by default (AP4 opt-out model).
-Sensitive agent outputs should have `cli-blocked: true` added by the vault owner.
+## Purpose
 
-## Links
+Agent-generated notes and artifacts surfaced in the Obsidian vault.
 
-- [[AP4]]
-- [[agent-system]]
-- [[task]]
+Without a dedicated landing zone, agent outputs mix with human-authored notes — making it impossible to distinguish what has been reviewed from what is still AI-generated draft. This folder enforces the boundary: nothing leaves `agents/` until a human has triaged and promoted it to its proper workstream location.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| Agent research notes | Outputs from `ltc-explorer` runs awaiting human review |
+| Draft artifacts | Agent-produced drafts pending promotion to workstream folders |
+
+## How It Connects
+
+```
+AI agents (ltc-explorer, ltc-builder, ltc-planner)
+    │
+    └──> vault/agents/ (staging zone — unreviewed agent output)
+              │
+              └──> Human triage → promoted to vault/projects/, vault/research/,
+                   or workstream folders (1-ALIGN/ through 5-IMPROVE/)
+```
+
+## Pre-Flight Checklist
+
+- [ ] Review all files in `agents/` before each session — do not let drafts accumulate without triage
+- [ ] Confirm promoted artifacts have been moved (not copied) — remove from `agents/` after promotion
+- [ ] No orphaned or stale artifacts

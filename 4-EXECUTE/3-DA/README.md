@@ -1,33 +1,42 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 4-EXECUTE
-stage: build
-type: template
 sub_system: 3-DA
+type: template
 iteration: 2
 ---
 
-# 4-EXECUTE / 3-DA — Data Analysis Execution
+# 3-DA — Data Analysis | EXECUTE Workstream
 
-Analytical models, statistical computations, and visualization code that produce investment insights. Operationalizes the analytical design in 3-PLAN/3-DA.
+> "Without DA-EXECUTE, IDM has no computed results to present — decisions and reports are built on manual summaries instead of reproducible analysis."
+
+DA-EXECUTE applies analytical logic to the pipeline outputs from DP: it runs models, computes metrics, and produces validated result sets that IDM can package into decisions and reports. All analytical logic must be reproducible via tested source code and versioned notebooks.
 
 ## Cascade Position
 
-Depends on:
-- `3-PLAN/3-DA/` — analytical methodology, factor definitions, model specs
-- `4-EXECUTE/2-DP/` — validated datasets as inputs
+```
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
+```
 
-Feeds into:
-- `4-EXECUTE/4-IDM/` — analysis outputs consumed by decision support tools and dashboards
+Receives from upstream: pipeline outputs and schema contracts from `4-EXECUTE/2-DP/src/` and `4-EXECUTE/2-DP/config/`.
+Produces for downstream: `src/` analytical modules, `notebooks/` reproducible analyses, `tests/` result validation — consumed by 4-IDM as verified computed outputs for presentation and decision packaging.
 
 ## Contents
 
-| Directory | Contains | Examples |
-|-----------|----------|---------|
-| `src/` | Source code | Factor analysis modules, statistical computations, visualization renderers |
-| `tests/` | Test files | Model unit tests, regression baselines, output shape validators |
-| `config/` | Configuration | Model hyperparameters, factor weights, visualization themes |
-| `docs/` | Technical docs | Model methodology docs, output schema, interpretation guide |
-| `notebooks/` | Jupyter/Colab notebooks | Exploratory analysis, model prototyping, result review |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Source code | `src/` | Analytical logic — models, metrics, aggregations, transformations |
+| Notebooks | `notebooks/` | Reproducible analysis — exploratory and documentation-grade notebooks |
+| Tests | `tests/` | Result validation — expected output ranges, regression checks |
+| Config | `config/` | Analysis parameters, model configuration, threshold definitions |
+| Docs | `docs/` | Methodology documentation, metric definitions, result interpretation guide |
+
+## Pre-Flight Checklist
+
+- [ ] Confirm all analytical inputs are sourced exclusively from `4-EXECUTE/2-DP/` outputs
+- [ ] Verify every metric in `src/` has a corresponding test in `tests/`
+- [ ] Confirm notebooks are reproducible — run clean from top to bottom without errors
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

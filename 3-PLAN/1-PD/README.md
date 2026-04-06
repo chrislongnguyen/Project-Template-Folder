@@ -1,38 +1,41 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 3-PLAN
-stage: build
-type: readme
 sub_system: 1-PD
+type: template
 iteration: 2
 ---
 
-# 3-PLAN / 1-PD — Problem Diagnosis Planning
+# 1-PD — Problem Diagnosis | PLAN Workstream
 
-Planning artifacts for the Problem Diagnosis subsystem. PD's architecture is the master
-constraint for all downstream subsystems (DP, DA, IDM).
+> "Without PD, the PLAN workstream optimizes for the wrong risks — architecture and roadmap are built on an unexamined problem."
+
+PD-PLAN establishes the foundational principles for this workstream: it names the problem being planned for, identifies blocking forces, and defines the drivers that constrain all planning choices. Every architecture decision, risk register, and roadmap in DP, DA, and IDM inherits these principles.
 
 ## Cascade Position
 
 ```
-UPSTREAM:   2-LEARN/1-PD/   (research, specs, problem model)
-            1-ALIGN/1-PD/   (charter, decisions)
-THIS:       3-PLAN/1-PD/    (architecture, risk register, driver register, roadmap)
-DOWNSTREAM: 3-PLAN/2-DP/    (inherits PD component boundaries)
-            3-PLAN/3-DA/    (inherits PD data contract)
-            3-PLAN/4-IDM/   (inherits PD output schema)
-            4-EXECUTE/1-PD/ (implements this plan)
+[3-PLAN inputs from 2-LEARN + 1-ALIGN]  ──►  [1-PD]  ──►  [2-DP (Data Pipeline)]
 ```
+
+Receives from upstream: validated research outputs (`2-LEARN/4-IDM/`), approved charter and OKRs (`1-ALIGN/`).
+Produces for downstream: `pd-architecture.md`, `pd-risk-register.md`, `pd-driver-register.md`, `pd-roadmap.md` — consumed by 2-DP as hard constraints on what data and inputs are in scope.
 
 ## Contents
 
-| Artifact           | Naming Pattern            | Description                                      |
-|--------------------|---------------------------|--------------------------------------------------|
-| Architecture       | `pd-architecture.md`      | System context, component design, key decisions  |
-| Risk Register      | `pd-risk-register.md`     | UBS-categorized risks, heat map, mitigations     |
-| Driver Register    | `pd-driver-register.md`   | Forces available to accelerate PD delivery       |
-| Roadmap            | `pd-roadmap.md`           | Milestone sequence, dependencies, owners         |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Architecture spec | `pd-architecture.md` | Defines the PD subsystem design and component boundaries |
+| Risk register | `pd-risk-register.md` | UBS register — blocking forces specific to problem diagnosis |
+| Driver register | `pd-driver-register.md` | UDS register — goals and constraints that shape PD decisions |
+| Roadmap | `pd-roadmap.md` | Sequenced plan for PD deliverables across the iteration |
 
-Naming convention: `{subsystem}-{artifact-type}.md` — all lowercase, hyphen-joined.
+## Pre-Flight Checklist
+
+- [ ] Confirm the problem statement is traceable to a validated 1-ALIGN charter objective
+- [ ] Verify all identified risks have a subsystem owner (PD, DP, DA, or IDM)
+- [ ] Confirm drivers are grounded in 2-LEARN research — not assumptions
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

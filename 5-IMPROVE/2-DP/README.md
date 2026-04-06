@@ -1,41 +1,40 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 5-IMPROVE
-stage: build
-type: readme
 sub_system: 2-DP
+type: template
 iteration: 2
 ---
 
-# 5-IMPROVE / 2-DP — Data Pipeline Improvement
+# 2-DP — Data Pipeline | IMPROVE Workstream
 
-## Purpose
+> "Without DP-IMPROVE, the retrospective loop has no data — DA receives opinions instead of measurements and cannot identify real improvement signals."
 
-Captures improvement artifacts for the Data Pipeline subsystem: pipeline performance metrics, data quality retrospectives, infrastructure feedback, and changelogs for pipeline configuration changes.
-
-DP sits between PD (upstream problem framing) and DA (downstream analysis). Improvement findings here address throughput, latency, data fidelity, and infrastructure reliability. When PD-level changes alter what data is required, DP must adapt and log the change.
+DP-IMPROVE collects and organizes the raw evidence for the improvement cycle: metrics collected from the deployed pipeline, changelog entries recording what changed, and retrospective data from the DP build. It feeds DA with structured, comparable data across iterations.
 
 ## Cascade Position
 
 ```
-5-IMPROVE/1-PD  ──►  5-IMPROVE/2-DP  ──►  5-IMPROVE/3-DA
+[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
 ```
 
-DP improvement artifacts are inputs to DA retros when pipeline changes affect data availability or quality for analysis.
+Receives from upstream: improvement criteria and baseline definitions from `5-IMPROVE/1-PD/pd-metrics.md`.
+Produces for downstream: `dp-changelog.md`, `dp-metrics.md`, `dp-retro-template.md` — consumed by 3-DA as the raw evidence set for trend analysis and improvement prioritization.
 
 ## Contents
 
-| Artifact Type     | Naming Pattern              | Description                                           |
-|-------------------|-----------------------------|-------------------------------------------------------|
-| Changelog         | `dp-changelog.md`           | Versioned record of pipeline and infra changes        |
-| Metrics           | `dp-metrics.md`             | Pipeline performance: latency, throughput, data quality |
-| Retrospective     | `dp-retro-{YYYY-QN}.md`     | Quarterly retro for pipeline reliability and quality  |
-| Feedback          | `dp-feedback-{YYYY-MM}.md`  | Feedback from DA consumers on data availability       |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Changelog | `dp-changelog.md` | Version history and change narrative for the DP subsystem |
+| Metrics | `dp-metrics.md` | Pipeline health measurements — latency, completeness, schema drift |
+| Retro template | `dp-retro-template.md` | Structured retrospective template scoped to DP processes and artifacts |
 
-## Notes
+## Pre-Flight Checklist
 
-- Metrics focus on the 3-pillar lens: data sustainability (no data loss), pipeline efficiency (cycle time), and scalability (volume capacity).
-- Infrastructure changes must be logged before deployment — changelog entry first, then change.
-- Data quality issues discovered in DA retros that trace back to DP must be captured here with a root-cause note.
+- [ ] Confirm metrics are collected against the baselines defined in `5-IMPROVE/1-PD/pd-metrics.md`
+- [ ] Verify changelog is consistent with actual commits in the DP source history
+- [ ] Confirm retro captures pipeline reliability failures — not just feature gaps
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

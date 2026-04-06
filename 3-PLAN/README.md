@@ -1,72 +1,110 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 3-PLAN
+type: template
+iteration: 2
 ---
-# PLAN workstream (Minimize Risks via Design)
 
-> "What can go wrong? What should we leverage? In what order?"
+# 3-PLAN — Minimize Failure Risks
 
-**Workstreams:** WS2 (Risk Management), WS4 (Thinking), WS5 (Decision Making)
-**Derived From:** Ultimate Truth #5 (Risk > Output); UT#7 Work Streams 2, 4-5; Agile SOPs 2.3-2.4
-
----
+> "What could go wrong? How do we sequence to derisk first?"
 
 ## Purpose
 
-No code is written until the top risks are identified and mitigated.
-This workstream translates learning + alignment from `1-ALIGN/` into actionable architecture and roadmaps.
-It operationalizes the core equation: **Success = Efficient & Scalable Management of Failure Risks**.
+Without PLAN, execution proceeds without a derisked sequence — teams build the hardest thing first, discover blockers mid-sprint, and accumulate rework debt that compounds with every iteration. This workstream translates the Effective System Design from LEARN into a concrete architecture, risk register, and ordered roadmap. Its output is the execution mandate: a locked plan that sequences work by failure risk (sustainability first) so that 4-EXECUTE encounters no structural surprises.
+
+## The 4 Stages
+
+Every subsystem (PD, DP, DA, IDM) flows through these stages:
 
 ```
-  1-ALIGN/                    3-PLAN/                      4-EXECUTE/
-  ┌──────────────┐           ┌──────────────────┐          ┌────────────┐
-  │ charter/     │──────────►│ risks/           │          │            │
-  │ okrs/        │           │ drivers/         │─────────►│ src/       │
-  │ decisions/   │◄──────────│ architecture/    │          │ tests/     │
-  │ learning/    │──────────►│ roadmap/         │          │ config/    │
-  │   specs/     │           │ learning/        │          │ docs/      │
-  └──────────────┘           └──────────────────┘          └────────────┘
+DESIGN  →  SEQUENCE  →  BUILD  →  VALIDATE
 ```
 
-## Contents
+| Stage | Purpose | Key Output |
+|-------|---------|-----------|
+| **Design** | Translate effective principles into system architecture; identify all structural risks before committing to a build sequence | Architecture design document; component breakdown (EOE, EOT, EOP); architecture risk register |
+| **Sequence** | Order execution by failure risk (sustainability first); define version milestones and sprint boundaries; assign owners | Derisked execution sequence; sprint plan per version; resource allocation; dependency map |
+| **Build** | Finalize the execution plan with detailed specs, acceptance criteria, and rollback conditions for each deliverable | Locked execution plan; VANA acceptance criteria per deliverable; rollback playbook; driver register (UDS) |
+| **Validate** | Verify the plan is complete, internally consistent, and executable — all risks have mitigations; all acceptance criteria are testable | Plan review report; corrective actions (back to Design/Sequence if needed); validated plan → 4-EXECUTE |
 
-| Subfolder | Work Stream | Contains | Key Question |
-|-----------|-------------|----------|--------------|
-| `risks/` | WS2: Risk Mgmt | UBS Register, Assumptions, Mitigations | What can go wrong? |
-| `drivers/` | WS2: Risk Mgmt | UDS Register, Leverage Plan | What can we exploit? |
-| `architecture/` | WS4: Thinking | System Design (7-component model), ADRs, Diagrams | How should we build it? |
-| `roadmap/` | WS5: Decisions | Master Plan, Execution Plan, Dependencies | In what order? |
-| `learning/` | WS3: Learning | Targeted research during planning, Technical spikes | What else do we need to know? |
+## Subsystem Flow
 
-## Planning Checklist
-- [ ] UBS_REGISTER.md has top risks identified with root-cause traces
-- [ ] ASSUMPTIONS.md lists all assumptions that could invalidate the plan
-- [ ] MITIGATIONS.md has a strategy for each high-impact risk
-- [ ] UDS_REGISTER.md identifies key drivers to leverage
-- [ ] Research/spikes completed for unknown domains
-- [ ] SYSTEM_DESIGN.md covers all 7 effective system components
-- [ ] ADRs written for all non-trivial architectural choices
-- [ ] MASTER_PLAN.md prioritized by MoSCoW
-- [ ] EXECUTION_PLAN.md has tasks with acceptance criteria
+```
+PD-PLAN  →  DP-PLAN  →  DA-PLAN  →  IDM-PLAN
+```
 
-## Pre-Flight — 3 Pillars Check
+| Subsystem | Focus | Key Inputs | Key Outputs |
+|-----------|-------|-----------|------------|
+| **PD** | Architect the problem-diagnosis system; sequence diagnosis activities by risk; define what "done" looks like for PD | Validated EP + solution design from PD-LEARN; PD alignment package | PD architecture; PD execution sequence; PD acceptance criteria; **design constraints → DP, DA, IDM-PLAN** |
+| **DP** | Architect the transformation system; derisk data quality and source reliability first; sequence pipeline build | **Principles from PD** + PD plan constraints; DP-LEARN transformation principles; DP alignment package | DP architecture; pipeline build sequence (safety before throughput); DP acceptance criteria → DP-EXECUTE |
+| **DA** | Architect the analysis and logic system; validate analytical approach before committing to full build | **Principles from PD** + DP architecture outputs; DA-LEARN analysis principles; DA alignment package | DA architecture; analysis build sequence (accuracy before scale); DA acceptance criteria → DA-EXECUTE |
+| **IDM** | Architect the insight delivery system; sequence delivery so manual review precedes automation | **Principles from all upstream** + DA architecture outputs; IDM-LEARN delivery principles; IDM alignment package | IDM architecture; delivery build sequence (safe presentation before automation); IDM acceptance criteria → IDM-EXECUTE |
 
-### Sustainability — Does our plan manage failure risks?
-- [ ] Top 3 failure modes identified with mitigations
-- [ ] Assumptions are explicit and testable
-- [ ] Fallback plans exist for high-impact risks
+> **Critical:** PD produces the effective principles that govern the entire UES — DP, DA, and IDM inherit and build on them.
 
-### Efficiency — Is our plan lean?
-- [ ] No analysis paralysis — research is time-boxed
-- [ ] Plan focuses on highest risk-adjusted value items first
-- [ ] Dependencies are minimized where possible
+## Structure
 
-### Scalability — Does our plan handle growth?
-- [ ] Architecture supports 3x and 10x scale
-- [ ] Plan accommodates iterative refinement
-- [ ] Knowledge artifacts are reusable across projects
+| Folder | Contents |
+|--------|---------|
+| `1-PD/` | PLAN artifacts for problem diagnosis — architecture, risk register, execution sequence, acceptance criteria |
+| `2-DP/` | PLAN artifacts for transformation — pipeline architecture, source risk register, build sequence, data quality SLAs |
+| `3-DA/` | PLAN artifacts for analysis and logic — analytical architecture, methodology risk register, build sequence, accuracy criteria |
+| `4-IDM/` | PLAN artifacts for insight delivery — delivery architecture, adoption risk register, rollout sequence, usability criteria |
+| `_cross/` | Cross-cutting plan artifacts — project-level UBS register, UDS register, version roadmap, shared dependency map |
 
-## Links
+## Templates
 
-- [[DESIGN]]
-- [[workstream]]
+| Stage | Template |
+|-------|---------|
+| Design | [`design-template.md`](_genesis/templates/design-template.md) |
+| Sequence | [`dsbv-process.md`](_genesis/templates/dsbv-process.md) |
+| Build | [`ubs-register-template.md`](_genesis/templates/ubs-register-template.md) — risk and driver registers |
+| Validate | [`review-template.md`](_genesis/templates/review-template.md) |
+
+## Pre-Flight Checklist
+
+### Design Stage
+- [ ] Confirm EP from 2-LEARN is finalized before designing architecture
+- [ ] Translate each effective principle into at least one architectural constraint
+- [ ] Identify all structural risks — components with no fallback, single points of failure, external dependencies
+- [ ] Produce component breakdown (EOE, EOT, EOP) for each subsystem
+
+### Sequence Stage
+- [ ] Order work by failure risk — sustainability blockers before efficiency gains
+- [ ] Define sprint boundaries and version milestones with explicit exit criteria
+- [ ] Map all cross-subsystem dependencies and flag sequencing conflicts
+- [ ] Assign owners for every milestone
+
+### Build Stage
+- [ ] Finalize UBS register — all known blockers with severity and mitigation
+- [ ] Finalize UDS register — all known drivers with activation conditions
+- [ ] Write VANA acceptance criteria for every deliverable
+- [ ] Define rollback conditions for high-risk build steps
+
+### Validate Stage
+- [ ] All VANA acceptance criteria met
+- [ ] Evidence basis verified
+- [ ] Every risk in the register has an assigned mitigation
+- [ ] Validated package ready for → 4-EXECUTE
+
+## How PLAN Connects
+
+```
+                  effective system design (UBS + UDS + EP)
+2-LEARN  ─────────────────────────────────────────────>  3-PLAN
+                                                             │
+                                             locked execution plan + risk register
+                                                             │
+                                                             ▼
+                                                         4-EXECUTE
+
+3-PLAN ──"unresolved unknown"──> 2-LEARN  (close knowledge gap first)
+3-PLAN ──"scope conflict"──────> 1-ALIGN  (re-align before locking plan)
+```
+
+## DASHBOARDS
+
+![[PLAN Overview.base]]

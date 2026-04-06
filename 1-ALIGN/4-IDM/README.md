@@ -1,34 +1,45 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 1-ALIGN
-stage: build
-type: template
 sub_system: 4-IDM
+type: template
 iteration: 2
 ---
 
-# 4-IDM — Insights & Decision-Making | ALIGN Workstream
+# 4-IDM — Insights & Decision Making | ALIGN Workstream
 
-Alignment artifacts for the Insights and Decision-Making subsystem: charter, OKRs, and decisions that define what IDM must surface and enable. IDM is the terminal consumer in the chain — it translates DA analytical outputs into decision-ready formats for human stakeholders. Its scope is bounded by all three upstream subsystems.
+> "Without documented decisions and chartered direction, the project proceeds on verbal agreements — 2-LEARN and 3-PLAN inherit ambiguity and will re-litigate alignment at every turn."
+
+IDM converts analysis into explicit, recorded decisions: the project charter, approved OKRs, key ADRs, and the signed-off direction that unlocks downstream workstreams. It is the final gate before ALIGN output is consumed by 2-LEARN and 3-PLAN.
 
 ## Cascade Position
 
 ```
-[1-PD] ──► [2-DP] ──► [3-DA] ──► [4-IDM]
-                                      ↑
-                                      Terminal node. Consumes all upstream outputs. No downstream subsystem.
+[3-DA (Data Analysis)]  ──►  [4-IDM]  ──►  [workstream output → 2-LEARN / 3-PLAN]
+                                   ↑
+             Effective principles from 1-PD + analysis from 3-DA constrain all decisions
 ```
 
-Receives from upstream: PD scope constraints, DP data guarantees, DA output specifications (all via `1-ALIGN/1-PD/`, `1-ALIGN/2-DP/`, `1-ALIGN/3-DA/`).
-Produces for downstream: none within the subsystem chain. IDM outputs go to human stakeholders (reports, dashboards, decision memos).
+Receives from upstream: analytical findings and prioritized insights from `3-DA/da-charter.md`.
+Produces for downstream: `idm-charter.md`, approved OKRs (`idm-okr.md`), recorded decisions (`idm-decision-adr-template.md`) — consumed by 2-LEARN as the problem definition input and by 3-PLAN as the chartered constraints for risk and architecture work.
 
 ## Contents
 
 | Artifact | File Pattern | Purpose |
 |----------|-------------|---------|
-| IDM Charter | `idm-charter.md` | Purpose, audience, delivery format, success criteria for IDM |
-| IDM OKR Register | `idm-okr.md` | Objectives and key results scoped to IDM |
-| IDM Decisions | `ADR-{id}_{slug}.md` | Dashboard framework, insight format, delivery channel decisions |
-| IDM Stakeholder Outputs | `idm-output-map.md` | Map of which stakeholder receives which IDM output |
+| Charter | `idm-charter.md` | Final chartered scope, objectives, and success criteria for this subsystem |
+| OKR register | `idm-okr.md` | Approved objectives and key results for the decision-making subsystem |
+| Decision log template | `idm-decision-adr-template.md` | ADR template for decisions made at the IDM stage |
+| DSBV Design | `DESIGN.md` | Design spec for how IDM work is structured in this project |
+| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for IDM artifacts |
+| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for IDM |
+
+## Pre-Flight Checklist
+
+- [ ] Confirm all analytical findings from 3-DA are addressed — no open question left undecided
+- [ ] Verify each decision is recorded as an ADR with rationale, not just an outcome
+- [ ] Confirm approved OKRs are measurable and time-bound before handing off to downstream
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to 2-LEARN and 3-PLAN

@@ -1,36 +1,48 @@
 ---
-version: "2.0"
+version: "2.2"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 2-LEARN
-stage: build
-type: readme
 sub_system: _cross
+type: template
 iteration: 2
 ---
 
-# LEARN / _cross — Cross-Subsystem Learning
+# _cross — Cross-Cutting | LEARN Workstream
 
-Research and knowledge artifacts that span multiple subsystems or cannot be attributed to a single PD/DP/DA/IDM scope.
+> "Without shared pipeline infrastructure — templates, reference sources, and shared scripts — each subsystem reinvents its own collection and formatting conventions, producing outputs that cannot be compared or merged."
 
-## Cascade Position
+`_cross` holds the shared scaffolding that all four LEARN subsystems (PD, DP, DA, IDM) draw from: reference libraries, reusable templates, shared scripts, and pipeline configuration. These are not owned by any one subsystem but must remain consistent across all of them.
 
-_cross sits outside the linear PD→DP→DA→IDM cascade.
+## Scope
 
-- Upstream: any subsystem may contribute research here
-- Downstream: any subsystem may consume from here
+Cross-cutting artifacts span all 4 subsystems (PD, DP, DA, IDM) within the LEARN workstream. They cannot be owned by a single subsystem — they govern or support all of them.
 
-Cross-cutting research includes shared literature reviews, methodology comparisons that inform multiple subsystems simultaneously, and findings that create constraints across the entire pipeline.
+In LEARN specifically, cross-cutting means shared pipeline infrastructure. A source format standard, a citation template, or a shared extraction script affects every subsystem equally — placing it in any single subsystem directory would make it invisible to the others or create drift between copies.
+
+```
+                        _cross
+                     (shared infra)
+                    ┌─────┴─────┐
+                    │           │
+              ┌─────┴──┐   ┌───┴────┐
+            1-PD      2-DP  3-DA   4-IDM
+         (all draw from _cross templates, scripts, references)
+```
 
 ## Contents
 
-| Artifact Type | Naming Pattern | Purpose |
-|---|---|---|
-| Literature Reviews | `cross-lit-{topic}.md` | Reviews covering multiple subsystem domains |
-| Methodology Comparisons | `cross-method-comparison.md` | Comparative analysis spanning PD/DP/DA/IDM |
-| Shared Reference Material | `cross-ref-{source}.md` | Foundational references used across subsystems |
-| Cross-Subsystem Constraints | `cross-constraints.md` | Constraints that apply to all four subsystems |
+| Directory | Purpose |
+|-----------|---------|
+| `references/` | Shared bibliography and source registry used across all four subsystems |
+| `templates/` | Artifact templates (research spec, literature review, etc.) shared across subsystems |
+| `scripts/` | Automation scripts for ingestion, formatting, or extraction used across the pipeline |
+| `config/` | Configuration files governing pipeline behavior across all subsystems |
 
-## Usage Rule
+## Pre-Flight Checklist
 
-Prefer subsystem-specific directories (1-PD, 2-DP, 3-DA, 4-IDM) when a research artifact belongs clearly to one subsystem. Use _cross only when the artifact genuinely spans two or more subsystems.
+- [ ] Shared templates in `templates/` are current — subsystem-specific templates derive from these, not diverge
+- [ ] Pipeline scripts in `scripts/` are tested and documented before any subsystem depends on them
+- [ ] Reference library in `references/` is consistent with sources cited in all four subsystems
+- [ ] No subsystem has a local copy of a `_cross` artifact — single source of truth enforced
+- [ ] Config changes are backward-compatible with all four subsystems before merging

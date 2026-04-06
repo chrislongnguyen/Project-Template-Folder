@@ -1,37 +1,41 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 3-PLAN
-stage: build
-type: readme
 sub_system: 3-DA
+type: template
 iteration: 2
 ---
 
-# 3-PLAN / 3-DA — Data Analytics Planning
+# 3-DA — Data Analysis | PLAN Workstream
 
-Planning artifacts for the Data Analytics subsystem. DA architecture is constrained by
-PD output schema and DP data contracts.
+> "Without DA, the plan reaches IDM with unexamined risks — decisions get made without force analysis, and the roadmap lacks a priority rationale."
+
+DA-PLAN applies logic and structured analysis to the inputs defined in DP: it stress-tests the architecture, prioritizes risks by blocking force, and validates that drivers are internally consistent. The analysis output gives IDM an evidence-grounded basis for its decisions.
 
 ## Cascade Position
 
 ```
-UPSTREAM:   3-PLAN/1-PD/    (PD architecture — analytical scope constraint)
-            3-PLAN/2-DP/    (DP data contracts and SLA)
-            2-LEARN/3-DA/   (analytics research, methodology specs)
-THIS:       3-PLAN/3-DA/    (analytics architecture, methodology risks, tooling drivers)
-DOWNSTREAM: 3-PLAN/4-IDM/   (inherits DA output format and cadence)
-            4-EXECUTE/3-DA/ (implements this plan)
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
 ```
+
+Receives from upstream: `dp-architecture.md`, `dp-risk-register.md`, `dp-driver-register.md` from `3-PLAN/2-DP/`.
+Produces for downstream: `da-architecture.md`, `da-risk-register.md`, `da-driver-register.md`, `da-roadmap.md` — consumed by 4-IDM as analyzed risk priorities and validated architectural options.
 
 ## Contents
 
-| Artifact           | Naming Pattern            | Description                                           |
-|--------------------|---------------------------|-------------------------------------------------------|
-| Architecture       | `da-architecture.md`      | Analytics stack, model/metric design, output schema   |
-| Risk Register      | `da-risk-register.md`     | Methodology risks, quality risks, tooling risks       |
-| Driver Register    | `da-driver-register.md`   | Tooling and capability forces available               |
-| Roadmap            | `da-roadmap.md`           | Analytics build sequence, dependencies, owners        |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Architecture spec | `da-architecture.md` | Analysis of structural options — trade-offs and selection rationale |
+| Risk register | `da-risk-register.md` | UBS register with blocking force analysis and priority scores |
+| Driver register | `da-driver-register.md` | UDS register with consistency check — conflicting drivers flagged |
+| Roadmap | `da-roadmap.md` | Analysis-informed sequencing of planning deliverables |
 
-Naming convention: `{subsystem}-{artifact-type}.md` — all lowercase, hyphen-joined.
+## Pre-Flight Checklist
+
+- [ ] Confirm every risk has a blocking force score and a named mitigation owner
+- [ ] Verify architectural options were evaluated against PD's problem framing
+- [ ] Confirm driver conflicts are surfaced — not silently resolved
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

@@ -1,36 +1,34 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 3-PLAN
-stage: build
-type: readme
 sub_system: _cross
+type: template
 iteration: 2
 ---
 
-# 3-PLAN / _cross — Cross-Cutting Planning
+# _cross — Cross-Cutting | PLAN Workstream
 
-Planning artifacts that span multiple subsystems: shared dependency maps, system-level
-architecture decisions, and integrated roadmaps that cannot be owned by a single subsystem.
+> "Without _cross, subsystem boundaries in PLAN become silos — dependency maps, filesystem blueprints, and workstream-wide coordination artifacts have no home."
 
-## Cascade Position
+_cross holds PLAN artifacts that cannot be assigned to a single subsystem because they describe relationships between all four subsystems or between this workstream and the broader project structure.
 
-```
-UPSTREAM:   3-PLAN/1-PD/, 2-DP/, 3-DA/, 4-IDM/   (subsystem plans)
-            2-LEARN/_cross/                         (cross-cutting research)
-THIS:       3-PLAN/_cross/  (dependency maps, shared architecture, integrated roadmap)
-DOWNSTREAM: 4-EXECUTE/_cross/ (shared infrastructure, integration layers)
-```
+## Scope
+
+Cross-cutting artifacts in PLAN span all 4 subsystems (PD, DP, DA, IDM). In this workstream, that means structural maps and coordination artifacts: how subsystems depend on each other, how the physical filesystem is organized, and what constraints apply project-wide rather than subsystem-specific.
 
 ## Contents
 
-| Artifact                  | Naming Pattern                | Description                                              |
-|---------------------------|-------------------------------|----------------------------------------------------------|
-| Filesystem Blueprint      | `filesystem-blueprint.md`     | Canonical directory structure — ALREADY EXISTS (I2 plan) |
-| Cross-Dependency Map      | `cross-dependency-map.md`     | Subsystem dependency matrix, coupling levels, critical path |
-| System Architecture       | `system-architecture.md`      | End-to-end system view across all 4 subsystems           |
-| Integrated Roadmap        | `integrated-roadmap.md`       | Cross-subsystem milestone sequence and sequencing rules  |
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| Dependency map | `cross-dependency-map.md` | Subsystem-to-subsystem input/output dependency graph for PLAN |
+| Filesystem blueprint | `filesystem-blueprint.md` | Canonical directory structure and routing rules for the full project |
 
-`filesystem-blueprint.md` is the approved I2 blueprint — do not modify without a new DSBV cycle.
-Naming convention: `{scope}-{artifact-type}.md` — all lowercase, hyphen-joined.
+## Pre-Flight Checklist
+
+- [ ] Confirm dependency map covers all four subsystems — no orphaned inputs
+- [ ] Verify filesystem blueprint is consistent with the actual repo structure
+- [ ] Confirm no artifact here duplicates content owned by a single subsystem
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to downstream

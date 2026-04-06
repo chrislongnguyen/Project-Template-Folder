@@ -1,34 +1,45 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 1-ALIGN
-stage: build
-type: template
 sub_system: 3-DA
+type: template
 iteration: 2
 ---
 
 # 3-DA — Data Analysis | ALIGN Workstream
 
-Alignment artifacts for the Data Analysis subsystem: charter, OKRs, and decisions that define what analytical outputs DA must produce. DA scope is doubly constrained: by PD's problem definition and by DP's data availability commitments. DA cannot analyze what DP cannot supply.
+> "If the analysis stage is skipped, the project moves into decision-making with raw inputs but no synthesis — OKRs become guesses and decisions lack a reasoned basis."
+
+DA synthesizes the inputs gathered in 2-DP into structured analysis: force analysis, gap assessment, and prioritized insights. It is constrained by the effective principles from 1-PD and produces analyzed findings ready for IDM to convert into decisions and chartered direction.
 
 ## Cascade Position
 
 ```
-[1-PD] ──► [2-DP] ──► [3-DA] ──► [4-IDM]
-                          ↑
-                          Receives PD constraints + DP data guarantees. Produces analytical outputs for IDM.
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
+                                  ↑
+              Effective principles from 1-PD govern analytical scope and rigor
 ```
 
-Receives from upstream: PD effective principles (`1-ALIGN/1-PD/`), DP data availability commitments (`1-ALIGN/2-DP/`).
-Produces for downstream: DA output specifications, model/method decisions — consumed by IDM as the analytical substrate for decision support.
+Receives from upstream: organized stakeholder inputs, requirements baseline from `2-DP/dp-charter.md`.
+Produces for downstream: `da-charter.md`, analytical findings and prioritized insights — consumed by 4-IDM as the evidenced basis for decisions, OKRs, and chartered direction.
 
 ## Contents
 
 | Artifact | File Pattern | Purpose |
 |----------|-------------|---------|
-| DA Charter | `da-charter.md` | Purpose, scope, analytical methods, success criteria for DA |
-| DA OKR Register | `da-okr.md` | Objectives and key results scoped to DA |
-| DA Decisions | `ADR-{id}_{slug}.md` | Model selection, analytical framework decisions |
-| DA Output Spec | `da-output-spec.md` | What DA commits to produce for IDM |
+| Charter | `da-charter.md` | Defines scope, objectives, and success criteria for this subsystem |
+| OKR register | `da-okr.md` | Objectives and key results for the analysis subsystem |
+| Decision log template | `da-decision-adr-template.md` | ADR template for decisions made during analysis |
+| DSBV Design | `DESIGN.md` | Design spec for how DA work is structured in this project |
+| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for DA artifacts |
+| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for DA |
+
+## Pre-Flight Checklist
+
+- [ ] Confirm all inputs from 2-DP are accounted for — no stakeholder or requirement left unanalyzed
+- [ ] Verify analytical conclusions are traceable to evidence, not assumption
+- [ ] Confirm force analysis (blocking vs. driving forces) is complete before passing to IDM
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to 4-IDM

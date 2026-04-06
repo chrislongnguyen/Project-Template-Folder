@@ -1,30 +1,46 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
-owner: "Long Nguyen"
----
-# governance/ — AUTHORITY
-
-**Purpose:** Decision rights, accountability assignments, and escalation paths for LTC operations.
-
-**Cascade position:** Derived layer — formalizes who decides what across all LTC systems.
-
-```
-philosophy → principles → frameworks → [governance as derived authority layer]
-```
-
-## Contents (planned)
-
-| File | Description |
-|------|-------------|
-| RACI.md | Responsibility matrix for key LTC processes |
-| DECISION_RIGHTS.md | Who has authority to approve what, at which thresholds |
-| ESCALATION_PATHS.md | When and how to escalate decisions up the chain |
-
-## Current State
-
-Directory is initialized. Governance artifacts will be added as the organization formalizes decision structures.
-
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
 
-**Classification:** INTERNAL
+# governance
+
+> "Who has authority to decide, and through what process?"
+
+## Purpose
+
+Organizational governance structures and decision-making authority.
+
+Without a governance spec, authority is ambiguous — teams escalate incorrectly, decisions are reversed, and accountability gaps cause delivery failures. This directory holds org-level governance definitions (RACI, authority matrices, board-level mandates) that project teams inherit but do not override. This directory is an **I2 placeholder** — content will be populated in iteration 2.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| _(I2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
+
+## How It Connects
+
+```
+_genesis/philosophy/ + _genesis/principles/
+    │
+    └──> _genesis/governance/ (who decides what, through what process)
+              │
+              ├──> 1-ALIGN/ — governance structures inform charter stakeholder section
+              ├──> 3-PLAN/ — RACI applied to risk owners and decision gates
+              └──> _genesis/compliance/ — governance and compliance interact on audit authority
+```
+
+## Pre-Flight Checklist
+
+- [ ] Confirm governance artifacts have been ratified by the appropriate authority level before adding here
+- [ ] Verify RACI entries cover all DSBV phase-gate decisions
+- [ ] No orphaned or stale artifacts
+
+## Naming Convention
+
+Governance artifacts use descriptive kebab-case: `raci-matrix.md`, `decision-authority-matrix.md`.

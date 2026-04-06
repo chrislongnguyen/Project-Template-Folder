@@ -1,34 +1,45 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 work_stream: 1-ALIGN
-stage: build
-type: template
 sub_system: 2-DP
+type: template
 iteration: 2
 ---
 
 # 2-DP — Data Pipeline | ALIGN Workstream
 
-Alignment artifacts for the Data Pipeline subsystem: charter, OKRs, and decisions that define what data DP must acquire, move, and make available. DP scope is constrained by PD's effective principles — DP cannot collect data outside PD's defined problem boundary.
+> "Without a scoped stakeholder map and requirements input, the analysis stage works from incomplete data — producing alignment artifacts that miss the people or constraints that matter most."
+
+DP gathers the structured inputs that alignment analysis depends on: stakeholder context, requirements, and any domain data needed to validate the problem diagnosis. It is bounded by the effective principles from 1-PD and passes organized, scoped inputs to 3-DA for synthesis into decisions and OKRs.
 
 ## Cascade Position
 
 ```
-[1-PD] ──► [2-DP] ──► [3-DA] ──► [4-IDM]
-              ↑
-              Receives PD scope constraints. Produces data availability guarantees for DA.
+[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
+                                      ↑
+                  Effective principles from 1-PD constrain what is in scope here
 ```
 
-Receives from upstream: PD effective principles, PD scope boundaries (`1-ALIGN/1-PD/`).
-Produces for downstream: DP data availability commitments, pipeline SLAs, source decisions — consumed by DA as input assumptions.
+Receives from upstream: `pd-effective-principles.md`, scoped problem statement from `1-PD/pd-charter.md`.
+Produces for downstream: `dp-charter.md`, stakeholder inputs, requirements baseline — consumed by 3-DA as the structured data set for analysis and decision-making.
 
 ## Contents
 
 | Artifact | File Pattern | Purpose |
 |----------|-------------|---------|
-| DP Charter | `dp-charter.md` | Purpose, scope, data sources, success criteria for DP |
-| DP OKR Register | `dp-okr.md` | Objectives and key results scoped to DP |
-| DP Decisions | `ADR-{id}_{slug}.md` | Source selection, pipeline architecture decisions |
-| DP Principles | `dp-principles.md` | Data quality, freshness, and access principles for DA/IDM |
+| Charter | `dp-charter.md` | Defines scope, objectives, and success criteria for this subsystem |
+| OKR register | `dp-okr.md` | Objectives and key results for the data pipeline subsystem |
+| Decision log template | `dp-decision-adr-template.md` | ADR template for decisions made during input gathering |
+| DSBV Design | `DESIGN.md` | Design spec for how DP work is structured in this project |
+| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for DP artifacts |
+| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for DP |
+
+## Pre-Flight Checklist
+
+- [ ] Confirm all key stakeholders identified in `_cross/cross-stakeholder-map.md` are represented in DP inputs
+- [ ] Verify requirements are traceable to the problem statement in `1-PD/pd-charter.md`
+- [ ] Confirm no data gathering is in scope that contradicts PD's effective principles
+- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
+- [ ] Outputs are ready for handoff to 3-DA
