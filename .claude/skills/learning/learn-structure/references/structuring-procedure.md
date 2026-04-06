@@ -8,7 +8,7 @@ This is the detailed step-by-step procedure for generating 6 Effective Learning 
 
 Read the research file:
 ```
-2-LEARN/research/{system-slug}/T{topic-number}-*.md
+2-LEARN/_cross/research/{system-slug}/T{topic-number}-*.md
 ```
 
 Parse the YAML frontmatter to confirm: topic, EO, RACI roles, timestamp, status.
@@ -28,8 +28,8 @@ Keep the full research in context — you'll reference specific sections per pag
 ## Step 2: Generate P0 (Overview & Summary)
 
 ### Read
-- `2-LEARN/templates/page-0-overview-and-summary.md`
-- `2-LEARN/input/learn-input-{system-slug}.md` for Workstream Contract and RACI fields
+- `_genesis/templates/learning-book/page-0-overview-and-summary.md`
+- `2-LEARN/_cross/input/learn-input-{system-slug}.md` for Workstream Contract and RACI fields
 
 ### Structure
 
@@ -104,7 +104,7 @@ Do not regenerate — copy the file and rename.
 ## Step 3: Generate P1 (Ultimate Blockers)
 
 ### Read
-- `2-LEARN/templates/page-1-ultimate-blockers.md`
+- `_genesis/templates/learning-book/page-1-ultimate-blockers.md`
 - The P0 file you just wrote (to extract col 10 seeds)
 
 ### Structure
@@ -138,7 +138,7 @@ This is the #1 most common error. Double-check every P1 cell.
 ## Step 4: Generate P2 (Ultimate Drivers)
 
 ### Read
-- `2-LEARN/templates/page-2-ultimate-drivers.md`
+- `_genesis/templates/learning-book/page-2-ultimate-drivers.md`
 - The P0 file you wrote (to extract col 4 seeds)
 
 ### Structure
@@ -172,9 +172,9 @@ On UDS rows, direction is STANDARD:
 **This step is mandatory. Do not skip it.**
 
 Read back the three files you just wrote:
-1. `2-LEARN/output/{system-slug}/T{n}.P0-overview-and-summary.md`
-2. `2-LEARN/output/{system-slug}/T{n}.P1-ultimate-blockers.md`
-3. `2-LEARN/output/{system-slug}/T{n}.P2-ultimate-drivers.md`
+1. `2-LEARN/_cross/output/{system-slug}/T{n}.P0-overview-and-summary.md`
+2. `2-LEARN/_cross/output/{system-slug}/T{n}.P1-ultimate-blockers.md`
+3. `2-LEARN/_cross/output/{system-slug}/T{n}.P2-ultimate-drivers.md`
 
 Extract into a working list:
 - **All P principles** (from col 6 cells across all pages): `P[n](pillar)(role): description`
@@ -189,7 +189,7 @@ This list becomes the seed for P3, P4, P5. Do not invent new content — only or
 ## Step 5: Generate P3 (Principles)
 
 ### Read
-- `2-LEARN/templates/page-3-principles.md`
+- `_genesis/templates/learning-book/page-3-principles.md`
 - Your extracted principles list from the checkpoint
 
 ### Structure
@@ -218,7 +218,7 @@ Each row: `P[n](pillar)(role)` for enabling principles, `P_F[n](pillar)(role)` f
 ## Step 6: Generate P4 (Components)
 
 ### Read
-- `2-LEARN/templates/page-4-components.md`
+- `_genesis/templates/learning-book/page-4-components.md`
 - P3 output (to derive components that enable the principles)
 
 ### Structure
@@ -241,7 +241,7 @@ Each component must explicitly state which P3 principle(s) it enables.
 ## Step 7: Generate P5 (Steps to Apply)
 
 ### Read
-- `2-LEARN/templates/page-5-steps-to-apply.md`
+- `_genesis/templates/learning-book/page-5-steps-to-apply.md`
 - P1-P4 outputs (P5 references elements from all prior pages)
 
 ### Structure
@@ -270,9 +270,9 @@ Run the validation script on all 6 pages:
 
 ```bash
 for page in P0 P1 P2 P3 P4 P5; do
-  file=$(ls 2-LEARN/output/{system-slug}/T{n}.${page}-*.md 2>/dev/null)
+  file=$(ls 2-LEARN/_cross/output/{system-slug}/T{n}.${page}-*.md 2>/dev/null)
   if [ -n "$file" ]; then
-    bash 2-LEARN/scripts/validate-learning-page.sh "$file" "$page" "T{n}"
+    bash 2-LEARN/_cross/scripts/validate-learning-page.sh "$file" "$page" "T{n}"
   fi
 done
 ```

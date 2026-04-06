@@ -1,6 +1,6 @@
 ---
-version: "1.1"
-last_updated: 2026-03-30
+version: "1.2"
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-structure
 description: >
@@ -26,26 +26,26 @@ Parse the user's invocation for two arguments:
 - `{system-slug}` — e.g., `data-foundation` (kebab-case system name)
 - `{topic-number}` — e.g., `0` for T0 Overview
 
-If arguments are missing, check for a single `2-LEARN/input/learn-input-*.md` file. If exactly one exists, use it. Otherwise, list available learn-input files and ask.
+If arguments are missing, check for a single `2-LEARN/_cross/input/learn-input-*.md` file. If exactly one exists, use it. Otherwise, list available learn-input files and ask.
 
 ---
 
 ## Injected Context
 
 ### Learn Input Metadata
-!`cat 2-LEARN/input/learn-input-*.md 2>/dev/null | head -120`
+!`cat 2-LEARN/_cross/input/learn-input-*.md 2>/dev/null | head -120`
 
 ### Constraints (CAG Rules)
-!`cat 2-LEARN/config/constraints.yaml 2>/dev/null`
+!`cat 2-LEARN/_cross/config/constraints.yaml 2>/dev/null`
 
 ---
 
 ## Pre-Checks
 
-1. Verify `2-LEARN/input/learn-input-{system-slug}.md` exists. If not, error: "Run /learn:input first."
-2. Verify `2-LEARN/research/{system-slug}/T{topic-number}-*.md` exists. If not, error: "Run /learn:research first."
-3. Verify `2-LEARN/templates/page-0-overview-and-summary.md` exists.
-4. Create `2-LEARN/output/{system-slug}/` directory if it doesn't exist.
+1. Verify `2-LEARN/_cross/input/learn-input-{system-slug}.md` exists. If not, error: "Run /learn:input first."
+2. Verify `2-LEARN/_cross/research/{system-slug}/T{topic-number}-*.md` exists. If not, error: "Run /learn:research first."
+3. Verify `_genesis/templates/learning-book/page-0-overview-and-summary.md` exists.
+4. Create `2-LEARN/_cross/output/{system-slug}/` directory if it doesn't exist.
 5. Extract from learn-input: `system_name`, `eo`, `user_persona_r`, `user_persona_a`, `subject_abbreviation`, `input_contract`, `output_contract`, `topic_depth`.
 
 ---
@@ -92,12 +92,12 @@ These become seeds for P3-P5. Do NOT skip this step.
 ## Output Path
 
 ```
-2-LEARN/output/{system-slug}/T{n}.P0-overview-and-summary.md
-2-LEARN/output/{system-slug}/T{n}.P1-ultimate-blockers.md
-2-LEARN/output/{system-slug}/T{n}.P2-ultimate-drivers.md
-2-LEARN/output/{system-slug}/T{n}.P3-principles.md
-2-LEARN/output/{system-slug}/T{n}.P4-components.md
-2-LEARN/output/{system-slug}/T{n}.P5-steps-to-apply.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P0-overview-and-summary.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P1-ultimate-blockers.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P2-ultimate-drivers.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P3-principles.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P4-components.md
+2-LEARN/_cross/output/{system-slug}/T{n}.P5-steps-to-apply.md
 ```
 
 ---
@@ -128,8 +128,8 @@ These become seeds for P3-P5. Do NOT skip this step.
 
 Run on each output page:
 ```bash
-bash 2-LEARN/scripts/validate-learning-page.sh \
-  2-LEARN/output/{system-slug}/T{n}.P{m}-{name}.md {page-type} {topic-depth}
+bash 2-LEARN/_cross/scripts/validate-learning-page.sh \
+  2-LEARN/_cross/output/{system-slug}/T{n}.P{m}-{name}.md {page-type} {topic-depth}
 ```
 
 ---
@@ -142,7 +142,7 @@ bash 2-LEARN/scripts/validate-learning-page.sh \
 System:     {system_name}
 Topic:      T{n} — {topic_name}
 Pages:      6/6 generated
-Location:   2-LEARN/output/{system-slug}/
+Location:   2-LEARN/_cross/output/{system-slug}/
 
 Validation:
   P0 Overview & Summary    — {PASS/FAIL} ({row_count} rows, {col_count} cols)

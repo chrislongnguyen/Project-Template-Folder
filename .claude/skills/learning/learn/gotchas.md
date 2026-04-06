@@ -19,5 +19,5 @@ Never run structure on all topics before starting review.
 
 ## 4. Missing slug argument
 
-When no `{system-slug}` is provided, scan `2-LEARN/input/` for existing
+When no `{system-slug}` is provided, scan `2-LEARN/_cross/input/` for existing
 `learn-input-*.md` files and present options. Do not error silently or assume a default.

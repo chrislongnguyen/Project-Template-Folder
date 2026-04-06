@@ -1,6 +1,6 @@
 ---
-version: "1.1"
-last_updated: 2026-03-30
+version: "1.2"
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-input
 description: >
@@ -18,7 +18,7 @@ Ask questions **one at a time, conversationally**. Wait for each answer before a
 
 ## Arguments
 
-Optional: `{system-slug}` — if provided and `2-LEARN/input/learn-input-{system-slug}.md` exists, enter update mode.
+Optional: `{system-slug}` — if provided and `2-LEARN/_cross/input/learn-input-{system-slug}.md` exists, enter update mode.
 
 <HARD-GATE>
 1. Ask questions ONE AT A TIME. Never batch multiple questions in a single message.
@@ -31,8 +31,8 @@ Optional: `{system-slug}` — if provided and `2-LEARN/input/learn-input-{system
 
 ## Pre-Checks
 
-1. Read `2-LEARN/templates/learn-input-template.md` — this is the output format.
-2. If system-slug provided, check if `2-LEARN/input/learn-input-{system-slug}.md` already exists.
+1. Read `_genesis/templates/learn-input-template.md` — this is the output format.
+2. If system-slug provided, check if `2-LEARN/_cross/input/learn-input-{system-slug}.md` already exists.
    - If exists: load it, announce "Updating existing input for {system_name}. Current values shown as defaults — press Enter to keep or type new value."
    - If not: fresh interview.
 
@@ -149,7 +149,7 @@ Example for Data Foundation Layer:
 
 After all 9 questions are answered:
 
-1. Read `2-LEARN/templates/learn-input-template.md`.
+1. Read `_genesis/templates/learn-input-template.md`.
 2. Fill all `{placeholder}` fields with User responses.
 3. Set topic depth: remove inactive topic rows based on selected depth.
    - T0: keep only T0 row.
@@ -157,7 +157,7 @@ After all 9 questions are answered:
    - T0-T5: keep all 6 rows.
 4. Set all active topic Status to `Pending`.
 5. Replace `{date}` with today's date.
-6. Save to `2-LEARN/input/learn-input-{system-slug}.md`.
+6. Save to `2-LEARN/_cross/input/learn-input-{system-slug}.md`.
 7. If file already existed (update mode): use Edit tool to update changed fields only.
 
 ---
@@ -166,7 +166,7 @@ After all 9 questions are answered:
 
 ```
 Learn input captured for: {system_name}
-Saved to: 2-LEARN/input/learn-input-{system-slug}.md
+Saved to: 2-LEARN/_cross/input/learn-input-{system-slug}.md
 Topic depth: {depth} ({N} topics, {N*6} pages)
 Research domains: {count}
 

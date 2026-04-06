@@ -1,0 +1,20 @@
+# constraints.yaml — Learning pipeline defaults
+# version: 1.0 | status: draft | last_updated: 2026-04-06
+#
+# Referenced by: .claude/skills/learning/learn-structure/SKILL.md (line 39)
+# Consumer: /learn:structure skill reads this before generating page tables.
+
+# Maximum number of topics allowed in a single learning pipeline.
+# Topic depth options: T0 (1 topic) | T0-T2 (3 topics) | T0-T5 (6 topics).
+# Hard cap: prevents runaway scope expansion beyond T5.
+max_topics: 12
+
+# Maximum causal depth per topic chain (UBS/UDS recursive layers).
+# Depth 1 = root row only. Depth 3 = root + .UB + .UB.UB (or .UD + .UD.UB + .UD.UD).
+# Hard cap: prevents infinite causal recursion in P1/P2 tables.
+max_depth: 3
+
+# Maximum data rows per page table.
+# Soft cap: /learn:structure warns but does not block if exceeded.
+# Hard cap for P0: always exactly 2 rows (enforced by validate-learning-page.sh).
+max_rows_per_page: 20

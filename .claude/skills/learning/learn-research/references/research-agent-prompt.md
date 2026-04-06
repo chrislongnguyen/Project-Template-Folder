@@ -38,7 +38,7 @@ For each search angle:
 
 ## Output Structure (6 Sections)
 
-Write to: 2-LEARN/research/{system_slug}/T{topic_number}-{topic_slug}.md
+Write to: 2-LEARN/_cross/research/{system_slug}/T{topic_number}-{topic_slug}.md
 
 ### YAML Frontmatter
 

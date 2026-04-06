@@ -1,6 +1,6 @@
 ---
-version: "1.3"
-last_updated: 2026-03-30
+version: "1.4"
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-research
 description: >
@@ -22,15 +22,15 @@ Spawn one sub-agent per topic — all topics launch simultaneously.
 
 ## Arguments
 
-Parse `{system-slug}` from the invocation. If missing, check for a single `2-LEARN/input/learn-input-*.md` file. If ambiguous, list and ask.
+Parse `{system-slug}` from the invocation. If missing, check for a single `2-LEARN/_cross/input/learn-input-*.md` file. If ambiguous, list and ask.
 
 ---
 
 ## Pre-Checks
 
-1. Find `2-LEARN/input/learn-input-{system-slug}.md`. If missing: "Run /learn:input first."
+1. Find `2-LEARN/_cross/input/learn-input-{system-slug}.md`. If missing: "Run /learn:input first."
 2. Extract: `system_name`, `system-slug`, `eo`, `user_persona_r`, `user_persona_a`, `research_domains`, topics table (active rows), `topic_depth`.
-3. Check `2-LEARN/research/{system-slug}/` — if files exist, report done topics. Ask: "Re-run all, or only missing?"
+3. Check `2-LEARN/_cross/research/{system-slug}/` — if files exist, report done topics. Ask: "Re-run all, or only missing?"
 
 ---
 
@@ -76,7 +76,7 @@ Each sub-agent receives the interpolated prompt from `references/research-agent-
 
 After all sub-agents complete, verify each topic:
 
-1. File exists at `2-LEARN/research/{system-slug}/T{n}-{topic}.md`
+1. File exists at `2-LEARN/_cross/research/{system-slug}/T{n}-{topic}.md`
 2. File > 2000 chars
 3. Frontmatter `status` = "completed" (flag any "partial")
 4. All 6 section headings present
@@ -103,7 +103,7 @@ Report: system name, search depth, topics completed/total, per-file stats (chars
 
 ## Research Output Format (6 sections per topic)
 
-Output path: `2-LEARN/research/{system-slug}/T{n}-{topic}.md`
+Output path: `2-LEARN/_cross/research/{system-slug}/T{n}-{topic}.md`
 
 1. Overview (system context)
 2. Blockers (failure modes, risks)
@@ -136,7 +136,7 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 - `references/research-agent-prompt.md` — full sub-agent prompt template with 6-section structure
 - `_genesis/templates/research-methodology.md` — shared methodology (multi-angle search, verification, anti-hallucination)
-- `2-LEARN/input/learn-input-{system-slug}.md` — system identity, personas, topics
+- `2-LEARN/_cross/input/learn-input-{system-slug}.md` — system identity, personas, topics
 
 ## Links
 

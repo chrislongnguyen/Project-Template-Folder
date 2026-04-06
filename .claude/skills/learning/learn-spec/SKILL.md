@@ -1,25 +1,28 @@
 ---
-version: "1.2"
-last_updated: 2026-03-30
+version: "1.3"
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-spec
 description: >
   Use when all 6 T0 Effective Learning pages are approved and ready for
   extraction. Reads P0-P5 pages and produces two outputs: a VANA-SPEC
-  (handoff to the Build pipeline) and a DSBV Readiness Package (C1-C6
-  checklist confirming DSBV Design can start). Replaces /spec:extract.
+  (handoff to downstream DSBV workstreams) and a Readiness Package (C1-C6
+  checklist confirming downstream workstreams can start their Design phase). Replaces /spec:extract.
 argument-hint: <system-slug>
 context: fork
 model: opus
 allowed-tools: Read, Glob, Write, Bash
 ---
-# /learn:spec — VANA-SPEC + DSBV Readiness Generator
+# /learn:spec — VANA-SPEC + Readiness Package Generator
 
 Reads 6 approved T0 Effective Learning pages and produces two output files
-for `2-LEARN/specs/{system-slug}/`:
+for `2-LEARN/_cross/specs/{system-slug}/`:
 
-1. `vana-spec.md` — VANA-SPEC handoff to Build pipeline
-2. `DSBV-READY-{slug}.md` — C1-C6 Readiness Package for DSBV Design gate
+1. `vana-spec.md` — VANA-SPEC handoff to downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE)
+2. `DSBV-READY-{slug}.md` — C1-C6 Readiness Package confirming downstream workstreams can start their Design phase
+
+Note: LEARN itself does NOT use DSBV. LEARN produces input FOR other workstreams' DSBV cycles.
+The Readiness Package is a handoff artifact TO downstream, not a DSBV artifact OF LEARN.
 
 VANA extraction rules and template structure live in
 [references/vana-extraction-rules.md](references/vana-extraction-rules.md).
@@ -27,7 +30,7 @@ VANA extraction rules and template structure live in
 ## Arguments
 
 Parse `{system-slug}` from the invocation (e.g., `/learn:spec data-foundation`).
-If missing, check for a single `2-LEARN/input/learn-input-*.md`. Use it if exactly one exists.
+If missing, check for a single `2-LEARN/_cross/input/learn-input-*.md`. Use it if exactly one exists.
 
 <HARD-GATE>
 1. All 6 T0 pages must have `status: approved` frontmatter — halt if any is missing.
@@ -41,20 +44,20 @@ If missing, check for a single `2-LEARN/input/learn-input-*.md`. Use it if exact
 ## Injected Context
 
 ### Learn Input Metadata
-!`cat 2-LEARN/input/learn-input-*.md 2>/dev/null`
+!`cat 2-LEARN/_cross/input/learn-input-*.md 2>/dev/null`
 
 ### VANA-SPEC Template
-!`cat 2-LEARN/templates/vana-spec-template.md 2>/dev/null`
+!`cat _genesis/templates/vana-spec-template.md 2>/dev/null`
 
 ---
 
 ## Pre-Checks
 
-1. Verify `2-LEARN/output/{system-slug}/T0.P0-overview-and-summary.md` exists. If not, error: "Run /learn:structure first."
+1. Verify `2-LEARN/_cross/output/{system-slug}/T0.P0-overview-and-summary.md` exists. If not, error: "Run /learn:structure first."
 2. Collect all 6 T0 page files and check `status:` frontmatter:
    - If any page is not `status: approved`, error: "Page T0.P{m} is not approved. Run /learn:review first."
-3. Read `2-LEARN/templates/vana-spec-template.md`. If missing, error: "vana-spec-template.md not found."
-4. Run: `mkdir -p 2-LEARN/specs/{system-slug}`
+3. Read `_genesis/templates/vana-spec-template.md`. If missing, error: "vana-spec-template.md not found."
+4. Run: `mkdir -p 2-LEARN/_cross/specs/{system-slug}`
 
 ---
 
@@ -81,14 +84,14 @@ Also extracts: SPAWNED ACs (I4, from P5 NEXT cells) and Hardening ACs (I4, from 
 
 ## Output 1: VANA-SPEC
 
-Write fully populated VANA-SPEC to `2-LEARN/specs/{system-slug}/vana-spec.md`.
+Write fully populated VANA-SPEC to `2-LEARN/_cross/specs/{system-slug}/vana-spec.md`.
 Preserve all HTML comment derivation hints. Replace all `{placeholder}` values.
 
 ---
 
 ## Output 2: DSBV Readiness Package
 
-Write `2-LEARN/specs/{system-slug}/DSBV-READY-{slug}.md` with this structure:
+Write `2-LEARN/_cross/specs/{system-slug}/DSBV-READY-{slug}.md` with this structure:
 
 ```
 # DSBV Readiness Package — {system_name}
@@ -99,13 +102,13 @@ Generated: {date} | Skill: /learn:spec
 | # | Condition | Status | Evidence |
 |---|-----------|--------|----------|
 | C1 | Clear scope | GREEN | VANA-SPEC §1 defines system boundary |
-| C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/output/{slug}/ |
+| C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/_cross/output/{slug}/ |
 | C3 | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
 | C4 | Process definition loaded | GREEN | _genesis/templates/dsbv-process.md exists |
 | C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA workstreams |
 | C6 | Evaluation protocol defined | GREEN | dsbv-process.md §Validate |
 
-All C1-C6 GREEN → DSBV Design phase may begin.
+All C1-C6 GREEN → downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE) may begin their Design phase using LEARN output as input.
 
 ## P-page → Workstream Mapping
 
@@ -120,7 +123,7 @@ All C1-C6 GREEN → DSBV Design phase may begin.
 
 ## Summary
 
-- VANA-SPEC: 2-LEARN/specs/{slug}/vana-spec.md
+- VANA-SPEC: 2-LEARN/_cross/specs/{slug}/vana-spec.md
 - Total ACs: {grand_total} ({N} Verb, {N} Adverb, {N} Noun, {N} Adjective)
 - Next: /learn:handoff {slug} — review spec with Human Director before building
 ```
@@ -137,7 +140,7 @@ After writing both files, print:
 System:   {system_name}
 Slug:     {system-slug}
 
-Output 1: 2-LEARN/specs/{slug}/vana-spec.md
+Output 1: 2-LEARN/_cross/specs/{slug}/vana-spec.md
   §2 Verb ACs    — {N} ACs
   §3 Adverb ACs  — {N} ACs
   §4 Noun ACs    — {N} ACs
@@ -145,7 +148,7 @@ Output 1: 2-LEARN/specs/{slug}/vana-spec.md
   §6 AC-TEST-MAP — {total} rows (MECE)
   Total ACs: {grand_total}
 
-Output 2: 2-LEARN/specs/{slug}/DSBV-READY-{slug}.md
+Output 2: 2-LEARN/_cross/specs/{slug}/DSBV-READY-{slug}.md
   C1-C6: all GREEN
 
 Next: /learn:handoff {slug}
@@ -158,7 +161,7 @@ Next: /learn:handoff {slug}
 - **Hallucinated ACs** — every AC traces to page:row:col. Empty source → `[NEEDS REVIEW]`, never invent.
 - **Missing I4 ACs** — SPAWNED (P5 NEXT cells) and Hardening (P0 RACI(I)) are mandatory.
 - **Vague VANA Words** — "Process" and "Handle" are banned. Use specific verbs.
-- **C4 check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt.
+- **C4 check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt. (Note: C4 confirms the process template exists for downstream workstreams — LEARN itself does not run DSBV.)
 
 Full list: [gotchas.md](gotchas.md)
 

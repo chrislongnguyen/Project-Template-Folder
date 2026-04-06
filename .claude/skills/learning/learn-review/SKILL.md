@@ -1,6 +1,6 @@
 ---
-version: "1.1"
-last_updated: 2026-03-30
+version: "1.2"
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-review
 description: >
@@ -18,21 +18,21 @@ after each topic is structured. Present the causal spine table for that topic on
 ## Arguments
 
 Parse `{system-slug}` and `{topic-number}` from the invocation.
-If missing, check for a single `2-LEARN/input/learn-input-*.md` file and
-a corresponding `2-LEARN/output/` directory. If ambiguous, list options.
+If missing, check for a single `2-LEARN/_cross/input/learn-input-*.md` file and
+a corresponding `2-LEARN/_cross/output/` directory. If ambiguous, list options.
 
 ---
 
 ## Injected Context
 
 ### Learn Input Metadata
-!`cat 2-LEARN/input/learn-input-*.md 2>/dev/null | head -30`
+!`cat 2-LEARN/_cross/input/learn-input-*.md 2>/dev/null | head -30`
 
 ---
 
 ## Pre-Checks
 
-1. Verify `2-LEARN/output/{system-slug}/T{n}.P0-overview-and-summary.md` exists.
+1. Verify `2-LEARN/_cross/output/{system-slug}/T{n}.P0-overview-and-summary.md` exists.
    If not, error: "Run /learn:structure first."
 2. Collect all 6 page files for topic T{n}:
    ```
@@ -63,7 +63,7 @@ a corresponding `2-LEARN/output/` directory. If ambiguous, list options.
 ### Step 1: Structural validation
 
 ```bash
-bash 2-LEARN/scripts/validate-learning-page.sh <file> <page-type> T{n}
+bash 2-LEARN/_cross/scripts/validate-learning-page.sh <file> <page-type> T{n}
 ```
 Capture PASS/FAIL per page.
 
@@ -110,7 +110,7 @@ Topic:   T{n} — {topic_name}
 | ...  | ...             | ...                          | ...                          |
 
 Note: P1 direction is INVERTED — Col 4 drives the blocker (bad), Col 10 disables it (good).
-Full cell content in: 2-LEARN/output/{system-slug}/
+Full cell content in: 2-LEARN/_cross/output/{system-slug}/
 ```
 
 If all pages already approved, report:
