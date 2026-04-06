@@ -15,6 +15,7 @@ const parts = [
       ['What did AI deliver?', 'Increment completed'],
       ['What\'s blocked?', 'Blockers to escalate'],
       ['What\'s the plan?', 'Today\'s priorities'],
+      ['/dsbv status first', 'Know your pipeline state before you speak'],
     ],
   },
   {

@@ -12,6 +12,7 @@ const timeBlocks = [
       'Review yesterday\'s daily note',
       'Run /session-start to create today\'s note',
       'Check standup preparation dashboard',
+      'Run /dsbv status — see ALPEI×DSBV pipeline state',
       'Scan blocker dashboard for urgent items',
     ],
   },
