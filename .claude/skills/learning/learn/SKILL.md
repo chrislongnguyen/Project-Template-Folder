@@ -36,8 +36,8 @@ condition wins — scan top-down:
  1  No learn-input-{slug}.md in 2-LEARN/_cross/input/          No input           → /learn:input
  2  Input exists, no 2-LEARN/_cross/research/{slug}/ directory Input ready        → /learn:research {slug}
  3  Research dir exists, any topic lacks 6 P-pages with                Research done,     → /learn:structure {slug} {topic}
-    status: approved in frontmatter                                    not fully done       then /learn:review {slug} {topic}
- 4  All topics status: approved, no specs/{slug}/vana-spec.md          All approved       → /learn:spec {slug}
+    status: validated in frontmatter                                   not fully done       then /learn:review {slug} {topic}
+ 4  All topics status: validated, no specs/{slug}/vana-spec.md         All validated      → /learn:spec {slug}
  5  VANA-SPEC exists                                                   Pipeline complete  → completion message
 ```
 
@@ -54,8 +54,8 @@ condition wins — scan top-down:
 
 4. For each topic file in research/{slug}/:
    a. Glob for structured P-pages: research/{slug}/{topic}/P0.md .. P5.md
-   b. Read each P-page, check frontmatter for status: approved
-   c. If ANY topic is missing pages or has non-approved status → STATE 3
+   b. Read each P-page, check frontmatter for status: validated
+   c. If ANY topic is missing pages or has non-validated status → STATE 3
       (report which topics need work)
 
 5. Glob for 2-LEARN/_cross/specs/{slug}/vana-spec.md
@@ -74,7 +74,7 @@ condition wins — scan top-down:
   ├─ STATE 1: no input ──────────► /learn:input
   ├─ STATE 2: input, no research ─► /learn:research {slug}
   ├─ STATE 3: research, not done ──► /learn:structure + /learn:review (per topic)
-  ├─ STATE 4: all approved ────────► /learn:spec {slug}
+  ├─ STATE 4: all validated ───────► /learn:spec {slug}
   └─ STATE 5: complete ────────────► completion message
 ```
 
@@ -86,7 +86,7 @@ When pipeline is complete, print this summary:
 Pipeline complete for: {system_name}
 ├── Input:      2-LEARN/_cross/input/learn-input-{slug}.md
 ├── Research:   2-LEARN/_cross/research/{slug}/ ({N} topics)
-├── Structured: {N} topics x 6 pages = {N*6} P-pages (all approved)
+├── Structured: {N} topics x 6 pages = {N*6} P-pages (all validated)
 ├── VANA-SPEC:  2-LEARN/_cross/specs/{slug}/vana-spec.md
 └── DSBV-READY: 2-LEARN/_cross/specs/{slug}/DSBV-READY-{slug}.md
 

@@ -7,11 +7,11 @@
 ## Handle response
 
 **"approve all" / "approved" / "approve":**
-→ Write `status: approved` frontmatter to all pending pages.
+→ Write `status: validated` frontmatter to all pending pages.
 
 **"revise P{m}: `<note>`" (one or more pages):**
 → Write `status: needs-revision` + `revision_note` to specified pages.
-→ Write `status: approved` to all OTHER pending pages.
+→ Write `status: validated` to all OTHER pending pages.
 
 **"revise all: `<note>`":**
 → Write `status: needs-revision` + `revision_note` to all pending pages.
@@ -20,10 +20,10 @@
 
 For each page, prepend YAML frontmatter if not present, or update if present:
 
-Approved:
+Validated:
 ```markdown
 ---
-status: approved
+status: validated
 reviewed_by: "{git config user.name}"
 reviewed_at: {YYYY-MM-DD}
 topic: T{n}

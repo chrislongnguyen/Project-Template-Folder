@@ -4,7 +4,7 @@ last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: learn-spec
 description: >
-  Use when all 6 T0 Effective Learning pages are approved and ready for
+  Use when all 6 T0 Effective Learning pages are validated and ready for
   extraction. Reads P0-P5 pages and produces two outputs: a VANA-SPEC
   (handoff to downstream DSBV workstreams) and a Readiness Package (C1-C6
   checklist confirming downstream workstreams can start their Design phase). Replaces /spec:extract.
@@ -15,7 +15,7 @@ allowed-tools: Read, Glob, Write, Bash
 ---
 # /learn:spec — VANA-SPEC + Readiness Package Generator
 
-Reads 6 approved T0 Effective Learning pages and produces two output files
+Reads 6 validated T0 Effective Learning pages and produces two output files
 for `2-LEARN/_cross/specs/{system-slug}/`:
 
 1. `vana-spec.md` — VANA-SPEC handoff to downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE)
@@ -33,7 +33,7 @@ Parse `{system-slug}` from the invocation (e.g., `/learn:spec data-foundation`).
 If missing, check for a single `2-LEARN/_cross/input/learn-input-*.md`. Use it if exactly one exists.
 
 <HARD-GATE>
-1. All 6 T0 pages must have `status: approved` frontmatter — halt if any is missing.
+1. All 6 T0 pages must have `status: validated` frontmatter — halt if any is missing.
 2. Do NOT invent content — all ACs derive from page files and learn-input. No hallucination.
 3. Every `{placeholder}` in the template must be replaced. Use `[NEEDS REVIEW]` only if source genuinely lacks content.
 4. Do NOT modify the template structure — section numbering and hierarchy are sacred.
@@ -55,7 +55,7 @@ If missing, check for a single `2-LEARN/_cross/input/learn-input-*.md`. Use it i
 
 1. Verify `2-LEARN/_cross/output/{system-slug}/T0.P0-overview-and-summary.md` exists. If not, error: "Run /learn:structure first."
 2. Collect all 6 T0 page files and check `status:` frontmatter:
-   - If any page is not `status: approved`, error: "Page T0.P{m} is not approved. Run /learn:review first."
+   - If any page is not `status: validated`, error: "Page T0.P{m} is not validated. Run /learn:review first."
 3. Read `_genesis/templates/vana-spec-template.md`. If missing, error: "vana-spec-template.md not found."
 4. Run: `mkdir -p 2-LEARN/_cross/specs/{system-slug}`
 
@@ -169,7 +169,7 @@ Full list: [gotchas.md](gotchas.md)
 
 ## Hard Rules
 
-1. All 6 T0 pages `status: approved` — any non-approved → halt.
+1. All 6 T0 pages `status: validated` — any non-validated → halt.
 2. No hallucination — all content derives from page files or learn-input.
 3. No placeholder left — replace every `{placeholder}`, use `[NEEDS REVIEW]` only if source is genuinely empty.
 4. Template structure is sacred — no reordering sections or renaming ACs.

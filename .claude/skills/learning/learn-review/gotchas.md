@@ -38,7 +38,7 @@ Known failure patterns. Update when new issues are discovered.
 
 **What happens:** Agent reports "Approved" in the output but doesn't update the page frontmatter. `/spec:extract` checks frontmatter, not conversation history.
 
-**How to detect:** After approval, read the page file and check for `status: approved` in YAML frontmatter. If absent, approval was display-only.
+**How to detect:** After approval, read the page file and check for `status: validated` in YAML frontmatter. If absent, approval was display-only.
 
 **Fix:** Approval = frontmatter update. Use Edit/Write to update YAML. Display-only approval doesn't satisfy the gate.
 
@@ -48,9 +48,9 @@ Known failure patterns. Update when new issues are discovered.
 
 **What happens:** Agent writes `status: pending`, `status: complete`, or other non-standard values to frontmatter.
 
-**How to detect:** Page frontmatter contains any status other than `approved` or `needs-revision`.
+**How to detect:** Page frontmatter contains any status other than `validated` or `needs-revision`.
 
-**Fix:** Only two valid values exist: `approved` or `needs-revision`. Any other value is invalid and will break downstream `/spec:extract` checks.
+**Fix:** Only two valid values exist: `validated` or `needs-revision`. Any other value is invalid and will break downstream `/spec:extract` checks.
 
 ---
 

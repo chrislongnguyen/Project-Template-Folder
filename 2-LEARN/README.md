@@ -306,7 +306,7 @@ EP feeds into EOE, EOT, and EOP design in 3-PLAN. Any principle that cannot be t
 
 ### S4 — Review
 - [ ] Human PM has reviewed every P-page
-- [ ] Status set to `approved` on reviewed pages — by human, not agent
+- [ ] Status set to `validated` on reviewed pages — by human, not agent
 - [ ] Rejected pages returned to S3 with specific correction notes
 
 ### S5 — Spec

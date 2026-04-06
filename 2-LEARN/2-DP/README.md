@@ -63,7 +63,7 @@ Produces for downstream: `dp-effective-principles.md`, staged and filtered input
 - [ ] UDS analysis sections 2.0–2.6 all present (what enables reliable collection)
 
 ### S4 — Review
-- [ ] Human PM has reviewed and approved all P-pages — status set to `approved`
+- [ ] Human PM has reviewed and approved all P-pages — status set to `validated`
 
 ### S5 — Spec
 - [ ] `specs/{slug}/vana-spec.md` exists

@@ -6,8 +6,8 @@ Failure patterns from design and anticipated failure modes. Read before generati
 
 ## G1: Skipping the approval gate
 
-**What goes wrong:** Agent generates the map before all P-pages have `status: approved`.
-Causal structure in unapproved pages may still change during review, making the visual
+**What goes wrong:** Agent generates the map before all P-pages have `status: validated`.
+Causal structure in unvalidated pages may still change during review, making the visual
 map stale or misleading the moment a page is revised.
 
 **Rule:** The HARD-GATE check (Step 0) is non-negotiable. If the user says "just generate

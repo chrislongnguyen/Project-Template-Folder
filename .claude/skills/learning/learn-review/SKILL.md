@@ -6,7 +6,7 @@ name: learn-review
 description: >
   Use when /learn calls this skill after structuring one topic. Reviews ONE topic
   at a time: presents causal spine table, asks 1 comprehension question per P-page
-  (6 total), then writes approved/needs-revision to each page's frontmatter.
+  (6 total), then writes validated/needs-revision to each page's frontmatter.
 argument-hint: <system-slug> <topic-number>
 allowed-tools: Read, Bash, Edit, Write
 ---
@@ -44,7 +44,7 @@ a corresponding `2-LEARN/_cross/output/` directory. If ambiguous, list options.
    T{n}.P5-steps-to-apply.md
    ```
 3. Check each file for existing YAML frontmatter `status:` field.
-   - `status: approved` → already approved, skip in review
+   - `status: validated` → already validated, skip in review
    - `status: needs-revision` → include (re-review)
    - No frontmatter → include (first review)
 
@@ -52,8 +52,8 @@ a corresponding `2-LEARN/_cross/output/` directory. If ambiguous, list options.
 1. Never auto-approve — all pending pages require explicit human response.
 2. Learner MUST answer each comprehension question before approval is accepted.
 3. Seed checks on P1 and P2 are mandatory even if structural validation passes.
-4. Write approval status (approved / needs-revision only) to file frontmatter — not just displayed.
-5. Only valid status values: `approved` or `needs-revision`. No other values.
+4. Write approval status (validated / needs-revision only) to file frontmatter — not just displayed.
+5. Only valid status values: `validated` or `needs-revision`. No other values.
 </HARD-GATE>
 
 ---
@@ -91,12 +91,12 @@ Topic:   T{n} — {topic_name}
 
 | Page | Rows | Validation | Seed Check | Status           |
 |------|------|------------|------------|------------------|
-| P0   |  2   | PASS/FAIL  | N/A        | pending/approved |
-| P1   |  N   | PASS/FAIL  | PASS/FAIL  | pending/approved |
-| P2   |  N   | PASS/FAIL  | PASS/FAIL  | pending/approved |
-| P3   |  N   | PASS/FAIL  | N/A        | pending/approved |
-| P4   |  N   | PASS/FAIL  | N/A        | pending/approved |
-| P5   |  N   | PASS/FAIL  | N/A        | pending/approved |
+| P0   |  2   | PASS/FAIL  | N/A        | pending/validated |
+| P1   |  N   | PASS/FAIL  | PASS/FAIL  | pending/validated |
+| P2   |  N   | PASS/FAIL  | PASS/FAIL  | pending/validated |
+| P3   |  N   | PASS/FAIL  | N/A        | pending/validated |
+| P4   |  N   | PASS/FAIL  | N/A        | pending/validated |
+| P5   |  N   | PASS/FAIL  | N/A        | pending/validated |
 
 {If any FAIL: list specific errors here}
 
@@ -113,9 +113,9 @@ Note: P1 direction is INVERTED — Col 4 drives the blocker (bad), Col 10 disabl
 Full cell content in: 2-LEARN/_cross/output/{system-slug}/
 ```
 
-If all pages already approved, report:
+If all pages already validated, report:
 ```
-All 6 pages already approved. No review needed.
+All 6 pages already validated. No review needed.
 Next: /spec:extract {system-slug} {topic-number}
 ```
 
@@ -154,7 +154,7 @@ Approve all {N} pending pages, or list pages to revise?
   Examples: "approve all" | "revise P3: missing principle" | "revise P1, P5: notes"
 ```
 
-Write `status: approved` or `status: needs-revision` to each page's YAML frontmatter.
+Write `status: validated` or `status: needs-revision` to each page's YAML frontmatter.
 Only these two values are valid. No other status values.
 
 ---
@@ -168,14 +168,14 @@ System:   {system_name}
 Topic:    T{n} — {topic_name}
 
 Review Results:
-  P0 Overview & Summary    — {approved / needs-revision}
-  P1 Ultimate Blockers     — {approved / needs-revision}
-  P2 Ultimate Drivers      — {approved / needs-revision}
-  P3 Principles            — {approved / needs-revision}
-  P4 Components            — {approved / needs-revision}
-  P5 Steps to Apply        — {approved / needs-revision}
+  P0 Overview & Summary    — {validated / needs-revision}
+  P1 Ultimate Blockers     — {validated / needs-revision}
+  P2 Ultimate Drivers      — {validated / needs-revision}
+  P3 Principles            — {validated / needs-revision}
+  P4 Components            — {validated / needs-revision}
+  P5 Steps to Apply        — {validated / needs-revision}
 
-{X}/6 pages approved.
+{X}/6 pages validated.
 
 {If all 6 approved:}  Next: /spec:extract {system-slug} {topic-number}
 {If any revision:}    Fix flagged pages, then re-run: /learn:review {system-slug} {topic-number}
@@ -188,7 +188,7 @@ Review Results:
 - **Per-topic scope** — this skill reviews ONE topic only. /learn orchestrates across topics.
 - **Seed checks mandatory** — P1/P2 seed consistency runs even if structural validation passes.
 - **Write to file** — approval = frontmatter update. Display-only approval doesn't satisfy the gate.
-- **Binary status only** — `approved` or `needs-revision`. No other values.
+- **Binary status only** — `validated` or `needs-revision`. No other values.
 
 Full list: [gotchas.md](gotchas.md)
 

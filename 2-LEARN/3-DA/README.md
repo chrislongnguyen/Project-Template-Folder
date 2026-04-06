@@ -63,7 +63,7 @@ Produces for downstream: `da-effective-principles.md`, synthesized literature re
 - [ ] Every conclusion traceable to a source in `2-DP/output/` — no unsupported claims
 
 ### S4 — Review
-- [ ] Human PM has reviewed and approved all P-pages — status set to `approved`
+- [ ] Human PM has reviewed and approved all P-pages — status set to `validated`
 
 ### S5 — Spec
 - [ ] `specs/{slug}/vana-spec.md` exists

@@ -5,14 +5,14 @@ owner: "Long Nguyen"
 name: learn-visualize
 description: >
   Use when the user invokes /learn:visualize or asks to generate a visual system map
-  from approved P-pages. Reads structured learning pages (P0-P5) for a given system
+  from validated P-pages. Reads structured learning pages (P0-P5) for a given system
   slug and generates a self-contained React+Vite interactive HTML map with LTC brand.
 argument-hint: "[system-slug]"
 allowed-tools: Read, Glob, Grep, Write, Bash
 ---
 # /learn:visualize — Interactive System Map Generator
 
-Reads approved P-pages for a system slug and generates a self-contained interactive
+Reads validated P-pages for a system slug and generates a self-contained interactive
 HTML visualization (React+Vite via CDN). Nodes from P-page table rows. Edges from
 causal references. LTC brand throughout.
 
@@ -28,17 +28,17 @@ Before generating, verify:
 
 1. `2-LEARN/_cross/research/{slug}/` exists (research was run)
 2. All topic directories under `_cross/research/{slug}/` contain P0.md through P5.md
-3. Every P-page frontmatter has `status: approved`
+3. Every P-page frontmatter has `status: validated`
 
-If any P-page is missing `status: approved`:
+If any P-page is missing `status: validated`:
 
 ```
-STOP. These topics are not yet approved for visualization:
+STOP. These topics are not yet validated for visualization:
   - {topic}: {which pages missing approval}
 Run /learn:review {slug} {topic} first, then retry.
 ```
 
-Do NOT generate a map from unapproved pages — causal structure may still change.
+Do NOT generate a map from unvalidated pages — causal structure may still change.
 
 ## Step 1 — Load Brand Rules
 
@@ -56,7 +56,7 @@ Required brand constants (also listed here for quick reference):
 
 > See `references/viz-spec.md §1` for full extraction rules.
 
-For each approved topic, read P0-P5 and extract:
+For each validated topic, read P0-P5 and extract:
 - **Nodes** — one node per table row. Node ID = CAG prefix (e.g. `UBS.R.1`). Label = row subject. Page = source page (P0-P5). Pillar = S / E / Sc from col 15.
 - **Edges** — causal links stated in col 12 (causes) and col 13 (effects). Parse as directed edges: source node → target node.
 
@@ -113,7 +113,7 @@ Open index.html in a browser to view. No build step required.
 
 ## Gotchas
 
-- **Status check is mandatory** — do not skip even if the user says "just do it." Unapproved pages produce misleading causal maps that contradict the review process.
+- **Status check is mandatory** — do not skip even if the user says "just do it." Unvalidated pages produce misleading causal maps that contradict the review process.
 - **Brand rules must load first** — NEVER use default colors (Bootstrap blue, gray). Every visual element must use LTC hex codes. Load `rules/brand-identity.md` before generating HTML.
 - **Self-contained HTML only** — no local npm build, no node_modules, no separate JS files. The output must open directly in a browser without any build step.
 - **CAG prefix parsing** — row IDs use dot notation (`UBS.R.1`, `EP.3`, `EOE.2`). Parse the prefix, not the full row label. Edges come from col 12/13, not from proximity in the table.

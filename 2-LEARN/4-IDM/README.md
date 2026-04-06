@@ -63,7 +63,7 @@ Produces for downstream: `idm-effective-principles.md`, insight report and recom
 - [ ] Every recommendation traceable to a finding in `3-DA/output/`
 
 ### S4 — Review
-- [ ] Human PM has reviewed and approved all P-pages — status set to `approved`
+- [ ] Human PM has reviewed and approved all P-pages — status set to `validated`
 - [ ] If research revealed scope gaps, flag them for 1-ALIGN before proceeding
 
 ### S5 — Spec
