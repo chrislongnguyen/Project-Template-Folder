@@ -92,8 +92,7 @@ project-root/
 │   ├── 4-IDM/
 │   └── _cross/
 │       ├── README.md
-│       ├── cross-dependency-map.md
-│       └── filesystem-blueprint.md   ← This document
+│       └── cross-dependency-map.md
 │
 ├── 4-EXECUTE/                        ← L1: Workstream
 │   ├── DESIGN.md                     ← DSBV meta-artifact (workstream scope)
@@ -143,6 +142,7 @@ project-root/
 │       └── cross-metrics-baseline.md
 │
 ├── _genesis/                          ← Shared: frameworks, templates, brand, reference
+│   ├── filesystem-blueprint.md        ← THIS DOCUMENT (Mode D — OE-builder artifact)
 ├── .claude/                           ← Agent: rules, skills, agents, settings
 │
 ├── DAILY-NOTES/                       ← PM personal: daily capture
