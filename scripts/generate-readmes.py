@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# version: 1.1 | status: draft | last_updated: 2026-04-06
 """Generate README shells from readme-blueprint.md for all directories.
 
 Writes ONLY shell structure (frontmatter + section headers + placeholders).
@@ -270,6 +271,104 @@ PD-{name}  →  DP-{name}  →  DA-{name}  →  IDM-{name}
 '''
 
 
+def type_a_learn() -> str:
+    """LEARN workstream README shell — uses learning pipeline, NOT DSBV."""
+    ws = WORKSTREAMS["2-LEARN"]
+    ss_list = ["1-PD", "2-DP", "3-DA", "4-IDM", "_cross"]
+
+    structure_rows = "\n".join(
+        f"| `{ss}/` | <!-- TODO: what lives here --> |" for ss in ss_list
+    )
+
+    return f'''---
+version: "{VERSION}"
+status: draft
+last_updated: {TODAY}
+work_stream: 2-LEARN
+type: template
+iteration: {ITERATION}
+---
+
+# 2-LEARN — {ws["tagline"]}
+
+> "{ws["quote"]}"
+
+## Purpose
+
+<!-- TODO: 2-3 sentences. Lead with the failure risk this workstream prevents.
+What breaks if LEARN is skipped? How does it feed 3-PLAN? -->
+
+## The Learning Pipeline
+
+LEARN does **NOT** use DSBV. It uses a 6-state pipeline:
+
+```
+Input  →  Research  →  Specs  →  Output  →  Archive  →  Complete
+(S1)       (S2)        (S3)      (S4)       (S5)
+```
+
+| Stage | Purpose | Key Output |
+|-------|---------|-----------|
+| **Input** (S1) | Capture raw material — stakeholder input, external research, observations | Timestamped capture files |
+| **Research** (S2) | Analyze, synthesize, compare — produce structured knowledge | Research documents, analysis |
+| **Specs** (S3) | Formalize requirements, constraints, specifications | Formal specs for downstream |
+| **Output** (S4) | Publish refined learning artifacts for PLAN consumption | Validated learning outputs |
+| **Archive** (S5) | Preserve completed/superseded research for reference | Archived materials |
+
+> **HARD CONSTRAINT:** DESIGN.md, SEQUENCE.md, and VALIDATE.md must NEVER exist in 2-LEARN/.
+> Enforced by: `scripts/dsbv-skill-guard.sh` (hook) + `.claude/rules/filesystem-routing.md` (Mode B).
+
+## 3 Types of Effective Principles
+
+LEARN produces Effective Principles that govern all downstream workstreams:
+
+| Type | Formula | Focus |
+|------|---------|-------|
+| **S-Principle** | Derived from UBS analysis | Minimize failure risks |
+| **E-Principle** | Derived from UDS analysis | Maximize output efficiency |
+| **Sc-Principle** | Combined UBS + UDS at I4 | Scalability constraints |
+
+## Subsystem Flow
+
+```
+PD-LEARN  →  DP-LEARN  →  DA-LEARN  →  IDM-LEARN
+```
+
+| Subsystem | Focus | Key Inputs | Key Outputs |
+|-----------|-------|-----------|------------|
+| **PD** | <!-- TODO --> | <!-- TODO --> | <!-- TODO --> |
+| **DP** | <!-- TODO --> | **Principles from PD** + <!-- TODO --> | <!-- TODO --> |
+| **DA** | <!-- TODO --> | **Principles from PD** + <!-- TODO --> | <!-- TODO --> |
+| **IDM** | <!-- TODO --> | **Principles from all upstream** + <!-- TODO --> | <!-- TODO --> |
+
+## Structure
+
+| Folder | Contents |
+|--------|---------|
+{structure_rows}
+
+## How LEARN Connects
+
+```
+                  [validated output]
+1-ALIGN  ─────────────────────>  2-LEARN
+                                      │
+                                 [output]
+                                      │
+                                      ▼
+                                 3-PLAN
+
+2-LEARN ──"scope changed"──> 1-ALIGN  (re-align)
+```
+
+> **Note:** `/ingest` and `/vault-capture` write to PKB dirs (Mode C), NOT to 2-LEARN/.
+
+## DASHBOARDS
+
+![[LEARN Overview.base]]
+'''
+
+
 def type_b(ws_key: str, ss_key: str) -> str:
     """Subsystem README shell."""
     ws_num = ws_key.split("-")[0]
@@ -388,7 +487,10 @@ def main():
     # Type A — workstream READMEs
     for ws_key in WORKSTREAMS:
         path = os.path.join(ROOT, ws_key, "README.md")
-        targets.append(("A", path, lambda wk=ws_key: type_a(wk)))
+        if ws_key == "2-LEARN":
+            targets.append(("A", path, type_a_learn))
+        else:
+            targets.append(("A", path, lambda wk=ws_key: type_a(wk)))
 
     # Type B — subsystem READMEs
     for ws_key, ws_meta in WORKSTREAMS.items():

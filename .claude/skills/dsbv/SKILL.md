@@ -1,14 +1,18 @@
 ---
-version: "1.3"
+version: "1.4"
 status: draft
-last_updated: 2026-04-02
+last_updated: 2026-04-06
 owner: "Long Nguyen"
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---
 # /dsbv — Design, Sequence, Build, Validate
 
-Run the 4-phase DSBV process to produce a workstream's artifacts. Every workstream (ALIGN, PLAN, EXECUTE, IMPROVE) uses this same workflow. DSBV defines HOW you produce work; the workstream defines WHAT you produce.
+Run the 4-phase DSBV process to produce a workstream's artifacts. DSBV applies to 4 workstreams: **ALIGN, PLAN, EXECUTE, IMPROVE**. DSBV defines HOW you produce work; the workstream defines WHAT you produce.
+
+<HARD-CONSTRAINT>
+**LEARN (2-LEARN/) does NOT use DSBV.** LEARN uses the learning pipeline (Input → Research → Specs → Output → Archive). DESIGN.md, SEQUENCE.md, and VALIDATE.md must NEVER be created in 2-LEARN/. If a user requests `/dsbv` for LEARN, explain that LEARN uses the pipeline and suggest appropriate pipeline actions instead. See: `.claude/rules/filesystem-routing.md` (Mode B).
+</HARD-CONSTRAINT>
 
 ## Sub-Commands
 
@@ -21,7 +25,7 @@ Run the 4-phase DSBV process to produce a workstream's artifacts. Every workstre
 | `/dsbv validate [workstream]` | Validate phase only — verify workstream output enables the next workstream |
 | `/dsbv status` | Show current DSBV state: which workstream, which phase, what is done |
 
-If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUTE, IMPROVE).
+If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUTE, IMPROVE). **Never offer LEARN as a DSBV option.**
 
 <HARD-GATE>
 1. Cannot start Sequence without an approved DESIGN.md.
@@ -204,10 +208,8 @@ DSBV Status — I1 (YYYY-MM-DD)
 │ 1-ALIGN × Sequence      │ SEQUENCE.md              │ 1.3     │ Draft       │ —        │
 │ 1-ALIGN × Build         │ Charter+ADRs+OKRs        │ 1.x     │ In Progress │ 28/30    │
 │ 1-ALIGN × Validate      │ VALIDATE.md              │ 1.2     │ Draft       │ 28/30    │
-│ 2-LEARN × Design        │ DESIGN.md                │ 1.0     │ Approved    │ —        │
-│ 2-LEARN × Sequence      │ SEQUENCE.md              │ 1.1     │ Approved    │ —        │
-│ 2-LEARN × Build         │ input/research/specs/out │ 1.x     │ In Progress │ —        │
-│ 2-LEARN × Validate      │ VALIDATE.md              │ —       │ Not Started │ —        │
+│ 2-LEARN × Pipeline       │ input/research/specs/out │ 1.x     │ In Progress │ —        │
+│ (LEARN uses pipeline, not DSBV — no DESIGN/SEQUENCE/VALIDATE rows)           │          │
 │ 3-PLAN × Design         │ DESIGN.md                │ —       │ Pending     │ —        │
 │ 3-PLAN × Sequence       │ SEQUENCE.md              │ —       │ Pending     │ —        │
 │ 3-PLAN × Build          │ UBS/UDS/Architecture     │ —       │ Pending     │ —        │

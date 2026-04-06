@@ -142,6 +142,12 @@
           },
           {
             "type": "command",
+            "command": "python3 ./scripts/validate-blueprint.py --staged --quiet",
+            "timeout": 5,
+            "statusMessage": "Validating filesystem routing..."
+          },
+          {
+            "type": "command",
             "command": "bash -c 'if git diff --cached --name-only | grep -qE \"^[1-5]-|^_genesis/\"; then git diff --cached --name-only | grep -q \"CHANGELOG.md\" || { echo \"WARN: workstream artifact staged but CHANGELOG.md not updated\" >&2; }; fi'",
             "timeout": 3,
             "statusMessage": "Checking changelog hygiene..."

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.1 | last_updated: 2026-03-30
+# version: 1.2 | status: draft | last_updated: 2026-04-06
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -60,6 +60,29 @@ elif [[ "$FILE_PATH" =~ /4-EXECUTE/ ]]; then
 elif [[ "$FILE_PATH" =~ /5-IMPROVE/ ]]; then
     WORKSTREAM="5-IMPROVE"
     WORKSTREAM_PATTERN="improve"
+elif [[ "$FILE_PATH" =~ /2-LEARN/ ]]; then
+    # LEARN uses the learning pipeline, NOT DSBV.
+    # Block DSBV files; allow everything else.
+    BASENAME=$(basename "$FILE_PATH")
+    case "$BASENAME" in
+        DESIGN.md|SEQUENCE.md|VALIDATE.md)
+            cat >&2 <<BLOCK_MSG
+BLOCKED: Creating DSBV artifact in 2-LEARN/.
+
+LEARN uses the learning pipeline (input → research → specs → output → archive),
+NOT the DSBV process. DESIGN.md, SEQUENCE.md, and VALIDATE.md must NEVER exist
+in 2-LEARN/.
+
+See: .claude/rules/filesystem-routing.md (Mode B)
+File attempted: ${FILE_PATH}
+BLOCK_MSG
+            exit 2
+            ;;
+        *)
+            # Non-DSBV file in LEARN — allow (pipeline artifacts)
+            exit 0
+            ;;
+    esac
 else
     # Not a workstream file — allow (could be _shared/, scripts/, .claude/, etc.)
     exit 0

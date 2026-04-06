@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# version: 1.1 | status: draft | last_updated: 2026-04-06
 """
 populate-blueprint.py — Manifest-driven repo population for LTC Project Template.
 
@@ -445,6 +446,8 @@ def phase_2b_dsbv():
     for ws_name in WORKSTREAMS:
         if ws_name == "4-EXECUTE":
             continue  # EXECUTE DSBV stays at workstream root
+        if ws_name == "2-LEARN":
+            continue  # LEARN uses learning pipeline, not DSBV
 
         for sub_dir, sub_info in SUBSYSTEMS.items():
             for dsbv_file, (template, stage) in dsbv_templates.items():

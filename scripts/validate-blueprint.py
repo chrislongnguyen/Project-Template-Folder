@@ -8,17 +8,31 @@ Checks:
 3. Filenames follow {sub}-{name}.md pattern
 4. No files remain in old category dirs
 5. No orphan .gitkeep in populated dirs
-6. DSBV phase files exist per workstream
+6. DSBV phase files exist per DSBV workstream (not LEARN)
+7. No DSBV files in 2-LEARN/ (Mode B routing)
+8. No DSBV files in _genesis/ outside templates/ (Mode D routing)
+
+Usage:
+    python scripts/validate-blueprint.py            # full check
+    python scripts/validate-blueprint.py --staged   # check staged files only
+    python scripts/validate-blueprint.py --quiet    # exit code only
 """
+# version: 1.1 | status: draft | last_updated: 2026-04-06
 
 import os
 import re
 import sys
+import subprocess
 from pathlib import Path
+
+QUIET = "--quiet" in sys.argv
+STAGED_ONLY = "--staged" in sys.argv
 
 PASS = 0
 WARN = 0
 FAIL = 0
+
+DSBV_FILES = {"DESIGN.md", "SEQUENCE.md", "VALIDATE.md"}
 
 WORKSTREAMS = ["1-ALIGN", "2-LEARN", "3-PLAN", "4-EXECUTE", "5-IMPROVE"]
 SUBSYSTEMS = ["1-PD", "2-DP", "3-DA", "4-IDM", "_cross"]
@@ -44,11 +58,22 @@ def check(condition, msg, severity="FAIL"):
     else:
         if severity == "WARN":
             WARN += 1
-            print(f"  ⚠ WARN: {msg}")
+            if not QUIET:
+                print(f"  ⚠ WARN: {msg}")
         else:
             FAIL += 1
-            print(f"  ✗ FAIL: {msg}")
+            if not QUIET:
+                print(f"  ✗ FAIL: {msg}")
         return False
+
+
+def get_staged_files():
+    """Get list of staged files."""
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--name-only"],
+        capture_output=True, text=True
+    )
+    return result.stdout.strip().split("\n") if result.stdout.strip() else []
 
 
 def parse_frontmatter(filepath):
@@ -73,7 +98,8 @@ def parse_frontmatter(filepath):
 
 def validate_subsystem_files():
     """Check every .md in subsystem dirs."""
-    print("\n=== CHECK 1: Subsystem file frontmatter ===\n")
+    if not QUIET:
+        print("\n=== CHECK 1: Subsystem file frontmatter ===\n")
 
     for ws in WORKSTREAMS:
         subs = SUBSYSTEMS if ws != "4-EXECUTE" else [s for s in SUBSYSTEMS if s != "_cross"]
@@ -120,7 +146,8 @@ def validate_subsystem_files():
 
 def validate_naming():
     """Check filenames follow {sub}-{name}.md pattern."""
-    print("\n=== CHECK 2: File naming patterns ===\n")
+    if not QUIET:
+        print("\n=== CHECK 2: File naming patterns ===\n")
 
     for ws in WORKSTREAMS:
         if ws == "4-EXECUTE":
@@ -147,7 +174,8 @@ def validate_naming():
 
 def validate_old_dirs():
     """Check no files remain in old category dirs."""
-    print("\n=== CHECK 3: Old dirs cleaned ===\n")
+    if not QUIET:
+        print("\n=== CHECK 3: Old dirs cleaned ===\n")
 
     for old_dir in OLD_DIRS:
         if os.path.exists(old_dir):
@@ -166,7 +194,8 @@ def validate_old_dirs():
 
 def validate_gitkeep():
     """Check no orphan .gitkeep in dirs with content."""
-    print("\n=== CHECK 4: No orphan .gitkeep ===\n")
+    if not QUIET:
+        print("\n=== CHECK 4: No orphan .gitkeep ===\n")
 
     for ws in WORKSTREAMS:
         subs = SUBSYSTEMS if ws != "4-EXECUTE" else [s for s in SUBSYSTEMS if s != "_cross"]
@@ -183,10 +212,12 @@ def validate_gitkeep():
 
 
 def validate_dsbv():
-    """Check DSBV phase files exist."""
-    print("\n=== CHECK 5: DSBV phase files ===\n")
+    """Check DSBV phase files exist for DSBV workstreams (not LEARN)."""
+    if not QUIET:
+        print("\n=== CHECK 5: DSBV phase files ===\n")
 
-    for ws in WORKSTREAMS:
+    dsbv_ws = [ws for ws in WORKSTREAMS if ws != "2-LEARN"]
+    for ws in dsbv_ws:
         # Workstream-root DSBV files
         for phase in ["DESIGN.md", "SEQUENCE.md"]:
             fpath = os.path.join(ws, phase)
@@ -201,9 +232,57 @@ def validate_dsbv():
                 check(os.path.exists(fpath), f"Missing {fpath}", severity="WARN")
 
 
+def validate_routing_mode_b():
+    """Mode B: No DSBV files in 2-LEARN/."""
+    if not QUIET:
+        print("\n=== CHECK 7: Mode B — No DSBV in LEARN ===\n")
+
+    if STAGED_ONLY:
+        for f in get_staged_files():
+            if f.startswith("2-LEARN/") and os.path.basename(f) in DSBV_FILES:
+                check(False, f"DSBV file in LEARN: {f} — LEARN uses pipeline, not DSBV")
+    else:
+        if os.path.isdir("2-LEARN"):
+            for root, dirs, files in os.walk("2-LEARN"):
+                for f in files:
+                    if f in DSBV_FILES:
+                        path = os.path.join(root, f)
+                        check(False, f"DSBV file in LEARN: {path} — LEARN uses pipeline, not DSBV")
+            # If no violations found in walk, record a pass
+            found_dsbv = False
+            for root, dirs, files in os.walk("2-LEARN"):
+                for f in files:
+                    if f in DSBV_FILES:
+                        found_dsbv = True
+            if not found_dsbv:
+                check(True, "")
+
+
+def validate_routing_mode_d():
+    """Mode D: No DSBV files in _genesis/ outside templates/."""
+    if not QUIET:
+        print("\n=== CHECK 8: Mode D — Genesis isolation ===\n")
+
+    if STAGED_ONLY:
+        for f in get_staged_files():
+            if f.startswith("_genesis/") and os.path.basename(f) in DSBV_FILES:
+                if "/templates/" not in f:
+                    check(False, f"DSBV file in _genesis (not templates): {f}")
+    else:
+        if os.path.isdir("_genesis"):
+            for root, dirs, files in os.walk("_genesis"):
+                if "/templates" in root:
+                    continue
+                for f in files:
+                    if f in DSBV_FILES:
+                        path = os.path.join(root, f)
+                        check(False, f"DSBV file in _genesis (not templates): {path}")
+
+
 def validate_obsidian_location():
     """Check Obsidian code is in _genesis/obsidian, not 4-EXECUTE."""
-    print("\n=== CHECK 6: Obsidian code location ===\n")
+    if not QUIET:
+        print("\n=== CHECK 6: Obsidian code location ===\n")
 
     check(
         not os.path.exists("4-EXECUTE/src/obsidian"),
@@ -216,29 +295,41 @@ def validate_obsidian_location():
 
 
 def main():
-    print("=" * 60)
-    print("  Blueprint Validation Report")
-    print("=" * 60)
+    if STAGED_ONLY:
+        # Staged-only mode: run routing checks only
+        validate_routing_mode_b()
+        validate_routing_mode_d()
+    else:
+        if not QUIET:
+            print("=" * 60)
+            print("  Blueprint Validation Report")
+            print("=" * 60)
 
-    validate_subsystem_files()
-    validate_naming()
-    validate_old_dirs()
-    validate_gitkeep()
-    validate_dsbv()
-    validate_obsidian_location()
+        validate_subsystem_files()
+        validate_naming()
+        validate_old_dirs()
+        validate_gitkeep()
+        validate_dsbv()
+        validate_obsidian_location()
+        validate_routing_mode_b()
+        validate_routing_mode_d()
 
-    print("\n" + "=" * 60)
-    print(f"  RESULTS: {PASS} PASS | {WARN} WARN | {FAIL} FAIL")
-    print("=" * 60)
+    if not QUIET:
+        print("\n" + "=" * 60)
+        print(f"  RESULTS: {PASS} PASS | {WARN} WARN | {FAIL} FAIL")
+        print("=" * 60)
 
     if FAIL > 0:
-        print("\n✗ VALIDATION FAILED — fix FAILs before committing")
+        if not QUIET:
+            print("\n✗ VALIDATION FAILED — fix FAILs before committing")
         sys.exit(1)
     elif WARN > 0:
-        print("\n⚠ PASSED WITH WARNINGS — review before committing")
+        if not QUIET:
+            print("\n⚠ PASSED WITH WARNINGS — review before committing")
         sys.exit(0)
     else:
-        print("\n✓ ALL CHECKS PASSED")
+        if not QUIET:
+            print("\n✓ ALL CHECKS PASSED")
         sys.exit(0)
 
 

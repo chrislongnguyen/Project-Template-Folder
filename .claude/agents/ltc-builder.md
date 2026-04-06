@@ -1,7 +1,7 @@
 ---
 name: ltc-builder
-version: "1.3"
-last_updated: 2026-04-05
+version: "1.4"
+last_updated: 2026-04-06
 description: "DSBV Build phase agent. Use when producing workstream artifacts — writing files, editing code, creating documents, running scripts. Handles all artifact production across ALIGN, PLAN, EXECUTE, IMPROVE workstreams."
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep
@@ -36,6 +36,13 @@ After producing each artifact:
 2. **Versioning:** Confirm frontmatter has `version` and `last_updated: {today}`.
 3. **Brand:** If visual artifact, confirm LTC colors + Inter font are present.
 4. **EOP-GOV:** If skill file, run `./scripts/skill-validator.sh <skill-dir>`.
+
+## Routing Boundaries
+
+- **NEVER write DSBV files (DESIGN.md, SEQUENCE.md, VALIDATE.md) to 2-LEARN/.** LEARN uses the learning pipeline, not DSBV. If a SEQUENCE.md task targets 2-LEARN/, produce pipeline artifacts only.
+- **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/.
+- **_genesis/** is for OE-builder artifacts only — never write project artifacts there.
+- See: `.claude/rules/filesystem-routing.md` for full 4-mode routing.
 
 ## Constraints
 

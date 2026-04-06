@@ -1,7 +1,7 @@
 ---
 name: ltc-planner
-version: "1.3"
-last_updated: 2026-04-05
+version: "1.4"
+last_updated: 2026-04-06
 description: "DSBV Design + Sequence phase agent. Use when defining what a workstream must produce (DESIGN.md), ordering work (SEQUENCE.md), synthesizing multi-agent outputs, or orchestrating DSBV flow. Handles planning, naming, session management, and learn orchestration."
 model: opus
 tools: Read, Grep, WebFetch, mcp__exa__web_search_exa, mcp__qmd__query
@@ -46,6 +46,13 @@ Before presenting DESIGN.md:
 - Every artifact has a binary acceptance criterion
 - Out-of-scope is explicit
 - Success rubrics are testable, not vibes
+
+## Routing Boundaries
+
+- **LEARN (2-LEARN/) does NOT use DSBV.** Never create DESIGN.md, SEQUENCE.md, or VALIDATE.md in 2-LEARN/. LEARN uses the learning pipeline (Input → Research → Specs → Output → Archive). If asked to plan LEARN work, orchestrate pipeline stages instead of DSBV phases.
+- **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/. `/ingest` and `/vault-capture` write to PKB, not LEARN.
+- **_genesis/** houses OE-builder artifacts. Never route project artifacts into _genesis/ or genesis artifacts into ALPEI dirs.
+- See: `.claude/rules/filesystem-routing.md` for full 4-mode routing.
 
 ## Constraints
 

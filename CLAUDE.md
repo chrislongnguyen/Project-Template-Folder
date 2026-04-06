@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-02
+last_updated: 2026-04-06
 ---
 # CLAUDE.md — LTC Project Template
 
@@ -64,8 +64,16 @@ Universal 8-component model (EI→EU→EA→EO + EP→EOE→EOT→EOP) + RACI + 
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 Trace 6 configurable components before blaming the model. Derisk checklist + symptom-to-component lookup in full spec.
 
+## Filesystem Routing (full spec: `rules/filesystem-routing.md`)
+
+4 modes — load the rule before writing to any project directory:
+- **Mode A:** DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE) → subsystem dirs + DSBV phase files
+- **Mode B:** Learning pipeline (LEARN only) → pipeline dirs, **NO DSBV files**
+- **Mode C:** PKB + vault dirs → `/ingest`, `/vault-capture` write here, NOT to 2-LEARN
+- **Mode D:** Genesis (`_genesis/`) → OE-builder artifacts only, never in ALPEI dirs
+
 ## DSBV Process (full spec: `_genesis/templates/dsbv-process.md`)
-Every workstream uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV.
+Every DSBV workstream (ALIGN, PLAN, EXECUTE, IMPROVE — **not LEARN**) uses **Design → Sequence → Build → Validate**. Run `/dsbv` for guided flow. No workstream artifact is produced outside DSBV.
 - Phase ordering: Design before Build, Validate before workstream complete.
 - ALPEI flow constraint: workstream N cannot reach Review until N-1 has ≥1 Approved artifact.
 - Human gates: each phase transition requires explicit human approval.
