@@ -459,7 +459,7 @@ LAYER 3: UTILITY (6)                    Supporting tools, not workstream-specifi
   ──────────────      ─────────────────       ────────────       ────────          ──────────────────    ──────────────
   ● C3 Standup Prep   ● C1 Master Dashboard   ● C2 Stage Board   ● C5 Approval     ● C6 Version Progress  ● U3 Inbox triage
   ● C4 Blockers       ● C7 Dependencies       ● W1-W5 per stream   Queue           ● Daily note            ● U4 People review
-                                                                                                           ● U1 Daily notes scan
+  ● /dsbv status ←                                                                                         ● U1 Daily notes scan
 ```
 
 > **Principle:** Start wide (what changed?), narrow to your work, then step back (reflection + triage).
@@ -478,7 +478,9 @@ LAYER 3: UTILITY (6)                    Supporting tools, not workstream-specifi
 1. Scan for **unexpected changes** — did the agent modify something you didn't ask for?
 2. Note items stuck > 3 days — they may need attention
 3. Prepare your standup answer: **what moved, what didn't**
+4. In Claude Code: type **`/dsbv status`** — see the ALPEI×DSBV pipeline state in one table
 
+> **Two views, always together:** Obsidian Bases = *what files exist and their metadata*. `/dsbv status` = *where you are in the process and what's next*. Neither alone is enough.
 > **View tip:** Switch to the FULL STATUS view (grouped by sub-system) for standup reporting.
 
 ---

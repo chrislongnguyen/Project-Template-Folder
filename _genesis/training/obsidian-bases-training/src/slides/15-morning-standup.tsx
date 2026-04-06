@@ -214,6 +214,7 @@ export default function MorningStandupSlide() {
                 'Scan for items you didn\'t expect to change',
                 'Note any items stuck (DAYS AGO > 3)',
                 'Prepare your standup update: what moved, what didn\'t',
+                'In Claude Code → type /dsbv status — see ALPEI×DSBV pipeline state',
               ].map((action, i) => (
                 <div
                   key={i}
@@ -301,6 +302,37 @@ export default function MorningStandupSlide() {
                 }}
               >
                 Switch to FULL STATUS for standup: grouped by sub-system (product), shows what each product team delivered.
+              </span>
+            </div>
+            {/* /dsbv status callout */}
+            <div
+              style={{
+                padding: '8px 12px',
+                borderRadius: '5px',
+                background: `${colors.green}10`,
+                border: `1px solid ${colors.green}40`,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Courier New', Courier, monospace",
+                  fontWeight: 700,
+                  fontSize: 'clamp(0.45rem, 0.65vw, 0.58rem)',
+                  color: colors.green,
+                }}
+              >
+                /dsbv status
+              </span>
+              <span
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: 'clamp(0.45rem, 0.65vw, 0.58rem)',
+                  color: colors.textDim,
+                  marginLeft: '6px',
+                }}
+              >
+                In Claude Code — shows ALPEI×DSBV pipeline state. Bases = what files exist. <code style={{ fontFamily: "'Courier New'", fontSize: 'inherit', color: colors.green }}>/dsbv status</code> = where you are in the process.
               </span>
             </div>
             <div

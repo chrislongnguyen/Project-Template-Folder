@@ -15,6 +15,18 @@ iteration: 2
 
 ## Unreleased
 
+### 2026-04-06 — Learn Skill Routing + QMD Integration (SKILLS)
+
+**fix(skills): learn skill routing — Option X cross-first pipeline + templates** (`50f43e4`, `0e64225`)
+
+- Root cause: filesystem migration deleted `2-LEARN/templates/` and broke 93 path refs in 7 skills
+- Option X: pipeline stages in `_cross/` (exploratory), converge to subsystem dirs via `/learn:spec`
+- 7 LBE page templates → `_genesis/templates/learning-book/`
+- Created `validate-learning-page.sh`, `constraints.yaml`, `learn-path-lint.sh`
+- 93 path rewrites across 14 skill files: `2-LEARN/{flat}/` → `2-LEARN/_cross/{dir}/`
+- DSBV terminology fixed in learn-spec (handoff TO downstream, not LEARN using DSBV)
+- QMD `learn` + `learn_specs` collections added — P-pages auto-indexed on SessionStop
+
 ### 2026-04-06 — Filesystem Routing Harness (GOVERN)
 
 **fix(govern): 4-mode filesystem routing harness — LEARN pipeline exclusion** (`e17cbf9`)
