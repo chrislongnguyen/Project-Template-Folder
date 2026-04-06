@@ -1,6 +1,8 @@
 # Filesystem Routing — Always-On Rule
 
-Full spec: `3-PLAN/_cross/filesystem-blueprint.md`
+# version: 2.1 | status: draft | last_updated: 2026-04-05
+
+Full spec: `_genesis/filesystem-blueprint.md`
 
 ## Structure: 3 Layers (Docs) / 4 Layers (Code)
 

@@ -1,5 +1,5 @@
 ---
-version: "2.2"
+version: "2.3"
 status: draft
 last_updated: 2026-04-05
 owner: "Long Nguyen"
@@ -149,7 +149,7 @@ Iteration, DSBV stage, status, UES version, and 8-component model are encoded in
 
 **Why not flatter:** Subsystem folders (L2) encode the sequential dependency chain (Principle 6: PD governs all). Removing L2 would lose this structural enforcement and require agents to read frontmatter before every file operation to determine domain.
 
-**Full spec:** `3-PLAN/_cross/filesystem-blueprint.md` | **Routing rule:** `rules/filesystem-routing.md`
+**Full spec:** `_genesis/filesystem-blueprint.md` | **Routing rule:** `rules/filesystem-routing.md`
 
 ---
 

@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-06
 work_stream: 3-PLAN
 stage: design
 type: ues-deliverable
@@ -29,6 +29,12 @@ owner: "long nguyen"
 project-root/
 │
 ├── 1-ALIGN/                          ← L1: Workstream
+│   ├── DESIGN.md                     ← DSBV meta-artifact (workstream scope)
+│   ├── README.md
+│   ├── SEQUENCE.md                   ← DSBV meta-artifact (task order)
+│   ├── VALIDATE.md                   ← DSBV meta-artifact (done criteria)
+│   ├── charter/                      ← Legacy dir (pre-subsystem); migrate to 1-PD/
+│   │   └── drafts/
 │   ├── 1-PD/                         ← L2: Subsystem (sequential, PD governs all)
 │   │   ├── pd-charter.md             ← L3: Artifact (subsystem-prefixed)
 │   │   ├── pd-decision-adr-001.md
@@ -37,22 +43,44 @@ project-root/
 │   ├── 3-DA/
 │   ├── 4-IDM/
 │   └── _cross/                       ← Cross-cutting artifacts (span subsystems)
+│       ├── README.md
 │       ├── cross-stakeholder-map.md
 │       └── cross-stakeholder-raci.md
 │
-├── 2-LEARN/
-│   ├── 1-PD/
-│   │   ├── pd-ubs-analysis.md
-│   │   ├── pd-uds-analysis.md
-│   │   ├── pd-research-spec.md
-│   │   ├── pd-effective-principles.md
-│   │   └── pd-literature-review.md
-│   ├── 2-DP/
-│   ├── 3-DA/
-│   ├── 4-IDM/
-│   └── _cross/
+├── 2-LEARN/                              ← Pipeline workstream: uses 6-state learning pipeline, NOT DSBV
+│   ├── README.md
+│   ├── 1-PD/                             ← Full detail shown here; 2-DP, 3-DA, 4-IDM follow same structure
+│   │   ├── README.md
+│   │   ├── input/                        ← S1 Scope: research questions, scoping docs, raw captures
+│   │   ├── research/                     ← S2 Research: structured UBS/UDS evidence, source investigations
+│   │   ├── output/                       ← S3 Structure: organized P-pages (P0–P5), structured findings
+│   │   ├── specs/                        ← S5 Spec: VANA-SPEC, derived Effective Principles (S/E/Sc)
+│   │   ├── archive/                      ← Superseded drafts and rejected hypotheses
+│   │   ├── pd-ubs-analysis.md            ← UBS analysis (sections 1.0–1.6)
+│   │   ├── pd-uds-analysis.md            ← UDS analysis (sections 2.0–2.6)
+│   │   ├── pd-effective-principles.md    ← Derived EP: S-Principles, E-Principles
+│   │   ├── pd-research-spec.md           ← Research specification and methodology
+│   │   └── pd-literature-review.md       ← Literature review and source synthesis
+│   ├── 2-DP/                             ← Same pipeline structure as 1-PD (dp-* prefixed artifacts)
+│   ├── 3-DA/                             ← Same pipeline structure as 1-PD (da-* prefixed artifacts)
+│   ├── 4-IDM/                            ← Same pipeline structure as 1-PD (idm-* prefixed artifacts)
+│   └── _cross/                           ← Cross-subsystem: shared frameworks, reusable UBS/UDS patterns
+│       ├── README.md
+│       ├── config/                       ← Shared config for cross-subsystem learning tools
+│       ├── references/                   ← Shared reference materials
+│       ├── scripts/                      ← Shared scripts for learning pipeline
+│       └── templates/                    ← Shared templates for learning artifacts
 │
 ├── 3-PLAN/
+│   ├── DESIGN.md                     ← DSBV meta-artifact (workstream scope)
+│   ├── README.md
+│   ├── SEQUENCE.md                   ← DSBV meta-artifact (task order)
+│   ├── VALIDATE.md                   ← DSBV meta-artifact (done criteria)
+│   ├── architecture/                 ← Legacy dir (pre-subsystem); migrate to 1-PD/
+│   │   ├── ADRs/
+│   │   ├── diagrams/
+│   │   └── meta-project/
+│   ├── risks/                        ← Legacy dir (pre-subsystem); migrate to subsystem dirs
 │   ├── 1-PD/
 │   │   ├── pd-architecture.md
 │   │   ├── pd-risk-register.md
@@ -63,9 +91,19 @@ project-root/
 │   ├── 3-DA/
 │   ├── 4-IDM/
 │   └── _cross/
+│       ├── README.md
+│       ├── cross-dependency-map.md
 │       └── filesystem-blueprint.md   ← This document
 │
 ├── 4-EXECUTE/                        ← L1: Workstream
+│   ├── DESIGN.md                     ← DSBV meta-artifact (workstream scope)
+│   ├── README.md
+│   ├── SEQUENCE.md                   ← DSBV meta-artifact (task order)
+│   ├── VALIDATE.md                   ← DSBV meta-artifact (done criteria)
+│   ├── docs/                         ← Cross-workstream technical documentation
+│   │   ├── api/
+│   │   ├── onboarding/
+│   │   └── runbooks/
 │   ├── 1-PD/                         ← L2: Subsystem
 │   │   ├── src/                      ← L3: Code type (EXECUTE only)
 │   │   │   └── *.py                  ← L4: Code files
@@ -87,6 +125,10 @@ project-root/
 │       └── config/
 │
 ├── 5-IMPROVE/
+│   ├── DESIGN.md                     ← DSBV meta-artifact (workstream scope)
+│   ├── README.md
+│   ├── SEQUENCE.md                   ← DSBV meta-artifact (task order)
+│   ├── VALIDATE.md                   ← DSBV meta-artifact (done criteria)
 │   ├── 1-PD/
 │   │   ├── pd-changelog.md
 │   │   ├── pd-retro-sprint-1.md
@@ -95,7 +137,10 @@ project-root/
 │   ├── 3-DA/
 │   ├── 4-IDM/
 │   └── _cross/
-│       └── cross-changelog.md        ← Project-wide changelog
+│       ├── README.md
+│       ├── cross-changelog.md        ← Project-wide changelog
+│       ├── cross-feedback-register.md
+│       └── cross-metrics-baseline.md
 │
 ├── _genesis/                          ← Shared: frameworks, templates, brand, reference
 ├── .claude/                           ← Agent: rules, skills, agents, settings
