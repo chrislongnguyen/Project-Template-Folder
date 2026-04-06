@@ -62,7 +62,7 @@ Every wiki page in `distilled/` MUST have this frontmatter:
 ```yaml
 ---
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-05
 topic: skills
 source: captured/anthropic-skill-docs.md

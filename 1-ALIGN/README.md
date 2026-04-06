@@ -1,91 +1,112 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 1-ALIGN
+type: template
+iteration: 2
 ---
-# ALIGN workstream (Choose the Right Outcome + Learn)
 
-> "Are we solving the right problem? Is everyone aligned? Do we know enough?"
+# 1-ALIGN — Choose the Right Outcome
 
-**Workstreams:** ALIGN (Self/Team Alignment) + LEARN (Effective Learning)
-**Derived From:** Ultimate Truth #7 (Work Stream 1 & 3); Agile SOP 2.1 Alignment Meeting; SOP 2.2 OKR Planning
-
----
+> "Are we solving the right problem? Is everyone aligned?"
 
 ## Purpose
 
-Before anything in this project moves forward, every item here must be green.
-This workstream prevents the #1 risk in any project: **building the wrong thing**.
+Without ALIGN, every downstream workstream optimizes for the wrong outcome. Teams build efficiently toward a goal no stakeholder approved, with roles no one agreed on, and constraints no one documented. This workstream forces the project to lock problem scope, decision authority, and desired outcomes (VANA) before any learning or execution begins. Its output — a validated alignment package — is the single input that authorizes 2-LEARN to proceed.
 
-LEARN is embedded inside ALIGN because **learning is how you resolve unknowns before committing to a plan**. The learning pipeline identifies unknowns, targets research, and produces structured knowledge (ELF pages, VANA specs, GSD states) that directly transform into alignment artifacts.
+## The 4 Stages
+
+Every subsystem (PD, DP, DA, IDM) flows through these stages:
 
 ```
-                    ┌────────────────────────────────────────┐
-                    │            1-ALIGN                      │
-                    │                                         │
-                    │  charter/   okrs/   decisions/          │
-                    │      ▲        ▲        ▲               │
-                    │      │        │        │               │
-                    │  ┌───┴────────┴────────┴───┐           │
-                    │  │       learning/          │           │
-                    │  │                          │           │
-                    │  │  input/ → research/ →    │           │
-                    │  │    output/ → specs/       │           │
-                    │  └──────────────────────────┘           │
-                    └────────────────────────────────────────┘
-                         │                          ▲
-                         ▼                          │
-                      3-PLAN                    5-IMPROVE
+DESIGN  →  SEQUENCE  →  BUILD  →  VALIDATE
 ```
 
-## Contents
+| Stage | Purpose | Key Output |
+|-------|---------|-----------|
+| **Design** | Define problem boundaries — which questions to answer, who is accountable (RACI), and what constraints are non-negotiable | Validated scope (in/out); stakeholder map with RACI; constraint register; initial risk register; go/no-go decision |
+| **Sequence** | Draft desired outcomes using VANA; sequence version milestones and resource allocations | Desired outcome statement (VANA per version); master plan draft; version roadmap; risk mitigation plan |
+| **Build** | Finalize and lock the master plan; obtain stakeholder sign-off; communicate objectives and baselines | Approved master plan (locked); signed-off outcomes per version; baseline KPIs; alignment brief distributed |
+| **Validate** | Verify alignment is complete and coherent — no gaps, no conflicting scope, no unapproved assumptions | Alignment review report; corrective actions (back to Design/Sequence if needed); validated alignment package → 2-LEARN |
 
-| Subfolder | Contains | Key Question |
-|-----------|----------|--------------|
-| `charter/` | Project Charter, Stakeholders, Requirements | Why does this project exist? Who does it serve? |
-| `okrs/` | Objectives & Key Results | What outcomes define success? How do we measure them? |
-| `decisions/` | Architecture Decision Records | What non-trivial choices have we made and why? |
-| `learning/` | Learning pipeline (input, research, output, specs) | What do we not know? How do we resolve unknowns? |
+## Subsystem Flow
 
-### Learning Sub-Pipeline
+```
+PD-ALIGN  →  DP-ALIGN  →  DA-ALIGN  →  IDM-ALIGN
+```
 
-| Subfolder | Purpose | Flow |
-|-----------|---------|------|
-| `learning/input/` | Learn-input files land here — raw questions, topics, unknowns | Entry point |
-| `learning/research/` | Raw research output — CODE template investigations | Processing |
-| `learning/output/` | Structured ELF pages — validated knowledge artifacts | Structured output |
-| `learning/specs/` | VANA-SPEC + GSD-STATE — formal system specifications | Handoff to PLAN |
+| Subsystem | Focus | Key Inputs | Key Outputs |
+|-----------|-------|-----------|------------|
+| **PD** | Define the boundaries of the problem diagnosis effort — which problems, stakeholders, and constraints to investigate | Project mandate; user problem statement; available resources; prior lessons learned | Approved PD master plan; signed-off problem scope per version; validated alignment → PD-LEARN |
+| **DP** | Define the boundaries of the transformation effort — which inputs, processes, and outputs are in scope | **Principles from PD** + data source requirements; infrastructure constraints; PD scope boundaries | Approved DP master plan; transformation SLAs per version; validated alignment → DP-LEARN |
+| **DA** | Define the boundaries of the analysis and logic effort — which analytical questions, methods, and outputs are in scope | **Principles from PD** + DP scope boundaries; analysis-ready artifact spec; downstream consumer requirements | Approved DA master plan; insight quality SLAs per version; validated alignment → DA-LEARN |
+| **IDM** | Define the boundaries of insight delivery — which roles need outputs, what decisions must be supported, and at what cadence | **Principles from all upstream** + analyzed output spec; decision-maker context; organizational change capacity | Approved IDM master plan; delivery and decision-support SLAs; validated alignment → IDM-LEARN |
 
-## Alignment Checklist
-- [ ] PROJECT_CHARTER.md is complete — purpose, scope, and success criteria defined
-- [ ] STAKEHOLDERS.md identifies all stakeholders and their UBS/UDS
-- [ ] REQUIREMENTS.md decomposes needs as Verb + Adverbs + Noun + Adjectives (UT#3)
-- [ ] OBJECTIVES.md defines what outcomes look like
-- [ ] KEY_RESULTS.md has measurable results with formulas, each tagged to a Pillar
-- [ ] Learning pipeline has been run for all identified unknowns
-- [ ] ELF pages in `learning/output/` are validated and complete
-- [ ] VANA specs in `learning/specs/` are ready for handoff to 3-PLAN
+> **Critical:** PD produces the effective principles that govern the entire UES — DP, DA, and IDM inherit and build on them.
 
-## Pre-Flight — 3 Pillars Check
+## Structure
 
-### Sustainability — Does our alignment manage failure risks?
-- [ ] Stakeholder conflicts identified and addressed
-- [ ] Requirements are unambiguous (no room for misinterpretation)
-- [ ] Success criteria are measurable (not aspirational)
-- [ ] All critical unknowns have been researched (no blind spots)
+| Folder | Contents |
+|--------|---------|
+| `1-PD/` | ALIGN artifacts scoped to problem diagnosis — charter, decisions, OKRs for the PD subsystem |
+| `2-DP/` | ALIGN artifacts scoped to transformation — charter, decisions, OKRs for the DP subsystem |
+| `3-DA/` | ALIGN artifacts scoped to analysis and logic — charter, decisions, OKRs for the DA subsystem |
+| `4-IDM/` | ALIGN artifacts scoped to insight delivery — charter, decisions, OKRs for the IDM subsystem |
+| `_cross/` | Cross-cutting alignment artifacts that span all subsystems — project-level charter, shared OKRs, organization-wide RACI, version roadmap |
 
-### Efficiency — Is our alignment lean?
-- [ ] No redundant or conflicting requirements
-- [ ] Scope is appropriate (not gold-plated)
-- [ ] Alignment artifacts are concise and actionable
-- [ ] Learning is time-boxed (no analysis paralysis)
+## Templates
 
-### Scalability — Does our alignment handle growth?
-- [ ] Requirements accommodate future feature expansion
-- [ ] OKRs can be cascaded to sub-teams
-- [ ] Decision records support onboarding new contributors
-- [ ] Learning output is reusable across related projects
+| Stage | Template |
+|-------|---------|
+| Design | [`design-template.md`](_genesis/templates/design-template.md) |
+| Sequence | [`dsbv-process.md`](_genesis/templates/dsbv-process.md) |
+| Build | [`charter-template.md`](_genesis/templates/charter-template.md) — master plan and sign-off |
+| Validate | [`review-template.md`](_genesis/templates/review-template.md) |
 
-## Links
+## Pre-Flight Checklist
 
-- [[project]]
-- [[workstream]]
+### Design Stage
+- [ ] Define problem statement — who is affected, what is broken, what is out of scope
+- [ ] Identify all stakeholders and assign RACI roles
+- [ ] Document constraints (time, budget, technical, organizational)
+- [ ] Record initial risks in the risk register
+- [ ] Obtain go/no-go decision before proceeding
+
+### Sequence Stage
+- [ ] Write desired outcomes using VANA format (Verb Adverb Noun Adjective) per version
+- [ ] Draft master plan with version milestones (I0 → I1 → I2 → I3 → I4)
+- [ ] Sequence resource allocations against version roadmap
+- [ ] Define risk mitigations for top-3 blocking forces
+
+### Build Stage
+- [ ] Finalize master plan — no open scope questions
+- [ ] Obtain written sign-off from all RACI Accountable parties
+- [ ] Communicate objectives and baseline KPIs to all Responsible and Consulted parties
+- [ ] Confirm the alignment brief has been distributed
+
+### Validate Stage
+- [ ] All VANA acceptance criteria met
+- [ ] Evidence basis verified
+- [ ] No contradictions between subsystem charters
+- [ ] Validated package ready for → 2-LEARN
+
+## How ALIGN Connects
+
+```
+                  project mandate + stakeholder input
+(project trigger)  ─────────────────────────────────>  1-ALIGN
+                                                           │
+                                              validated alignment package
+                                                           │
+                                                           ▼
+                                                        2-LEARN
+
+1-ALIGN ──"scope gap found"──> 1-ALIGN  (iterate within workstream)
+1-ALIGN ──"new constraint"──>  1-ALIGN  (re-run Design stage)
+5-IMPROVE ──"feedback loop"──> 1-ALIGN  (close the ALPEI loop)
+```
+
+## DASHBOARDS
+
+![[ALIGN Overview.base]]

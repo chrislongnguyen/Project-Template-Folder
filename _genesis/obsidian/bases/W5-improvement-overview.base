@@ -17,8 +17,6 @@ properties:
     displayName: VERSION
   status:
     displayName: STATUS
-  ues_version:
-    displayName: UES VERSION
   formula.days_since_update:
     displayName: DAYS SINCE UPDATE
 views:
@@ -34,7 +32,6 @@ views:
       - stage
       - version
       - status
-      - ues_version
       - formula.days_since_update
     columnSize:
       file.name: 367

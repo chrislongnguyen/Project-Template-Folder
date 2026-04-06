@@ -2,7 +2,7 @@
 name: vault-capture
 description: Capture conversation content, research notes, or ephemeral text to inbox/ staging area. Use when you want to save something quickly without deciding where it belongs yet.
 version: "2.0"
-status: Draft
+status: draft
 last_updated: "2026-04-05"
 ---
 # /vault-capture — Quick Capture to Vault Inbox
@@ -77,7 +77,7 @@ type: research
 source: conversation
 tags: []
 version: "2.0"
-status: Draft
+status: draft
 last_updated: "YYYY-MM-DD"
 ---
 ```

@@ -1,65 +1,53 @@
 ---
-version: "1.1"
+version: "2.0"
 status: draft
-last_updated: 2026-04-03
-owner: "Long Nguyen"
-derived_from:
-  - "Vinh ALPEI Overview PDF"
-  - "Vinh ALPEI By Work Streams PDF"
-  - "Vinh ALPEI By Sub-system PDF"
-  - "Vinh ALPEI Process Requirements PDF"
-  - "Vinh ALPEI UES Versioning PDF"
----
-# _genesis — LTC Organizational Knowledge Base
-
-The genesis layer is the immutable foundation that all LTC projects inherit from. It captures organizational intellectual capital: beliefs, commitments, models, and standards that are project-agnostic.
-
-## Cascade Model
-
-```
-philosophy → principles → frameworks → derived artifacts
-(WHY)        (WHAT)       (HOW)        (rules, skills, workstreams)
-```
-
-Derived artifacts (CLAUDE.md rules, agent skills, workstream templates) are downstream of this layer. Changes here propagate outward through team consensus.
-
-## Improvement Flow
-
-```
-member worktree → branch → PR → daily standup → consensus → merge to main
-```
-
-No genesis artifact changes without team consensus. This protects organizational coherence.
-
-## Categories
-
-| File/Dir     | Layer         | Purpose                                              |
-|--------------|---------------|------------------------------------------------------|
-| BLUEPRINT.md | BEDROCK       | Canonical philosophy, principles, operating model, roadmap (I0–I4) |
-| philosophy/  | WHY           | Core beliefs, cognitive truths, 3 Pillars            |
-| principles/  | WHAT          | EP registry EP-01–EP-10, EOP-GOV, Agent Diagnostic   |
-| frameworks/  | HOW           | 18 canonical kebab-case files + archive/ (6 superseded) |
-| brand/       | IDENTITY      | Brand Guide, colors, naming convention               |
-| security/    | PROTECTION    | Data classification, security hierarchy              |
-| sops/        | PROCESS       | Standard operating procedures + archive/             |
-| templates/   | FORMATS       | DSBV process, document templates (Agent E)           |
-| guides/      | ONBOARDING    | Migration guides for template upgrades               |
-| governance/  | AUTHORITY     | Decision rights, RACI, escalation paths              |
-| compliance/  | OBLIGATIONS   | Regulatory, audit, legal obligations                 |
-| culture/     | VALUES        | Behavioral norms, collaboration standards            |
-| reference/   | SUPPLEMENTARY | Handbook, external refs, archive                    |
-
-> Note: `DESIGN-genesis-blueprint-cleanup.md` and `SEQUENCE-genesis-blueprint-cleanup.md` are present in root during the I2 cleanup branch — remove after merge to main.
-
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
 
-**Classification:** INTERNAL
+# _genesis
 
-## Links
+> "What foundational knowledge does every LTC project inherit?"
 
-- [[CLAUDE]]
-- [[dsbv]]
-- [[security]]
-- [[standard]]
-- [[versioning]]
-- [[workstream]]
+## Purpose
+
+Organizational knowledge base — philosophy, principles, frameworks, and derived artifacts that ship with every project clone.
+
+It exists as a separate directory to enforce the boundary between org-level knowledge (read-only for project teams, owned by LTC COE OPS) and project-specific work (owned by the project team). Nothing in `_genesis/` is modified by project teams — changes flow through the template repo and propagate on clone or update.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| `philosophy/` | Core beliefs — the WHY behind LTC's approach |
+| `principles/` | Non-negotiable standards derived from philosophy |
+| `frameworks/` | System models and analytical tools (ALPEI, UBS/UDS, 8-component, UES versioning) |
+| `reference/` | Authoritative guides, company handbook, EOP governance spec, ALPEI PDFs |
+| `templates/` | DSBV phase templates, ADR, VANA-SPEC, research, review, and 15+ artifact starters |
+| `brand/` | Visual identity — colors, typography, logo usage |
+| `security/` | Data classification, naming convention, security hierarchy |
+| `sops/` | Standard operating procedures for repeatable activities |
+| `governance/` | Organizational governance structures (I2 placeholder) |
+| `compliance/` | Regulatory and policy obligations (I2 placeholder) |
+| `culture/` | Team norms and working agreements (I2 placeholder) |
+| `obsidian/` | Vault structure scaffold for Obsidian-based knowledge management |
+
+## How It Connects
+
+```
+_genesis (org-level, read-only)
+    │
+    ├──> CLAUDE.md + .claude/rules/ — EP loaded each session
+    ├──> .claude/agents/ — agent definitions reference frameworks
+    ├──> 1-ALIGN/ through 5-IMPROVE/ — every workstream pulls templates,
+    │    frameworks, and brand rules from here
+    └──> scripts/ — template-check.sh validates structure against _genesis
+```
+
+## Pre-Flight Checklist
+
+- [ ] Confirm `_genesis/` is not modified directly inside a project repo — changes belong in the template repo
+- [ ] Verify `_genesis/frameworks/` contains the current versions of all 9 Vinh frameworks
+- [ ] No orphaned or stale artifacts

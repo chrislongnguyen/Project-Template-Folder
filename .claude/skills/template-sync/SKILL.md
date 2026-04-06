@@ -1,7 +1,7 @@
 ---
 name: template-sync
 version: "2.0"
-status: Draft
+status: draft
 last_updated: 2026-04-05
 description: "Sync new files from LTC project template. Use when user says: template sync, sync template, pull template, update from template, template update."
 agents:

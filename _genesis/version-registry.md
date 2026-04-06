@@ -1,7 +1,7 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-03
+last_updated: 2026-04-06
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
@@ -26,7 +26,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | 2-LEARN × Sequence    | SEQUENCE.md                            | 1.1     | Approved    | —       | 2026-03-30   | TBD      |
 | 2-LEARN × Build       | input/, research/, specs/, output/     | 1.x     | In Progress | —       | 2026-03-30   | TBD      |
 | 2-LEARN × Validate    | VALIDATE.md                            | —       | Not Started | —       | —            | TBD      |
-| 3-PLAN × Design       | DESIGN.md                              | —       | Pending     | —       | —            | TBD      |
+| 3-PLAN × Design       | filesystem-blueprint.md                | 1.1     | draft       | —       | 2026-04-06   | TBD      |
 | 3-PLAN × Sequence     | SEQUENCE.md                            | —       | Pending     | —       | —            | TBD      |
 | 3-PLAN × Build        | UBS/UDS Registers, Architecture        | —       | Pending     | —       | —            | TBD      |
 | 3-PLAN × Validate     | VALIDATE.md                            | —       | Pending     | —       | —            | TBD      |
@@ -99,7 +99,7 @@ Version labels from `_genesis/frameworks/ues-version-behaviors.md`.
 ## Notes
 
 - **I1 constraint:** All file `version` fields must be `1.x`. Never `0.x` or `2.x` for I1 content.
-- **2-LEARN** is an I1 Must deliverable. DSBV Build in progress — skill rerouting and cross-refs pending.
+- **2-LEARN** is an I1 Must deliverable. All 6 READMEs rewritten 2026-04-06 — pipeline-state framing (S1–S5), EP derivation formulas, correct templates. Skill rerouting and cross-refs pending.
 - **3-PLAN** UBS/UDS Registers are seeded from ALIGN but not yet in formal DSBV — status = Pending.
 - **4-EXECUTE** DESIGN.md exists (multi-agent orchestration context) but DSBV Sequence not yet started.
 - **5-IMPROVE** CHANGELOG.md initialized but DSBV has not formally started — status = Pending.

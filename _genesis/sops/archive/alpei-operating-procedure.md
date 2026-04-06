@@ -5,7 +5,7 @@ type: governance
 classification: INTERNAL
 owner: LTC ALL
 source: "Adapted from Vinh branch v3.0 (Vinh-ALPEI-AI-Operating-System-with-Obsidian)"
-status: Deprecated
+status: archived
 ---
 
 # ALPEI AI OPERATING SYSTEM — STANDARD OPERATING PROCEDURE

@@ -2,7 +2,7 @@
 name: obsidian-cli
 description: Use for graph traversal (backlinks, outgoing-links, orphans) — Obsidian's unique value vs QMD/Grep. QMD handles semantic search; Grep handles exact-match. Obsidian is Priority 2 for structural graph relationships only, when the app is running.
 version: "1.4"
-status: Draft
+status: draft
 last_updated: "2026-04-05"
 ---
 # /obsidian — Obsidian CLI Integration

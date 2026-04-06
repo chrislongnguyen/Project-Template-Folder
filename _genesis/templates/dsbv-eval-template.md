@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 iteration: "I1: Concept"
-status: Draft
+status: draft
 last_updated: 2026-04-04
 owner: Long Nguyen
 type: template

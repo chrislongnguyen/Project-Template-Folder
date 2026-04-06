@@ -1,7 +1,7 @@
 ---
-version: "1.3"
+version: "1.4"
 status: draft
-last_updated: 2026-03-31
+last_updated: 2026-04-05
 owner: "Long Nguyen"
 ---
 # LTC History & Version Control
@@ -25,21 +25,23 @@ Like Google Docs version history, but more structured. Every change is saved wit
 ```
 ---
 version: "1.0"              ← MAJOR = iteration (I1=1.x, I2=2.x). MINOR = edit count.
-status: Draft               ← only 3 options: Draft, Review, Approved
+status: draft               ← 5 options: draft, in-progress, in-review, validated, archived
 last_updated: 2026-03-31
 owner: "Long"               ← who is responsible for this document
 ---
 ```
 
-**Rule 2 — Only 3 statuses, only Human can promote**
+**Rule 2 — Only 5 statuses (S2 vocabulary), only Human can validate**
 
 ```
-Draft ───→ Review ───→ Approved
-  ↑           ↑            ↑
-Agent       Agent        HUMAN ONLY
-creates     requests     (Agent can NEVER approve
-& edits     review        its own work)
+draft ──→ in-progress ──→ in-review ──→ validated
+  ↑                           ↑             ↑
+Agent                       Agent        HUMAN ONLY
+creates                   requests       (Agent can NEVER validate
+& edits                    review         its own work)
 ```
+
+`archived` = end-of-life status. No further edits expected.
 
 **Rule 3 — Write the "why", not just the "what"**
 
@@ -59,10 +61,10 @@ GOOD: "Added data quality requirement because raw Bloomberg data has missing fie
 1. Agent says "I think this is ready for review"
 2. You read it
 3. You say "Approved" or give feedback
-4. If approved — status changes to Approved, nobody edits without creating a new version
+4. If approved — status changes to `validated`, nobody edits without creating a new version
 
 **When a milestone is done (like finishing a Sprint):**
-1. All documents in this milestone = Approved
+1. All documents in this milestone = `validated`
 2. Agent packages everything into a "Release"
 3. You review the package — approve — it goes to the stable version
 4. Gets a version tag: v1.0.0, v2.0.0, etc.
@@ -99,7 +101,7 @@ here                │  v1.0.0 → v2.0.0 → v3.0.0       │
 | Docs edited freely, no stamps | Every doc has version + status stamp |
 | "Which version is latest?" | Always clear — check the stamp |
 | Changes lost in edit history | Every change saved with a "why" note |
-| No approval gate | Draft → Review → Approved (Human gates it) |
+| No approval gate | draft → in-review → validated (Human gates it) |
 | Hard to roll back | Any past version recoverable instantly |
 | Docs scattered across spaces | One folder structure, everything connected |
 | "Who changed this?" unclear | Every save tagged with who + when + why |

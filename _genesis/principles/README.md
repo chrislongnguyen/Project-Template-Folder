@@ -1,36 +1,47 @@
 ---
-version: "1.1"
-last_updated: 2026-04-03
-owner: "Long Nguyen"
----
-# principles/ — WHAT
-
-**Purpose:** Concrete commitments derived from philosophy — the organization's operating promises.
-
-**Cascade position:** Layer 2 of 4 — translates WHY into WHAT we commit to.
-
-```
-philosophy → [principles] → frameworks → derived artifacts
-```
-
-## Contents
-
-| File | Description |
-|------|-------------|
-| ltc-effective-agent-principles-registry.md | EP-01 to EP-10 — the 10 Effective Principles |
-| ltc-eop-gov.md | Effective Operating Principle governance model |
-| agent-diagnostic.md | 6-component diagnostic framework for agent failures |
-
-Files will be migrated here from `reference/` during restructuring.
-
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
 
-**Classification:** INTERNAL
+# principles
 
-## Links
+> "What standards are we unwilling to compromise on?"
 
-- [[agent-diagnostic]]
-- [[EP-01]]
-- [[EP-10]]
-- [[ltc-effective-agent-principles-registry]]
-- [[ltc-eop-gov]]
+## Purpose
+
+Non-negotiable standards derived from philosophy — the WHAT we commit to.
+
+Without principles, teams are forced to re-derive foundational standards in every project — producing inconsistent interpretations that fragment quality. This directory exists separately from `philosophy/` (belief-level) and `frameworks/` (method-level) to hold the commitments that sit between them: actionable standards that can be violated and must therefore be stated explicitly.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| _(files currently empty — principles are captured inline across Vinh frameworks)_ | Core standards live in `_genesis/frameworks/ltc-10-ultimate-truths.md` and the ALPEI framework documents pending extraction into dedicated principle files |
+
+## How It Connects
+
+```
+_genesis/philosophy/ (WHY — beliefs)
+    │
+    └──> _genesis/principles/ (WHAT — commitments)
+              │
+              ├──> _genesis/frameworks/ — frameworks must not violate principles
+              ├──> _genesis/security/ — security hierarchy is a derived principle
+              ├──> CLAUDE.md § Agent Diagnostics — 8 LLM Truths are a principle set
+              └──> All workstream Pre-Flight Checklists — principles surface as gate criteria
+```
+
+## Pre-Flight Checklist
+
+- [ ] Confirm each principle traces to at least one philosophy statement in `_genesis/philosophy/`
+- [ ] Verify principles are stated as commitments ("We will never…", "We always…"), not aspirations
+- [ ] No orphaned or stale artifacts
+
+## Naming Convention
+
+Principle files use descriptive kebab-case: `sustainability-over-efficiency.md`, `human-adoption-first.md`.

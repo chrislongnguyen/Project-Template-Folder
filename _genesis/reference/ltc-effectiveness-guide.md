@@ -3,7 +3,7 @@ title: "LTC Guide to Success & Effectiveness"
 source: "[LTC ALL]_PD.8. EFFECTIVENESS"
 version: "Current"
 scope: "All LTC projects — universal framework"
-status: "Canonical Reference"
+status: validated
 last_updated: 2026-03-29
 owner: "Long Nguyen"
 ---

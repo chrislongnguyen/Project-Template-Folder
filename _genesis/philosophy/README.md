@@ -1,34 +1,45 @@
 ---
-version: "1.1"
-last_updated: 2026-04-03
-owner: "Long Nguyen"
----
-# philosophy/ — WHY
-
-**Purpose:** Core beliefs and truths that anchor all LTC thinking and decision-making.
-
-**Cascade position:** Layer 1 of 4 — the root. All downstream layers (principles, frameworks, derived artifacts) trace back here.
-
-```
-[philosophy] → principles → frameworks → derived artifacts
-```
-
-## Contents
-
-| File | Description |
-|------|-------------|
-| ltc-effectiveness-guide.md | 10 Ultimate Truths + 8-component ESD model |
-| ltc-effective-thinking.md | Catalog of cognitive biases to counter in decisions (supersedes archived cognitive-biases) |
-| ltc-10-ultimate-truths.md | Sustainability > Efficiency > Scalability (supersedes archived three-pillars) |
-
-Files will be migrated here from `reference/` and `frameworks/` during restructuring.
-
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
 
-**Classification:** INTERNAL
+# philosophy
 
-## Links
+> "Why do we do things this way?"
 
-- [[ltc-effective-thinking]]
-- [[ltc-10-ultimate-truths]]
-- [[ltc-effectiveness-guide]]
+## Purpose
+
+Core beliefs and first principles — the WHY behind everything LTC does.
+
+If philosophy is absent, teams make decisions from convenience or habit rather than conviction — producing frameworks and principles that contradict each other over time. This directory is the root of the `_genesis/` cascade: `philosophy → principles → frameworks → derived artifacts`. Nothing downstream may contradict a statement made here.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| _(files currently empty — philosophy is captured inline across Vinh frameworks)_ | Philosophical foundations live in `_genesis/frameworks/ltc-10-ultimate-truths.md` and `ltc-effective-thinking.md` pending extraction into dedicated philosophy files |
+
+## How It Connects
+
+```
+_genesis/philosophy/ (root — WHY)
+    │
+    ├──> _genesis/principles/ (WHAT we commit to)
+    ├──> _genesis/frameworks/ (HOW we think)
+    ├──> _genesis/culture/ (HOW we behave)
+    └──> _genesis/brand/ (HOW we present)
+```
+
+## Pre-Flight Checklist
+
+- [ ] Verify no principle in `_genesis/principles/` contradicts a statement in `_genesis/philosophy/`
+- [ ] Confirm philosophy files reflect current org beliefs, not aspirational ideals
+- [ ] No orphaned or stale artifacts
+
+## Naming Convention
+
+Philosophy files use descriptive kebab-case: `why-ltc-exists.md`, `learning-as-first-principle.md`.

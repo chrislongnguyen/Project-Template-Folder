@@ -4,7 +4,7 @@ title: Effective System Design (ESD) — Reference Framework
 version: 2.0 | 2026-02-28
 last_updated: 2026-03-29
 owner: "Long Nguyen"
-status: Active Reference — use after ELF Learning phase is complete
+status: validated
 scope: OE (Operational Excellence) and all UE (User Enablement) instances
 ---
 # Effective System Design (ESD)

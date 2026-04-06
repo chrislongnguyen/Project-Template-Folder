@@ -1,7 +1,7 @@
 ---
 name: ingest
 version: "2.2"
-status: Draft
+status: draft
 last_updated: 2026-04-05
 model: claude-sonnet-4-6
 description: "Distil raw sources from captured/ into structured wiki pages in distilled/. Use when PM drops files into PERSONAL-KNOWLEDGE-BASE/captured/ and says /ingest, 'ingest knowledge', or 'process captured'."

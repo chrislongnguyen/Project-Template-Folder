@@ -1,7 +1,7 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-03
+last_updated: 2026-04-05
 ---
 # Versioning — Always-On Rule
 
@@ -10,7 +10,7 @@ Full spec: `_genesis/frameworks/history-version-control.md` | Registry: `_genesi
 ## Required Metadata by File Type
 
 - **Markdown (`.md`):** YAML frontmatter with `version`, `status`, `last_updated`
-- **Shell/Python (`.sh`, `.py`):** Comment header `# version: X.Y | status: Draft | last_updated: YYYY-MM-DD`
+- **Shell/Python (`.sh`, `.py`):** Comment header `# version: X.Y | status: draft | last_updated: YYYY-MM-DD`
 - **HTML:** `<meta>` tags for version, status, last-updated
 - **JSON/YAML/TOML config, binaries:** Exempt — git history is sufficient
 
@@ -21,12 +21,11 @@ Frontmatter values MUST be lowercase — except `work_stream`, which uses number
 ```yaml
 # WRONG
 status: Draft
-iteration_name: Concept
 work_stream: 1-align
 
 # CORRECT
 status: draft
-iteration_name: concept
+iteration: 1
 work_stream: 1-ALIGN
 ```
 
@@ -61,7 +60,7 @@ Git tags use `v{ITERATION}.0.0` format (e.g., v1.0.0 = I1 merged to main). File 
 | Field | What it tracks | Who sets it | Required |
 |-------|---------------|-------------|----------|
 | `version` | Committed content state (MAJOR.MINOR per convention above) | Agent | Yes |
-| `status` | Lifecycle: `draft` \| `review` \| `approved` (lowercase) | Agent sets draft/review. **Human ONLY sets approved.** | Yes |
+| `status` | Lifecycle: `draft` \| `in-progress` \| `in-review` \| `validated` \| `archived` | Agent sets draft/in-progress/in-review. **Human ONLY sets validated.** | Yes |
 | `last_updated` | Today's absolute date (YYYY-MM-DD) | Agent — update on every edit | Yes |
 | `iteration_name` | Semantic label for the iteration — supplementary only | Agent | No |
 
@@ -84,22 +83,23 @@ Example showing both fields together:
 version: "1.4"
 status: draft
 last_updated: 2026-04-03
-iteration_name: concept
+iteration: 1
 ---
 ```
 
 ## Status Lifecycle
 
 ```
-draft ──→ review ──→ approved
-  ↑          ↑           ↑
-Agent      Agent      HUMAN ONLY
-creates    requests   (Agent NEVER
-& edits    review      self-approves)
+draft ──→ in-progress ──→ in-review ──→ validated
+  ↑                            ↑            ↑
+Agent                        Agent       HUMAN ONLY
+creates                    requests      (Agent NEVER
+& edits                     review       self-approves)
 ```
 
 - New files start as `draft`
-- Editing an `approved` file → new version, reset to `draft`
+- Editing a `validated` file → new version, reset to `draft`
+- `archived` = end-of-life; no further edits expected
 
 ## After Editing Any Workstream Artifact
 
@@ -108,7 +108,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 ## Pre-Commit Checklist
 
 1. `version` — follows 1.x (I1) convention, bumped only if previously committed
-2. `status` — lowercase (`draft` or `review`), not prematurely `approved`
+2. `status` — S2 vocabulary: `draft` | `in-progress` | `in-review` | `validated` | `archived`. Not prematurely `validated`.
 3. `last_updated` — today's absolute date
 4. All frontmatter values lowercase (R4) — except `work_stream` which uses numbered SCREAMING (`1-ALIGN`)
 5. `_genesis/version-registry.md` — row updated if this is a workstream artifact
@@ -125,7 +125,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 | Using `version: "2.0"` for I1 content | I1 = 1.x always. 2.x is for I2. |
 | Using `version: "0.1"` | LTC does not use 0.x. New file in I1 = "1.0". |
 | Bumping version on uncommitted rewrite | No bump — it was never committed at the prior number |
-| Setting `status: Approved` without human | Only human approves. Agent sets draft or review. |
+| Setting `status: validated` without human | Only human validates. Agent sets draft, in-progress, or in-review. |
 | Forgetting `status` field | All four fields (version + status + last_updated) required; iteration_name optional |
 | Relative dates ("today") | Always absolute: 2026-03-31 |
 | Skipping version-registry update | Every workstream artifact edit must update the registry row |

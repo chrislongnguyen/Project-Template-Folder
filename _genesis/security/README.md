@@ -1,40 +1,50 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
-owner: "Long Nguyen"
----
-# security/ — PROTECTION
-
-**Purpose:** Security standards that protect LTC data, systems, and operations.
-
-**Cascade position:** Derived layer — applies protective constraints across all workstreams and projects.
-
-```
-philosophy → principles → frameworks → [security as derived protection layer]
-```
-
-## Contents
-
-| File | Description |
-|------|-------------|
-| security-hierarchy.md | 3-layer defense model + 6 security rules + blast-radius model |
-| data-classification.md | 5-level data classification scheme (PUBLIC → TOP SECRET) |
-| naming-convention.md | Universal Naming Grammar (UNG) for all platforms and tools |
-
-## Rules
-
-- NEVER hardcode secrets in source, prompts, or tool arguments
-- HIGH risk actions require explicit human confirmation before execution
-- Operate within project dir only — prefer reversible actions
-
+version: "2.0"
+status: draft
+last_updated: 2026-04-06
+work_stream: 0-GOVERN
+type: template
+iteration: 2
 ---
 
-**Classification:** INTERNAL
+# security
 
-## Links
+> "Is this data classified correctly and handled according to policy?"
 
-- [[data-classification]]
-- [[naming-convention]]
-- [[security-hierarchy]]
-- [[project]]
-- [[security]]
+## Purpose
+
+Data classification, naming convention, security hierarchy, and access control.
+
+Without a security layer, teams misclassify data, use inconsistent naming, and create access gaps that are difficult to audit. This directory exists separately from `principles/` because security is both a principle and an operational spec — the specs here translate the principle into concrete rules that agents and humans enforce on every artifact.
+
+## What This Contains
+
+| Content Type | Description |
+|-------------|-------------|
+| `naming-convention.md` | LTC Universal Naming Grammar (UNG) — full spec with all scope codes, separator rules, and lookup tables |
+| `data-classification.md` | Data classification tiers and handling rules for each tier |
+| `security-hierarchy.md` | Security authority hierarchy — who can override what level of security control |
+
+## How It Connects
+
+```
+_genesis/principles/ (security as a non-negotiable commitment)
+    │
+    └──> _genesis/security/ (security translated into operational rules)
+              │
+              ├──> CLAUDE.md § Naming — quick-ref for agents (SCOPE codes)
+              ├──> .claude/rules/naming-rules.md — always-on naming enforcement
+              ├──> .claude/rules/obsidian-security.md — vault-specific security rules
+              ├──> All artifact creation — naming-convention.md governs every file/folder name
+              └──> All data handling — data-classification.md governs storage and sharing
+```
+
+## Pre-Flight Checklist
+
+- [ ] Confirm `naming-convention.md` Table 3a is current before creating any new named artifact
+- [ ] Verify `data-classification.md` tiers are consistent with `security-hierarchy.md` authority levels
+- [ ] No orphaned or stale artifacts
+
+## Naming Convention
+
+Security spec files use descriptive kebab-case: `naming-convention.md`, `data-classification.md`. Never abbreviate — these docs are loaded by agents and must be unambiguous.
