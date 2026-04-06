@@ -2,7 +2,7 @@
 version: "1.1"
 status: draft
 last_updated: 2026-04-06
-work_stream: 3-PLAN
+work_stream: _genesis
 stage: design
 type: ues-deliverable
 sub_system: _cross
