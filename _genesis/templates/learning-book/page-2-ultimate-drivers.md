@@ -1,3 +1,10 @@
+---
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
+type: template
+---
+
 # Template: Page 2 — UDS / UD Layer
 
 _Page type: Ultimate Drivers — the driving side of this Topic (Phase C. Organise Information)._

@@ -1,3 +1,10 @@
+---
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
+type: template
+---
+
 # Template: Page 7 — Topic Distilled Understanding
 
 _Page type: Topic Distilled Understanding (Phase C. Organise Information). Use for any (chapter, topic, page=7)._

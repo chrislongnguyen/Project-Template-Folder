@@ -1,3 +1,10 @@
+---
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
+type: template
+---
+
 # Template: Page 3 — EPS (Effective Principle System)
 
 _Page type: Principles — the governing rules of this Topic (Phase C. Organise Information)._

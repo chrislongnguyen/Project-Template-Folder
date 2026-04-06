@@ -1,3 +1,10 @@
+---
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
+type: template
+---
+
 # Template: Page 5 — EOP (Effective Operating Procedure)
 
 _Page type: Steps to Apply — the operating procedure for this Topic (Phase C. Organise Information)._

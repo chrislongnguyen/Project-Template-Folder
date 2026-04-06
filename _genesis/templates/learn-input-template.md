@@ -94,7 +94,7 @@ Key domains to research for this system. These guide the deep-research prompt.
 When `/learn:input` saves this completed template, it writes to:
 
 ```
-2-LEARN/input/learn-input-{system-name-kebab-case}.md
+2-LEARN/_cross/input/learn-input-{system-name-kebab-case}.md
 ```
 
-Example: `2-LEARN/input/learn-input-data-foundation-layer.md`
+Example: `2-LEARN/_cross/input/learn-input-data-foundation-layer.md`

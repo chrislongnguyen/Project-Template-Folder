@@ -1,3 +1,10 @@
+---
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
+type: template
+---
+
 # Template: Page 1 — UBS / UB Layer
 
 _Page type: Ultimate Blockers — the blocking side of this Topic (Phase C. Organise Information)._
