@@ -1,6 +1,6 @@
 # ITERATION 2: EFFICIENT — TRAINING DECK
 
-> **Audience:** LTC Members (new + upgrading from I1) | **Version:** 2.0 | **Date:** 2026-04-06 | **Status:** Draft
+> **Audience:** LTC Members (new + upgrading from I1) | **Version:** 2.1 | **Date:** 2026-04-06 | **Status:** draft
 > **Format:** Slide deck (each `## heading` = one slide, separated by `---`)
 > **Brand:** Inter font | Midnight Green `#004851` | Gold `#F2C75C` | Ruby Red `#9B1842`
 > **Reading time:** ~30 min | **Quick Start:** 10 min to migrated + first dashboard
@@ -252,6 +252,26 @@ Navigate to: _genesis/obsidian/bases/C3-standup-preparation.base
 
 ---
 
+## OBSIDIAN PLUGINS & THEME
+
+### Core Plugins (install from Community Plugins)
+
+| Plugin | Purpose | Install |
+|--------|---------|---------|
+| **Bases** | Live dashboards — powers all 18 `.base` files (C1–C7, W1–W5, U1–U6) | Settings → Community Plugins → Search "bases" → Enable |
+| **Templater** | 13 pre-built templates (ADR, daily note, risk entry, deliverable, retro). Press `Ctrl+T` / `Cmd+T` | Search "templater" → Enable → Set template folder to `_genesis/templates/` |
+| **Terminal** | Run Claude Code inside Obsidian — no switching to a separate terminal | Search "terminal" → Enable → Opens embedded terminal panel |
+| **Local REST API** | Enables `/obsidian` CLI search — agent can query your vault programmatically | Search "local-rest-api" → Enable → Runs on localhost:27124 |
+
+### LTC Brand Theme
+
+| Component | Purpose | Install |
+|-----------|---------|---------|
+| **LTC Bases Colors** (CSS Snippet) | Color-coded pills for status (green/gold/ruby), workstream (ALPEI), stage (DSBV) | Settings → Appearance → CSS Snippets → Enable "ltc-bases-colors" |
+| **LTC Bases Theme** (Plugin) | Structural table styling — Midnight Green headers, zebra striping, hover effects | Auto-loaded from `.obsidian/plugins/ltc-bases-theme/` (already in repo) |
+
+---
+
 ## WHAT IS A BASE?
 
 A `.base` file is a **live query** over your vault. Think of it as a database view.
@@ -356,6 +376,36 @@ Status is the **lifecycle state** of a deliverable. Agents advance it. Only you 
 ```
 
 > **Golden Rule:** Only **YOU** can set `validated`. Agents create, work, and request review. You are the gate.
+
+### Enforced by hooks — not just a rule
+
+This isn't documentation the agent might ignore. Three automated layers enforce it:
+
+| Layer | When it fires | What it blocks |
+|-------|--------------|----------------|
+| **Real-time gate** (`dsbv-gate.sh --pretool`) | Every Write/Edit to a workstream dir | Writes to workstream N if N-1 has no `validated` artifact |
+| **Commit gate** (`status-guard.sh`) | Every `git commit` | Agent setting `status: validated` (only you can, via `FORCE_APPROVE=1`) |
+| **Chain-of-custody** (`dsbv-gate.sh`) | Every `git commit` touching workstream files | Commits to 3-PLAN if 2-LEARN has nothing validated yet |
+
+```
+ALPEI CHAIN:  1-ALIGN → 2-LEARN → 3-PLAN → 4-EXECUTE → 5-IMPROVE
+                 │          │         │          │           │
+                 ▼          ▼         ▼          ▼           ▼
+              always     needs      needs      needs       needs
+              open       ALIGN      LEARN      PLAN        EXECUTE
+                         validated  validated  validated   validated
+```
+
+> **What this means for you:** Your agent cannot skip ahead. It cannot approve its own work. It cannot write to PLAN before LEARN is done. The system enforces the sequence you designed.
+
+### Status applies to all file types
+
+| File type | Where status lives | Example |
+|-----------|-------------------|---------|
+| `.md` | YAML frontmatter | `status: in-review` |
+| `.sh`, `.py` | Comment header | `# version: 1.0 \| status: draft \| ...` |
+| `.html` | Meta tag | `<meta name="status" content="validated">` |
+| Config (JSON, YAML) | Exempt | Git history is sufficient |
 
 ---
 
@@ -1042,7 +1092,7 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 |---------|-------------|-------------|
 | `/template-check` | Audit your project files against I2 template (read-only) | Before upgrading — see what's changed |
 | `/template-sync` | Apply I2 template updates interactively (never deletes) | Migration from I1 → I2 |
-| `/setup` | Initialize project scaffold + QMD + smoke test (idempotent) | First-time setup or re-initialization |
+| `/setup` | Initialize Memory Vault + QMD semantic search (idempotent) | First-time setup or re-initialization |
 | `/vault-capture` | Capture content into PKB or vault from Claude Code | Quick knowledge capture during work |
 
 ### Templater shortcuts (inside Obsidian)
@@ -1051,6 +1101,36 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 Press Ctrl+T (Cmd+T on Mac) to insert a template from the 13 pre-built options:
   ADR, daily note, driver entry, risk entry, deliverable, retrospective, and more.
 ```
+
+---
+
+## /SETUP — QMD & MEMORY VAULT
+
+Two separate setup commands for two separate systems:
+
+| Command | What it sets up | What it does |
+|---------|----------------|-------------|
+| **`/setup`** | Memory Vault + QMD | Scaffolds Google Drive vault folders (sessions/, conversations/, decisions/). Installs QMD search engine. Connects QMD to your PKB. Runs smoke test. |
+| **`./scripts/setup-obsidian.sh`** | Obsidian visual layer | Copies `.base` dashboards + Templater templates + CSS snippet into `.obsidian/`. Lists plugins to install manually. |
+
+### /setup — 5 steps (automated)
+
+```
+/setup
+```
+
+1. Scaffolds Memory Vault folders on Google Drive (sessions/, conversations/, decisions/)
+2. Installs QMD search engine — indexes your vault for semantic search
+3. Connects QMD to your PKB (distilled/ → qmd collection add)
+4. Runs smoke test to verify everything works
+5. Idempotent — safe to re-run anytime
+
+```
+Your PKB pages ──→ QMD indexes them ──→ Agent auto-recalls relevant knowledge
+                                         when you ask questions
+```
+
+> **Why this matters:** Without QMD, your agent has no memory between sessions. With QMD, it recalls past decisions, research, and context automatically.
 
 ---
 
