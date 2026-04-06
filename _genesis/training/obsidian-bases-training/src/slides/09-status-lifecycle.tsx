@@ -224,32 +224,74 @@ export default function StatusLifecycleSlide() {
           ))}
         </motion.div>
 
-        {/* Key rule callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          style={{
-            borderLeft: `3px solid ${colors.gold}`,
-            paddingLeft: '16px',
-            background: `${colors.gold}08`,
-            borderRadius: '0 6px 6px 0',
-            padding: '12px 16px',
-          }}
-        >
-          <p
+        {/* Key rule + enforcement callouts */}
+        <div style={{ display: 'flex', gap: '16px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
             style={{
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 600,
-              fontSize: 'clamp(0.65rem, 0.95vw, 0.8rem)',
-              color: colors.gold,
-              margin: 0,
-              lineHeight: 1.5,
+              flex: 1,
+              borderLeft: `3px solid ${colors.gold}`,
+              background: `${colors.gold}08`,
+              borderRadius: '0 6px 6px 0',
+              padding: '12px 16px',
             }}
           >
-            KEY RULE: Only YOU can set 'validated'. Agents create, work, and request review. You approve.
-          </p>
-        </motion.div>
+            <p
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 600,
+                fontSize: 'clamp(0.55rem, 0.8vw, 0.7rem)',
+                color: colors.gold,
+                margin: 0,
+                lineHeight: 1.5,
+              }}
+            >
+              KEY RULE: Only YOU can set 'validated'. Agents create, work, and request review. You approve.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            style={{
+              flex: 1,
+              borderLeft: `3px solid ${colors.green}`,
+              background: `${colors.green}08`,
+              borderRadius: '0 6px 6px 0',
+              padding: '12px 16px',
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 600,
+                fontSize: 'clamp(0.55rem, 0.8vw, 0.7rem)',
+                color: colors.green,
+                margin: '0 0 4px 0',
+                lineHeight: 1.4,
+              }}
+            >
+              ENFORCED BY HOOKS — not just a rule
+            </p>
+            <p
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 400,
+                fontSize: 'clamp(0.45rem, 0.65vw, 0.55rem)',
+                color: colors.textDim,
+                margin: 0,
+                lineHeight: 1.5,
+              }}
+            >
+              Real-time gate blocks writes to locked workstreams.{' '}
+              Commit gate blocks agent self-setting 'validated'.{' '}
+              Chain-of-custody: workstream N requires N-1 validated first.
+            </p>
+          </motion.div>
+        </div>
       </div>
     </SlideLayout>
   );

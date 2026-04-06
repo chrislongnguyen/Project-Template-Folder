@@ -1,5 +1,5 @@
 # .templateignore — Files excluded when child repos sync from this template
-# Used by: scripts/release-pr.sh (generates diff excluding these patterns)
+# Used by: template sync tooling (generates diff excluding these patterns)
 # Convention: Same glob syntax as .gitignore
 #
 # Purpose: Cleanly separate SHIPPED scaffold from WIP/design-time artifacts

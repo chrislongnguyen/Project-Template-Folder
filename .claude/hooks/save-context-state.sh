@@ -58,7 +58,7 @@ STATE_FILE="$MEMORY_DIR/precompact-state.md"
   echo "## Task Progress"
   echo ""
   # Check for SEQUENCE.md to extract current progress
-  for seq_file in "$PROJECT_ROOT"/*/SEQUENCE.md "$PROJECT_ROOT"/0-GOVERN/SEQUENCE.md; do
+  for seq_file in "$PROJECT_ROOT"/*/SEQUENCE.md; do
     if [[ -f "$seq_file" ]]; then
       echo "Sequence: $(basename "$(dirname "$seq_file")")/SEQUENCE.md"
       # Extract task count indicators

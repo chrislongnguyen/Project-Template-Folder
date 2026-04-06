@@ -162,6 +162,12 @@
             "command": "./scripts/dsbv-skill-guard.sh",
             "timeout": 5,
             "statusMessage": "Checking DSBV Design phase prerequisite..."
+          },
+          {
+            "type": "command",
+            "command": "./scripts/dsbv-gate.sh --pretool",
+            "timeout": 5,
+            "statusMessage": "Checking ALPEI chain-of-custody..."
           }
         ]
       },

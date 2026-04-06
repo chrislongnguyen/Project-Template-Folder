@@ -139,9 +139,9 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 |-------|-------------------|---------------|-----------------|
 | S1 | No input file exists for slug | `/learn:input` | `2-LEARN/input/learn-input-{slug}.md` |
 | S2 | Input exists; no research dir for slug | `/learn:research {slug}` | `2-LEARN/research/{slug}/` — raw research files per topic |
-| S3 | Research dir exists; ≥1 topic missing approved P-pages | `/learn:structure {slug} {topic}` then `/learn:review {slug} {topic}` | `2-LEARN/research/{slug}/{topic}/P0–P7.md` all with `status: approved` |
-| S4 | All topics approved; no vana-spec exists | `/learn:spec {slug}` | `2-LEARN/specs/{slug}/vana-spec.md` + `DSBV-READY-{slug}.md` |
-| S5 | Pipeline complete (vana-spec exists, all topics approved) | _(no skill — pipeline done)_ | Run `/dsbv design` for the target downstream workstream |
+| S3 | Research dir exists; ≥1 topic missing validated P-pages | `/learn:structure {slug} {topic}` then `/learn:review {slug} {topic}` | `2-LEARN/research/{slug}/{topic}/P0–P7.md` all with `status: validated` |
+| S4 | All topics validated; no vana-spec exists | `/learn:spec {slug}` | `2-LEARN/specs/{slug}/vana-spec.md` + `DSBV-READY-{slug}.md` |
+| S5 | Pipeline complete (vana-spec exists, all topics validated) | _(no skill — pipeline done)_ | Run `/dsbv design` for the target downstream workstream |
 
 #### P0–P7 Page Structure (per topic)
 

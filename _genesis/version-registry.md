@@ -1,5 +1,5 @@
 ---
-version: "1.7"
+version: "1.8"
 status: draft
 last_updated: 2026-04-06
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
@@ -68,6 +68,8 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `scripts/generate-readmes.py` | 1.1 | Draft | 2026-04-06 |
 | `scripts/validate-blueprint.py` | 1.1 | Draft | 2026-04-06 |
 | `.claude/skills/dsbv/SKILL.md` | 1.4 | Draft | 2026-04-06 |
+| `scripts/dsbv-gate.sh` | 2.1 | Draft | 2026-04-06 |
+| `scripts/status-guard.sh` | 2.2 | Draft | 2026-04-06 |
 | `_genesis/DESIGN-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/SEQUENCE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/VALIDATE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
@@ -80,8 +82,8 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `_genesis/SEQUENCE-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/VALIDATE-govern-setup-skill.md` | 1.0 | Draft | 2026-04-05 |
 
-> **Status key:** Not Started | Pending | Draft | Review | In Progress | Approved
-> **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet Approved — cannot start.
+> **Status key:** Not Started | Pending | draft | in-progress | in-review | validated
+> **Not Started** = this cell's primary artifact does not exist yet. **Pending** = upstream workstream not yet validated — cannot start.
 > **Map Cell** = TBD until Consumer 1 (A1 process map `_genesis/frameworks/alpei-dsbv-process-map.md`) is built.
 
 ---
@@ -131,15 +133,15 @@ This registry uses a **22-row workstream×phase matrix**: 20 cells (5 workstream
 - `Workstream×Phase` — ALPEI workstream name × DSBV phase label (20 combinations)
 - `Deliverable` — primary artifact name(s) for this cell
 - `Version` — current version of the primary artifact (`—` if none exists)
-- `Status` — one of exactly 6 values: `Not Started` | `Pending` | `Draft` | `Review` | `In Progress` | `Approved`
+- `Status` — one of exactly 7 values: `Not Started` | `Pending` | `draft` | `in-progress` | `in-review` | `validated` | `archived`
 - `AC Pass` — fraction of ACs passing per VALIDATE.md (`—` if no validate yet)
 - `Last Updated` — date of last meaningful change (YYYY-MM-DD format)
 - `Map Cell` — Consumer 1 process map grid reference (`TBD` until Consumer 1 ships)
 
-**Status lifecycle:**
-- Agent sets: `Draft`, `Review`, `In Progress`, `Not Started`, `Pending`
-- Human ONLY sets: `Approved`
-- Editing an `Approved` file → reset that row to `Draft`
+**Status lifecycle (S2):**
+- Agent sets: `draft`, `in-progress`, `in-review`, `Not Started`, `Pending`
+- Human ONLY sets: `validated`
+- Editing a `validated` file → reset that row to `draft`
 
 ---
 

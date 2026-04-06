@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: draft | last_updated: 2026-04-06
+# version: 2.1 | status: draft | last_updated: 2026-04-06
 # dsbv-gate.sh — ALPEI workstream chain-of-custody gate
 #
 # Blocks commits to workstream N if workstream N-1 has no `status: validated` artifact.
@@ -9,10 +9,15 @@
 #   Standalone:    ./scripts/dsbv-gate.sh           (checks staged files)
 #   Pre-commit:    reference from .pre-commit-config.yaml or .git/hooks/pre-commit
 #   Manual check:  ./scripts/dsbv-gate.sh --check   (same behavior)
+#   PreToolUse:    ./scripts/dsbv-gate.sh --pretool  (reads JSON from stdin)
 #
-# Exit codes:
+# Exit codes (default/--check mode):
 #   0 = pass (no workstream violations)
 #   1 = blocked (workstream prerequisite not met)
+#
+# Exit codes (--pretool mode):
+#   0 = allow
+#   2 = block (matches Claude Code hook convention)
 
 set -euo pipefail
 
@@ -32,7 +37,7 @@ SCAFFOLD_FILENAMES=("README.md" "DESIGN.md" "SEQUENCE.md" "VALIDATE.md")
 # Skips scaffold filenames and exempt types (JSON, YAML, TOML, binaries).
 file_has_validated_status() {
     local filepath="$1"
-    local learn_compat="${2:-false}"  # if true, also accept 'approved' (LEARN compat)
+
     local filename
     filename="$(basename "$filepath")"
     local ext="${filename##*.}"
@@ -52,7 +57,7 @@ file_has_validated_status() {
     esac
 
     # --- Match by file type ---
-    local pattern_validated pattern_approved
+    local pattern_validated
 
     case "$ext" in
         md)
@@ -60,13 +65,6 @@ file_has_validated_status() {
             pattern_validated='^status:[[:space:]]*validated'
             if head -n 20 "$filepath" 2>/dev/null | grep -qE "$pattern_validated"; then
                 return 0
-            fi
-            # COMPAT: remove when LEARN skills migrate to S2 validated
-            if [[ "$learn_compat" == "true" ]]; then
-                pattern_approved='^status:[[:space:]]*approved'
-                if head -n 20 "$filepath" 2>/dev/null | grep -qE "$pattern_approved"; then
-                    return 0
-                fi
             fi
             ;;
         sh|py)
@@ -76,25 +74,12 @@ file_has_validated_status() {
             if head -n 5 "$filepath" 2>/dev/null | grep -qE "$pattern_validated"; then
                 return 0
             fi
-            # COMPAT: remove when LEARN skills migrate to S2 validated
-            if [[ "$learn_compat" == "true" ]]; then
-                pattern_approved='status:[[:space:]]*approved'
-                if head -n 5 "$filepath" 2>/dev/null | grep -qE "$pattern_approved"; then
-                    return 0
-                fi
-            fi
             ;;
         html)
             # HTML meta tag: first 30 lines
             # e.g. <meta name="status" content="validated">
             if head -n 30 "$filepath" 2>/dev/null | grep -qE 'content="validated"'; then
                 return 0
-            fi
-            # COMPAT: remove when LEARN skills migrate to S2 validated
-            if [[ "$learn_compat" == "true" ]]; then
-                if head -n 30 "$filepath" 2>/dev/null | grep -qE 'content="approved"'; then
-                    return 0
-                fi
             fi
             ;;
         *)
@@ -119,7 +104,7 @@ workstream_has_validated_artifact() {
 
     # LEARN special case: Option X cross-first pipeline
     # Check 2-LEARN/_cross/output/ and 2-LEARN/*/specs/ only
-    # COMPAT: accept 'approved' in addition to 'validated' for LEARN during S2 migration
+    # LEARN skills use S2 validated (migrated 2026-04-06)
     if [[ "$workstream_dir" == "2-LEARN" ]]; then
         local learn_dirs=()
         # _cross/output/ (P-pages)
@@ -133,7 +118,7 @@ workstream_has_validated_artifact() {
 
         for dir in "${learn_dirs[@]}"; do
             while IFS= read -r -d '' f; do
-                if file_has_validated_status "$f" "true"; then
+                if file_has_validated_status "$f"; then
                     return 0
                 fi
             done < <(find "$dir" -type f \( -name '*.md' -o -name '*.sh' -o -name '*.py' -o -name '*.html' \) -print0 2>/dev/null)
@@ -144,7 +129,7 @@ workstream_has_validated_artifact() {
     # Standard DSBV workstreams: check all eligible file types recursively
     # Status vocabulary: validated ONLY (S2 clean break — no Approved, no Review)
     while IFS= read -r -d '' f; do
-        if file_has_validated_status "$f" "false"; then
+        if file_has_validated_status "$f"; then
             return 0
         fi
     done < <(find "$workstream_path" -type f \( -name '*.md' -o -name '*.sh' -o -name '*.py' -o -name '*.html' \) -print0 2>/dev/null)
@@ -190,6 +175,106 @@ get_prerequisite_workstream() {
     echo ""
 }
 
+# --- Operational file exceptions ---------------------------------------------
+
+# Returns 0 (is operational) if the file path matches operational file patterns
+# that skip the chain-of-custody gate (same logic as dsbv-skill-guard.sh).
+is_operational_file() {
+    local filepath="$1"
+    case "$filepath" in
+        *retrospectives/*|*retros/*|*retro*)  return 0 ;;
+        *changelog/*|*CHANGELOG*|*changelog*) return 0 ;;
+        *metrics/*|*metrics*)                 return 0 ;;
+        *decisions/*|*decision*)              return 0 ;;
+        *reviews/*|*review*)                  return 0 ;;
+    esac
+    return 1
+}
+
+# --- --pretool mode ----------------------------------------------------------
+
+# PreToolUse handler: reads JSON from stdin, extracts file_path, enforces ALPEI chain.
+pretool_main() {
+    # Read full stdin JSON
+    local json
+    json="$(cat)"
+
+    # Extract file_path from tool_input
+    local file_path
+    file_path="$(echo "$json" | jq -r '.tool_input.file_path // empty' 2>/dev/null || true)"
+
+    # No path extractable → allow (not a file write)
+    if [[ -z "$file_path" ]]; then
+        exit 0
+    fi
+
+    # Determine relative path from project root
+    local rel_path
+    rel_path="${file_path#"${PROJECT_ROOT}"/}"
+
+    # Determine which workstream this file belongs to
+    local target_workstream=""
+    for ws in "${WORKSTREAMS[@]}"; do
+        if [[ "$rel_path" == "${ws}/"* ]]; then
+            target_workstream="$ws"
+            break
+        fi
+    done
+
+    # Not a workstream file → allow
+    if [[ -z "$target_workstream" ]]; then
+        exit 0
+    fi
+
+    # 2-LEARN files: always allow at write/edit time (exploratory — gate only at commit)
+    if [[ "$target_workstream" == "2-LEARN" ]]; then
+        exit 0
+    fi
+
+    # Scaffold files → allow (structural, not deliverables)
+    local filename
+    filename="$(basename "$file_path")"
+    for scaffold in "${SCAFFOLD_FILENAMES[@]}"; do
+        if [[ "$filename" == "$scaffold" ]]; then
+            exit 0
+        fi
+    done
+
+    # Operational files → allow (retros, changelog, metrics, decisions, reviews)
+    if is_operational_file "$rel_path"; then
+        exit 0
+    fi
+
+    # 1-ALIGN has no prerequisite → always allow
+    local prereq
+    prereq="$(get_prerequisite_workstream "$target_workstream")"
+    if [[ -z "$prereq" ]]; then
+        exit 0
+    fi
+
+    # Check if prerequisite workstream has ≥1 validated artifact
+    if workstream_has_validated_artifact "$prereq"; then
+        exit 0
+    fi
+
+    # Prerequisite NOT met → block with actionable message
+    cat >&2 <<EOF
+BLOCKED: Writing to ${target_workstream}/ — prerequisite ${prereq}/ has no validated artifacts.
+
+The ALPEI chain-of-custody requires workstream N-1 to have ≥1 validated artifact
+before workstream N can receive new deliverables.
+
+To fix this:
+  1. Complete work in ${prereq}/
+  2. Set status: in-review on completed artifacts
+  3. Get human validation (status: validated)
+
+File attempted: ${file_path}
+See: rules/alpei-chain-of-custody.md
+EOF
+    exit 2
+}
+
 # --- Main --------------------------------------------------------------------
 
 main() {
@@ -216,7 +301,7 @@ main() {
             echo "BLOCKED: Cannot commit to ${workstream}/ — no validated artifacts found in ${prereq}/."
             echo "  Gate requires: ≥1 file with 'status: validated' in ${prereq}/."
             if [[ "$prereq" == "2-LEARN" ]]; then
-                echo "  For 2-LEARN: check _cross/output/ or */specs/ — 'status: approved' also accepted (S2 compat)."
+                echo "  For 2-LEARN: check _cross/output/ or */specs/ for 'status: validated'."
             fi
             echo "  See: rules/alpei-chain-of-custody.md"
             echo ""
@@ -232,4 +317,17 @@ main() {
     exit 0
 }
 
-main "$@"
+# --- Dispatch ----------------------------------------------------------------
+
+case "${1:-}" in
+    --pretool)
+        pretool_main
+        ;;
+    --check|"")
+        main "$@"
+        ;;
+    *)
+        echo "Usage: dsbv-gate.sh [--check | --pretool]" >&2
+        exit 1
+        ;;
+esac
