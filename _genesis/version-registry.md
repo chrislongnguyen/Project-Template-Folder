@@ -1,5 +1,5 @@
 ---
-version: "1.6"
+version: "1.7"
 status: draft
 last_updated: 2026-04-06
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
@@ -22,10 +22,8 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | 1-ALIGN × Sequence    | SEQUENCE.md                            | 1.3     | Draft       | —       | 2026-03-30   | TBD      |
 | 1-ALIGN × Build       | Charter, OKRs, ADRs (7), Stakeholders | 1.x     | In Progress | 28/30   | 2026-03-30   | TBD      |
 | 1-ALIGN × Validate    | VALIDATE.md                            | 1.2     | Draft       | 28/30   | 2026-03-30   | TBD      |
-| 2-LEARN × Design      | DESIGN.md                              | 1.0     | Approved    | —       | 2026-03-30   | TBD      |
-| 2-LEARN × Sequence    | SEQUENCE.md                            | 1.1     | Approved    | —       | 2026-03-30   | TBD      |
-| 2-LEARN × Build       | input/, research/, specs/, output/     | 1.x     | In Progress | —       | 2026-03-30   | TBD      |
-| 2-LEARN × Validate    | VALIDATE.md                            | —       | Not Started | —       | —            | TBD      |
+| 2-LEARN × Pipeline    | input/, research/, specs/, output/     | 1.x     | In Progress | —       | 2026-04-06   | TBD      |
+| _(LEARN uses learning pipeline, not DSBV — no Design/Sequence/Validate rows)_ | | | | | | |
 | 3-PLAN × Design       | filesystem-blueprint.md                | 1.1     | draft       | —       | 2026-04-06   | TBD      |
 | 3-PLAN × Sequence     | SEQUENCE.md                            | —       | Pending     | —       | —            | TBD      |
 | 3-PLAN × Build        | UBS/UDS Registers, Architecture        | —       | Pending     | —       | —            | TBD      |
@@ -43,7 +41,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 
 | Workstream          | Description                                        | Version | Status     | Last Updated |
 |---------------|----------------------------------------------------|---------|------------|--------------|
-| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-05 |
+| GOVERN        | Operational infrastructure — CLAUDE.md, .claude/rules/, .claude/agents/, hooks/ | 1.x | Active | 2026-04-06 |
 | _genesis      | Reference layer — BLUEPRINT.md, brand, frameworks (18 canonical), security, SOPs, templates, 5 Vinh PDFs | 2.0 | Draft | 2026-04-03 |
 
 ### Recently Modified Files (I2 Cleanup — 2026-04-03)
@@ -61,7 +59,15 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `.claude/agents/ltc-builder.md` | 1.3 | Draft | 2026-04-05 |
 | `.claude/agents/ltc-reviewer.md` | 1.3 | Draft | 2026-04-05 |
 | `.claude/agents/ltc-explorer.md` | 1.3 | Draft | 2026-04-05 |
-| `.claude/agents/ltc-planner.md` | 1.3 | Draft | 2026-04-05 |
+| `.claude/agents/ltc-planner.md` | 1.4 | Draft | 2026-04-06 |
+| `.claude/agents/ltc-builder.md` | 1.4 | Draft | 2026-04-06 |
+| `.claude/rules/filesystem-routing.md` | 1.0 | Draft | 2026-04-06 |
+| `CLAUDE.md` | 1.2 | Draft | 2026-04-06 |
+| `scripts/dsbv-skill-guard.sh` | 1.2 | Draft | 2026-04-06 |
+| `scripts/populate-blueprint.py` | 1.1 | Draft | 2026-04-06 |
+| `scripts/generate-readmes.py` | 1.1 | Draft | 2026-04-06 |
+| `scripts/validate-blueprint.py` | 1.1 | Draft | 2026-04-06 |
+| `.claude/skills/dsbv/SKILL.md` | 1.4 | Draft | 2026-04-06 |
 | `_genesis/DESIGN-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/SEQUENCE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/VALIDATE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |

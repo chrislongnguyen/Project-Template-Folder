@@ -106,13 +106,13 @@ esac
 # metrics, decision records, and learning outputs.
 RELATIVE_PATH="${FILE_PATH#*/${WORKSTREAM}/}"
 case "$RELATIVE_PATH" in
-    retrospectives/*|retros/*) exit 0 ;;    # Retros are IMPROVE operational
-    changelog/*|CHANGELOG*) exit 0 ;;        # Changelogs are incremental
-    metrics/*) exit 0 ;;                     # Metrics are incremental
-    decisions/*) exit 0 ;;                   # ADRs can be written anytime
-    learning/*) exit 0 ;;                    # Learning outputs from research
-    reviews/*) exit 0 ;;                     # Review packages
-    skills/*) exit 0 ;;                      # Skills are operational tools, evolve incrementally
+    retrospectives/*|retros/*|*retro*) exit 0 ;;  # Retros are IMPROVE operational
+    changelog/*|CHANGELOG*|*changelog*) exit 0 ;;  # Changelogs are incremental
+    metrics/*|*metrics*) exit 0 ;;                  # Metrics are incremental
+    decisions/*|*decision*) exit 0 ;;               # ADRs can be written anytime
+    learning/*) exit 0 ;;                           # Learning outputs from research
+    reviews/*|*review*) exit 0 ;;                   # Review packages
+    skills/*) exit 0 ;;                             # Skills are operational tools
 esac
 
 # --- Check if DESIGN.md exists for this workstream -------------------------------
