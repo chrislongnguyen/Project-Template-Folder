@@ -1,6 +1,11 @@
 filters:
   and:
-    - type == "ues-deliverable"
+    - or:
+        - work_stream == "1-ALIGN"
+        - work_stream == "2-LEARN"
+        - work_stream == "3-PLAN"
+        - work_stream == "4-EXECUTE"
+        - work_stream == "5-IMPROVE"
 formulas:
   days_stale: (now() - file.mtime).days.round(0)
   dependency_status: if(work_stream == "4-execute" and (now() - file.mtime).days > 7, "CHECK UPSTREAM", if(work_stream == "3-plan" and (now() - file.mtime).days > 7, "CHECK UPSTREAM", if((now() - file.mtime).days > 14, "STALE", if((now() - file.mtime).days > 3, "MONITOR", "OK"))))
@@ -10,15 +15,15 @@ properties:
     displayName: DELIVERABLE
   work_stream:
     options:
-      - value: 1-align
+      - value: 1-ALIGN
         color: blue
-      - value: 2-learn
+      - value: 2-LEARN
         color: cyan
-      - value: 3-plan
+      - value: 3-PLAN
         color: yellow
-      - value: 4-execute
+      - value: 4-EXECUTE
         color: orange
-      - value: 5-improve
+      - value: 5-IMPROVE
         color: green
     displayName: WORK STREAM
   stage:

@@ -1,6 +1,11 @@
 filters:
   and:
-    - type == "ues-deliverable"
+    - or:
+        - work_stream == "1-ALIGN"
+        - work_stream == "2-LEARN"
+        - work_stream == "3-PLAN"
+        - work_stream == "4-EXECUTE"
+        - work_stream == "5-IMPROVE"
 formulas:
   days_since_update: (now() - file.mtime).days.round(0)
   alpei_cell: if(sub_system, sub_system + " / " + work_stream + " / " + stage, "")
@@ -12,15 +17,15 @@ properties:
     displayName: SUB-SYSTEM
   work_stream:
     options:
-      - value: 1-align
+      - value: 1-ALIGN
         color: blue
-      - value: 2-learn
+      - value: 2-LEARN
         color: cyan
-      - value: 3-plan
+      - value: 3-PLAN
         color: yellow
-      - value: 4-execute
+      - value: 4-EXECUTE
         color: orange
-      - value: 5-improve
+      - value: 5-IMPROVE
         color: green
     displayName: WORK STREAM
   stage:
@@ -89,6 +94,7 @@ views:
     sort:
       - property: formula.ws_order
         direction: ASC
+    indentProperties: false
   - type: table
     name: BY STAGE
     groupBy:
@@ -141,3 +147,6 @@ views:
       note.stage: 158
       note.version: 181
       note.last_updated: 269
+  - type: cards
+    name: View
+    image: note.status
