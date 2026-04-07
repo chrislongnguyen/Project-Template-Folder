@@ -1,7 +1,7 @@
 ---
 version: "1.2"
-last_updated: 2026-03-30
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: deep-research
 description: Multi-source research using the 12-question CODE framework (Knowledge → Understanding → Wisdom → Expertise) with Blue-Red team falsification. 4 modes — research:lite (2-5min, ~70K tokens), research:mid (5-10min, ~200K tokens), research:deep (10-20min, ~350K tokens), research:full (20-45min, ~600K tokens). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
 agents:

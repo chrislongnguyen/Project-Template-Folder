@@ -1,3 +1,10 @@
+---
+name: git-save
+description: Classify, stage, commit, and optionally PR changes with LTC-aware workstream scopes, version bump checks, and changelog hygiene.
+version: "1.0"
+status: draft
+last_updated: 2026-04-08
+---
 # /git-save — LTC Git Save Workflow
 
 Classify, stage, commit, and optionally PR your current changes.

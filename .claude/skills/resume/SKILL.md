@@ -1,7 +1,7 @@
 ---
 version: "2.0"
-last_updated: 2026-04-02
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: resume
 description: Load context from previous sessions saved in the Memory Vault. Use at the start of a new session when you want to pick up where you left off, or when the user says "resume" or "load context". Reads recent session logs from 07-Claude/sessions/ and summarises what was last worked on.
 ---

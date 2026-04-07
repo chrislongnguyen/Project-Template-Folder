@@ -1,8 +1,7 @@
 ---
 version: "1.4"
 status: draft
-last_updated: 2026-04-06
-owner: "Long Nguyen"
+last_updated: 2026-04-07
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---

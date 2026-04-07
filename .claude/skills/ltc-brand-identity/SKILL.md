@@ -1,5 +1,8 @@
 ---
 name: ltc-brand-identity
+version: "1.0"
+status: draft
+last_updated: 2026-04-07
 description: >
   Use when creating, editing, or reviewing HTML, CSS, SVG, charts, slide decks, diagrams,
   emails, PDFs, or other visual artifacts that must comply with LTC brand identity; also

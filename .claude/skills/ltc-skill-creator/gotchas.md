@@ -1,6 +1,6 @@
 # Gotchas — LTC Skill Creator
 
-1. **Stale path references** — Old skills reference `engine/`, `.cursor/` which no longer exist in the template. Always use current paths: `.claude/skills/`, `_genesis/skills/`, or `{N}-{WORKSTREAM}/skills/`. Check the actual repo structure before writing any path.
+1. **Stale path references** — Old skills reference `engine/`, `.cursor/` which no longer exist in the template. Always use current path: `.claude/skills/` (the only valid skill location). Check the actual repo structure before writing any path.
 
 2. **Description as summary** — Developers write "Manages X" or "Helps with Y" instead of "Use when Y happens." The description field is a trigger condition, not a summary. The validator catches this (CHECK-04), but the real fix is to write trigger-first from the start.
 

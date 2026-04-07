@@ -1,7 +1,7 @@
 ---
-version: "1.0"
-last_updated: 2026-03-29
-owner: "Long Nguyen"
+version: "1.1"
+status: draft
+last_updated: 2026-04-07
 name: root-cause-tracing
 description: ILE causal chain reasoning using UBS/UDS recursive dot-notation. This skill should be used when tracing phenomena to ultimate causes — for Phase C page content (cols 4, 5, 10, 11), debugging learning difficulties, or analyzing system failures. NOT generic 5 Whys. Output maps directly to the 17-column table format.
 ---
@@ -38,8 +38,8 @@ Traces any phenomenon (a blocker, a driver, a failure, an unexpected outcome) to
 
 ## Related Skills
 
-- **kaizen** (`engine/skills/kaizen/SKILL.md`) — when a trace reveals a systemic pattern, use kaizen to diagnose and extract a permanent rule
-- **brainstorming** (`engine/skills/brainstorming/SKILL.md`) — when multiple causal candidates exist at the same level, use brainstorming to explore alternatives before committing
+- **kaizen** — when a trace reveals a systemic pattern, use kaizen to diagnose and extract a permanent rule. Note: kaizen skill is not currently available in this repo.
+- **brainstorming** (`.claude/skills/ltc-brainstorming/SKILL.md`) — when multiple causal candidates exist at the same level, use brainstorming to explore alternatives before committing
 
 ## Links
 

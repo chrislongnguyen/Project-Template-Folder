@@ -1,7 +1,7 @@
 ---
 version: "1.0"
-last_updated: 2026-03-29
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: ltc-skill-creator
 description: "Create a new skill following LTC EOP governance standards. Use when
   formalizing a repeated pattern into a reusable skill, adding a new capability,

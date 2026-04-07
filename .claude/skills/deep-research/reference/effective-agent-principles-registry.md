@@ -1,1 +1,0 @@
-../../../../_shared/reference/effective-agent-principles-registry.md

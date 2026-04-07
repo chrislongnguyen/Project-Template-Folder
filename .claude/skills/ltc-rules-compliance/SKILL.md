@@ -1,5 +1,8 @@
 ---
 name: ltc-rules-compliance
+version: "1.0"
+status: draft
+last_updated: 2026-04-07
 description: >
   Use when auditing whether work complies with LTC rules, before shipping or merging,
   or when the user asks "is this compliant?" across brand, naming, security, DSBV, and

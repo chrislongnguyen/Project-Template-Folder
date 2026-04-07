@@ -1,7 +1,7 @@
 ---
 version: "1.2"
-last_updated: 2026-04-06
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: learn
 description: >
   Use when starting or continuing a learning pipeline for any subject. Orchestrates the full

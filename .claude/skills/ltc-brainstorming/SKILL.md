@@ -1,7 +1,7 @@
 ---
 version: "1.4"
-last_updated: 2026-04-05
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: ltc-brainstorming
 description: "Invoke whenever exploring an idea, uncertain about scope, approaching any non-trivial decision, or thinking out loud. Triggers on: 'I'm thinking about...', 'what if we...', 'how should I...'. Acts as a thinking companion — not just a gate before creative work."
 agents:

@@ -1,7 +1,7 @@
 ---
 version: "1.4"
-last_updated: 2026-04-06
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: learn-research
 description: >
   Use when /learn:input is complete and all active topics need parallel research.

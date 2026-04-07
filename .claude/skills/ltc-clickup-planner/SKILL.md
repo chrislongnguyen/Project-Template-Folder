@@ -1,7 +1,7 @@
 ---
 version: "1.1"
-last_updated: 2026-04-05
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: ltc-clickup-planner
 description: >
   Plan and log work to ClickUp within the LTC workspace. Creates PJ Projects, PJ Workstreams (iterations),

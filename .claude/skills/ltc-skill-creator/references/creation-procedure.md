@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "1.1"
+last_updated: 2026-04-08
 ---
 # Skill Creation Procedure
 
@@ -51,7 +51,7 @@ If unsure, start SIMPLE. Upgrade to STANDARD when SKILL.md exceeds 40 lines.
 |-----------|----------|---------|
 | Workstream-specific | `{N}-{WORKSTREAM}/skills/{name}/` | `5-IMPROVE/skills/feedback/` |
 | Agent governance | `.claude/skills/{name}/` | `.claude/skills/ltc-skill-creator/` |
-| Cross-project shared | `_genesis/skills/{name}/` | `_genesis/skills/common-lint/` |
+| Cross-project shared | `.claude/skills/{name}/` | `.claude/skills/common-lint/` |
 
 ## Step 5: Write SKILL.md
 

@@ -1,7 +1,7 @@
 ---
 version: "1.3"
-last_updated: 2026-04-06
-owner: "Long Nguyen"
+status: draft
+last_updated: 2026-04-07
 name: learn-spec
 description: >
   Use when all 6 T0 Effective Learning pages are validated and ready for

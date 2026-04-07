@@ -1,5 +1,8 @@
 ---
 name: ltc-naming-rules
+version: "1.0"
+status: draft
+last_updated: 2026-04-07
 description: >
   Use when creating, renaming, or validating LTC Universal Naming Grammar (UNG) keys for repos,
   folders, Drive paths, ClickUp PJ Projects/Deliverables, or any canonical asset name; when the

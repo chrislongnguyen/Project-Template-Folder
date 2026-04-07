@@ -1,0 +1,1 @@
+../../../../_genesis/reference/ltc-effective-agent-principles-registry.md
