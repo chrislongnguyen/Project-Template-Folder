@@ -10,7 +10,8 @@ last_updated: 2026-04-05
 
 ## Pages
 
-### agents/ (13 pages)
+### agents/ (14 pages)
+- [[agent-reliability-compounding-error]] — Compounding error math in multi-step chains + graph-constrained reasoning pattern (L3)
 - [[agent-teams-overview]] — Multi-session orchestration for parallel work (L3)
 - [[agent-teams-architecture-coordination]] — How teams coordinate via task system (L2)
 - [[agent-teams-display-modes]] — Split, tabs, and focus display modes (L2)
@@ -25,9 +26,10 @@ last_updated: 2026-04-05
 - [[subagent-persistent-memory]] — Enabling memory across subagent sessions (L3)
 - [[subagent-hooks]] — Conditional rules and hooks in subagents (L2)
 
-### best-practices/ (2 pages)
+### best-practices/ (3 pages)
 - [[communicating-with-claude-code]] — Effective prompting, context, and interviewing (L3)
 - [[session-management]] — Context management, checkpoints, course-correction (L3)
+- [[token-efficiency-patterns]] — Deliberate vs wasteful token spend patterns, P1-P6 prescriptions (L4)
 
 ### configuration/ (4 pages)
 - [[claude-md-files]] — Writing and organizing CLAUDE.md instructions (L3)
@@ -40,6 +42,9 @@ last_updated: 2026-04-05
 - [[hook-matchers]] — Pattern matching for tool and event hooks (L2)
 - [[hook-input-output]] — JSON I/O, exit codes, and decision control (L3)
 - [[hooks-in-skills-agents]] — Scoping hooks to skills and agent files (L2)
+
+### developer-tooling/ (1 page)
+- [[dotfiles-repo]] — Git-tracking personal config files via symlinks — setup, .gitignore, secrets risk (L3)
 
 ### knowledge-systems/ (1 page)
 - [[karpathy-llm-wiki-pattern]] — LLM-owned wiki pattern for personal knowledge management (L4)
@@ -60,9 +65,10 @@ last_updated: 2026-04-05
 - [[authentication]] — Login flows, team auth, credential management (L2)
 - [[claude-code-sandboxing]] — Sandbox providers, Seatbelt, Docker isolation (L3)
 
-### platform/ (12 pages)
+### platform/ (13 pages)
 - [[claude-code-extensibility-taxonomy]] — Feature taxonomy: skills vs hooks vs rules vs MCP vs plugins (L3)
 - [[claude-code-context-costs]] — Context cost by feature and loading behavior (L2)
+- [[claude-code-prompt-caching]] — 1-hr vs 5-min TTL tiers, 1300:1 hit ratio, keepalive strategies (L3)
 - [[claude-code-fullscreen-rendering]] — Terminal fullscreen mode with mouse support (L2)
 - [[claude-code-dot-claude-directory]] — .claude/ directory structure and file reference (L3)
 - [[claude-code-cli-reference]] — CLI commands and flags reference (L3)
@@ -91,15 +97,16 @@ last_updated: 2026-04-05
 
 ## Topics
 
-- **agents/** — Subagent architecture, team coordination, agent configuration (13 pages)
-- **best-practices/** — Communication patterns, session hygiene (2 pages)
+- **agents/** — Subagent architecture, team coordination, agent configuration, reliability patterns (14 pages)
+- **best-practices/** — Communication patterns, session hygiene, token efficiency (3 pages)
 - **configuration/** — CLAUDE.md, rules, auto memory, enforcement patterns (4 pages)
+- **developer-tooling/** — Machine config versioning, dotfiles, symlink patterns (1 page)
 - **hooks/** — Hook lifecycle, matchers, I/O, skill/agent scoping (4 pages)
 - **knowledge-systems/** — PKM architectures, retrieval patterns (1 page)
 - **mcp/** — MCP server config, tool search, auth, managed policies (5 pages)
 - **permissions/** — Permission modes, rules, sandboxing, authentication (8 pages)
-- **platform/** — CLI, extensibility, channels, computer use, Chrome, web (12 pages)
+- **platform/** — CLI, extensibility, channels, computer use, Chrome, web, prompt caching (13 pages)
 - **plugins/** — Plugin creation, distribution, marketplace (6 pages)
 - **workflows/** — Automation, code review, scheduling, unix utility (5 pages)
 
-**Total: 58 pages across 10 topics**
+**Total: 62 pages across 11 topics**
