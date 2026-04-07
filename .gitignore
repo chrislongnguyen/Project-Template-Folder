@@ -46,6 +46,12 @@ tsconfig.tsbuildinfo
 .DS_Store
 Thumbs.db
 
+# Temporary output
+TEMP OUT/
+
+# Orphaned lock files (training slides generate these at root)
+/package-lock.json
+
 # Logs
 *.log
 npm-debug.log*

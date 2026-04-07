@@ -1,7 +1,7 @@
 ---
 version: "2.0"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-07
 iteration: 2
 type: template
 ---
@@ -82,6 +82,8 @@ cd {YOUR_PROJECT_NAME}
 | 2 | `.gitignore` | Add any project-specific exclusions (credentials, data files, etc.) |
 | 3 | `CLAUDE.md` | Replace all `{placeholders}` with your project details. Keep under 100 lines. |
 | 4 | `GEMINI.md` | Replace all `{placeholders}` — same structure as CLAUDE.md but for AntiGravity. Keep in sync. |
+| 4b | `codex.md` | Replace project details — same pattern as GEMINI.md but for OpenAI Codex. |
+| 4c | `AGENTS.md` | Review the cross-agent roster. Update if you add custom agents or change model assignments. |
 | 5 | `.mcp.json` | Add MCP server connections if your project uses external tools. |
 | 6 | `.claude/rules/` | Always-on rules are pre-loaded. Add path-scoped rules for your codebase. |
 | 7 | `.claude/skills/` | Add project-specific skills (on-demand procedures). |
@@ -210,8 +212,15 @@ Every workstream is organized by subsystem, not by artifact category:
 .
 ├── CLAUDE.md                        # Claude Code rules (always-loaded)
 ├── GEMINI.md                        # AntiGravity rules (always-loaded)
+├── AGENTS.md                        # Cross-agent roster (all IDEs read this)
+├── codex.md                         # OpenAI Codex rules
 ├── VERSION                          # Template version (distribution tracking)
 │
+├── .cursor/
+│   └── rules/                       # 6 Cursor IDE rules (brand, security, agent system)
+├── .agents/
+│   ├── rules/                       # 6 AntiGravity rules (matches .cursor/rules/)
+│   └── skills/                      # AntiGravity skills (future)
 ├── .claude/
 │   ├── settings.json                # Safety deny/allow (hard ceilings)
 │   ├── agents/                      # 4 MECE agents: planner, builder, reviewer, explorer
@@ -232,6 +241,7 @@ Every workstream is organized by subsystem, not by artifact category:
 │
 ├── 1-ALIGN/                         # Choose the Right Outcome
 │   ├── 1-PD/ 2-DP/ 3-DA/ 4-IDM/   #   Subsystem-scoped: charter, OKRs, decisions
+│   ├── decisions/                   #   Architecture Decision Records (ADRs)
 │   └── _cross/                      #   Cross-cutting alignment artifacts
 │
 ├── 2-LEARN/                         # Understand Before You Act
@@ -292,7 +302,7 @@ All skills live in `.claude/skills/` and are invoked with `/skill-name`.
 | `ltc-reviewer` | Opus | DSBV Validate — review against DESIGN.md criteria |
 | `ltc-explorer` | Haiku | Pre-DSBV research, discovery, read-only exploration |
 
-Agent files: `.claude/agents/` | Dispatch rules: `.claude/rules/agent-dispatch.md`
+Agent files: `.claude/agents/` | Dispatch rules: `.claude/rules/agent-dispatch.md` | Cross-agent roster: `AGENTS.md`
 
 ## Hooks (Event-Driven Automation)
 
@@ -389,9 +399,11 @@ _Template maintained by OPS Process. Source: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](h
 
 ## Links
 
+- [[AGENTS]]
 - [[brand-guide]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
+- [[codex]]
 - [[DESIGN]]
 - [[dsbv-process]]
 - [[GEMINI]]

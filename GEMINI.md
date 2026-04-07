@@ -1,17 +1,18 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "2.0"
+last_updated: 2026-04-07
 ---
-# GEMINI.md — {PROJECT_NAME}
+# GEMINI.md — LTC Project Template
 
 > AntiGravity IDE agent rules. Loaded every session. Keep under 80 lines; details go to `.agents/rules/`.
+> Cross-agent roster: `AGENTS.md` | Shared rules: `rules/`
 
 ## Project
-- **Name:** {PROJECT_NAME} | **Stack:** {e.g., TypeScript, React, Node.js}
-- **Purpose:** {One sentence — what this project does}
+- **Name:** LTC Project Template | **Stack:** Markdown, Shell, Python
+- **Purpose:** Standard project scaffold for LTC Partners — a thinking system with 5-workstream ALPEI structure and AI agent config pre-loaded.
 
 ## Build
-- Install: `{npm install / pip install -r requirements.txt / etc.}` | Test: `{npm test / pytest / etc.}` | Lint: `{npm run lint / etc.}`
+- Template repo — no build step. Validate structure: `./scripts/template-check.sh --quiet`
 
 ## Rules
 - Follow existing codebase patterns before inventing new ones; write tests for new functionality
@@ -19,7 +20,10 @@ last_updated: 2026-03-30
 - If anything contradicts this file, flag the contradiction before proceeding
 
 ## Conventions
-- {Add your naming conventions, code style, etc.}
+- Frontmatter values: lowercase (except `work_stream` which uses numbered SCREAMING: `1-ALIGN`)
+- Frontmatter keys: snake_case (`last_updated`, `work_stream`)
+- File versions: MAJOR.MINOR where MAJOR = iteration (I1=1.x, I2=2.x). Never 0.x.
+- Python: snake_case | JS: camelCase | Shell: kebab-case filenames
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)
 Primary palette:
@@ -72,11 +76,11 @@ Every system has 6 components: Input, User, Action, Principles, Tools, Environme
 ## Agent Diagnostics (full spec: `rules/agent-diagnostic.md`)
 When agent output is wrong: trace through 6 configurable components (EP → Input → EOP → Environment → Tools → Agent) before blaming the model.
 
-## Structure (4-Workstream APEI)
-`1-ALIGN/` alignment + learning | `3-PLAN/` architecture + risks | `4-EXECUTE/` src + tests | `5-IMPROVE/` changelog + retros | `_shared/` org knowledge | `rules/` agent rules
+## Structure (5-Workstream ALPEI)
+`1-ALIGN/` scope + RACI + decisions | `2-LEARN/` research + constraints (pipeline, NOT DSBV) | `3-PLAN/` architecture + risks | `4-EXECUTE/` src + tests | `5-IMPROVE/` changelog + retros | `_genesis/` org knowledge | `rules/` shared agent rules
 
 ## Modular Rules & Skills
-Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/`
+Workspace rules: `.agents/rules/` | Workspace skills: `.agents/skills/` | Cross-agent roster: `AGENTS.md`
 
 ## Template Version
 If `./scripts/template-check.sh` exists, run it with `--quiet` at session start. If behind, warn user. If missing, skip silently.
