@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: LTC Documentation
+    url: https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE
+    about: Read the I2 training deck before filing an issue

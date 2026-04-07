@@ -1,0 +1,75 @@
+name: Issue Triage
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Parse form body
+      - uses: stefanbuck/github-issue-parser@cef37e8b1d28091d8e050b141ab2d11f3a40a41c  # v3.6.0 pinned
+        id: parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/ltc-issue.yml
+
+      # Step 2: Auto-close blank issues (no template used)
+      - if: steps.parser.outputs.ea-eo == ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: '⚠️ This issue was not created using the LTC template. Please re-create via the issue form.\n\nTemplate: `.github/ISSUE_TEMPLATE/ltc-issue.yml`'
+            });
+            await github.rest.issues.update({
+              ...context.repo,
+              issue_number: context.issue.number,
+              state: 'closed',
+              state_reason: 'not_planned'
+            });
+
+      # Step 3: Auto-label from UBS.UD dropdown
+      - if: steps.parser.outputs.ea-eo != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const component = '${{ steps.parser.outputs.ubs-ud }}';
+            const labelMap = {
+              'EP': 'component:ep',
+              'Input': 'component:input',
+              'EOP': 'component:eop',
+              'EOE': 'component:eoe',
+              'EOT': 'component:eot',
+              'Agent': 'component:agent',
+              'Unknown': 'needs-diagnosis'
+            };
+            const match = Object.keys(labelMap).find(k => component.startsWith(k));
+            if (match) {
+              await github.rest.issues.addLabels({
+                ...context.repo,
+                issue_number: context.issue.number,
+                labels: [labelMap[match]]
+              });
+            }
+
+      # Step 4: Auto-label priority from Risk Factor (P x I)
+      - if: steps.parser.outputs.ea-eo != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const p = parseInt('${{ steps.parser.outputs.risk-probability }}') || 0;
+            const i = parseInt('${{ steps.parser.outputs.risk-impact }}') || 0;
+            const rf = p * i;
+            const priority = rf >= 6 ? 'priority:critical'
+                           : rf >= 3 ? 'priority:medium'
+                           : 'priority:low';
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: context.issue.number,
+              labels: [priority]
+            });

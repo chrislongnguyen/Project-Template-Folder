@@ -1,0 +1,105 @@
+name: LTC Issue Report
+description: Report a blocker — classified by 7-CS root cause
+title: "[type][zone] "
+labels: [triage]
+body:
+
+  - type: input
+    id: reporter-repo
+    attributes:
+      label: "Reporter repo"
+      description: "Which project repo are you working in?"
+      placeholder: "INVTECH_UE.1.5.MACRO-DATA-5.FINANCIAL-SYSTEM"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ea-eo
+    attributes:
+      label: "EA → EO"
+      description: "What action did you take, and what was the desired vs actual outcome?"
+      placeholder: |
+        EA: Ran /dsbv design align to produce DESIGN.md
+        Desired EO: DESIGN.md appears in C1-master-dashboard
+        Actual EO: Dashboard shows only _genesis/ files. DESIGN.md invisible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: ubs
+    attributes:
+      label: "UBS — What blocked you?"
+      description: "The symptom. What prevented Desired EO from being reached?"
+      placeholder: |
+        C1-master-dashboard filters on type == "ues-deliverable".
+        DESIGN.md has type: dsbv-design. Filter excludes it silently.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk-probability
+    attributes:
+      label: "Risk Probability — How likely are others to hit this?"
+      options:
+        - "1 — Rare edge case"
+        - "2 — Some users, some conditions"
+        - "3 — Most users will hit this"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk-impact
+    attributes:
+      label: "Risk Impact — How badly does it block the EO?"
+      options:
+        - "1 — Cosmetic or workaround exists"
+        - "2 — Painful but can continue working"
+        - "3 — Blocked, cannot reach EO"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ubs-ud
+    attributes:
+      label: "UBS.UD — Root cause component"
+      description: "Which component of the 7-CS failed?"
+      options:
+        - "EP — Rule missing, wrong, contradictory, or not enforced"
+        - "Input — Wrong context, missing info, bad direction"
+        - "EOP — Procedure gap, missing step, no validation gate"
+        - "EOE — Environment (hooks, MCP, permissions, structure, platform, settings, context)"
+        - "EOT — Tool failure (CLI, script, Obsidian, QMD, API, skill file)"
+        - "Agent — Model limitation (specify LT-1 through LT-8)"
+        - "Unknown — Need help diagnosing"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ubs-ud-detail
+    attributes:
+      label: "UBS.UD Detail"
+      description: |
+        What specifically failed? Use sub-categories for precision:
+
+        EP:    Which rule file? What does it say vs what should it say?
+        Input: What context was missing or wrong? Who provided it?
+        EOP:   Which skill/procedure? What step is missing or broken?
+        EOE:   hooks | mcp | permissions | settings | structure | platform | context
+        EOT:   cli | script | obsidian | qmd | api | skill-file
+        Agent: Which model? Which LT (1-8)? What did it hallucinate/miss?
+      placeholder: |
+        EOE.hooks: session-summary.sh crashes on session end because
+        vault path not configured. Hook fires but config.sh can't
+        resolve MEMORY_VAULT_PATH — exits silently, session not saved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: resolution
+    attributes:
+      label: "Resolution — Fix component → UBS gone → Desired EO reached"
+      description: "What should change so the blocker cannot recur?"
+      placeholder: |
+        Add trackable: true to all dashboard-visible artifacts.
+        Bases filter on trackable, not type.
+        Result: EA (/dsbv design) → Desired EO (appears in dashboard).
