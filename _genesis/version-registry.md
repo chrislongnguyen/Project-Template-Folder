@@ -1,7 +1,7 @@
 ---
-version: "1.8"
+version: "1.9"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-07
 purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 summary rows)"
 ---
 
@@ -26,7 +26,7 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | _(LEARN uses learning pipeline, not DSBV — no Design/Sequence/Validate rows)_ | | | | | | |
 | 3-PLAN × Design       | filesystem-blueprint.md                | 1.1     | draft       | —       | 2026-04-06   | TBD      |
 | 3-PLAN × Sequence     | SEQUENCE.md                            | —       | Pending     | —       | —            | TBD      |
-| 3-PLAN × Build        | UBS/UDS Registers, Architecture        | —       | Pending     | —       | —            | TBD      |
+| 3-PLAN × Build        | UBS/UDS Registers, Architecture        | 1.0     | draft       | —       | 2026-04-07   | TBD      |
 | 3-PLAN × Validate     | VALIDATE.md                            | —       | Pending     | —       | —            | TBD      |
 | 4-EXECUTE × Design    | DESIGN.md                              | 1.2     | Draft       | —       | 2026-03-30   | TBD      |
 | 4-EXECUTE × Sequence  | SEQUENCE.md                            | —       | Not Started | —       | —            | TBD      |
@@ -68,8 +68,11 @@ purpose: "Workstream×phase progress dashboard — 22-row matrix (20 cells + 2 s
 | `scripts/generate-readmes.py` | 1.1 | Draft | 2026-04-06 |
 | `scripts/validate-blueprint.py` | 1.1 | Draft | 2026-04-06 |
 | `.claude/skills/dsbv/SKILL.md` | 1.4 | Draft | 2026-04-06 |
-| `scripts/dsbv-gate.sh` | 2.1 | Draft | 2026-04-06 |
-| `scripts/status-guard.sh` | 2.2 | Draft | 2026-04-06 |
+| `scripts/dsbv-gate.sh` | 2.2 | draft | 2026-04-07 |
+| `scripts/dsbv-skill-guard.sh` | 1.3 | draft | 2026-04-07 |
+| `scripts/status-guard.sh` | 2.2 | draft | 2026-04-06 |
+| `3-PLAN/risks/UBS_REGISTER.md` | 1.0 | draft | 2026-04-07 |
+| `3-PLAN/drivers/UDS_REGISTER.md` | 1.0 | draft | 2026-04-07 |
 | `_genesis/DESIGN-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/SEQUENCE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |
 | `_genesis/VALIDATE-govern-ep12-ep13-enforcement.md` | 1.0 | Draft | 2026-04-05 |

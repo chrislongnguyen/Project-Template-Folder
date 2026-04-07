@@ -67,7 +67,7 @@ Before staging any modified `.md` workstream artifact, verify:
 
 After every commit that includes a workstream artifact:
 - Update `_genesis/version-registry.md` row (version, status, date)
-- Update `5-IMPROVE/changelog/CHANGELOG.md` as part of every PR
+- Update `CHANGELOG.md` (repo root) as part of every PR
 
 ## Branch Strategy
 

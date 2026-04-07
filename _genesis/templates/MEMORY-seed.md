@@ -25,6 +25,7 @@ This memory uses a tiered design. Briefing Card = always-loaded. Topic Index = o
 
 ## Topic Index
 
+- [user_role.md](user_role.md) — Who you are, your role, preferences, and how the agent should tailor its work
 - [learned_patterns.md](learned_patterns.md) — Recurring patterns discovered during execution (APEI IMPROVE workstream)
 - [key_decisions.md](key_decisions.md) — Architecture Decision Records and rationale (APEI ALIGN workstream)
 - [common_pitfalls.md](common_pitfalls.md) — UBS entries that materialized during execution (APEI PLAN workstream)

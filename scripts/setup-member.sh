@@ -133,7 +133,11 @@ for seed_file in "$SEED_DIR"/*.md; do
   if [[ -f "$target" ]]; then
     echo "  skip: $fname already exists"
   else
-    cp "$seed_file" "$target"
+    # Substitute placeholders in seed files (same vars as MEMORY-seed.md)
+    sed \
+      -e "s/{MEMBER_NAME}/$MEMBER_NAME/g" \
+      -e "s|{ORG_ROLE}|$MEMBER_ROLE|g" \
+      "$seed_file" > "$target"
     echo "  + $fname"
     SEEDED=$((SEEDED + 1))
   fi

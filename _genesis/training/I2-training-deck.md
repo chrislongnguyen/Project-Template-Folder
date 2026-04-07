@@ -1092,7 +1092,6 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 | `/ingest` | Compile captured sources into PKB wiki pages | After saving articles/PDFs to `captured/` |
 | `/compress` | Save session context to memory vault | End of day, before starting fresh |
 | `/resume` | Load context from previous sessions | Start of day, picking up where you left off |
-| `claude -c` | **Crash recovery** — restore full conversation from terminal (run before opening Claude) | After unexpected shutdown / if you never ran `/compress` |
 | `/obsidian` | Search your vault via QMD semantic search | When you need to find something by meaning |
 | `/ltc-brainstorming` | Structured discovery with 4 invisible gates | Starting a new feature or investigation |
 

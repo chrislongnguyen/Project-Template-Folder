@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | status: draft | last_updated: 2026-04-06
+# version: 1.3 | status: draft | last_updated: 2026-04-07
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -113,6 +113,8 @@ case "$RELATIVE_PATH" in
     learning/*) exit 0 ;;                           # Learning outputs from research
     reviews/*|*review*) exit 0 ;;                   # Review packages
     skills/*) exit 0 ;;                             # Skills are operational tools
+    risks/*|*risk*) exit 0 ;;                       # Risk registers are ongoing operational
+    drivers/*|*driver*) exit 0 ;;                   # Driver registers are ongoing operational
 esac
 
 # --- Check if DESIGN.md exists for this workstream -------------------------------

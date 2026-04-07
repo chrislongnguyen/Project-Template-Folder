@@ -116,7 +116,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 ## PR-Level Requirements
 
 - `VERSION` (root) updated with every PR
-- `5-IMPROVE/changelog/CHANGELOG.md` updated with every PR
+- `CHANGELOG.md` (repo root) updated with every PR
 
 ## Common Mistakes
 

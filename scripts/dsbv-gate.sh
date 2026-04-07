@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.1 | status: draft | last_updated: 2026-04-06
+# version: 2.2 | status: draft | last_updated: 2026-04-07
 # dsbv-gate.sh — ALPEI workstream chain-of-custody gate
 #
 # Blocks commits to workstream N if workstream N-1 has no `status: validated` artifact.
@@ -187,6 +187,8 @@ is_operational_file() {
         *metrics/*|*metrics*)                 return 0 ;;
         *decisions/*|*decision*)              return 0 ;;
         *reviews/*|*review*)                  return 0 ;;
+        *risks/*|*risk*)                      return 0 ;;
+        *drivers/*|*driver*)                  return 0 ;;
     esac
     return 1
 }
