@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | status: Draft | last_updated: 2026-04-05
+# version: 1.3 | status: draft | last_updated: 2026-04-07
 # session-summary.sh — Stop hook
 # Auto-generates a session summary to the vault on session end.
 # Triggers QMD index refresh if available.
@@ -39,13 +39,16 @@ SESSIONS_DIR="$VAULT/07-Claude/sessions"
 mkdir -p "$SESSIONS_DIR"
 
 # Deduplicate: skip if a recent session log already exists for today
+shopt -s nullglob
 for f in "$SESSIONS_DIR"/*"$DATE"*.md; do
   [[ -f "$f" ]] || continue
-  age=$(( $(date +%s) - $(stat -f %m "$f" 2>/dev/null || echo 0) ))
+  age=$(( $(date +%s) - $(stat -c %Y "$f" 2>/dev/null || stat -f %m "$f" 2>/dev/null || echo 0) ))
   if [[ $age -lt 600 ]] && grep -qE "type: (log|session-log)" "$f" 2>/dev/null; then
+    shopt -u nullglob
     exit 0
   fi
 done
+shopt -u nullglob
 
 SUMMARY_FILE="$SESSIONS_DIR/auto-$DATE-$TIMESTAMP.md"
 {

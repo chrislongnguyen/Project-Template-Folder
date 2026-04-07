@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.1 | status: draft | last_updated: 2026-04-07
 # LTC Project Template — Additive Sync Script
 # Supports: --auto-add, --file/--action, --verify
 # NEVER deletes local files.
@@ -68,7 +68,7 @@ do_auto_add() {
     echo "added: $f"
     log_action "$f" "auto_add" ""
     (( added++ )) || true
-  done < <(echo "$files_json" | jq -r '.[]')
+  done < <(echo "$files_json" | jq -r '.[]' | tr -d '\r')
 
   echo ""
   echo "auto-add complete: added=$added reclassified=$reclassified"
@@ -158,7 +158,7 @@ do_verify() {
         echo "AC-4 WARN: $f is staged (should be unstaged)"
         (( staged_count++ )) || true
       fi
-    done < <(jq -r '.[] | select(.action == "auto_add" or .action == "take") | .file' "$LOG_FILE")
+    done < <(jq -r '.[] | select(.action == "auto_add" or .action == "take") | .file' "$LOG_FILE" | tr -d '\r')
     if [[ "$staged_count" -eq 0 ]]; then
       echo "AC-4 PASS: all added files are unstaged"
       (( pass++ )) || true

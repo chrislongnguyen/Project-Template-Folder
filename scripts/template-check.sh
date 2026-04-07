@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: draft | last_updated: 2026-04-05
+# version: 2.1 | status: draft | last_updated: 2026-04-07
 # LTC Project Template — Deterministic Categorization Script
 # Compares local file tree to template remote via git ls-tree.
 # Outputs valid JSON to stdout. Self-validates bucket counts.
@@ -126,33 +126,37 @@ to_json_array() {
   printf '%s\n' "${arr[@]}" | jq -R . | jq -s .
 }
 
-AUTO_JSON=$(to_json_array "${auto_add[@]+"${auto_add[@]}"}")
-SEC_JSON=$(to_json_array "${flagged_security[@]+"${flagged_security[@]}"}")
-REV_JSON=$(to_json_array "${flagged_review[@]+"${flagged_review[@]}"}")
-MERGE_JSON=$(to_json_array "${merge[@]+"${merge[@]}"}")
-UNCHANGED_JSON=$(to_json_array "${unchanged[@]+"${unchanged[@]}"}")
+# Write JSON arrays to temp files to avoid Windows CLI arg-length limits (#21)
+TMPDIR_TC=$(mktemp -d)
+trap 'rm -rf "$TMPDIR_TC"' EXIT
+
+to_json_array "${auto_add[@]+"${auto_add[@]}"}" > "$TMPDIR_TC/auto.json"
+to_json_array "${flagged_security[@]+"${flagged_security[@]}"}" > "$TMPDIR_TC/sec.json"
+to_json_array "${flagged_review[@]+"${flagged_review[@]}"}" > "$TMPDIR_TC/rev.json"
+to_json_array "${merge[@]+"${merge[@]}"}" > "$TMPDIR_TC/merge.json"
+to_json_array "${unchanged[@]+"${unchanged[@]}"}" > "$TMPDIR_TC/unchanged.json"
 
 jq -n \
-  --argjson auto_add "$AUTO_JSON" \
-  --argjson security_sensitive "$SEC_JSON" \
-  --argjson review_required "$REV_JSON" \
-  --argjson merge "$MERGE_JSON" \
-  --argjson unchanged "$UNCHANGED_JSON" \
+  --slurpfile auto_add "$TMPDIR_TC/auto.json" \
+  --slurpfile security_sensitive "$TMPDIR_TC/sec.json" \
+  --slurpfile review_required "$TMPDIR_TC/rev.json" \
+  --slurpfile merge "$TMPDIR_TC/merge.json" \
+  --slurpfile unchanged "$TMPDIR_TC/unchanged.json" \
   --argjson total "$total_template" \
   '{
     stats: {
       total_template_files: $total,
-      auto_add: ($auto_add | length),
-      flagged_security_sensitive: ($security_sensitive | length),
-      flagged_review_required: ($review_required | length),
-      merge: ($merge | length),
-      unchanged: ($unchanged | length)
+      auto_add: ($auto_add[0] | length),
+      flagged_security_sensitive: ($security_sensitive[0] | length),
+      flagged_review_required: ($review_required[0] | length),
+      merge: ($merge[0] | length),
+      unchanged: ($unchanged[0] | length)
     },
-    auto_add: $auto_add,
+    auto_add: $auto_add[0],
     flagged: {
-      security_sensitive: $security_sensitive,
-      review_required: $review_required
+      security_sensitive: $security_sensitive[0],
+      review_required: $review_required[0]
     },
-    merge: $merge,
-    unchanged: $unchanged
+    merge: $merge[0],
+    unchanged: $unchanged[0]
   }'
