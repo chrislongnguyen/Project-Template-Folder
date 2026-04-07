@@ -37,6 +37,12 @@ out/
 tsconfig.tsbuildinfo
 **/tsconfig.tsbuildinfo
 
+# PKB — personal content, not shipped with template
+# Shell structure (README.md, dashboard.md, knowledge-map.canvas) is tracked
+PERSONAL-KNOWLEDGE-BASE/captured/
+PERSONAL-KNOWLEDGE-BASE/distilled/
+PERSONAL-KNOWLEDGE-BASE/expressed/
+
 # IDE
 .vscode/
 .idea/
