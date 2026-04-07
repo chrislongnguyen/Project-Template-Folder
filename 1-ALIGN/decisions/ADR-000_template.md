@@ -1,11 +1,11 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-07
 work_stream: 1-ALIGN
 type: adr-template
 sub_system: _cross
-iteration: 2
+iteration: 1
 ---
 
 # ADR-000: Decision Title

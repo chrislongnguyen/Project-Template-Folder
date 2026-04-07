@@ -1,12 +1,12 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-07
 work_stream: 4-EXECUTE
 stage: sequence
 type: dsbv-sequence
 sub_system: 2-DP
-iteration: 2
+iteration: 1
 ---
 # DSBV SEQUENCE — EXECUTE x Data Pipeline
 

@@ -1,12 +1,12 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-05
 work_stream: 3-PLAN
 stage: build
 type: roadmap
 sub_system: 1-PD
-iteration: 2
+iteration: 1
 ---
 
 # Roadmap — Problem Diagnosis

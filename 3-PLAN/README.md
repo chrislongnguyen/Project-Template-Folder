@@ -1,10 +1,10 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-06
 work_stream: 3-PLAN
 type: template
-iteration: 2
+iteration: 1
 ---
 
 # 3-PLAN — Minimize Failure Risks

@@ -1,11 +1,11 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-06
 work_stream: 4-EXECUTE
 sub_system: 4-IDM
 type: template
-iteration: 2
+iteration: 1
 ---
 
 # 4-IDM — Insights & Decision Making | EXECUTE Workstream

@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-05
 owner: "Long Nguyen"
@@ -7,7 +7,7 @@ type: template
 work_stream: 3-PLAN
 stage: build
 sub_system: 4-IDM
-iteration: 2
+iteration: 1
 ---
 # DRIVER ENTRY TEMPLATE (T5)
 > Stub template — populate during PLAN Sequence and PLAN Build phases.

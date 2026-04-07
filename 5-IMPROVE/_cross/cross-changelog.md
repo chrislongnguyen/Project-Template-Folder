@@ -1,12 +1,12 @@
 ---
-version: "1.1"
+version: "1.0"
 status: draft
 last_updated: 2026-04-06
 work_stream: 5-IMPROVE
 stage: build
 type: changelog
 sub_system: _cross
-iteration: 2
+iteration: 1
 ---
 
 # Project Changelog

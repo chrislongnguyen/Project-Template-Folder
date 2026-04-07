@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "1.0"
 last_updated: 2026-04-05
 owner: "Long Nguyen"
 type: template
@@ -7,7 +7,7 @@ work_stream: 5-IMPROVE
 stage: build
 sub_system: 2-DP
 status: draft
-iteration: 2
+iteration: 1
 ---
 # RETRO TEMPLATE
 > Stub template — populate during project setup.

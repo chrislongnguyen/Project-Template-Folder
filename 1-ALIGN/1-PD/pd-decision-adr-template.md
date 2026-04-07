@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "1.0"
 last_updated: 2026-04-05
 owner: "Long Nguyen"
 type: template
@@ -7,7 +7,7 @@ work_stream: 1-ALIGN
 stage: build
 sub_system: 1-PD
 status: draft
-iteration: 2
+iteration: 1
 ---
 # ADR TEMPLATE
 > Architecture Decision Record — document one significant, non-trivial decision.
