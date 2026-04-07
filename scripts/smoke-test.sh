@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | status: Draft | last_updated: 2026-04-05
+# version: 1.1 | status: draft | last_updated: 2026-04-06
 # smoke-test.sh — LTC harness health check (5 checks)
 #
 # PURPOSE: Verify the memory-vault hook system is correctly configured on this machine.
@@ -67,8 +67,8 @@ fi
 # Fallback: scan known candidate locations (mirrors config.sh Priority 3)
 if [[ -z "$VAULT" ]]; then
   for candidate in \
-    "$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/Long-Memory-Vault \
-    "$HOME/Long-Memory-Vault"; do
+    "$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/*-Memory-Vault \
+    "$HOME"/*-Memory-Vault; do
     if [[ -d "$candidate" ]]; then
       VAULT="$candidate"
       break
@@ -83,12 +83,20 @@ else
     "Check MEMORY_VAULT_PATH in ~/.config/memory-vault/config.sh — ensure the directory exists" "fail"
 fi
 
-# ── S3: Vault folders exist ───────────────────────────────────────────────────
-if [[ -n "$VAULT" && -d "${VAULT}/inbox" && -d "${VAULT}/AI-AGENT-MEMORY" ]]; then
-  result 3 "Vault folders present (inbox/, AI-AGENT-MEMORY/)" "" "pass"
+# ── S3: Vault writable ───────────────────────────────────────────────────────
+# Hooks create their own subdirs (07-Claude/sessions, 07-Claude/state) via mkdir -p.
+# We only need to confirm the vault root is writable — folder names don't matter.
+if [[ -n "$VAULT" ]]; then
+  TMP_TEST="$VAULT/.smoke-test-write-$$"
+  if touch "$TMP_TEST" 2>/dev/null && rm -f "$TMP_TEST" 2>/dev/null; then
+    result 3 "Vault writable (${VAULT})" "" "pass"
+  else
+    result 3 "Vault writable" \
+      "Check permissions: ls -la \"${VAULT}\" — hooks need write access to store sessions" "fail"
+  fi
 else
-  result 3 "Vault folders present (inbox/, AI-AGENT-MEMORY/)" \
-    "Run: ./scripts/setup-vault.sh ${VAULT:-<vault-path>}" "fail"
+  result 3 "Vault writable" \
+    "Vault path not resolved — fix S2 first, then re-run" "fail"
 fi
 
 # ── S4: Pre-commit scripts present, executable, valid syntax ──────────────────

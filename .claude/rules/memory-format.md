@@ -1,5 +1,9 @@
 ---
+name: memory-format
 description: Structural rules for auto-memory and AutoDream consolidation of MEMORY.md files
+version: "1.0"
+status: draft
+last_updated: 2026-04-06
 ---
 
 # Memory File Format Rules

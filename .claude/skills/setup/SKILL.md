@@ -68,8 +68,8 @@ echo "Config written: ~/.config/memory-vault/config.sh → MEMORY_VAULT_PATH=${U
 **If blank (auto-detect):** scan these candidates in order:
 ```bash
 # Candidates (in order)
-"$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/Long-Memory-Vault
-"$HOME/Long-Memory-Vault"
+"$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/*-Memory-Vault
+"$HOME"/*-Memory-Vault
 ```
 - If found: confirm with user → write config as above
 - If not found: create default and write config:
@@ -100,7 +100,9 @@ VAULT_PATH=$(grep -oE 'MEMORY_VAULT_PATH=[^[:space:]]+' ~/.config/memory-vault/c
 ./scripts/setup-vault.sh "$VAULT_PATH"
 ```
 
-Expected output: `Created N folders + N .gitkeep files`
+**Two expected outcomes:**
+- **Existing vault** (user already has an Obsidian vault): `✓ Vault already has content — skipping scaffold`. Hooks auto-create `07-Claude/` on first run. Continue to Step 3.
+- **Empty/new vault**: `✓ Vault folder structure created successfully`. Continue to Step 3.
 
 If the script exits non-zero: report the error — do NOT continue to Step 3.
 
@@ -180,7 +182,7 @@ Running `/setup` twice is safe:
 ## Gotchas
 
 - **Vault path with spaces** — Google Drive paths contain spaces. Always quote: `"$VAULT_PATH"` in every bash command. Missing quotes = silent failure.
-- **Running setup-vault.sh on wrong vault** — Step 2 creates 17 Obsidian PM folders. Confirm the vault path is the correct one before running. Running twice is safe, running on the wrong path creates folders there.
+- **Running setup-vault.sh on wrong vault** — Step 2 creates LTC folders only if vault is empty. If you accidentally point it at a non-empty directory, it exits safely with no changes. Still, confirm the vault path before running.
 - **S1 fails but S2 passes** — config.sh doesn't exist but vault was auto-detected via Priority 3 scan. Step 1 did not complete — go back and write the config file so hooks can find the vault on next session start.
 - **QMD index step skipped then forgotten** — if QMD was not installed at /setup time, remind user to index when they install it. Semantic search is silently degraded until indexed.
 
@@ -193,7 +195,7 @@ After each step, confirm before proceeding:
 | Step | Gate | Check command |
 |---|---|---|
 | Step 1 | Config file written | `cat ~/.config/memory-vault/config.sh` → MEMORY_VAULT_PATH set |
-| Step 2 | Vault folders created | `ls <VAULT_PATH>/inbox <VAULT_PATH>/AI-AGENT-MEMORY` → both exist |
+| Step 2 | Vault ready | `ls "$VAULT_PATH"` → has at least one folder (any structure accepted) |
 | Step 4 | Smoke test 5/5 | `./scripts/smoke-test.sh` → exit 0 |
 
 If any gate fails, fix before proceeding to the next step.
@@ -203,7 +205,7 @@ If any gate fails, fix before proceeding to the next step.
 ## Links
 
 - [[config.sh]] — vault resolution (`.claude/hooks/lib/config.sh`)
-- [[setup-vault.sh]] — vault folder scaffold (`4-EXECUTE/scripts/setup-vault.sh`)
+- [[setup-vault.sh]] — vault folder scaffold (`scripts/setup-vault.sh`)
 - [[smoke-test.sh]] — harness health check (`scripts/smoke-test.sh`)
 - [[session-summary]] — hook that writes to vault on Stop event
 - [[state-saver]] — hook that writes to vault on PostToolUse

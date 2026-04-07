@@ -260,5 +260,5 @@ Full security rules: `.claude/rules/obsidian-security.md`
 
 - Security rules: [`.claude/rules/obsidian-security.md`](../../rules/obsidian-security.md) — AP1+L9 always-on; AP2-AP5, V5, V7 in Gotchas above
 - Vault scaffold: [`4-EXECUTE/src/vault/vault-guide.md`](../../../4-EXECUTE/src/vault/vault-guide.md) — setup, plugins, folder structure
-- Tool routing: [`rules/tool-routing.md`](../../rules/tool-routing.md) — when obsidian-cli vs Grep/Glob
+- Tool routing: see 3-Tool Routing Hierarchy table above — routing lives in this skill, not a separate rule file
 

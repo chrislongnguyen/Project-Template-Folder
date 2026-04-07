@@ -60,7 +60,7 @@ Multi-workstream commits: use the **primary** workstream only. Truly cross-cutti
 
 Before staging any modified `.md` workstream artifact, verify:
 1. `version` bumped (only if file was previously committed — see versioning.md)
-2. `status` is `Draft` or `Review` — NEVER self-set `Approved`
+2. `status` is `draft` or `in-review` — NEVER self-set `validated`
 3. `last_updated` = today's absolute date (YYYY-MM-DD)
 
 ## Post-Commit Requirements (workstream artifacts)

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.1 | status: draft | last_updated: 2026-04-03
+# version: 2.2 | status: draft | last_updated: 2026-04-06
 #
 # setup-vault.sh — Idempotent Obsidian Vault Folder Creation
 #
@@ -59,6 +59,17 @@ fi
 # ─────────────────────────────────────────────────────────────
 # EXECUTION
 # ─────────────────────────────────────────────────────────────
+
+# Detect existing vault content — skip scaffold if vault already has folders.
+# This handles users who have a pre-existing Obsidian vault with custom structure.
+# Hooks create 07-Claude/sessions and 07-Claude/state via mkdir -p on demand.
+EXISTING_DIRS=$(find "$VAULT_ROOT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')
+if [[ "$EXISTING_DIRS" -gt 0 ]]; then
+  echo "✓ Vault already has content ($EXISTING_DIRS folder(s) found) — skipping scaffold"
+  echo "  Your existing structure is preserved as-is."
+  echo "  Hooks will auto-create 07-Claude/sessions and 07-Claude/state on first run."
+  exit 0
+fi
 
 # Create all top-level workstream + operational folders
 for folder in "${FOLDERS[@]}"; do

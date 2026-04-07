@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.0 | status: draft | last_updated: 2026-04-05
 # LTC Project Template — Deterministic Categorization Script
 # Compares local file tree to template remote via git ls-tree.
 # Outputs valid JSON to stdout. Self-validates bucket counts.

@@ -1,8 +1,8 @@
 ---
 name: template-sync
-version: "2.0"
+version: "2.1"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-06
 description: "Sync new files from LTC project template. Use when user says: template sync, sync template, pull template, update from template, template update."
 agents:
   executor: user-direct
@@ -14,6 +14,28 @@ Additive-only — adds new files from template, never deletes local files, never
 Merge candidates require explicit user collaboration. All decisions logged to `.template-sync-log.json`.
 
 ## Workflow
+
+### Step 0: Detect stale command files (migration cleanup)
+
+Before syncing, check for `.claude/commands/` files that collide with `.claude/skills/`:
+
+```bash
+# Find command files that have a matching skill (stale duplicates from pre-I2 migration)
+for cmd in .claude/commands/**/*.md .claude/commands/*.md; do
+  [[ -f "$cmd" ]] || continue
+  name=$(basename "$cmd" .md)
+  if [[ -d ".claude/skills/$name" ]] || find .claude/skills -name "$name" -type d 2>/dev/null | grep -q .; then
+    echo "STALE: $cmd → superseded by .claude/skills/$name/"
+  fi
+done
+```
+
+If stale files found, present the list and ask:
+> "These command files are duplicates of skills that were migrated in I2. The duplicate can cause autocomplete issues. Remove them? (Y/n)"
+
+On yes: `rm` each stale file. On no: skip with warning that autocomplete may behave unexpectedly.
+
+This is the ONE exception to the "never delete" rule — these are not user files, they are template artifacts from a prior version that were superseded, not modified.
 
 ### Step 1: Run template-check first
 

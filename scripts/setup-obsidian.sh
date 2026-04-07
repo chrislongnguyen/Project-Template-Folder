@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.3 | status: draft | last_updated: 2026-04-06
+# version: 2.4 | status: draft | last_updated: 2026-04-06
 # setup-obsidian.sh — one-command installer for LTC Obsidian workspace
 # Copies Bases and Templater templates into an Obsidian vault's .obsidian/ directory
 
@@ -7,7 +7,7 @@ set -euo pipefail
 
 # Resolve script location (essential for relative path resolution)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Source and target locations (I2: moved from 4-EXECUTE/src/ to _genesis/)
 SRC_BASES="$PROJECT_ROOT/_genesis/obsidian/bases"
@@ -43,17 +43,25 @@ mkdir -p "$TARGET_BASES"
 mkdir -p "$TARGET_TEMPLATES"
 mkdir -p "$TARGET_OBSIDIAN"
 
-# Copy base files to target (idempotent with -f for overwrite)
-cp -f "$SRC_BASES"/*.base "$TARGET_BASES/" 2>/dev/null || {
-  echo "ERROR: Failed to copy base files from $SRC_BASES"
-  exit 1
-}
+# Copy base files to target — skip if source = target (vault IS the project repo)
+if [[ "$SRC_BASES" != "$TARGET_BASES" ]]; then
+  cp -f "$SRC_BASES"/*.base "$TARGET_BASES/" 2>/dev/null || {
+    echo "ERROR: Failed to copy base files from $SRC_BASES"
+    exit 1
+  }
+else
+  echo "✓ Bases already in place (vault = project repo — no copy needed)"
+fi
 
-# Copy template files to target (idempotent with -f for overwrite)
-cp -f "$SRC_TEMPLATES"/*.md "$TARGET_TEMPLATES/" 2>/dev/null || {
-  echo "ERROR: Failed to copy template files from $SRC_TEMPLATES"
-  exit 1
-}
+# Copy template files to target — skip if source = target
+if [[ "$SRC_TEMPLATES" != "$TARGET_TEMPLATES" ]]; then
+  cp -f "$SRC_TEMPLATES"/*.md "$TARGET_TEMPLATES/" 2>/dev/null || {
+    echo "ERROR: Failed to copy template files from $SRC_TEMPLATES"
+    exit 1
+  }
+else
+  echo "✓ Templates already in place (vault = project repo — no copy needed)"
+fi
 
 # Create a minimal community-plugins.json hint file in .obsidian/
 # This lists required plugins — users still need to install from Obsidian marketplace

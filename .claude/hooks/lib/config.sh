@@ -19,8 +19,8 @@ resolve_vault() {
 
   # Priority 3: scan candidates
   for candidate in \
-    "$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/Long-Memory-Vault \
-    "$HOME/Long-Memory-Vault"; do
+    "$HOME"/Library/CloudStorage/GoogleDrive-*/My\ Drive/*-Memory-Vault \
+    "$HOME"/*-Memory-Vault; do
     if [[ -d "$candidate" ]]; then
       VAULT="$candidate"
       return 0

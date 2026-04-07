@@ -304,13 +304,13 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 **VANA:** Derisk and deliver an Obsidian-integrated PM workflow correctly, safely, and efficiently.
 
 1. A new PM can check project status in under 30 seconds via Obsidian Bases — no terminal needed.
-2. A new PM can identify the next task via `/ues-next` without reading DESIGN.md.
-3. A new PM can onboard without verbal instruction from Long — template materials are sufficient.
+2. A new PM can identify the next task via `/dsbv status` without reading DESIGN.md.
+3. A new PM can onboard without verbal instruction — template materials are sufficient.
 4. A new PM can create a correctly-frontmatted artifact via Templater in under 1 minute.
 5. The PM never needs to hand-craft YAML frontmatter — Templater auto-fills all required fields.
 6. All I1 acceptance criteria still pass after I2 changes are applied.
 7. A context switch between projects takes under 2 minutes using `/resume`.
-8. The 6 Obsidian Bases dashboards show accurate live views — never stale data.
+8. The 18 Obsidian Bases dashboards (C1–C7, W1–W5, U1–U6) show accurate live views — never stale data.
 
 ---
 

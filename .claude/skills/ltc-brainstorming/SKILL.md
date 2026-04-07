@@ -151,9 +151,7 @@ A browser-based companion for showing mockups, diagrams, and visual options duri
 A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question — use the terminal. "Which wizard layout works better?" is a visual question — use the browser.
 
 If they agree to the companion, read the detailed guide before proceeding:
-`1-ALIGN/skills/ltc-brainstorming/references/visual-companion.md`
-<!-- OE.6.4 fork note: path changed from original superpowers `skills/ltc-brainstorming/visual-companion.md`
-     to `1-ALIGN/skills/ltc-brainstorming/references/visual-companion.md` to match the OE.6.4 directory convention. -->
+`.claude/skills/ltc-brainstorming/references/visual-companion.md`
 
 ## Gotchas
 
