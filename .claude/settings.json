@@ -221,6 +221,12 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash -c 'CLAUDE_FILE_PATH=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\" ./.claude/hooks/inject-frontmatter.sh'",
+            "timeout": 5,
+            "statusMessage": "Auto-injecting frontmatter..."
+          },
+          {
+            "type": "command",
             "command": "./.claude/hooks/state-saver.sh",
             "timeout": 10,
             "statusMessage": "Saving session state..."
