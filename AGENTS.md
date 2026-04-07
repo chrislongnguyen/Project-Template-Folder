@@ -1,10 +1,10 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-07
 work_stream: 0-GOVERN
 type: agent-config
-iteration: 2
+iteration: 1
 ---
 # AGENTS.md — LTC Project Template
 
@@ -21,6 +21,8 @@ This project uses a 4-agent MECE architecture. All agents serve the DSBV (Design
 | **ltc-builder** | Producer — writes code, creates documents, produces artifacts | Build | Fast execution (sonnet) | `.claude/agents/ltc-builder.md` |
 | **ltc-reviewer** | Validator — reviews artifacts against DESIGN.md acceptance criteria | Validate | High reasoning (opus) | `.claude/agents/ltc-reviewer.md` |
 | **ltc-explorer** | Researcher — pre-DSBV discovery, codebase exploration, root-cause tracing | Pre-DSBV | Fast/cheap (haiku) | `.claude/agents/ltc-explorer.md` |
+
+> **Source of truth:** `.claude/rules/agent-dispatch.md` — Claude Code enforcement rules for agent invocation. Update there first; this file is the cross-IDE summary.
 
 ## Nesting Rules
 
@@ -78,7 +80,7 @@ Design → Sequence → Build → Validate. Each stage has a human gate.
 
 | IDE | Config Location | Rules | Skills |
 |-----|----------------|-------|--------|
-| Claude Code | `.claude/` | `.claude/rules/` (12 files) | `.claude/skills/` (32 skills) |
+| Claude Code | `.claude/` | `.claude/rules/` (12 files) | `.claude/skills/` (see `.claude/skills/` for full list) |
 | Cursor | `.cursor/` | `.cursor/rules/` (6 files) | — |
 | AntiGravity | `.agents/` | `.agents/rules/` (6 files) | `.agents/skills/` |
 | Gemini CLI | `GEMINI.md` | Inline | — |

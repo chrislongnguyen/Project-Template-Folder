@@ -4,6 +4,18 @@ All notable changes to the LTC Project Template.
 Format: [semver] — YYYY-MM-DD — summary.
 Tier tags: [T1:REPLACE] [T2:MERGE] [T3:ADD-ONLY]
 
+## [Unreleased] — 2026-04-07
+
+### Fixed — DSBV Gate: risks/drivers operational file exception
+- [T1:REPLACE] `scripts/dsbv-gate.sh` v2.2 — add `*risks/*` and `*drivers/*` to `is_operational_file()`. Risk and driver registers are ongoing operational registers (same category as changelogs, metrics). Previously, writing to `3-PLAN/risks/` or `3-PLAN/drivers/` before PLAN had a validated artifact was incorrectly blocked by the ALPEI chain-of-custody gate.
+- [T1:REPLACE] `scripts/dsbv-skill-guard.sh` v1.3 — add `risks/*` and `drivers/*` to operational file exceptions for the same reason.
+
+### Added — 3-PLAN operational registers
+- [T3:ADD-ONLY] `3-PLAN/risks/UBS_REGISTER.md` v1.0 — cross-subsystem risk register (5 seeded entries: R-001 through R-005, UBS-categorized, heat map, mitigation table)
+- [T3:ADD-ONLY] `3-PLAN/drivers/UDS_REGISTER.md` v1.0 — cross-subsystem driver register (6 forces: D-001 through D-006, force analysis, leverage strategy). Satisfies CLAUDE.md pre-flight check item 4 (`3-PLAN/drivers/UDS_REGISTER.md`).
+
+---
+
 ## [2.0.0] — 2026-04-06
 
 I2 Prototype release. 71 commits since v1.0.0. Major: Obsidian Bases vault system,

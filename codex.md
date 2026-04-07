@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "1.0"
 status: draft
 last_updated: 2026-04-07
 ---
