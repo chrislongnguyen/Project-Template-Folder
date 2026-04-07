@@ -24,7 +24,7 @@ fi
 
 # Check DSBV progress — scan for DESIGN.md, SEQUENCE.md, VALIDATE.md in workstream dirs
 DSBV_STATUS=""
-for workstream_dir in "$PROJECT_ROOT"/0-GOVERN "$PROJECT_ROOT"/[1-4]-*/; do
+for workstream_dir in "$PROJECT_ROOT"/0-GOVERN "$PROJECT_ROOT"/[1-5]-*/; do
   if [[ -d "$workstream_dir" ]]; then
     workstream_name=$(basename "$workstream_dir")
     design="—"; sequence="—"; validate="—"
