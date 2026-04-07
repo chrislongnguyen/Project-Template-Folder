@@ -82,8 +82,8 @@ Every DSBV workstream (ALIGN, PLAN, EXECUTE, IMPROVE — **not LEARN**) uses **D
 ## EOP Governance (full spec: `_genesis/reference/ltc-eop-gov.md`)
 Before creating or reviewing any skill, load `_genesis/reference/ltc-eop-gov.md`. Run `./scripts/skill-validator.sh <skill-dir>` before committing skill changes. Use `/ltc-skill-creator` for guided skill creation.
 
-## Feedback (full spec: `.claude/skills/quality/feedback/SKILL.md`)
-When a user expresses frustration, confusion, or suggests an improvement, offer: "Want me to capture this as feedback? Takes 30 seconds with /feedback." Feedback creates a GitHub Issue for template maintainers.
+## Feedback (full spec: `.claude/skills/ltc-feedback/SKILL.md`)
+When a user expresses frustration, confusion, or suggests an improvement, offer: "Want me to capture this as feedback? Takes 30 seconds with /ltc-feedback." Creates a structured GitHub Issue using 7-CS force analysis (EA→EO, UBS, risk scoring, root cause classification).
 
 ## Before Every Task — Pre-Flight Protocol
 
