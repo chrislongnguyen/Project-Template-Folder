@@ -71,9 +71,22 @@ Each sub-agent receives the interpolated prompt from `references/research-agent-
 
 ---
 
+## Step 3.5: Write Research Files (Orchestrator)
+
+`ltc-explorer` is read-only — it returns research content but cannot write files. After all sub-agents complete, the **orchestrator** writes each agent's returned content to disk:
+
+For each completed sub-agent:
+1. Extract the research content from the agent's return text
+2. Write to `2-LEARN/_cross/research/{system-slug}/T{n}-{topic}.md`
+3. Verify the file was written successfully (Read to confirm)
+
+If any agent returned an error or empty content, flag it — do not write an empty file.
+
+---
+
 ## Step 4: Verify Output
 
-After all sub-agents complete, verify each topic:
+After all files are written, verify each topic:
 
 1. File exists at `2-LEARN/_cross/research/{system-slug}/T{n}-{topic}.md`
 2. File > 2000 chars
@@ -139,12 +152,11 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
-- [[research-methodology]]
 - [[context-packaging]]
-- [[dsbv]]
 - [[gotchas]]
 - [[ltc-explorer]]
 - [[methodology]]
-- [[project]]
 - [[research-agent-prompt]]
+- [[research-methodology]]

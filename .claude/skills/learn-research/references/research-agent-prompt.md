@@ -38,7 +38,7 @@ For each search angle:
 
 ## Output Structure (6 Sections)
 
-Write to: 2-LEARN/_cross/research/{system_slug}/T{topic_number}-{topic_slug}.md
+Output path (orchestrator writes to disk): 2-LEARN/_cross/research/{system_slug}/T{topic_number}-{topic_slug}.md
 
 ### YAML Frontmatter
 
@@ -83,22 +83,22 @@ Cover BOTH R ({raci_r}) and A ({raci_a}) perspectives in every section.
 ## Failure Handling
 
 - If a search angle returns nothing, try 2 alternative phrasings
-- Always write the output file even if partial — never silently fail
+- Always return output even if partial — never silently fail
 - If EXA unavailable, use QMD (local KB) and flag "local-sources-only"
 - If ALL tools unavailable, STOP and report — do not generate empty research
 
 ## Completion Report
 
-After writing, report: file path, source count, any [NEEDS REVIEW] sections, status.
+After completing research, report: output path, source count, any [NEEDS REVIEW] sections, status.
 ```
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
-- [[research-methodology]]
 - [[SKILL]]
 - [[context-packaging]]
-- [[dsbv]]
 - [[ltc-explorer]]
 - [[methodology]]
+- [[research-methodology]]
 - [[task]]
