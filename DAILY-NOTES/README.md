@@ -19,3 +19,10 @@ iteration: 2
 **Naming convention:** `YYYY-MM-DD.md` (one file per day)
 
 **Downstream routing:** Triage daily notes into the appropriate workstream artifact weekly. Unresolved items after 2 weeks belong in `inbox/`.
+
+## Links
+
+- [[daily-note]]
+- [[iteration]]
+- [[project]]
+- [[workstream]]

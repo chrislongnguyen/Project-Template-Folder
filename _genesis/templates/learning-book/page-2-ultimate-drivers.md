@@ -171,3 +171,11 @@ For T1+ (up to 6 rows), add 3-row causal chain per role: `{parent}.UD`, `{parent
 - Rows derive from this Topic's P0, col 4. Deeper rows derive from the row above.
 - Principles in col 6 and col 12 of each row feed into Page 3.
 - **Every cell begins with its CAG tag.** See `engine/rules/phase-c-structure.md` §2.
+
+## Links
+
+- [[blocker]]
+- [[codex]]
+- [[iteration]]
+- [[methodology]]
+- [[roadmap]]

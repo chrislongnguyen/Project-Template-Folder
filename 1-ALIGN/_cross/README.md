@@ -35,3 +35,11 @@ In ALIGN specifically, cross-cutting means: who is involved (stakeholder map) an
 - [ ] Confirm cross-cutting artifacts are updated whenever PD, DP, DA, or IDM changes the stakeholder landscape
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[cross-stakeholder-map]]
+- [[cross-stakeholder-raci]]
+- [[iteration]]
+- [[project]]
+- [[workstream]]

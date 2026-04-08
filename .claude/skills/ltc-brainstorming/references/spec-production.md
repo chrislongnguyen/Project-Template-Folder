@@ -89,12 +89,12 @@ Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the 
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[EP-08]]
 - [[EP-10]]
-- [[VANA_SPEC_TEMPLATE]]
+- [[architecture]]
 - [[context-packaging]]
-- [[dsbv]]
 - [[iteration]]
 - [[ltc-builder]]
 - [[project]]

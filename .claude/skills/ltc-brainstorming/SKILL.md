@@ -163,12 +163,15 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
+- [[SEQUENCE]]
 - [[agent-system]]
+- [[architecture]]
 - [[context-packaging]]
+- [[discovery-modes]]
 - [[documentation]]
-- [[dsbv]]
 - [[general-system]]
 - [[gotchas]]
 - [[idea]]
@@ -180,3 +183,4 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 - [[task]]
 - [[trade-off-framework]]
 - [[visual-companion]]
+- [[workstream]]

@@ -19,11 +19,10 @@ Use this table to decide which rule families are in scope.
 
 ## Links
 
-- [[dsbv-process]]
 - [[SKILL]]
 - [[brand-identity]]
 - [[deliverable]]
-- [[dsbv]]
+- [[dsbv-process]]
 - [[ltc-eop-gov]]
 - [[naming-rules]]
 - [[project]]

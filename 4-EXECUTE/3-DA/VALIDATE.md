@@ -16,3 +16,7 @@ iteration: 1
 - [ ] Delivery artifacts produced and traceable to PLAN outputs
 - [ ] Source, tests, and config meet stated acceptance criteria
 - [ ] Reviewed by accountable role
+
+## Links
+
+- [[iteration]]

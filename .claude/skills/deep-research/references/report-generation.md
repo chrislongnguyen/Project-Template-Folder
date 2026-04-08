@@ -197,6 +197,7 @@ Present to user:
 - [[CLAUDE]]
 - [[SKILL]]
 - [[anti-patterns]]
+- [[dashboard]]
 - [[methodology]]
 - [[report-template]]
 - [[task]]

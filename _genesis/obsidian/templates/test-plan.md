@@ -48,3 +48,11 @@ iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
 |------|------|---------|------|
 | Test owner | _[name]_ | _[GO / NO-GO]_ | _[YYYY-MM-DD]_ |
 | Human gate (G4) | _[name]_ | _[APPROVE / REJECT]_ | _[YYYY-MM-DD]_ |
+
+## Links
+
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[deliverable]]
+- [[iteration]]
+- [[ues-deliverable]]

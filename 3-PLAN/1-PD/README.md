@@ -39,3 +39,16 @@ Produces for downstream: `pd-architecture.md`, `pd-risk-register.md`, `pd-driver
 - [ ] Confirm drivers are grounded in 2-LEARN research — not assumptions
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[DESIGN]]
+- [[architecture]]
+- [[charter]]
+- [[iteration]]
+- [[pd-architecture]]
+- [[pd-driver-register]]
+- [[pd-risk-register]]
+- [[pd-roadmap]]
+- [[roadmap]]
+- [[workstream]]

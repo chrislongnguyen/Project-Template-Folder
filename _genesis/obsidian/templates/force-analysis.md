@@ -49,3 +49,9 @@ iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
 | Total driving force strength | _[sum]_ | _[comment]_ |
 | Total restraining force strength | _[sum]_ | _[comment]_ |
 | Net force direction | _[toward / against / balanced]_ | _[recommendation]_ |
+
+## Links
+
+- [[DESIGN]]
+- [[iteration]]
+- [[ues-deliverable]]

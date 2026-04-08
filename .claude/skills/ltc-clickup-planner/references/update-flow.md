@@ -113,6 +113,7 @@ Report: `Updated {item name} -> {new status}. Validation: PASS/FAIL`
 - [[SKILL]]
 - [[VALIDATE]]
 - [[blocker]]
+- [[clickup-task-protocol]]
 - [[deliverable]]
 - [[documentation]]
 - [[increment]]

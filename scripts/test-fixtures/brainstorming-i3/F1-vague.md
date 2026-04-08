@@ -17,3 +17,7 @@
 - [ ] EO in pre-spec is VANA-decomposable (Verb + Adverb + Noun + Adjective)
 - [ ] Correct terminal state offered (/dsbv — vague input implies design work ahead)
 - [ ] Session completed in ≤6 exchanges
+
+## Links
+
+- [[DESIGN]]

@@ -50,6 +50,10 @@ _[Explain rationale here.]_
 
 ## Links
 
-- [[DESIGN]]
+- [[ADR-000_template]]
+- [[adr]]
+- [[architecture]]
+- [[iteration]]
 - [[methodology]]
 - [[project]]
+- [[task]]

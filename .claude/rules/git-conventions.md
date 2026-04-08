@@ -79,3 +79,16 @@ Never commit directly to main. Follow I0-I4 branching — see `_genesis/sops/git
 Classify first (type, scope) → stage by group → one commit per group.
 Use `/git-save` for the full guided flow.
 
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[SKILL]]
+- [[architecture]]
+- [[charter]]
+- [[documentation]]
+- [[git-workflow]]
+- [[roadmap]]
+- [[version-registry]]
+- [[versioning]]
+- [[workstream]]

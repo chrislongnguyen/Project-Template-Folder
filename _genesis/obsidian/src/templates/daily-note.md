@@ -30,3 +30,7 @@ iteration: 2
 ---
 
 _Note created at `<% tp.file.folder() %>/<% tp.file.title %>`_
+
+## Links
+
+- [[iteration]]

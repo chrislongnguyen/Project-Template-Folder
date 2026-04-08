@@ -72,6 +72,7 @@ Agent adds requirements during VANA-SPEC generation that were never discussed or
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[EP-10]]
 - [[SKILL]]

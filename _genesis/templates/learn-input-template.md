@@ -98,3 +98,8 @@ When `/learn:input` saves this completed template, it writes to:
 ```
 
 Example: `2-LEARN/_cross/input/learn-input-data-foundation-layer.md`
+
+## Links
+
+- [[schema]]
+- [[workstream]]

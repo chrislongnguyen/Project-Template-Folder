@@ -48,5 +48,8 @@ Draft | Proposed | Accepted | Deprecated | Superseded by ADR-NNN
 
 ## Links
 
-- [[workstream]]
-- [[charter]]
+- [[ADR-000]]
+- [[adr-template]]
+- [[architecture]]
+- [[iteration]]
+- [[pd-decision-adr-template]]

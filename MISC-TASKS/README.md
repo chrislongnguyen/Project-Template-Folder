@@ -19,3 +19,10 @@ iteration: 2
 **Review cadence:** Weekly. Each task gets routed to a workstream, delegated, or closed. Tasks open longer than 2 weeks indicate a planning gap — route to `3-PLAN/` or close.
 
 **Naming convention:** `{YYYY-MM-DD}-{short-title}.md`
+
+## Links
+
+- [[iteration]]
+- [[project]]
+- [[task]]
+- [[workstream]]

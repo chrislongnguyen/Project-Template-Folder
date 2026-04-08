@@ -29,3 +29,7 @@
 1. **Brake Before Gas** — derisk first, then drive output
 2. **Know the Physics** — 8 LTs are constraints, not bugs; stop trying to fix them
 3. **Two Operators, One System** — Human Director (judgment, strategy) + Agent (execution, exhaustive analysis) compensate for each other's blind spots
+
+## Links
+
+- [[AGENTS]]

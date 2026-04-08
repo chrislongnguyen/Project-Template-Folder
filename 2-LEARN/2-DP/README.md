@@ -69,3 +69,19 @@ Produces for downstream: `dp-effective-principles.md`, staged and filtered input
 - [ ] `specs/{slug}/vana-spec.md` exists
 - [ ] Every EP in `dp-effective-principles.md` traces to a UBS or UDS finding
 - [ ] Ready for handoff to 3-DA
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[dp-effective-principles]]
+- [[dp-literature-review]]
+- [[dp-research-spec]]
+- [[dp-ubs-analysis]]
+- [[dp-uds-analysis]]
+- [[iteration]]
+- [[methodology]]
+- [[pd-effective-principles]]
+- [[pd-research-spec]]
+- [[workstream]]

@@ -29,3 +29,17 @@ This memory uses a tiered design. Briefing Card = always-loaded. Topic Index = o
 - [learned_patterns.md](learned_patterns.md) — Recurring patterns discovered during execution (APEI IMPROVE workstream)
 - [key_decisions.md](key_decisions.md) — Architecture Decision Records and rationale (APEI ALIGN workstream)
 - [common_pitfalls.md](common_pitfalls.md) — UBS entries that materialized during execution (APEI PLAN workstream)
+
+## Links
+
+- [[AGENTS]]
+- [[DESIGN]]
+- [[architecture]]
+- [[blocker]]
+- [[charter]]
+- [[common_pitfalls]]
+- [[key_decisions]]
+- [[learned_patterns]]
+- [[project]]
+- [[user_role]]
+- [[workstream]]

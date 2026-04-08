@@ -32,3 +32,4 @@ Default recommendation: T0 for first-time users, T0-T2 for experienced users.
 ## Links
 
 - [[CLAUDE]]
+- [[schema]]

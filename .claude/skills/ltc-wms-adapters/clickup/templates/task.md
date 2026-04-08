@@ -68,3 +68,4 @@ Note: A Task has 3 types of children at the same level:
 - [[deliverable]]
 - [[documentation]]
 - [[increment]]
+- [[schema]]

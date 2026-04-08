@@ -120,5 +120,4 @@ If vault path resolution fails (config missing, directory not found): Do NOT gue
 
 - [[gotchas]]
 - [[project]]
-- [[standard]]
-- [[task]]
+- [[schema]]

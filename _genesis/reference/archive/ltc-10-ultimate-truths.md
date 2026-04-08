@@ -664,11 +664,15 @@ _End of Document 1. This file is the foundational reference for all subsequent d
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
+- [[architecture]]
 - [[blocker]]
+- [[codex]]
+- [[dashboard]]
 - [[deliverable]]
 - [[friction]]
 - [[iteration]]

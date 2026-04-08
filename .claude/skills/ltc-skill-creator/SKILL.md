@@ -81,8 +81,8 @@ See [references/anti-patterns.md](references/anti-patterns.md) for the 6 skill a
 
 - [[DESIGN]]
 - [[anti-patterns]]
+- [[codex]]
 - [[creation-procedure]]
-- [[dsbv]]
 - [[gotchas]]
 - [[idea]]
 - [[ltc-eop-gov]]

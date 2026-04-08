@@ -65,12 +65,11 @@ Known failure patterns when executing this skill. Update this file when new issu
 ## Links
 
 - [[DESIGN]]
-- [[dsbv-process]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[deliverable]]
-- [[dsbv]]
+- [[dsbv-process]]
 - [[simple]]
 - [[task]]
 - [[workstream]]

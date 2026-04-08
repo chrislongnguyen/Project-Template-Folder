@@ -78,3 +78,8 @@ All outputs — code, documents, analyses, recommendations, workflows — must s
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[architecture]]
+- [[ltc-10-ultimate-truths]]

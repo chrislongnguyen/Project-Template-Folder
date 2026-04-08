@@ -26,3 +26,9 @@ iteration: 1
 ## Alignment to Charter
 
 <!-- How does this objective trace to the PD charter's success criteria? Reference specific criteria by name. -->
+
+## Links
+
+- [[charter]]
+- [[iteration]]
+- [[okr]]

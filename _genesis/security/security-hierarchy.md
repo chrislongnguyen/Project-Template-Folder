@@ -244,9 +244,11 @@ If gitleaks flags a legitimate string (e.g., a test fixture, documentation examp
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
+- [[architecture]]
 - [[documentation]]
 - [[project]]
 - [[security]]

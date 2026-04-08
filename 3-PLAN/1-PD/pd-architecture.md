@@ -35,5 +35,6 @@ iteration: 1
 
 ## Links
 
-- [[workstream]]
+- [[DESIGN]]
+- [[architecture]]
 - [[iteration]]

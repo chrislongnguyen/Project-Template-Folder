@@ -48,3 +48,7 @@ Choose the strongest method available:
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[ltc-effective-thinking]]

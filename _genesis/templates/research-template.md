@@ -50,4 +50,3 @@ _[State the research question here.]_
 ## Links
 
 - [[learning-hierarchy]]
-- [[project]]

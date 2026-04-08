@@ -55,5 +55,17 @@ iteration: 1
 
 ## Links
 
-- [[workstream]]
+- [[AGENTS]]
+- [[BLUEPRINT]]
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[README]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[cross-dependency-map]]
+- [[filesystem-blueprint]]
+- [[filesystem-routing]]
 - [[iteration]]
+- [[ltc-builder]]
+- [[ltc-planner]]
+- [[project]]

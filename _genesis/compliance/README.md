@@ -44,3 +44,9 @@ External regulations / LTC policy decisions
 ## Naming Convention
 
 Compliance artifacts use: `{regulation-code}-{topic}.md`. Example: `gdpr-data-retention.md`.
+
+## Links
+
+- [[charter]]
+- [[iteration]]
+- [[project]]

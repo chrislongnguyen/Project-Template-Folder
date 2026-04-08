@@ -32,3 +32,12 @@ Cross-cutting artifacts in PLAN span all 4 subsystems (PD, DP, DA, IDM). In this
 - [ ] Confirm no artifact here duplicates content owned by a single subsystem
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[BLUEPRINT]]
+- [[cross-dependency-map]]
+- [[filesystem-blueprint]]
+- [[iteration]]
+- [[project]]
+- [[workstream]]

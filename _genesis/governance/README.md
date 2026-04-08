@@ -44,3 +44,9 @@ _genesis/philosophy/ + _genesis/principles/
 ## Naming Convention
 
 Governance artifacts use descriptive kebab-case: `raci-matrix.md`, `decision-authority-matrix.md`.
+
+## Links
+
+- [[charter]]
+- [[iteration]]
+- [[project]]

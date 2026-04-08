@@ -38,3 +38,14 @@ Produces for downstream: `pd-changelog.md`, `pd-metrics.md`, `pd-retro-template.
 - [ ] Confirm retro template distinguishes process failures from artifact quality failures
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[CHANGELOG]]
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[iteration]]
+- [[pd-changelog]]
+- [[pd-metrics]]
+- [[pd-retro-template]]
+- [[workstream]]

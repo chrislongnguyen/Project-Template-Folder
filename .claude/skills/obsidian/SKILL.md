@@ -259,6 +259,23 @@ Full security rules: `.claude/rules/obsidian-security.md`
 ## References
 
 - Security rules: [`.claude/rules/obsidian-security.md`](../../rules/obsidian-security.md) — AP1+L9 always-on; AP2-AP5, V5, V7 in Gotchas above
-- Vault scaffold: [`4-EXECUTE/src/vault/vault-guide.md`](../../../4-EXECUTE/src/vault/vault-guide.md) — setup, plugins, folder structure
+- Vault structure: [`_genesis/obsidian/vault-structure.md`](../../../_genesis/obsidian/vault-structure.md) — canonical vault folder hierarchy and setup
 - Tool routing: see 3-Tool Routing Hierarchy table above — routing lives in this skill, not a separate rule file
 
+## Links
+
+- [[AGENTS]]
+- [[AP1]]
+- [[AP2]]
+- [[AP5]]
+- [[CLAUDE]]
+- [[UBS_REGISTER]]
+- [[VALIDATE]]
+- [[adr]]
+- [[architecture]]
+- [[gotchas]]
+- [[obsidian-security]]
+- [[security]]
+- [[standard]]
+- [[task]]
+- [[vault-structure]]

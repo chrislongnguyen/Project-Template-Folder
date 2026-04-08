@@ -7,3 +7,8 @@
 3. **Version bump amnesia** — Modified workstream `.md` files need version/status/last_updated checks before staging. The skill reminds you but pre-commit hooks are the real safety net.
 
 4. **Amending after hook failure** — If a pre-commit hook rejects a commit, the commit did NOT happen. Create a NEW commit after fixing — do NOT `--amend` (that modifies the previous commit).
+
+## Links
+
+- [[SKILL]]
+- [[workstream]]

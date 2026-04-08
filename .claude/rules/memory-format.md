@@ -34,3 +34,14 @@ When creating MEMORY.md for a new project, include these starter entries in the 
 - `learned_patterns.md` — Recurring patterns discovered during execution (APEI IMPROVE workstream)
 - `key_decisions.md` — Architecture Decision Records and rationale (APEI ALIGN workstream)
 - `common_pitfalls.md` — UBS entries that materialized during execution (APEI PLAN workstream)
+
+## Links
+
+- [[CLAUDE]]
+- [[architecture]]
+- [[charter]]
+- [[common_pitfalls]]
+- [[key_decisions]]
+- [[learned_patterns]]
+- [[project]]
+- [[workstream]]

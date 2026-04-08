@@ -46,3 +46,13 @@ _genesis/philosophy/ + _genesis/principles/
 ## Naming Convention
 
 Assets use descriptive kebab-case: `ltc-logo-dark.svg`, `ltc-logo-light.png`. Color token keys use kebab-case matching CSS custom property convention: `midnight-green`, `gold`.
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[brand-guide]]
+- [[brand-identity]]
+- [[deliverable]]
+- [[iteration]]

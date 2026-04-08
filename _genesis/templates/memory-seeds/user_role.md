@@ -12,3 +12,11 @@ type: user
 - Communication style: {STYLE — e.g. "Direct and structured", "Visual learner", "Prefers prose"}
 - Primary tools: {TOOLS — e.g. "Claude Code", "Cursor", "Gemini CLI"}
 - Charter: `_genesis/BLUEPRINT.md` (PART 3: Operating Model)
+
+## Links
+
+- [[AGENTS]]
+- [[BLUEPRINT]]
+- [[CLAUDE]]
+- [[GEMINI]]
+- [[charter]]

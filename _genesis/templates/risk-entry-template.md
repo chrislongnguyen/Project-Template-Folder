@@ -47,6 +47,7 @@ _[Describe root cause here.]_
 
 ## Links
 
+- [[UBS_REGISTER]]
+- [[blocker]]
 - [[ltc-ubs-uds-framework]]
 - [[methodology]]
-- [[project]]

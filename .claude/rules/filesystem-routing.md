@@ -63,3 +63,15 @@ OE-builder artifacts: blueprints, frameworks, templates, brand, reference docs, 
 | EOT (script) | `scripts/validate-blueprint.py` | Structural violations across all modes |
 | EOP (skill) | `/dsbv` SKILL.md hard constraint | LEARN exclusion in DSBV flow |
 | Agent | `ltc-planner.md`, `ltc-builder.md` | Routing boundaries in agent scope |
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[ltc-builder]]
+- [[ltc-planner]]
+- [[project]]
+- [[workstream]]

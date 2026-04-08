@@ -53,3 +53,23 @@ _genesis/frameworks/ + _genesis/principles/
 ## Naming Convention
 
 SOP files use descriptive kebab-case ending in `-sop.md` or `-guide.md` or `-cheatsheet.md`. Match the pattern of existing files.
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]
+- [[cmux-quickstart]]
+- [[code-review-sop]]
+- [[deployment-sop]]
+- [[discussion-sop]]
+- [[git-workflow]]
+- [[iteration]]
+- [[multi-agent-setup-guide]]
+- [[project]]
+- [[session-lifecycle-cheatsheet]]
+- [[standard]]
+- [[task]]
+- [[tool-routing]]
+- [[tool-routing-cheatsheet]]

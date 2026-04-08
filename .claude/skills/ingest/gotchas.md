@@ -65,3 +65,20 @@
 **EP:** EP-14 (Script-First Delegation) — embedding is a deterministic operation.
 **Post-ingest command:** `qmd update distilled && qmd embed` — add to Validation Gate if QMD distilled collection is configured.
 **Recovery:** If `qmd embed` fails with UNIQUE constraint errors, run `qmd embed -f` once to rebuild (takes ~5min on M3).
+
+## Links
+
+- [[EP-01]]
+- [[EP-04]]
+- [[EP-07]]
+- [[EP-09]]
+- [[EP-10]]
+- [[EP-12]]
+- [[EP-13]]
+- [[EP-14]]
+- [[SKILL]]
+- [[_index]]
+- [[_log]]
+- [[dashboard]]
+- [[schema]]
+- [[versioning]]

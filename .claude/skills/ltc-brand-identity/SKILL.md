@@ -60,9 +60,9 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 ## Links
 
-- [[brand-guide]]
 - [[CLAUDE]]
 - [[application-profiles]]
+- [[brand-guide]]
 - [[brand-identity]]
 - [[gotchas]]
 - [[palette-and-type]]

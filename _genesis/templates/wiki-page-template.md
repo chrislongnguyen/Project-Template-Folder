@@ -44,4 +44,3 @@ _[Content]_
 ## Links
 
 - [[methodology]]
-- [[project]]

@@ -72,3 +72,18 @@ Produces for downstream: `pd-effective-principles.md`, `pd-research-spec.md`, `p
 - [ ] Every EP in `pd-effective-principles.md` traces to a UBS or UDS finding
 - [ ] S-Principles and E-Principles derivation formulas are both applied
 - [ ] Ready for handoff to 2-DP
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[idm-charter]]
+- [[iteration]]
+- [[methodology]]
+- [[pd-effective-principles]]
+- [[pd-literature-review]]
+- [[pd-research-spec]]
+- [[pd-ubs-analysis]]
+- [[pd-uds-analysis]]
+- [[workstream]]

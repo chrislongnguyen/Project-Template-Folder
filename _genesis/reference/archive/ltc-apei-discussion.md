@@ -304,6 +304,7 @@ Sounds good. Good work. Let’s give him a round of applause. Thank you.
 
 - [[DESIGN]]
 - [[VALIDATE]]
+- [[dashboard]]
 - [[idea]]
 - [[project]]
 - [[security]]

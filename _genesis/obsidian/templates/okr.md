@@ -45,3 +45,9 @@ _[Objective statement — qualitative, ambitious but achievable within the itera
 | 0.0–0.3 | Failed — rethink approach |
 | 0.4–0.6 | Partial — acceptable if stretch target |
 | 0.7–1.0 | Achieved — meeting bar or exceeded |
+
+## Links
+
+- [[SEQUENCE]]
+- [[iteration]]
+- [[ues-deliverable]]

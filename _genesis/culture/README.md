@@ -44,3 +44,8 @@ _genesis/philosophy/ (beliefs)
 ## Naming Convention
 
 Culture artifacts use descriptive kebab-case: `working-agreements.md`, `feedback-norms.md`.
+
+## Links
+
+- [[charter]]
+- [[iteration]]

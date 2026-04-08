@@ -134,3 +134,11 @@ last_updated: "YYYY-MM-DD"
 - Obsidian write-path whitelist (V5): `.claude/skills/obsidian/SKILL.md`
 - Versioning convention: `.claude/rules/versioning.md`
 - Version registry: `_genesis/VERSION_REGISTRY.md`
+
+## Links
+
+- [[CLAUDE]]
+- [[iteration]]
+- [[project]]
+- [[versioning]]
+- [[workstream]]

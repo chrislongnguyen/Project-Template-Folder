@@ -38,3 +38,14 @@ Produces for downstream: `dp-changelog.md`, `dp-metrics.md`, `dp-retro-template.
 - [ ] Confirm retro captures pipeline reliability failures — not just feature gaps
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[CHANGELOG]]
+- [[dp-changelog]]
+- [[dp-metrics]]
+- [[dp-retro-template]]
+- [[iteration]]
+- [[pd-metrics]]
+- [[schema]]
+- [[workstream]]

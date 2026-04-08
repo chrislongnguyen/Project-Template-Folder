@@ -269,10 +269,15 @@ Tag format: `v{ITERATION}.0.0`
 
 ## Links
 
+- [[AGENTS]]
 - [[CHANGELOG]]
 - [[README]]
+- [[VALIDATE]]
+- [[adr]]
+- [[architecture]]
 - [[deliverable]]
 - [[iteration]]
 - [[project]]
+- [[schema]]
 - [[standard]]
 - [[workstream]]

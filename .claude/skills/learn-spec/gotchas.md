@@ -55,8 +55,7 @@ Known failure patterns when executing this skill. Update when new issues are dis
 ## Links
 
 - [[DESIGN]]
-- [[dsbv-process]]
 - [[SKILL]]
 - [[VALIDATE]]
-- [[dsbv]]
+- [[dsbv-process]]
 - [[iteration]]

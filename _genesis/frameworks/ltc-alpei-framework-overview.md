@@ -119,6 +119,8 @@ The tables below are structured summaries of the prose above. AI agents should u
 
 ## Links
 
+- [[AGENTS]]
+- [[BLUEPRINT]]
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]

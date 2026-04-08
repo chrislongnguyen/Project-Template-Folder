@@ -43,3 +43,21 @@ Produces for downstream: `dp-charter.md`, stakeholder inputs, requirements basel
 - [ ] Confirm no data gathering is in scope that contradicts PD's effective principles
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to 3-DA
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[adr]]
+- [[charter]]
+- [[cross-stakeholder-map]]
+- [[dp-charter]]
+- [[dp-decision-adr-template]]
+- [[dp-okr]]
+- [[iteration]]
+- [[okr]]
+- [[pd-charter]]
+- [[pd-effective-principles]]
+- [[project]]
+- [[workstream]]

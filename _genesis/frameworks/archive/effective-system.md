@@ -36,8 +36,10 @@ Core principle: Success = Efficient & Scalable Management of Failure Risks (S > 
 
 - [[CLAUDE]]
 - [[DESIGN]]
+- [[architecture]]
 - [[general-system]]
 - [[iteration]]
 - [[ltc-effective-system-design]]
+- [[ltc-effective-system-design-blueprint]]
 - [[ltc-effectiveness-guide]]
 - [[methodology]]

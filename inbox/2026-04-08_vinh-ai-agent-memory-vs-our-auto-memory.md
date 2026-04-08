@@ -128,3 +128,14 @@ MEMORY.md index (human-auditable)      + memory-guard hook (structure enforcemen
 ```
 
 Preserves Vinh's multi-agent portability (S), low token cost (E), easy onboarding (Sc) while adding crash recovery (S), secret safety (S), semantic search (Sc).
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[GEMINI]]
+- [[architecture]]
+- [[memory-format]]
+- [[project]]
+- [[session-summary]]

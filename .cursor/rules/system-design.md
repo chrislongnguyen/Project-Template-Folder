@@ -36,3 +36,4 @@ Phase 1 (Problem Discovery) → Phase 2 (System Design) → Phase 3 (VANA Requir
 - [[blocker]]
 - [[general-system]]
 - [[methodology]]
+- [[schema]]

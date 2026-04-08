@@ -63,3 +63,17 @@ rules/     — shared agent rules (all IDEs read these)
 
 ## Modular Rules
 Shared rules: `rules/` | Agent roster: `AGENTS.md` | Full governance: `_genesis/`
+
+## Links
+
+- [[AGENTS]]
+- [[CHANGELOG]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[architecture]]
+- [[brand-identity]]
+- [[naming-rules]]
+- [[project]]
+- [[security]]
+- [[security-rules]]
+- [[standard]]

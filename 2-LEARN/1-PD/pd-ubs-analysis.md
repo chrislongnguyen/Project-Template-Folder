@@ -36,6 +36,7 @@ Reassess UBS register at each DSBV cycle boundary.
 
 ## Links
 
-- Constraint outputs: `pd-constraints.md` (when created)
-- Risk Register: `3-PLAN/risks/UBS_REGISTER.md`
-- Charter: `1-ALIGN/charter/`
+- [[VALIDATE]]
+- [[charter]]
+- [[iteration]]
+- [[project]]

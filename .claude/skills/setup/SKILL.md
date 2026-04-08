@@ -204,8 +204,5 @@ If any gate fails, fix before proceeding to the next step.
 
 ## Links
 
-- [[config.sh]] — vault resolution (`.claude/hooks/lib/config.sh`)
-- [[setup-vault.sh]] — vault folder scaffold (`scripts/setup-vault.sh`)
-- [[smoke-test.sh]] — harness health check (`scripts/smoke-test.sh`)
-- [[session-summary]] — hook that writes to vault on Stop event
-- [[state-saver]] — hook that writes to vault on PostToolUse
+- [[gotchas]]
+- [[project]]

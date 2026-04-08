@@ -43,3 +43,19 @@ Produces for downstream: `da-charter.md`, analytical findings and prioritized in
 - [ ] Confirm force analysis (blocking vs. driving forces) is complete before passing to IDM
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to 4-IDM
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[adr]]
+- [[charter]]
+- [[da-charter]]
+- [[da-decision-adr-template]]
+- [[da-okr]]
+- [[dp-charter]]
+- [[iteration]]
+- [[okr]]
+- [[project]]
+- [[workstream]]

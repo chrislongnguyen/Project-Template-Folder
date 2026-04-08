@@ -33,5 +33,6 @@
 
 ## Links
 
+- [[AGENTS]]
 - [[SKILL]]
 - [[task]]

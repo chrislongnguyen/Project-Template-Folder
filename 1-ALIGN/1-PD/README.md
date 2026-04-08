@@ -44,3 +44,20 @@ Produces for downstream: `pd-effective-principles.md`, scoped problem statement 
 - [ ] Verify charter scope excludes what is explicitly out of scope
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to 2-DP
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[adr]]
+- [[charter]]
+- [[iteration]]
+- [[okr]]
+- [[pd-charter]]
+- [[pd-decision-adr-template]]
+- [[pd-effective-principles]]
+- [[pd-okr]]
+- [[pd-okr-register]]
+- [[project]]
+- [[workstream]]

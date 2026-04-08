@@ -137,3 +137,13 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 Before producing any deliverable, verify current iteration. I1 = Concept (correct + safe only).
 I2 = Prototype (+ efficient). Do not produce artifacts beyond current iteration scope.
 Reference: `_genesis/frameworks/ltc-ues-version-behaviors.md` 25-cell matrix.
+
+## Links
+
+- [[CHANGELOG]]
+- [[deliverable]]
+- [[history-version-control]]
+- [[iteration]]
+- [[ltc-ues-version-behaviors]]
+- [[version-registry]]
+- [[workstream]]

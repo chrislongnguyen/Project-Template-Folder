@@ -48,3 +48,15 @@ _genesis/principles/ (security as a non-negotiable commitment)
 ## Naming Convention
 
 Security spec files use descriptive kebab-case: `naming-convention.md`, `data-classification.md`. Never abbreviate — these docs are loaded by agents and must be unambiguous.
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[data-classification]]
+- [[iteration]]
+- [[naming-convention]]
+- [[naming-rules]]
+- [[obsidian-security]]
+- [[security]]
+- [[security-hierarchy]]

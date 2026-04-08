@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.3 | status: draft | last_updated: 2026-04-07
+# version: 1.4 | status: draft | last_updated: 2026-04-08
 # session-summary.sh — Stop hook
 # Auto-generates a session summary to the vault on session end.
 # Triggers QMD index refresh if available.
@@ -36,7 +36,8 @@ CONFIG_LIB="${CLAUDE_PLUGIN_ROOT:-$SCRIPT_DIR}/hooks/lib/config.sh"
 source "$CONFIG_LIB"
 
 SESSIONS_DIR="$VAULT/07-Claude/sessions"
-mkdir -p "$SESSIONS_DIR"
+ARCHIVE_DIR="$VAULT/07-Claude/sessions-archive"
+mkdir -p "$SESSIONS_DIR" "$ARCHIVE_DIR"
 
 # Deduplicate: skip if a recent session log already exists for today
 shopt -s nullglob
@@ -50,7 +51,9 @@ for f in "$SESSIONS_DIR"/*"$DATE"*.md; do
 done
 shopt -u nullglob
 
-SUMMARY_FILE="$SESSIONS_DIR/auto-$DATE-$TIMESTAMP.md"
+# Auto-summaries write to archive (not QMD-indexed) to prevent index noise.
+# Rich session logs from /compress still write to sessions/ (indexed).
+SUMMARY_FILE="$ARCHIVE_DIR/auto-$DATE-$TIMESTAMP.md"
 {
   echo "---"
   echo "type: auto-summary"

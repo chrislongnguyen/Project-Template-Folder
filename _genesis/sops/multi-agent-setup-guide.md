@@ -151,15 +151,17 @@ Changes you will notice when using skills you already know:
 
 ## Links
 
-- [[ADR-002]]
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[EP-10]]
+- [[EP-12]]
+- [[EP-13]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
+- [[architecture]]
 - [[context-packaging]]
-- [[dsbv]]
 - [[ltc-builder]]
 - [[ltc-effective-agent-principles-registry]]
 - [[ltc-explorer]]

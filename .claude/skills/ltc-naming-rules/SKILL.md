@@ -61,11 +61,12 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 
 ## Links
 
-- [[naming-convention]]
+- [[AGENTS]]
 - [[VALIDATE]]
 - [[deliverable]]
 - [[forms-and-separators]]
 - [[gotchas]]
+- [[naming-convention]]
 - [[naming-rules]]
 - [[platform-rendering]]
 - [[pre-creation-checklist]]

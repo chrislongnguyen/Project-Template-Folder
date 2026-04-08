@@ -51,3 +51,15 @@ _genesis (org-level, read-only)
 - [ ] Confirm `_genesis/` is not modified directly inside a project repo — changes belong in the template repo
 - [ ] Verify `_genesis/frameworks/` contains the current versions of all 9 Vinh frameworks
 - [ ] No orphaned or stale artifacts
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[adr]]
+- [[iteration]]
+- [[project]]
+- [[security]]
+- [[standard]]
+- [[versioning]]
+- [[workstream]]

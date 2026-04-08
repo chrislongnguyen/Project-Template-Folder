@@ -180,11 +180,15 @@ Full list: [gotchas.md](gotchas.md)
 ## Links
 
 - [[DESIGN]]
-- [[dsbv-process]]
 - [[SEQUENCE]]
+- [[UBS_REGISTER]]
+- [[UDS_REGISTER]]
 - [[VALIDATE]]
-- [[dsbv]]
+- [[architecture]]
+- [[dsbv-process]]
 - [[gotchas]]
 - [[iteration]]
+- [[roadmap]]
 - [[vana-extraction-rules]]
+- [[vana-spec-template]]
 - [[workstream]]

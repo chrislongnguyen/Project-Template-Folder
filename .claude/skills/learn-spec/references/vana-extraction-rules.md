@@ -154,4 +154,5 @@ I4 Gate Criteria: "All I1-I3 ACs pass eval + Human Director sign-off on SPAWNED 
 - [[VALIDATE]]
 - [[blocker]]
 - [[iteration]]
+- [[schema]]
 - [[workstream]]

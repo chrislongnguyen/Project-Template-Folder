@@ -38,3 +38,15 @@ Produces for downstream: `idm-changelog.md`, `idm-metrics.md`, `idm-retro-templa
 - [ ] Confirm improvement decisions are recorded as ADRs in `1-ALIGN/decisions/` if they affect architecture
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[CHANGELOG]]
+- [[architecture]]
+- [[da-metrics]]
+- [[da-retro-template]]
+- [[idm-changelog]]
+- [[idm-metrics]]
+- [[idm-retro-template]]
+- [[iteration]]
+- [[workstream]]

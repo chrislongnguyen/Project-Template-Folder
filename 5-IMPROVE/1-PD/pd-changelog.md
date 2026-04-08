@@ -30,3 +30,10 @@ PD changelog versions track subsystem-level state, not individual artifact versi
 - **No bump**: Typo fixes, metadata corrections, formatting only.
 
 When a MAJOR change is logged, add a corresponding entry in `5-IMPROVE/_cross/cross-feedback-register.md` to track cascade resolution status across downstream subsystems.
+
+## Links
+
+- [[CHANGELOG]]
+- [[cross-feedback-register]]
+- [[iteration]]
+- [[versioning]]

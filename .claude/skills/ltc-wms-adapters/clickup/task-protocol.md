@@ -475,6 +475,7 @@ Report: `{N}/{N} items created. Validation: PASS/FAIL`
 
 - [[CLAUDE]]
 - [[blocker]]
+- [[clickup-field-map]]
 - [[create-flow]]
 - [[deliverable]]
 - [[documentation]]
@@ -483,6 +484,7 @@ Report: `{N}/{N} items created. Validation: PASS/FAIL`
 - [[iteration]]
 - [[naming-rules]]
 - [[project]]
+- [[schema]]
 - [[standard]]
 - [[subtask]]
 - [[task]]

@@ -190,9 +190,16 @@ See [references/gotchas.md](references/gotchas.md) for documented failure patter
 
 ## Links
 
-- [[learning-hierarchy]]
-- [[pkb]]
-- [[README]]
-- [[dashboard]]
+- [[AGENTS]]
+- [[EP-09]]
+- [[EP-13]]
 - [[_index]]
 - [[_log]]
+- [[architecture]]
+- [[dashboard]]
+- [[gotchas]]
+- [[learning-hierarchy]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[schema]]
+- [[standard]]

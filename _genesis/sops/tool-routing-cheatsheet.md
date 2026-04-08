@@ -52,3 +52,11 @@ This sweep is NOT optional. If you tell an agent to "search for X", it must run 
 If Obsidian is not running: skip obsidian-cli silently. Do not error. Proceed directly to Grep.
 
 Do not ask the user to start Obsidian. Do not retry obsidian-cli. Just grep.
+
+## Links
+
+- [[CLAUDE]]
+- [[SKILL]]
+- [[project]]
+- [[task]]
+- [[tool-routing]]

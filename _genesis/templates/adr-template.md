@@ -48,6 +48,10 @@ _[Explain rationale here.]_
 
 ## Links
 
+- [[ADR-000_template]]
 - [[DESIGN]]
+- [[adr]]
+- [[architecture]]
 - [[methodology]]
 - [[project]]
+- [[task]]

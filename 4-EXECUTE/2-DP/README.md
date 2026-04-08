@@ -40,3 +40,11 @@ Produces for downstream: `src/` pipeline code, `notebooks/` exploratory work, `c
 - [ ] Confirm notebooks are exploratory only — no production logic in notebooks
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[iteration]]
+- [[schema]]
+- [[workstream]]

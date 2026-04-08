@@ -1,7 +1,7 @@
 ---
 version: "2.2"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 type: ues-deliverable
 sub_system: obsidian
 work_stream: _genesis
@@ -147,8 +147,21 @@ Sync: Git-backed vault (not Obsidian Sync). Agent writes to inbox/ only.
 
 ## Related Artifacts
 
-- `4-EXECUTE/scripts/setup-vault.sh` — Idempotent folder creation script
-- `4-EXECUTE/docs/frontmatter-schema.md` — YAML field definitions (A1)
-- `4-EXECUTE/src/obsidian/bases/` — All 14 Bases dashboards (A3)
-- `4-EXECUTE/src/obsidian/templates/` — 6 Templater templates (A4)
-- `4-EXECUTE/scripts/setup-obsidian.sh` — One-command Obsidian install (A5)
+- `scripts/setup-obsidian.sh` — One-command Obsidian workspace installer
+- `_genesis/reference/frontmatter-schema.md` — YAML field definitions
+- `_genesis/obsidian/bases/` — Obsidian Bases dashboards
+- `_genesis/obsidian/templates/` — Templater templates
+
+## Links
+
+- [[CHANGELOG]]
+- [[CLAUDE]]
+- [[architecture]]
+- [[charter]]
+- [[frontmatter-schema]]
+- [[iteration]]
+- [[project]]
+- [[roadmap]]
+- [[task]]
+- [[ues-deliverable]]
+- [[workstream]]

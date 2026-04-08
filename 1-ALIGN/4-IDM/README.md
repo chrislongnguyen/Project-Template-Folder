@@ -43,3 +43,20 @@ Produces for downstream: `idm-charter.md`, approved OKRs (`idm-okr.md`), recorde
 - [ ] Confirm approved OKRs are measurable and time-bound before handing off to downstream
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to 2-LEARN and 3-PLAN
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[adr]]
+- [[architecture]]
+- [[charter]]
+- [[da-charter]]
+- [[idm-charter]]
+- [[idm-decision-adr-template]]
+- [[idm-okr]]
+- [[iteration]]
+- [[okr]]
+- [[project]]
+- [[workstream]]

@@ -71,7 +71,6 @@ See [gotchas.md](gotchas.md) for known failure patterns.
 - [[CLAUDE]]
 - [[brand-identity]]
 - [[compliance-report]]
-- [[dsbv]]
 - [[gotchas]]
 - [[ltc-eop-gov]]
 - [[naming-rules]]

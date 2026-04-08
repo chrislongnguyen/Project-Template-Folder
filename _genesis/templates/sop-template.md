@@ -54,4 +54,4 @@ sub_system:
 ## Links
 
 - [[ltc-effective-system-design-blueprint]]
-- [[project]]
+- [[standard]]

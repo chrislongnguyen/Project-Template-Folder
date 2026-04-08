@@ -286,6 +286,7 @@ owner: "Long Nguyen"
 - [[DESIGN]]
 - [[GEMINI]]
 - [[blocker]]
+- [[dashboard]]
 - [[documentation]]
 - [[methodology]]
 - [[project]]

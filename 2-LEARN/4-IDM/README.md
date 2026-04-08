@@ -71,3 +71,21 @@ Produces for downstream: `idm-effective-principles.md`, insight report and recom
 - [ ] Every EP in `idm-effective-principles.md` traces to a UBS or UDS finding
 - [ ] Each insight names an owner — a workstream or role that will act on it
 - [ ] Validated learning package ready for → 3-PLAN
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[architecture]]
+- [[da-effective-principles]]
+- [[da-literature-review]]
+- [[idm-effective-principles]]
+- [[idm-literature-review]]
+- [[idm-research-spec]]
+- [[idm-ubs-analysis]]
+- [[idm-uds-analysis]]
+- [[iteration]]
+- [[project]]
+- [[roadmap]]
+- [[workstream]]

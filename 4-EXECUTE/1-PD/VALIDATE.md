@@ -16,3 +16,8 @@ iteration: 1
 - [ ] Principles documented and traceable to charter EO
 - [ ] No contradictions with upstream ALIGN principles
 - [ ] Reviewed by stakeholder with RACI A-role
+
+## Links
+
+- [[charter]]
+- [[iteration]]

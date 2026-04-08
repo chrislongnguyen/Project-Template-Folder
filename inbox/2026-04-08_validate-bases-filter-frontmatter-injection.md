@@ -88,3 +88,16 @@ Dropped C/U/W category prefixes per user feedback ("too many abbreviations"):
 | U1-U6 | 13-18 |
 
 Sequential numbering preserves logical grouping without requiring users to learn a 3-letter taxonomy.
+
+## Links
+
+- [[2026-04-08_design-bases-filter-frontmatter-injection]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[frontmatter-schema]]
+- [[iteration]]
+- [[schema]]
+- [[ues-deliverable]]
+- [[versioning]]
+- [[workstream]]

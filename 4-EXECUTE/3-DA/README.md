@@ -40,3 +40,11 @@ Produces for downstream: `src/` analytical modules, `notebooks/` reproducible an
 - [ ] Confirm notebooks are reproducible — run clean from top to bottom without errors
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[documentation]]
+- [[iteration]]
+- [[methodology]]
+- [[schema]]
+- [[workstream]]

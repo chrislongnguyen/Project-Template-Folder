@@ -23,3 +23,7 @@ Error: "If structuring fails → return partial with error flags; human reviews 
 SLA: "Output within 30 min of /learn:structure completion"
 Version: "v1.0"
 ```
+
+## Links
+
+- [[schema]]

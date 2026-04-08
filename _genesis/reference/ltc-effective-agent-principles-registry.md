@@ -516,6 +516,7 @@ When something goes wrong, trace the symptom to the violated EP:
 ## Links
 
 - [[ADR-001]]
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[EP-01]]
@@ -532,10 +533,14 @@ When something goes wrong, trace the symptom to the violated EP:
 - [[SKILL]]
 - [[VALIDATE]]
 - [[anti-patterns]]
+- [[architecture]]
+- [[charter]]
+- [[codex]]
 - [[deliverable]]
-- [[dsbv]]
 - [[ltc-builder]]
 - [[ltc-planner]]
+- [[ltc-reviewer]]
 - [[project]]
+- [[roadmap]]
 - [[task]]
 - [[workstream]]

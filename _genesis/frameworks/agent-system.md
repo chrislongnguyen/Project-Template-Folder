@@ -35,5 +35,4 @@ Why 7, not 8: In AI systems, EU = Agent (LLM model — uncontrollable, only iden
 - [[DESIGN]]
 - [[EP-01]]
 - [[EP-10]]
-- [[agent-system]]
 - [[ltc-effective-agent-principles-registry]]

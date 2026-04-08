@@ -33,3 +33,12 @@ Cross-cutting artifacts in IMPROVE capture what no single subsystem can see alon
 - [ ] Confirm no artifact here duplicates content already owned by a single subsystem
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[CHANGELOG]]
+- [[cross-changelog]]
+- [[cross-feedback-register]]
+- [[cross-metrics-baseline]]
+- [[iteration]]
+- [[workstream]]

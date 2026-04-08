@@ -325,15 +325,19 @@ Multi-agent skill orchestration: how skills behave when multiple agents share a 
 
 ## Links
 
+- [[AGENTS]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[README]]
 - [[SKILL]]
+- [[charter]]
+- [[codex]]
 - [[documentation]]
 - [[gotchas]]
 - [[iteration]]
 - [[project]]
+- [[roadmap]]
 - [[simple]]
 - [[standard]]
 - [[versioning]]

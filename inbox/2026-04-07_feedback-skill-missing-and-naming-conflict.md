@@ -38,3 +38,9 @@ The reference path `.claude/skills/quality/feedback/SKILL.md` puts the skill und
 ## CLAUDE.md dead reference
 
 Line 85-86 of CLAUDE.md currently points to a non-existent file. This is a broken promise to the user — they're told to use `/feedback` but neither the skill nor the routing exists.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]

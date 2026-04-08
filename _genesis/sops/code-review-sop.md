@@ -42,5 +42,7 @@ owner: "Long Nguyen"
 ## Links
 
 - [[DESIGN]]
+- [[UBS_REGISTER]]
+- [[charter]]
 - [[documentation]]
 - [[security]]

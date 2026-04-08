@@ -39,3 +39,17 @@ Produces for downstream: `da-architecture.md`, `da-risk-register.md`, `da-driver
 - [ ] Confirm driver conflicts are surfaced — not silently resolved
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[architecture]]
+- [[da-architecture]]
+- [[da-driver-register]]
+- [[da-risk-register]]
+- [[da-roadmap]]
+- [[dp-architecture]]
+- [[dp-driver-register]]
+- [[dp-risk-register]]
+- [[iteration]]
+- [[roadmap]]
+- [[workstream]]

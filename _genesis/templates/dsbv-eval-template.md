@@ -146,8 +146,9 @@ UNIQUE INSIGHTS (1 team only):
 
 ## Links
 
+- [[AGENTS]]
 - [[VALIDATE]]
-- [[dsbv]]
+- [[architecture]]
 - [[iteration]]
 - [[project]]
 - [[task]]

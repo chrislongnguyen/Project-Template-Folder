@@ -37,6 +37,8 @@ Principles move from Draft to Validated when tested against at least one real pr
 
 ## Links
 
-- UBS analysis: `pd-ubs-analysis.md`
-- Upstream charter constraints: `1-ALIGN/charter/`
-- Driver register (UDS): `3-PLAN/drivers/UDS_REGISTER.md`
+- [[DESIGN]]
+- [[charter]]
+- [[deliverable]]
+- [[iteration]]
+- [[project]]

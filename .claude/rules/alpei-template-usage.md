@@ -13,3 +13,9 @@ Applies to all 5 workstreams: ALIGN, LEARN, PLAN, EXECUTE, IMPROVE. Each workstr
 Full lookup table (workstream × DSBV phase → template): loaded via `/dsbv` or grep `## Routing:` in `_genesis/frameworks/alpei-dsbv-process-map.md`.
 
 Exception: if no template exists, create with proper YAML frontmatter and flag the gap.
+
+## Links
+
+- [[alpei-dsbv-process-map]]
+- [[deliverable]]
+- [[workstream]]

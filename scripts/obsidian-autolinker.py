@@ -28,9 +28,10 @@ import sys
 # Constants
 # ---------------------------------------------------------------------------
 
-EXCLUDED_DIRS = {".git", ".worktrees", ".obsidian"}
+EXCLUDED_DIRS = {".git", ".worktrees", ".obsidian", "node_modules"}
 EXCLUDED_PATH_FRAGMENTS = [
     os.sep + ".claude" + os.sep + "worktrees" + os.sep,
+    os.sep + "node_modules" + os.sep,
 ]
 
 # Minimum alias length to avoid false positives

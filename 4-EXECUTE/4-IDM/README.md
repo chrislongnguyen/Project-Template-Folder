@@ -39,3 +39,10 @@ Produces for downstream: `src/` delivery layer (dashboards, reports, APIs), `con
 - [ ] Confirm user-facing docs cover interpretation and known edge cases
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[DESIGN]]
+- [[documentation]]
+- [[iteration]]
+- [[workstream]]

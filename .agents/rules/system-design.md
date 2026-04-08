@@ -31,7 +31,9 @@ Phase 1: Problem Discovery → Phase 2: System Design → Phase 3: VANA Requirem
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[blocker]]
 - [[general-system]]
 - [[methodology]]
+- [[schema]]

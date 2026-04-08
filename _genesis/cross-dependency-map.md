@@ -49,3 +49,14 @@ When a High-coupling interface changes after downstream PLAN is in Review:
 1. Raise an ADR in `1-ALIGN/decisions/`
 2. Notify affected downstream subsystem leads
 3. Reset downstream artifact to Draft, bump version
+
+## Links
+
+- [[BLUEPRINT]]
+- [[SEQUENCE]]
+- [[adr]]
+- [[architecture]]
+- [[dashboard]]
+- [[iteration]]
+- [[schema]]
+- [[workstream]]

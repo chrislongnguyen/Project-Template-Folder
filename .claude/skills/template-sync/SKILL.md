@@ -145,3 +145,9 @@ The `.template-sync-log.json` records every action taken — use it to identify 
 ## Argument
 
 $ARGUMENTS
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[project]]

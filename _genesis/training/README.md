@@ -73,3 +73,8 @@ Port 5174 (not 5173) to avoid collision if both run simultaneously.
 | Multiple Vite servers on different ports | Kill all: `lsof -ti:5173,5174,5175,5176,5177,5178,5179 \| xargs kill -9` then restart |
 | Wrong deck opens | Check the port — 5173 = I2, 5174 = ALPEI foundations |
 | `npm ci` fails | Delete `node_modules/` and retry |
+
+## Links
+
+- [[CLAUDE]]
+- [[workstream]]

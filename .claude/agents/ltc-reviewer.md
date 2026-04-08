@@ -147,11 +147,16 @@ dispatch a sub-agent to gather it. Incomplete context = PARTIAL verdict, not a r
 ## Links
 
 - [[DESIGN]]
+- [[EP-13]]
+- [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
-- [[dsbv]]
+- [[architecture]]
+- [[blocker]]
+- [[charter]]
 - [[ltc-builder]]
 - [[ltc-explorer]]
 - [[ltc-planner]]
+- [[task]]
 - [[versioning]]
 - [[workstream]]

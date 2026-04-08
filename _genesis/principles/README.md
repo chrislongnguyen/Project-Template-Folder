@@ -45,3 +45,12 @@ _genesis/philosophy/ (WHY — beliefs)
 ## Naming Convention
 
 Principle files use descriptive kebab-case: `sustainability-over-efficiency.md`, `human-adoption-first.md`.
+
+## Links
+
+- [[CLAUDE]]
+- [[iteration]]
+- [[ltc-10-ultimate-truths]]
+- [[project]]
+- [[security]]
+- [[workstream]]

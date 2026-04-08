@@ -1012,12 +1012,15 @@ This document is the single markdown reference for the **LTC Advanced Effective 
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[README]]
 - [[SEQUENCE]]
 - [[blocker]]
+- [[dashboard]]
 - [[friction]]
 - [[iteration]]
 - [[project]]
+- [[roadmap]]
 - [[standard]]
 - [[task]]

@@ -112,6 +112,7 @@ If source material for any group exceeds 30K tokens:
 
 - [[SKILL]]
 - [[agent-system]]
+- [[architecture]]
 - [[general-system]]
 - [[iteration]]
 - [[standard]]

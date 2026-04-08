@@ -60,3 +60,27 @@ _genesis/philosophy/ + _genesis/principles/
 ## Naming Convention
 
 Framework files use `ltc-{topic}.md` for Vinh-authored frameworks. Process maps use `alpei-dsbv-process-map{-pN}.md`. Use `[[wikilinks]]` to connect framework references across workstream artifacts.
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[agent-diagnostic]]
+- [[agent-system]]
+- [[alpei-dsbv-process-map]]
+- [[history-version-control]]
+- [[iteration]]
+- [[learning-hierarchy]]
+- [[ltc-10-ultimate-truths]]
+- [[ltc-alpei-framework-by-subsystems]]
+- [[ltc-alpei-framework-overview]]
+- [[ltc-effective-learning]]
+- [[ltc-effective-system-design-blueprint]]
+- [[ltc-effective-thinking]]
+- [[ltc-ubs-uds-framework]]
+- [[ltc-ues-version-behaviors]]
+- [[ltc-ues-versioning]]
+- [[project]]
+- [[versioning]]
+- [[workstream]]

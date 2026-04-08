@@ -54,3 +54,7 @@ Guard against the former; strengthen the latter.
 ---
 
 **Classification:** INTERNAL
+
+## Links
+
+- [[ltc-effective-thinking]]

@@ -10,3 +10,10 @@ type: project
 
 Example format:
 - **ADR-1 (2026-MM-DD):** [Decision title] — [choice made]. **Why:** [rationale]. **Trade-off:** [what was rejected and why].
+
+## Links
+
+- [[CLAUDE]]
+- [[architecture]]
+- [[project]]
+- [[workstream]]

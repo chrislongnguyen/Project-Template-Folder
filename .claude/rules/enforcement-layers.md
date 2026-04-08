@@ -59,3 +59,16 @@ Review            | —                       | CI/CD                    | Code 
 | `UserPromptSubmit` | User sends a message | Route to agent, inject standing context |
 | `WorktreeCreate` | New git worktree opened | Validate branch naming, set permissions |
 | `TaskCreated` | Sub-agent task spawned | Enforce context-packaging, model routing |
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[VALIDATE]]
+- [[agent-system]]
+- [[context-packaging]]
+- [[documentation]]
+- [[git-conventions]]
+- [[ltc-reviewer]]
+- [[task]]
+- [[versioning]]

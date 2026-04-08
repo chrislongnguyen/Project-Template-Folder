@@ -146,14 +146,19 @@ When you lack information needed for design:
 
 ## Links
 
+- [[AGENTS]]
+- [[CLAUDE]]
 - [[DESIGN]]
 - [[EP-04]]
 - [[EP-07]]
+- [[EP-13]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[dsbv]]
+- [[charter]]
+- [[filesystem-routing]]
 - [[ltc-builder]]
 - [[ltc-explorer]]
 - [[ltc-reviewer]]
+- [[project]]
 - [[task]]
 - [[workstream]]

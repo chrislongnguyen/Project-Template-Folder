@@ -67,3 +67,9 @@ Steps follow the DERISK-then-OPTIMIZE pattern:
 ## Links
 
 - [[blocker]]
+- [[page-0-overview-and-summary]]
+- [[page-1-ultimate-blockers]]
+- [[page-2-ultimate-drivers]]
+- [[page-3-principles]]
+- [[page-4-components]]
+- [[page-5-steps-to-apply]]

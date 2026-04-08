@@ -103,6 +103,7 @@ Full list: [gotchas.md](gotchas.md)
 
 ## Links
 
+- [[CLAUDE]]
 - [[gotchas]]
 - [[project]]
 - [[session-summary]]

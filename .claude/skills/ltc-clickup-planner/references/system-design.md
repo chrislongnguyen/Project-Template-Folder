@@ -221,10 +221,13 @@ Recommendation: {adjustment for next project}
 
 ## Links
 
+- [[AGENTS]]
+- [[BLUEPRINT]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[SKILL]]
 - [[VALIDATE]]
+- [[architecture]]
 - [[blocker]]
 - [[create-flow]]
 - [[deliverable]]

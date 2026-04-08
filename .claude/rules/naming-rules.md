@@ -48,3 +48,13 @@ Memorized codes: `OPS`, `INVTECH`, `INV`, `COE_EFF`, `LTC` (= LTC ALL)
 ## Folder Format Rejection
 
 `1_align`, `1.ALIGN`, `ALIGN-1` — all REJECTED. Only `{N}-{NAME}` in CAPS is valid.
+
+## Links
+
+- [[SKILL]]
+- [[agent-dispatch]]
+- [[ltc-planner]]
+- [[naming-convention]]
+- [[project]]
+- [[security]]
+- [[workstream]]

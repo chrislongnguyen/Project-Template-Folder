@@ -26,9 +26,4 @@ iteration: 1
 
 ## Links
 
-<!-- TODO: Populate during DSBV Build phase -->
-
-## Links
-
-- [[workstream]]
 - [[iteration]]

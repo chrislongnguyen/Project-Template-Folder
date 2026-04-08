@@ -59,5 +59,4 @@ _[Description of the driver and its root enabler.]_
 
 ## Links
 
-- [[risk-entry-template]]
 - [[SEQUENCE]]

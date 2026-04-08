@@ -197,5 +197,7 @@ Full list: [gotchas.md](gotchas.md)
 - [[contract-examples]]
 - [[gotchas]]
 - [[iteration]]
+- [[learn-input-template]]
+- [[schema]]
 - [[standard]]
 - [[versioning]]

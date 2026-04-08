@@ -56,3 +56,26 @@ _genesis/ (all layers)
 ## Naming Convention
 
 Reference files use `ltc-{topic}.md` for LTC-authored docs and descriptive kebab-case for operational references. PDFs retain their source filename.
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[EP-01]]
+- [[SKILL]]
+- [[documentation]]
+- [[frontmatter-schema]]
+- [[hook-reliability-audit]]
+- [[iteration]]
+- [[ltc-advanced-el-system]]
+- [[ltc-ai-agent-system-project-template-guide]]
+- [[ltc-company-handbook]]
+- [[ltc-effective-agent-principles-registry]]
+- [[ltc-effective-system-design]]
+- [[ltc-effectiveness-guide]]
+- [[ltc-eop-gov]]
+- [[ltc-system-wiki-template]]
+- [[project]]
+- [[schema]]
+- [[versioning]]

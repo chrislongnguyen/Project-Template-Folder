@@ -159,3 +159,9 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 - Do not be greedy — fewer precise principles > many vague ones.
 - If a principle from a prior Topic is now better understood, it may be refined in a deeper Topic — but the pillar label must remain consistent (or be explicitly corrected with a note in A's Decisions log, in the Phase C Organise — state section).
 - **Every cell begins with its CAG tag.** See `engine/rules/phase-c-structure.md` §2.
+
+## Links
+
+- [[blocker]]
+- [[codex]]
+- [[roadmap]]

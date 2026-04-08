@@ -177,3 +177,11 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 - Do not include components not required by this Topic's Principles.
 - Deeper Topics = more specific/granular components than Topic 0.
 - **Every cell begins with its CAG tag.** See `engine/rules/phase-c-structure.md` §2.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[blocker]]
+- [[codex]]
+- [[roadmap]]

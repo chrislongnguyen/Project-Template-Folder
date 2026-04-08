@@ -147,14 +147,16 @@ This works identically across Claude Code, Cursor, and Gemini — it is a thinki
 
 ## Links
 
-- [[agent-diagnostic]]
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[agent-system]]
+- [[architecture]]
 - [[general-system]]
 - [[iteration]]
+- [[schema]]
 - [[task]]
 - [[workstream]]

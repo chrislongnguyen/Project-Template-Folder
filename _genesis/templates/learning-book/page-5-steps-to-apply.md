@@ -155,3 +155,10 @@ _Before listing steps, declare which UBS elements are targeted for disabling (DE
 - EOP for deeper Topics goes more granular than EOP for Topic 0.
 - Do not restate principles as steps — steps are ACTIONS, not rules.
 - **Every cell begins with its CAG tag.** See `engine/rules/phase-c-structure.md` §2.
+
+## Links
+
+- [[DESIGN]]
+- [[blocker]]
+- [[codex]]
+- [[roadmap]]

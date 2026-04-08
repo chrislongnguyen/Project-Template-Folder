@@ -1873,12 +1873,15 @@ _End of Document 3 (v1.1). This translation is complete. It provides the full ar
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
+- [[architecture]]
 - [[blocker]]
+- [[codex]]
 - [[documentation]]
 - [[idea]]
 - [[iteration]]

@@ -209,17 +209,18 @@ See [gotchas.md](gotchas.md) — 10 observed failure patterns.
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
-- [[spike-template]]
 - [[VALIDATE]]
 - [[anti-patterns]]
+- [[architecture]]
 - [[context-packaging]]
-- [[dsbv]]
+- [[dashboard]]
 - [[gotchas]]
 - [[ltc-explorer]]
 - [[methodology]]
 - [[report-generation]]
 - [[report-template]]
 - [[simple]]
+- [[spike-template]]
 - [[standard]]
-- [[task]]

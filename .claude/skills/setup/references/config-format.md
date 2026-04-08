@@ -39,3 +39,7 @@ P4: not found → hook exits 0 silently (graceful degradation)
 ```
 
 Run `/setup` to ensure P1 is set — hooks run faster and are more reliable.
+
+## Links
+
+- [[CLAUDE]]

@@ -19,3 +19,7 @@
 - [ ] Agent did NOT invent complexity or ask unnecessary questions
 - [ ] ≤1 question per message
 - [ ] Correct terminal state offered (/dsbv — clear design target)
+
+## Links
+
+- [[DESIGN]]

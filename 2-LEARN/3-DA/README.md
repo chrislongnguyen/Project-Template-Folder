@@ -70,3 +70,21 @@ Produces for downstream: `da-effective-principles.md`, synthesized literature re
 - [ ] Every EP in `da-effective-principles.md` traces to a UBS or UDS finding
 - [ ] Literature review synthesis covers all research questions from `1-PD/pd-research-spec.md`
 - [ ] Ready for handoff to 4-IDM
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[da-effective-principles]]
+- [[da-literature-review]]
+- [[da-research-spec]]
+- [[da-ubs-analysis]]
+- [[da-uds-analysis]]
+- [[dp-effective-principles]]
+- [[dp-literature-review]]
+- [[iteration]]
+- [[methodology]]
+- [[pd-research-spec]]
+- [[project]]
+- [[workstream]]

@@ -180,3 +180,11 @@ Rule: After 1 evasive response per gate, agent makes a default assumption, state
 Example: "I'll assume the EO is [X] — we can revisit if that turns out to be wrong. Moving on."
 
 Do not re-ask the same question. Do not loop. One evasive response triggers the default assumption rule. The gate exits on the stated assumption.
+
+## Links
+
+- [[DESIGN]]
+- [[EP-09]]
+- [[SEQUENCE]]
+- [[blocker]]
+- [[general-system]]

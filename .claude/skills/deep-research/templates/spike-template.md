@@ -66,4 +66,6 @@ last_updated: 2026-03-30
 ## Links
 
 - [[VALIDATE]]
+- [[adr]]
+- [[architecture]]
 - [[project]]

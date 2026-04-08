@@ -127,6 +127,6 @@ ClickUp location: [LTC ALIGN]_MEMBER GUIDES > [LTC ALL]_ALIGN - WIKI & GUIDES > 
 
 ## Links
 
-- [[brand-guide]]
 - [[DESIGN]]
+- [[brand-guide]]
 - [[workstream]]

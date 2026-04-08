@@ -29,3 +29,11 @@ Examples:
 - Research summaries from ltc-explorer: keep full content — orchestrator needs it to proceed
 - Design rationale from ltc-planner: keep full content — decisions must be documented
 - Error messages: never abbreviate failures — full error text required for diagnosis
+
+## Links
+
+- [[DESIGN]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]

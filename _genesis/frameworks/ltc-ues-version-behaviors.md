@@ -125,11 +125,14 @@ Use this quick reference to calibrate your deliverables:
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[VALIDATE]]
 - [[blocker]]
+- [[charter]]
 - [[iteration]]
 - [[methodology]]
+- [[okr]]
 - [[project]]
 - [[task]]
 - [[versioning]]

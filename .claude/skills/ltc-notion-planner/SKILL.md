@@ -99,6 +99,8 @@ Full edge cases: [protocol §7](./references/notion-task-protocol.md)
 - [[create-flow]]
 - [[deliverable]]
 - [[iteration]]
+- [[notion-task-protocol]]
 - [[project]]
+- [[schema]]
 - [[task]]
 - [[update-flow]]

@@ -90,6 +90,7 @@ Log grep results alongside vault results before drawing conclusions. If `.claude
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[EP-04]]

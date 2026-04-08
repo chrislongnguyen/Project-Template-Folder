@@ -154,8 +154,11 @@ See [gotchas.md](gotchas.md) for classification pitfalls and severity definition
 
 ## Links
 
+- [[CLAUDE]]
+- [[blocker]]
 - [[classification-guide]]
 - [[friction]]
+- [[gotchas]]
 - [[idea]]
-- [[ltc-issue]]
-- [[agent-system]]
+- [[iteration]]
+- [[workstream]]

@@ -144,10 +144,11 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 ## Links
 
 - [[DESIGN]]
-- [[ues-version-behaviors]]
 - [[blocker]]
+- [[charter]]
 - [[iteration]]
 - [[methodology]]
+- [[okr]]
 - [[project]]
 - [[task]]
 - [[workstream]]

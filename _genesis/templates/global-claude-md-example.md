@@ -67,7 +67,7 @@ If a project CLAUDE.md contradicts this file, the **project file wins**. Flag th
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[SKILL]]
-- [[dsbv]]
+- [[architecture]]
 - [[ltc-ai-agent-system-project-template-guide]]
 - [[project]]
 - [[security]]

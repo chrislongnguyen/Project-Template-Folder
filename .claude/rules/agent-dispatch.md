@@ -37,3 +37,16 @@ Relative paths resolve to the main repo, not the worktree — writes land in the
 
 **Skill:** `/dsbv` — builds context-packaged Agent() calls for each DSBV phase.
 
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[context-packaging]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]

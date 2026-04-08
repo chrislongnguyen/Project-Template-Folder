@@ -27,5 +27,6 @@ iteration: 1
 
 ## Links
 
-- [[workstream]]
+- [[charter]]
 - [[iteration]]
+- [[okr]]

@@ -537,6 +537,7 @@ After creating any entry, verify **all** of the following:
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[SKILL]]
@@ -546,6 +547,7 @@ After creating any entry, verify **all** of the following:
 - [[increment]]
 - [[iteration]]
 - [[project]]
+- [[schema]]
 - [[security]]
 - [[standard]]
 - [[task]]

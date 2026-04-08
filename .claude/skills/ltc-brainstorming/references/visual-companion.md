@@ -291,5 +291,8 @@ If the session used `--project-dir`, mockup files persist in `.superpowers/brain
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
+- [[architecture]]
+- [[codex]]
+- [[dashboard]]
 - [[project]]
 - [[simple]]

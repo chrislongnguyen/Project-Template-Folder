@@ -40,3 +40,15 @@ Produces for downstream: DSBV design artifacts and execution principles — cons
 - [ ] Confirm no build work starts in DP/DA/IDM until PD's DESIGN.md is approved
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[documentation]]
+- [[idm-architecture]]
+- [[idm-roadmap]]
+- [[iteration]]
+- [[task]]
+- [[workstream]]

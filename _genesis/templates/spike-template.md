@@ -52,7 +52,7 @@ _[One paragraph: what the result means for the design. If confirmed, proceed. If
 
 ## Links
 
-- [[ltc-effective-thinking]]
 - [[DESIGN]]
+- [[ltc-effective-thinking]]
 - [[methodology]]
-- [[project]]
+- [[workstream]]

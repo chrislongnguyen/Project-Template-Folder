@@ -275,3 +275,14 @@ Together they ensure: nothing is forgotten (hook), nothing is shallow (dashboard
 
 > **The system works best when you trust the AI to organise.
 > Your job: drop sources and read what comes back.**
+
+## Links
+
+- [[SKILL]]
+- [[_index]]
+- [[_log]]
+- [[anti-patterns]]
+- [[architecture]]
+- [[dashboard]]
+- [[learning-hierarchy]]
+- [[project]]

@@ -19,3 +19,9 @@ PD → DP → DA → IDM. Downstream sub-system cannot exceed upstream version.
 PD Effective Principles govern all downstream sub-systems.
 Violation: same STOP protocol as workstream violations — state the violation,
 name the missing upstream artifact, wait for human override.
+
+## Links
+
+- [[SEQUENCE]]
+- [[alpei-dsbv-process-map]]
+- [[workstream]]

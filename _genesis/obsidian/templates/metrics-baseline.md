@@ -49,3 +49,9 @@ iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
 | Metric | Current Value | Target | Formula | Cadence |
 |--------|--------------|--------|---------|---------|
 | _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[weekly / sprint]_ |
+
+## Links
+
+- [[DESIGN]]
+- [[iteration]]
+- [[ues-deliverable]]

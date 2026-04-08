@@ -52,3 +52,11 @@ Both issues are **onboarding traps** introduced by the template shipping live me
 Candidate fixes to the template:
 - Scaffold files with placeholder metadata (`iteration: TBD`, `version: "1.0"`) OR add a reset step to `/setup` skill
 - Document the Bases filter gap + recommended `dsbv-*` query strategy in `_genesis/` or the I2 training deck
+
+## Links
+
+- [[DESIGN]]
+- [[SKILL]]
+- [[iteration]]
+- [[project]]
+- [[ues-deliverable]]

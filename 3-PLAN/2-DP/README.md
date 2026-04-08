@@ -39,3 +39,17 @@ Produces for downstream: `dp-architecture.md`, `dp-risk-register.md`, `dp-driver
 - [ ] Confirm input definitions do not exceed what 2-LEARN research validated
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[DESIGN]]
+- [[architecture]]
+- [[dp-architecture]]
+- [[dp-driver-register]]
+- [[dp-risk-register]]
+- [[dp-roadmap]]
+- [[iteration]]
+- [[pd-architecture]]
+- [[pd-driver-register]]
+- [[roadmap]]
+- [[workstream]]

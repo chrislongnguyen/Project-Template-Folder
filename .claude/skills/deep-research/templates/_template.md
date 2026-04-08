@@ -66,4 +66,5 @@
 ## Links
 
 - [[anti-patterns]]
+- [[architecture]]
 - [[project]]

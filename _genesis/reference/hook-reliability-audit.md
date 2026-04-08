@@ -91,3 +91,9 @@ When a new Claude Code bug affecting hooks is discovered:
 When a bug is resolved by the platform:
 1. Mark the BUG-XX entry with `**RESOLVED — Claude Code vX.Y**`
 2. Document whether the LTC mitigation remains (belt-and-suspenders) or is retired
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[project]]

@@ -296,13 +296,15 @@ Every organization operates through a value chain of six interdependent layers. 
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
-- [[ltc-effective-system-design-blueprint]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[agent-system]]
 - [[blocker]]
 - [[documentation]]
+- [[ltc-effective-system-design-blueprint]]
 - [[methodology]]
+- [[schema]]
 - [[task]]
 - [[workstream]]

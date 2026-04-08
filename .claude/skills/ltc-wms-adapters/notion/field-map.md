@@ -111,5 +111,7 @@ Used for Iteration-level items (LEP Deliverable group / phase).
 - [[increment]]
 - [[iteration]]
 - [[naming-rules]]
+- [[notion-task-protocol]]
 - [[project]]
+- [[schema]]
 - [[task]]

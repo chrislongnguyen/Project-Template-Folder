@@ -65,3 +65,10 @@ tmux send-keys -t builder "git status"
 | Kill a workspace | `tmux kill-session -t <name>` |
 | Read workspace screen | `tmux capture-pane -t <name> -p` |
 | Send command to workspace | `tmux send-keys -t <name> "<cmd>" Enter` |
+
+## Links
+
+- [[DESIGN]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-reviewer]]

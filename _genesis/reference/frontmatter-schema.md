@@ -105,3 +105,21 @@ Excluded: `.claude/`, `_genesis/`, `node_modules/`
 | A3 — 14 Obsidian Bases | Filter expressions reference exact field names and S2 values from this table |
 | A4 — 6 Templater Templates | `tp.*` calls populate all 8 required fields; defaults match this spec |
 | A6 — Frontmatter Validation Test | Validates each field name, type, and value range against this spec |
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[architecture]]
+- [[charter]]
+- [[dashboard]]
+- [[iteration]]
+- [[okr]]
+- [[schema]]
+- [[task]]
+- [[ues-deliverable]]
+- [[versioning]]
+- [[workstream]]

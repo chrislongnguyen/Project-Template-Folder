@@ -10,3 +10,8 @@ type: project
 
 Example format:
 - **LP-1 (2026-MM-DD):** [Pattern name] — [what was observed, why it matters, how to apply]
+
+## Links
+
+- [[CLAUDE]]
+- [[project]]

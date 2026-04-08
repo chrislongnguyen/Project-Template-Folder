@@ -144,5 +144,6 @@ No ranges. No placeholders. No "etc." -->
 ## Links
 
 - [[anti-patterns]]
+- [[architecture]]
 - [[methodology]]
 - [[project]]

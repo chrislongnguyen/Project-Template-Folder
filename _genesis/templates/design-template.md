@@ -111,16 +111,13 @@ Additional workstream-specific gates:
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
-- [[dsbv-process]]
 - [[EP-01]]
-- [[EP-03]]
-- [[EP-04]]
-- [[EP-09]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
 - [[deliverable]]
-- [[dsbv]]
+- [[dsbv-process]]
 - [[iteration]]
 - [[task]]
 - [[workstream]]

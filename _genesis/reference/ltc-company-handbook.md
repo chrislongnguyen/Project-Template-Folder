@@ -1457,16 +1457,16 @@ _Next review: January 2026_
 
 ## Links
 
-- [[CONTRIBUTING]]
 - [[DESIGN]]
 - [[GEMINI]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[blocker]]
+- [[codex]]
 - [[documentation]]
 - [[friction]]
-- [[license]]
 - [[project]]
+- [[roadmap]]
 - [[security]]
 - [[simple]]
 - [[standard]]

@@ -32,3 +32,9 @@ _Why this option over alternatives?_
 ## Consequences
 
 _What changes, risks, or follow-on work does this decision create?_
+
+## Links
+
+- [[DESIGN]]
+- [[architecture]]
+- [[iteration]]

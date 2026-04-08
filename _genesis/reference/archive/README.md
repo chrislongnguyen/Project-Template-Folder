@@ -46,3 +46,12 @@ _genesis/reference/ (active docs)
 ## Naming Convention
 
 Archive files retain their original filename unchanged. Do not rename on archival — the filename is part of the historical record.
+
+## Links
+
+- [[DESIGN]]
+- [[iteration]]
+- [[ltc-10-ultimate-truths]]
+- [[ltc-ai-centric-ueds]]
+- [[ltc-apei-discussion]]
+- [[ltc-human-centric-ueds]]

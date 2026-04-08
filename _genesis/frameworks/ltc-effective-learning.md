@@ -137,5 +137,6 @@ All in `0. REUSABLE RESOURCES/0.3. TEMPLATES/`
 - [[DESIGN]]
 - [[VALIDATE]]
 - [[anti-patterns]]
+- [[architecture]]
 - [[blocker]]
 - [[methodology]]

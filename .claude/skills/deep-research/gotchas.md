@@ -128,6 +128,7 @@ Known failure patterns from observed executions. Update this file when new issue
 
 - [[CLAUDE]]
 - [[SKILL]]
+- [[dashboard]]
 - [[methodology]]
 - [[report-generation]]
 - [[report-template]]

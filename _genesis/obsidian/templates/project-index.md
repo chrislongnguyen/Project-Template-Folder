@@ -32,6 +32,7 @@ _One paragraph: what this project is, what problem it solves, who it serves._
 
 ## Links
 
-- [[_genesis/BLUEPRINT]] — canonical blueprint
-- [[1-ALIGN/charter/]] — project charter
-- [[3-PLAN/risks/]] — risk register
+- [[charter]]
+- [[iteration]]
+- [[project]]
+- [[workstream]]

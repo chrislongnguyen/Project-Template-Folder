@@ -126,3 +126,18 @@ Each skill follows this layout:
 **When stuck:** `/ltc-brainstorming` to think through it, or `/deep-research:lite` to research it.
 
 **When frustrated:** `/ltc-feedback` captures the issue as a structured GitHub Issue.
+
+## Links
+
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[gotchas]]
+- [[idea]]
+- [[iteration]]
+- [[project]]
+- [[security]]
+- [[task]]
+- [[workstream]]

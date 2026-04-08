@@ -39,3 +39,19 @@ Produces for downstream: `idm-architecture.md`, `idm-risk-register.md`, `idm-dri
 - [ ] Confirm the roadmap is achievable within iteration scope — no scope creep
 - [ ] Artifacts here do not contradict upstream subsystem's scope or principles
 - [ ] Outputs are ready for handoff to downstream
+
+## Links
+
+- [[SEQUENCE]]
+- [[architecture]]
+- [[da-architecture]]
+- [[da-driver-register]]
+- [[da-risk-register]]
+- [[da-roadmap]]
+- [[idm-architecture]]
+- [[idm-driver-register]]
+- [[idm-risk-register]]
+- [[idm-roadmap]]
+- [[iteration]]
+- [[roadmap]]
+- [[workstream]]

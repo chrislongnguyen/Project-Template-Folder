@@ -10,3 +10,9 @@ type: project
 
 Example format:
 - **UBS-1 (2026-MM-DD):** [Pitfall name] — [what went wrong]. **Root cause:** [EP/Input/EOP/EOE/EOT/Agent]. **Prevention:** [how to avoid next time].
+
+## Links
+
+- [[CLAUDE]]
+- [[UBS-1]]
+- [[project]]

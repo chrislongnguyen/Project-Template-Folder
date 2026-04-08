@@ -60,3 +60,9 @@ In LEARN specifically, cross-cutting means shared pipeline infrastructure. A sou
 - [ ] Reference library in `references/` is consistent with sources cited in all four subsystems
 - [ ] No subsystem has a local copy of a `_cross` artifact — single source of truth enforced
 - [ ] Config changes are backward-compatible with all four subsystems before merging
+
+## Links
+
+- [[iteration]]
+- [[standard]]
+- [[workstream]]

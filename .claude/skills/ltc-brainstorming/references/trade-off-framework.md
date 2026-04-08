@@ -98,6 +98,7 @@ When presenting approaches to the user:
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
 - [[VALIDATE]]
 - [[general-system]]

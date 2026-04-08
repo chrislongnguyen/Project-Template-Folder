@@ -29,6 +29,5 @@
 ## Links
 
 - [[SKILL]]
-- [[dsbv]]
 - [[security]]
 - [[workstream]]

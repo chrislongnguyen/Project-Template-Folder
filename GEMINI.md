@@ -88,15 +88,20 @@ If `./scripts/template-check.sh` exists, run it with `--quiet` at session start.
 
 ## Links
 
+- [[AGENTS]]
 - [[CHANGELOG]]
 - [[DESIGN]]
+- [[VALIDATE]]
 - [[agent-diagnostic]]
 - [[agent-system]]
+- [[architecture]]
 - [[brand-identity]]
 - [[deliverable]]
 - [[general-system]]
+- [[iteration]]
 - [[naming-rules]]
 - [[project]]
 - [[security]]
 - [[security-rules]]
+- [[standard]]
 - [[task]]

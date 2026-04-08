@@ -21,3 +21,7 @@ Turn 4 — Agent asks Force Analysis. PM responds: "I guess everything is a bloc
 - [ ] Agent tone remained collaborative, not frustrated or mechanical
 - [ ] ≤1 question per agent message throughout
 - [ ] Light exit offered (Discovery Complete) — appropriate given low PM engagement
+
+## Links
+
+- [[blocker]]

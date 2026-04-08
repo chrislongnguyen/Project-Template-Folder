@@ -242,10 +242,12 @@ As results arrive:
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[VALIDATE]]
 - [[anti-patterns]]
 - [[documentation]]
 - [[report-generation]]
 - [[report-template]]
+- [[roadmap]]
 - [[task]]

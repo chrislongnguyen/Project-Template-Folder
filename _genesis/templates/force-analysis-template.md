@@ -77,5 +77,6 @@ _[e.g., "Adopt a multi-agent DSBV workflow for all LTC projects."]_
 ## Links
 
 - [[DESIGN]]
-- [[risk-entry-template]]
-- [[dsbv]]
+- [[UBS_REGISTER]]
+- [[UDS_REGISTER]]
+- [[charter]]

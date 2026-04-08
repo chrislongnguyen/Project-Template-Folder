@@ -23,3 +23,9 @@ iteration: 2
 - I = Informed (kept in the loop)
 
 **Downstream reference:** RACI rows in this directory are the authoritative source for `1-ALIGN/` stakeholder maps and `3-PLAN/` risk owner assignments.
+
+## Links
+
+- [[iteration]]
+- [[project]]
+- [[workstream]]

@@ -28,3 +28,13 @@ The most complete skill set is in `.claude/skills/` (32 skills). When AntiGravit
 - `/ltc-brand-identity` — Brand compliance checking
 - `/ltc-naming-rules` — UNG validation
 - `/ltc-rules-compliance` — Multi-domain compliance audit
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[DESIGN]]
+- [[SKILL]]
+- [[iteration]]
+- [[project]]
+- [[security]]

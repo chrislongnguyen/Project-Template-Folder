@@ -63,4 +63,5 @@ Known failure patterns when executing this skill. Update this file when new issu
 - [[classification-guide]]
 - [[friction]]
 - [[idea]]
+- [[project]]
 - [[workstream]]

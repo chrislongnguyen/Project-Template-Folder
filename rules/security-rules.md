@@ -236,12 +236,14 @@ If gitleaks flags a legitimate string (e.g., a test fixture, documentation examp
 
 ## Links
 
+- [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
-- [[security-hierarchy]]
+- [[architecture]]
 - [[documentation]]
 - [[project]]
 - [[security]]
+- [[security-hierarchy]]
 - [[task]]
 - [[workstream]]

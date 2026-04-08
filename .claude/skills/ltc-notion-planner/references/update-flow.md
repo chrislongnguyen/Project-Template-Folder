@@ -85,7 +85,9 @@ Report: `{item} updated → {new status}. Validation: PASS/FAIL`
 
 ## Links
 
+- [[AGENTS]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[blocker]]
+- [[notion-task-protocol]]
 - [[task]]

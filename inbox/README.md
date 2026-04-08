@@ -19,3 +19,8 @@ iteration: 2
 **Triage cadence:** Review weekly. Each item gets routed to a workstream artifact or deleted. An inbox with items older than 2 weeks indicates a triage backlog.
 
 **Naming convention:** `{YYYY-MM-DD}-{short-title}.md`
+
+## Links
+
+- [[iteration]]
+- [[workstream]]

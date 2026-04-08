@@ -96,3 +96,13 @@ What it does:
 
 **"My memory is from a different project path"**
 → The vault is keyed to the absolute path of the repo. If you moved the repo, run setup-member.sh again from the new location.
+
+## Links
+
+- [[CLAUDE]]
+- [[MEMORY-seed]]
+- [[common_pitfalls]]
+- [[key_decisions]]
+- [[learned_patterns]]
+- [[memory-format]]
+- [[project]]

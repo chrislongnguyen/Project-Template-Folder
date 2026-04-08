@@ -119,8 +119,11 @@ Every research report MUST include these sections:
 
 ## Links
 
+- [[AGENTS]]
 - [[DESIGN]]
+- [[EP-13]]
 - [[VALIDATE]]
+- [[architecture]]
 - [[ltc-builder]]
 - [[ltc-planner]]
 - [[ltc-reviewer]]

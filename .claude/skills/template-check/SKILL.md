@@ -79,3 +79,10 @@ If `git fetch template` fails (auth, network, repo not found): report the error 
 ## Argument
 
 $ARGUMENTS
+
+## Links
+
+- [[AGENTS]]
+- [[CLAUDE]]
+- [[project]]
+- [[security]]

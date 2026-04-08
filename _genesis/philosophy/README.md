@@ -43,3 +43,9 @@ _genesis/philosophy/ (root — WHY)
 ## Naming Convention
 
 Philosophy files use descriptive kebab-case: `why-ltc-exists.md`, `learning-as-first-principle.md`.
+
+## Links
+
+- [[iteration]]
+- [[ltc-10-ultimate-truths]]
+- [[ltc-effective-thinking]]

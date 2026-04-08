@@ -159,3 +159,11 @@ _RACI anchors perspective for ALL subsequent pages (P1–P5). UBS/UDS analysis d
 - **Do not generate for Topics 1–5 Page 0.** Copy ALL rows from the parent page instead (Workstream Contract and RACI carry over with the copy).
 - Col 4 and Col 10 from EACH row become role-specific seeds for Pages 1 and 2.
 - **Every cell begins with its CAG tag.** See `engine/rules/phase-c-structure.md` §2.
+
+## Links
+
+- [[blocker]]
+- [[codex]]
+- [[methodology]]
+- [[roadmap]]
+- [[workstream]]

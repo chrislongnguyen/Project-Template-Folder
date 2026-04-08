@@ -322,12 +322,12 @@ If a collision is detected, disambiguate by adjusting NAME. As a last resort, ap
 
 ## Links
 
-- [[naming-convention]]
 - [[VALIDATE]]
 - [[blocker]]
 - [[deliverable]]
 - [[documentation]]
 - [[increment]]
+- [[naming-convention]]
 - [[project]]
 - [[security]]
 - [[standard]]

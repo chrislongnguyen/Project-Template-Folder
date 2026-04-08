@@ -35,5 +35,6 @@ Known failure patterns when executing this skill. Update this file when new issu
 ## Links
 
 - [[SKILL]]
+- [[memory-vault-setup]]
 - [[project]]
 - [[session-summary]]

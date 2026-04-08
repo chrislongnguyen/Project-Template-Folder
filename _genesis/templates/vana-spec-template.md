@@ -529,5 +529,6 @@ sub_system:
 - [[blocker]]
 - [[general-system]]
 - [[iteration]]
+- [[schema]]
 - [[task]]
 - [[workstream]]
