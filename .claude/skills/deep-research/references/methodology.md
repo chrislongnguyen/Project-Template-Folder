@@ -72,7 +72,7 @@ Before launching searches, decompose the research question into 5-10 independent
 
 **Step 1: Launch ALL searches concurrently (single message)**
 
-Route each search angle to the best available tool: Exa MCP (semantic, code, company, crawl) when available, WebSearch for breaking news and domain-filtered queries, WebFetch as crawl fallback. Never mix parameter styles between tools.
+Route each search angle to the best available tool: Exa MCP (semantic, code, company, crawl) when available, WebFetch as crawl fallback. If Exa unavailable, degrade to QMD local-sources-only. Never mix parameter styles between tools.
 
 **Step 2: Spawn parallel deep-dive agents**
 
@@ -115,7 +115,7 @@ As results arrive:
 - Flag low-credibility sources (<40) for additional verification
 - Prioritize high-credibility sources (>80) for core claims
 
-**Tool selection:** Route each search angle to the best available tool (Exa for semantic/company/code, WebSearch for news/date-filtered, WebFetch as crawl fallback). Spawn 3-5 parallel retrieval agents via Task tool.
+**Tool selection:** Route each search angle to the best available tool (Exa for semantic/company/code, WebFetch as crawl fallback). If Exa unavailable, degrade to QMD local-sources-only. Spawn 3-5 parallel retrieval agents via Task tool.
 
 **Output:** Organized information repository with source tracking, credibility scores, and coverage map
 

@@ -1,23 +1,23 @@
 ---
-version: "1.2"
+version: "1.3"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-08
 name: deep-research
 description: Multi-source research using the 12-question CODE framework (Knowledge → Understanding → Wisdom → Expertise) with Blue-Red team falsification. 4 modes — research:lite (2-5min, ~70K tokens), research:mid (5-10min, ~200K tokens), research:deep (10-20min, ~350K tokens), research:full (20-45min, ~600K tokens). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
 agents:
   research: ltc-explorer
-tool-preference: "Exa MCP and WebSearch are peers. Exa for speed; WebSearch for source quality and academic rigor."
+tool-preference: "Exa MCP is primary for external search. If Exa unavailable, degrade to QMD local-sources-only."
 ---
 # Deep Research
 
 **Agent dispatch:** For research sub-agent spawning, use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) — Haiku model, optimized for fast wide-net search. **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
-**Tool preference:** Exa MCP and WebSearch are both available for external research. Exa is faster (48% fewer tool calls); WebSearch finds higher-quality sources (academic papers, official docs). Choose based on task requirements.
+**Tool preference:** Exa MCP is the primary external search tool. If Exa is unavailable, degrade to QMD (local-sources-only).
 
 ## Decision Tree (Execute First)
 
 ```
 Request Analysis
-├─ Simple lookup? → STOP: Use WebSearch, not this skill
+├─ Simple lookup? → STOP: Use Exa or standard tools, not this skill
 ├─ Debugging? → STOP: Use standard tools, not this skill
 ├─ Binary hypothesis to test? → Use SPIKE template (templates/spike-template.md)
 │   ("Can we...?" / "Does X work?" / "Is Y feasible?")
@@ -163,7 +163,7 @@ Report structure defined by [report-template.md](./templates/report-template.md)
 - Scripts not found → perform manual verification: check each [N] has a Sources entry, verify section completeness against report-template.md, assess credibility in prose. Note: "Validation scripts unavailable — manual verification performed" in Methodology
 - PDF skill unavailable → deliver Markdown + HTML, note PDF pending
 - Critic agent fails (Phase 6) → re-prompt once with specific sections. If second attempt fails: perform self-critique, document limitation ("No independent critic — self-review only") in Methodology
-- Search tools unavailable (Exa/WebSearch) → stop, report to user. Research cannot proceed without search capability
+- Search tools unavailable (Exa down + QMD down) → stop, report to user. Research cannot proceed without search capability
 - Output directory creation fails → save to current working directory, report path to user
 
 ---

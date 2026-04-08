@@ -36,7 +36,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 ## 4. Tool unavailability not handled
 
-**What happens:** EXA or WebSearch is unavailable and sub-agent produces empty or hallucinated research instead of falling back.
+**What happens:** EXA is unavailable and sub-agent produces empty or hallucinated research instead of falling back to QMD.
 
 **How to detect:** Output files with 0 citations or fabricated URLs.
 

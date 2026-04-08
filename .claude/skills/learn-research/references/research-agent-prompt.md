@@ -31,7 +31,7 @@ Load and follow `_genesis/templates/research-methodology.md`:
 - Anti-hallucination: FFS quality gate, credibility tracking, red team critique
 
 For each search angle:
-1. Run WebSearch (or EXA if available)
+1. Run EXA MCP (primary external search)
 2. WebFetch the 2-3 most relevant pages
 3. Extract findings, data points, frameworks
 4. Record source URL and credibility tier (academic > industry > vendor blog)
@@ -84,8 +84,7 @@ Cover BOTH R ({raci_r}) and A ({raci_a}) perspectives in every section.
 
 - If a search angle returns nothing, try 2 alternative phrasings
 - Always write the output file even if partial — never silently fail
-- If EXA unavailable, use WebSearch for all queries
-- If WebSearch unavailable, use QMD (local KB) and flag "local-sources-only"
+- If EXA unavailable, use QMD (local KB) and flag "local-sources-only"
 - If ALL tools unavailable, STOP and report — do not generate empty research
 
 ## Completion Report

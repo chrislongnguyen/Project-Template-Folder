@@ -1,7 +1,7 @@
 ---
-version: "1.4"
+version: "1.5"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-08
 name: learn-research
 description: >
   Use when /learn:input is complete and all active topics need parallel research.
@@ -10,13 +10,13 @@ argument-hint: <system-slug>
 allowed-tools: Read, Glob, Write, Bash, Agent
 agents:
   research: ltc-explorer
-tool-preference: "Exa MCP and WebSearch are peers for external search. QMD MCP for project knowledge."
+tool-preference: "Exa MCP is primary for external search. If Exa unavailable, degrade to QMD local-sources-only."
 ---
 # /learn:research — Parallel Research Pipeline
 
 Spawn one sub-agent per topic — all topics launch simultaneously.
 
-**Agent dispatch:** Use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) for each research sub-agent. Haiku model, read-only tools, Exa MCP or WebSearch (both available). **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
+**Agent dispatch:** Use `ltc-explorer` (`.claude/agents/ltc-explorer.md`) for each research sub-agent. Haiku model, read-only tools, Exa MCP + QMD MCP. **Context packaging:** Use `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY).
 
 > Load `_genesis/templates/research-methodology.md` before executing research.
 
@@ -57,7 +57,7 @@ For each active topic, interpolate the sub-agent prompt from **[references/resea
 Launch 1 Agent tool call per topic in a SINGLE message — all topics research simultaneously.
 
 Each sub-agent receives the interpolated prompt from `references/research-agent-prompt.md`, wrapped in the context packaging template (`.claude/skills/dsbv/references/context-packaging.md` — EO, INPUT, EP, OUTPUT, VERIFY). Sub-agent config:
-- `subagent_type`: `ltc-explorer` (`.claude/agents/ltc-explorer.md` — Haiku, read-only, Exa or WebSearch+QMD)
+- `subagent_type`: `ltc-explorer` (`.claude/agents/ltc-explorer.md` — Haiku, read-only, Exa+QMD)
 - `description`: `"Research T{n} {topic_name}"`
 - `run_in_background`: `false`
 
@@ -65,8 +65,7 @@ Each sub-agent receives the interpolated prompt from `references/research-agent-
 
 | Tool | Fallback | Flag |
 |---|---|---|
-| EXA unavailable | WebSearch for all queries | — |
-| WebSearch unavailable | QMD (local KB) only | `local-sources-only` |
+| EXA unavailable | QMD (local KB) only | `local-sources-only` |
 | QMD unavailable | Web sources only | `no-local-kb` |
 | ALL tools unavailable | **STOP** — report to user, do not generate empty research | — |
 
