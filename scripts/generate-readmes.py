@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 1.1 | status: draft | last_updated: 2026-04-06
+# version: 1.2 | status: draft | last_updated: 2026-04-09
 """Generate README shells from readme-blueprint.md for all directories.
 
 Writes ONLY shell structure (frontmatter + section headers + placeholders).
@@ -16,6 +16,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TODAY = date.today().isoformat()
 ITERATION = 2
 VERSION = f"{ITERATION}.0"
+
+# ── Bases file mapping (actual filenames in _genesis/obsidian/bases/) ─
+BASES_FILE = {
+    "1-ALIGN": "08-alignment-overview.base",
+    "2-LEARN": "09-learning-overview.base",
+    "3-PLAN": "10-planning-overview.base",
+    "4-EXECUTE": "11-execution-overview.base",
+    "5-IMPROVE": "12-improvement-overview.base",
+}
 
 # ── Workstream metadata ──────────────────────────────────────────────
 
@@ -127,26 +136,6 @@ GENESIS_DIRS = {
     "_genesis/templates": {
         "purpose": "DSBV phase templates, VANA-SPEC, ADR, research, review, and 15+ artifact templates",
         "quote": "Is there a template for this, or are we inventing from scratch?",
-    },
-    "_genesis/obsidian/vault/agents": {
-        "purpose": "Agent-generated notes and artifacts surfaced in the Obsidian vault",
-        "quote": "What has the AI agent produced that needs human review?",
-    },
-    "_genesis/obsidian/vault/daily": {
-        "purpose": "Daily notes — learning log, reflections, and captured observations",
-        "quote": "What did we learn or decide today?",
-    },
-    "_genesis/obsidian/vault/inbox": {
-        "purpose": "Unsorted captures — quick notes, links, and ideas awaiting triage",
-        "quote": "Has everything in the inbox been triaged to its proper location?",
-    },
-    "_genesis/obsidian/vault/projects": {
-        "purpose": "Project-level notes and dashboards within the Obsidian vault",
-        "quote": "What is the current state of each active project?",
-    },
-    "_genesis/obsidian/vault/research": {
-        "purpose": "Research captures from external sources — books, articles, courses, conversations",
-        "quote": "What external knowledge has been captured and is ready for synthesis?",
     },
 }
 
@@ -267,7 +256,7 @@ PD-{name}  →  DP-{name}  →  DA-{name}  →  IDM-{name}
 
 ## DASHBOARDS
 
-![[{name} Overview.base]]
+![[{BASES_FILE[ws_key]}]]
 '''
 
 
@@ -365,7 +354,7 @@ PD-LEARN  →  DP-LEARN  →  DA-LEARN  →  IDM-LEARN
 
 ## DASHBOARDS
 
-![[LEARN Overview.base]]
+![[{BASES_FILE["2-LEARN"]}]]
 '''
 
 

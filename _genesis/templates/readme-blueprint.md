@@ -162,7 +162,8 @@ PD-{WS_NAME}  →  DP-{WS_NAME}  →  DA-{WS_NAME}  →  IDM-{WS_NAME}
 
 ## DASHBOARDS
 
-![[{WS_NAME} Overview.base]]
+![[{BASES_FILENAME}]]
+<!-- Actual bases filenames: _genesis/obsidian/bases/{NN}-{name}-overview.base -->
 ```
 
 ---
@@ -314,3 +315,21 @@ Is it the repo root README?
                           └─ YES → Type B
                           └─ NO  → Type C
 ```
+
+## Links
+
+- [[BLUEPRINT]]
+- [[DESIGN]]
+- [[README]]
+- [[SEQUENCE]]
+- [[SKILL]]
+- [[VALIDATE]]
+- [[charter]]
+- [[deliverable]]
+- [[design-template]]
+- [[dsbv-process]]
+- [[iteration]]
+- [[project]]
+- [[review-template]]
+- [[standard]]
+- [[workstream]]

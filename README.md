@@ -184,9 +184,9 @@ Notion/ClickUp tasks              /vault-capture insights
 Every workstream and subsystem is tagged with frontmatter (`work_stream`, `sub_system`, `status`, `iteration`). Obsidian Bases reads these tags to generate live, filterable views:
 
 ```
-![[ALIGN Overview.base]]     ← Shows all ALIGN artifacts by status
-![[LEARN Overview.base]]     ← Shows learning pipeline progress
-![[Execution Overview.base]] ← Shows delivery status across subsystems
+![[08-alignment-overview.base]]     ← Shows all ALIGN artifacts by status
+![[09-learning-overview.base]]     ← Shows learning pipeline progress
+![[11-execution-overview.base]] ← Shows delivery status across subsystems
 ```
 
 No manual status tracking. Write your artifacts with proper frontmatter → dashboards update automatically.
@@ -400,34 +400,41 @@ _Template maintained by OPS Process. Source: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](h
 ## Links
 
 - [[AGENTS]]
-- [[brand-guide]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
-- [[codex]]
 - [[DESIGN]]
-- [[dsbv-process]]
 - [[GEMINI]]
-- [[migration-guide]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
-- [[_TEMPLATE]]
+- [[_template]]
+- [[adr]]
 - [[agent-diagnostic]]
+- [[agent-dispatch]]
 - [[agent-system]]
+- [[architecture]]
 - [[brand-identity]]
-- [[dsbv]]
+- [[charter]]
+- [[codex]]
 - [[friction]]
 - [[general-system]]
+- [[idea]]
 - [[iteration]]
 - [[ltc-ai-agent-system-project-template-guide]]
+- [[ltc-builder]]
+- [[ltc-explorer]]
+- [[ltc-planner]]
+- [[ltc-reviewer]]
 - [[memory-format]]
 - [[methodology]]
+- [[migration-guide]]
+- [[naming-convention]]
 - [[naming-rules]]
 - [[project]]
+- [[roadmap]]
 - [[security]]
 - [[security-rules]]
 - [[session-summary]]
 - [[standard]]
-- [[template-version]]
 - [[versioning]]
 - [[workstream]]
