@@ -1,5 +1,5 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
 last_updated: 2026-04-08
 name: dsbv
@@ -93,13 +93,11 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 2. Look up the Design template: grep `## Routing: {workstream}` in
    `_genesis/frameworks/alpei-dsbv-process-map.md`, Design row, Template column.
    Default: `design-template.md` if routing table not yet populated for this workstream.
-3. Draft DESIGN.md: artifact inventory, per-artifact purpose, success rubric, acceptance criteria
-4. **Alignment check (mandatory before presenting):**
-   - For every completion condition: which artifact satisfies it? Write the mapping.
-   - If any condition has no artifact → add the missing artifact to the list.
-   - If any artifact has no condition → either add a condition or justify its exclusion.
-   - Present the alignment table to the user as part of DESIGN.md.
+3. **Dispatch to ltc-planner.** Context-package the design problem using the 5-field template (`references/context-packaging.md`): EO = workstream intent, INPUT = charter + template + prior decisions, EP = design quality checks from planner agent file, OUTPUT = DESIGN.md in output contract envelope, VERIFY = alignment check (zero orphans). The planner drafts DESIGN.md — do NOT produce it inline.
+4. Write the planner's returned DESIGN.md content to `{workstream-number}-{WORKSTREAM}/DESIGN.md`
 5. Present DESIGN.md to the user for review
+
+**EXCEPTION:** If the workstream has ≤2 artifacts AND the user has already stated the full design intent in this session, the orchestrator MAY produce DESIGN.md inline after confirming with the user: "This is a simple design — produce inline or dispatch planner?"
 
 **Output:** `{workstream-number}-{WORKSTREAM}/DESIGN.md` (e.g., `1-ALIGN/DESIGN.md`)
 
@@ -114,10 +112,11 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
 
 **Steps:**
 1. Read the approved DESIGN.md
-2. Identify artifact dependencies (what must exist before what)
-3. Decompose into tasks — start coarse, decompose further only if a task exceeds ~1 hour human-equivalent effort
-4. Size each task, assign acceptance criteria
-5. Present SEQUENCE.md to the user
+2. **Dispatch to ltc-planner.** Context-package using the 5-field template (`references/context-packaging.md`): EO = order the work for this workstream, INPUT = approved DESIGN.md + workstream context, EP = dependency mapping + sizing from planner agent file, OUTPUT = SEQUENCE.md in output contract envelope, VERIFY = all DESIGN.md artifacts have ≥1 task, no circular dependencies. The planner drafts SEQUENCE.md — do NOT produce it inline.
+3. Write the planner's returned SEQUENCE.md content to `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
+4. Present SEQUENCE.md to the user
+
+**EXCEPTION:** Same as Phase 1 — if ≤2 artifacts and user confirms inline, orchestrator may produce directly.
 
 **Output:** `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
 
@@ -438,25 +437,33 @@ When the UserPromptSubmit hook injects QMD auto-recall context, it should filter
 
 ## Links
 
-- [[alpei-dsbv-process-map]]
+- [[AGENTS]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[agent-dispatch]]
+- [[agent-system]]
+- [[alpei-dsbv-process-map]]
+- [[architecture]]
+- [[blocker]]
+- [[charter]]
+- [[context-packaging]]
+- [[deliverable]]
 - [[design-template]]
 - [[dsbv-eval-template]]
 - [[dsbv-process]]
-- [[SEQUENCE]]
-- [[VALIDATE]]
-- [[version-registry]]
-- [[agent-dispatch]]
-- [[agent-system]]
-- [[context-packaging]]
-- [[deliverable]]
-- [[dsbv]]
+- [[filesystem-routing]]
 - [[general-system]]
 - [[gotchas]]
+- [[iteration]]
 - [[ltc-builder]]
+- [[ltc-planner]]
 - [[ltc-reviewer]]
 - [[phase-execution-guide]]
+- [[schema]]
+- [[simple]]
 - [[task]]
+- [[version-registry]]
 - [[workstream]]
