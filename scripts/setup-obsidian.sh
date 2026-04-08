@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.4 | status: draft | last_updated: 2026-04-06
+# version: 2.5 | status: draft | last_updated: 2026-04-09
 # setup-obsidian.sh — one-command installer for LTC Obsidian workspace
 # Copies Bases and Templater templates into an Obsidian vault's .obsidian/ directory
 
@@ -64,11 +64,10 @@ else
 fi
 
 # Create a minimal community-plugins.json hint file in .obsidian/
-# This lists required plugins — users still need to install from Obsidian marketplace
+# This lists required COMMUNITY plugins — Bases is a core feature since Obsidian v1.8+
 PLUGINS_FILE="$TARGET_OBSIDIAN/community-plugins.json"
 cat > "$PLUGINS_FILE" << 'EOF'
 [
-  "obsidian-bases",
   "templater-obsidian",
   "dataview",
   "obsidian-kanban"
@@ -98,13 +97,13 @@ echo "  Plugin hint: $PLUGINS_FILE"
 echo ""
 echo "Next steps:"
 echo "  1. Open Obsidian and point to: $VAULT_ROOT"
-echo "  2. Install plugins from Settings → Community Plugins:"
-echo "     - Obsidian Bases"
+echo "  2. Bases is a core feature (v1.8+) — no install needed"
+echo "  3. Install community plugins from Settings → Community Plugins:"
 echo "     - Templater"
 echo "     - Dataview"
 echo "     - Obsidian Kanban"
-echo "  3. Reload Obsidian (Ctrl+R or Cmd+R)"
-echo "  4. Open _genesis/obsidian/bases/ — dashboards will load"
-echo "  5. New note? Use Templater → ues-deliverable or daily-note template"
+echo "  4. Reload Obsidian (Ctrl+R or Cmd+R)"
+echo "  5. Open _genesis/obsidian/bases/ — dashboards will load"
+echo "  6. New note? Use Templater → ues-deliverable or daily-note template"
 
 exit 0
