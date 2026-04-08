@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-09
 owner: "Long Nguyen"
 type: template
 work_stream: 1-ALIGN
@@ -53,12 +53,14 @@ _[Describe the expected outcome here.]_
 
 ## VANA Criteria
 
-| Criterion | Statement |
-|-----------|-----------|
-| **V** (Value) | _[What value does this deliver and to whom?]_ |
-| **A** (Acceptance) | _[Binary test: how do we know it is done?]_ |
-| **N** (Needs) | _[What resources / dependencies are required?]_ |
-| **A** (Assumptions) | _[What must be true for this charter to hold?]_ |
+> VANA = Verb + Adverb + Noun + Adjective. Decomposes every requirement into what the system does, how well, to what, and with what quality. Ref: `_genesis/frameworks/ltc-ues-versioning.md`
+
+| Criterion | Prompt | Example |
+|-----------|--------|---------|
+| **V** (Verb) | _[What does the system do? Action verb.]_ | "Ingest", "Route", "Validate" |
+| **A** (Adverb) | _[How effectively? Measurable qualifier.]_ | "within 2s", "with ≥95% accuracy" |
+| **N** (Noun) | _[What does it act on? Input/object.]_ | "bank statements", "task records" |
+| **A** (Adjective) | _[Quality attributes of the output.]_ | "auditable", "idempotent", "branded" |
 
 ## Design Principles
 
@@ -77,7 +79,9 @@ _[Describe the expected outcome here.]_
 ## Links
 
 - [[DESIGN]]
-- [[design-template]]
-- [[dsbv]]
+- [[VALIDATE]]
+- [[charter]]
 - [[iteration]]
+- [[ltc-ues-versioning]]
 - [[project]]
+- [[task]]
