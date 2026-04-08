@@ -1,7 +1,7 @@
 ---
-version: "1.4"
+version: "1.5"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-08
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---
@@ -156,7 +156,7 @@ For the current workstream's Build-phase template and agent, look up:
    a. Dispatch to `ltc-builder` with context package (see `references/context-packaging.md`)
    b. ltc-builder self-verifies against task acceptance criteria
    c. Checkpoint commit
-2. When all tasks complete, report status
+2. When all tasks complete, run Generator/Critic loop (see below)
 
 If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT retry more than once. Report to user with: what was attempted, what failed, the error output. User decides whether to retry, simplify scope, or skip to next artifact.
 
@@ -166,8 +166,78 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 3. Opus synthesizes: selects best elements from each draft, resolves conflicts
 4. Present synthesis to the user
 5. Checkpoint commit
+6. Run Generator/Critic loop on synthesized output (see below)
 
-**Gate G3:** "Build is complete. All tasks in SEQUENCE.md are done. Here is what was produced: [file list]. Ready to proceed to Validate?"
+### Generator/Critic Loop
+
+After Build completes (single or multi-agent), dispatch `ltc-reviewer` to validate. If FAIL items exist, re-dispatch `ltc-builder` to fix them. Repeat until all PASS or max iterations reached.
+
+**Parameters:**
+- `max_iterations`: 3 (builder + reviewer = 1 iteration)
+- `exit_condition`: all criteria PASS in VALIDATE.md
+- `cost_cap`: ~$0.06 per iteration (Sonnet builder + Opus reviewer)
+
+**Loop flow:**
+
+```
+iteration = 0
+WHILE iteration < max_iterations:
+  1. Dispatch ltc-reviewer with:
+     - DESIGN.md (the contract)
+     - All produced artifacts
+     - Context package per references/context-packaging.md
+  2. Reviewer produces VALIDATE.md v2 (Aggregate Score + FAIL items)
+  3. IF all PASS → EXIT loop → proceed to Gate G3
+  4. IF FAIL items exist:
+     a. Format FAIL items as builder EI:
+        - For each FAIL-{N}: file, criterion, expected, actual, fix instruction, severity, AC
+        - Include only FAIL items (not PASS — builder already produced those correctly)
+     b. Dispatch ltc-builder with:
+        - FAIL items as structured INPUT
+        - Original SEQUENCE.md task context
+        - EP: "Fix ONLY the listed FAIL items. Do NOT modify passing artifacts."
+     c. Builder fixes and reports completion
+     d. iteration += 1
+  5. IF iteration == max_iterations AND FAIL items remain:
+     ESCALATE to Human Director:
+       "Generator/Critic loop exhausted after {max_iterations} iterations.
+        Remaining FAIL items: {list with FAIL-{N} details}
+        Diagnostic: {circuit breaker analysis — see below}
+        Action required: human decision to fix, override, or descope."
+```
+
+**Cost tracking:** Log per-iteration cost (builder tokens + reviewer tokens). If cumulative cost exceeds 3x cost_cap, warn before next iteration.
+
+### Circuit Breaker + Error Classification
+
+Prevents infinite loops and classifies errors for intelligent retry decisions.
+
+**Error types:**
+
+| Type | Description | Action | Example |
+|------|-------------|--------|---------|
+| SYNTACTIC | Formatting, structure, missing field | Auto-retry (builder can fix) | Missing frontmatter, broken markdown |
+| SEMANTIC | Wrong content, misunderstood requirement | Escalate to orchestrator | Builder implemented wrong algorithm |
+| ENVIRONMENTAL | Tool failure, file system issue | Fix environment + retry | Permission denied, disk full, script not found |
+| SCOPE | Requirement exceeds agent capability | Escalate to human | Task needs research (builder cannot do) |
+
+**Hard stops (circuit breakers):**
+1. **Same FAIL persists 2 iterations** → ESCALATE. The builder cannot fix this issue — it needs human or planner intervention.
+2. **2 consecutive agent failures** (tool errors, crashes, empty output) → STOP pipeline. Environment is likely degraded.
+3. **All FAIL items are SEMANTIC** → ESCALATE immediately (do not retry). Semantic errors indicate misunderstanding, not execution failure.
+
+**Diagnostic order** (when circuit breaker trips):
+```
+EP → Input → EOP → EOE → EOT → Agent
+1. EP:    Were the principles clear? Did builder receive the right constraints?
+2. Input: Was the context package complete? Were file paths correct?
+3. EOP:   Was the procedure correct? Did SEQUENCE.md have the right steps?
+4. EOE:   Is the environment healthy? Do scripts exist and run?
+5. EOT:   Are tools working? Did Read/Write/Edit succeed?
+6. Agent: Is the model producing coherent output? (Last resort — blame the model only after ruling out 1-5)
+```
+
+**Gate G3:** "Build is complete. All tasks in SEQUENCE.md are done. Generator/Critic loop: {iterations} iterations, {pass}/{total} criteria PASS. Here is what was produced: [file list]. Ready to proceed to Validate?"
 
 ## Phase 4: VALIDATE
 
@@ -191,6 +261,31 @@ If Build fails (tool error, agent confusion, repeated failures): Stop. Do NOT re
 **Output:** `{workstream-number}-{WORKSTREAM}/VALIDATE.md` — validation report with pass/fail per criterion
 
 **Gate G4:** "Validation complete. Results: [pass/fail summary]. [If all pass:] Ready to mark this workstream as complete? [If any fail:] These items need attention: [list]. Want to fix them now?"
+
+### Structured Gate Reports
+
+Every gate presentation (G1-G4) MUST use this template for consistent human review:
+
+```
+GATE: G{N} ({phase}) | Workstream: {name}
+ACs: {pass}/{total} | Risk flags: {count}
+Action: APPROVE / REVISE / ESCALATE
+
+[If REVISE or ESCALATE:]
+  Items requiring attention:
+  - {item 1}: {reason} (severity: blocker/cosmetic)
+  - {item 2}: {reason} (severity: blocker/cosmetic)
+
+[Cost summary if multi-agent:]
+  Builder dispatches: {N} | Reviewer dispatches: {M}
+  Loop iterations: {K} | Estimated token cost: ~${X.XX}
+```
+
+**Gate-specific additions:**
+- **G1 (Design):** Include alignment table (conditions vs artifacts, 0 orphans)
+- **G2 (Sequence):** Include dependency count and critical path length
+- **G3 (Build):** Include Generator/Critic loop summary (iterations, FAIL items fixed)
+- **G4 (Validate):** Include Aggregate Score from VALIDATE.md v2
 
 ## Status Command
 
@@ -255,6 +350,91 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 Full process specification: `_genesis/templates/dsbv-process.md`
 
 **GATE — Verify:** At phase completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the phase is NOT complete. See gotchas.md for LT-1 hallucination pattern.
+
+## Parallel Dispatch Protocol
+
+When tasks in SEQUENCE.md are marked independent (no dependency edges between them), they MAY be dispatched simultaneously to reduce wall-clock time.
+
+**Independence declaration in SEQUENCE.md:**
+Tasks are independent when they have no shared Write targets and no data dependency. SEQUENCE.md should mark this explicitly:
+
+```markdown
+## Round N — {description} (parallel)
+- T-{X}: {task} [independent]
+- T-{Y}: {task} [independent]
+- T-{Z}: {task} [depends on T-{X}]  ← sequential within round
+```
+
+**Dispatch rules:**
+1. Only dispatch tasks marked `[independent]` in parallel
+2. Each parallel task gets its own `ltc-builder` dispatch with full context package
+3. Tasks with `[depends on ...]` wait for their dependency to complete
+4. If ANY parallel task fails, other parallel tasks continue — failures are collected and reported together
+5. Generator/Critic loop runs AFTER all parallel tasks in a round complete (not per-task)
+
+**Cost estimate for parallel dispatch:**
+```
+N independent tasks × (1 builder dispatch + potential reviewer loop)
+= N × ~$0.02-0.04 per task
+Show estimate before dispatch. Wait for human approval if N > 3.
+```
+
+**Merge conflicts:** If two parallel builders modify the same file (should not happen if independence is correct), the second commit will conflict. This indicates a SEQUENCE.md dependency error — escalate to planner.
+
+## Pipeline State Persistence
+
+DSBV pipeline state is checkpointed after every phase transition and sub-agent dispatch. This enables crash recovery and session resume.
+
+**Schema** (`pipeline.json` — written by `state-saver.sh`, read by `session-reconstruct.sh`):
+
+```json
+{
+  "workstream": "4-EXECUTE",
+  "phase": "build",
+  "task_id": "T3.2",
+  "completed_tasks": ["T1.1", "T1.2", "T2.1"],
+  "last_sub_agent": "ltc-builder",
+  "last_result": "PASS",
+  "loop_iteration": 1,
+  "fail_items": [],
+  "updated": "2026-04-08T14:30:00Z"
+}
+```
+
+**Fields:**
+- `workstream` — current ALPEI workstream (e.g., `1-ALIGN`, `4-EXECUTE`)
+- `phase` — current DSBV phase: `design` | `sequence` | `build` | `validate`
+- `task_id` — current task from SEQUENCE.md (e.g., `T3.2`)
+- `completed_tasks` — list of task IDs that have passed all ACs
+- `last_sub_agent` — which agent was last dispatched
+- `last_result` — `PASS` | `FAIL` | `PARTIAL` | `ERROR`
+- `loop_iteration` — current Generator/Critic loop iteration (0 if not in loop)
+- `fail_items` — array of FAIL-{N} items from reviewer (empty if PASS)
+- `updated` — ISO 8601 timestamp of last update
+
+**Write path:** `state-saver.sh` (PostToolUse hook) updates the timestamp on every file write. Phase transitions explicitly write the full state.
+
+**Read path:** `session-reconstruct.sh` (SessionStart hook) emits pipeline state as part of session context, enabling the orchestrator to resume mid-pipeline after a crash or context rotation.
+
+## Auto-Recall Relevance Filtering (Spec)
+
+When the UserPromptSubmit hook injects QMD auto-recall context, it should filter by task intent to reduce noise and token waste.
+
+**Intent extraction:** Parse the user message for task-type signals:
+- "design", "plan", "what should" → intent: `design`
+- "build", "create", "write", "implement" → intent: `build`
+- "review", "validate", "check" → intent: `validate`
+- "research", "explore", "find" → intent: `research`
+- Default → intent: `general`
+
+**QMD query:** Pass `intent` parameter to QMD query to weight results toward relevant topic files.
+
+**Token budget adjustment:**
+- Relevance score >= 0.5 → inject up to 2000 tokens of auto-recall context
+- Relevance score < 0.5 → reduce injection to 1000 tokens max
+- No relevant results → skip injection entirely (save tokens for the actual task)
+
+**Implementation note:** This spec is for the UserPromptSubmit hook script (thinking-modes.sh or a dedicated auto-recall hook). The hook is outside sub-agent scope — orchestrator implements this in the main session hook configuration.
 
 ## Links
 

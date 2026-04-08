@@ -1,7 +1,7 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-08
 ---
 # Context Packaging Template — Sub-Agent Invocation
 
@@ -300,6 +300,57 @@ Consumed by: human for final approval.
 ```
 
 ---
+
+## Tool Call Budgets
+
+Add `max_tool_calls` to the Budget sub-section of INPUT to prevent unbounded tool usage by sub-agents. This caps the number of tool invocations before the agent must report back, preventing runaway loops and token waste.
+
+**Default budgets by agent:**
+
+| Agent | Default max_tool_calls | Rationale |
+|-------|----------------------|-----------|
+| ltc-builder | 50 | Needs Read + Write + Edit + Grep + Bash for artifact production |
+| ltc-reviewer | 30 | Needs Read + Glob + Grep + Bash for evidence gathering |
+| ltc-explorer | 20 | Read-only exploration; should be focused and fast |
+| ltc-planner | 40 | Read + design synthesis; moderate tool usage |
+
+**Budget field with max_tool_calls:**
+```markdown
+### Budget
+~30K tokens. Only the referenced files.
+max_tool_calls: 50
+```
+
+**Enforcement:** Agent should self-track tool call count. If approaching the budget limit (80%), prioritize remaining work and report partial completion rather than exceeding the budget silently.
+
+**Override:** Orchestrator may set a custom budget per dispatch when the task is known to be tool-heavy (e.g., large multi-file edits) or tool-light (e.g., single file review).
+
+## EP Task-Type Filtering
+
+Not all EPs apply to every task. Dumping all 10+ EPs into a context package wastes tokens and dilutes focus (EP-04: Signal Over Volume). Map task type to the 2-3 most relevant EPs.
+
+**EP-to-task-type mapping:**
+
+| Task Type | Applicable EPs | Why These |
+|-----------|---------------|-----------|
+| Research | EP-01 (Brake Before Gas), EP-04 (Signal Over Volume), EP-08 (Economy) | Research needs caution (EP-01), focused scope (EP-04), token efficiency (EP-08) |
+| Design | EP-01 (Brake Before Gas), EP-05 (Gates Before Guides), EP-09 (Decompose), EP-10 (Define Done) | Design needs caution (EP-01), deterministic gates (EP-05), decomposition (EP-09), testable criteria (EP-10) |
+| Build | EP-01 (Brake Before Gas), EP-05 (Gates Before Guides), EP-10 (Define Done), EP-14 (Script-First) | Build needs stop-on-block (EP-01), routing boundaries (EP-05), AC verification (EP-10), script validation (EP-14) |
+| Validate | EP-01 (Brake Before Gas), EP-10 (Define Done), EP-12 (Evidence-Based) | Validate needs caution (EP-01), criterion matching (EP-10), file-path evidence (EP-12) |
+
+**Usage in context package:**
+```markdown
+## 3. EP — Principles & Constraints
+
+### Applicable EPs
+Task type: Build
+- EP-10 (Define Done): ACs below are the contract
+- EP-05 (Gates Before Guides): routing boundaries enforced
+- EP-14 (Script-First): run validation scripts, don't rely on judgment
+(Filtered per EP task-type mapping — see context-packaging.md)
+```
+
+**Rule:** Include at most 4 EPs per context package. If you need more, the task is likely too broad and should be decomposed (EP-09).
 
 ## Anti-Patterns → EP Violations
 
