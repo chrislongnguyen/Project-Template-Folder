@@ -50,4 +50,23 @@ TIMESTAMP=$(date +%H:%M:%S)
   git log --oneline -5 2>/dev/null || true
 } > "$STATE_FILE"
 
+# Pipeline state persistence (T-C8: DSBV pipeline checkpoint)
+PIPELINE_DIR="$STATE_DIR"
+PIPELINE_FILE="$PIPELINE_DIR/pipeline.json"
+if [[ -f "$PIPELINE_FILE" ]]; then
+  # Update timestamp in existing pipeline state
+  python3 -c "
+import json, sys
+from datetime import datetime, timezone
+try:
+    with open('$PIPELINE_FILE') as f:
+        state = json.load(f)
+    state['updated'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    with open('$PIPELINE_FILE', 'w') as f:
+        json.dump(state, f, indent=2)
+except Exception:
+    pass
+" 2>/dev/null || true
+fi
+
 exit 0

@@ -80,6 +80,32 @@ emit_cross_project() {
   fi
 }
 
+emit_pipeline_state() {
+  local state_dir="$HOME/.claude/state"
+  [[ -d "$state_dir" ]] || state_dir="$(git rev-parse --show-toplevel 2>/dev/null)/.claude/state" 2>/dev/null || return 0
+  local pipeline_file
+  # Check vault path first (state-saver writes here)
+  for candidate in "$HOME/LTC/LongHNguyen/07-Claude/state/pipeline.json" "$state_dir/pipeline.json"; do
+    if [[ -f "$candidate" ]]; then
+      pipeline_file="$candidate"
+      break
+    fi
+  done
+  [[ -n "${pipeline_file:-}" && -f "$pipeline_file" ]] || return 0
+  echo "## Pipeline State"
+  python3 -c "
+import json
+with open('$pipeline_file') as f:
+    s = json.load(f)
+print(f\"Workstream: {s.get('workstream','?')} | Phase: {s.get('phase','?')} | Task: {s.get('task_id','?')}\")
+print(f\"Last agent: {s.get('last_sub_agent','?')} | Result: {s.get('last_result','?')}\")
+done = s.get('completed_tasks', [])
+if done:
+    print(f\"Completed: {', '.join(done[-5:])}\")
+" 2>/dev/null || echo "(pipeline state unreadable)"
+  echo ""
+}
+
 emit_last_session() {
   [[ -d "$PROJECTS_DIR" ]] || return 0
   local cwd_encoded
@@ -101,6 +127,7 @@ emit_last_session() {
 
 main() {
   emit_git_state
+  emit_pipeline_state
   emit_cross_project
   emit_last_session
 }
