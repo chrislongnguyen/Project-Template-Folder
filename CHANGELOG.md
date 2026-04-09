@@ -72,7 +72,7 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 
 ### Added — Training
 - [T1:REPLACE] 47-slide Vite training deck (`_genesis/training/obsidian-bases-training/`)
-- [T1:REPLACE] `_genesis/training/Iteration 2-training-deck.md` — authoritative content source
+- [T1:REPLACE] `_genesis/training/iteration-2-training-deck.md` — authoritative content source
 - [T1:REPLACE] Status lifecycle slide with enforcement hook callout
 
 ### Added — Skills & Tools
