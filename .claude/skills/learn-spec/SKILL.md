@@ -1,13 +1,13 @@
 ---
-version: "1.3"
+version: "1.4"
 status: draft
 last_updated: 2026-04-07
 name: learn-spec
 description: >
   Use when all 6 T0 Effective Learning pages are validated and ready for
   extraction. Reads P0-P5 pages and produces two outputs: a VANA-SPEC
-  (handoff to downstream DSBV workstreams) and a Readiness Package (C1-C6
-  checklist confirming downstream workstreams can start their Design phase). Replaces /spec:extract.
+  (handoff to downstream DSBV workstreams) and a Readiness Package (Checklist 1-6
+  confirming downstream workstreams can start their Design phase). Replaces /spec:extract.
 argument-hint: <system-slug>
 context: fork
 model: opus
@@ -19,7 +19,7 @@ Reads 6 validated T0 Effective Learning pages and produces two output files
 for `2-LEARN/_cross/specs/{system-slug}/`:
 
 1. `vana-spec.md` — VANA-SPEC handoff to downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE)
-2. `DSBV-READY-{slug}.md` — C1-C6 Readiness Package confirming downstream workstreams can start their Design phase
+2. `DSBV-READY-{slug}.md` — Checklist 1-6 (C1-C6) Readiness Package confirming downstream workstreams can start their Design phase
 
 Note: LEARN itself does NOT use DSBV. LEARN produces input FOR other workstreams' DSBV cycles.
 The Readiness Package is a handoff artifact TO downstream, not a DSBV artifact OF LEARN.
@@ -97,18 +97,18 @@ Write `2-LEARN/_cross/specs/{system-slug}/DSBV-READY-{slug}.md` with this struct
 # DSBV Readiness Package — {system_name}
 Generated: {date} | Skill: /learn:spec
 
-## C1-C6 Checklist
+## Checklist 1-6 (C1-C6)
 
 | # | Condition | Status | Evidence |
 |---|-----------|--------|----------|
-| C1 | Clear scope | GREEN | VANA-SPEC §1 defines system boundary |
-| C2 | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/_cross/output/{slug}/ |
-| C3 | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
-| C4 | Process definition loaded | GREEN | _genesis/templates/dsbv-process.md exists |
-| C5 | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA workstreams |
-| C6 | Evaluation protocol defined | GREEN | dsbv-process.md §Validate |
+| Checklist 1 (C1) | Clear scope | GREEN | VANA-SPEC §1 defines system boundary |
+| Checklist 2 (C2) | Input materials curated | GREEN | P0-P5 pages in 2-LEARN/_cross/output/{slug}/ |
+| Checklist 3 (C3) | Success rubric defined | GREEN | VANA-SPEC §6 AC-TEST-MAP ({N} ACs) |
+| Checklist 4 (C4) | Process definition loaded | GREEN | _genesis/templates/dsbv-process.md exists |
+| Checklist 5 (C5) | Prompt engineered | GREEN | /learn:spec mapped P-pages to VANA workstreams |
+| Checklist 6 (C6) | Evaluation protocol defined | GREEN | dsbv-process.md §Validate |
 
-All C1-C6 GREEN → downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE) may begin their Design phase using LEARN output as input.
+All Checklist 1-6 GREEN → downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, IMPROVE) may begin their Design phase using LEARN output as input.
 
 ## P-page → Workstream Mapping
 
@@ -149,7 +149,7 @@ Output 1: 2-LEARN/_cross/specs/{slug}/vana-spec.md
   Total ACs: {grand_total}
 
 Output 2: 2-LEARN/_cross/specs/{slug}/DSBV-READY-{slug}.md
-  C1-C6: all GREEN
+  Checklist 1-6 (C1-C6): all GREEN
 
 Next: /learn:handoff {slug}
 ```
@@ -161,7 +161,7 @@ Next: /learn:handoff {slug}
 - **Hallucinated ACs** — every AC traces to page:row:col. Empty source → `[NEEDS REVIEW]`, never invent.
 - **Missing Iteration 4 ACs** — SPAWNED (P5 NEXT cells) and Hardening (P0 RACI(I)) are mandatory.
 - **Vague VANA Words** — "Process" and "Handle" are banned. Use specific verbs.
-- **C4 check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt. (Note: C4 confirms the process template exists for downstream workstreams — LEARN itself does not run DSBV.)
+- **Checklist 4 (C4) check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt. (Note: Checklist 4 confirms the process template exists for downstream workstreams — LEARN itself does not run DSBV.)
 
 Full list: [gotchas.md](gotchas.md)
 

@@ -1,5 +1,5 @@
 ---
-version: "1.2"
+version: "1.3"
 status: in-review
 last_updated: 2026-04-09
 type: always-on rule
@@ -74,7 +74,7 @@ Use these when managing iterations, versions, or bulk metadata operations.
 |---|---|---|
 | `generate-registry.sh` | After editing workstream artifacts | Rebuild `_genesis/version-registry.md` table from frontmatter source truth |
 | `iteration-bump.sh` | Advancing subsystem to next iteration | Bump all .md files in a subsystem: version MAJOR, reset status, update dates |
-| `readiness-report.sh` | Before iteration advancement | Check C1-C3 readiness criteria per subsystem. Called by `/dsbv status` |
+| `readiness-report.sh` | Before iteration advancement | Check Criterion 1-3 (C1-C3) readiness criteria per subsystem. Called by `/dsbv status` |
 | `bulk-validate.sh` | Bulk status promotion | Set `status: validated` on all matching .md files under a path (human-invoked only) |
 | `frontmatter-extract.sh` | Debugging frontmatter issues | Parse and display YAML frontmatter fields from .md files |
 

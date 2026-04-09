@@ -1,6 +1,7 @@
 ---
 version: "1.1"
-iteration: "Iteration 1: Concept"
+iteration: 1
+iteration_name: concept
 status: draft
 last_updated: 2026-04-04
 owner: Long Nguyen

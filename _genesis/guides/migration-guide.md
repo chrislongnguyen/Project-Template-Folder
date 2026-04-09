@@ -202,7 +202,7 @@ Or verify manually:
 | S1 | `~/.config/memory-vault/config.sh` exists | Run `/setup` step 1 |
 | S2 | Vault path resolves to existing directory | Check MEMORY_VAULT_PATH in config file |
 | S3 | `inbox/` and `AI-AGENT-MEMORY/` exist in vault | Run `./scripts/setup-vault.sh <path>` |
-| S4 | Pre-commit scripts present and executable | `git pull origin Iteration 2/feat/obsidian-bases` |
+| S4 | Pre-commit scripts present and executable | `git pull origin I2/feat/obsidian-bases` |
 | S5 | PostToolUse + SubagentStop + SessionStart wired | Pull latest settings.json |
 
 ### QMD (optional but recommended)

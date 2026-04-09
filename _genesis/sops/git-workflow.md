@@ -18,8 +18,8 @@ and guides you through staging, committing, and optionally creating a PR.
 ```
 main (protected — always matches origin/main)
   │
-  ├── Iteration 1/feat/obsidian-cli        ← feature work for Iteration 1
-  ├── Iteration 1/fix/zone-to-workstream   ← bugfix for Iteration 1
+  ├── I1/feat/obsidian-cli        ← feature work for Iteration 1
+  ├── I1/fix/zone-to-workstream   ← bugfix for Iteration 1
   ├── hotfix/critical-rename      ← urgent fix, merged directly
   │
   └── (branch deleted after PR merge)
@@ -42,9 +42,9 @@ main (protected — always matches origin/main)
 I{iteration}/{type}/{short-name}
 
 Examples:
-  Iteration 1/feat/obsidian-cli
-  Iteration 1/fix/workstream-rename
-  Iteration 2/feat/notion-sync
+  I1/feat/obsidian-cli
+  I1/fix/workstream-rename
+  I2/feat/notion-sync
   hotfix/pr11-cleanup          ← no iteration prefix for hotfixes
   test/obsidian-ab             ← test branches for experiments
 ```
@@ -55,13 +55,13 @@ Examples:
 
 ```
 1. git checkout main && git pull origin main
-2. git checkout -b Iteration 1/feat/my-feature
+2. git checkout -b I1/feat/my-feature
 3. Work, commit, push
 4. gh pr create --base main
 5. Squash merge PR on GitHub
 6. git checkout main && git pull
-7. git branch -d Iteration 1/feat/my-feature     ← delete local
-8. git push origin -d Iteration 1/feat/my-feature ← delete remote
+7. git branch -d I1/feat/my-feature     ← delete local
+8. git push origin -d I1/feat/my-feature ← delete remote
 ```
 
 ### Do NOT

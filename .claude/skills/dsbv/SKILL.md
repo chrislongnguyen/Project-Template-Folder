@@ -1,5 +1,5 @@
 ---
-version: "2.0"
+version: "2.1"
 status: draft
 last_updated: 2026-04-09
 name: dsbv
@@ -53,20 +53,20 @@ These are always in effect. They override any conflicting behavior:
 5. **DEFINE DONE:** Every acceptance criterion must be binary, deterministic, testable. "Good quality" is not an AC. "All DESIGN.md artifacts have a success rubric with ≥1 binary criterion" is.
    (Source: general-system.md §7 — Layer 3 Eval Spec)
 
-## Readiness Check (C1-C6)
+## Readiness Check (Checklist 1-6)
 
 Before ANY phase, verify these conditions. If any is RED, tell the user what is missing and how to fix it. Do not proceed until all are GREEN.
 
 | ID | Condition | How to check |
 |----|-----------|--------------|
-| C1 | **Clear scope** | Workstream identified. In-scope and out-of-scope are written down. |
-| C2 | **Input materials curated** | Reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
-| C3 | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
-| C4 | **Process definition loaded** | `_genesis/templates/dsbv-process.md` is in context. |
-| C5 | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
-| C6 | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
+| Checklist 1 (C1) | **Clear scope** | Workstream identified. In-scope and out-of-scope are written down. |
+| Checklist 2 (C2) | **Input materials curated** | Reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
+| Checklist 3 (C3) | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
+| Checklist 4 (C4) | **Process definition loaded** | `_genesis/templates/dsbv-process.md` is in context. |
+| Checklist 5 (C5) | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
+| Checklist 6 (C6) | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
 
-Report readiness as a table: `C1: GREEN | C2: RED — missing prior workstream output | ...`
+Report readiness as a table: `Checklist 1: GREEN | Checklist 2: RED — missing prior workstream output | ...`
 
 **Practical execution guidance:** Read [references/phase-execution-guide.md](references/phase-execution-guide.md) for quality patterns per phase — what good DESIGN.md looks like, dependency ordering by workstream, Build quality checkpoints, Validate evidence standards.
 
@@ -528,9 +528,9 @@ Proactively guide the human toward iteration bumps when a subsystem is ready. Nu
 IMPROVE cycle complete for {subsystem}.
 
 Iteration readiness check:
-  C1 ALPEI complete: ✓  (all 5 workstreams have validated artifacts)
-  C2 IMPROVE retro:  ✓  (retro-I{N}.md validated)
-  C3 Upstream:       ✓  ({upstream code} is at I{N} or no upstream)
+  Criterion 1 (C1) ALPEI complete: ✓  (all 5 workstreams have validated artifacts)
+  Criterion 2 (C2) IMPROVE retro:  ✓  (retro-I{N}.md validated)
+  Criterion 3 (C3) Upstream:       ✓  ({upstream code} is at I{N} or no upstream)
 
 → {subsystem} is READY for I{N} → I{N+1}.
   I{N+1} focus: {next iteration label from ltc-ues-versioning.md}.
@@ -539,7 +539,7 @@ Iteration readiness check:
   Command: ./scripts/iteration-bump.sh --subsystem {SS} --from {N} --to {N+1}
 ```
 
-If Status is `NOT READY`, do NOT emit the nudge — include the C1/C2/C3 failure reasons in the G4 gate report instead.
+If Status is `NOT READY`, do NOT emit the nudge — include the Criterion 1/2/3 (C1/C2/C3) failure reasons in the G4 gate report instead.
 
 ### Nudge Point 2 — At /dsbv status (periodic check)
 
@@ -548,7 +548,7 @@ If Status is `NOT READY`, do NOT emit the nudge — include the C1/C2/C3 failure
 ```
 Readiness reminder:
   {SS} has been READY for I{N} → I{N+1} since {date} ({days} days ago).
-  C1 ✓ | C2 ✓ | C3 ✓
+  Criterion 1 ✓ | Criterion 2 ✓ | Criterion 3 ✓
   Downstream subsystems ({list}) are waiting on this bump.
   Advance now? Command: ./scripts/iteration-bump.sh --subsystem {SS} --from {N} --to {N+1}
 ```
@@ -559,21 +559,21 @@ Emit one reminder line per qualifying subsystem. If no subsystem has been READY 
 
 **Condition:** The agent detects a chain-of-custody violation — a downstream subsystem is attempting to advance to I{N+1} but its upstream subsystem is still at I{N}.
 
-**Action:** Block the downstream advance, then run `./scripts/readiness-report.sh --subsystem {UPSTREAM_SS}`. Parse C1/C2/C3. Present:
+**Action:** Block the downstream advance, then run `./scripts/readiness-report.sh --subsystem {UPSTREAM_SS}`. Parse Criterion 1/2/3 (C1/C2/C3). Present:
 
 ```
 Cannot advance {downstream-SS} to I{N+1} — upstream {upstream-SS} is still at I{N}.
 
 {upstream-SS} readiness check:
-  C1 ALPEI complete: {✓ or ✗ — reason}
-  C2 IMPROVE retro:  {✓ or ✗ — reason}
-  C3 Upstream:       {✓ or ✗ — reason}
+  Criterion 1 (C1) ALPEI complete: {✓ or ✗ — reason}
+  Criterion 2 (C2) IMPROVE retro:  {✓ or ✗ — reason}
+  Criterion 3 (C3) Upstream:       {✓ or ✗ — reason}
 
-{IF all C1/C2/C3 pass:}
+{IF all Criterion 1/2/3 pass:}
 → {upstream-SS} is READY. Advance it first, then retry {downstream-SS}.
   Command: ./scripts/iteration-bump.sh --subsystem {upstream-SS} --from {N} --to {N+1}
 
-{IF any C1/C2/C3 fail:}
+{IF any Criterion 1/2/3 fail:}
 → {upstream-SS} is NOT READY. Resolve blockers above before advancing {downstream-SS}.
 ```
 

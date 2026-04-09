@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# version: 1.0 | status: draft | last_updated: 2026-04-09
+# version: 1.1 | status: draft | last_updated: 2026-04-09
 #
-# readiness-report.sh — Check iteration advancement readiness (C1-C3) per subsystem
+# readiness-report.sh — Check iteration advancement readiness per subsystem
+# Criteria: Criterion 1 (C1) = all workstreams have ≥1 validated artifact
+#           Criterion 2 (C2) = IMPROVE retro-*.md validated
+#           Criterion 3 (C3) = upstream subsystem iteration ≥ current
 #
 # Usage:
 #   ./scripts/readiness-report.sh               # check all 4 subsystems
@@ -105,7 +108,7 @@ subsystem_iteration() {
   echo "$max"
 }
 
-# C1: All 5 workstreams have ≥1 file with status: validated in subsystem dir
+# Criterion 1 (C1): All 5 workstreams have ≥1 file with status: validated in subsystem dir
 check_c1() {
   local code="$1"
   local folder
@@ -130,7 +133,7 @@ check_c1() {
   fi
 }
 
-# C2: 5-IMPROVE/{folder}/retro-*.md exists with status: validated
+# Criterion 2 (C2): 5-IMPROVE/{folder}/retro-*.md exists with status: validated
 check_c2() {
   local code="$1"
   local folder
@@ -161,7 +164,7 @@ check_c2() {
   fi
 }
 
-# C3: upstream subsystem iteration >= current subsystem iteration
+# Criterion 3 (C3): upstream subsystem iteration >= current subsystem iteration
 check_c3() {
   local code="$1"
   local upstream
@@ -187,6 +190,7 @@ check_c3() {
 
 TODAY=$(date +%Y-%m-%d)
 echo "Iteration Readiness Report (${TODAY})"
+# Legend: C1 = Criterion 1 (all workstreams validated) | C2 = Criterion 2 (IMPROVE retro validated) | C3 = Criterion 3 (upstream ≥ current)
 echo ""
 printf "| %-9s | %-9s | %-10s | %-10s | %-18s | %s\n" \
   "Subsystem" "Iteration" "C1 ALPEI" "C2 Retro" "C3 Upstream" "Status"

@@ -145,7 +145,7 @@ L3: Code type     src, tests, config, notebooks, docs (EXECUTE only → L4: file
 
 Iteration, DSBV stage, status, UES version, and 8-component model are encoded in YAML frontmatter. Obsidian Bases dashboards provide multi-dimensional views over frontmatter without physical folder nesting.
 
-**Why not deeper:** Empirical testing (40 AI task sessions, 16 disk verifications, 4 falsification tests on `archive/Iteration 2/improve/filesystem-depth-test`) proved AI agents perform equally at any depth. However, encoding temporal dimensions (iteration, DSBV stage) as folders forces file duplication or misleading locations. Frontmatter preserves single-source-of-truth. Additionally: 3-layer structure = 46 directories vs 6-layer = 400 directories. UBS-1 (junior PM paralysis) is directly disabled by fewer empty folders.
+**Why not deeper:** Empirical testing (40 AI task sessions, 16 disk verifications, 4 falsification tests on `archive/I2/improve/filesystem-depth-test`) proved AI agents perform equally at any depth. However, encoding temporal dimensions (iteration, DSBV stage) as folders forces file duplication or misleading locations. Frontmatter preserves single-source-of-truth. Additionally: 3-layer structure = 46 directories vs 6-layer = 400 directories. UBS-1 (junior PM paralysis) is directly disabled by fewer empty folders.
 
 **Why not flatter:** Subsystem folders (L2) encode the sequential dependency chain (Principle 6: PD governs all). Removing L2 would lose this structural enforcement and require agents to read frontmatter before every file operation to determine domain.
 

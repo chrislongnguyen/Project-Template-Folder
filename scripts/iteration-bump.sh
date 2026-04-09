@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.1 | status: in-review | last_updated: 2026-04-09
+# version: 1.2 | status: in-review | last_updated: 2026-04-09
 #
 # iteration-bump.sh — Bump all .md files in a subsystem to the next iteration
 #
@@ -9,7 +9,7 @@
 # --force   Skip S1 readiness check (still prompts for confirmation)
 #
 # Safety checks (all must pass unless --force):
-#   S1: readiness-report.sh C1-C3 all pass for this subsystem
+#   S1: readiness-report.sh Criterion 1-3 (C1-C3) all pass for this subsystem
 #   S2: no uncommitted changes in target files
 #   S3: --from matches actual current MAJOR version in target files
 #   S4: upstream subsystem is at or above --to
@@ -143,7 +143,7 @@ collect_target_files() {
 echo "iteration-bump.sh — ${SUBSYSTEM} (I${FROM_ITER} → I${TO_ITER})"
 echo ""
 
-# S1: Readiness check (C1-C3) — skip with --force
+# S1: Readiness check (Criterion 1-3) — skip with --force
 if [[ $FORCE -eq 0 ]]; then
   echo "[S1] Running readiness check for ${SUBSYSTEM}..."
   READINESS_SCRIPT="${SCRIPT_DIR}/readiness-report.sh"
@@ -167,7 +167,7 @@ if [[ $FORCE -eq 0 ]]; then
     echo "       Resolve blockers above, or use --force to skip this check." >&2
     exit 1
   fi
-  echo "[S1] PASS — all C1-C3 conditions met."
+  echo "[S1] PASS — all Criterion 1-3 conditions met."
 else
   echo "[S1] SKIPPED (--force)"
 fi
