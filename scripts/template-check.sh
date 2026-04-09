@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.1 | status: draft | last_updated: 2026-04-07
+# version: 2.2 | status: in-review | last_updated: 2026-04-09
 # LTC Project Template — Deterministic Categorization Script
 # Compares local file tree to template remote via git ls-tree.
 # Outputs valid JSON to stdout. Self-validates bucket counts.
@@ -9,13 +9,15 @@ set -euo pipefail
 REMOTE="template"
 BRANCH="main"
 TEMPLATE_URL="https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git"
+QUIET=false
 
 # --- Arg parsing ---
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --remote) REMOTE="$2"; shift 2 ;;
     --branch) BRANCH="$2"; shift 2 ;;
-    *) echo "Usage: $0 [--remote <name>] [--branch <name>]" >&2; exit 2 ;;
+    --quiet)  QUIET=true; shift ;;
+    *) echo "Usage: $0 [--remote <name>] [--branch <name>] [--quiet]" >&2; exit 2 ;;
   esac
 done
 
@@ -27,9 +29,14 @@ fi
 
 # --- Ensure remote exists ---
 if ! git remote get-url "$REMOTE" &>/dev/null; then
+  $QUIET || echo "Adding remote $REMOTE → $TEMPLATE_URL" >&2
   git remote add "$REMOTE" "$TEMPLATE_URL"
 fi
-git fetch "$REMOTE" --quiet
+if $QUIET; then
+  git fetch "$REMOTE" --quiet 2>/dev/null
+else
+  git fetch "$REMOTE" --quiet
+fi
 
 REF="${REMOTE}/${BRANCH}"
 

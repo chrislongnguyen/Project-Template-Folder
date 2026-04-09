@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
-# registry-sync-check.sh — Compare staged .md versions against VERSION_REGISTRY.md
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
+# registry-sync-check.sh — Compare staged .md versions against version-registry.md
 #
 # Usage: ./scripts/registry-sync-check.sh [repo-root]
 #
 # Checks each staged .md file's frontmatter "version" against its row in
-# _genesis/VERSION_REGISTRY.md. Reports mismatches.
+# _genesis/version-registry.md. Reports mismatches.
 #
 # Exit 0 if all in sync, exit 1 if mismatches found
 set -euo pipefail
@@ -13,11 +13,11 @@ set -euo pipefail
 REPO_ROOT="${1:-$(git rev-parse --show-toplevel 2>/dev/null || echo ".")}"
 REPO_ROOT=$(cd "$REPO_ROOT" && pwd)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REGISTRY="$REPO_ROOT/_genesis/VERSION_REGISTRY.md"
+REGISTRY="$REPO_ROOT/_genesis/version-registry.md"
 EXTRACT="$SCRIPT_DIR/frontmatter-extract.sh"
 
 if [[ ! -f "$REGISTRY" ]]; then
-  echo "Warning: VERSION_REGISTRY.md not found, skipping sync check" >&2
+  echo "Warning: version-registry.md not found, skipping sync check" >&2
   exit 0
 fi
 
@@ -57,7 +57,7 @@ done
 
 if [[ $mismatches -gt 0 ]]; then
   echo "---"
-  echo "$mismatches file(s) out of sync with VERSION_REGISTRY.md"
+  echo "$mismatches file(s) out of sync with version-registry.md"
   exit 1
 fi
 

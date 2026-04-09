@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# version: 2.2 | status: draft | last_updated: 2026-04-06
+# version: 2.3 | status: in-review | last_updated: 2026-04-09
 #
 # setup-vault.sh — Idempotent Obsidian Vault Folder Creation
 #
 # PURPOSE:
-#   Creates the complete vault folder hierarchy (17 folders + .gitkeep files)
+#   Creates the complete vault folder hierarchy (10 folders + .gitkeep files)
 #   on a fresh checkout. Safe to run multiple times — exits 0 both times.
 #
 # USAGE:
@@ -38,11 +38,7 @@ FOLDERS=(
   "DAILY-NOTES"
   "MISC-TASKS"
   "PEOPLE"
-  "PLACES"
-  "TEMP-IN"
-  "TEMP-OUT"
-  "THINGS"
-  "AI-AGENT-MEMORY"
+  "PERSONAL-KNOWLEDGE-BASE"
   "inbox"
 )
 
@@ -82,7 +78,6 @@ done
 # Add .gitkeep files to folders that must be tracked (empty folders need this for Git)
 GITKEEP_FOLDERS=(
   "inbox"
-  "AI-AGENT-MEMORY"
 )
 
 for folder in "${GITKEEP_FOLDERS[@]}"; do
@@ -98,5 +93,5 @@ done
 # ─────────────────────────────────────────────────────────────
 
 echo "✓ Vault folder structure created successfully at $VAULT_ROOT"
-echo "  Created 14 folders + 2 .gitkeep files"
+echo "  Created 10 folders + 1 .gitkeep file"
 exit 0

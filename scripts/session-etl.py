@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 1.1 | status: draft | last_updated: 2026-04-07
+# version: 1.2 | status: in-review | last_updated: 2026-04-09
 """
 session-etl.py — Incremental Claude Code JSONL session parser.
 
@@ -96,7 +96,8 @@ def resolve_vault_path() -> Path | None:
         if candidate.is_dir():
             return candidate
 
-    # P3: glob scan
+    # P3: glob scan — macOS-specific Google Drive path.
+    # Override via MEMORY_VAULT_PATH env var (P2) for non-macOS or custom Drive locations.
     pattern = str(
         Path.home()
         / "Library"
@@ -520,15 +521,18 @@ def _estimate_duration(first_ts: str | None, last_ts: str | None) -> str:
 def _project_name_from_path(jsonl_path: str) -> str:
     """
     Derive human-readable project name from ~/.claude/projects/{dir-name}/{uuid}.jsonl
-    The dir name is the path with / replaced by -.
-    Try to extract the last meaningful segment.
+    The dir name encodes the original path with / replaced by -.
+    Strategy: strip the HOME directory prefix segments, then take the last 2-3 components.
     """
-    parts = Path(jsonl_path).parent.name  # e.g. -Users-longnguyen-LTC-...-TEMPLATE
+    dir_name = Path(jsonl_path).parent.name  # e.g. -Users-alice-projects-my-repo
     # Strip leading dash, split on dash
-    segments = parts.lstrip("-").split("-")
-    # Return last 3-4 non-trivial segments joined by dash
-    meaningful = [s for s in segments if s and s not in ("Users", "longnguyen", "LTC", "LongHNguyen")]
-    return "-".join(meaningful[-4:]) if meaningful else parts
+    segments = dir_name.lstrip("-").split("-")
+    # Derive HOME segments to strip (e.g. ["Users", "alice"] on macOS/Linux)
+    home_segments = [p for p in str(Path.home()).split(os.sep) if p]
+    home_segment_set = set(home_segments)
+    # Remove segments that are part of the HOME path prefix
+    meaningful = [s for s in segments if s and s not in home_segment_set]
+    return "-".join(meaningful[-4:]) if meaningful else dir_name
 
 
 def build_daily_summary(

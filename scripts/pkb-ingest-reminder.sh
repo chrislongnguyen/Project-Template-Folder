@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # pkb-ingest-reminder.sh — check for uningested files in captured/
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
 #
 # Called by post-session hook. Prints reminder if captured/ has files
 # not yet logged in _log.md. Always exits 0 (reminder, not blocker).

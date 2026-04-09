@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-04
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
 # frontmatter-extract.sh — Parse YAML frontmatter fields from .md files
 #
 # Usage: ./scripts/frontmatter-extract.sh <file> <field>

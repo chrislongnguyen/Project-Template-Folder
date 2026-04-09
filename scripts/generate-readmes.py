@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 1.2 | status: draft | last_updated: 2026-04-09
+# version: 1.3 | status: in-review | last_updated: 2026-04-09
 """Generate README shells from readme-blueprint.md for all directories.
 
 Writes ONLY shell structure (frontmatter + section headers + placeholders).
@@ -14,7 +14,7 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TODAY = date.today().isoformat()
-ITERATION = 2
+ITERATION = 1
 VERSION = f"{ITERATION}.0"
 
 # ── Bases file mapping (actual filenames in _genesis/obsidian/bases/) ─
@@ -430,7 +430,7 @@ def type_c(dir_key: str) -> str:
 version: "{VERSION}"
 status: draft
 last_updated: {TODAY}
-work_stream: 0-GOVERN
+work_stream: ""
 type: template
 iteration: {ITERATION}
 ---

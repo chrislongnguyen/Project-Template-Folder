@@ -1,4 +1,4 @@
-# version: 1.1 | status: Draft | last_updated: 2026-03-31
+# version: 1.2 | status: in-review | last_updated: 2026-04-09
 """
 obsidian-alias-seeder.py — Scan repo for target .md files and add aliases: to YAML frontmatter.
 
@@ -56,7 +56,6 @@ def _is_excluded(path, repo_root):
 # ---------------------------------------------------------------------------
 
 ZONE_NAMES = {
-    "0": "GOVERN",
     "1": "ALIGN",
     "2": "LEARN",
     "3": "PLAN",

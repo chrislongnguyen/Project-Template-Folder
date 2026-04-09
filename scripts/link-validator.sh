@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
 # link-validator.sh — Find broken [[wikilinks]] in specified or staged files
 #
 # Usage: ./scripts/link-validator.sh [file ...] [--staged]

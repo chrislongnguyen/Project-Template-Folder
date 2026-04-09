@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
 # orphan-detect.sh — Find .md files with zero inbound [[backlinks]]
 #
 # Usage: ./scripts/orphan-detect.sh [repo-root]

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | last_updated: 2026-03-29
+# version: 1.1 | status: in-review | last_updated: 2026-04-09
 # validate-memory-structure.sh
 # Checks that every ~/.claude/projects/*/memory/MEMORY.md contains exactly:
 #   ## Agent Instructions

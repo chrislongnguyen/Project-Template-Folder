@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.1 | status: Draft | last_updated: 2026-04-05
+# version: 2.2 | status: in-review | last_updated: 2026-04-09
 # ripple-check.sh — Show depth-1 and depth-2 backlinks for a given file
 #
 # Usage: ./scripts/ripple-check.sh <filename> [repo-root]

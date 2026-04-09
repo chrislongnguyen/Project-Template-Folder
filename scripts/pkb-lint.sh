@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # pkb-lint.sh — autonomous health check for the Personal Knowledge Base
-# version: 2.0 | status: Draft | last_updated: 2026-04-05
+# version: 2.1 | status: in-review | last_updated: 2026-04-09
 #
 # Runs 8 mechanical checks that need zero LLM involvement.
 # Designed S > E > Sc: reliable first, fast second, scales to 1000+ pages.
@@ -184,7 +184,7 @@ while IFS= read -r -d '' file; do
     # Also check captured/
     [[ -z "$found" ]] && found=$(find "$CAPTURED" -name "${target}.md" -type f 2>/dev/null | head -1)
     [[ -z "$found" ]] && broken+=("$rel → [[$target]]")
-  done < <(grep -oP '\[\[\K[^\]]+' "$file" 2>/dev/null | sort -u)
+  done < <(grep -oE '\[\[[^]]+' "$file" 2>/dev/null | sed 's/^\[\[//' | sed 's/|.*//' | sort -u)
 done < <(find "$DISTILLED" -name '*.md' -type f -print0 2>/dev/null)
 
 if [[ ${#broken[@]} -eq 0 ]]; then

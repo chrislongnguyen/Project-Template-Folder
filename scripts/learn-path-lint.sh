@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | status: draft | last_updated: 2026-04-06
+# version: 1.1 | status: in-review | last_updated: 2026-04-09
 #
 # learn-path-lint.sh — Detect stale flat paths in learning skill files
 #
@@ -28,7 +28,6 @@
 
 set -euo pipefail
 
-SKILLS_DIR=".claude/skills/learning"
 STALE_FOUND=0
 
 # Stale path patterns to detect (plain strings, not regexes)
@@ -43,8 +42,15 @@ STALE_PATTERNS=(
   "2-LEARN/templates/"
 )
 
-if [[ ! -d "$SKILLS_DIR" ]]; then
-  echo "ERROR: Skills directory not found: $SKILLS_DIR" >&2
+# Discover all learn-related skill directories dynamically.
+# Matches: .claude/skills/learn, .claude/skills/learn-input, .claude/skills/learn-*, etc.
+LEARN_SKILL_DIRS=()
+while IFS= read -r -d '' dir; do
+  LEARN_SKILL_DIRS+=("$dir")
+done < <(find ".claude/skills" -maxdepth 1 -type d -name "learn*" -print0 2>/dev/null)
+
+if [[ ${#LEARN_SKILL_DIRS[@]} -eq 0 ]]; then
+  echo "ERROR: No learn* skill directories found under .claude/skills/" >&2
   echo "Run this script from the repo root." >&2
   exit 1
 fi
@@ -53,9 +59,9 @@ fi
 GREP_PATTERN=$(printf '%s|' "${STALE_PATTERNS[@]}" | sed 's/|$//')
 
 # grep -rn: recursive, with line numbers
-# --include: only .md and .sh files in the skills dir
+# --include: only .md and .sh files in the skill dirs
 # Exclude 2-LEARN/_cross/ paths (correct new pattern — should NOT be flagged)
-MATCHES=$(grep -rn -E "$GREP_PATTERN" "$SKILLS_DIR" --include="*.md" --include="*.sh" 2>/dev/null \
+MATCHES=$(grep -rn -E "$GREP_PATTERN" "${LEARN_SKILL_DIRS[@]}" --include="*.md" --include="*.sh" 2>/dev/null \
   | grep -v "2-LEARN/_cross/" \
   || true)
 
@@ -75,7 +81,7 @@ if [[ -n "$MATCHES" ]]; then
   echo "  2-LEARN/templates/  → _genesis/templates/learning-book/"
   STALE_FOUND=1
 else
-  echo "PASS: No stale flat paths found in $SKILLS_DIR"
+  echo "PASS: No stale flat paths found in learn* skill directories"
 fi
 
 exit $STALE_FOUND

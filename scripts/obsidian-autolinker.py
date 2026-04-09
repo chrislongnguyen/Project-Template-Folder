@@ -1,4 +1,4 @@
-# version: 1.1 | status: Draft | last_updated: 2026-03-31
+# version: 1.2 | status: in-review | last_updated: 2026-04-09
 """
 obsidian-autolinker.py — 3-phase engine: DISCOVER → SCAN → WRITE
 Converts plain-text cross-references into [[wikilinks]] via ## Links sections.

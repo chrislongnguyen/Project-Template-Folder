@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.1 | status: draft | last_updated: 2026-04-06
+# version: 1.2 | status: in-review | last_updated: 2026-04-09
 # smoke-test.sh — LTC harness health check (5 checks)
 #
 # PURPOSE: Verify the memory-vault hook system is correctly configured on this machine.
@@ -13,8 +13,8 @@
 #   1 — One or more checks failed (see output for fix hints)
 #
 # CHECKS:
-#   S1 — ~/.config/memory-vault/config.sh exists
-#   S2 — MEMORY_VAULT_PATH resolves to an existing directory
+#   S1 — ~/.config/memory-vault/config.sh exists (WARN if missing — optional)
+#   S2 — MEMORY_VAULT_PATH resolves to an existing directory (WARN if missing — optional)
 #   S3 — inbox/ and AI-AGENT-MEMORY/ present in vault
 #   S4 — pre-commit scripts present, executable, and valid syntax
 #   S5 — settings.json has PostToolUse + SubagentStop + SessionStart hooks
@@ -37,6 +37,9 @@ result() {
   if [[ "$status" == "pass" ]]; then
     printf "✓ PASS — S%s: %s\n" "$id" "$desc"
     PASS=$((PASS + 1))
+  elif [[ "$status" == "warn" ]]; then
+    printf "~ WARN — S%s: %s\n" "$id" "$desc"
+    printf "         Note: %s\n" "$hint"
   else
     printf "✗ FAIL — S%s: %s\n" "$id" "$desc"
     printf "         Fix: %s\n" "$hint"
@@ -45,12 +48,13 @@ result() {
 }
 
 # ── S1: Config file exists ────────────────────────────────────────────────────
+# memory-vault is optional — not all users configure it. Warn only.
 CONFIG_FILE="$HOME/.config/memory-vault/config.sh"
 if [[ -f "$CONFIG_FILE" ]]; then
   result 1 "Config file exists (~/.config/memory-vault/config.sh)" "" "pass"
 else
   result 1 "Config file exists (~/.config/memory-vault/config.sh)" \
-    "Run /setup step 1 to configure your vault path" "fail"
+    "Optional: run /setup step 1 to configure your vault path (MEMORY_VAULT_PATH)" "warn"
 fi
 
 # ── S2: Vault path resolves ───────────────────────────────────────────────────
@@ -80,7 +84,7 @@ if [[ -n "$VAULT" ]]; then
   result 2 "Vault path resolves (${VAULT})" "" "pass"
 else
   result 2 "Vault path resolves to existing directory" \
-    "Check MEMORY_VAULT_PATH in ~/.config/memory-vault/config.sh — ensure the directory exists" "fail"
+    "Optional: set MEMORY_VAULT_PATH in ~/.config/memory-vault/config.sh or as an env var" "warn"
 fi
 
 # ── S3: Vault writable ───────────────────────────────────────────────────────
@@ -126,7 +130,7 @@ if [[ "$S4_OK" == "true" ]]; then
   result 4 "Pre-commit scripts present, executable, valid syntax" "" "pass"
 else
   result 4 "Pre-commit scripts present, executable, valid syntax" \
-    "Pull latest: git pull origin I2/feat/obsidian-bases (${S4_MISSING})" "fail"
+    "Pull the latest template branch (${S4_MISSING})" "fail"
 fi
 
 # ── S5: settings.json hook events wired ──────────────────────────────────────
@@ -138,7 +142,7 @@ if [[ -f "$SETTINGS" ]] \
   result 5 "settings.json has PostToolUse + SubagentStop + SessionStart" "" "pass"
 else
   result 5 "settings.json has PostToolUse + SubagentStop + SessionStart" \
-    "Pull latest: git pull origin I2/feat/obsidian-bases" "fail"
+    "Pull the latest template branch to get an updated .claude/settings.json" "fail"
 fi
 
 # ── Summary ───────────────────────────────────────────────────────────────────
