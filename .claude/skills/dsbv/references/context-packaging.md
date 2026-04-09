@@ -1,7 +1,7 @@
 ---
-version: "1.6"
+version: "1.7"
 status: draft
-last_updated: 2026-04-08
+last_updated: 2026-04-09
 ---
 # Context Packaging Template — Sub-Agent Invocation
 
@@ -125,6 +125,7 @@ Skills reference agent files instead of inline definitions.
 
 ### Budget
 ~15K tokens. Only the 3 files above.
+max_tool_calls: 50
 
 ## 3. EP
 
@@ -175,6 +176,7 @@ without fabricating citations or exceeding the depth budget.
 
 ### Budget
 {lite: ~20K tokens, 5 min | mid: ~50K, 15 min | deep: ~100K, 30 min}
+max_tool_calls: 20
 
 ## 3. EP
 
@@ -224,6 +226,7 @@ Review against DESIGN.md success criteria.
 
 ### Budget
 ~30K tokens. Load DESIGN.md + all artifacts.
+max_tool_calls: 30
 
 ## 3. EP
 
@@ -271,6 +274,7 @@ each produced a complete draft. Synthesize best elements.
 
 ### Budget
 ~40K tokens. All N drafts + DESIGN.md.
+max_tool_calls: 40
 
 ## 3. EP
 

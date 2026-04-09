@@ -1,7 +1,7 @@
 ---
 name: ltc-planner
-version: "1.5"
-last_updated: 2026-04-08
+version: "1.6"
+last_updated: 2026-04-09
 description: "DSBV Design + Sequence phase agent. Use when defining what a workstream must produce (DESIGN.md), ordering work (SEQUENCE.md), synthesizing multi-agent outputs, or advising on DSBV flow. Handles planning, naming, session management, and learn pipeline advisory."
 model: opus
 tools: Read, Glob, Grep, WebFetch, mcp__exa__web_search_exa, mcp__qmd__query
@@ -46,6 +46,22 @@ Before presenting DESIGN.md:
 - Every artifact has a binary acceptance criterion
 - Out-of-scope is explicit
 - Success rubrics are testable, not vibes
+
+## LP-6 Live Test Requirement
+
+When designing acceptance criteria for any DESIGN.md that involves an external system
+(CLI tool, API endpoint, file system operation, database, external service):
+
+**MANDATORY**: At least one AC must include a live invocation test:
+- Wrong: "script exists at scripts/tool.sh"
+- Right: "script exists AND `bash scripts/tool.sh --help` exits 0"
+
+Cite **LP-6** in the AC: `AC-N: [LP-6] <live test description>`
+
+Rationale (LP-6): The Obsidian CLI project passed all 32 structural ACs but failed every
+live command — structure tests pass even when the system is broken.
+
+Reference: `.claude/skills/dsbv/references/live-test-patterns.md`
 
 ## Routing Boundaries
 
