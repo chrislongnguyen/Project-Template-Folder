@@ -1,7 +1,7 @@
 ---
 name: ltc-builder
-version: "1.5"
-last_updated: 2026-04-08
+version: "1.6"
+last_updated: 2026-04-09
 description: "DSBV Build phase agent. Use when producing workstream artifacts — writing files, editing code, creating documents, running scripts. Handles all artifact production across ALIGN, PLAN, EXECUTE, IMPROVE workstreams."
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
@@ -87,6 +87,31 @@ In addition to the standard report, builder SHOULD also report (when applicable)
 - **confidence_score:** 0.0-1.0 overall confidence in the produced artifact
 
 This metadata helps the reviewer validate assumptions rather than just checking surface-level ACs. If builder relied on an assumption that turns out false, the reviewer can catch it before the workstream completes.
+
+Extended DONE format (include when relevant):
+`DONE: <path> | ACs: <N>/<M> | Blockers: <text> | confidence: <0.0-1.0>`
+
+### Smoke Test Requirement (LP-6)
+
+Before reporting DONE on any artifact, run a live smoke test appropriate to the file type:
+- Shell scripts (`.sh`): `bash -n <file>` — must exit 0
+- Python scripts (`.py`): `python3 -c "import ast; ast.parse(open('<file>').read())"` — must exit 0
+- Skill directories: `bash scripts/skill-validator.sh <dir>` — must exit 0
+- JSON files: `python3 -c "import json; json.load(open('<file>'))"` — must exit 0
+
+If the smoke test fails, fix the issue before reporting DONE. Do NOT report DONE with a failing smoke test.
+
+**LP-6 Live Test:** If any AC in DESIGN.md references an external system, CLI, or API, execute a live invocation within read-only safety bounds and include the output in your DONE report.
+
+### Error Classification
+
+When reporting a blocker or FAIL, classify it using `scripts/classify-fail.sh`:
+- SYNTACTIC: missing/format/frontmatter/structure issues — retry with correction
+- SEMANTIC: wrong/incorrect/misunderstood content — escalate to PM
+- ENVIRONMENTAL: command not found/permission/exit code — fix environment first
+- SCOPE: out of SEQUENCE/needs research — escalate to PM
+
+Include classification in Blockers field: `Blockers: AC-03 FAIL [SYNTACTIC] — missing frontmatter`
 
 ### EP-13: Orchestrator Authority
 

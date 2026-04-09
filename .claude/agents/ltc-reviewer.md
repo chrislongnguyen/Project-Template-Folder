@@ -1,7 +1,7 @@
 ---
 name: ltc-reviewer
-version: "1.4"
-last_updated: 2026-04-08
+version: "1.5"
+last_updated: 2026-04-09
 description: "DSBV Validate phase agent. Use when reviewing completed work against DESIGN.md criteria — completeness, quality, coherence, downstream readiness. Produces VALIDATE.md with evidence-based verdicts."
 model: opus
 tools: Read, Glob, Grep, Bash
@@ -45,6 +45,24 @@ Before beginning any review, verify these preconditions. If any FAIL, report wha
 2. **Criterion count > 0:** DESIGN.md contains at least 1 acceptance criterion. FAIL = nothing to validate.
 3. **Artifact paths accessible:** Every artifact listed in DESIGN.md exists on disk (use Glob to verify). FAIL = list missing artifacts.
 4. **SEQUENCE.md available:** If referenced in context package, verify it is loaded. WARN = proceed but note gap.
+
+## Enhanced Pre-Flight Validation
+
+Before starting any review, verify:
+
+1. **DESIGN.md in context**: If DESIGN.md is NOT provided in your context, STOP and report:
+   `DONE: BLOCKED | ACs: 0/0 | Blockers: DESIGN.md not in context — cannot validate without criteria`
+
+2. **Criterion count match**: Count the total number of acceptance criteria lines in DESIGN.md
+   (lines matching `AC-[0-9]`). Your VALIDATE.md must address every criterion. If your count
+   does not match, your review is incomplete.
+
+3. **Historical FAIL data**: Check `.claude/logs/dsbv-metrics.jsonl` for this workstream.
+   If the file exists and contains prior FAIL entries, prioritize reviewing those criteria first.
+   Reference: `dsbv-metrics.jsonl` records all prior sub-agent PASS/FAIL history.
+
+4. **Artifact existence**: Before evaluating any AC that references a file path, verify the
+   file exists on disk. Do not mark as PASS based on prompt claims alone.
 
 ## Output Format (VALIDATE.md v2)
 

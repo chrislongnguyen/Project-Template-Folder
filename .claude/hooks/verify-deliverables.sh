@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | status: Draft | last_updated: 2026-04-05
+# version: 2.0 | status: draft | last_updated: 2026-04-09
 # verify-deliverables.sh — SubagentStop hook
 # Checks that sub-agent output references expected deliverables before completing.
 # Also checks context packaging markers (## 1. EO, ## 5. VERIFY) per agent-dispatch.md.
@@ -73,6 +73,93 @@ if [[ -n "$LAST_MESSAGE" ]]; then
       exit 1
     fi
   fi
+fi
+
+# ── C-03: Enhanced DONE line schema validation ───────────────────────────────
+# Validate all 3 fields are present and well-formed.
+# Only runs when a DONE line was found (builder/reviewer agents).
+ARTIFACT_PATH=""
+ACS_PASS=""
+ACS_TOTAL=""
+BLOCKERS_TEXT=""
+
+if [[ -n "$LAST_MESSAGE" ]]; then
+  DONE_LINE_SCHEMA=$(echo "$LAST_MESSAGE" | grep -E "^DONE:" | head -1 || true)
+  if [[ -n "$DONE_LINE_SCHEMA" ]]; then
+    # Extract field 1: path (between "DONE: " and " | ACs:")
+    ARTIFACT_PATH=$(echo "$DONE_LINE_SCHEMA" | sed 's/^DONE: *//' | sed 's/ *|.*//' | xargs)
+    # Extract field 2: ACs value (between "ACs: " and " | Blockers:")
+    ACS_FIELD=$(echo "$DONE_LINE_SCHEMA" | sed 's/.*ACs: *//' | sed 's/ *|.*//' | xargs)
+    # Extract field 3: Blockers value (after "Blockers: ")
+    BLOCKERS_TEXT=$(echo "$DONE_LINE_SCHEMA" | sed 's/.*Blockers: *//' | xargs)
+
+    # Validate field 1: non-empty path
+    if [[ -z "$ARTIFACT_PATH" ]]; then
+      echo "✗ C-03 — DONE line schema invalid: path field is empty" >&2
+      exit 1
+    fi
+
+    # Validate field 2: ACs matches N/M pattern
+    if ! echo "$ACS_FIELD" | grep -qE "^[0-9]+/[0-9]+$"; then
+      echo "✗ C-03 — DONE line schema invalid: ACs field '${ACS_FIELD}' does not match N/M pattern" >&2
+      exit 1
+    fi
+    ACS_PASS=$(echo "$ACS_FIELD" | cut -d/ -f1)
+    ACS_TOTAL=$(echo "$ACS_FIELD" | cut -d/ -f2)
+
+    # Validate field 3: non-empty blockers
+    if [[ -z "$BLOCKERS_TEXT" ]]; then
+      echo "✗ C-03 — DONE line schema invalid: Blockers field is empty" >&2
+      exit 1
+    fi
+  fi
+fi
+
+# ── C-03: Artifact existence check ───────────────────────────────────────────
+# If DONE line was found and path is non-empty, verify the artifact exists.
+if [[ -n "$ARTIFACT_PATH" ]]; then
+  # Skip http/https URLs
+  if ! echo "$ARTIFACT_PATH" | grep -qE "^https?://"; then
+    # Absolute path: check directly; relative path: resolve against PROJECT_ROOT
+    if echo "$ARTIFACT_PATH" | grep -q "^/"; then
+      FULL_ARTIFACT_PATH="$ARTIFACT_PATH"
+    else
+      FULL_ARTIFACT_PATH="$PROJECT_ROOT/$ARTIFACT_PATH"
+    fi
+    if ! test -f "$FULL_ARTIFACT_PATH"; then
+      echo "✗ C-03 — Artifact claimed but not found on disk: ${ARTIFACT_PATH}" >&2
+      exit 1
+    fi
+  fi
+fi
+
+# ── C-16: Metrics logging ─────────────────────────────────────────────────────
+# Append one JSON object to dsbv-metrics.jsonl (best-effort, never blocks).
+# Runs whenever DONE line was found and parsed; safe to run even if some fields empty.
+if [[ -n "$ARTIFACT_PATH" && -n "$ACS_PASS" && -n "$ACS_TOTAL" ]]; then
+  LOG_DIR="$PROJECT_ROOT/.claude/logs"
+  mkdir -p "$LOG_DIR" || true
+
+  # Detect phase from artifact path
+  PHASE="unknown"
+  if echo "$ARTIFACT_PATH" | grep -qi "DESIGN"; then
+    PHASE="design"
+  elif echo "$ARTIFACT_PATH" | grep -qi "SEQUENCE"; then
+    PHASE="sequence"
+  elif echo "$ARTIFACT_PATH" | grep -qi "VALIDATE"; then
+    PHASE="validate"
+  elif echo "$ARTIFACT_PATH" | grep -qi "BUILD\|build\|4-EXECUTE\|src"; then
+    PHASE="build"
+  fi
+
+  TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo "")
+  # Escape double-quotes in text fields for valid JSON
+  SAFE_TASK=$(echo "$ARTIFACT_PATH" | sed 's/"/\\"/g')
+  SAFE_AGENT=$(echo "$AGENT_TYPE" | sed 's/"/\\"/g')
+  SAFE_BLOCKERS=$(echo "$BLOCKERS_TEXT" | sed 's/"/\\"/g')
+
+  echo "{\"timestamp\":\"${TIMESTAMP}\",\"agent\":\"${SAFE_AGENT}\",\"phase\":\"${PHASE}\",\"task\":\"${SAFE_TASK}\",\"acs_pass\":${ACS_PASS},\"acs_total\":${ACS_TOTAL},\"blockers\":\"${SAFE_BLOCKERS}\"}" \
+    >> "$LOG_DIR/dsbv-metrics.jsonl" || true
 fi
 
 # Check for AC verification file: .claude/ac/<agent-type>.json

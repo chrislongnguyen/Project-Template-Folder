@@ -1,5 +1,5 @@
 ---
-version: "1.9"
+version: "2.0"
 status: draft
 last_updated: 2026-04-09
 name: dsbv
@@ -99,6 +99,12 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 
 **Output:** `{workstream-number}-{WORKSTREAM}/DESIGN.md` (e.g., `1-ALIGN/DESIGN.md`)
 
+**Pre-gate actions (run before presenting this gate to PM):**
+```bash
+bash scripts/gate-precheck.sh G1 {workstream}   # Verify prerequisites
+bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
+```
+
 **Gate G1:** "I have completed the Design phase. Here is what I produced: [artifact list with summary]. Alignment check: [N conditions, N artifacts, 0 orphans]. Ready to proceed to Sequence?"
 Wait for explicit human approval. If the user requests changes, revise and re-present.
 On human approval, execute the Gate Approval Protocol below.
@@ -116,6 +122,12 @@ On human approval, execute the Gate Approval Protocol below.
 4. Present SEQUENCE.md to the user
 
 **Output:** `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
+
+**Pre-gate actions (run before presenting this gate to PM):**
+```bash
+bash scripts/gate-precheck.sh G2 {workstream}   # Verify prerequisites
+bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
+```
 
 **Gate G2:** "I have completed the Sequence phase. Here is the task order: [numbered list with sizes]. Ready to proceed to Build?"
 On human approval, execute the Gate Approval Protocol below.
@@ -223,6 +235,15 @@ Prevents infinite loops and classifies errors for intelligent retry decisions.
 2. **2 consecutive agent failures** (tool errors, crashes, empty output) → STOP pipeline. Environment is likely degraded.
 3. **All FAIL items are SEMANTIC** → ESCALATE immediately (do not retry). Semantic errors indicate misunderstanding, not execution failure.
 
+**Loop state + FAIL classification (after each reviewer dispatch):**
+```bash
+bash scripts/gate-state.sh update-loop {workstream} iteration 1
+bash scripts/gate-state.sh update-loop {workstream} fail_count {N_new_fails}
+CLASSIFICATION=$(bash scripts/classify-fail.sh "{fail_text}")
+# SYNTACTIC=retry | SEMANTIC=escalate | ENVIRONMENTAL=fix+retry | SCOPE=escalate
+```
+Full protocol: `.claude/skills/dsbv/references/circuit-breaker-protocol.md`
+
 **Diagnostic order** (when circuit breaker trips):
 ```
 EP → Input → EOP → EOE → EOT → Agent
@@ -232,6 +253,12 @@ EP → Input → EOP → EOE → EOT → Agent
 4. EOE:   Is the environment healthy? Do scripts exist and run?
 5. EOT:   Are tools working? Did Read/Write/Edit succeed?
 6. Agent: Is the model producing coherent output? (Last resort — blame the model only after ruling out 1-5)
+```
+
+**Pre-gate actions (run before presenting this gate to PM):**
+```bash
+bash scripts/gate-precheck.sh G3 {workstream}   # Verify prerequisites
+bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
 ```
 
 **Gate G3:** "Build is complete. All tasks in SEQUENCE.md are done. Generator/Critic loop: {iterations} iterations, {pass}/{total} criteria PASS. Here is what was produced: [file list]. Ready to proceed to Validate?"
@@ -257,6 +284,12 @@ On human approval, execute the Gate Approval Protocol below.
 7. Produce a validation report: pass/fail per criterion with file-path evidence
 
 **Output:** `{workstream-number}-{WORKSTREAM}/VALIDATE.md` — validation report with pass/fail per criterion
+
+**Pre-gate actions (run before presenting this gate to PM):**
+```bash
+bash scripts/gate-precheck.sh G4 {workstream}   # Verify prerequisites
+bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
+```
 
 **Gate G4:** "Validation complete. Results: [pass/fail summary]. [If all pass:] Ready to mark this workstream as complete? [If any fail:] These items need attention: [list]. Want to fix them now?"
 On human approval, execute the Gate Approval Protocol below.
@@ -341,50 +374,45 @@ in the context of an active gate presentation.
 
 ### Steps (execute in order)
 
-**Step 1 — Detect and classify signal**
-
-Match the human message against the Approval Signal Catalog:
-- Tier 1: advance immediately
-- Tier 2: emit confirmation statement, proceed (human can interrupt)
-- Tier 3: ask for clarification — do NOT advance
-- Tier 4: stay in current phase — do NOT advance
-
-Confirmation statement template (Tier 2):
+**Step 1 — Verify prerequisites** (run before presenting gate)
+```bash
+bash scripts/gate-precheck.sh G{N} {workstream}
 ```
-Understood — marking {ARTIFACT} as validated (status: validated, v{X.Y}).
-Advancing to {NEXT_PHASE}.
+Exit non-zero: do NOT present. Tell user what is missing.
+
+**Step 2 — Mark artifact in-review** (run before presenting gate)
+```bash
+bash scripts/set-status-in-review.sh {artifact_path}
 ```
 
-**Step 2 — Write approval record**
+**Step 3 — Present gate template**
+Use the Structured Gate Reports template (§ Structured Gate Reports below).
 
-Append a row to the artifact's `## Approval Log` section.
-If the section does not exist, create it at the end of the file (before `## Links`).
+**Step 4 — Detect and classify approval signal**
+Match human response against Approval Signal Catalog (§ Approval Signal Detection).
+Tier 1/2: proceed to Step 5 | Tier 3: clarify — stop | Tier 4: stay in phase — stop
 
-Record format (one table row per approval):
-
+**Step 5 — Write approval record + verify**
+Append a row to the artifact's `## Approval Log` section:
 ```markdown
-## Approval Log
-
-| Date | Gate | Verdict | Signal | Tier |
-|------|------|---------|--------|------|
-| {YYYY-MM-DD} | {G1-Design|G2-Sequence|G3-Build|G4-Validate} | APPROVED | "{human signal verbatim}" | {T1-explicit|T2-implicit} |
+| {YYYY-MM-DD} | {G1-Design|G2-Sequence|G3-Build|G4-Validate} | APPROVED | "{signal verbatim}" | {T1|T2} |
 ```
+Verify write: `bash scripts/verify-approval-record.sh {artifact_path}`
+Exit non-zero: WARN "Approval record write may have failed. Verify manually." Do NOT proceed.
+Then set `status: validated`, `last_updated: {today}` (FORCE_APPROVE=1 — blocked for all other agent paths).
 
-**Step 3 — Set status: validated**
+**Step 6 — Advance gate state + sync**
+```bash
+bash scripts/gate-state.sh advance {workstream} G{N}
+```
+Run `./scripts/generate-registry.sh`. Scaffold next artifact per § Safety Invariants below.
 
-Edit the artifact's frontmatter:
-- `status: validated`
-- `last_updated: {today}`
+### Safety Invariants
 
-This write uses FORCE_APPROVE=1 authorization — the DSBV skill is the only agent-path
-to `validated`. All other agent writes are blocked by `status-guard.sh`.
-
-**Step 4 — Sync version registry**
-
-Run `./scripts/generate-registry.sh` to rebuild `_genesis/version-registry.md`
-from current file frontmatter. Do NOT manually edit the registry row.
-
-**Step 5 — Create or advance next phase artifact**
+- NEVER set `status: validated` without a logged approval record (INV-5)
+- NEVER advance phase without completing Steps 1-5 first
+- NEVER self-approve (Tier 3 or 4 signals = ask or stay)
+- If generate-registry.sh fails, log the failure and continue — do not block phase advance
 
 | Current gate | Next artifact | Action |
 |---|---|---|
@@ -394,13 +422,6 @@ from current file frontmatter. Do NOT manually edit the registry row.
 | G4 (Validate approved) | Next workstream DESIGN.md | Create with `status: draft` (if chain-of-custody allows) |
 
 New artifacts start at `version: "1.0"`, `status: draft`, `last_updated: {today}`.
-
-### Safety Invariants
-
-- NEVER set `status: validated` without a logged approval record (INV-5)
-- NEVER advance phase without completing Steps 1-4 first
-- NEVER self-approve (Tier 3 or 4 signals = ask or stay)
-- If generate-registry.sh fails, log the failure and continue — do not block phase advance
 
 ---
 
@@ -644,25 +665,22 @@ DSBV pipeline state is checkpointed after every phase transition and sub-agent d
 
 **Read path:** `session-reconstruct.sh` (SessionStart hook) emits pipeline state as part of session context, enabling the orchestrator to resume mid-pipeline after a crash or context rotation.
 
+**Gate state (authoritative):** `.claude/state/dsbv-{workstream}.json` — managed by `scripts/gate-state.sh`. This is the authoritative gate progression tracker. Initialize with `gate-state.sh init {workstream}` at the start of any DSBV flow.
+
+**Task-level state (build tracking):** `pipeline.json` — managed by `state-saver.sh`. Tracks in-progress build task state within the Build phase.
+
 ## Auto-Recall Relevance Filtering (Spec)
 
 When the UserPromptSubmit hook injects QMD auto-recall context, it should filter by task intent to reduce noise and token waste.
 
-**Intent extraction:** Parse the user message for task-type signals:
-- "design", "plan", "what should" → intent: `design`
-- "build", "create", "write", "implement" → intent: `build`
-- "review", "validate", "check" → intent: `validate`
-- "research", "explore", "find" → intent: `research`
-- Default → intent: `general`
-
-**QMD query:** Pass `intent` parameter to QMD query to weight results toward relevant topic files.
+**Intent extraction:** Parse user message for signals → `design` | `build` | `validate` | `research` | `general` (default). Pass as `intent` parameter to QMD query.
 
 **Token budget adjustment:**
 - Relevance score >= 0.5 → inject up to 2000 tokens of auto-recall context
 - Relevance score < 0.5 → reduce injection to 1000 tokens max
 - No relevant results → skip injection entirely (save tokens for the actual task)
 
-**Implementation note:** This spec is for the UserPromptSubmit hook script (thinking-modes.sh or a dedicated auto-recall hook). The hook is outside sub-agent scope — orchestrator implements this in the main session hook configuration.
+**Implementation:** `auto-recall-filter.sh` hook (UserPromptSubmit). Writes intent category and token budget to `/tmp/recall-intent.tmp` for downstream consumption. See `.claude/hooks/auto-recall-filter.sh`.
 
 ## Links
 

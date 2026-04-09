@@ -238,6 +238,29 @@
             "statusMessage": "Checking backlink ripple..."
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/registry-edit-tracker.sh",
+            "timeout": 5,
+            "statusMessage": "Checking registry sync after workstream edit..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/auto-recall-filter.sh",
+            "timeout": 3,
+            "statusMessage": "Classifying recall intent..."
+          }
+        ]
       }
     ]
   }
