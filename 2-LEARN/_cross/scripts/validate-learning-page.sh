@@ -66,7 +66,7 @@ fi
 
 echo "Validating: $PAGE_FILE (type=$PAGE_TYPE depth=$TOPIC_DEPTH)"
 
-# ─── Check 1: Frontmatter exists ────────────────────────────────────────────
+# ─── Criterion 1: Frontmatter exists ────────────────────────────────────────────
 # Page files should have a # heading or at least an _italics_ subtitle line.
 # A minimal check: file must not be empty and must have content.
 
@@ -75,7 +75,7 @@ if [[ ! -s "$PAGE_FILE" ]]; then
   ERRORS=$((ERRORS + 1))
 fi
 
-# ─── Check 2: 17-column table structure ─────────────────────────────────────
+# ─── Criterion 2: 17-column table structure ─────────────────────────────────────
 # Every data row in a markdown table must have exactly 18 pipes (17 columns).
 # We skip separator rows (rows that match |---|...).
 
@@ -110,7 +110,7 @@ if [[ $TABLE_ERRORS -gt 0 ]]; then
   ERRORS=$((ERRORS + TABLE_ERRORS))
 fi
 
-# ─── Check 3: CAG prefix format ─────────────────────────────────────────────
+# ─── Criterion 3: CAG prefix format ─────────────────────────────────────────────
 # Every cell content (after the pipe) must begin with a recognizable CAG prefix.
 # Pattern: starts with a word character sequence followed by a dot-suffix and colon.
 # We check for cells that look like they have content but lack any colon (missing CAG tag).
@@ -161,7 +161,7 @@ if [[ $CAG_ERRORS -gt 0 ]]; then
   ERRORS=$((ERRORS + CAG_ERRORS))
 fi
 
-# ─── Check 4: Row count validation ──────────────────────────────────────────
+# ─── Criterion 4: Row count validation ──────────────────────────────────────────
 # P0 at any depth: exactly 2 data rows (hard rule).
 # P1, P2 at T0 depth: exactly 2 data rows (hard rule).
 # P3-P5: soft range 4-8 (warn only).
@@ -211,7 +211,7 @@ case "$PAGE_TYPE" in
     ;;
 esac
 
-# ─── Check 5: No cells with only [NEEDS REVIEW] without content ─────────────
+# ─── Criterion 5: No cells with only [NEEDS REVIEW] without content ─────────────
 # Cells that are genuinely empty (just whitespace after colon) are flagged.
 # [NEEDS REVIEW] is allowed as a placeholder — but bare TBD is not.
 

@@ -22,7 +22,7 @@ Answer before proceeding to DESIGN content.
 
 | Question | Answer |
 |----------|--------|
-| Q1: Are upstream workstream outputs sufficient? (Checklist 1-6 readiness) | YES / NO — _detail_ |
+| Q1: Are upstream workstream outputs sufficient? (Criterion 1-6 readiness) | YES / NO — _detail_ |
 | Q2: What is in scope for this workstream-iteration? | _list_ |
 | Q2b: What is explicitly OUT of scope? | _list_ |
 | Q3: Go/No-Go — proceed? | GO / NO-GO |
@@ -96,16 +96,16 @@ Additional workstream-specific gates:
 
 ---
 
-## Readiness Conditions (Checklist 1-6)
+## Readiness Conditions (Criterion 1-6)
 
 | ID | Condition | Status |
 |----|-----------|--------|
-| Checklist 1 (C1) | Clear scope — in/out written down | GREEN / RED |
-| Checklist 2 (C2) | Input materials curated — reading list assembled | GREEN / RED |
-| Checklist 3 (C3) | Success rubric defined — per-artifact criteria | GREEN / RED |
-| Checklist 4 (C4) | Process definition loaded — dsbv-process.md in context | GREEN / RED |
-| Checklist 5 (C5) | Prompt engineered — context fits effective window | GREEN / RED |
-| Checklist 6 (C6) | Evaluation protocol defined — how Human reviews output | GREEN / RED |
+| Criterion 1 | Clear scope — in/out written down | GREEN / RED |
+| Criterion 2 | Input materials curated — reading list assembled | GREEN / RED |
+| Criterion 3 | Success rubric defined — per-artifact criteria | GREEN / RED |
+| Criterion 4 | Process definition loaded — dsbv-process.md in context | GREEN / RED |
+| Criterion 5 | Prompt engineered — context fits effective window | GREEN / RED |
+| Criterion 6 | Evaluation protocol defined — how Human reviews output | GREEN / RED |
 
 **All conditions must be GREEN before G1.**
 

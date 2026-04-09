@@ -53,20 +53,20 @@ These are always in effect. They override any conflicting behavior:
 5. **DEFINE DONE:** Every acceptance criterion must be binary, deterministic, testable. "Good quality" is not an AC. "All DESIGN.md artifacts have a success rubric with ≥1 binary criterion" is.
    (Source: general-system.md §7 — Layer 3 Eval Spec)
 
-## Readiness Check (Checklist 1-6)
+## Readiness Check (Criterion 1-6)
 
 Before ANY phase, verify these conditions. If any is RED, tell the user what is missing and how to fix it. Do not proceed until all are GREEN.
 
 | ID | Condition | How to check |
 |----|-----------|--------------|
-| Checklist 1 (C1) | **Clear scope** | Workstream identified. In-scope and out-of-scope are written down. |
-| Checklist 2 (C2) | **Input materials curated** | Reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
-| Checklist 3 (C3) | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
-| Checklist 4 (C4) | **Process definition loaded** | `_genesis/templates/dsbv-process.md` is in context. |
-| Checklist 5 (C5) | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
-| Checklist 6 (C6) | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
+| Criterion 1 | **Clear scope** | Workstream identified. In-scope and out-of-scope are written down. |
+| Criterion 2 | **Input materials curated** | Reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
+| Criterion 3 | **Success rubric defined** | Per-artifact criteria exist, not vibes. |
+| Criterion 4 | **Process definition loaded** | `_genesis/templates/dsbv-process.md` is in context. |
+| Criterion 5 | **Prompt engineered** | Context fits within effective window. Irrelevant material removed. |
+| Criterion 6 | **Evaluation protocol defined** | How outputs will be compared (multi-agent) or reviewed (single-agent). |
 
-Report readiness as a table: `Checklist 1: GREEN | Checklist 2: RED — missing prior workstream output | ...`
+Report readiness as a table: `Criterion 1: GREEN | Criterion 2: RED — missing prior workstream output | ...`
 
 **Practical execution guidance:** Read [references/phase-execution-guide.md](references/phase-execution-guide.md) for quality patterns per phase — what good DESIGN.md looks like, dependency ordering by workstream, Build quality checkpoints, Validate evidence standards.
 

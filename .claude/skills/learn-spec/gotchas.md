@@ -34,13 +34,13 @@ Known failure patterns when executing this skill. Update when new issues are dis
 
 ---
 
-## 4. dsbv-process.md missing (Checklist 4 RED)
+## 4. dsbv-process.md missing (Criterion 4 RED)
 
-**What happens:** Agent marks Checklist 4 (C4) GREEN without verifying `_genesis/templates/dsbv-process.md` exists.
+**What happens:** Agent marks Criterion 4 GREEN without verifying `_genesis/templates/dsbv-process.md` exists.
 
-**How to detect:** Checklist 4 is GREEN but the file doesn't exist on disk.
+**How to detect:** Criterion 4 is GREEN but the file doesn't exist on disk.
 
-**Fix:** Run `ls _genesis/templates/dsbv-process.md` before writing the Readiness Package. If missing, set Checklist 4 to RED and halt — DSBV cannot start without the process definition.
+**Fix:** Run `ls _genesis/templates/dsbv-process.md` before writing the Readiness Package. If missing, set Criterion 4 to RED and halt — DSBV cannot start without the process definition.
 
 ---
 
@@ -48,7 +48,7 @@ Known failure patterns when executing this skill. Update when new issues are dis
 
 **What happens:** Agent writes vana-spec.md but skips `DSBV-READY-{slug}.md`, or writes it without all 6 checklist conditions.
 
-**How to detect:** Check that both files exist in `2-LEARN/_cross/specs/{slug}/`. Verify Checklist 1-6 (C1-C6) rows are all present.
+**How to detect:** Check that both files exist in `2-LEARN/_cross/specs/{slug}/`. Verify Criterion 1-6 rows are all present.
 
 **Fix:** Both outputs are mandatory. If DSBV-READY is missing, the skill is incomplete — the Human Director cannot gate DSBV Design without it.
 

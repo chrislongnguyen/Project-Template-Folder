@@ -49,7 +49,7 @@ Each workstream runs all 4 DSBV phases internally. The workstream determines the
 ### Scope Check (Design Stage Preamble)
 
 Before entering DESIGN, answer three questions:
-- Q1: Are upstream workstream outputs sufficient? (Checklist 1-6 readiness check)
+- Q1: Are upstream workstream outputs sufficient? (Criterion 1-6 readiness check)
 - Q2: What's in scope / out of scope for this workstream-iteration?
 - Q3: Go/No-Go — proceed to DESIGN.md?
 
@@ -204,18 +204,18 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 
 ---
 
-## DSBV Readiness Conditions (Checklist 1-6)
+## DSBV Readiness Conditions (Criterion 1-6)
 
 All conditions must be GREEN before starting a DSBV cycle.
 
 | ID | Condition | Check |
 |----|-----------|-------|
-| Checklist 1 (C1) | **Clear scope** | Workstream identified. What is in scope and out of scope is written down. |
-| Checklist 2 (C2) | **Input materials curated** | Agent reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
-| Checklist 3 (C3) | **Success rubric defined** | How to judge output quality. Per-artifact criteria, not vibes. |
-| Checklist 4 (C4) | **Process definition loaded** | This document (dsbv-process.md) is in agent context. |
-| Checklist 5 (C5) | **Prompt engineered** | Context package fits within effective window. Irrelevant material removed. |
-| Checklist 6 (C6) | **Evaluation protocol defined** | How Opus compares competing outputs (for design-heavy). How Human reviews final output. |
+| Criterion 1 | **Clear scope** | Workstream identified. What is in scope and out of scope is written down. |
+| Criterion 2 | **Input materials curated** | Agent reading list assembled — prior workstream output, reference docs, research. No "go find it yourself." |
+| Criterion 3 | **Success rubric defined** | How to judge output quality. Per-artifact criteria, not vibes. |
+| Criterion 4 | **Process definition loaded** | This document (dsbv-process.md) is in agent context. |
+| Criterion 5 | **Prompt engineered** | Context package fits within effective window. Irrelevant material removed. |
+| Criterion 6 | **Evaluation protocol defined** | How Opus compares competing outputs (for design-heavy). How Human reviews final output. |
 
 **If any condition is RED:** Fix it before starting. Running DSBV without readiness produces waste.
 

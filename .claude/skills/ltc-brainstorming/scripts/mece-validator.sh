@@ -19,7 +19,7 @@ if [ ! -f "$SPEC" ]; then
 fi
 
 # Check 1: §0 Force Analysis present with recursive decomposition
-echo "Check 1: §0 Force Analysis present"
+echo "Criterion 1: §0 Force Analysis present"
 if grep -q "§0 Force Analysis\|§0\.1 UBS" "$SPEC"; then
     if grep -q "Recursive Decomposition" "$SPEC"; then
         echo "  PASS: §0 Force Analysis with recursive decomposition found"
@@ -33,7 +33,7 @@ else
 fi
 
 # Check 2: §6 System Boundaries with all 4 layers (two-pass: locate §6, then search within)
-echo "Check 2: §6 System Boundaries completeness"
+echo "Criterion 2: §6 System Boundaries completeness"
 LAYERS_FOUND=0
 SECTION_START=$(grep -n "§6\|System Boundaries" "$SPEC" | head -1 | cut -d: -f1)
 if [ -n "$SECTION_START" ]; then
@@ -51,7 +51,7 @@ else
 fi
 
 # Check 3: AC ID uniqueness — scoped to lines before AC-TEST-MAP (avoid false positives)
-echo "Check 3: AC ID uniqueness"
+echo "Criterion 3: AC ID uniqueness"
 # Determine the boundary line: AC-TEST-MAP section start (or end of file)
 TESTMAP_BOUNDARY=$(grep -n "AC-TEST-MAP" "$SPEC" | head -1 | cut -d: -f1)
 if [ -n "$TESTMAP_BOUNDARY" ]; then
@@ -76,7 +76,7 @@ else
 fi
 
 # Check 4: AC-TEST-MAP coverage (every AC in §2-§5 appears in AC-TEST-MAP)
-echo "Check 4: AC-TEST-MAP MECE coverage"
+echo "Criterion 4: AC-TEST-MAP MECE coverage"
 if grep -q "AC-TEST-MAP" "$SPEC"; then
     # Extract ACs that appear in the AC-TEST-MAP section
     # Look for AC IDs after the AC-TEST-MAP header
@@ -103,7 +103,7 @@ else
 fi
 
 # Check 5: Source references follow format conventions
-echo "Check 5: Source reference format"
+echo "Criterion 5: Source reference format"
 SOURCE_REFS=$(grep -oE 'T0\.P[0-9]+:[A-Za-z0-9]+:[A-Za-z0-9]+' "$SPEC" 2>/dev/null | wc -l | tr -d ' ')
 if [ "$SOURCE_REFS" -gt 0 ]; then
     echo "  PASS: $SOURCE_REFS source references in Page:Row:Col format"

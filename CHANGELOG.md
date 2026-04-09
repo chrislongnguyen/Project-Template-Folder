@@ -137,7 +137,7 @@ Iteration 1 Concept release. ALPEI workstream scaffold, initial rules, charter, 
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
-- [[Iteration 2-training-deck]]
+- [[iteration-2-training-deck]]
 - [[README]]
 - [[SKILL]]
 - [[UBS_REGISTER]]
