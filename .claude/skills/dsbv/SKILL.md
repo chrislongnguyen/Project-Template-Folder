@@ -1,7 +1,7 @@
 ---
-version: "1.6"
+version: "1.9"
 status: draft
-last_updated: 2026-04-08
+last_updated: 2026-04-09
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---
@@ -97,12 +97,11 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 4. Write the planner's returned DESIGN.md content to `{workstream-number}-{WORKSTREAM}/DESIGN.md`
 5. Present DESIGN.md to the user for review
 
-**EXCEPTION:** If the workstream has ≤2 artifacts AND the user has already stated the full design intent in this session, the orchestrator MAY produce DESIGN.md inline after confirming with the user: "This is a simple design — produce inline or dispatch planner?"
-
 **Output:** `{workstream-number}-{WORKSTREAM}/DESIGN.md` (e.g., `1-ALIGN/DESIGN.md`)
 
 **Gate G1:** "I have completed the Design phase. Here is what I produced: [artifact list with summary]. Alignment check: [N conditions, N artifacts, 0 orphans]. Ready to proceed to Sequence?"
 Wait for explicit human approval. If the user requests changes, revise and re-present.
+On human approval, execute the Gate Approval Protocol below.
 
 ## Phase 2: SEQUENCE
 
@@ -116,11 +115,10 @@ Wait for explicit human approval. If the user requests changes, revise and re-pr
 3. Write the planner's returned SEQUENCE.md content to `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
 4. Present SEQUENCE.md to the user
 
-**EXCEPTION:** Same as Phase 1 — if ≤2 artifacts and user confirms inline, orchestrator may produce directly.
-
 **Output:** `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
 
 **Gate G2:** "I have completed the Sequence phase. Here is the task order: [numbered list with sizes]. Ready to proceed to Build?"
+On human approval, execute the Gate Approval Protocol below.
 
 ## Phase 3: BUILD
 
@@ -237,6 +235,7 @@ EP → Input → EOP → EOE → EOT → Agent
 ```
 
 **Gate G3:** "Build is complete. All tasks in SEQUENCE.md are done. Generator/Critic loop: {iterations} iterations, {pass}/{total} criteria PASS. Here is what was produced: [file list]. Ready to proceed to Validate?"
+On human approval, execute the Gate Approval Protocol below.
 
 ## Phase 4: VALIDATE
 
@@ -260,6 +259,7 @@ EP → Input → EOP → EOE → EOT → Agent
 **Output:** `{workstream-number}-{WORKSTREAM}/VALIDATE.md` — validation report with pass/fail per criterion
 
 **Gate G4:** "Validation complete. Results: [pass/fail summary]. [If all pass:] Ready to mark this workstream as complete? [If any fail:] These items need attention: [list]. Want to fix them now?"
+On human approval, execute the Gate Approval Protocol below.
 
 ### Structured Gate Reports
 
@@ -328,6 +328,235 @@ Next gate: 2-LEARN × Validate → human approval required
 - `Pending` = upstream workstream not Approved — this cell cannot start yet
 - `Not Started` = upstream is ready but this cell's primary artifact does not exist
 - `Approved` = human-set only; agents never self-approve
+
+## Gate Approval Protocol
+
+Executed by the DSBV orchestrator whenever a human approves a gate (G1-G4).
+This is the ONLY authorized path for agent-mediated `validated` status (INV-5).
+
+### Trigger
+
+Human expresses a Tier 1 or confirmed Tier 2 approval signal (see DESIGN § 3.2)
+in the context of an active gate presentation.
+
+### Steps (execute in order)
+
+**Step 1 — Detect and classify signal**
+
+Match the human message against the Approval Signal Catalog:
+- Tier 1: advance immediately
+- Tier 2: emit confirmation statement, proceed (human can interrupt)
+- Tier 3: ask for clarification — do NOT advance
+- Tier 4: stay in current phase — do NOT advance
+
+Confirmation statement template (Tier 2):
+```
+Understood — marking {ARTIFACT} as validated (status: validated, v{X.Y}).
+Advancing to {NEXT_PHASE}.
+```
+
+**Step 2 — Write approval record**
+
+Append a row to the artifact's `## Approval Log` section.
+If the section does not exist, create it at the end of the file (before `## Links`).
+
+Record format (one table row per approval):
+
+```markdown
+## Approval Log
+
+| Date | Gate | Verdict | Signal | Tier |
+|------|------|---------|--------|------|
+| {YYYY-MM-DD} | {G1-Design|G2-Sequence|G3-Build|G4-Validate} | APPROVED | "{human signal verbatim}" | {T1-explicit|T2-implicit} |
+```
+
+**Step 3 — Set status: validated**
+
+Edit the artifact's frontmatter:
+- `status: validated`
+- `last_updated: {today}`
+
+This write uses FORCE_APPROVE=1 authorization — the DSBV skill is the only agent-path
+to `validated`. All other agent writes are blocked by `status-guard.sh`.
+
+**Step 4 — Sync version registry**
+
+Run `./scripts/generate-registry.sh` to rebuild `_genesis/version-registry.md`
+from current file frontmatter. Do NOT manually edit the registry row.
+
+**Step 5 — Create or advance next phase artifact**
+
+| Current gate | Next artifact | Action |
+|---|---|---|
+| G1 (Design approved) | `SEQUENCE.md` | Create from template with `status: draft` |
+| G2 (Sequence approved) | Build artifacts | Per SEQUENCE.md task list — begin first task |
+| G3 (Build approved) | `VALIDATE.md` | Create from template with `status: draft` |
+| G4 (Validate approved) | Next workstream DESIGN.md | Create with `status: draft` (if chain-of-custody allows) |
+
+New artifacts start at `version: "1.0"`, `status: draft`, `last_updated: {today}`.
+
+### Safety Invariants
+
+- NEVER set `status: validated` without a logged approval record (INV-5)
+- NEVER advance phase without completing Steps 1-4 first
+- NEVER self-approve (Tier 3 or 4 signals = ask or stay)
+- If generate-registry.sh fails, log the failure and continue — do not block phase advance
+
+---
+
+## Approval Signal Detection
+
+Derived from analysis of 37 conversation logs and 180 session records. The DSBV orchestrator uses this catalog to classify every human message received during an active gate (G1-G4).
+
+**Gate-based, not word-parsing.** Approval only counts when it occurs in the context of an active gate presentation. Signals outside gate context do not trigger phase transitions.
+
+**When in doubt, ASK. There is NO auto-timeout. Human must always prompt something.**
+
+### Tier 1 — Explicit Approval
+
+Agent advances immediately. Execute the Gate Approval Protocol.
+
+| Signal | Example | Confidence |
+|--------|---------|------------|
+| "approved" / "approve" | "Design approved." | HIGH |
+| "validated" / "validate it" | "This is validated." | HIGH |
+| "looks good" / "sounds good" | "Looks good, move on." | HIGH |
+| "lgtm" | "lgtm" | HIGH |
+| "confirmed" | "Design confirmed." | HIGH |
+| "ship it" | "Ship it." | HIGH |
+
+### Tier 2 — Implicit Approval
+
+These phrases imply approval of the CURRENT phase when they reference the NEXT phase. Agent emits a confirmation **statement** (not a question), then executes the Gate Approval Protocol. Human can interrupt before the protocol completes.
+
+| Signal | Example | Interpretation |
+|--------|---------|---------------|
+| "proceed to {next phase}" | "proceed to sequence" | Current phase approved, start next |
+| "go ahead" / "go" | "go ahead and build" | Current gate approved |
+| "build it" / "do it" | "ok build it" | Sequence approved, start build |
+| "continue" / "move on" | "continue with build" | Current phase approved |
+| "next" / "what's next" | "next" | Current phase approved |
+| "ok" + directive | "ok, start the sequence" | Current phase approved |
+| "yes" (after gate question) | "yes" | Direct response to gate question = approval |
+| "ready" / "ready for" | "ready for build" | Current phase approved |
+
+**Confirmation template (Tier 2) — statement, not question:**
+
+```
+Understood — marking {ARTIFACT} as validated (status: validated, v{X.Y}).
+Advancing to {NEXT_PHASE}.
+```
+
+Do NOT ask "are you sure?" — that adds friction. The human can say "wait, no" before the agent proceeds.
+
+### Tier 3 — Ambiguous
+
+Agent MUST ask for clarification. Status unchanged until clarified.
+
+| Signal | Why ambiguous | Agent response |
+|--------|--------------|----------------|
+| "ok" (standalone, no directive) | Could be acknowledgment, not approval | "Are you validating this phase, or just acknowledging?" |
+| "good" (standalone) | Quality comment vs. approval | "Does 'good' mean you're approving, or noting quality?" |
+| "check this" / "let me review" | Human may be starting review, not finishing | Wait. Do not advance. |
+| "fix X then..." | Revision request, NOT approval | Treat as REVISE. Stay in current phase. |
+| "just build it" | Impatience signal — may skip review | "I'll proceed to build. Confirming: you're approving the current {DESIGN/SEQUENCE}?" |
+
+### Tier 4 — Rejection
+
+Agent stays in current phase. Ask for feedback.
+
+| Signal | Action |
+|--------|--------|
+| "wait" / "hold on" / "stop" | Halt. Ask what needs to change. |
+| "no" / "not yet" / "not ready" | Stay in current phase. Ask for specific feedback. |
+| "revise" / "redo" / "rework" / "needs work" | Stay in current phase. Apply feedback. Re-present. |
+| "come back to this" | Park. Move to other work. Status stays `in-progress`. |
+| Silence (no response) | Do NOT advance. Status stays `in-review`. |
+
+### Decision Flow
+
+```
+Human message at active gate
+         │
+         ▼
+Does it match Tier 1? ──YES──> Advance immediately → Gate Approval Protocol
+         │NO
+         ▼
+Does it match Tier 2? ──YES──> Emit confirmation statement → Gate Approval Protocol
+         │NO
+         ▼
+Does it match Tier 4? ──YES──> Stay in phase → ask for feedback
+         │NO
+         ▼
+Treat as Tier 3 ──────────────> Ask: "Are you validating this phase, or just acknowledging?"
+```
+
+---
+
+## Iteration Advancement Nudges
+
+Proactively guide the human toward iteration bumps when a subsystem is ready. Nudges are **conditional** — only emit when the described conditions are met. Never emit a nudge speculatively.
+
+### Nudge Point 1 — After IMPROVE Validate (G4 in 5-IMPROVE)
+
+**Condition:** G4 Validate just completed for a subsystem in the 5-IMPROVE workstream.
+
+**Action:** Run `./scripts/readiness-report.sh --subsystem {SS}`. Parse the Status column. If `READY`, present:
+
+```
+IMPROVE cycle complete for {subsystem}.
+
+Iteration readiness check:
+  C1 ALPEI complete: ✓  (all 5 workstreams have validated artifacts)
+  C2 IMPROVE retro:  ✓  (retro-I{N}.md validated)
+  C3 Upstream:       ✓  ({upstream code} is at I{N} or no upstream)
+
+→ {subsystem} is READY for I{N} → I{N+1}.
+  I{N+1} focus: {next iteration label from ltc-ues-versioning.md}.
+
+  Would you like to advance now?
+  Command: ./scripts/iteration-bump.sh --subsystem {SS} --from {N} --to {N+1}
+```
+
+If Status is `NOT READY`, do NOT emit the nudge — include the C1/C2/C3 failure reasons in the G4 gate report instead.
+
+### Nudge Point 2 — At /dsbv status (periodic check)
+
+**Condition:** User runs `/dsbv status`. After rendering the full status table, run `./scripts/readiness-report.sh` (all subsystems). For each subsystem where Status is `READY`, compute days since `last_updated` on its most-recent IMPROVE VALIDATE.md. If > 7 days, append a reminder line below the status table:
+
+```
+Readiness reminder:
+  {SS} has been READY for I{N} → I{N+1} since {date} ({days} days ago).
+  C1 ✓ | C2 ✓ | C3 ✓
+  Downstream subsystems ({list}) are waiting on this bump.
+  Advance now? Command: ./scripts/iteration-bump.sh --subsystem {SS} --from {N} --to {N+1}
+```
+
+Emit one reminder line per qualifying subsystem. If no subsystem has been READY for >7 days, append nothing.
+
+### Nudge Point 3 — When Downstream is Blocked (chain-of-custody violation)
+
+**Condition:** The agent detects a chain-of-custody violation — a downstream subsystem is attempting to advance to I{N+1} but its upstream subsystem is still at I{N}.
+
+**Action:** Block the downstream advance, then run `./scripts/readiness-report.sh --subsystem {UPSTREAM_SS}`. Parse C1/C2/C3. Present:
+
+```
+Cannot advance {downstream-SS} to I{N+1} — upstream {upstream-SS} is still at I{N}.
+
+{upstream-SS} readiness check:
+  C1 ALPEI complete: {✓ or ✗ — reason}
+  C2 IMPROVE retro:  {✓ or ✗ — reason}
+  C3 Upstream:       {✓ or ✗ — reason}
+
+{IF all C1/C2/C3 pass:}
+→ {upstream-SS} is READY. Advance it first, then retry {downstream-SS}.
+  Command: ./scripts/iteration-bump.sh --subsystem {upstream-SS} --from {N} --to {N+1}
+
+{IF any C1/C2/C3 fail:}
+→ {upstream-SS} is NOT READY. Resolve blockers above before advancing {downstream-SS}.
+```
+
+---
 
 ## If the User Seems Lost
 
