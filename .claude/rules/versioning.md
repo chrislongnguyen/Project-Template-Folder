@@ -1,7 +1,7 @@
 ---
-version: "1.6"
+version: "1.7"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-09
 ---
 # Versioning — Always-On Rule
 
@@ -29,7 +29,7 @@ iteration: 1
 work_stream: 1-ALIGN
 ```
 
-`work_stream` canonical values: `0-GOVERN` | `1-ALIGN` | `2-LEARN` | `3-PLAN` | `4-EXECUTE` | `5-IMPROVE`
+`work_stream` canonical values: `1-ALIGN` | `2-LEARN` | `3-PLAN` | `4-EXECUTE` | `5-IMPROVE`
 
 YAML boolean hazard: values like `true`, `false`, `yes`, `no` are natively boolean in YAML. If used as string metadata, quote them to prevent type coercion.
 

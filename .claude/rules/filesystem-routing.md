@@ -1,6 +1,9 @@
 # Filesystem Routing — Always-On Rule
 
-# version: 1.0 | status: draft | last_updated: 2026-04-06
+# version: 1.1 | status: draft | last_updated: 2026-04-09
+
+Full spec with routing table: `rules/filesystem-routing.md`
+Terminology mapping: Mode A = L1+L2 DSBV workstreams | Mode B = L1+L2 LEARN | Mode C = vault dirs | Mode D = genesis
 
 4 routing modes govern where artifacts land. Every file write must match exactly one mode.
 
