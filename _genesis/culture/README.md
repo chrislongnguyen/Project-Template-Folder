@@ -15,13 +15,13 @@ iteration: 2
 
 Cultural values, team norms, and working agreements.
 
-Without documented culture, teams default to implicit norms that drift over time — producing avoidable conflict and misaligned behavior that no process or framework can fix. This directory exists separately from `philosophy/` because culture is behavioral (how we act) while philosophy is belief-level (why we exist). This directory is an **I2 placeholder** — content will be populated in iteration 2.
+Without documented culture, teams default to implicit norms that drift over time — producing avoidable conflict and misaligned behavior that no process or framework can fix. This directory exists separately from `philosophy/` because culture is behavioral (how we act) while philosophy is belief-level (why we exist). This directory is an **Iteration 2 placeholder** — content will be populated in iteration 2.
 
 ## What This Contains
 
 | Content Type | Description |
 |-------------|-------------|
-| _(I2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
+| _(Iteration 2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
 
 ## How It Connects
 

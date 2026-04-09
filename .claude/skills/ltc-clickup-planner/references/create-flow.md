@@ -8,7 +8,7 @@ Detailed procedure for creating the full PJ hierarchy: PJ Project → PJ Workstr
 
 ```
 PJ Project
-  └─ PJ Workstream (I1 / I2 / I3 / I4)
+  └─ PJ Workstream (Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4)
       └─ PJ Deliverable
           └─ Task  (task_type: null — do NOT pass "Task")
               ├─ PJ Increment  (time_estimate set via update_task after creation)
@@ -53,16 +53,16 @@ What is this work?
 
 ### 1c — Identify Workstream Membership
 
-Assign each Deliverable to an Iteration: I1 (Concept/core functionality), I2 (Prototype/usability+efficiency), I3 (MVE/scale+integration), I4 (Leadership/hardening+production).
+Assign each Deliverable to an Iteration: Iteration 1 (Concept/core functionality), Iteration 2 (Prototype/usability+efficiency), Iteration 3 (MVE/scale+integration), Iteration 4 (Leadership/hardening+production).
 
 Classify each Deliverable into the correct Workstream (Iteration):
 
 | Workstream | Iteration | Theme | Deliverable type |
 |---|---|---|---|
-| WS-I1 | I1 — Concept | Core functionality | Core functionality deliverables |
-| WS-I2 | I2 — Prototype | Usability / efficiency | Usability and efficiency deliverables |
-| WS-I3 | I3 — MVE | Scale / integration | Scale and integration deliverables |
-| WS-I4 | I4 — Leadership | Hardening / production | Hardening and production deliverables |
+| WS-Iteration 1 | Iteration 1 — Concept | Core functionality | Core functionality deliverables |
+| WS-Iteration 2 | Iteration 2 — Prototype | Usability / efficiency | Usability and efficiency deliverables |
+| WS-Iteration 3 | Iteration 3 — MVE | Scale / integration | Scale and integration deliverables |
+| WS-Iteration 4 | Iteration 4 — Leadership | Hardening / production | Hardening and production deliverables |
 
 ### 1d — Determine SCOPE and List
 
@@ -117,10 +117,10 @@ All ACs must be deterministic (pass/fail verifiable — no subjective language).
 
 | Workstream | AC ownership |
 |---|---|
-| WS-I1 (Concept) | Verb-ACs + SustainAdv-ACs + Noun-ACs + SustainAdj-ACs |
-| WS-I2 (Prototype) | EffAdv-ACs + EffAdj-ACs |
-| WS-I3 (MVE) | ScalAdv-ACs + ScalAdj-ACs |
-| WS-I4 (Leadership) | Spawned Verb-ACs (hardening) + Hardening Noun-ACs |
+| WS-Iteration 1 (Concept) | Verb-ACs + SustainAdv-ACs + Noun-ACs + SustainAdj-ACs |
+| WS-Iteration 2 (Prototype) | EffAdv-ACs + EffAdj-ACs |
+| WS-Iteration 3 (MVE) | ScalAdv-ACs + ScalAdj-ACs |
+| WS-Iteration 4 (Leadership) | Spawned Verb-ACs (hardening) + Hardening Noun-ACs |
 
 Then cascade down:
 - Assign specific ACs from each Workstream → its Deliverables
@@ -146,7 +146,7 @@ Use these contracts to drive dependency setting in Step 4.
 | Item | Naming rule |
 |---|---|
 | PJ Project | 2-part UNG: `[SCOPE DISPLAY]_FA.ID. PROJECT NAME` |
-| PJ Workstream | Free text: `I{n}. {Name} — {Pillar Scope}` (e.g., `I1. Concept — Core Storage & Retrieval`) |
+| PJ Workstream | Free text: `I{n}. {Name} — {Pillar Scope}` (e.g., `Iteration 1. Concept — Core Storage & Retrieval`) |
 | PJ Deliverable | 3-part UNG: `[SCOPE DISPLAY]_FA.ID. PROJECT NAME_D{n}. DELIVERABLE NAME` |
 | Task | Free text — descriptive and clear |
 | PJ Increment | Free text — grouped by logical layer (e.g., "Storage Layer", not "storage.py") |
@@ -229,7 +229,7 @@ Before showing the preview, verify every item passes all checks. Fix failures in
 | 10 | Task type set | Correct ClickUp task type on every item; Task-level = null |
 | 11 | Every item has Input/Output contracts | I/O contract defined for every item |
 | 12 | Dependencies match I/O contract chains | When A outputs to B, B is `waiting_on` A |
-| 13 | Workstream DELIVERY PHASE matches iteration number | WS-I1 → `1. CONCEPT`, WS-I2 → `2. PROTOTYPE`, etc. |
+| 13 | Workstream DELIVERY PHASE matches iteration number | WS-Iteration 1 → `1. CONCEPT`, WS-Iteration 2 → `2. PROTOTYPE`, etc. |
 | 14 | All field IDs are full UUIDs | No short prefixes (except `b76eb12c` for URL Link) |
 | 15 | Time estimates on Increments | Every PJ Increment has `time_estimate` queued for update_task |
 | 16 | 1 Documentation per Task | Each Task has exactly 1 PJ Documentation child |
@@ -265,7 +265,7 @@ PROJECT VANA AC TABLE:
     VANA: {one-sentence desired outcome}
     Owns: ALL ACs
 
-    PJ WORKSTREAM  I1. Concept — {Scope} | DELIVERY PHASE: 1. CONCEPT
+    PJ WORKSTREAM  Iteration 1. Concept — {Scope} | DELIVERY PHASE: 1. CONCEPT
       Owns: Verb-AC1, Verb-AC2, SustainAdv-AC1, Noun-AC1, Noun-AC2, SustainAdj-AC1
 
       PJ DELIVERABLE  [SCOPE]_FA.ID. PROJECT NAME_D1. NAME | {Priority}
@@ -284,15 +284,15 @@ PROJECT VANA AC TABLE:
         Input: {source} | Output: {schema}
         ...
 
-    PJ WORKSTREAM  I2. Prototype — {Scope} | DELIVERY PHASE: 2. PROTOTYPE
+    PJ WORKSTREAM  Iteration 2. Prototype — {Scope} | DELIVERY PHASE: 2. PROTOTYPE
       Owns: EffAdv-AC1, EffAdj-AC1
       ...
 
-    PJ WORKSTREAM  I3. MVE — {Scope} | DELIVERY PHASE: 3. MINIMUM VIABLE ENABLEMENT
+    PJ WORKSTREAM  Iteration 3. MVE — {Scope} | DELIVERY PHASE: 3. MINIMUM VIABLE ENABLEMENT
       Owns: ScalAdv-AC1, ScalAdj-AC1
       ...
 
-    PJ WORKSTREAM  I4. Leadership — {Scope} | DELIVERY PHASE: 4. LEADERSHIP ENABLEMENT
+    PJ WORKSTREAM  Iteration 4. Leadership — {Scope} | DELIVERY PHASE: 4. LEADERSHIP ENABLEMENT
       Owns: {hardening ACs}
       ...
 
@@ -425,7 +425,7 @@ After creating all entries, run validation. Report every failure — do not mark
 | 13 | 1 PJ Documentation per Task | Each Task has exactly 1 Doc child |
 | 14 | AC coverage | Every Project AC appears in exactly one child chain — no orphaned ACs |
 | 15 | I/O contracts chain correctly | Each dependency pair has matching Output → Input |
-| 16 | Workstream DELIVERY PHASE | WS-I1 → `1. CONCEPT`, WS-I2 → `2. PROTOTYPE`, WS-I3 → `3. MINIMUM VIABLE ENABLEMENT`, WS-I4 → `4. LEADERSHIP ENABLEMENT` |
+| 16 | Workstream DELIVERY PHASE | WS-Iteration 1 → `1. CONCEPT`, WS-Iteration 2 → `2. PROTOTYPE`, WS-Iteration 3 → `3. MINIMUM VIABLE ENABLEMENT`, WS-Iteration 4 → `4. LEADERSHIP ENABLEMENT` |
 | 17 | MECE sum check | Increments ∑= Task; Tasks ∑= Deliverable; Deliverables ∑= Workstream; Workstreams ∑= Project |
 
 Report: `{N}/{N} items created. Validation: PASS / FAIL — {list any failures}`

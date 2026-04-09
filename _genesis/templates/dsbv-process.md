@@ -1,6 +1,6 @@
 ---
 version: "1.4"
-iteration: "I1: Concept"
+iteration: "Iteration 1: Concept"
 status: draft
 last_updated: 2026-04-04
 owner: Long Nguyen
@@ -87,7 +87,7 @@ Every workstream's DESIGN.md must include an Execution Strategy section that def
 - Every completion condition maps to a named artifact (orphan conditions = 0)
 - Every artifact has at least one condition (orphan artifacts = 0 or justified)
 - Artifact count in DESIGN.md = deliverable count in context package Section 6
-- Violated 3x in I1 ALIGN runs: OKR omission, ADR omission, DESIGN.md omission. Root cause: EP-09 (incomplete decomposition) + EP-10 (done not fully defined). Fix: unified table eliminates the gap between "what to produce" and "how to verify."
+- Violated 3x in Iteration 1 ALIGN runs: OKR omission, ADR omission, DESIGN.md omission. Root cause: EP-09 (incomplete decomposition) + EP-10 (done not fully defined). Fix: unified table eliminates the gap between "what to produce" and "how to verify."
 
 ---
 

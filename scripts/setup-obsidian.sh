@@ -9,7 +9,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Source and target locations (I2: moved from 4-EXECUTE/src/ to _genesis/)
+# Source and target locations (Iteration 2: moved from 4-EXECUTE/src/ to _genesis/)
 SRC_BASES="$PROJECT_ROOT/_genesis/obsidian/bases"
 SRC_TEMPLATES="$PROJECT_ROOT/_genesis/obsidian/templates"
 

@@ -7,7 +7,7 @@ import { staggerContainer, fadeInUp } from '../lib/animations';
 const steps = [
   {
     number: 1,
-    title: 'Connect to I2 template',
+    title: 'Connect to Iteration 2 template',
     desc: '~1 min, one-time',
     code: 'git remote add template … && git fetch template main && git checkout template/main -- scripts/ .claude/skills/',
   },
@@ -27,7 +27,7 @@ const steps = [
     number: 4,
     title: 'Commit and verify',
     desc: 'You control staging',
-    code: 'git status → git add <files> → git commit -m "feat: upgrade to I2 Efficient"',
+    code: 'git status → git add <files> → git commit -m "feat: upgrade to Iteration 2 Efficient"',
   },
   {
     number: 5,
@@ -87,7 +87,7 @@ export default function MigrationGuideSlide() {
               margin: '0 0 20px 0',
             }}
           >
-            I1 → I2 upgrade — your AI agent handles every step
+            Iteration 1 → Iteration 2 upgrade — your AI agent handles every step
           </p>
         </AnimatedText>
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # version: 2.0 | status: Draft | last_updated: 2026-04-05
-# Structural validator for ltc-brainstorming I3 upgrade
+# Structural validator for ltc-brainstorming Iteration 3 upgrade
 # Usage: ./scripts/validate-brainstorming-i3.sh
 # Exit 0 = all pass, Exit 1 = one or more fail
 

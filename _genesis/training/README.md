@@ -9,7 +9,7 @@ work_stream: _genesis
 
 Two slide decks live here. They serve different purposes.
 
-## I2 Production Deck (use this one)
+## Iteration 2 Production Deck (use this one)
 
 ```
 obsidian-bases-training/
@@ -32,7 +32,7 @@ Then open: `http://127.0.0.1:5173/`
 ### How to tell your agent to run it
 
 ```
-Open the I2 training deck — run the Vite dev server
+Open the Iteration 2 training deck — run the Vite dev server
 in _genesis/training/obsidian-bases-training on port 5173
 ```
 
@@ -51,9 +51,9 @@ alpei-training-slides/
 ```
 
 **Content:** ALPEI workstream foundations, frontmatter anatomy, Obsidian workflow basics.
-**Purpose:** Introductory training — covers the "what" before the I2 deck covers the "how."
+**Purpose:** Introductory training — covers the "what" before the Iteration 2 deck covers the "how."
 **Note:** This is NOT a legacy/deprecated deck. It teaches different material (ALPEI structure)
-that the I2 deck assumes you already know.
+that the Iteration 2 deck assumes you already know.
 
 ### How to run
 
@@ -71,7 +71,7 @@ Port 5174 (not 5173) to avoid collision if both run simultaneously.
 |---------|-----|
 | Stale slides in browser | Hard refresh: Cmd+Shift+R |
 | Multiple Vite servers on different ports | Kill all: `lsof -ti:5173,5174,5175,5176,5177,5178,5179 \| xargs kill -9` then restart |
-| Wrong deck opens | Check the port — 5173 = I2, 5174 = ALPEI foundations |
+| Wrong deck opens | Check the port — 5173 = Iteration 2, 5174 = ALPEI foundations |
 | `npm ci` fails | Delete `node_modules/` and retry |
 
 ## Links

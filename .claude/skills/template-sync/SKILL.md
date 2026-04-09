@@ -20,7 +20,7 @@ Merge candidates require explicit user collaboration. All decisions logged to `.
 Before syncing, check for `.claude/commands/` files that collide with `.claude/skills/`:
 
 ```bash
-# Find command files that have a matching skill (stale duplicates from pre-I2 migration)
+# Find command files that have a matching skill (stale duplicates from pre-Iteration 2 migration)
 for cmd in .claude/commands/**/*.md .claude/commands/*.md; do
   [[ -f "$cmd" ]] || continue
   name=$(basename "$cmd" .md)
@@ -31,7 +31,7 @@ done
 ```
 
 If stale files found, present the list and ask:
-> "These command files are duplicates of skills that were migrated in I2. The duplicate can cause autocomplete issues. Remove them? (Y/n)"
+> "These command files are duplicates of skills that were migrated in Iteration 2. The duplicate can cause autocomplete issues. Remove them? (Y/n)"
 
 On yes: `rm` each stale file. On no: skip with warning that autocomplete may behave unexpectedly.
 

@@ -211,7 +211,7 @@ EP_E = UDS.UD.Principles + UDS.UD.UD.Principles + UDS.UB.UB.Principles
 Question: What principles maximize output while keeping the system safe?
 
 **Sc-Principle (Scalability) — Future-Proof:**
-Built on S + E at I4 (Leadership iteration). Governs self-improvement and disproportionate growth.
+Built on S + E at Iteration 4 (Leadership iteration). Governs self-improvement and disproportionate growth.
 Question: What principles allow the system to grow and self-optimize?
 
 EP feeds into EOE, EOT, and EOP design in 3-PLAN. Any principle that cannot be traced to a UBS or UDS finding is an unvalidated assumption — reject it.

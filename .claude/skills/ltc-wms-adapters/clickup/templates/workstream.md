@@ -15,10 +15,10 @@ Parent: PJ Project. Groups Deliverables by iteration/VANA pillar scope.
 ```
 
 Scoped to this iteration's pillar:
-- I1 (Concept): Verb + Noun + Sustainability qualities
-- I2 (Prototype): + Efficiency qualities
-- I3 (MVE): + Scalability qualities
-- I4 (Leadership): + Spawned + Hardening
+- Iteration 1 (Concept): Verb + Noun + Sustainability qualities
+- Iteration 2 (Prototype): + Efficiency qualities
+- Iteration 3 (MVE): + Scalability qualities
+- Iteration 4 (Leadership): + Spawned + Hardening
 
 ### 🌐 ACCEPTANCE CRITERIA (Key Results) — field `b74bfd0e-f112-4849-af6d-132e65e59b46`
 ```
@@ -32,7 +32,7 @@ Owns from Project:
 Select: `Must Have` | `Should Have` | `Could Have` | `Won't Have`
 
 ### 🌐 DELIVERY PHASE — field `4b625634-7006-4eec-8add-8c2b8c04ca3c` (dropdown)
-Must match iteration: I1→1.CONCEPT | I2→2.PROTOTYPE | I3→3.MVE | I4→4.LEADERSHIP
+Must match iteration: Iteration 1→1.CONCEPT | Iteration 2→2.PROTOTYPE | Iteration 3→3.MVE | Iteration 4→4.LEADERSHIP
 
 ---
 

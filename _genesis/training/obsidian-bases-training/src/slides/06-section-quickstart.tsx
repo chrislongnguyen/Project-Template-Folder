@@ -6,7 +6,7 @@ export default function SectionQuickstart() {
     <SectionDivider
       number={1}
       title="Quick Start & Migration"
-      subtitle="Upgrade from I1 → I2 with zero struggle, see your first dashboard"
+      subtitle="Upgrade from Iteration 1 → Iteration 2 with zero struggle, see your first dashboard"
       accentColor={colors.gold}
     />
   );

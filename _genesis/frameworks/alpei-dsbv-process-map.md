@@ -97,7 +97,7 @@ PD is the first sub-system and sets the version ceiling. DP, DA, and IDM follow 
 
 ## 3. P2 — Version Progression: What Each Workstream Produces at Each Depth
 
-The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (I0–I4) and shows exactly what "done" looks like at every workstream-version intersection.
+The ALPEI framework defines 5 version levels. Each level sets a ceiling on what any workstream is allowed to produce — building deeper than your current version is waste; building shallower is a gap. This section maps those version levels to LTC iteration naming (Iteration 0–Iteration 4) and shows exactly what "done" looks like at every workstream-version intersection.
 
 Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`.
 
@@ -108,20 +108,20 @@ Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`
 
 | LTC Name | Original UES Name               | Three Pillars Alignment                      | One-Line Summary                              |
 | -------- | ------------------------------- | -------------------------------------------- | --------------------------------------------- |
-| **I0**   | Logic Scaffold                  | Pre-build (no pillar yet)                    | Map scope and logic only — no implementation  |
-| **I1**   | Concept                         | Sustainability only                          | Prove correctness and safety — nothing breaks |
-| **I2**   | Prototype                       | Sustainability + Efficiency                  | Work on real data and outperform alternatives |
-| **I3**   | MVE (Minimum Viable Experience) | Sustainability + Efficiency (fully realized) | Production-grade — reliable at current scale  |
-| **I4**   | Leadership                      | Sustainability + Efficiency + Scalability    | Self-improving, self-executing, predictive    |
+| **Iteration 0**   | Logic Scaffold                  | Pre-build (no pillar yet)                    | Map scope and logic only — no implementation  |
+| **Iteration 1**   | Concept                         | Sustainability only                          | Prove correctness and safety — nothing breaks |
+| **Iteration 2**   | Prototype                       | Sustainability + Efficiency                  | Work on real data and outperform alternatives |
+| **Iteration 3**   | MVE (Minimum Viable Experience) | Sustainability + Efficiency (fully realized) | Production-grade — reliable at current scale  |
+| **Iteration 4**   | Leadership                      | Sustainability + Efficiency + Scalability    | Self-improving, self-executing, predictive    |
 
 
-> **Reading rule:** I0 is pre-build framing. I1 adds the first pillar (Safety/Sustainability). Each subsequent level adds capability, not replaces it — I4 assumes everything from I0–I3 is complete and stable.
+> **Reading rule:** Iteration 0 is pre-build framing. Iteration 1 adds the first pillar (Safety/Sustainability). Each subsequent level adds capability, not replaces it — Iteration 4 assumes everything from Iteration 0–Iteration 3 is complete and stable.
 
 ---
 
 ### 25-Cell Version-Depth Matrix
 
-> Rows = version level (I0–I4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
+> Rows = version level (Iteration 0–Iteration 4). Columns = ALPEI workstream. Each cell = what that workstream produces AT that version level.
 > Source: `ues-version-behaviors.md` § per-work-stream tables.
 > **Traceability:** Each column maps to a work stream section in ues-version-behaviors.md:
 > 1-ALIGN → §ALIGN WORK STREAM | 2-LEARN → §LEARN WORK STREAM | 3-PLAN → §PLAN WORK STREAM | 4-EXECUTE → §EXECUTE WORK STREAM | 5-IMPROVE → §IMPROVE WORK STREAM
@@ -129,11 +129,11 @@ Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`
 
 | Version                 | 1-ALIGN                                                                                            | 2-LEARN                                                                                                    | 3-PLAN                                                                                                       | 4-EXECUTE                                                                               | 5-IMPROVE                                                                                                |
 | ----------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **I0** (Logic Scaffold) | Project Charter (conceptual), Stakeholder map (draft), VANA criteria (initial)                     | UBS inventory (draft), UDS inventory (draft), Research questions list                                      | Iteration Scope (draft), Task list (conceptual), Dependency map (initial)                                    | No artifacts — execution is out of scope at this level                                  | Improvement areas list, Gap analysis (conceptual), Success criteria (initial)                            |
-| **I1** (Concept)        | Project Charter (validated), Master Plan (safety-focused), VANA criteria (sustainability-verified) | UBS analysis (validated), UDS analysis (validated), Effective Principles (derived, safety-checked)         | Iteration Scope (risk-assessed), Task breakdown (safety-sequenced), UBS Risk Register (populated)            | Simulated deliverables, Manual workflows, Safety-verified outputs                       | Feedback collection (structured), Retrospective notes (safety-focused), Validated improvement hypotheses |
-| **I2** (Prototype)      | OKRs (efficiency metrics), Master Plan (efficiency-optimized), Resource allocation (benchmarked)   | UBS/UDS tested against real data, Effective Principles (efficiency-proven), Research methodology (refined) | Task breakdown (effort-estimated), UDS Driver Register (populated), Critical path (optimized)                | Working deliverables (limited scope), Automated where efficient, Performance benchmarks | Feedback analysis (quantified), Sprint Review (efficiency-benchmarked), Prioritized improvement backlog  |
-| **I3** (MVE)            | Full OKR set, Locked Master Plan, Stakeholder sign-off, Budget commitment                          | UBS/UDS analysis (production-validated), Effective Principles (locked), Learning audit (complete)          | Locked Execution Plan, RACI assignments (final), Sprint schedule (committed), Risk/Driver entries (complete) | Production-grade deliverables, Reliable automated workflows, Cost-effective operations  | Feedback Register (production-grade), Sprint Review (comprehensive), Implemented improvements (verified) |
-| **I4** (Leadership)     | Automated alignment checks, Predictive resource planning, Self-adjusting OKRs                      | Automated UBS/UDS detection, Self-updating Effective Principles, Predictive blocker identification         | Auto-generated sprint plans, Predictive effort estimation, Dynamic re-planning on blocker detection          | Self-executing workflows, Predictive issue prevention, Auto-scaling operations          | Automated feedback detection, Predictive issue identification, Self-optimizing processes                 |
+| **Iteration 0** (Logic Scaffold) | Project Charter (conceptual), Stakeholder map (draft), VANA criteria (initial)                     | UBS inventory (draft), UDS inventory (draft), Research questions list                                      | Iteration Scope (draft), Task list (conceptual), Dependency map (initial)                                    | No artifacts — execution is out of scope at this level                                  | Improvement areas list, Gap analysis (conceptual), Success criteria (initial)                            |
+| **Iteration 1** (Concept)        | Project Charter (validated), Master Plan (safety-focused), VANA criteria (sustainability-verified) | UBS analysis (validated), UDS analysis (validated), Effective Principles (derived, safety-checked)         | Iteration Scope (risk-assessed), Task breakdown (safety-sequenced), UBS Risk Register (populated)            | Simulated deliverables, Manual workflows, Safety-verified outputs                       | Feedback collection (structured), Retrospective notes (safety-focused), Validated improvement hypotheses |
+| **Iteration 2** (Prototype)      | OKRs (efficiency metrics), Master Plan (efficiency-optimized), Resource allocation (benchmarked)   | UBS/UDS tested against real data, Effective Principles (efficiency-proven), Research methodology (refined) | Task breakdown (effort-estimated), UDS Driver Register (populated), Critical path (optimized)                | Working deliverables (limited scope), Automated where efficient, Performance benchmarks | Feedback analysis (quantified), Sprint Review (efficiency-benchmarked), Prioritized improvement backlog  |
+| **Iteration 3** (MVE)            | Full OKR set, Locked Master Plan, Stakeholder sign-off, Budget commitment                          | UBS/UDS analysis (production-validated), Effective Principles (locked), Learning audit (complete)          | Locked Execution Plan, RACI assignments (final), Sprint schedule (committed), Risk/Driver entries (complete) | Production-grade deliverables, Reliable automated workflows, Cost-effective operations  | Feedback Register (production-grade), Sprint Review (comprehensive), Implemented improvements (verified) |
+| **Iteration 4** (Leadership)     | Automated alignment checks, Predictive resource planning, Self-adjusting OKRs                      | Automated UBS/UDS detection, Self-updating Effective Principles, Predictive blocker identification         | Auto-generated sprint plans, Predictive effort estimation, Dynamic re-planning on blocker detection          | Self-executing workflows, Predictive issue prevention, Auto-scaling operations          | Automated feedback detection, Predictive issue identification, Self-optimizing processes                 |
 
 
 ---
@@ -142,25 +142,25 @@ Source of truth for all 25 cells: `_genesis/frameworks/ues-version-behaviors.md`
 
 Use this to sanity-check deliverables before starting or reviewing work.
 
-**I0 — Logic Scaffold (Pre-build)**
+**Iteration 0 — Logic Scaffold (Pre-build)**
 DO: Scope definitions, structural maps, dependency diagrams, VANA criteria (initial), stakeholder lists (draft), UBS/UDS inventories (identified, not yet analyzed), conceptual task lists.
 DO NOT: Working code, automated pipelines, validated principles, signed-off plans, locked registers, any executed output.
 
-**I1 — Concept (Sustainability)**
+**Iteration 1 — Concept (Sustainability)**
 DO: Validated charters and safety-checked designs, simulated or manual-but-correct workflows, Risk Registers with populated entries, structured feedback collection.
 DO NOT: Efficiency benchmarks, optimized systems, production-grade automation, real-data testing, locked or committed plans.
 
-**I2 — Prototype (Sustainability + Efficiency)**
-DO: Working tools using real data (limited scope), efficiency comparisons vs. I1 manual approach, benchmarked performance, populated Driver Registers, optimized critical paths.
+**Iteration 2 — Prototype (Sustainability + Efficiency)**
+DO: Working tools using real data (limited scope), efficiency comparisons vs. Iteration 1 manual approach, benchmarked performance, populated Driver Registers, optimized critical paths.
 DO NOT: Fully scaled systems, production-grade reliability, self-healing automation, comprehensive audit trails.
 
-**I3 — MVE (Full S+E)**
+**Iteration 3 — MVE (Full S+E)**
 DO: Production-grade deliverables reliable at current scale, locked plans, final RACI, committed sprint schedules, stakeholder sign-off, closed-loop improvement tracking.
 DO NOT: Self-optimizing systems, predictive analytics, auto-scaling infrastructure, anything that adjusts itself without human trigger.
 
-**I4 — Leadership (S+E+Scalability)**
+**Iteration 4 — Leadership (S+E+Scalability)**
 DO: Self-executing workflows, auto-scaling operations, predictive models (issues, blockers, resource needs), self-adjusting OKRs, systems that learn and update Effective Principles autonomously.
-DO NOT: New foundational work — I4 presumes I0–I3 are complete and stable. Manual workarounds — a manual step at I4 is a gap, not a feature.
+DO NOT: New foundational work — Iteration 4 presumes Iteration 0–Iteration 3 are complete and stable. Manual workarounds — a manual step at Iteration 4 is a gap, not a feature.
 
 ---
 
@@ -171,11 +171,11 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 
 | PD Version | DP ceiling                                        | DA ceiling                              | IDM ceiling                                |
 | ---------- | ------------------------------------------------- | --------------------------------------- | ------------------------------------------ |
-| I0         | Pipeline design is conceptual only                | Analysis methodology is mapped only     | Decision framework is theoretical only     |
-| I1         | Pipeline must handle data safely and correctly    | Analysis must produce validated results | Decisions must be provably safe            |
-| I2         | Pipeline must be more efficient than alternatives | Analysis must outperform prior methods  | Decisions must demonstrate better outcomes |
-| I3         | Pipeline must be production-reliable              | Analysis must be production-reliable    | Decisions must be reliably actionable      |
-| I4         | Pipeline self-optimizes and scales                | Analysis auto-detects patterns          | Decisions are predictive and prescriptive  |
+| Iteration 0         | Pipeline design is conceptual only                | Analysis methodology is mapped only     | Decision framework is theoretical only     |
+| Iteration 1         | Pipeline must handle data safely and correctly    | Analysis must produce validated results | Decisions must be provably safe            |
+| Iteration 2         | Pipeline must be more efficient than alternatives | Analysis must outperform prior methods  | Decisions must demonstrate better outcomes |
+| Iteration 3         | Pipeline must be production-reliable              | Analysis must be production-reliable    | Decisions must be reliably actionable      |
+| Iteration 4         | Pipeline self-optimizes and scales                | Analysis auto-detects patterns          | Decisions are predictive and prescriptive  |
 
 
 **Rule:** If a downstream sub-system's design conflicts with PD's Effective Principles, PD wins. Downstream sub-systems cannot exceed their upstream dependency's version level.
@@ -226,7 +226,7 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 | -------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **alpei-pre-flight**       | `.claude/rules/alpei-pre-flight.md`       | 6 checks before every task: workstream, alignment, risks, drivers, learning, version consistency. RED = stop.                                                                                                                                                       |
 | **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips.                                                                                                                                 |
-| **versioning**             | `.claude/rules/versioning.md`             | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. I1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved.                                                                                                         |
+| **versioning**             | `.claude/rules/versioning.md`             | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. Iteration 1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved.                                                                                                         |
 | **dsbv**                   | `.claude/rules/dsbv.md`                   | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact.                                                                                                               |
 | **agent-dispatch**         | `.claude/rules/agent-dispatch.md`         | Every Agent() call must: (1) name one of the 4 MECE agents, (2) use 5-field context package (EO → INPUT → EP → OUTPUT → VERIFY), (3) match model to agent file, (4) use absolute paths in worktrees. Enforced via PreToolUse hook — ad-hoc calls are blocked. |
 

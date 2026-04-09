@@ -21,7 +21,7 @@ iteration: 1
 | Field | Value |
 |-------|-------|
 | Sub-system | _[name]_ |
-| Iteration scope | _[I1 / I2 / I3 / I4]_ |
+| Iteration scope | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Owner | _[name]_ |
 | Research scope inherited from | `2-LEARN/research/[SUBSYSTEM]-RESEARCH-SCOPE.md` |
 
@@ -32,12 +32,12 @@ iteration: 1
 
 | Iteration | Focus | Key Milestone | Done When |
 |-----------|-------|--------------|-----------|
-| I1 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I2 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I3 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
-| I4 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
+| Iteration 1 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
+| Iteration 2 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
+| Iteration 3 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
+| Iteration 4 | _[theme]_ | _[milestone name]_ | _[binary test]_ |
 
-## Current Iteration Detail — [I1 / I2 / ...]
+## Current Iteration Detail — [Iteration 1 / Iteration 2 / ...]
 
 ### Milestones
 

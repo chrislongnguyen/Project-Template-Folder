@@ -6,7 +6,7 @@ export default function SectionPkbSlide() {
     <SectionDivider
       number={5}
       title="Personal Knowledge Base"
-      subtitle="New in I2: Your AI-powered knowledge system — inspired by Andrej Karpathy (ex-Tesla AI, OpenAI founding member) and his LLM-wiki pattern"
+      subtitle="New in Iteration 2: Your AI-powered knowledge system — inspired by Andrej Karpathy (ex-Tesla AI, OpenAI founding member) and his LLM-wiki pattern"
       accentColor={colors.purple}
     />
   );

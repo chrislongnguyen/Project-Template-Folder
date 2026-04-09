@@ -116,7 +116,7 @@ export default function TitleSlide() {
             fontSize: 'clamp(0.6rem, 0.9vw, 0.76rem)',
           }}
         >
-          <span style={{ color: colors.muted, fontWeight: 400 }}>I1 Sustainable</span>
+          <span style={{ color: colors.muted, fontWeight: 400 }}>Iteration 1 Sustainable</span>
           <span style={{ color: colors.textDim, opacity: 0.5 }}>──►</span>
           <span
             style={{
@@ -128,10 +128,10 @@ export default function TitleSlide() {
               border: `1px solid rgba(242, 199, 92, 0.3)`,
             }}
           >
-            I2 Efficient
+            Iteration 2 Efficient
           </span>
           <span style={{ color: colors.textDim, opacity: 0.5 }}>──►</span>
-          <span style={{ color: colors.muted, fontWeight: 400 }}>I3 Scalable</span>
+          <span style={{ color: colors.muted, fontWeight: 400 }}>Iteration 3 Scalable</span>
         </motion.div>
 
         {/* Decorative divider */}

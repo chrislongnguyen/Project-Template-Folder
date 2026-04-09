@@ -20,14 +20,14 @@ iteration: 2
 
 | Field | Type | Required | Valid Values | Default | Notes |
 |-------|------|----------|-------------|---------|-------|
-| `version` | string | YES | `"MAJOR.MINOR"` e.g. `"1.0"`, `"2.3"` | `"1.0"` | Quoted string. MAJOR = iteration (I1=1.x, I2=2.x). MINOR = edit count within iteration. Never `"0.x"`. |
+| `version` | string | YES | `"MAJOR.MINOR"` e.g. `"1.0"`, `"2.3"` | `"1.0"` | Quoted string. MAJOR = iteration (Iteration 1=1.x, Iteration 2=2.x). MINOR = edit count within iteration. Never `"0.x"`. |
 | `status` | string | YES | `draft` \| `in-progress` \| `in-review` \| `validated` \| `archived` | `draft` | S2 vocabulary. Lowercase only. Humans set `validated`; agents set all others. |
 | `last_updated` | string | YES | `YYYY-MM-DD` e.g. `2026-04-03` | today | Absolute date. Never relative ("today"). Updated on every edit. |
 | `type` | string | YES | Semantic artifact type (e.g. `dsbv-design` \| `charter` \| `okr` \| `architecture` \| `risk-register` \| `effective-principles` \| `template` \| `reference`) | (none) | Lowercase. Semantic classification — NOT used for Bases dashboard gating (work_stream gates instead). |
 | `sub_system` | string | YES | `problem-diagnosis` \| `data-pipeline` \| `data-analysis` \| `insights-decision-making` | `problem-diagnosis` | Lowercase kebab. Maps to the 4-subsystem pipeline (PD→DP→DA→IDM). |
 | `work_stream` | string | YES | `1-ALIGN` \| `2-LEARN` \| `3-PLAN` \| `4-EXECUTE` \| `5-IMPROVE` | `4-EXECUTE` | SCREAMING with number prefix to match folder names. Drives Bases filters (01-07). Exception to lowercase rule per `versioning.md`. |
 | `stage` | string | YES | `design` \| `sequence` \| `build` \| `validate` | `design` | Lowercase DSBV stage. `validate` is canonical (not `audit`). |
-| `iteration` | integer | YES | `0` \| `1` \| `2` \| `3` \| `4` | `2` | Integer (no quotes). Matches I0-I4 iteration. 0=scaffold, 1=concept, 2=prototype, 3=mve, 4=leadership. |
+| `iteration` | integer | YES | `0` \| `1` \| `2` \| `3` \| `4` | `2` | Integer (no quotes). Matches Iteration 0-Iteration 4 iteration. 0=scaffold, 1=concept, 2=prototype, 3=mve, 4=leadership. |
 
 ---
 
@@ -73,7 +73,7 @@ iteration: 2
 
 ---
 
-## Migration Mapping (I1 → S2)
+## Migration Mapping (Iteration 1 → S2)
 
 | Old Value | New Value | Script Action |
 |-----------|----------|---------------|

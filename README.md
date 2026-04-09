@@ -12,9 +12,9 @@ type: template
 
 Standard project scaffold for LT Capital Partners. Clone this to start any new project with the ALPEI workstream structure, 4-subsystem horizontal layer, Obsidian Bases dashboards, and AI agent configuration pre-loaded.
 
-## What Changed from I1 to I2
+## What Changed from Iteration 1 to Iteration 2
 
-| Dimension | I1 (Concept) | I2 (Prototype) |
+| Dimension | Iteration 1 (Concept) | Iteration 2 (Prototype) |
 |-----------|-------------|----------------|
 | **Focus** | Sustainability — human adoption first | **Sustainability × Efficiency** — manage workflows sustainably AND efficiently |
 | **Structure** | 5 flat workstream dirs | 5 workstreams × 4 subsystems (PD → DP → DA → IDM) + `_cross` |
@@ -26,7 +26,7 @@ Standard project scaffold for LT Capital Partners. Clone this to start any new p
 
 **Core equation:** Success = Efficient & Scalable Management of Failure Risks
 
-Sustainability (S) ensures the system doesn't break. Efficiency (E) ensures output is maximized within safe boundaries. I2 delivers both — I1 delivered only S.
+Sustainability (S) ensures the system doesn't break. Efficiency (E) ensures output is maximized within safe boundaries. Iteration 2 delivers both — Iteration 1 delivered only S.
 
 ## Your Starting Point: Brainstorming
 
@@ -53,7 +53,7 @@ Use it when you're thinking out loud: *"I'm thinking about..."*, *"What if we...
 |---|----------|---------------|------|
 | 1 | **Training Deck** (47 slides) | `cd _genesis/training/alpei-training-slides && npm install && npm run dev` → open `http://localhost:5173` | 30 min |
 | 2 | **ALPEI Navigator** (interactive map) | Open `_genesis/tools/alpei-navigator.html` in any browser (no install needed) | 10 min |
-| 3 | **Migration Guide** (I1 → I2) | Read `_genesis/guides/migration-guide.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
+| 3 | **Migration Guide** (Iteration 1 → Iteration 2) | Read `_genesis/guides/migration-guide.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
 
 ## Quick Start
 
@@ -145,7 +145,7 @@ The critical output: **Effective Principles** (S-Principles for safety, E-Princi
 
 ### 8. Capture knowledge as you go
 
-I2 adds a **Personal Knowledge Base (PKB)** for capturing insights from any source:
+Iteration 2 adds a **Personal Knowledge Base (PKB)** for capturing insights from any source:
 
 ```
 /vault-capture "key insight from today's meeting"    Quick capture → Obsidian inbox
@@ -154,9 +154,9 @@ I2 adds a **Personal Knowledge Base (PKB)** for capturing insights from any sour
 
 Books, articles, courses, conversations — everything lands in the Obsidian vault where it's searchable, linkable, and feeds into your LEARN pipeline.
 
-### Already have an I1 project? Migrate to I2
+### Already have an Iteration 1 project? Migrate to Iteration 2
 
-If your project was cloned from the I1 scaffold and needs the subsystem structure, see:
+If your project was cloned from the Iteration 1 scaffold and needs the subsystem structure, see:
 
 ```
 _genesis/guides/migration-guide.md
@@ -179,7 +179,7 @@ Notion/ClickUp tasks              /vault-capture insights
 
 **Why S × E matters:** Sustainability (S) means this workflow doesn't burn you out — session management, auto-saves, and crash recovery protect your work. Efficiency (E) means the tools amplify your output — Obsidian Bases give you instant dashboards, PKB makes knowledge searchable, brainstorming catches bad assumptions early.
 
-## I2 Feature: Obsidian Bases Dashboards
+## Iteration 2 Feature: Obsidian Bases Dashboards
 
 Every workstream and subsystem is tagged with frontmatter (`work_stream`, `sub_system`, `status`, `iteration`). Obsidian Bases reads these tags to generate live, filterable views:
 
@@ -191,7 +191,7 @@ Every workstream and subsystem is tagged with frontmatter (`work_stream`, `sub_s
 
 No manual status tracking. Write your artifacts with proper frontmatter → dashboards update automatically.
 
-## I2 Feature: 4-Subsystem Horizontal Layer
+## Iteration 2 Feature: 4-Subsystem Horizontal Layer
 
 Every workstream is organized by subsystem, not by artifact category:
 

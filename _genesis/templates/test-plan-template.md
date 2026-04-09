@@ -21,7 +21,7 @@ sub_system:
 |-------|-------|
 | Sub-system | _[name]_ |
 | Artifact(s) under test | _[list of deliverable paths]_ |
-| Iteration | _[I1 / I2 / I3 / I4]_ |
+| Iteration | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Test owner | _[name]_ |
 | Date | _[YYYY-MM-DD]_ |
 

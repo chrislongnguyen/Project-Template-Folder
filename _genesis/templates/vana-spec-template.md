@@ -146,74 +146,74 @@ sub_system:
 
 ## §2 Verb Acceptance Criteria
 
-<!-- Derivation: T0.P5 — each STEP.n(R) row becomes one Verb-AC (I1).
-     STEP.n(A) Col16 (NEXT) cells become SPAWNED Verb-ACs (I4).
-     All use sequential Verb-ACn IDs — VANA Element column distinguishes I1 vs SPAWNED. -->
+<!-- Derivation: T0.P5 — each STEP.n(R) row becomes one Verb-AC (Iteration 1).
+     STEP.n(A) Col16 (NEXT) cells become SPAWNED Verb-ACs (Iteration 4).
+     All use sequential Verb-ACn IDs — VANA Element column distinguishes Iteration 1 vs SPAWNED. -->
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| Verb-AC1 | {verb_word_1} | {verb_criteria_1} | T0.P5:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
-| Verb-AC2 | {verb_word_2} | {verb_criteria_2} | T0.P5:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
-| Verb-AC{n} | {spawned_word_1} | {spawned_criteria_1} | T0.P5:{row}:Col16 | {Deterministic\|Manual\|AI-Graded} | {threshold} | I4 |
-<!-- One row per STEP.n(R) at I1; one row per STEP.n(A) Col16 NEXT cell at I4. Continuous Verb-ACn sequence. -->
+| Verb-AC1 | {verb_word_1} | {verb_criteria_1} | T0.P5:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
+| Verb-AC2 | {verb_word_2} | {verb_criteria_2} | T0.P5:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
+| Verb-AC{n} | {spawned_word_1} | {spawned_criteria_1} | T0.P5:{row}:Col16 | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 4 |
+<!-- One row per STEP.n(R) at Iteration 1; one row per STEP.n(A) Col16 NEXT cell at Iteration 4. Continuous Verb-ACn sequence. -->
 
 ---
 
 ## §3 Adverb Acceptance Criteria
 
 <!-- Derivation: T0.P3 Principles — bucketed by S/E/Sc pillar tag.
-     P(S) → SustainAdv (I1), P(E) → EffAdv (I2), P(Sc) → ScalAdv (I3). -->
+     P(S) → SustainAdv (Iteration 1), P(E) → EffAdv (Iteration 2), P(Sc) → ScalAdv (Iteration 3). -->
 
-### §3.1 Sustainability Adverbs (I1)
+### §3.1 Sustainability Adverbs (Iteration 1)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| SustainAdv-AC1 | {sustain_adv_word_1} | {sustain_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
+| SustainAdv-AC1 | {sustain_adv_word_1} | {sustain_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
 <!-- One row per P(S) principle → adverb -->
 
-### §3.2 Efficiency Adverbs (I2)
+### §3.2 Efficiency Adverbs (Iteration 2)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| EffAdv-AC1 | {eff_adv_word_1} | {eff_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I2 |
+| EffAdv-AC1 | {eff_adv_word_1} | {eff_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 2 |
 <!-- One row per P(E) principle → adverb -->
 
-### §3.3 Scalability Adverbs (I3)
+### §3.3 Scalability Adverbs (Iteration 3)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| ScalAdv-AC1 | {scal_adv_word_1} | {scal_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I3 |
+| ScalAdv-AC1 | {scal_adv_word_1} | {scal_adv_1} | T0.P3:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 3 |
 <!-- One row per P(Sc) principle → adverb -->
 
 ---
 
 ## §4 Noun Acceptance Criteria
 
-<!-- Derivation: T0.P4 Components — organized by EOE/EOT layer (I1).
-     Hardening ACs derived from T0.P0 RACI(I) role — production readiness gates (I4).
-     All use continuous Noun-ACn IDs — VANA Element column distinguishes I1 vs Hardening. -->
+<!-- Derivation: T0.P4 Components — organized by EOE/EOT layer (Iteration 1).
+     Hardening ACs derived from T0.P0 RACI(I) role — production readiness gates (Iteration 4).
+     All use continuous Noun-ACn IDs — VANA Element column distinguishes Iteration 1 vs Hardening. -->
 
 ### §4.1 INFRA Layer
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| Noun-AC1 | {noun_word_1} | {noun_infra_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
+| Noun-AC1 | {noun_word_1} | {noun_infra_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
 <!-- One row per INFRA component -->
 
 ### §4.2 WORKSPACE Layer
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| Noun-AC{n} | {noun_word_n} | {noun_workspace_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
+| Noun-AC{n} | {noun_word_n} | {noun_workspace_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
 <!-- One row per WORKSPACE component -->
 
 ### §4.3 INTEL Layer
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| Noun-AC{n} | {noun_word_n} | {noun_intel_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
-| Noun-AC{n} | {hardening_word_1} | {hardening_criteria_1} | T0.P0:RACI(I) | Deterministic | 100% pass rate | I4 |
-<!-- One row per INTEL component (I1), then one row per Hardening AC (I4). Continuous Noun-ACn sequence. -->
+| Noun-AC{n} | {noun_word_n} | {noun_intel_1} | T0.P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
+| Noun-AC{n} | {hardening_word_1} | {hardening_criteria_1} | T0.P0:RACI(I) | Deterministic | 100% pass rate | Iteration 4 |
+<!-- One row per INTEL component (Iteration 1), then one row per Hardening AC (Iteration 4). Continuous Noun-ACn sequence. -->
 
 ---
 
@@ -222,25 +222,25 @@ sub_system:
 <!-- Derivation: Cross-reference T0.P3 (principles) x T0.P4 (components).
      Quality attributes for Nouns, bucketed by S/E/Sc pillar. -->
 
-### §5.1 Sustainability Adjectives (I1)
+### §5.1 Sustainability Adjectives (Iteration 1)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| SustainAdj-AC1 | {sustain_adj_word_1} | {sustain_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I1 |
+| SustainAdj-AC1 | {sustain_adj_word_1} | {sustain_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 1 |
 <!-- Quality attributes that ensure Noun sustainability -->
 
-### §5.2 Efficiency Adjectives (I2)
+### §5.2 Efficiency Adjectives (Iteration 2)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| EffAdj-AC1 | {eff_adj_word_1} | {eff_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I2 |
+| EffAdj-AC1 | {eff_adj_word_1} | {eff_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 2 |
 <!-- Quality attributes that ensure Noun efficiency -->
 
-### §5.3 Scalability Adjectives (I3)
+### §5.3 Scalability Adjectives (Iteration 3)
 
 | A.C. ID | VANA Word | Criteria | Source (Page:Row:Col) | Eval Type | Threshold | Iteration |
 |---------|-----------|----------|----------------------|-----------|-----------|-----------|
-| ScalAdj-AC1 | {scal_adj_word_1} | {scal_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | I3 |
+| ScalAdj-AC1 | {scal_adj_word_1} | {scal_adj_1} | T0.P3+P4:{row}:{col} | {Deterministic\|Manual\|AI-Graded} | {threshold} | Iteration 3 |
 <!-- Quality attributes that ensure Noun scalability -->
 
 ---
@@ -447,31 +447,31 @@ sub_system:
 ## §10 Iteration Plan
 
 <!-- Every A.C. from §2-§5 assigned to exactly one iteration — MECE.
-     Rule: Sustainability gates everything. No I2 work until all I1 A.C.s pass.
+     Rule: Sustainability gates everything. No Iteration 2 work until all Iteration 1 A.C.s pass.
      Note: This was §9 in OE.6.1 template. Renumbered for OE.6.4. -->
 
 ### Master Scope Mapping
 
 | A.C. ID | VANA Word | Criteria (short) | VANA Element | Iteration | Status |
 |---------|-----------|------------------|--------------|-----------|--------|
-| Verb-AC1 | {verb_word} | {short_desc} | Verb | I1 | To Do |
-| SustainAdv-AC1 | {adv_word} | {short_desc} | Adverb (S) | I1 | To Do |
-| Noun-AC1 | {noun_word} | {short_desc} | Noun | I1 | To Do |
-| SustainAdj-AC1 | {adj_word} | {short_desc} | Adjective (S) | I1 | To Do |
-| EffAdv-AC1 | {adv_word} | {short_desc} | Adverb (E) | I2 | To Do |
-| EffAdj-AC1 | {adj_word} | {short_desc} | Adjective (E) | I2 | To Do |
-| ScalAdv-AC1 | {adv_word} | {short_desc} | Adverb (Sc) | I3 | To Do |
-| ScalAdj-AC1 | {adj_word} | {short_desc} | Adjective (Sc) | I3 | To Do |
+| Verb-AC1 | {verb_word} | {short_desc} | Verb | Iteration 1 | To Do |
+| SustainAdv-AC1 | {adv_word} | {short_desc} | Adverb (S) | Iteration 1 | To Do |
+| Noun-AC1 | {noun_word} | {short_desc} | Noun | Iteration 1 | To Do |
+| SustainAdj-AC1 | {adj_word} | {short_desc} | Adjective (S) | Iteration 1 | To Do |
+| EffAdv-AC1 | {adv_word} | {short_desc} | Adverb (E) | Iteration 2 | To Do |
+| EffAdj-AC1 | {adj_word} | {short_desc} | Adjective (E) | Iteration 2 | To Do |
+| ScalAdv-AC1 | {adv_word} | {short_desc} | Adverb (Sc) | Iteration 3 | To Do |
+| ScalAdj-AC1 | {adj_word} | {short_desc} | Adjective (Sc) | Iteration 3 | To Do |
 <!-- Every A.C. appears exactly once. -->
 
 ### Iteration Sequencing
 
 | Iteration | Name | Scope | Gate Criteria |
 |-----------|------|-------|---------------|
-| I1 | Concept | Verb + SustainAdv + Noun + SustainAdj | All I1 A.C.s pass eval |
-| I2 | Working Prototype | + EffAdv + EffAdj | All I1+I2 A.C.s pass eval |
-| I3 | MVE | + ScalAdv + ScalAdj | All I1+I2+I3 A.C.s pass eval |
-| I4 | Leadership | + remaining + SPAWNED A.C.s | All A.C.s pass eval |
+| Iteration 1 | Concept | Verb + SustainAdv + Noun + SustainAdj | All Iteration 1 A.C.s pass eval |
+| Iteration 2 | Working Prototype | + EffAdv + EffAdj | All Iteration 1+Iteration 2 A.C.s pass eval |
+| Iteration 3 | MVE | + ScalAdv + ScalAdj | All Iteration 1+Iteration 2+Iteration 3 A.C.s pass eval |
+| Iteration 4 | Leadership | + remaining + SPAWNED A.C.s | All A.C.s pass eval |
 
 ---
 

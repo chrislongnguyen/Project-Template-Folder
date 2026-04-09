@@ -67,11 +67,11 @@ Result: dashboards show only Obsidian Templater-created files. All agent work is
 
 ```
               SUSTAINABILITY              EFFICIENCY                SCALABILITY
-              (reliable, never fails)     (fast, low friction)      (1000+ files, I0-I4)
+              (reliable, never fails)     (fast, low friction)      (1000+ files, Iteration 0-Iteration 4)
 ─────────     ────────────────────────    ──────────────────────    ──────────────────────
 HUMAN PM      Filter uses closed set      Zero new fields           No per-type maintenance
               (5 values, never changes)   Zero new workflow         Add files, not filter rules
-              Hook catches agent errors   Obsidian path unchanged   Works identically at I4
+              Hook catches agent errors   Obsidian path unchanged   Works identically at Iteration 4
               Pre-commit is safety net
 
 AI AGENT      Hook auto-injects 8 fields  ~40 tokens saved/file     Hook is O(1) per file

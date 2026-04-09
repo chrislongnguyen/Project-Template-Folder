@@ -10,7 +10,7 @@ type: decision
 work_stream: 1-ALIGN
 stage: design
 sub_system: <% tp.system.suggester(["1-PD (Problem Diagnosis)", "2-DP (Data Pipeline)", "3-DA (Data Analysis)", "4-IDM (Insights & Decisions)"], ["1-PD", "2-DP", "3-DA", "4-IDM"]) %>
-iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
+iteration: <% tp.system.prompt("Iteration number (e.g. 2 for Iteration 2)") %>
 ---
 
 # <% tp.file.title %>

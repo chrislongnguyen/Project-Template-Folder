@@ -26,7 +26,7 @@ This directory exists separately from `principles/` because frameworks are opera
 | `ltc-alpei-framework-by-subsystems.md` | ALPEI breakdown by PD/DP/DA/IDM subsystems |
 | `ltc-effective-system-design-blueprint.md` | 8-component UES model (EI→EU→EA→EO + EP→EOE→EOT→EOP) |
 | `ltc-ubs-uds-framework.md` | UBS (blocking forces) + UDS (driving forces) analysis method |
-| `ltc-ues-versioning.md` | UES version lifecycle — I0 through I4 |
+| `ltc-ues-versioning.md` | UES version lifecycle — Iteration 0 through Iteration 4 |
 | `ltc-ues-version-behaviors.md` | 25-cell matrix: iteration × behavior per sub-system |
 | `ltc-effective-learning.md` | Learning framework — how LTC captures and applies knowledge |
 | `ltc-effective-thinking.md` | Thinking framework — structured reasoning for decisions |

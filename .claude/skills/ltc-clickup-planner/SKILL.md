@@ -72,7 +72,7 @@ Compensate for LT-6 (no persistent memory):
 
 ```
 PJ Project
-  └─ PJ Workstream (iteration: I1 Concept / I2 Prototype / I3 MVE / I4 Leadership)
+  └─ PJ Workstream (iteration: Iteration 1 Concept / Iteration 2 Prototype / Iteration 3 MVE / Iteration 4 Leadership)
       └─ PJ Deliverable
           └─ Task
               ├─ PJ Increment (the testable work, 1..N)

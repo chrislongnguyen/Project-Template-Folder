@@ -78,7 +78,7 @@ See [references/vana-extraction-rules.md](references/vana-extraction-rules.md) f
 | 9 | All §2–§5 ACs | §9 Master Scope + Iteration Plan | — |
 | 10 | learn-input §3–§4 | §10 Integration Contracts | — |
 
-Also extracts: SPAWNED ACs (I4, from P5 NEXT cells) and Hardening ACs (I4, from P0 RACI(I)).
+Also extracts: SPAWNED ACs (Iteration 4, from P5 NEXT cells) and Hardening ACs (Iteration 4, from P0 RACI(I)).
 
 ---
 
@@ -159,7 +159,7 @@ Next: /learn:handoff {slug}
 ## Gotchas
 
 - **Hallucinated ACs** — every AC traces to page:row:col. Empty source → `[NEEDS REVIEW]`, never invent.
-- **Missing I4 ACs** — SPAWNED (P5 NEXT cells) and Hardening (P0 RACI(I)) are mandatory.
+- **Missing Iteration 4 ACs** — SPAWNED (P5 NEXT cells) and Hardening (P0 RACI(I)) are mandatory.
 - **Vague VANA Words** — "Process" and "Handle" are banned. Use specific verbs.
 - **C4 check** — if `_genesis/templates/dsbv-process.md` is missing, flag RED and halt. (Note: C4 confirms the process template exists for downstream workstreams — LEARN itself does not run DSBV.)
 

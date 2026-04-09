@@ -29,9 +29,9 @@ It exists as a separate directory to enforce the boundary between org-level know
 | `brand/` | Visual identity — colors, typography, logo usage |
 | `security/` | Data classification, naming convention, security hierarchy |
 | `sops/` | Standard operating procedures for repeatable activities |
-| `governance/` | Organizational governance structures (I2 placeholder) |
-| `compliance/` | Regulatory and policy obligations (I2 placeholder) |
-| `culture/` | Team norms and working agreements (I2 placeholder) |
+| `governance/` | Organizational governance structures (Iteration 2 placeholder) |
+| `compliance/` | Regulatory and policy obligations (Iteration 2 placeholder) |
+| `culture/` | Team norms and working agreements (Iteration 2 placeholder) |
 | `obsidian/` | Vault structure scaffold for Obsidian-based knowledge management |
 
 ## How It Connects

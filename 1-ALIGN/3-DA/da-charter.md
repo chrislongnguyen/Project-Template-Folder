@@ -23,7 +23,7 @@ iteration: 1
 | Project name | _[name]_ |
 | Scope code (UNG) | _[SCOPE_FA.ID.NAME]_ |
 | Owner | _[name]_ |
-| Iteration | _[I0 / I1 / I2 / I3 / I4]_ |
+| Iteration | _[Iteration 0 / Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Last reviewed | _[YYYY-MM-DD]_ |
 
 ## Expected Outcome (EO)

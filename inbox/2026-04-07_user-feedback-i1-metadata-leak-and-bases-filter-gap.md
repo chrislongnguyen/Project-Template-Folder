@@ -5,7 +5,7 @@ source: conversation
 tags: []
 ---
 
-# User feedback: I1 metadata leak + Bases filter gap
+# User feedback: Iteration 1 metadata leak + Bases filter gap
 
 Captured from post-v2.0.0 user session — acting as a net-new user cloning template and starting from scratch.
 
@@ -15,13 +15,13 @@ Captured from post-v2.0.0 user session — acting as a net-new user cloning temp
 
 **Main cause:** Blindly preserved `iteration: 2` when editing DESIGN.md.
 
-**Root cause:** The LTC Project Template itself is at I2 (Prototype). When it was merged (commit 081ed5f), ALL scaffolded files shipped with `iteration: 2` and `version: "2.0"`. A new user then bumped to `version: "2.1"` — continuing the wrong baseline instead of resetting.
+**Root cause:** The LTC Project Template itself is at Iteration 2 (Prototype). When it was merged (commit 081ed5f), ALL scaffolded files shipped with `iteration: 2` and `version: "2.0"`. A new user then bumped to `version: "2.1"` — continuing the wrong baseline instead of resetting.
 
-**Correct behavior for a new project at I1 (Concept):**
-- `version` should be `"1.0"` (new content in I1)
+**Correct behavior for a new project at Iteration 1 (Concept):**
+- `version` should be `"1.0"` (new content in Iteration 1)
 - `iteration` should be `1`
 
-**Blame trace:** Agent | Zone: Below Threshold — iteration context not verified before writing | Fix: Reset to `iteration: 1`, `version: "1.0"` on all PD artifacts. Audit ALL template-scaffolded files for leaked I2 metadata.
+**Blame trace:** Agent | Zone: Below Threshold — iteration context not verified before writing | Fix: Reset to `iteration: 1`, `version: "1.0"` on all PD artifacts. Audit ALL template-scaffolded files for leaked Iteration 2 metadata.
 
 ---
 
@@ -40,18 +40,18 @@ Captured from post-v2.0.0 user session — acting as a net-new user cloning temp
 | Fix | Scope |
 |-----|-------|
 | Reset DESIGN.md to `iteration: 1`, `version: "1.0"` | Immediate |
-| Audit all `1-ALIGN/` files for leaked I2 metadata | Before Build |
+| Audit all `1-ALIGN/` files for leaked Iteration 2 metadata | Before Build |
 | Either add `type: ues-deliverable` to DSBV artifacts OR update C1-master-dashboard filter to include `dsbv-*` types | Template-level decision |
 
 ---
 
 ## Template-level implications
 
-Both issues are **onboarding traps** introduced by the template shipping live metadata (`iteration: 2`, `version: "2.0"`) in scaffolded files. A cloning user has no signal that these values must be reset before starting I1 work.
+Both issues are **onboarding traps** introduced by the template shipping live metadata (`iteration: 2`, `version: "2.0"`) in scaffolded files. A cloning user has no signal that these values must be reset before starting Iteration 1 work.
 
 Candidate fixes to the template:
 - Scaffold files with placeholder metadata (`iteration: TBD`, `version: "1.0"`) OR add a reset step to `/setup` skill
-- Document the Bases filter gap + recommended `dsbv-*` query strategy in `_genesis/` or the I2 training deck
+- Document the Bases filter gap + recommended `dsbv-*` query strategy in `_genesis/` or the Iteration 2 training deck
 
 ## Links
 

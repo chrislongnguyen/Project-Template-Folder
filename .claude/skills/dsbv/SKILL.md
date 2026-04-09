@@ -326,7 +326,7 @@ Action: APPROVE / REVISE / ESCALATE
 **Full output format:**
 
 ```
-DSBV Status — I1 (YYYY-MM-DD)
+DSBV Status — Iteration 1 (YYYY-MM-DD)
 ┌─────────────────────────┬──────────────────────────┬─────────┬─────────────┬──────────┐
 │ Workstream × Phase            │ Deliverable              │ Version │ Status      │ AC Pass  │
 ├─────────────────────────┼──────────────────────────┼─────────┼─────────────┼──────────┤

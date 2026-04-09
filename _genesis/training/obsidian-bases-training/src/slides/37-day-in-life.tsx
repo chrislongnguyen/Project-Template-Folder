@@ -67,7 +67,7 @@ export default function DayInLifeSlide() {
               margin: '0 0 4px 0',
             }}
           >
-            YOUR DAY AS A PM — BEFORE AND AFTER I2
+            YOUR DAY AS A PM — BEFORE AND AFTER Iteration 2
           </h1>
           <div
             style={{
@@ -105,7 +105,7 @@ export default function DayInLifeSlide() {
                   letterSpacing: '0.1em',
                 }}
               >
-                BEFORE (I1)
+                BEFORE (Iteration 1)
               </span>
             </div>
             {beforeItems.map((item, i) => (
@@ -174,7 +174,7 @@ export default function DayInLifeSlide() {
                   letterSpacing: '0.1em',
                 }}
               >
-                AFTER (I2)
+                AFTER (Iteration 2)
               </span>
             </div>
             {afterItems.map((item, i) => (
@@ -245,7 +245,7 @@ export default function DayInLifeSlide() {
               letterSpacing: '0.01em',
             }}
           >
-            I2 doesn't add more work. It removes the work you were already doing badly.
+            Iteration 2 doesn't add more work. It removes the work you were already doing badly.
           </span>
         </motion.div>
       </div>

@@ -49,7 +49,7 @@ iteration: 1
 - filesystem-blueprint.md + cross-dependency-map.md moved to _genesis/
 - 4 VALIDATE.md created for 4-EXECUTE subsystems (`8dd4c28`)
 
-## I1: Concept
+## Iteration 1: Concept
 
 <!-- Entries before 2026-04-06 not yet backfilled -->
 

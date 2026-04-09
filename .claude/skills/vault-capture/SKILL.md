@@ -7,7 +7,7 @@ last_updated: "2026-04-05"
 ---
 # /vault-capture — Quick Capture to Vault Inbox
 
-Dump content from the current conversation into the vault's staging area. Capture first, organize later. The `/vault-promote` command (I3 scope) handles moving captured notes to their final workstream location.
+Dump content from the current conversation into the vault's staging area. Capture first, organize later. The `/vault-promote` command (Iteration 3 scope) handles moving captured notes to their final workstream location.
 
 ---
 
@@ -82,7 +82,7 @@ last_updated: "YYYY-MM-DD"
 ---
 ```
 
-`version` uses the current iteration convention (I2 = 2.x). New file → `2.0`.
+`version` uses the current iteration convention (Iteration 2 = 2.x). New file → `2.0`.
 
 ### Steps
 
@@ -125,7 +125,7 @@ last_updated: "YYYY-MM-DD"
 | Write to `inbox/` or `2-LEARN/research/` | Move or rename existing notes |
 | Create `inbox/` or `2-LEARN/research/` if missing | Reorganize vault structure |
 | Apply minimal frontmatter | Tag disambiguation or taxonomy decisions |
-| Confirm output path | Promote to final workstream location (use `/vault-promote` — I3) |
+| Confirm output path | Promote to final workstream location (use `/vault-promote` — Iteration 3) |
 
 ---
 

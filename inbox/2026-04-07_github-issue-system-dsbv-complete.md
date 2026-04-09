@@ -41,7 +41,7 @@ Full DSBV cycle: Design → Sequence → Build → Validate. 20/20 ACs pass.
 
 ## Also in this session (prior to DSBV)
 
-- I2 hotfix batch (commit `28f3d23`): 12 fixes across setup, smoke-test, rules, skills, BLUEPRINT
+- Iteration 2 hotfix batch (commit `28f3d23`): 12 fixes across setup, smoke-test, rules, skills, BLUEPRINT
 - Issue #13 responded (folder confusion)
 - Issue #14 responded (resume cache bug explanation + Option A/B)
 - Issue #17 created (template-sync v2 guided SOP)

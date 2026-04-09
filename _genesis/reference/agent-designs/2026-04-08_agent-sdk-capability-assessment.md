@@ -5,24 +5,24 @@ source: conversation
 tags: [agent-sdk, capability-assessment, i1-i4, architecture-decision]
 ---
 
-# Agent SDK Capability Assessment — I1 through I4
+# Agent SDK Capability Assessment — Iteration 1 through Iteration 4
 
 ## Context
-Evaluated whether Claude Agent SDK (Python/TS) can build the LTC 5-agent system (Orchestrator + Explorer, Planner, Builder, Reviewer) through I4 Leadership without external frameworks.
+Evaluated whether Claude Agent SDK (Python/TS) can build the LTC 5-agent system (Orchestrator + Explorer, Planner, Builder, Reviewer) through Iteration 4 Leadership without external frameworks.
 
 ## Decisions Recorded (D7, D8)
 
 ### D7: Drop WMS Integration
 - ClickUp is now primary WMS (Notion demoted)
 - ClickUp MCP quality too poor for automation
-- Gap #4 (WMS integration) dropped from I2/I3 agent improvement roadmap
-- Manual WMS updates acceptable at I1-I3
+- Gap #4 (WMS integration) dropped from Iteration 2/Iteration 3 agent improvement roadmap
+- Manual WMS updates acceptable at Iteration 1-Iteration 3
 
 ### D8: Agent SDK Ceiling
-- Claude Code Agent() + Agent SDK can reach I3 (MVE) without external frameworks
+- Claude Code Agent() + Agent SDK can reach Iteration 3 (MVE) without external frameworks
 - Hard limits: no nested sub-agents (depth=1), no peer negotiation, no dynamic workflow DAGs
-- I4 Leadership requires external orchestration (LangGraph or Agno)
-- Agent SDK is the correct I2-I3 vehicle
+- Iteration 4 Leadership requires external orchestration (LangGraph or Agno)
+- Agent SDK is the correct Iteration 2-Iteration 3 vehicle
 
 ## Capability Matrix
 
@@ -30,13 +30,13 @@ Evaluated whether Claude Agent SDK (Python/TS) can build the LTC 5-agent system 
                     Claude Code       Agent SDK         External
                     Agent()           (Python/TS)       Framework
                     ──────────        ──────────        ──────────
-I1 Concept          ✓ FULL            ✓ FULL            not needed
-I2 Prototype        ✓ CEILING         ✓ FULL            not needed
-I3 MVE              ✗ BOTTLENECK      ✓ MOSTLY          not needed*
-I4 Leadership       ✗ IMPOSSIBLE      ✗ INSUFFICIENT    REQUIRED
+Iteration 1 Concept          ✓ FULL            ✓ FULL            not needed
+Iteration 2 Prototype        ✓ CEILING         ✓ FULL            not needed
+Iteration 3 MVE              ✗ BOTTLENECK      ✓ MOSTLY          not needed*
+Iteration 4 Leadership       ✗ IMPOSSIBLE      ✗ INSUFFICIENT    REQUIRED
 ```
 
-*I3 requires app-level orchestration (async Python) for feedback loops.
+*Iteration 3 requires app-level orchestration (async Python) for feedback loops.
 
 ## Hard Limits (Both Tools)
 - No nested sub-agents — depth=1 only
@@ -59,10 +59,10 @@ Does NOT help with: interactive exploration, one-off tasks, learning pipeline, <
 
 | Level | Effort | What |
 |-------|--------|------|
-| I1 | ~0 | Already here with Claude Code Agent() |
-| I2 | 1-2 days | Python wrapper: session resume, cost tracking, context-packaging |
-| I3 | 1-2 weeks | Async app: headless agents, hook feedback, persistence |
-| I4 | Months | LangGraph/Agno on top of SDK — different project |
+| Iteration 1 | ~0 | Already here with Claude Code Agent() |
+| Iteration 2 | 1-2 days | Python wrapper: session resume, cost tracking, context-packaging |
+| Iteration 3 | 1-2 weeks | Async app: headless agents, hook feedback, persistence |
+| Iteration 4 | Months | LangGraph/Agno on top of SDK — different project |
 
 ## Key Insight
 For a single PM using 5 agents interactively: Agent SDK adds nothing. It's an engineering tool for when you want agents running without you in the chair.

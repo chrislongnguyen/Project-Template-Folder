@@ -294,7 +294,7 @@ Use `[[wikilinks]]` to connect artifacts to related items in other directories.
 ### Frontmatter
 - All values lowercase — except `work_stream` (numbered SCREAMING: `1-ALIGN`) and `sub_system` (`1-PD`).
 - `status` starts as `draft`. Only a human sets `validated`.
-- `version` follows LTC convention: `{iteration}.{edit_count}`. New file in I2 = `"2.0"`.
+- `version` follows LTC convention: `{iteration}.{edit_count}`. New file in Iteration 2 = `"2.0"`.
 
 ### What a README is NOT
 - Not a design document (use `DESIGN.md`)

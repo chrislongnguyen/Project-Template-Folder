@@ -191,7 +191,7 @@ def phase_4():
 
         # IMPROVE _cross
         ("5-IMPROVE/_cross/cross-changelog.md", "5-IMPROVE", "_cross", "changelog", "Project Changelog",
-         ["Unreleased", "I2: Prototype", "I1: Concept"]),
+         ["Unreleased", "Iteration 2: Prototype", "Iteration 1: Concept"]),
         ("5-IMPROVE/_cross/cross-metrics-baseline.md", "5-IMPROVE", "_cross", "metrics", "Metrics Baseline",
          ["Sustainability Metrics", "Efficiency Metrics", "Scalability Metrics", "Collection Schedule"]),
         ("5-IMPROVE/_cross/cross-feedback-register.md", "5-IMPROVE", "_cross", "feedback-register", "Feedback Register",

@@ -641,7 +641,7 @@ This table is the single most important artifact in this document. The EOE asymm
 +---------------------------+-------------------+-------------------+
 ```
 
-**Decision D7 (2026-04-08):** WMS integration (Gap #4) dropped from I2/I3 agent improvement roadmap. ClickUp is primary WMS; ClickUp MCP quality too poor for automated agent→WMS sync. Manual WMS updates acceptable at I1-I3.
+**Decision D7 (2026-04-08):** WMS integration (Gap #4) dropped from Iteration 2/Iteration 3 agent improvement roadmap. ClickUp is primary WMS; ClickUp MCP quality too poor for automated agent→WMS sync. Manual WMS updates acceptable at Iteration 1-Iteration 3.
 
 **Implications of EOE degradation (LP-7 learned pattern):**
 
@@ -1115,7 +1115,7 @@ Agent     │ S    │ E    │ Sc   │ Weakest Component      │ Critical Fin
 | # | Issue | Agents | Fix At |
 |---|-------|--------|--------|
 | 1 | WMS reference corrected: ClickUp primary, Notion removed, WMS integration dropped (D7) | Orchestrator | DONE (this edit) |
-| 2 | Planner Action 4 mentions "Learn Pipeline Orchestration" — LEARN interaction not fully designed | Planner | Defer to I2 |
+| 2 | Planner Action 4 mentions "Learn Pipeline Orchestration" — LEARN interaction not fully designed | Planner | Defer to Iteration 2 |
 | 3 | Reviewer proposes VALIDATE.md v2 format but Orchestrator EOP doesn't reference it | Orch ↔ Reviewer | Build phase |
 | 4 | Builder proposes handoff.json but no agent explicitly handles receiving it | Builder ↔ all | Build phase |
 
@@ -1143,21 +1143,21 @@ Agent     │ S    │ E    │ Sc   │ Weakest Component      │ Critical Fin
 | 7 | Pre-flight automation script | Orchestrator | 30 min | `scripts/pre-flight.sh`, `settings.json` |
 | 8 | Explicit validation scripts in builder EOP | Builder | 15 min | `.claude/agents/ltc-builder.md` |
 
-### 5 Deferred Gaps — Confirmed I2+
+### 5 Deferred Gaps — Confirmed Iteration 2+
 
-1. Sub-system layer (PD→DP→DA→IDM) — not addressed ✓ I2
-2. LEARN pipeline agent interaction — briefly mentioned, not designed ✓ I2
-3. Cross-project usage — not addressed ✓ I2
-4. Real dispatch data — not addressed ✓ I2
-5. VANA specs — proposals in prose, not VANA format ✓ I2
+1. Sub-system layer (PD→DP→DA→IDM) — not addressed ✓ Iteration 2
+2. LEARN pipeline agent interaction — briefly mentioned, not designed ✓ Iteration 2
+3. Cross-project usage — not addressed ✓ Iteration 2
+4. Real dispatch data — not addressed ✓ Iteration 2
+5. VANA specs — proposals in prose, not VANA format ✓ Iteration 2
 
 ### Decision D8 (2026-04-08): Agent SDK Ceiling
 
-Claude Code Agent() + Agent SDK reaches I3 without external frameworks. Hard limits: no nested sub-agents (depth=1), no peer negotiation. I4 requires LangGraph/Agno. For I1-I2, native Agent() is sufficient. SDK is "nice to have at I3."
+Claude Code Agent() + Agent SDK reaches Iteration 3 without external frameworks. Hard limits: no nested sub-agents (depth=1), no peer negotiation. Iteration 4 requires LangGraph/Agno. For Iteration 1-Iteration 2, native Agent() is sufficient. SDK is "nice to have at Iteration 3."
 
 ### Review Verdict
 
-**G1 APPROVED with 8 P0 fixes.** DESIGNs are thorough, internally consistent, and correctly scoped for I1. Proceed to SEQUENCE.md then BUILD.
+**G1 APPROVED with 8 P0 fixes.** DESIGNs are thorough, internally consistent, and correctly scoped for Iteration 1. Proceed to SEQUENCE.md then BUILD.
 
 ---
 

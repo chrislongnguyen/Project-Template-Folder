@@ -75,7 +75,7 @@ PD-ALIGN  →  DP-ALIGN  →  DA-ALIGN  →  IDM-ALIGN
 
 ### Sequence Stage
 - [ ] Write desired outcomes using VANA format (Verb Adverb Noun Adjective) per version
-- [ ] Draft master plan with version milestones (I0 → I1 → I2 → I3 → I4)
+- [ ] Draft master plan with version milestones (Iteration 0 → Iteration 1 → Iteration 2 → Iteration 3 → Iteration 4)
 - [ ] Sequence resource allocations against version roadmap
 - [ ] Define risk mitigations for top-3 blocking forces
 

@@ -117,14 +117,14 @@ No gap. Opus is the correct tier for judgment tasks.
 
 | ID | Description | Category | Impact |
 |----|-------------|----------|--------|
-| UBS-EU-1 | Opus cost per validation (~$0.50-2.00 per dispatch) | Economic | Acceptable for I1 frequency but needs monitoring at scale |
+| UBS-EU-1 | Opus cost per validation (~$0.50-2.00 per dispatch) | Economic | Acceptable for Iteration 1 frequency but needs monitoring at scale |
 
 ### UDS
 
 | ID | Description | Category | Leverage |
 |----|-------------|----------|---------|
 | UDS-EU-1 | Opus reasoning prevents false PASS — the highest-risk failure mode in validation | Technical | A false PASS propagates bad artifacts downstream; Opus minimizes this |
-| UDS-EU-2 | 1M context window can hold entire workstream output + DESIGN.md simultaneously | Technical | No chunking needed for I1 workstreams |
+| UDS-EU-2 | 1M context window can hold entire workstream output + DESIGN.md simultaneously | Technical | No chunking needed for Iteration 1 workstreams |
 
 ---
 
@@ -389,7 +389,7 @@ No EP gap. The principle set is adequate for the reviewer role. The gap is in EO
 │ Must load ALL artifacts into context to validate                │
 │ Large workstream risk: 20+ artifacts could approach context     │
 │ limits (each artifact 500-2000 lines = 10K-40K tokens)          │
-│ Status: ADEQUATE for I1 workstreams (small artifact count)      │
+│ Status: ADEQUATE for Iteration 1 workstreams (small artifact count)      │
 ├─────────────────────────────────────────────────────────────────┤
 │ LAYER 5: AGENT COORDINATION                                     │
 │ Leaf node — cannot dispatch agents                              │
@@ -426,7 +426,7 @@ No EP gap. The principle set is adequate for the reviewer role. The gap is in EO
 | Layer | Risk | Probability | Mitigation |
 |-------|------|-------------|------------|
 | L3 (Hooks) | Bash compliance scripts run without PreToolUse guard | Medium | Scripts are read-only output; SubagentStop validates reviewer EO |
-| L4 (Context) | Large workstream overflows context | Low (I1) | Orchestrator should summarize non-critical artifacts; load only files being validated |
+| L4 (Context) | Large workstream overflows context | Low (Iteration 1) | Orchestrator should summarize non-critical artifacts; load only files being validated |
 | L6 (Rules) | Always-on rules not loaded in sub-agent | Medium | Agent file contains key rule summaries; orchestrator can include rules in INPUT |
 | L7 (MCP) | Reviewer can't look up definitions/standards | Low | All needed context delivered via INPUT field |
 
@@ -435,8 +435,8 @@ No EP gap. The principle set is adequate for the reviewer role. The gap is in EO
 | Pillar | Score | Evidence |
 |--------|-------|---------|
 | **Sustainability** | 8/10 | Read-only filesystem = structurally impossible to cause damage. SubagentStop provides post-execution verification |
-| **Efficiency** | 6/10 | 1M context is generous for I1. But: no auto-recall means orchestrator must pre-load everything. Rules inheritance unclear = potential re-work |
-| **Scalability** | 5/10 | Context limits become real at I2+ (more artifacts, more criteria). No parallel validation support |
+| **Efficiency** | 6/10 | 1M context is generous for Iteration 1. But: no auto-recall means orchestrator must pre-load everything. Rules inheritance unclear = potential re-work |
+| **Scalability** | 5/10 | Context limits become real at Iteration 2+ (more artifacts, more criteria). No parallel validation support |
 
 ### UBS
 
@@ -452,7 +452,7 @@ No EP gap. The principle set is adequate for the reviewer role. The gap is in EO
 |----|-------------|----------|---------|
 | UDS-EOE-1 | Read-only filesystem = structural neutrality | Technical | Reviewer literally cannot fix artifacts, which prevents the "Judge becomes Advocate" anti-pattern |
 | UDS-EOE-2 | SubagentStop hook fires at orchestrator level | Technical | Post-execution verification of reviewer output quality |
-| UDS-EOE-3 | 1M context window accommodates entire I1 workstream | Technical | No chunking or multi-pass needed for current scale |
+| UDS-EOE-3 | 1M context window accommodates entire Iteration 1 workstream | Technical | No chunking or multi-pass needed for current scale |
 
 ---
 

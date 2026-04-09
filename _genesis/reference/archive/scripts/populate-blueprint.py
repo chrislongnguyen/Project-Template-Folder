@@ -134,7 +134,7 @@ MIGRATIONS = [
     ("5-IMPROVE/changelog/CHANGELOG.md",              "5-IMPROVE/_cross/cross-changelog.md"),
     ("5-IMPROVE/metrics/METRICS_BASELINE.md",         "5-IMPROVE/_cross/cross-metrics-baseline.md"),
     ("5-IMPROVE/metrics/FEEDBACK_REGISTER.md",        "5-IMPROVE/_cross/cross-feedback-register.md"),
-    ("5-IMPROVE/retrospectives/RETRO-I1.md",          "5-IMPROVE/_cross/cross-retro-i1.md"),
+    ("5-IMPROVE/retrospectives/RETRO-Iteration 1.md",          "5-IMPROVE/_cross/cross-retro-i1.md"),
     ("5-IMPROVE/retrospectives/RETRO-PLAN.md",        "5-IMPROVE/_cross/cross-retro-plan.md"),
     ("5-IMPROVE/reviews/OBSIDIAN_P1_DESIGN.md",       "5-IMPROVE/_cross/cross-review-obsidian-p1.md"),
     ("5-IMPROVE/reviews/VERSION-REVIEW.md",           "5-IMPROVE/_cross/cross-review-version.md"),
@@ -280,7 +280,7 @@ def create_from_template(target_path, template_name, work_stream, sub_system,
         # Replace template placeholders
         ws_info = WORKSTREAMS.get(work_stream, {})
         content = content.replace("{{WORKSTREAM}}", ws_info.get("upper", work_stream))
-        content = content.replace("{{ITERATION}}", "I2: Prototype")
+        content = content.replace("{{ITERATION}}", "Iteration 2: Prototype")
 
         if DRY_RUN:
             print(f"  [DRY] CREATE {target_path} (from {template_name})")

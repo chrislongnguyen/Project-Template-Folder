@@ -41,8 +41,8 @@ const categories: { label: string; color: string; rows: SkillRow[] }[] = [
     color: colors.green,
     rows: [
       { cmd: '/setup', desc: 'Initialize scaffold + QMD + smoke test', when: 'First-time or re-init' },
-      { cmd: '/template-check', desc: 'Audit against I2 template', when: 'Before upgrading' },
-      { cmd: '/template-sync', desc: 'Apply I2 updates interactively', when: 'I1 → I2 migration' },
+      { cmd: '/template-check', desc: 'Audit against Iteration 2 template', when: 'Before upgrading' },
+      { cmd: '/template-sync', desc: 'Apply Iteration 2 updates interactively', when: 'Iteration 1 → Iteration 2 migration' },
     ],
   },
 ];

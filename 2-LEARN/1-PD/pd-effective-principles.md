@@ -21,7 +21,7 @@ Principles extracted from Problem Diagnosis research. Each principle is evidence
 | EP-PD-02 | Constraint visibility is a deliverable — if PD findings are not written and shared, they do not exist for downstream teams | LTC LEARN pipeline design | PD→DP handoff, pd-constraints.md |
 | EP-PD-03 | Stakeholder alignment precedes technical diagnosis — misaligned mental models produce divergent problem statements regardless of data quality | Human factors research | PD stakeholder workshops |
 | EP-PD-04 | Scope boundaries must be explicit — an unscoped diagnosis expands to fill available time | Project management literature | Charter alignment check |
-| EP-PD-05 | Revisit diagnosis at each iteration boundary — problem understanding evolves; principles validated in I1 may not hold in I2 | ALPEI iterative design | End-of-iteration retrospective |
+| EP-PD-05 | Revisit diagnosis at each iteration boundary — problem understanding evolves; principles validated in Iteration 1 may not hold in Iteration 2 | ALPEI iterative design | End-of-iteration retrospective |
 
 ## Validation Status
 

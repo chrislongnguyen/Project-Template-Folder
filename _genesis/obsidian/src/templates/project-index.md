@@ -10,7 +10,7 @@ type: project-index
 work_stream: <% tp.system.prompt("Primary work stream (e.g. 4-EXECUTE)") %>
 stage: build
 sub_system: PD
-iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
+iteration: <% tp.system.prompt("Iteration number (e.g. 2 for Iteration 2)") %>
 ---
 
 # <% tp.file.title %> — Project Index

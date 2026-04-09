@@ -9,12 +9,12 @@ Detail level: **RICH** — Iterations define the build cycle scope. Invest in cl
 
 | Iteration | Name          | Focus |
 | --------- | ------------- | ----- |
-| I1        | **Concept**   | Sustainability — correct, safe, risk-managed. Does the right thing work? |
-| I2        | **Prototype** | Efficiency — fast, lean, minimal waste. Does it work well? |
-| I3        | **MVE**       | Scalability — handles growth, load, edge cases. Does it work at scale? |
-| I4        | **Leadership**| Desirability — delightful, differentiated. Does it stand out? |
+| Iteration 1        | **Concept**   | Sustainability — correct, safe, risk-managed. Does the right thing work? |
+| Iteration 2        | **Prototype** | Efficiency — fast, lean, minimal waste. Does it work well? |
+| Iteration 3        | **MVE**       | Scalability — handles growth, load, edge cases. Does it work at scale? |
+| Iteration 4        | **Leadership**| Desirability — delightful, differentiated. Does it stand out? |
 
-Each Iteration gates the next: no I2 work begins until all I1 `Must Have` ACs pass.
+Each Iteration gates the next: no Iteration 2 work begins until all Iteration 1 `Must Have` ACs pass.
 
 ---
 

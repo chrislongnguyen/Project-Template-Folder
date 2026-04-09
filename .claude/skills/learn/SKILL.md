@@ -91,7 +91,7 @@ Pipeline complete for: {system_name}
 └── DSBV-READY: 2-LEARN/_cross/specs/{slug}/DSBV-READY-{slug}.md
 
 Next steps:
-  /learn:visualize {slug}  — Generate interactive system map (optional, I2)
+  /learn:visualize {slug}  — Generate interactive system map (optional, Iteration 2)
   /dsbv design             — Begin DSBV Design phase using Readiness Package
 ```
 

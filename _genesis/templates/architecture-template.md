@@ -20,7 +20,7 @@ sub_system:
 | Field | Value |
 |-------|-------|
 | Sub-system | _[name]_ |
-| Version | _[I1 / I2 / I3 / I4]_ |
+| Version | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Owner | _[name]_ |
 | Last reviewed | _[YYYY-MM-DD]_ |
 

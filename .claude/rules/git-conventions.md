@@ -71,7 +71,7 @@ After every commit that includes a workstream artifact:
 
 ## Branch Strategy
 
-Never commit directly to main. Follow I0-I4 branching — see `_genesis/sops/git-workflow.md`.
+Never commit directly to main. Follow Iteration 0-Iteration 4 branching — see `_genesis/sops/git-workflow.md`.
 
 ## Staging Rule
 

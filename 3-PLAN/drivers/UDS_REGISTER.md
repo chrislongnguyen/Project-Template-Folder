@@ -48,7 +48,7 @@ Net force: Driving > Restraining → proceed, but address D-004 first (S > E > S
 
 | Force | Leverage Point | Action |
 |-------|---------------|--------|
-| D-004 (Learning curve) | `/setup` skill + I2 training deck | Reduce onboarding time to <30 min |
+| D-004 (Learning curve) | `/setup` skill + Iteration 2 training deck | Reduce onboarding time to <30 min |
 | D-005 (Maintenance overhead) | `template-sync` skill v2 | Automate propagation to downstream repos |
 | D-006 (Scope ambiguity) | BLUEPRINT.md + README per dir | Clear "what goes here" in every directory |
 

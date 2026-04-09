@@ -15,7 +15,7 @@ owner: "long nguyen"
 
 > Canonical structure for all LTC project repositories cloned from this template.
 > Enforced by: `rules/filesystem-routing.md` (always-on) + PreToolUse hooks.
-> Evidence: `archive/I2/improve/filesystem-depth-test` branch (40 AI tasks, 16 disk verifications, 3-agent CI/CD research, 4 falsification tests).
+> Evidence: `archive/Iteration 2/improve/filesystem-depth-test` branch (40 AI tasks, 16 disk verifications, 3-agent CI/CD research, 4 falsification tests).
 
 **Feedback:** If any part of this structure causes a blocker, failure, or obstacle during your work, report it immediately via `/feedback`. The structure is evidence-backed but not infallible — first-hand failures override theoretical models.
 
@@ -164,7 +164,7 @@ project-root/
 
 | Dimension | Frontmatter field | Why NOT a folder? |
 |-----------|------------------|-------------------|
-| Iteration (I0-I4) | `version`, `iteration_name` | Temporal — file evolves across iterations, folder would lie or force duplication |
+| Iteration (Iteration 0-Iteration 4) | `version`, `iteration_name` | Temporal — file evolves across iterations, folder would lie or force duplication |
 | DSBV stage | `stage` | Lifecycle — file progresses through stages, stays in same location |
 | Status | `status` | Changes frequently (draft → review → approved) |
 | 8-CS component | `component` | Cross-cutting property, not a spatial container |

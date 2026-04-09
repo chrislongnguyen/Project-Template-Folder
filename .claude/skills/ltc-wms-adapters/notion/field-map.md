@@ -79,7 +79,7 @@ Used for Iteration-level items (LEP Deliverable group / phase).
 
 | Property | Type | LEP Source |
 |---|---|---|
-| **Name** | title | Iteration name (I1 Concept, I2 Prototype, etc.) |
+| **Name** | title | Iteration name (Iteration 1 Concept, Iteration 2 Prototype, etc.) |
 | **Parent Task** | relation | Parent Project page in Master Plan |
 | **Parent item** | relation | Same as Parent Task |
 | **Status** | status | Aggregate status of child Deliverables |

@@ -4,15 +4,15 @@ status: draft
 last_updated: 2026-04-05
 ---
 
-# Migration Guide — Upgrading to ALPEI Template I1
+# Migration Guide — Upgrading to ALPEI Template Iteration 1
 
-> For LTC members whose projects were cloned from the **I0 scaffold** (or earlier).
+> For LTC members whose projects were cloned from the **Iteration 0 scaffold** (or earlier).
 > Your AI agent can execute this guide. Paste these instructions or say:
 > "Read `_genesis/guides/migration-guide.md` and execute it for my project."
 
 ## Before You Start
 
-**What this does:** Brings your existing project structure in line with the I1 template — new workstreams, updated rules, agent system, DSBV workflow. Your project content is preserved.
+**What this does:** Brings your existing project structure in line with the Iteration 1 template — new workstreams, updated rules, agent system, DSBV workflow. Your project content is preserved.
 
 **What this does NOT do:** Delete your work, change your code, or modify your business logic.
 
@@ -150,7 +150,7 @@ Fix any warnings. Then:
 
 ```bash
 git add -A
-git commit -m "feat(all): migrate to ALPEI I1 template structure"
+git commit -m "feat(all): migrate to ALPEI Iteration 1 template structure"
 git push origin feat/alpei-migration
 ```
 
@@ -168,7 +168,7 @@ claude
 
 ---
 
-## Memory Vault Setup (I2 — all members)
+## Memory Vault Setup (Iteration 2 — all members)
 
 The memory-vault hook system ships with the template. Hooks write session summaries, state, and captures to a vault directory on your machine. This section gets you set up in under 5 minutes.
 
@@ -185,7 +185,7 @@ This runs 4 steps automatically:
 3. Checks QMD search index (skips gracefully if not installed)
 4. Runs smoke test — confirms 5 checks pass
 
-### Existing members upgrading from I2 (2026-04-05 commit)
+### Existing members upgrading from Iteration 2 (2026-04-05 commit)
 
 `setup-vault.sh` moved from `4-EXECUTE/scripts/` → `scripts/`. Run `/setup` once after pulling — it auto-detects and fixes stale path references.
 
@@ -202,7 +202,7 @@ Or verify manually:
 | S1 | `~/.config/memory-vault/config.sh` exists | Run `/setup` step 1 |
 | S2 | Vault path resolves to existing directory | Check MEMORY_VAULT_PATH in config file |
 | S3 | `inbox/` and `AI-AGENT-MEMORY/` exist in vault | Run `./scripts/setup-vault.sh <path>` |
-| S4 | Pre-commit scripts present and executable | `git pull origin I2/feat/obsidian-bases` |
+| S4 | Pre-commit scripts present and executable | `git pull origin Iteration 2/feat/obsidian-bases` |
 | S5 | PostToolUse + SubagentStop + SessionStart wired | Pull latest settings.json |
 
 ### QMD (optional but recommended)
@@ -223,7 +223,7 @@ Re-index periodically as your vault grows (hooks write new files every session).
 
 `1-ALIGN/charter/BLUEPRINT.md` → `_genesis/BLUEPRINT.md`
 
-Blueprint is bedrock philosophy (I0–I4), not iteration-scoped alignment. A redirect stub remains at the old location.
+Blueprint is bedrock philosophy (Iteration 0–Iteration 4), not iteration-scoped alignment. A redirect stub remains at the old location.
 
 ### Framework Files Renamed (ALL_CAPS → kebab-case)
 
@@ -262,9 +262,9 @@ All references to old names have been updated across: `.claude/rules/`, `.claude
 
 ---
 
-## What Changed Between I0 and I1
+## What Changed Between Iteration 0 and Iteration 1
 
-| I0 (Scaffold) | I1 (Current) |
+| Iteration 0 (Scaffold) | Iteration 1 (Current) |
 |---|---|
 | 4 workstreams (0-3) + `_shared/` | 5 ALPEI workstreams (1-5) + `_genesis/` + `0-GOVERN` (builder only) |
 | No LEARN workstream | LEARN is LEARN workstream — research pipeline with 6 skills |

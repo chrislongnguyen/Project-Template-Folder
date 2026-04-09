@@ -15,13 +15,13 @@ iteration: 2
 
 Compliance requirements and audit artifacts.
 
-This directory is reserved for org-level regulatory and policy obligations that apply to all projects. It exists separately from `governance/` because compliance is externally imposed (regulations, audit standards), while governance is internally designed (decision rights, authority structures). This directory is an **I2 placeholder** — content will be populated in iteration 2 as compliance requirements are identified and ratified.
+This directory is reserved for org-level regulatory and policy obligations that apply to all projects. It exists separately from `governance/` because compliance is externally imposed (regulations, audit standards), while governance is internally designed (decision rights, authority structures). This directory is an **Iteration 2 placeholder** — content will be populated in iteration 2 as compliance requirements are identified and ratified.
 
 ## What This Contains
 
 | Content Type | Description |
 |-------------|-------------|
-| _(I2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
+| _(Iteration 2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
 
 ## How It Connects
 

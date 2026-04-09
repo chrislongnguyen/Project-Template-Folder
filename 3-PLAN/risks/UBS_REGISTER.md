@@ -26,10 +26,10 @@ UBS = Unsatisfied Business Situation. Risk categories follow the UBS framework:
 
 | ID | Category | Description | Probability (1-3) | Impact (1-3) | Risk Factor | Mitigation |
 |----|----------|-------------|-------------------|--------------|-------------|------------|
-| R-001 | Human | Template adoption — teams clone without reading setup guide | 2 | 3 | 6 (Critical) | `/setup` skill + I2 training deck |
+| R-001 | Human | Template adoption — teams clone without reading setup guide | 2 | 3 | 6 (Critical) | `/setup` skill + Iteration 2 training deck |
 | R-002 | Human | Agent self-validates status (bypasses human gate) | 2 | 3 | 6 (Critical) | `status-guard.sh` + `dsbv-gate.sh` hooks |
 | R-003 | Technical | ALPEI chain violated — build before design | 2 | 2 | 4 (Medium) | `dsbv-skill-guard.sh` + `dsbv-gate.sh` |
-| R-004 | Temporal | I2 scope creep — prototype expands to MVE scope | 2 | 2 | 4 (Medium) | SEQUENCE.md + human gate at each DSBV phase |
+| R-004 | Temporal | Iteration 2 scope creep — prototype expands to MVE scope | 2 | 2 | 4 (Medium) | SEQUENCE.md + human gate at each DSBV phase |
 | R-005 | Economic | Token waste from unscoped agent sessions | 2 | 2 | 4 (Medium) | Task decomposition + context packaging rules |
 
 ## Risk Heat Map
@@ -52,7 +52,7 @@ Low (1-2):      —
 
 | Risk ID | Mitigation Owner | Action | Status |
 |---------|-----------------|--------|--------|
-| R-001 | Template | `/setup` skill runs smoke-test on clone; I2 training deck onboards I2 users | draft |
+| R-001 | Template | `/setup` skill runs smoke-test on clone; Iteration 2 training deck onboards Iteration 2 users | draft |
 | R-002 | Hooks | `status-guard.sh` blocks `validated` self-set; pre-commit hook enforces | draft |
 | R-003 | Hooks | `dsbv-skill-guard.sh` blocks writes without DESIGN.md at PreToolUse | draft |
 | R-004 | Process | SEQUENCE.md defines explicit scope; human approves each phase transition | draft |

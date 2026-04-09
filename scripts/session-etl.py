@@ -344,7 +344,7 @@ def parse_file_incremental(
         # Read incremental tail from watermark to EOF.
         # NOTE: loads the delta into memory (not full file). For incremental runs
         # the delta is small (minutes of new content). For --full on very large
-        # JSONL (400MB+), consider chunked line iteration — deferred to I3.
+        # JSONL (400MB+), consider chunked line iteration — deferred to Iteration 3.
         with open(jsonl_path, "rb") as fh:
             fh.seek(start_offset)
             raw_tail = b""

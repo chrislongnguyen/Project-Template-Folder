@@ -169,7 +169,7 @@ Before setting up the workspace, ensure you have the following:
 git clone https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git "YOUR_PROJECT_NAME"
 cd "YOUR_PROJECT_NAME"
 
-# Set up your branch (follow I0-I4 strategy)
+# Set up your branch (follow Iteration 0-Iteration 4 strategy)
 git checkout -b YourName-ProjectScope
 ```
 

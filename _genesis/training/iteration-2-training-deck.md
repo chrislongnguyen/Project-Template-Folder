@@ -4,7 +4,7 @@ status: draft
 last_updated: 2026-04-06
 work_stream: _genesis
 type: training
-audience: "LTC Members (new + upgrading from I1)"
+audience: "LTC Members (new + upgrading from Iteration 1)"
 reading_time: "30 min"
 ---
 
@@ -21,22 +21,22 @@ reading_time: "30 min"
 ### Your Project Operating System — Now With Dashboards, Knowledge Base & Agent Skills
 
 ```
-I1 Sustainable          I2 Efficient              I3 Scalable
+Iteration 1 Sustainable          Iteration 2 Efficient              Iteration 3 Scalable
 ─────────────────── ──► ═══════════════════════ ──► ───────────────────
   Scaffold + Rules        Dashboards + PKB +          Multi-project
   Agent architecture      Skills + Filesystem         orchestration
   You are here ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━▶
 ```
 
-**One sentence:** I2 turns your file-based project into a **live dashboard system** where AI agents write, you review, and Obsidian shows you everything — plus a personal knowledge base that grows smarter with every source you feed it.
+**One sentence:** Iteration 2 turns your file-based project into a **live dashboard system** where AI agents write, you review, and Obsidian shows you everything — plus a personal knowledge base that grows smarter with every source you feed it.
 
 ---
 
-## WHY I2 MATTERS — THE PM PAIN POINTS WE SOLVED
+## WHY Iteration 2 MATTERS — THE PM PAIN POINTS WE SOLVED
 
-In I1, the template gave you **structure** — folders, rules, agents. But you still had to manage everything manually. Here's what I2 fixes:
+In Iteration 1, the template gave you **structure** — folders, rules, agents. But you still had to manage everything manually. Here's what Iteration 2 fixes:
 
-| # | I1 Pain Point | I2 Solution | Result for You |
+| # | Iteration 1 Pain Point | Iteration 2 Solution | Result for You |
 |---|---------------|-------------|----------------|
 | 1 | **"What changed since yesterday?"** — required `git log` or memory | **C3 Standup Preparation dashboard** auto-surfaces files modified in last 24-72 hours | 5-min morning check replaces 15 min of digging |
 | 2 | **Blockers were invisible** until standup or a missed deadline | **C4 Blocker dashboard** auto-detects risk from days-since-last-update (no manual flags) | Blockers surface to you before they become crises |
@@ -45,11 +45,11 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 | 5 | **Agent output was a black box** — files appeared but dashboards didn't exist | **18 dashboards** make agent work visible — you see status, stage, version, staleness | You manage by exception, not by inspection |
 | 6 | **Starting a new feature was blank-page anxiety** | **`/ltc-brainstorming`** runs 4 invisible gates to structure your thinking before you write a line | Structured exploration replaces unstructured guessing |
 
-> **The shift:** In I1, you managed the project. In I2, **the project tells you what needs managing.**
+> **The shift:** In Iteration 1, you managed the project. In Iteration 2, **the project tells you what needs managing.**
 
 ---
 
-## WHAT'S NEW IN I2
+## WHAT'S NEW IN Iteration 2
 
 | # | Feature | What You Get | Evidence |
 |---|---------|-------------|----------|
@@ -61,7 +61,7 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 | 6 | **LTC Brand Theme** | Color-coded pills, zebra-striped tables, hover effects in Obsidian | **WHERE:** `_genesis/obsidian/ltc-bases-colors.css` + `ltc-bases-theme` plugin. **HOW:** Enable CSS snippet + plugin in Obsidian settings. **WHY:** Visual distinction between statuses, workstreams, and stages at a glance |
 
 > **If you're new:** This deck covers everything. Start at the Quick Start.
-> **If you're upgrading from I1:** The Quick Start below walks you through migration end-to-end.
+> **If you're upgrading from Iteration 1:** The Quick Start below walks you through migration end-to-end.
 
 ---
 
@@ -69,7 +69,7 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 
 ```
 ┌─────────────────────────────────────┬──────────────────────────────────────────┐
-│         I1 (SUSTAINABLE)            │           I2 (EFFICIENT)                 │
+│         Iteration 1 (SUSTAINABLE)            │           Iteration 2 (EFFICIENT)                 │
 ├─────────────────────────────────────┼──────────────────────────────────────────┤
 │ Files in folders                    │ Files + metadata → live dashboards       │
 │ Status in your head                 │ Status in frontmatter → auto-tracked     │
@@ -90,7 +90,7 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 
 | # | Section | Time | What You'll Learn |
 |---|---------|------|-------------------|
-| 1 | **Quick Start & Migration** | 10 min | Upgrade from I1 → I2 with zero struggle, see your first dashboard |
+| 1 | **Quick Start & Migration** | 10 min | Upgrade from Iteration 1 → Iteration 2 with zero struggle, see your first dashboard |
 | 2 | **Foundations** | 5 min | What is Obsidian, what we built, how Bases work |
 | 3 | **The Frontmatter System** | 5 min | The metadata that powers every dashboard |
 | 4 | **Part 1: Obsidian Bases & PM Workflow** | 10 min | 18 dashboards + your daily cycle (morning → weekly) |
@@ -103,11 +103,11 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 
 ## QUICK START — MIGRATION IN 10 MINUTES
 
-### You're running your project repo on the I1 engine. Here's how to upgrade to I2.
+### You're running your project repo on the Iteration 1 engine. Here's how to upgrade to Iteration 2.
 
-> **Context:** Your project was cloned from the LTC Project Template at I1 (v1.x). The I2 migration skills (`/template-check`, `/template-sync`) live in the I2 template — you don't have them yet. Step 1 pulls them into your project. Your AI agent handles the rest.
+> **Context:** Your project was cloned from the LTC Project Template at Iteration 1 (v1.x). The Iteration 2 migration skills (`/template-check`, `/template-sync`) live in the Iteration 2 template — you don't have them yet. Step 1 pulls them into your project. Your AI agent handles the rest.
 
-**Step 1 — Connect to the I2 template (one-time, ~1 min)**
+**Step 1 — Connect to the Iteration 2 template (one-time, ~1 min)**
 
 ```bash
 # In your project repo terminal:
@@ -115,7 +115,7 @@ In I1, the template gave you **structure** — folders, rules, agents. But you s
 # 1a. Add the template as a git remote (if not already added)
 git remote add template https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git
 
-# 1b. Fetch the I2 template
+# 1b. Fetch the Iteration 2 template
 git fetch template main
 
 # 1c. Pull JUST the migration tools into your project
@@ -126,7 +126,7 @@ git checkout template/main -- \
   .claude/skills/template-sync/
 ```
 
-> **What this does:** Copies 4 items from the I2 template into your local project — two scripts and two skill definitions. Nothing else changes. Your project files are untouched.
+> **What this does:** Copies 4 items from the Iteration 2 template into your local project — two scripts and two skill definitions. Nothing else changes. Your project files are untouched.
 
 > **Checkpoint:** Run `ls scripts/template-check.sh` — you should see the file. Run `ls .claude/skills/template-check/SKILL.md` — you should see the skill definition. If both exist, you're ready.
 
@@ -137,7 +137,7 @@ git checkout template/main -- \
 /template-check
 ```
 
-> **What happens:** The agent runs `scripts/template-check.sh` which compares your project files against the I2 template remote you just added. It outputs a categorized report — no files are changed.
+> **What happens:** The agent runs `scripts/template-check.sh` which compares your project files against the Iteration 2 template remote you just added. It outputs a categorized report — no files are changed.
 
 > **What you see:** A JSON summary with 5 buckets:
 
@@ -145,10 +145,10 @@ git checkout template/main -- \
 ┌────────────────────────────┬─────────────────────────────────────────────────┐
 │ Bucket                     │ What it means                                   │
 ├────────────────────────────┼─────────────────────────────────────────────────┤
-│ auto_add (N files)         │ New I2 files safe to add automatically          │
+│ auto_add (N files)         │ New Iteration 2 files safe to add automatically          │
 │ flagged: security (N)      │ .env, secrets — NEVER auto-added, your call     │
 │ flagged: review (N)        │ .claude/, _genesis/, scripts/ — needs your eye  │
-│ merge (N files)            │ Files that exist in both I1 and I2 — diff shown │
+│ merge (N files)            │ Files that exist in both Iteration 1 and Iteration 2 — diff shown │
 │ unchanged (N files)        │ Already in sync — nothing to do                 │
 └────────────────────────────┴─────────────────────────────────────────────────┘
 ```
@@ -199,7 +199,7 @@ git status
 git add <file1> <file2> ...
 
 # Commit:
-git commit -m "feat: upgrade to I2 Efficient via template-sync"
+git commit -m "feat: upgrade to Iteration 2 Efficient via template-sync"
 ```
 
 **Step 5 — Open Obsidian and see your dashboards**
@@ -335,7 +335,7 @@ Every project deliverable has this block at the top:
 ```yaml
 ---
 type: ues-deliverable          # ← UES marking — makes it visible to dashboards
-version: "2.1"                 # ← I2 iteration, 1st revision
+version: "2.1"                 # ← Iteration 2 iteration, 1st revision
 status: in-progress            # ← Drives pill color + view membership
 work_stream: 4-EXECUTE         # ← ALPEI grouping (1-ALIGN through 5-IMPROVE)
 stage: build                   # ← DSBV pipeline position (design → sequence → build → validate)
@@ -729,7 +729,7 @@ ALIGN ──► LEARN ──► PLAN ──► EXECUTE ──► IMPROVE
 
 ## — PART 2: PERSONAL KNOWLEDGE BASE —
 
-> New in I2: Your AI-powered knowledge system — inspired by Karpathy's LLM-wiki, built on LTC's CODE Framework
+> New in Iteration 2: Your AI-powered knowledge system — inspired by Karpathy's LLM-wiki, built on LTC's CODE Framework
 
 ---
 
@@ -1010,11 +1010,11 @@ qmd update distilled && qmd embed
 
 ## /LTC-BRAINSTORMING — THE UPGRADE FROM SUPERPOWERS
 
-**You know the brainstorming skill from the Superpowers Plugin.** In I2, it got a major upgrade called the **Discovery Protocol**.
+**You know the brainstorming skill from the Superpowers Plugin.** In Iteration 2, it got a major upgrade called the **Discovery Protocol**.
 
 ### What changed
 
-| Aspect | I1 (Superpowers Plugin) | I2 (Discovery Protocol) |
+| Aspect | Iteration 1 (Superpowers Plugin) | Iteration 2 (Discovery Protocol) |
 |--------|------------------------|------------------------|
 | **Triggering** | You type `/brainstorming` explicitly | Auto-triggered — AI leads with inference, not questions |
 | **Structure** | 9-step sequential checklist | **4 invisible gates** run automatically before any question |
@@ -1099,8 +1099,8 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 
 | Command | What It Does | When To Use |
 |---------|-------------|-------------|
-| `/template-check` | Audit your project files against I2 template (read-only) | Before upgrading — see what's changed |
-| `/template-sync` | Apply I2 template updates interactively (never deletes) | Migration from I1 → I2 |
+| `/template-check` | Audit your project files against Iteration 2 template (read-only) | Before upgrading — see what's changed |
+| `/template-sync` | Apply Iteration 2 template updates interactively (never deletes) | Migration from Iteration 1 → Iteration 2 |
 | `/setup` | Initialize Memory Vault + QMD semantic search (idempotent) | First-time setup or re-initialization |
 | `/vault-capture` | Capture content into PKB or vault from Claude Code | Quick knowledge capture during work |
 
@@ -1239,10 +1239,10 @@ scripts/                               ← Infrastructure scripts (lint, check, 
 
 ---
 
-## YOUR DAY AS A PM — BEFORE AND AFTER I2
+## YOUR DAY AS A PM — BEFORE AND AFTER Iteration 2
 
 ```
-┌─ BEFORE (I1) ─────────────────────────────────┐
+┌─ BEFORE (Iteration 1) ─────────────────────────────────┐
 │                                                │
 │  8:30  Open repo. Scan folders. What changed?  │
 │  8:45  Check git log. Try to remember context  │
@@ -1256,7 +1256,7 @@ scripts/                               ← Infrastructure scripts (lint, check, 
 │                                                │
 └────────────────────────────────────────────────┘
 
-┌─ AFTER (I2) ──────────────────────────────────┐
+┌─ AFTER (Iteration 2) ──────────────────────────────────┐
 │                                                │
 │  8:30  Open C3. See exactly what changed.      │
 │  8:32  Open C4. No blockers. System healthy.   │
@@ -1278,7 +1278,7 @@ scripts/                               ← Infrastructure scripts (lint, check, 
 └────────────────────────────────────────────────┘
 ```
 
-> **I2 doesn't add more work. It removes the work you were already doing badly — tracking status in your head, searching folders, losing knowledge, re-explaining context.**
+> **Iteration 2 doesn't add more work. It removes the work you were already doing badly — tracking status in your head, searching folders, losing knowledge, re-explaining context.**
 
 ---
 

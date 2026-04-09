@@ -7,7 +7,7 @@ const sections = [
   {
     num: '01',
     title: 'QUICK START & MIGRATION',
-    desc: 'Upgrade from I1 → I2 with zero struggle, see your first dashboard',
+    desc: 'Upgrade from Iteration 1 → Iteration 2 with zero struggle, see your first dashboard',
     time: '10 min',
   },
   {

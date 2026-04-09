@@ -20,7 +20,7 @@ Safe to run twice — all steps are idempotent.
 
 ### Migration Check (run first, once)
 
-Check for the old `4-EXECUTE/scripts/setup-vault.sh` path — it moved to `scripts/` in I2:
+Check for the old `4-EXECUTE/scripts/setup-vault.sh` path — it moved to `scripts/` in Iteration 2:
 
 ```bash
 # 1. Remove stale copy if it somehow still exists

@@ -36,7 +36,7 @@ Single-agent alternative: ~$3-5 (one Opus run)
 Proceed with multi-agent? [y/n]
 ```
 
-Default N=3 for I1. Scale up if outputs diverge significantly.
+Default N=3 for Iteration 1. Scale up if outputs diverge significantly.
 
 ## Agent Files
 

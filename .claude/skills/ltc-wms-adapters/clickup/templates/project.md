@@ -24,19 +24,19 @@ The Project AC table decomposes the VANA into testable criteria with IDs:
 
 Verb ACs:
 - [ ] Verb-AC1: {criteria}
-Sustainability Adverb ACs (I1):
+Sustainability Adverb ACs (Iteration 1):
 - [ ] SAdv-AC1: {criteria}
-Efficiency Adverb ACs (I2):
+Efficiency Adverb ACs (Iteration 2):
 - [ ] EAdv-AC1: {criteria}
-Scalability Adverb ACs (I3):
+Scalability Adverb ACs (Iteration 3):
 - [ ] ScAdv-AC1: {criteria}
 Noun ACs:
 - [ ] Noun-AC1: {criteria}
-Sustainability Adjective ACs (I1):
+Sustainability Adjective ACs (Iteration 1):
 - [ ] SAdj-AC1: {criteria}
-Efficiency Adjective ACs (I2):
+Efficiency Adjective ACs (Iteration 2):
 - [ ] EAdj-AC1: {criteria}
-Scalability Adjective ACs (I3):
+Scalability Adjective ACs (Iteration 3):
 - [ ] ScAdj-AC1: {criteria}
 
 Every child item traces back to specific AC IDs from this table.
@@ -71,10 +71,10 @@ Select: `Must Have` | `Should Have` | `Could Have` | `Won't Have`
 ## Workstreams
 | Iteration | Name | Deliverables | Pillar | Phase |
 |---|---|---|---|---|
-| I1 | {name} | D1, D2, D3 | Sustainability | Concept |
-| I2 | {name} | D4, D5 | Efficiency | Prototype |
-| I3 | {name} | D6, D7 | Scalability | MVE |
-| I4 | {name} | D8 | Hardening | Leadership |
+| Iteration 1 | {name} | D1, D2, D3 | Sustainability | Concept |
+| Iteration 2 | {name} | D4, D5 | Efficiency | Prototype |
+| Iteration 3 | {name} | D6, D7 | Scalability | MVE |
+| Iteration 4 | {name} | D8 | Hardening | Leadership |
 
 ## Execution Topology (mandatory)
 

@@ -23,7 +23,7 @@ last_updated: 2026-04-07
 ## Conventions
 - Frontmatter values: lowercase (except `work_stream` which uses numbered SCREAMING: `1-ALIGN`)
 - Frontmatter keys: snake_case (`last_updated`, `work_stream`)
-- File versions: MAJOR.MINOR where MAJOR = iteration (I1=1.x, I2=2.x). Never 0.x.
+- File versions: MAJOR.MINOR where MAJOR = iteration (Iteration 1=1.x, Iteration 2=2.x). Never 0.x.
 - Python: snake_case | JS: camelCase | Shell: kebab-case filenames
 
 ## Brand Identity (full spec: `rules/brand-identity.md`)

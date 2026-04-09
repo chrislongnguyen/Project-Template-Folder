@@ -30,7 +30,7 @@ Core principle: Success = Efficient & Scalable Management of Failure Risks (S > 
 - **Force Analysis:** UBS (blocks success) vs UDS (drives success) — recursive dot-notation (UBS.UB, UBS.UD, etc.)
 - **3 Pillars:** Sustainability > Efficiency > Scalability — priority order, never reversed
 - **VANA Grammar:** Verb + Adverb + Noun + Adjective — each with binary A.C.s
-- **Iteration Gates:** I1(Concept/Sustainability) → I2(Prototype/Efficiency) → I3(MVE/Scalability) → I4(Leadership)
+- **Iteration Gates:** Iteration 1(Concept/Sustainability) → Iteration 2(Prototype/Efficiency) → Iteration 3(MVE/Scalability) → Iteration 4(Leadership)
 
 ## Links
 

@@ -6,7 +6,7 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer } from '../lib/anim
 
 const tools = [
   { name: 'Claude Code', hint: 'CLI agent — reads CLAUDE.md, dispatches agents' },
-  { name: 'Git', hint: 'Version control — branching strategy I0–I4' },
+  { name: 'Git', hint: 'Version control — branching strategy Iteration 0–Iteration 4' },
   { name: 'Node.js v18+', hint: 'Required for Claude Code and build tools' },
   { name: 'VS Code / IDE', hint: 'Code editor with Claude Code extension' },
   { name: 'GitHub', hint: 'Remote repo, PRs, Issues' },

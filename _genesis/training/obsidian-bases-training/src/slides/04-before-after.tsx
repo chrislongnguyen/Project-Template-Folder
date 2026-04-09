@@ -101,7 +101,7 @@ export default function BeforeAfterSlide() {
         </AnimatedText>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-          {/* I1 column */}
+          {/* Iteration 1 column */}
           <motion.div
             variants={fadeInLeft}
             initial="hidden"
@@ -127,7 +127,7 @@ export default function BeforeAfterSlide() {
                   letterSpacing: '0.1em',
                 }}
               >
-                I1 — Sustainable
+                Iteration 1 — Sustainable
               </span>
             </div>
 
@@ -158,7 +158,7 @@ export default function BeforeAfterSlide() {
             ))}
           </motion.div>
 
-          {/* I2 column */}
+          {/* Iteration 2 column */}
           <motion.div
             variants={fadeInRight}
             initial="hidden"
@@ -184,7 +184,7 @@ export default function BeforeAfterSlide() {
                   letterSpacing: '0.1em',
                 }}
               >
-                I2 — Efficient
+                Iteration 2 — Efficient
               </span>
             </div>
 

@@ -10,7 +10,7 @@ type: ues-deliverable
 work_stream: 4-EXECUTE
 stage: validate
 sub_system: <% tp.system.suggester(["1-PD (Problem Diagnosis)", "2-DP (Data Pipeline)", "3-DA (Data Analysis)", "4-IDM (Insights & Decisions)"], ["1-PD", "2-DP", "3-DA", "4-IDM"]) %>
-iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
+iteration: <% tp.system.prompt("Iteration number (e.g. 2 for Iteration 2)") %>
 ---
 
 # <% tp.file.title %>
@@ -23,7 +23,7 @@ iteration: <% tp.system.prompt("Iteration number (e.g. 2 for I2)") %>
 |-------|-------|
 | Sub-system | _[name]_ |
 | Artifact(s) under test | _[list of deliverable paths]_ |
-| Iteration | _[I1 / I2 / I3 / I4]_ |
+| Iteration | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Test owner | _[name]_ |
 | Date | <% tp.date.now("YYYY-MM-DD") %> |
 

@@ -14,7 +14,7 @@ const fields = [
   {
     key: 'version:',
     value: '"2.1"',
-    annotation: 'I2 iteration, 1st edit (I2 = 2.x)',
+    annotation: 'Iteration 2 iteration, 1st edit (Iteration 2 = 2.x)',
     color: colors.midnightLight,
   },
   {

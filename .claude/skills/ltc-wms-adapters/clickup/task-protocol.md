@@ -16,7 +16,7 @@ The system enforces a strict 6-level hierarchy using ClickUp task types within a
 ```
 List (e.g., Process-related Execution):
   PJ Project                              ← task_type: PJ Project (top-level)
-    └─ PJ Workstream                      ← task_type: PJ Workstream (iteration: I1/I2/I3/I4)
+    └─ PJ Workstream                      ← task_type: PJ Workstream (iteration: Iteration 1/Iteration 2/Iteration 3/Iteration 4)
         └─ PJ Deliverable                 ← task_type: PJ Deliverable (parent = PJ Workstream)
             └─ Task                       ← task_type: null (built-in default, NOT "Task")
                 ├─ PJ Increment           ← task_type: PJ Increment (parent = Task)
@@ -29,7 +29,7 @@ List (e.g., Process-related Execution):
 | Level | Task Type | Definition | Answers | Litmus Test |
 |---|---|---|---|---|
 | **PJ Project** | `PJ Project` | A body of work toward a strategic or operational goal, composed of multiple Deliverables. | _"What are we building?"_ | Has a clear end-state; spans multiple work cycles. |
-| **PJ Workstream** | `PJ Workstream` | An iteration phase that groups Deliverables by VANA pillar scope. Maps 1:1 to DELIVERY PHASE (I1=Concept, I2=Prototype, I3=MVE, I4=Leadership). Houses all Deliverables whose primary ACs belong to this iteration. | _"Which iteration does this belong to?"_ | Maps to exactly one Delivery Phase. Contains 1+ Deliverables. |
+| **PJ Workstream** | `PJ Workstream` | An iteration phase that groups Deliverables by VANA pillar scope. Maps 1:1 to DELIVERY PHASE (Iteration 1=Concept, Iteration 2=Prototype, Iteration 3=MVE, Iteration 4=Leadership). Houses all Deliverables whose primary ACs belong to this iteration. | _"Which iteration does this belong to?"_ | Maps to exactly one Delivery Phase. Contains 1+ Deliverables. |
 | **PJ Deliverable** | `PJ Deliverable` | A verifiable user-facing outcome. You can **demo** it. | _"What can the user do now that they couldn't before?"_ | Someone outside the team can recognize the outcome. Independently verifiable. |
 | **Task** | `null` (built-in default, `custom_item_id: 0`) | A coherent unit of engineering work that advances one Deliverable. You can **review** it. Contains Increments (the work), optionally Blockers (impediments), and one Documentation (the reference). "Task" does not exist as a named custom type — use the built-in default. | _"What technical capability was built?"_ | Completing it alone doesn't produce standalone value — it matters in context of its parent Deliverable. |
 | **PJ Increment** | `PJ Increment` | The smallest unit of work that creates verifiable value. You can **test** it. | _"What passes its acceptance criteria right now?"_ | All tests pass. One logical layer of work. |
@@ -191,7 +191,7 @@ Free text. No UNG prefix required. Use clear, descriptive names.
 | ACCEPTANCE CRITERIA | ACs | ACs owned by this iteration | ACs | ACs | ACs | — | — |
 | MoSCoW (dropdown) | Required | Required | Required | Required | Required | — | Must Have |
 | DoD (custom field) | Optional | Optional | Required | Required | — | — | — |
-| DELIVERY PHASE | — | Required (I1→1.CONCEPT, I2→2.PROTOTYPE, I3→3.MVE, I4→4.LEADERSHIP) | — | — | — | — | — |
+| DELIVERY PHASE | — | Required (Iteration 1→1.CONCEPT, Iteration 2→2.PROTOTYPE, Iteration 3→3.MVE, Iteration 4→4.LEADERSHIP) | — | — | — | — | — |
 | Description | Overview + scope | Deliverables table + owned AC IDs + I/O contracts | Tasks + deps | Increments + files | Steps | Content/link | Context + evidence |
 | BLOCKER(S) | — | — | — | — | — | — | What + why |
 | SOLUTION FOR BLOCKER | — | — | — | — | — | — | Resolution plan |
@@ -262,7 +262,7 @@ Format for the custom field value:
 | Level | VANA Scope | AC Ownership |
 |---|---|---|
 | **PJ Project** | Full VANA — all ACs across all pillars | Owns ALL ACs |
-| **PJ Workstream** | Iteration-scoped VANA | I1: Verb + Noun + Sustainability(Adv+Adj). I2: Efficiency(Adv+Adj). I3+I4: Scalability(Adv+Adj) + Spawned + Hardening |
+| **PJ Workstream** | Iteration-scoped VANA | Iteration 1: Verb + Noun + Sustainability(Adv+Adj). Iteration 2: Efficiency(Adv+Adj). Iteration 3+Iteration 4: Scalability(Adv+Adj) + Spawned + Hardening |
 | **PJ Deliverable** | Subset of parent Workstream's ACs | Lists specific AC IDs from parent |
 | **Task** | Subset of parent Deliverable's ACs | Lists specific AC IDs |
 | **PJ Increment** | Individual AC(s) from parent Task | Owns 1-3 specific ACs — the testable unit |
@@ -283,19 +283,19 @@ Format at Project level:
 ```
 Verb ACs:
 - [ ] Verb-AC1: {criteria}
-Sustainability Adverb ACs (I1):
+Sustainability Adverb ACs (Iteration 1):
 - [ ] SAdv-AC1: {criteria}
-Efficiency Adverb ACs (I2):
+Efficiency Adverb ACs (Iteration 2):
 - [ ] EAdv-AC1: {criteria}
-Scalability Adverb ACs (I3):
+Scalability Adverb ACs (Iteration 3):
 - [ ] ScAdv-AC1: {criteria}
 Noun ACs:
 - [ ] Noun-AC1: {criteria}
-Sustainability Adjective ACs (I1):
+Sustainability Adjective ACs (Iteration 1):
 - [ ] SAdj-AC1: {criteria}
-Efficiency Adjective ACs (I2):
+Efficiency Adjective ACs (Iteration 2):
 - [ ] EAdj-AC1: {criteria}
-Scalability Adjective ACs (I3):
+Scalability Adjective ACs (Iteration 3):
 - [ ] ScAdj-AC1: {criteria}
 ```
 

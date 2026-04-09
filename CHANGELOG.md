@@ -18,11 +18,11 @@ Tier tags: [T1:REPLACE] [T2:MERGE] [T3:ADD-ONLY]
 
 ## [2.0.0] — 2026-04-06
 
-I2 Prototype release. 71 commits since v1.0.0. Major: Obsidian Bases vault system,
+Iteration 2 Prototype release. 71 commits since v1.0.0. Major: Obsidian Bases vault system,
 S2 status lifecycle enforcement, 4-mode filesystem routing, LEARN pipeline (Option X),
 multi-agent governance harness, PKB system, 47-slide training deck.
 
-### Added — Obsidian Bases Vault System (I2 core feature)
+### Added — Obsidian Bases Vault System (Iteration 2 core feature)
 - [T1:REPLACE] 14 Obsidian Bases dashboards — Vinh → LTC template adaptation
 - [T1:REPLACE] 6 Templater templates — auto-fill frontmatter on artifact creation
 - [T1:REPLACE] `scripts/setup-vault.sh` — vault folder scaffold + Git-aware setup
@@ -72,7 +72,7 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 
 ### Added — Training
 - [T1:REPLACE] 47-slide Vite training deck (`_genesis/training/obsidian-bases-training/`)
-- [T1:REPLACE] `_genesis/training/I2-training-deck.md` — authoritative content source
+- [T1:REPLACE] `_genesis/training/Iteration 2-training-deck.md` — authoritative content source
 - [T1:REPLACE] Status lifecycle slide with enforcement hook callout
 
 ### Added — Skills & Tools
@@ -88,12 +88,12 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 - [T2:MERGE] `.claude/rules/git-conventions.md` — canonical commit format, scope list, staging rules
 - [T2:MERGE] `.claude/rules/naming-rules.md` — skill prefix registry, folder format rejection
 - [T2:MERGE] `_genesis/version-registry.md` — 22-row workstream×phase matrix, S2 vocab
-- [T2:MERGE] `_genesis/BLUEPRINT.md` — I2 prototype scope, LEARN as Zone 2, UES versioning
+- [T2:MERGE] `_genesis/BLUEPRINT.md` — Iteration 2 prototype scope, LEARN as Zone 2, UES versioning
 - [T2:MERGE] All ALPEI process map partitions (P1–P4) — S2 vocabulary alignment
 - [T2:MERGE] `.gitignore` — tsconfig.tsbuildinfo exclusion
 
 ### Removed
-- `scripts/retrofit-versioning.sh` — one-time I1 migration tool (merged, no longer needed)
+- `scripts/retrofit-versioning.sh` — one-time Iteration 1 migration tool (merged, no longer needed)
 - `scripts/release-pr.sh` — replaced by `/git-save` skill + gh CLI
 - 30 DSBV WIP artifacts from `_genesis/` — ship-ready template cleanup
 
@@ -106,7 +106,7 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 
 ## [1.0.0] — 2026-03-30
 
-I1 Concept release. ALPEI workstream scaffold, initial rules, charter, decisions.
+Iteration 1 Concept release. ALPEI workstream scaffold, initial rules, charter, decisions.
 
 ## [0.3.0] — 2026-03-19
 
@@ -137,7 +137,7 @@ I1 Concept release. ALPEI workstream scaffold, initial rules, charter, decisions
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
-- [[I2-training-deck]]
+- [[Iteration 2-training-deck]]
 - [[README]]
 - [[SKILL]]
 - [[UBS_REGISTER]]

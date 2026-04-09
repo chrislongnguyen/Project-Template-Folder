@@ -73,7 +73,7 @@ const raciRows: RaciRow[] = [
     pmIsActor: true,
   },
   {
-    activity: 'Choose UES version level (I1 Concept, I2 Prototype…)',
+    activity: 'Choose UES version level (Iteration 1 Concept, Iteration 2 Prototype…)',
     pm: 'YOU set at project start',
     agent: 'Respects your choice',
     pmIsActor: true,

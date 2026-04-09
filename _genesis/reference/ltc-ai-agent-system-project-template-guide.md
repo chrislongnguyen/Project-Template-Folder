@@ -3,7 +3,7 @@ version: "1.3"
 status: draft
 last_updated: 2026-03-31
 owner: "Long Nguyen"
-iteration: I1
+iteration: Iteration 1
 audience: "Human users (primary), AI agents (secondary)"
 ---
 # LTC Project Template — User Guide

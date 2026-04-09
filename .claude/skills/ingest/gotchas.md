@@ -54,7 +54,7 @@
 ## G9: Version/status not set on new pages
 
 **Symptom:** New distilled page has no version or status in frontmatter, or version is "0.1".
-**Fix:** All new pages in I2 start at `version: "2.0"`, `status: Draft`, `last_updated: {today}`. Level is derived from questions_answered count — never declared. Follow `rules/versioning.md`.
+**Fix:** All new pages in Iteration 2 start at `version: "2.0"`, `status: Draft`, `last_updated: {today}`. Level is derived from questions_answered count — never declared. Follow `rules/versioning.md`.
 **EP:** EP-10 (Define Done) — metadata is an acceptance criterion.
 
 ## G10: QMD not re-embedded after ingest

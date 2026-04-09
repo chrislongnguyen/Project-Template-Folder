@@ -20,14 +20,14 @@ sub_system:
 | Field | Value |
 |-------|-------|
 | Sub-system | _[name]_ |
-| Iteration | _[I1 / I2 / I3 / I4]_ |
+| Iteration | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Baseline date | _[YYYY-MM-DD]_ |
 | Owner | _[name]_ |
 
 ## Pillar Metrics
 
 > Three Pillars: Sustainability (S) → Efficiency (E) → Scalability (Sc).
-> Only measure pillars active at your current iteration (I1=S, I2=S+E, I3=S+E, I4=S+E+Sc).
+> Only measure pillars active at your current iteration (Iteration 1=S, Iteration 2=S+E, Iteration 3=S+E, Iteration 4=S+E+Sc).
 
 ### Sustainability Metrics
 
@@ -36,13 +36,13 @@ sub_system:
 | _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
 | _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
 
-### Efficiency Metrics (I2+)
+### Efficiency Metrics (Iteration 2+)
 
 | Metric | Current Value | Target | Formula | Measurement Method | Cadence |
 |--------|--------------|--------|---------|-------------------|---------|
 | _[name]_ | _[value + unit]_ | _[value + unit]_ | _[how calculated]_ | _[how collected]_ | _[weekly / sprint]_ |
 
-### Scalability Metrics (I4+)
+### Scalability Metrics (Iteration 4+)
 
 | Metric | Current Value | Target | Formula | Measurement Method | Cadence |
 |--------|--------------|--------|---------|-------------------|---------|

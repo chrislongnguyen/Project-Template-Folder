@@ -115,7 +115,7 @@ export default function BrainstormingUpgradeSlide() {
           <motion.div variants={fadeInLeft} initial="hidden" animate="show" style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             {/* Column headers */}
             <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr 1fr', gap: '6px', padding: '0 0 4px 0' }}>
-              {['ASPECT', 'I1 (Superpowers)', 'I2 (Discovery Protocol)'].map((h, i) => (
+              {['ASPECT', 'Iteration 1 (Superpowers)', 'Iteration 2 (Discovery Protocol)'].map((h, i) => (
                 <span key={h} style={{
                   fontFamily: 'Inter, sans-serif',
                   fontWeight: 700,

@@ -20,7 +20,7 @@ sub_system:
 | Field | Value |
 |-------|-------|
 | Sub-system | _[name]_ |
-| Iteration | _[I1 / I2 / I3 / I4]_ |
+| Iteration | _[Iteration 1 / Iteration 2 / Iteration 3 / Iteration 4]_ |
 | Review cadence | _[weekly / sprint / monthly]_ |
 | Owner | _[name]_ |
 

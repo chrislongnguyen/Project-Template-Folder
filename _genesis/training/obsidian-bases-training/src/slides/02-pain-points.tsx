@@ -83,7 +83,7 @@ export default function PainPointsSlide() {
               margin: '0 0 6px 0',
             }}
           >
-            WHY I2 MATTERS
+            WHY Iteration 2 MATTERS
           </h1>
           <div
             style={{
@@ -105,7 +105,7 @@ export default function PainPointsSlide() {
             marginBottom: '6px',
           }}
         >
-          {['#', 'I1 PAIN POINT', 'I2 SOLUTION', 'RESULT FOR YOU'].map((h) => (
+          {['#', 'Iteration 1 PAIN POINT', 'Iteration 2 SOLUTION', 'RESULT FOR YOU'].map((h) => (
             <span
               key={h}
               style={{
@@ -212,7 +212,7 @@ export default function PainPointsSlide() {
               lineHeight: 1.5,
             }}
           >
-            The shift: In I1, you managed the project. In I2,{' '}
+            The shift: In Iteration 1, you managed the project. In Iteration 2,{' '}
             <strong>the project tells you what needs managing.</strong>
           </p>
         </motion.div>

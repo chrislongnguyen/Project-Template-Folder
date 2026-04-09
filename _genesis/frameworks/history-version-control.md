@@ -24,7 +24,7 @@ Like Google Docs version history, but more structured. Every change is saved wit
 
 ```
 ---
-version: "1.0"              ← MAJOR = iteration (I1=1.x, I2=2.x). MINOR = edit count.
+version: "1.0"              ← MAJOR = iteration (Iteration 1=1.x, Iteration 2=2.x). MINOR = edit count.
 status: draft               ← 5 options: draft, in-progress, in-review, validated, archived
 last_updated: 2026-03-31
 owner: "Long"               ← who is responsible for this document
@@ -118,16 +118,16 @@ Sections 1-7 below cover the full technical specification — branching strategy
 
 ```
 main                        ← Stable, approved work only. Protected branch.
-  ├── I0-logic-scaffold   ← Iteration 0: ALIGN workstream setup (pre-build framing)
-  ├── I1-concept          ← Iteration 1: Sustainability — prove correctness
-  ├── I2-prototype        ← Iteration 2: Efficiency — real data, outperform
-  ├── I3-mve              ← Iteration 3: Full efficiency — production-grade
-  ├── I4-leadership       ← Iteration 4: Scalability — self-improving
+  ├── Iteration 0-logic-scaffold   ← Iteration 0: ALIGN workstream setup (pre-build framing)
+  ├── Iteration 1-concept          ← Iteration 1: Sustainability — prove correctness
+  ├── Iteration 2-prototype        ← Iteration 2: Efficiency — real data, outperform
+  ├── Iteration 3-mve              ← Iteration 3: Full efficiency — production-grade
+  ├── Iteration 4-leadership       ← Iteration 4: Scalability — self-improving
   └── hotfix/*            ← Emergency fixes to main
 ```
 
 - **main** = production-quality, approved artifacts. Never commit directly.
-- **Iteration branches** = one branch per APEI iteration (I0 through I4). All work happens here.
+- **Iteration branches** = one branch per APEI iteration (Iteration 0 through Iteration 4). All work happens here.
 - **Feature branches** = optional sub-branches off iteration branches for parallel workstreams.
 - **hotfix/** = emergency corrections to main between iterations.
 
@@ -152,7 +152,7 @@ Format: `type(scope): description`
 feat(ALIGN): ALIGN workstream stakeholder analysis complete
 fix(EXECUTE): correct CF2 acceptance criteria threshold
 refactor(PLAN): restructure EOP steps for LEARN workstream
-docs(IMPROVE): update changelog for I2 cycle
+docs(IMPROVE): update changelog for Iteration 2 cycle
 ```
 
 **Rules:**
@@ -176,7 +176,7 @@ When EXECUTE produces multiple configuration variants (CF1, CF2, CF3), manage th
 ```
 
 **Alternative: Branch-based separation** (only when variants diverge significantly)
-- Branch per variant off the iteration branch: `I2-CF1`, `I2-CF2`, `I2-CF3`
+- Branch per variant off the iteration branch: `Iteration 2-CF1`, `Iteration 2-CF2`, `Iteration 2-CF3`
 - Merge winner back to iteration branch with rationale documented.
 
 **Rule:** Default to directories. Use branches only when file-level conflicts make directory separation impractical.
@@ -217,11 +217,11 @@ Each iteration produces a Pull Request to main:
 
 | Iteration | PR Title Pattern | Merge Condition |
 |---|---|---|
-| I0 | `I0: Logic Scaffold — ALIGN workstream setup` | ALIGN workstream artifacts reviewed and approved |
-| I1 | `I1: Concept — PLAN + first EXECUTE pass` | LEARN workstream+3 first pass, EXECUTE workstream baseline eval |
-| I2 | `I2: Prototype — deep EXECUTE + EVALUATE` | All workstreams populated, eval metrics pass threshold |
-| I3 | `I3: MVE — IMPROVE cycle applied` | Changelog updated, regression check passed |
-| I4 | `I4: Leadership — final review and handoff` | All A.C. met, stakeholder sign-off |
+| Iteration 0 | `Iteration 0: Logic Scaffold — ALIGN workstream setup` | ALIGN workstream artifacts reviewed and approved |
+| Iteration 1 | `Iteration 1: Concept — PLAN + first EXECUTE pass` | LEARN workstream+3 first pass, EXECUTE workstream baseline eval |
+| Iteration 2 | `Iteration 2: Prototype — deep EXECUTE + EVALUATE` | All workstreams populated, eval metrics pass threshold |
+| Iteration 3 | `Iteration 3: MVE — IMPROVE cycle applied` | Changelog updated, regression check passed |
+| Iteration 4 | `Iteration 4: Leadership — final review and handoff` | All A.C. met, stakeholder sign-off |
 
 - PRs require at least one reviewer (Human Director or designated reviewer).
 - PR description must reference which workstreams were modified and link to relevant ADRs.
@@ -234,7 +234,7 @@ Each iteration produces a Pull Request to main:
 Maintain `5-IMPROVE/changelog/CHANGELOG.md` with reverse-chronological entries:
 
 ```
-## [I2] - 2026-03-25
+## [Iteration 2] - 2026-03-25
 ### Added
 - CF2 optimized configuration for PLAN workstream
 - ADR-003 documenting tool selection rationale
@@ -254,16 +254,16 @@ Tags mark stable iteration endpoints on main:
 
 | Tag Pattern | Meaning |
 |---|---|
-| `v1.0.0` | I1 merged — Concept complete |
-| `v2.0.0` | I2 merged — Prototype complete |
-| `v3.0.0` | I3 merged — MVE complete |
-| `v4.0.0` | I4 merged — Leadership complete |
-| `v4.0.1` | Hotfix after I4 release |
+| `v1.0.0` | Iteration 1 merged — Concept complete |
+| `v2.0.0` | Iteration 2 merged — Prototype complete |
+| `v3.0.0` | Iteration 3 merged — MVE complete |
+| `v4.0.0` | Iteration 4 merged — Leadership complete |
+| `v4.0.1` | Hotfix after Iteration 4 release |
 
-> **Note:** I0 (Logic Scaffold) is pre-build framing — no tag is produced because no artifacts merge to main during I0.
+> **Note:** Iteration 0 (Logic Scaffold) is pre-build framing — no tag is produced because no artifacts merge to main during Iteration 0.
 
 Tag format: `v{ITERATION}.0.0`
-- MAJOR = iteration number (I1=1, I2=2, I3=3, I4=4)
+- MAJOR = iteration number (Iteration 1=1, Iteration 2=2, Iteration 3=3, Iteration 4=4)
 - MINOR = 0 (reserved for future sub-iteration use)
 - PATCH = hotfixes within an iteration
 

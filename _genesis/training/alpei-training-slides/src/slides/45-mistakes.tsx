@@ -20,7 +20,7 @@ const mistakes = [
   {
     num: '03',
     mistake: 'OVER-BUILDING FOR THE VERSION',
-    why: 'I0 = no code. I1 = safety only. Over-building wastes effort.',
+    why: 'Iteration 0 = no code. Iteration 1 = safety only. Over-building wastes effort.',
     fix: 'Check version depth matrix. Build only what the current iteration requires.',
   },
   {

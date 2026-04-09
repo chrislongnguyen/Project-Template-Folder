@@ -44,7 +44,7 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 |------|------|-----------------|
 | **alpei-pre-flight** | `.claude/rules/alpei-pre-flight.md` | 6 checks before every task: workstream, alignment, risks, drivers, learning, version consistency. RED = stop. |
 | **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips. |
-| **versioning** | `.claude/rules/versioning.md` | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. I1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved. |
+| **versioning** | `.claude/rules/versioning.md` | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. Iteration 1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved. |
 | **dsbv** | `.claude/rules/dsbv.md` | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact. |
 | **agent-dispatch** | `.claude/rules/agent-dispatch.md` | Every Agent() call must: (1) name one of the 4 MECE agents, (2) use 5-field context package (EO → INPUT → EP → OUTPUT → VERIFY), (3) match model to agent file, (4) use absolute paths in worktrees. Enforced via PreToolUse hook — ad-hoc calls are blocked. |
 

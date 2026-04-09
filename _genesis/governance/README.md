@@ -15,13 +15,13 @@ iteration: 2
 
 Organizational governance structures and decision-making authority.
 
-Without a governance spec, authority is ambiguous — teams escalate incorrectly, decisions are reversed, and accountability gaps cause delivery failures. This directory holds org-level governance definitions (RACI, authority matrices, board-level mandates) that project teams inherit but do not override. This directory is an **I2 placeholder** — content will be populated in iteration 2.
+Without a governance spec, authority is ambiguous — teams escalate incorrectly, decisions are reversed, and accountability gaps cause delivery failures. This directory holds org-level governance definitions (RACI, authority matrices, board-level mandates) that project teams inherit but do not override. This directory is an **Iteration 2 placeholder** — content will be populated in iteration 2.
 
 ## What This Contains
 
 | Content Type | Description |
 |-------------|-------------|
-| _(I2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
+| _(Iteration 2 placeholder)_ | No artifacts yet — to be populated in iteration 2 |
 
 ## How It Connects
 

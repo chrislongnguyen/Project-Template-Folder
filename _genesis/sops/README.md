@@ -21,7 +21,7 @@ Without SOPs, teams improvise repeatable activities differently each time — ac
 
 | Content Type | Description |
 |-------------|-------------|
-| `git-workflow.md` | Branch strategy, commit conventions, PR process — I0 through I4 |
+| `git-workflow.md` | Branch strategy, commit conventions, PR process — Iteration 0 through Iteration 4 |
 | `code-review-sop.md` | Code review checklist and required approvals |
 | `deployment-sop.md` | Deployment steps, environment gates, and rollback procedure |
 | `discussion-sop.md` | How to run a structured decision discussion (async + sync) |
@@ -46,7 +46,7 @@ _genesis/frameworks/ + _genesis/principles/
 
 ## Pre-Flight Checklist
 
-- [ ] Verify `git-workflow.md` branch strategy is consistent with the current iteration (I0–I4)
+- [ ] Verify `git-workflow.md` branch strategy is consistent with the current iteration (Iteration 0–Iteration 4)
 - [ ] Confirm each SOP has been tested against the actual toolchain before declaring it active
 - [ ] No orphaned or stale artifacts
 

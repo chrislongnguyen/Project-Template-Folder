@@ -9,7 +9,7 @@ type: charter
 
 # LTC AI OPERATING SYSTEM — BLUEPRINT
 
-> This document is the bedrock for all iterations (I0–I4) of the LTC Project Template.
+> This document is the bedrock for all iterations (Iteration 0–Iteration 4) of the LTC Project Template.
 > It derives from Vinh Nguyen's ALPEI Framework, the 10 Ultimate Truths, and the 7-Component Agent System.
 > Every EOP, EOT, and EOE built in this project must trace back to a principle stated here.
 > No principle is designed from void — each tackles a named UBS or amplifies a named UDS.
@@ -56,7 +56,7 @@ Every deliverable in every iteration is evaluated against three pillars, **in th
 
 ### PRINCIPLE 1: WORKSTREAMS ARE SEQUENTIAL FOR BUILDING, CONCURRENT FOR OPERATING
 
-When building a sub-system (I0 → MVE), follow the chain: ALIGN first, then LEARN, then PLAN, then EXECUTE, then IMPROVE. Each workstream's output is the mandatory input for the next. Chain-of-custody is enforced by auto-loaded rules, not by human memory.
+When building a sub-system (Iteration 0 → MVE), follow the chain: ALIGN first, then LEARN, then PLAN, then EXECUTE, then IMPROVE. Each workstream's output is the mandatory input for the next. Chain-of-custody is enforced by auto-loaded rules, not by human memory.
 
 When the system is operating (post-MVE), the workstreams run concurrently — feedback from IMPROVE loops back to ALIGN continuously.
 
@@ -145,7 +145,7 @@ L3: Code type     src, tests, config, notebooks, docs (EXECUTE only → L4: file
 
 Iteration, DSBV stage, status, UES version, and 8-component model are encoded in YAML frontmatter. Obsidian Bases dashboards provide multi-dimensional views over frontmatter without physical folder nesting.
 
-**Why not deeper:** Empirical testing (40 AI task sessions, 16 disk verifications, 4 falsification tests on `archive/I2/improve/filesystem-depth-test`) proved AI agents perform equally at any depth. However, encoding temporal dimensions (iteration, DSBV stage) as folders forces file duplication or misleading locations. Frontmatter preserves single-source-of-truth. Additionally: 3-layer structure = 46 directories vs 6-layer = 400 directories. UBS-1 (junior PM paralysis) is directly disabled by fewer empty folders.
+**Why not deeper:** Empirical testing (40 AI task sessions, 16 disk verifications, 4 falsification tests on `archive/Iteration 2/improve/filesystem-depth-test`) proved AI agents perform equally at any depth. However, encoding temporal dimensions (iteration, DSBV stage) as folders forces file duplication or misleading locations. Frontmatter preserves single-source-of-truth. Additionally: 3-layer structure = 46 directories vs 6-layer = 400 directories. UBS-1 (junior PM paralysis) is directly disabled by fewer empty folders.
 
 **Why not flatter:** Subsystem folders (L2) encode the sequential dependency chain (Principle 6: PD governs all). Removing L2 would lose this structural enforcement and require agents to read frontmatter before every file operation to determine domain.
 
@@ -271,21 +271,21 @@ Every sub-system is designed using the Universal 8-Component Model (UT#1):
 
 | Iteration | UES Version | Pillar | VANA |
 |-----------|-------------|--------|------|
-| I0 | Logic Scaffold | — | Understand and design the AI-OS scope clearly and completely |
-| I1 | Concept | Sustainability | Derisk and deliver the agent infrastructure correctly and safely |
-| I2 | Prototype | Efficiency | Derisk and deliver an Obsidian-integrated PM workflow correctly, safely, and efficiently |
-| I3 | MVE | Full Efficiency | Derisk and deliver the full AI-OS reliably and efficiently for 6 projects |
-| I4 | Leadership | Scalability | Derisk and deliver a self-improving AI-OS that operates automatically and prescriptively |
+| Iteration 0 | Logic Scaffold | — | Understand and design the AI-OS scope clearly and completely |
+| Iteration 1 | Concept | Sustainability | Derisk and deliver the agent infrastructure correctly and safely |
+| Iteration 2 | Prototype | Efficiency | Derisk and deliver an Obsidian-integrated PM workflow correctly, safely, and efficiently |
+| Iteration 3 | MVE | Full Efficiency | Derisk and deliver the full AI-OS reliably and efficiently for 6 projects |
+| Iteration 4 | Leadership | Scalability | Derisk and deliver a self-improving AI-OS that operates automatically and prescriptively |
 
 ---
 
-### I0: LOGIC SCAFFOLD (COMPLETE — RETROSPECTIVE)
+### Iteration 0: LOGIC SCAFFOLD (COMPLETE — RETROSPECTIVE)
 
 Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structure defined. CLAUDE.md created. No automation, no agents, no enforcement.
 
 ---
 
-### I1: CONCEPT — CORRECTLY AND SAFELY (COMPLETE — RETROSPECTIVE)
+### Iteration 1: CONCEPT — CORRECTLY AND SAFELY (COMPLETE — RETROSPECTIVE)
 
 **VANA:** Derisk and deliver the agent infrastructure correctly and safely.
 
@@ -299,7 +299,7 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 
 ---
 
-### I2: PROTOTYPE — EFFICIENTLY (CURRENT)
+### Iteration 2: PROTOTYPE — EFFICIENTLY (CURRENT)
 
 **VANA:** Derisk and deliver an Obsidian-integrated PM workflow correctly, safely, and efficiently.
 
@@ -308,13 +308,13 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 3. A new PM can onboard without verbal instruction — template materials are sufficient.
 4. A new PM can create a correctly-frontmatted artifact via Templater in under 1 minute.
 5. The PM never needs to hand-craft YAML frontmatter — Templater auto-fills all required fields.
-6. All I1 acceptance criteria still pass after I2 changes are applied.
+6. All Iteration 1 acceptance criteria still pass after Iteration 2 changes are applied.
 7. A context switch between projects takes under 2 minutes using `/resume`.
 8. The 18 Obsidian Bases dashboards (C1–C7, W1–W5, U1–U6) show accurate live views — never stale data.
 
 ---
 
-### I3: MVE — RELIABLY FOR 6 PROJECTS (DIRECTIONAL)
+### Iteration 3: MVE — RELIABLY FOR 6 PROJECTS (DIRECTIONAL)
 
 **VANA:** Derisk and deliver the full AI-OS reliably and efficiently across all 6 LTC investment projects.
 
@@ -326,7 +326,7 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 
 ---
 
-### I4: LEADERSHIP — AUTOMATICALLY (DIRECTIONAL)
+### Iteration 4: LEADERSHIP — AUTOMATICALLY (DIRECTIONAL)
 
 **VANA:** Derisk and deliver a self-improving AI-OS that operates automatically, predictively, and prescriptively.
 
@@ -345,7 +345,7 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 | ID | Blocker | Mechanism | Severity | Disabled By |
 |----|---------|-----------|----------|-------------|
 | UBS-1 | Junior team lacks ALPEI mental model | PM cargo-cults process without understanding → AI slop | CRITICAL | Principle 4 (training before tooling), LEARN workstream |
-| UBS-2 | Over-engineering before value delivery | 42 skills + 14 dashboards before a single deliverable | HIGH | Phased rollout (I2: 6 dashboards, not 14) |
+| UBS-2 | Over-engineering before value delivery | 42 skills + 14 dashboards before a single deliverable | HIGH | Phased rollout (Iteration 2: 6 dashboards, not 14) |
 | UBS-3 | Stale context at scale | .md files disconnect, agent memory degrades | HIGH | Layer 1 (Obsidian knowledge graph), /compress lifecycle |
 | UBS-4 | Bus factor of 1 on framework synthesis | Vinh leaves → methodology becomes opaque | HIGH | This blueprint + annotated frameworks in _genesis/ |
 | UBS-5 | Obsidian team-scale friction | No real-time co-editing, $960/yr sync cost | MEDIUM | Git-based sync, limit vault to build artifacts |
@@ -361,7 +361,7 @@ Vinh's 9 canonical frameworks captured in `_genesis/frameworks/`. Folder structu
 | UDS-3 | Plain-text substrate | .md files are universal, version-controlled, AI-readable | HIGH | Obsidian + frontmatter + Git |
 | UDS-4 | ALPEI framework maturity | 9 canonical frameworks from Vinh, battle-tested concepts | HIGH | This blueprint operationalizes them |
 | UDS-5 | Governance-as-code pattern | Auto-loaded rules have near-100% compliance | HIGH | .claude/rules/ always-on architecture |
-| UDS-6 | First-mover advantage | No competing AI-OS for investment PM in market | MEDIUM | Ship I2-I3 in 2026 before larger firms standardize |
+| UDS-6 | First-mover advantage | No competing AI-OS for investment PM in market | MEDIUM | Ship Iteration 2-Iteration 3 in 2026 before larger firms standardize |
 
 ---
 
@@ -383,7 +383,7 @@ Every workstream artifact MUST include this frontmatter:
 
 ```yaml
 ---
-version: "1.0"           # MAJOR = iteration (I1=1.x), MINOR = edit count
+version: "1.0"           # MAJOR = iteration (Iteration 1=1.x), MINOR = edit count
 status: draft             # S2 vocabulary: draft | in-progress | in-review | validated | archived
                           # (human only sets: validated)
 last_updated: 2026-04-03  # Always absolute date

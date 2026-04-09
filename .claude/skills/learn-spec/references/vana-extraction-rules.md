@@ -27,11 +27,11 @@ For each row:
 - **Source**: `T0.P5:{row_label}:Col3`
 - **Eval type**: Deterministic (file/code/artifact) | Manual (quality judgment) | AI-Graded (NL quality)
 - **Threshold**: Deterministic → 100% | Manual → PM approval | AI-Graded → 95% agreement
-- **Iteration**: I1
+- **Iteration**: Iteration 1
 
 IDs: Verb-AC1, Verb-AC2, …
 
-**SPAWNED ACs (I4):** Scan `STEP.n(A)` col 16 (NEXT) for scope expansions. Create SPAWNED-AC rows continuing the Verb-ACn sequence. Set VANA Element = `Verb (SPAWNED)` in §9.
+**SPAWNED ACs (Iteration 4):** Scan `STEP.n(A)` col 16 (NEXT) for scope expansions. Create SPAWNED-AC rows continuing the Verb-ACn sequence. Set VANA Element = `Verb (SPAWNED)` in §9.
 
 ---
 
@@ -39,7 +39,7 @@ IDs: Verb-AC1, Verb-AC2, …
 
 Read `T0.P3-principles.md`. Find all `P[n](pillar)(role)` rows (enabling principles only — not `P_F`).
 
-Bucket by pillar: S → §3.1 SustainAdv (I1) | E → §3.2 EffAdv (I2) | Sc → §3.3 ScalAdv (I3)
+Bucket by pillar: S → §3.1 SustainAdv (Iteration 1) | E → §3.2 EffAdv (Iteration 2) | Sc → §3.3 ScalAdv (Iteration 3)
 
 For each row:
 - **VANA Word**: single adverb from principle name (e.g., `Traceably`, `Atomically`)
@@ -61,11 +61,11 @@ For each component row:
 - **Criteria**: "The {component} is installed, configured, and operational: {key functionality from col 3 ACT}."
 - **Source**: `T0.P4:{row_label}:Col3`
 - **Eval type**: Deterministic — threshold 100% installed and functional
-- **Iteration**: I1
+- **Iteration**: Iteration 1
 
 IDs: Noun-AC1, Noun-AC2, … (continuous across layers)
 
-**Hardening ACs (I4):** Read T0.P0 RACI(I) role. Create 2-3 Noun (Hardening) rows (e.g., `Audit-Trail`, `Recovery`, `Trust-Gate`) continuing the Noun-ACn sequence. Set VANA Element = `Noun (Hardening)` in §9.
+**Hardening ACs (Iteration 4):** Read T0.P0 RACI(I) role. Create 2-3 Noun (Hardening) rows (e.g., `Audit-Trail`, `Recovery`, `Trust-Gate`) continuing the Noun-ACn sequence. Set VANA Element = `Noun (Hardening)` in §9.
 
 ---
 
@@ -108,7 +108,7 @@ For each UBS row (Iteration 1):
 - **Escalation**: "Alert Human Director if recovery fails after 1 attempt"
 - **Degradation**: "Log error and halt pipeline; do not proceed with corrupted data"
 
-Repeat for Iterations 2-4 with "(same as I1 — expand as system matures)".
+Repeat for Iterations 2-4 with "(same as Iteration 1 — expand as system matures)".
 
 ---
 
@@ -118,7 +118,7 @@ Repeat for Iterations 2-4 with "(same as I1 — expand as system matures)".
 **Ask First:** T0.P5 STEP.n(A) col 3 + any EO scope modification, schema change, or PM delivery
 **Never:** Proceeding with invalid data | Modifying raw/ source | Delivering without Analyst approval | Acting outside EO scope
 
-Repeat for Iterations 2-4 with "(same as I1 — tighten as scope expands)".
+Repeat for Iterations 2-4 with "(same as Iteration 1 — tighten as scope expands)".
 
 **Model Selection:** Steps requiring data integrity judgment → Opus | Routine file ops → Haiku | NL synthesis → Sonnet
 
@@ -130,14 +130,14 @@ Repeat for Iterations 2-4 with "(same as I1 — tighten as scope expands)".
 
 | Iteration | ACs |
 |-----------|-----|
-| I1 | Verb-ACs, SustainAdv-ACs, Noun-ACs, SustainAdj-ACs |
-| I2 | EffAdv-ACs, EffAdj-ACs |
-| I3 | ScalAdv-ACs, ScalAdj-ACs |
-| I4 | SPAWNED Verb-ACs, Hardening Noun-ACs, any `[NEEDS REVIEW]` deferred ACs |
+| Iteration 1 | Verb-ACs, SustainAdv-ACs, Noun-ACs, SustainAdj-ACs |
+| Iteration 2 | EffAdv-ACs, EffAdj-ACs |
+| Iteration 3 | ScalAdv-ACs, ScalAdj-ACs |
+| Iteration 4 | SPAWNED Verb-ACs, Hardening Noun-ACs, any `[NEEDS REVIEW]` deferred ACs |
 
 All Status fields: "To Do"
 
-I4 Gate Criteria: "All I1-I3 ACs pass eval + Human Director sign-off on SPAWNED scope"
+Iteration 4 Gate Criteria: "All Iteration 1-Iteration 3 ACs pass eval + Human Director sign-off on SPAWNED scope"
 
 ---
 

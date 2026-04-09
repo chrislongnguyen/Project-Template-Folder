@@ -16,11 +16,11 @@ Known failure patterns when executing this skill. Update when new issues are dis
 
 ## 2. Missing SPAWNED and Hardening ACs
 
-**What happens:** Agent extracts only I1 ACs, skipping STEP.n(A) NEXT cells (SPAWNED) and P0 RACI(I) (Hardening) for I4.
+**What happens:** Agent extracts only Iteration 1 ACs, skipping STEP.n(A) NEXT cells (SPAWNED) and P0 RACI(I) (Hardening) for Iteration 4.
 
-**How to detect:** Check §2 for `Verb (SPAWNED)` entries and §4 for `Noun (Hardening)` entries. Check §9 has I4 rows. Missing any → incomplete extraction.
+**How to detect:** Check §2 for `Verb (SPAWNED)` entries and §4 for `Noun (Hardening)` entries. Check §9 has Iteration 4 rows. Missing any → incomplete extraction.
 
-**Fix:** After extracting I1 ACs, explicitly scan T0.P5 STEP.n(A) col 16 (NEXT) for SPAWNED ACs and T0.P0 RACI(I) for Hardening ACs. Add to §2 and §4 with I4 iteration tags.
+**Fix:** After extracting Iteration 1 ACs, explicitly scan T0.P5 STEP.n(A) col 16 (NEXT) for SPAWNED ACs and T0.P0 RACI(I) for Hardening ACs. Add to §2 and §4 with Iteration 4 iteration tags.
 
 ---
 

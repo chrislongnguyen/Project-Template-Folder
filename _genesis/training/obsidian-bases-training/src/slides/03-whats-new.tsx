@@ -83,7 +83,7 @@ export default function WhatsNewSlide() {
               margin: '0 0 6px 0',
             }}
           >
-            WHAT'S NEW IN I2
+            WHAT'S NEW IN Iteration 2
           </h1>
           <div
             style={{

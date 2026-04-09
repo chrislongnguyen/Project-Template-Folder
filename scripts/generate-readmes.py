@@ -315,7 +315,7 @@ LEARN produces Effective Principles that govern all downstream workstreams:
 |------|---------|-------|
 | **S-Principle** | Derived from UBS analysis | Minimize failure risks |
 | **E-Principle** | Derived from UDS analysis | Maximize output efficiency |
-| **Sc-Principle** | Combined UBS + UDS at I4 | Scalability constraints |
+| **Sc-Principle** | Combined UBS + UDS at Iteration 4 | Scalability constraints |
 
 ## Subsystem Flow
 

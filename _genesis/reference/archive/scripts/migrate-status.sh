@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # version: 2.0 | status: draft | last_updated: 2026-04-03
 #
-# migrate-status.sh — Bulk migration of frontmatter status values from I1 to S2 vocabulary.
+# migrate-status.sh — Bulk migration of frontmatter status values from Iteration 1 to S2 vocabulary.
 #
 # S2 migration mapping:
 #   status: Draft    → status: draft

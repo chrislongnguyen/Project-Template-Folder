@@ -44,16 +44,16 @@ reviewed: "yes"
 ## LTC Version Number Convention
 
 ```
-MAJOR = iteration number. I1 = 1.x  |  I2 = 2.x  |  NEVER use 0.x or semver.
+MAJOR = iteration number. Iteration 1 = 1.x  |  Iteration 2 = 2.x  |  NEVER use 0.x or semver.
 MINOR = edit count within the iteration. Starts at 0 for every new file.
 
-New file in I1          → version: "1.0"  ALWAYS. Never "0.1", never "2.0".
+New file in Iteration 1          → version: "1.0"  ALWAYS. Never "0.1", never "2.0".
 Committed file at 1.Y   → meaningful edit → bump to 1.(Y+1)
 Uncommitted rewrite     → same version (was never committed at the prior number)
 Whitespace / typo only  → no bump
 ```
 
-Git tags use `v{ITERATION}.0.0` format (e.g., v1.0.0 = I1 merged to main). File versions and git tags are separate systems.
+Git tags use `v{ITERATION}.0.0` format (e.g., v1.0.0 = Iteration 1 merged to main). File versions and git tags are separate systems.
 
 ## The 4 Fields
 
@@ -68,11 +68,11 @@ Git tags use `v{ITERATION}.0.0` format (e.g., v1.0.0 = I1 merged to main). File 
 
 | Value | Iteration |
 |-------|-----------|
-| `logic-scaffold` | I0 |
-| `concept` | I1 |
-| `prototype` | I2 |
-| `mve` | I3 |
-| `leadership` | I4 |
+| `logic-scaffold` | Iteration 0 |
+| `concept` | Iteration 1 |
+| `prototype` | Iteration 2 |
+| `mve` | Iteration 3 |
+| `leadership` | Iteration 4 |
 
 Numeric `version` is primary (sortable, CI/CD compatible). `iteration_name` is supplementary metadata for human readability and Obsidian filtering. Never use `iteration_name` as a substitute for `version`.
 
@@ -107,7 +107,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 
 ## Pre-Commit Checklist
 
-1. `version` — follows 1.x (I1) convention, bumped only if previously committed
+1. `version` — follows 1.x (Iteration 1) convention, bumped only if previously committed
 2. `status` — S2 vocabulary: `draft` | `in-progress` | `in-review` | `validated` | `archived`. Not prematurely `validated`.
 3. `last_updated` — today's absolute date
 4. All frontmatter values lowercase (R4) — except `work_stream` which uses numbered SCREAMING (`1-ALIGN`)
@@ -122,8 +122,8 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 
 | Mistake | Correct behavior |
 |---------|-----------------|
-| Using `version: "2.0"` for I1 content | I1 = 1.x always. 2.x is for I2. |
-| Using `version: "0.1"` | LTC does not use 0.x. New file in I1 = "1.0". |
+| Using `version: "2.0"` for Iteration 1 content | Iteration 1 = 1.x always. 2.x is for Iteration 2. |
+| Using `version: "0.1"` | LTC does not use 0.x. New file in Iteration 1 = "1.0". |
 | Bumping version on uncommitted rewrite | No bump — it was never committed at the prior number |
 | Setting `status: validated` without human | Only human validates. Agent sets draft, in-progress, or in-review. |
 | Forgetting `status` field | All four fields (version + status + last_updated) required; iteration_name optional |
@@ -134,8 +134,8 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 
 ## Version Awareness
 
-Before producing any deliverable, verify current iteration. I1 = Concept (correct + safe only).
-I2 = Prototype (+ efficient). Do not produce artifacts beyond current iteration scope.
+Before producing any deliverable, verify current iteration. Iteration 1 = Concept (correct + safe only).
+Iteration 2 = Prototype (+ efficient). Do not produce artifacts beyond current iteration scope.
 Reference: `_genesis/frameworks/ltc-ues-version-behaviors.md` 25-cell matrix.
 
 ## Links
