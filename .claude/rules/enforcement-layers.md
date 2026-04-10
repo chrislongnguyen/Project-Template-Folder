@@ -50,15 +50,15 @@ Review            | —                       | CI/CD                    | Code 
 
 ## Hook Event Quick-Ref
 
-| Event | Fires when | Typical use |
-|---|---|---|
-| `SessionStart` | Claude Code session opens | Load env context, warm cache, audit config |
-| `PreToolUse` | Before any tool call | Block forbidden patterns, enforce naming |
-| `PostToolUse` | After any tool call | Log, validate output, trigger follow-on check |
-| `FileChanged` | File written or edited | Version-bump reminder, brand check |
-| `UserPromptSubmit` | User sends a message | Route to agent, inject standing context |
-| `WorktreeCreate` | New git worktree opened | Validate branch naming, set permissions |
-| `TaskCreated` | Sub-agent task spawned | Enforce context-packaging, model routing |
+| Event | Fires when | Typical use | Status |
+|---|---|---|---|
+| `SessionStart` | Claude Code session opens | Load env context, warm cache, audit config | **Active** (3 hooks) |
+| `PreToolUse` | Before any tool call | Block forbidden patterns, enforce naming | **Active** (13 hooks) |
+| `PostToolUse` | After any tool call | Log, validate output, trigger follow-on check | **Active** (6 hooks) |
+| `SubagentStop` | Sub-agent completes | Audit output, verify chain-of-custody | **Active** (2 hooks) |
+| `PreCompact` | Before context compaction | Save state to vault | **Active** (1 hook) |
+| `Stop` | Session ends | Summary, PKB ingest reminder, state save | **Active** (3 hooks) |
+| `UserPromptSubmit` | User sends a message | Auto-recall injection from QMD | **Active** (1 hook) |
 
 ## Links
 

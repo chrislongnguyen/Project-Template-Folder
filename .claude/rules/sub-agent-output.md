@@ -1,6 +1,10 @@
-# Sub-Agent Output — Always-On Rule
+---
+version: "2.0"
+status: draft
+last_updated: 2026-04-10
+---
 
-# version: 2.0 | status: draft | last_updated: 2026-04-05
+# Sub-Agent Output — Always-On Rule
 
 Applies to: ltc-builder, ltc-reviewer completion reports returned to orchestrator.
 Does NOT apply to: ltc-explorer research reports (need full content), ltc-planner designs.

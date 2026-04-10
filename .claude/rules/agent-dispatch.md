@@ -1,5 +1,6 @@
 ---
 version: "1.0"
+status: draft
 last_updated: 2026-03-31
 owner: ""
 description: "Agent dispatch enforcement — every Agent() call must name a MECE agent, use context packaging, set the correct model, and use absolute paths in worktrees."

@@ -16,7 +16,7 @@ last_updated: 2026-04-09
 - **EO:** Maintain the generic ALPEI template all LTC projects clone from. Consumer teams add domain subsystems after cloning.
 ## Build and Validate
 - Template repo — no build step. Validate: `./scripts/template-check.sh`
-- 39 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
+- 49 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
 
 <!-- ── LTC STANDARD (do not modify below this line) ────────────────── -->
 ## Rules
@@ -70,7 +70,7 @@ EP-13: ONLY orchestrator (main session) calls `Agent()` — sub-agents MUST NEVE
 - Status: `draft -> in-progress -> in-review -> validated -> archived`. Agent sets draft/in-progress/in-review. **Human ONLY sets validated.** Ref: `.claude/rules/versioning.md`
 ## Enforcement and Scripts (full spec: `.claude/rules/enforcement-layers.md`)
 Tier (strongest first): **hooks > scripts > rules > skills**. Config: `.claude/settings.json`.
-6 hook types: `SessionStart` (3), `PreToolUse` (14), `PostToolUse` (5), `SubagentStop` (1), `PreCompact` (1), `Stop` (3) — 27 total hooks covering naming, DSBV gates, status-guard, routing, frontmatter inject, state-save, ripple-check, changelog.
+7 hook types: `SessionStart` (3), `PreToolUse` (13), `PostToolUse` (6), `SubagentStop` (2), `PreCompact` (1), `Stop` (3), `UserPromptSubmit` (1) — 29 total hooks covering naming, DSBV gates, status-guard, routing, frontmatter inject, state-save, ripple-check, changelog, recall.
 ## Pre-Flight Protocol (automated: `scripts/pre-flight.sh`)
 9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `BLUEPRINT.md`+`1-ALIGN/charter/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/decisions/`.
 If any check fails: MUST state which and why -> propose minimum fix -> ALWAYS wait for human approval.

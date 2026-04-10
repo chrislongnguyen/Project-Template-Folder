@@ -1,12 +1,12 @@
 ---
-version: "1.3"
-status: in-review
-last_updated: 2026-04-09
+version: "1.4"
+status: draft
+last_updated: 2026-04-10
 type: always-on rule
 ---
 # Script Registry — Always-On Rule
 
-40 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
+49 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
 This index is the authoritative lookup for agent script discovery.
 Before writing a new script, check here — it may already exist.
 
@@ -36,11 +36,14 @@ These scripts fire automatically via `.claude/settings.json` hooks. The agent do
 | `pkb-lint.sh` | SessionStart + Stop | 8-check PKB health audit (uningested, shallow, frontmatter, orphans, links, index, stale, log) |
 | `pkb-ingest-reminder.sh` | Stop | Flag uningested files in `captured/` not logged in `_log.md` |
 | `ripple-check.sh` | PostToolUse (Write/Edit on .md) | Show depth-1 and depth-2 backlinks after file edit |
-| `session-etl-trigger.sh` | UserPromptSubmit | Debounced wrapper — triggers `session-etl.py` in background |
+| `auto-recall-filter.sh` | UserPromptSubmit | QMD auto-recall injection — classify intent, query vault, inject context |
+| `session-etl-trigger.sh` | (manual / cron) | Debounced wrapper — triggers `session-etl.py` in background |
 | `session-etl.py` | (called by trigger above) | Parse Claude JSONL sessions → extract decisions/errors/changes → append to daily vault summaries |
-| `memory-guard.sh` | PreToolUse (Write on MEMORY.md) | Validate MEMORY.md 3-section structure before write |
+| `memory-guard.sh` | (not hooked — manual) | Validate MEMORY.md 3-section structure before write |
 | `dsbv-provenance-guard.sh` | PreToolUse (Write/Edit) | Block DSBV artifact Write without prior designated agent dispatch (P1 enforcement) |
 | `builder-audit.sh` | SubagentStop | Grep builder output for AC markers; warn if self-check skipped (S-FIX-1) |
+| `registry-edit-tracker.sh` | PostToolUse (Edit on version-registry.md) | Track version-registry edits to prevent double-bump |
+| `subsystem-chain-guard.sh` | SubagentStop | Verify subsystem ordering (PD→DP→DA→IDM) in agent output |
 
 ## Pre-Commit Scripts — Run Before Staging
 
@@ -80,6 +83,29 @@ Use these when managing iterations, versions, or bulk metadata operations.
 | `bulk-validate.sh` | Bulk status promotion | Set `status: validated` on all matching .md files under a path (human-invoked only) |
 | `frontmatter-extract.sh` | Debugging frontmatter issues | Parse and display YAML frontmatter fields from .md files |
 | `gate-ceremony.sh` | At DSBV gate transitions | Convenience wrapper: runs gate-precheck → set-status-in-review → gate-state advance in sequence (E-FIX-2) |
+
+## DSBV Enforcement — Gate & State Scripts
+
+Use these for DSBV gate enforcement, state tracking, and approval verification. Most are called by hooks or `/dsbv`.
+
+| Script | When to use | What it does |
+|---|---|---|
+| `gate-precheck.sh` | Before DSBV gate approval | Verify all ACs pass before allowing gate transition |
+| `gate-state.sh` | DSBV phase tracking | Read/write DSBV phase state (which phase, which gate) |
+| `set-status-in-review.sh` | Before requesting gate approval | Set artifact `status: in-review` with frontmatter update |
+| `verify-approval-record.sh` | After gate approval | Grep markdown for approval record row in table |
+| `classify-fail.sh` | After builder AC failure | Convert failure output to lowercase-classified error type |
+| `subsystem-chain-guard.sh` | SubagentStop | Verify subsystem chain-of-custody (PD→DP→DA→IDM ordering) |
+
+## Bulk Rename — One-Off Migration Scripts
+
+Used once for vocabulary standardization. Kept for reference if similar renames needed.
+
+| Script | When it was used | What it does |
+|---|---|---|
+| `rename-criterion-vocab.sh` | I0-I4→Iteration 0-4 rename | Find/replace Check/Checklist → Criterion across repo |
+| `rename-iteration-shorthand.sh` | I0-I4→Iteration 0-4 rename | Find/replace I0-I4 shorthand → Iteration 0-4 across 135 files |
+| `bash3-compat-test.sh` | DSBV SOTA upgrade | Verify all scripts work on Bash 3 (macOS default) |
 
 ## Obsidian & Knowledge Graph — Run for Vault Maintenance
 
@@ -122,7 +148,7 @@ Use these when working in `2-LEARN/` or evaluating the learning skill suite.
 
 | Skill | Scripts used |
 |---|---|
-| `/dsbv` | `generate-registry.sh`, `readiness-report.sh`, `iteration-bump.sh` |
+| `/dsbv` | `generate-registry.sh`, `readiness-report.sh`, `iteration-bump.sh`, `gate-precheck.sh`, `gate-state.sh`, `gate-ceremony.sh`, `set-status-in-review.sh`, `verify-approval-record.sh`, `classify-fail.sh` |
 | `/setup` | `setup-vault.sh`, `smoke-test.sh` |
 | `/template-check` | `template-check.sh` |
 | `/template-sync` | `template-check.sh`, `template-sync.sh` |

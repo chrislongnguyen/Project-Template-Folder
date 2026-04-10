@@ -1,6 +1,7 @@
 ---
 name: ltc-planner
 version: "1.6"
+status: draft
 last_updated: 2026-04-09
 description: "DSBV Design + Sequence phase agent. Use when defining what a workstream must produce (DESIGN.md), ordering work (SEQUENCE.md), synthesizing multi-agent outputs, or advising on DSBV flow. Handles planning, naming, session management, and learn pipeline advisory."
 model: opus

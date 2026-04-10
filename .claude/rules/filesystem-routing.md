@@ -1,6 +1,10 @@
-# Filesystem Routing — Always-On Rule
+---
+version: "1.1"
+status: draft
+last_updated: 2026-04-10
+---
 
-# version: 1.1 | status: draft | last_updated: 2026-04-09
+# Filesystem Routing — Always-On Rule
 
 Full spec with routing table: `rules/filesystem-routing.md`
 Terminology mapping: Mode A = L1+L2 DSBV workstreams | Mode B = L1+L2 LEARN | Mode C = vault dirs | Mode D = genesis

@@ -1,6 +1,7 @@
 ---
 name: ltc-builder
 version: "1.7"
+status: draft
 last_updated: 2026-04-10
 description: "DSBV Build phase agent. Use when producing workstream artifacts — writing files, editing code, creating documents, running scripts. Handles all artifact production across ALIGN, PLAN, EXECUTE, IMPROVE workstreams."
 model: sonnet

@@ -3,7 +3,7 @@
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
-# (DSBV Rule, .claude/rules/dsbv.md)
+# (DSBV Skill, .claude/skills/dsbv/SKILL.md)
 #
 # Behavior:
 #   1. Reads PreToolUse JSON from stdin (tool_name, tool_input.file_path)
