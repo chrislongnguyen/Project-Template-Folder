@@ -115,6 +115,10 @@ case "$RELATIVE_PATH" in
     skills/*) exit 0 ;;                             # Skills are operational tools
     risks/*|*risk*) exit 0 ;;                       # Risk registers are ongoing operational
     drivers/*|*driver*) exit 0 ;;                   # Driver registers are ongoing operational
+    */README.md|README.md) exit 0 ;;                # READMEs are structural, not DSBV artifacts
+    _cross/*) exit 0 ;;                             # Cross-cutting artifacts are operational
+    charter/*) exit 0 ;;                            # Charter working dir is navigational
+    architecture/*) exit 0 ;;                       # Architecture working dir is navigational
 esac
 
 # --- Check if DESIGN.md exists for this workstream -------------------------------
@@ -125,8 +129,19 @@ PROJECT_ROOT="${FILE_PATH%%/${WORKSTREAM}/*}"
 DESIGN_FILE="${PROJECT_ROOT}/${WORKSTREAM}/DESIGN.md"
 
 if [[ -f "$DESIGN_FILE" ]]; then
-    # DESIGN.md exists — Design phase was completed, allow the write
+    # Workstream-level DESIGN.md exists — allow the write
     exit 0
+fi
+
+# Also check subsystem-level DESIGN.md (subsystem-first layout)
+# Extract subsystem from path: {WORKSTREAM}/{N}-{SUB}/...
+SUB_DIR=$(echo "$RELATIVE_PATH" | cut -d'/' -f1)
+if [[ "$SUB_DIR" =~ ^[0-9]+-[A-Z]+$ ]] || [[ "$SUB_DIR" == "_cross" ]]; then
+    SUB_DESIGN="${PROJECT_ROOT}/${WORKSTREAM}/${SUB_DIR}/DESIGN.md"
+    if [[ -f "$SUB_DESIGN" ]]; then
+        # Subsystem-level DESIGN.md exists — allow the write
+        exit 0
+    fi
 fi
 
 # --- BLOCK: No DESIGN.md found --------------------------------------------
