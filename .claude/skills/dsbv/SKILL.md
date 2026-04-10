@@ -423,6 +423,8 @@ Run `./scripts/generate-registry.sh`. Scaffold next artifact per § Safety Invar
 
 New artifacts start at `version: "1.0"`, `status: draft`, `last_updated: {today}`.
 
+**Convenience:** `bash scripts/gate-ceremony.sh G{N} {workstream} [artifact_path] [workstream_dir]` runs Steps 1-4 in sequence with fail-fast. Individual scripts remain independently callable.
+
 ---
 
 ## Approval Signal Detection
