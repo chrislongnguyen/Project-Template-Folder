@@ -1,9 +1,9 @@
 ---
-version: "1.5"
+version: "1.6"
 iteration: 1
 iteration_name: concept
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-10
 owner: Long Nguyen
 type: template
 work_stream: 0-GOVERN
@@ -11,6 +11,10 @@ stage: design
 sub_system: 
 ---
 # DSBV Process — Design, Sequence, Build, Validate
+
+> **Authority boundary:** This document is the **conceptual overview** for PM training and process context loading.
+> `SKILL.md` (`.claude/skills/dsbv/SKILL.md`) is the **execution authority** — it contains the exact commands,
+> loop protocols, and gate scripts that agents run. When this doc and SKILL.md conflict, SKILL.md wins.
 
 ## Overview
 
@@ -39,8 +43,7 @@ Each workstream runs all 4 DSBV phases internally. The workstream determines the
 - Run `/dsbv design align` to run just the Design phase on the ALIGN workstream
 - Run `/dsbv status` to see current progress across all workstreams
 - Run `./scripts/dsbv-gate.sh` to manually check workstream-boundary readiness
-- Skill definition: `.claude/skills/dsbv/SKILL.md` | Rule: `.claude/rules/dsbv.md`
-- Context template: `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` | Evaluation template: `_genesis/templates/DSBV_EVAL_TEMPLATE.md`
+- Skill definition: `.claude/skills/dsbv/SKILL.md` | Context template: `_genesis/templates/dsbv-context-template.md` | Evaluation template: `_genesis/templates/dsbv-eval-template.md`
 
 ---
 
@@ -65,6 +68,7 @@ If any answer is NO → return to upstream workstream. Do not design on shaky in
 | **Output** | `DESIGN.md` — structured spec for all workstream artifacts |
 | **Who** | Human Director writes high-level intent; Agent expands into structured spec with sections, acceptance criteria, and artifact list |
 | **Activities** | 1. Human states intent (1-3 sentences) 2. Agent drafts DESIGN.md with unified artifact-condition table 3. Agent runs alignment check (see below) 4. Human reviews, challenges, refines |
+| **Pre-gate scripts** | `bash scripts/gate-precheck.sh G1 {workstream}` — verify prerequisites; `bash scripts/set-status-in-review.sh {artifact}` — mark artifact in-review |
 | **Exit Gate** | Human approves DESIGN.md. Alignment check passes. No work proceeds until approved. |
 
 **Key principle:** DESIGN.md is the contract. If it is not in DESIGN.md, it is not in scope.
@@ -81,7 +85,7 @@ Every workstream's DESIGN.md must include an Execution Strategy section that def
 | Agent config | How many agents, which models, roles, handoff protocol |
 | Git strategy | Branches, worktrees, merge plan |
 | Human gates | Which decisions pause for human approval |
-| EP validation | How EP-01, EP-03, EP-04, EP-09 are satisfied |
+| EP validation | How EPs are satisfied (see `_genesis/reference/ltc-effective-agent-principles-registry.md` for full EP-01 through EP-14 list) |
 | Cost estimate | Expected token/$ spend |
 
 **Alignment check (mandatory before G1):**
@@ -122,6 +126,7 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 | **Output** | `SEQUENCE.md` — ordered task list with dependencies and acceptance criteria per task |
 | **Who** | Agent drafts; Human reviews ordering and sizing |
 | **Activities** | 1. Identify artifact dependencies (what must exist before what) 2. Decompose into tasks using ADaPT-style adaptive decomposition: start coarse, decompose further only on failure 3. Size each task to ≤1 hour human-equivalent (METR 80% reliability horizon) 4. Assign acceptance criteria per task |
+| **Pre-gate scripts** | `bash scripts/gate-precheck.sh G2 {workstream}` — verify prerequisites; `bash scripts/set-status-in-review.sh {artifact}` — mark artifact in-review |
 | **Exit Gate** | Human approves task ordering and sizing. |
 
 **Task sizing rule:** If an agent cannot complete a task in one shot, the task is too large — decompose it, do not retry the same scope.
@@ -146,12 +151,57 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 | **Input** | Approved SEQUENCE.md |
 | **Output** | All workstream artifacts specified in DESIGN.md |
 | **Who** | Agent(s) build; pattern depends on workstream type (see Multi-Agent Configuration below) |
-| **Activities** | For each task in SEQUENCE.md: 1. Implement the artifact 2. Self-verify against task acceptance criteria 3. Checkpoint commit (`git commit`) 4. Proceed to next task |
-| **Exit Gate** | All tasks complete. All acceptance criteria met. |
+| **Activities** | For each task in SEQUENCE.md: 1. Implement the artifact 2. Self-verify against task acceptance criteria 3. Checkpoint commit (`git commit`) 4. Proceed to next task. After all tasks: run Generator/Critic loop. |
+| **Pre-gate scripts** | `bash scripts/gate-precheck.sh G3 {workstream}` — verify prerequisites; `bash scripts/set-status-in-review.sh {artifact}` — mark artifact in-review |
+| **Exit Gate** | All tasks complete. Generator/Critic loop passes or escalated. All acceptance criteria met. |
 
 **Design-heavy workstreams (ALIGN, PLAN):** Use Competing Hypotheses + Synthesis per ADR-001. 3-5 Sonnet agents produce complete packages in parallel; Opus synthesizes best elements; Human approves.
 
 **Execution-heavy workstreams (EXECUTE, IMPROVE):** Single agent, sequential task completion. Output is more deterministic — diversity of approach adds less value.
+
+### Generator/Critic Loop
+
+After Build completes (single or multi-agent), a reviewer validates the output. If failures exist, the builder fixes them. This loop continues until all criteria pass or the maximum iteration count is reached.
+
+**Key parameters:**
+
+| Parameter | Value |
+|-----------|-------|
+| `max_iterations` | 3 (builder + reviewer = 1 iteration) |
+| `exit_condition` | All criteria PASS in VALIDATE.md |
+| `cost_cap` | ~$0.06 per iteration (Sonnet builder + Opus reviewer) |
+
+**Concept:** `ltc-reviewer` dispatched → produces VALIDATE.md with PASS/FAIL items → FAIL items formatted as structured builder input → `ltc-builder` dispatched to fix FAIL items only → repeat until all PASS or `max_iterations` reached → escalate to Human Director if exhausted.
+
+**Loop state tracking:**
+```bash
+bash scripts/gate-state.sh update-loop {workstream} iteration {N}
+bash scripts/gate-state.sh update-loop {workstream} fail_count {N_new_fails}
+```
+
+Full loop protocol (exact pseudocode, escalation template, cost tracking): `.claude/skills/dsbv/SKILL.md` § Generator/Critic Loop.
+
+### Circuit Breaker
+
+Prevents infinite loops and classifies errors for intelligent retry decisions.
+
+**Error types:**
+
+| Type | Description | Action |
+|------|-------------|--------|
+| SYNTACTIC | Formatting, structure, missing field | Auto-retry (builder can fix) |
+| SEMANTIC | Wrong content, misunderstood requirement | Escalate to orchestrator |
+| ENVIRONMENTAL | Tool failure, file system issue | Fix environment + retry |
+| SCOPE | Requirement exceeds agent capability | Escalate to human |
+
+**Hard stops (circuit breakers):**
+1. Same FAIL persists 2 iterations → ESCALATE. The builder cannot fix this issue.
+2. 2 consecutive agent failures (tool errors, crashes, empty output) → STOP pipeline. Environment is likely degraded.
+3. All FAIL items are SEMANTIC → ESCALATE immediately (do not retry).
+
+**Diagnostic order** when a circuit breaker trips: EP → Input → EOP → EOE → EOT → Agent (blame the model last).
+
+Full circuit breaker protocol: `.claude/skills/dsbv/references/circuit-breaker-protocol.md`
 
 ---
 
@@ -165,11 +215,82 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 | **Output** | Validation report — pass/fail per criterion |
 | **Who** | Agent runs checks; Human Director makes final call |
 | **Activities** | 1. **Completeness** — all artifacts listed in DESIGN.md are present 2. **Quality** — each artifact passes its success rubric 3. **Coherence** — artifacts do not contradict each other 4. **Downstream readiness** — the next workstream can start with these outputs |
-| **Exit Gate** | Human Director approves. Artifact status changes from Draft to Approved. |
+| **Pre-gate scripts** | `bash scripts/gate-precheck.sh G4 {workstream}` — verify prerequisites; `bash scripts/set-status-in-review.sh {artifact}` — mark artifact in-review |
+| **Exit Gate** | Human Director approves. Artifact status changes from in-review to validated (human-only action). |
 
 **Enforcement levels:**
 - L2 (current): CLAUDE.md rules — agents follow instructions but can drift
 - L5 (target): Deterministic hooks — pre-commit/CI gates enforce validation automatically
+
+---
+
+## Structured Gate Reports
+
+Every gate presentation (G1-G4) uses a consistent template so PMs can review at a glance.
+
+```
+GATE: G{N} ({phase}) | Workstream: {name}
+ACs: {pass}/{total} | Risk flags: {count}
+Action: APPROVE / REVISE / ESCALATE
+
+[If REVISE or ESCALATE:]
+  Items requiring attention:
+  - {item 1}: {reason} (severity: blocker/cosmetic)
+  - {item 2}: {reason} (severity: blocker/cosmetic)
+
+[Cost summary if multi-agent:]
+  Builder dispatches: {N} | Reviewer dispatches: {M}
+  Loop iterations: {K} | Estimated token cost: ~${X.XX}
+```
+
+**Gate-specific additions:**
+- **G1 (Design):** Include alignment table (conditions vs artifacts, 0 orphans)
+- **G2 (Sequence):** Include dependency count and critical path length
+- **G3 (Build):** Include Generator/Critic loop summary (iterations, FAIL items fixed)
+- **G4 (Validate):** Include Aggregate Score from VALIDATE.md
+
+---
+
+## Approval Signal Detection
+
+The DSBV orchestrator classifies every human message at an active gate (G1-G4) into one of 4 tiers. Gate-based, not word-parsing — approval only counts in the context of an active gate presentation.
+
+**Key rule: When in doubt, ASK. There is no auto-timeout.**
+
+| Tier | Name | Examples | Agent Action |
+|------|------|---------|--------------|
+| Tier 1 | Explicit Approval | "approved", "lgtm", "looks good", "ship it", "confirmed" | Advance immediately → Gate Approval Protocol |
+| Tier 2 | Implicit Approval | "proceed to sequence", "go ahead", "build it", "next", "yes" (after gate question) | Emit confirmation statement → Gate Approval Protocol |
+| Tier 3 | Ambiguous | "ok" (standalone), "good", "check this", "fix X then..." | Ask for clarification. Status unchanged. |
+| Tier 4 | Rejection | "wait", "no", "revise", "not ready", silence | Stay in current phase. Ask for feedback. |
+
+**Tier 2 confirmation template (statement, not question):**
+```
+Understood — marking {ARTIFACT} as validated (status: validated, v{X.Y}).
+Advancing to {NEXT_PHASE}.
+```
+
+Full signal catalog with examples and decision flow: `.claude/skills/dsbv/SKILL.md` § Approval Signal Detection.
+
+---
+
+## Gate Approval Protocol
+
+When a human approves a gate, the DSBV orchestrator executes these steps in order:
+
+1. **Verify prerequisites** — `bash scripts/gate-precheck.sh G{N} {workstream}` (run before presenting gate; exit non-zero = do not present)
+2. **Mark artifact in-review** — `bash scripts/set-status-in-review.sh {artifact_path}`
+3. **Present gate template** — use Structured Gate Reports template above
+4. **Detect and classify approval signal** — Tier 1/2: proceed; Tier 3: clarify; Tier 4: stay in phase
+5. **Write approval record** — append to artifact's `## Approval Log`; then set `status: validated`
+6. **Advance gate state + sync** — `bash scripts/gate-state.sh advance {workstream} G{N}`; run `./scripts/generate-registry.sh`
+
+**Safety invariants:**
+- NEVER set `status: validated` without a logged approval record
+- NEVER advance phase without completing Steps 1-5 first
+- NEVER self-approve (only Human Director sets validated)
+
+Full protocol with approval log format and safety invariants: `.claude/skills/dsbv/SKILL.md` § Gate Approval Protocol.
 
 ---
 
@@ -200,7 +321,7 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 - **Build synthesis:** Opus (quality judgment)
 - **Validate:** Opus (rigorous evaluation)
 
-**Override syntax:** `--model opus --teams 3` (overrides Build team model and count)
+**Override syntax:** `/dsbv build align --model opus --teams 3`
 
 ---
 
@@ -230,14 +351,16 @@ All conditions must be GREEN before starting a DSBV cycle.
   ┌─────────┐    G1     ┌──────────┐    G2     ┌─────────┐    G3     ┌──────────┐    G4
   │ DESIGN  │──────────▶│ SEQUENCE │──────────▶│  BUILD  │──────────▶│ VALIDATE │──────▶ DONE
   │         │  Human    │          │  Human    │         │  All AC   │          │ Human
-  │ Spec    │  approves │ Task     │  approves │ Produce │  met      │ Complete │ approves
-  │ WHAT    │  DESIGN   │ ORDER    │  ordering │ HOW     │           │ CHECK    │ workstream
-  └─────────┘  .md      └──────────┘  + sizing └─────────┘           └──────────┘ output
+  │ Spec    │  approves │ Task     │  approves │ Produce │  met +    │ Complete │ approves
+  │ WHAT    │  DESIGN   │ ORDER    │  ordering │ HOW     │  Gen/Crit │ CHECK    │ workstream
+  └─────────┘  .md      └──────────┘  + sizing └─────────┘  loop     └──────────┘ output
 
   G = Gate (human approval required)
+  Pre-gate: gate-precheck.sh + set-status-in-review.sh run at each gate before presenting
+  Gate reports: GATE: G{N} | ACs: {pass}/{total} | Action: APPROVE/REVISE/ESCALATE
 
   Design-heavy workstreams:  BUILD uses Competing Hypotheses + Synthesis (ADR-001)
-  Execution-heavy:     BUILD uses single agent, sequential tasks
+  Execution-heavy:     BUILD uses single agent + Generator/Critic loop
 ```
 
 ---
@@ -263,18 +386,23 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 
 | Artifact | Path |
 |----------|------|
-| DSBV Skill | `.claude/skills/dsbv/SKILL.md` |
-| DSBV Rule | `.claude/rules/dsbv.md` |
-| Context Template | `_genesis/templates/DSBV_CONTEXT_TEMPLATE.md` |
-| Evaluation Template | `_genesis/templates/DSBV_EVAL_TEMPLATE.md` |
+| DSBV Skill (execution authority) | `.claude/skills/dsbv/SKILL.md` |
+| Context Packaging Template | `.claude/skills/dsbv/references/context-packaging.md` |
+| Circuit Breaker Protocol | `.claude/skills/dsbv/references/circuit-breaker-protocol.md` |
+| Context Template | `_genesis/templates/dsbv-context-template.md` |
+| Evaluation Template | `_genesis/templates/dsbv-eval-template.md` |
 | Workstream-Boundary Gate | `scripts/dsbv-gate.sh` |
 | Design-Phase Guard | `scripts/dsbv-skill-guard.sh` |
-| ALIGN Retrospective | `5-IMPROVE/retrospectives/DSBV_ALIGN_RETRO.md` |
+| Gate Prerequisite Check | `scripts/gate-precheck.sh` |
+| Gate State Tracker | `scripts/gate-state.sh` |
+| Set Status In-Review | `scripts/set-status-in-review.sh` |
+| EP Registry (EP-01 through EP-14) | `_genesis/reference/ltc-effective-agent-principles-registry.md` |
+| ALPEI-DSBV Process Map | `_genesis/frameworks/alpei-dsbv-process-map.md` |
 
 ---
 
 **Source:** ADR-001 (Competing Hypotheses + Synthesis), DSBV Best Practices Report (2026-03-26, 42 sources)
-**Governed by:** 7-CS Agent System, 8 LLM Truths, EP-01 through EP-10
+**Governed by:** 7-CS Agent System, 8 LLM Truths, EP-01 through EP-14 (see `_genesis/reference/ltc-effective-agent-principles-registry.md`)
 
 ## Links
 
@@ -285,13 +413,19 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 - [[EP-03]]
 - [[EP-04]]
 - [[EP-09]]
+- [[EP-10]]
+- [[EP-14]]
 - [[SEQUENCE]]
 - [[SKILL]]
 - [[VALIDATE]]
 - [[adr]]
+- [[alpei-dsbv-process-map]]
+- [[circuit-breaker-protocol]]
+- [[context-packaging]]
 - [[deliverable]]
 - [[idea]]
 - [[iteration]]
+- [[ltc-effective-agent-principles-registry]]
 - [[okr]]
 - [[simple]]
 - [[task]]
