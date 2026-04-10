@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | status: draft | last_updated: 2026-04-09
+# version: 1.1 | status: draft | last_updated: 2026-04-11
 #
 # generate-registry.sh — Rebuild _genesis/version-registry.md table from frontmatter source truth.
 #
@@ -122,19 +122,34 @@ build_cell_summary() {
 # Pad a string to a fixed width with trailing spaces.
 pad() { printf "%-${2}s" "$1"; }
 
+# ── Status rank helper (Bash 3 compatible — no nested functions) ──────────────
+
+status_rank() {
+  case "$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')" in
+    "not started"|"not-started") echo 0 ;;
+    "pending")     echo 1 ;;
+    "draft")       echo 2 ;;
+    "in-progress") echo 3 ;;
+    "in-review")   echo 4 ;;
+    "validated")   echo 5 ;;
+    "archived")    echo 6 ;;
+    *)             echo 0 ;;
+  esac
+}
+
 # ── Table builder ─────────────────────────────────────────────────────────────
 
 build_table() {
-  local workstreams=("1-ALIGN" "2-LEARN" "3-PLAN" "4-EXECUTE" "5-IMPROVE")
-  # DSBV workstreams (exclude 2-LEARN)
-  local dsbv_ws=("1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE")
+  # DSBV workstreams (exclude 2-LEARN — it uses a pipeline, not DSBV)
+  local dsbv_ws
+  dsbv_ws="1-ALIGN 3-PLAN 4-EXECUTE 5-IMPROVE"
 
-  # Column widths
-  local w1=28 w2=38 w3=9 w4=13 w5=9 w6=14 w7=10
+  # Column widths — widened for {WS}×{SUB}×{Stage} row key
+  local w1=32 w2=38 w3=9 w4=13 w5=9 w6=14 w7=10
 
   # Header
   printf "| %-${w1}s | %-${w2}s | %-${w3}s | %-${w4}s | %-${w5}s | %-${w6}s | %-${w7}s |\n" \
-    "Workstream×Stage" "Deliverable" "Version" "Status" "AC Pass" "Last Updated" "Map Cell"
+    "Workstream×Sub×Stage" "Deliverable" "Version" "Status" "AC Pass" "Last Updated" "Map Cell"
   printf "|-%s-|-%s-|-%s-|-%s-|-%s-|-%s-|-%s-|\n" \
     "$(printf '%0.s-' $(seq 1 $w1))" \
     "$(printf '%0.s-' $(seq 1 $w2))" \
@@ -144,129 +159,95 @@ build_table() {
     "$(printf '%0.s-' $(seq 1 $w6))" \
     "$(printf '%0.s-' $(seq 1 $w7))"
 
-  # ── DSBV workstreams ────────────────────────────────────────────────────────
-  for ws in "${dsbv_ws[@]}"; do
+  # ── DSBV workstreams — subsystem-granular rows ──────────────────────────────
+  for ws in $dsbv_ws; do
     local ws_dir="$REPO_ROOT/$ws"
-    # Collect all subsystem dirs (1-PD, 2-DP, 3-DA, 4-IDM, _cross)
-    local subdirs=()
-    if [[ -d "$ws_dir" ]]; then
-      while IFS= read -r d; do
-        subdirs+=("$d")
-      done < <(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d | sort)
+    [[ ! -d "$ws_dir" ]] && continue
+
+    # Collect numbered subsystem dirs matching {N}-{NAME} pattern (1-PD, 2-DP, 3-DA, 4-IDM)
+    # Exclude _cross (handled separately) and any non-subsystem dirs (charter, decisions, etc.)
+    local subdirs
+    subdirs=$(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d \
+      ! -name "_cross" ! -name ".*" | grep -E '/[0-9]+-[A-Z]+$' | sort)
+
+    # Build list of dirs to iterate: numbered subdirs first, then _cross if eligible
+    local all_subdirs="$subdirs"
+
+    # DD-4: _cross rows only when _cross/DESIGN.md exists
+    local cross_dir="$ws_dir/_cross"
+    if [[ -d "$cross_dir" ]] && [[ -f "$cross_dir/DESIGN.md" ]]; then
+      all_subdirs="$subdirs
+$cross_dir"
     fi
 
-    # Aggregate DESIGN / SEQUENCE / VALIDATE across all subsystem dirs
-    # For each stage, take the latest version/status across all subsystems.
-    for stage in "Design" "Sequence" "Build" "Validate"; do
-      local phase_file deliverable best_ver best_status best_date
-      case "$stage" in
-        Design)   phase_file="DESIGN.md"   ; deliverable="DESIGN.md" ;;
-        Sequence) phase_file="SEQUENCE.md" ; deliverable="SEQUENCE.md" ;;
-        Validate) phase_file="VALIDATE.md" ; deliverable="VALIDATE.md" ;;
-        Build)    phase_file=""            ; deliverable="build artifacts" ;;
-      esac
-
-      best_ver="—"; best_status="Not Started"; best_date="—"
-      local best_rank=0
-
-      status_rank_local() {
-        case "$1" in
-          "not started"|"not-started") echo 0 ;;
-          "pending")     echo 1 ;;
-          "draft")       echo 2 ;;
-          "in-progress") echo 3 ;;
-          "in-review")   echo 4 ;;
-          "validated")   echo 5 ;;
-          "archived")    echo 6 ;;
-          *)             echo 0 ;;
+    # If no subdirs exist at all, emit a single workstream-level row per stage
+    if [[ -z "$all_subdirs" ]]; then
+      for stage in "Design" "Sequence" "Build" "Validate"; do
+        local phase_file deliverable
+        case "$stage" in
+          Design)   phase_file="DESIGN.md"   ; deliverable="DESIGN.md" ;;
+          Sequence) phase_file="SEQUENCE.md" ; deliverable="SEQUENCE.md" ;;
+          Validate) phase_file="VALIDATE.md" ; deliverable="VALIDATE.md" ;;
+          Build)    phase_file=""            ; deliverable="build artifacts" ;;
         esac
-      }
-
-      if [[ "$stage" == "Build" ]]; then
-        # Aggregate build artifacts across all subdirs
-        local total_count=0
-        for sub in "${subdirs[@]}"; do
+        local ver status lud
+        if [[ "$stage" == "Build" ]]; then
           local summary
-          summary=$(build_cell_summary "$sub")
-          IFS='|' read -r bv bs bc bd <<< "$summary"
-          bv="$(echo "$bv" | xargs)"; bs="$(echo "$bs" | xargs)"
-          bc="$(echo "$bc" | xargs)"; bd="$(echo "$bd" | xargs)"
-          total_count=$((total_count + bc))
-          if [[ "$bv" != "—" ]]; then
-            if [[ "$best_ver" == "—" ]] || [[ "$bv" > "$best_ver" ]]; then best_ver="$bv"; fi
-          fi
-          if [[ "$bd" != "—" ]]; then
-            if [[ "$best_date" == "—" ]] || [[ "$bd" > "$best_date" ]]; then best_date="$bd"; fi
-          fi
-          local rank
-          rank=$(status_rank_local "$(echo "$bs" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')")
-          if (( rank > best_rank )); then best_rank=$rank; best_status="$bs"; fi
-        done
-        # Also check _cross if exists
-        local cross="$ws_dir/_cross"
-        if [[ -d "$cross" ]]; then
-          local summary
-          summary=$(build_cell_summary "$cross")
-          IFS='|' read -r bv bs bc bd <<< "$summary"
-          bv="$(echo "$bv" | xargs)"; bs="$(echo "$bs" | xargs)"
-          bc="$(echo "$bc" | xargs)"; bd="$(echo "$bd" | xargs)"
-          total_count=$((total_count + bc))
-          if [[ "$bv" != "—" ]]; then
-            if [[ "$best_ver" == "—" ]] || [[ "$bv" > "$best_ver" ]]; then best_ver="$bv"; fi
-          fi
-          if [[ "$bd" != "—" ]]; then
-            if [[ "$best_date" == "—" ]] || [[ "$bd" > "$best_date" ]]; then best_date="$bd"; fi
-          fi
-        fi
-        [[ $total_count -eq 0 ]] && best_status="Not Started"
-        deliverable="build artifacts (${total_count} files)"
-      else
-        # DSBV stage file — aggregate across subsystems
-        for sub in "${subdirs[@]}"; do
-          local f="$sub/$phase_file"
-          [[ ! -f "$f" ]] && continue
-          local ver stat lud
+          summary=$(build_cell_summary "$ws_dir")
+          IFS='|' read -r ver status bc lud <<< "$summary"
+          ver="$(echo "$ver" | xargs)"; status="$(echo "$status" | xargs)"
+          bc="$(echo "$bc" | xargs)"; lud="$(echo "$lud" | xargs)"
+          deliverable="build artifacts (${bc} files)"
+        else
+          local f="$ws_dir/$phase_file"
           ver=$(get_field "$f" "version")
-          stat=$(get_field "$f" "status")
+          status=$(get_field "$f" "status")
           lud=$(get_field "$f" "last_updated")
-          if [[ "$ver" != "—" ]]; then
-            if [[ "$best_ver" == "—" ]] || [[ "$ver" > "$best_ver" ]]; then best_ver="$ver"; fi
-          fi
-          if [[ "$lud" != "—" ]]; then
-            if [[ "$best_date" == "—" ]] || [[ "$lud" > "$best_date" ]]; then best_date="$lud"; fi
-          fi
-          local rank
-          rank=$(status_rank_local "$(echo "$stat" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')")
-          if (( rank > best_rank )); then best_rank=$rank; best_status="$stat"; fi
-        done
-        # Also check workstream root (some projects put DSBV files at root)
-        local root_f="$ws_dir/$phase_file"
-        if [[ -f "$root_f" ]]; then
-          local ver stat lud
-          ver=$(get_field "$root_f" "version")
-          stat=$(get_field "$root_f" "status")
-          lud=$(get_field "$root_f" "last_updated")
-          if [[ "$ver" != "—" ]]; then
-            if [[ "$best_ver" == "—" ]] || [[ "$ver" > "$best_ver" ]]; then best_ver="$ver"; fi
-          fi
-          if [[ "$lud" != "—" ]]; then
-            if [[ "$best_date" == "—" ]] || [[ "$lud" > "$best_date" ]]; then best_date="$lud"; fi
-          fi
-          local rank
-          rank=$(status_rank_local "$(echo "$stat" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')")
-          if (( rank > best_rank )); then best_rank=$rank; best_status="$stat"; fi
+          [[ "$ver" == "—" ]] && status="Not Started"
         fi
-      fi
+        printf "| %-${w1}s | %-${w2}s | %-${w3}s | %-${w4}s | %-${w5}s | %-${w6}s | %-${w7}s |\n" \
+          "${ws}×(root)×${stage}" "$deliverable" "$ver" "$status" "—" "$lud" "TBD"
+      done
+      continue
+    fi
 
-      printf "| %-${w1}s | %-${w2}s | %-${w3}s | %-${w4}s | %-${w5}s | %-${w6}s | %-${w7}s |\n" \
-        "${ws} × ${stage}" \
-        "$deliverable" \
-        "$best_ver" \
-        "$best_status" \
-        "—" \
-        "$best_date" \
-        "TBD"
-    done
+    # Per-subsystem rows
+    while IFS= read -r sub_dir; do
+      [[ -z "$sub_dir" ]] && continue
+      local sub_name
+      sub_name="$(basename "$sub_dir")"
+
+      for stage in "Design" "Sequence" "Build" "Validate"; do
+        local phase_file deliverable
+        case "$stage" in
+          Design)   phase_file="DESIGN.md"   ; deliverable="DESIGN.md" ;;
+          Sequence) phase_file="SEQUENCE.md" ; deliverable="SEQUENCE.md" ;;
+          Validate) phase_file="VALIDATE.md" ; deliverable="VALIDATE.md" ;;
+          Build)    phase_file=""            ; deliverable="build artifacts" ;;
+        esac
+
+        local row_ver row_status row_lud
+        if [[ "$stage" == "Build" ]]; then
+          local summary
+          summary=$(build_cell_summary "$sub_dir")
+          IFS='|' read -r row_ver row_status bc row_lud <<< "$summary"
+          row_ver="$(echo "$row_ver" | xargs)"; row_status="$(echo "$row_status" | xargs)"
+          bc="$(echo "$bc" | xargs)"; row_lud="$(echo "$row_lud" | xargs)"
+          deliverable="build artifacts (${bc} files)"
+        else
+          local f="$sub_dir/$phase_file"
+          row_ver=$(get_field "$f" "version")
+          row_status=$(get_field "$f" "status")
+          row_lud=$(get_field "$f" "last_updated")
+          # File absent → Not Started
+          [[ "$row_ver" == "—" ]] && row_status="Not Started"
+        fi
+
+        local row_key="${ws}×${sub_name}×${stage}"
+        printf "| %-${w1}s | %-${w2}s | %-${w3}s | %-${w4}s | %-${w5}s | %-${w6}s | %-${w7}s |\n" \
+          "$row_key" "$deliverable" "$row_ver" "$row_status" "—" "$row_lud" "TBD"
+      done
+    done <<< "$all_subdirs"
   done
 
   # ── 2-LEARN pipeline row ────────────────────────────────────────────────────
@@ -281,7 +262,7 @@ build_table() {
     [[ "$learn_count" -gt 0 ]] && learn_status="in-progress"
   fi
   printf "| %-${w1}s | %-${w2}s | %-${w3}s | %-${w4}s | %-${w5}s | %-${w6}s | %-${w7}s |\n" \
-    "2-LEARN × Pipeline" \
+    "2-LEARN×Pipeline" \
     "input/, research/, specs/, output/" \
     "1.x" \
     "$learn_status" \
@@ -312,7 +293,6 @@ build_table() {
   # _genesis: latest version among .md files in _genesis/
   local gen_ver="—" gen_date="—"
   if [[ -d "$REPO_ROOT/_genesis" ]]; then
-    # Find highest version in _genesis/*.md (top-level only)
     while IFS= read -r f; do
       local v d
       v=$(get_field "$f" "version")

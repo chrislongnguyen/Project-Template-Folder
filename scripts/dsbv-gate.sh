@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-# version: 2.2 | status: draft | last_updated: 2026-04-07
+# version: 2.3 | status: draft | last_updated: 2026-04-11
 # dsbv-gate.sh — ALPEI workstream chain-of-custody gate
 #
 # Blocks commits to workstream N if workstream N-1 has no `status: validated` artifact.
 # Full chain: 1-ALIGN → 2-LEARN → 3-PLAN → 4-EXECUTE → 5-IMPROVE
+#
+# DD-3 subsystem-level enforcement:
+#   Cross-workstream: {W}-{WS}/{S}-{SUB}/ checks {W-1}-{WS_PREV}/{S}-{SUB}/ for >=1 validated
+#   LEARN->PLAN:      3-PLAN/{S}-{SUB}/ checks 2-LEARN/ (any location) for >=1 validated
+#   Cross-subsystem:  Subsystem S Build requires S-1 DESIGN.md in same workstream
+#   _cross exception: No upstream subsystem dependency (WS-level chain only)
 #
 # Usage:
 #   Standalone:    ./scripts/dsbv-gate.sh           (checks staged files)
@@ -137,6 +143,94 @@ workstream_has_validated_artifact() {
     return 1
 }
 
+# --- Subsystem prerequisite checks (DD-3) ------------------------------------
+
+# Extract subsystem dir (e.g. "1-PD", "2-DP", "_cross") from a relative path.
+# Path form: {W}-{WS}/{S}-{SUB}/...  or  {W}-{WS}/_cross/...
+# Prints the subsystem token, or "" if not in a subsystem subdir.
+extract_subsystem() {
+    local rel_path="$1"
+    # Strip leading workstream prefix (e.g. "3-PLAN/")
+    local after_ws="${rel_path#*/}"
+    # First path component is the subsystem dir
+    local sub_dir="${after_ws%%/*}"
+    # Must match N-NAME pattern or _cross
+    case "$sub_dir" in
+        [0-9]*-*|_cross)
+            echo "$sub_dir"
+            ;;
+        *)
+            echo ""
+            ;;
+    esac
+}
+
+# Extract numeric subsystem index from a subsystem dir token (e.g. "2-DP" -> 2).
+# Returns "" for _cross or non-numeric.
+subsystem_index() {
+    local sub_dir="$1"
+    case "$sub_dir" in
+        _cross) echo "" ;;
+        [0-9]*) echo "${sub_dir%%-*}" ;;
+        *)      echo "" ;;
+    esac
+}
+
+# Returns 0 if the named subsystem dir in the given workstream has >=1 validated artifact.
+# AC-26: cross-workstream subsystem check.
+subsystem_has_validated_artifact() {
+    local workstream_dir="$1"
+    local sub_dir="$2"
+    local sub_path="${PROJECT_ROOT}/${workstream_dir}/${sub_dir}"
+
+    if [[ ! -d "$sub_path" ]]; then
+        return 1
+    fi
+
+    while IFS= read -r -d '' f; do
+        if file_has_validated_status "$f"; then
+            return 0
+        fi
+    done < <(find "$sub_path" -type f \( -name '*.md' -o -name '*.sh' -o -name '*.py' -o -name '*.html' \) -print0 2>/dev/null)
+
+    return 1
+}
+
+# Returns 0 if subsystem S-1 DESIGN.md exists in the given workstream.
+# AC-27: cross-subsystem ordering check.
+prev_subsystem_design_exists() {
+    local workstream_dir="$1"
+    local current_sub_index="$2"
+    local prev_index=$((current_sub_index - 1))
+
+    if [[ $prev_index -lt 1 ]]; then
+        # No previous subsystem — first subsystem, no upstream dependency
+        return 0
+    fi
+
+    # Find a subsystem dir whose numeric prefix = prev_index
+    local ws_path="${PROJECT_ROOT}/${workstream_dir}"
+    if [[ ! -d "$ws_path" ]]; then
+        return 1
+    fi
+
+    local found=1
+    for d in "${ws_path}"/*/; do
+        local dname
+        dname="$(basename "$d")"
+        local didx
+        didx="$(subsystem_index "$dname")"
+        if [[ "$didx" == "$prev_index" ]]; then
+            if [[ -f "${d}DESIGN.md" ]]; then
+                found=0
+            fi
+            break
+        fi
+    done
+
+    return $found
+}
+
 # --- Staged workstream detection ---------------------------------------------
 
 # Prints space-separated list of workstreams touched by currently staged files.
@@ -254,20 +348,76 @@ pretool_main() {
         exit 0
     fi
 
-    # Check if prerequisite workstream has ≥1 validated artifact
-    if workstream_has_validated_artifact "$prereq"; then
+    # Extract subsystem from path
+    local target_sub
+    target_sub="$(extract_subsystem "$rel_path")"
+
+    # --- AC-27: Cross-subsystem ordering check (skip _cross per AC-28) ---
+    if [[ -n "$target_sub" && "$target_sub" != "_cross" ]]; then
+        local sub_idx
+        sub_idx="$(subsystem_index "$target_sub")"
+        if [[ -n "$sub_idx" ]] && ! prev_subsystem_design_exists "$target_workstream" "$sub_idx"; then
+            local prev_idx=$((sub_idx - 1))
+            cat >&2 <<EOF
+BLOCKED: Writing to ${target_workstream}/${target_sub}/ — subsystem ${prev_idx} DESIGN.md not found in ${target_workstream}/.
+
+DD-3 cross-subsystem rule: subsystem S Build requires subsystem S-1 DESIGN.md in the same workstream.
+Subsystem order: PD(1) → DP(2) → DA(3) → IDM(4).
+
+File attempted: ${file_path}
+See: rules/alpei-chain-of-custody.md
+EOF
+            exit 2
+        fi
+    fi
+
+    # --- AC-26 / AC-26b: Cross-workstream check at subsystem level ---
+
+    # LEARN→PLAN special case (AC-26b): check 2-LEARN/ any location
+    if [[ "$prereq" == "2-LEARN" ]]; then
+        if workstream_has_validated_artifact "2-LEARN"; then
+            exit 0
+        fi
+        cat >&2 <<EOF
+BLOCKED: Writing to ${target_workstream}/${target_sub}/ — 2-LEARN/ has no validated artifacts.
+
+LEARN→PLAN chain-of-custody: 3-PLAN requires ≥1 validated artifact anywhere in 2-LEARN/
+(check 2-LEARN/_cross/output/ or 2-LEARN/*/specs/ for 'status: validated').
+
+File attempted: ${file_path}
+See: rules/alpei-chain-of-custody.md
+EOF
+        exit 2
+    fi
+
+    # Standard cross-workstream check: subsystem-scoped if subsystem present (AC-26),
+    # else full-workstream fallback.
+    local ws_check_pass=0
+    if [[ -n "$target_sub" && "$target_sub" != "_cross" ]]; then
+        # AC-26: check same subsystem dir in prerequisite workstream
+        if subsystem_has_validated_artifact "$prereq" "$target_sub"; then
+            ws_check_pass=1
+        fi
+    else
+        # _cross or no subsystem: full workstream check
+        if workstream_has_validated_artifact "$prereq"; then
+            ws_check_pass=1
+        fi
+    fi
+
+    if [[ $ws_check_pass -eq 1 ]]; then
         exit 0
     fi
 
     # Prerequisite NOT met → block with actionable message
     cat >&2 <<EOF
-BLOCKED: Writing to ${target_workstream}/ — prerequisite ${prereq}/ has no validated artifacts.
+BLOCKED: Writing to ${target_workstream}/${target_sub}/ — prerequisite ${prereq}/${target_sub}/ has no validated artifacts.
 
-The ALPEI chain-of-custody requires workstream N-1 to have ≥1 validated artifact
-before workstream N can receive new deliverables.
+The ALPEI chain-of-custody (DD-3) requires the matching subsystem in workstream N-1 to have
+≥1 validated artifact before workstream N can receive new deliverables.
 
 To fix this:
-  1. Complete work in ${prereq}/
+  1. Complete work in ${prereq}/${target_sub}/
   2. Set status: in-review on completed artifacts
   3. Get human validation (status: validated)
 
@@ -280,17 +430,46 @@ EOF
 # --- Main --------------------------------------------------------------------
 
 main() {
-    local workstreams_touched
-    workstreams_touched="$(get_staged_workstreams)"
+    local staged_files
+    staged_files="$(git -C "$PROJECT_ROOT" diff --cached --name-only 2>/dev/null || true)"
 
-    if [[ -z "$workstreams_touched" ]]; then
-        # No ALPEI workstream files staged — gate passes
+    if [[ -z "$staged_files" ]]; then
         exit 0
     fi
 
     local blocked=0
 
-    for workstream in $workstreams_touched; do
+    # Collect unique workstream+subsystem pairs from staged files
+    # Format: "WORKSTREAM|SUBSYSTEM" (SUBSYSTEM may be empty)
+    local pairs=""
+    local file
+    while IFS= read -r file; do
+        local ws=""
+        for ws_candidate in "${WORKSTREAMS[@]}"; do
+            if [[ "$file" == "${ws_candidate}/"* ]]; then
+                ws="$ws_candidate"
+                break
+            fi
+        done
+        [[ -z "$ws" ]] && continue
+
+        local sub
+        sub="$(extract_subsystem "$file")"
+        local pair="${ws}|${sub}"
+
+        # Deduplicate
+        case "$pairs" in
+            *"${pair}"*) ;;
+            *) pairs="${pairs} ${pair}" ;;
+        esac
+    done <<EOF
+$staged_files
+EOF
+
+    for pair in $pairs; do
+        local workstream="${pair%%|*}"
+        local sub="${pair##*|}"
+
         local prereq
         prereq="$(get_prerequisite_workstream "$workstream")"
 
@@ -299,12 +478,53 @@ main() {
             continue
         fi
 
-        if ! workstream_has_validated_artifact "$prereq"; then
-            echo "BLOCKED: Cannot commit to ${workstream}/ — no validated artifacts found in ${prereq}/."
-            echo "  Gate requires: ≥1 file with 'status: validated' in ${prereq}/."
-            if [[ "$prereq" == "2-LEARN" ]]; then
-                echo "  For 2-LEARN: check _cross/output/ or */specs/ for 'status: validated'."
+        # --- AC-27: Cross-subsystem ordering check (skip _cross per AC-28) ---
+        if [[ -n "$sub" && "$sub" != "_cross" ]]; then
+            local sub_idx
+            sub_idx="$(subsystem_index "$sub")"
+            if [[ -n "$sub_idx" ]] && ! prev_subsystem_design_exists "$workstream" "$sub_idx"; then
+                local prev_idx=$((sub_idx - 1))
+                echo "BLOCKED: ${workstream}/${sub}/ — subsystem ${prev_idx} DESIGN.md not found in ${workstream}/."
+                echo "  DD-3: Subsystem S Build requires S-1 DESIGN.md in same workstream."
+                echo "  See: rules/alpei-chain-of-custody.md"
+                echo ""
+                blocked=1
             fi
+        fi
+
+        # --- AC-26 / AC-26b: Cross-workstream check ---
+
+        # LEARN→PLAN special case (AC-26b)
+        if [[ "$prereq" == "2-LEARN" ]]; then
+            if ! workstream_has_validated_artifact "2-LEARN"; then
+                echo "BLOCKED: Cannot commit to ${workstream}/ — no validated artifacts found in 2-LEARN/."
+                echo "  For LEARN→PLAN: check 2-LEARN/_cross/output/ or 2-LEARN/*/specs/ for 'status: validated'."
+                echo "  See: rules/alpei-chain-of-custody.md"
+                echo ""
+                blocked=1
+            fi
+            continue
+        fi
+
+        # Standard cross-workstream: subsystem-scoped (AC-26) or full-workstream (_cross / no sub)
+        local ws_ok=0
+        if [[ -n "$sub" && "$sub" != "_cross" ]]; then
+            if subsystem_has_validated_artifact "$prereq" "$sub"; then
+                ws_ok=1
+            fi
+        else
+            if workstream_has_validated_artifact "$prereq"; then
+                ws_ok=1
+            fi
+        fi
+
+        if [[ $ws_ok -eq 0 ]]; then
+            local scope_label="${workstream}/"
+            [[ -n "$sub" ]] && scope_label="${workstream}/${sub}/"
+            local prereq_label="${prereq}/"
+            [[ -n "$sub" && "$sub" != "_cross" ]] && prereq_label="${prereq}/${sub}/"
+            echo "BLOCKED: Cannot commit to ${scope_label} — no validated artifacts found in ${prereq_label}."
+            echo "  Gate requires: ≥1 file with 'status: validated' in ${prereq_label}."
             echo "  See: rules/alpei-chain-of-custody.md"
             echo ""
             blocked=1

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.3 | status: draft | last_updated: 2026-04-07
+# version: 1.4 | status: draft | last_updated: 2026-04-11
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -10,19 +10,25 @@
 #   2. Checks if file is in a workstream directory (1-ALIGN/, 3-PLAN/, 4-EXECUTE/, 5-IMPROVE/)
 #   3. If not a workstream file → ALLOW (exit 0)
 #   4. If a DSBV process file (DESIGN.md, SEQUENCE.md, VALIDATE.md) → ALLOW
-#   5. If workstream's DESIGN.md exists → ALLOW (Design stage completed)
-#   6. If workstream's DESIGN.md does NOT exist → BLOCK (exit 2)
+#   5. If file is in a subsystem dir ({N}-{SUB}/ or _cross/):
+#      a. Subsystem-level DESIGN.md exists → ALLOW
+#      b. WS-level DESIGN.md alone → BLOCK (subsystem needs its own DESIGN.md)
+#   6. If file is at workstream root (no subsystem): WS-level DESIGN.md → ALLOW
+#   7. Otherwise → BLOCK (exit 2)
 #
-# This enforces the OUTCOME (DESIGN.md exists) rather than the PROCESS
-# (skill was invoked). Rationale:
-#   - DESIGN.md is the contract — if it exists, Design happened
+# DD-1 canonical path: {W}-{WS}/{S}-{SUB}/DESIGN.md
+# Subsystem dirs: 1-PD | 2-DP | 3-DA | 4-IDM | _cross
+#
+# This enforces the OUTCOME (DESIGN.md exists at the correct level) rather than
+# the PROCESS (skill was invoked). Rationale:
+#   - DESIGN.md is the contract — if it exists at subsystem level, Design happened
 #   - File check is deterministic and fast (<10ms)
 #   - Immune to LT-8 (agent can't rationalize past a file-existence check)
 #   - Per D6: hooks > rules > skills (this is the highest enforcement tier)
 #
 # Exit codes:
-#   0 = allow (file is not a workstream artifact, or DESIGN.md exists)
-#   2 = block (workstream artifact write without DESIGN.md)
+#   0 = allow (file is not a workstream artifact, or correct DESIGN.md exists)
+#   2 = block (subsystem artifact write without subsystem-level DESIGN.md)
 #
 # Install: Add to .claude/settings.json PreToolUse hooks for Write|Edit matcher
 
@@ -121,41 +127,57 @@ case "$RELATIVE_PATH" in
     architecture/*) exit 0 ;;                       # Architecture working dir is navigational
 esac
 
-# --- Check if DESIGN.md exists for this workstream -------------------------------
+# --- Determine subsystem from file path -------------------------------------------
 
-# Walk up from file path to find project root, then check workstream's DESIGN.md
-# Strategy: find the workstream directory in the path, then look for DESIGN.md there
+# Extract subsystem dir from path using {W}-{WS}/{S}-{SUB}/ pattern
+# Matches: 1-PD, 2-DP, 3-DA, 4-IDM, _cross
+# RELATIVE_PATH is already relative to the workstream dir (e.g. "1-PD/pd-charter.md")
 PROJECT_ROOT="${FILE_PATH%%/${WORKSTREAM}/*}"
-DESIGN_FILE="${PROJECT_ROOT}/${WORKSTREAM}/DESIGN.md"
+SUB_DIR=$(echo "$RELATIVE_PATH" | cut -d'/' -f1)
 
-if [[ -f "$DESIGN_FILE" ]]; then
-    # Workstream-level DESIGN.md exists — allow the write
-    exit 0
+# Determine if the file is inside a known subsystem dir
+IS_SUBSYSTEM=0
+if [[ "$SUB_DIR" =~ ^[0-9]+-[A-Za-z]+$ ]] || [[ "$SUB_DIR" == "_cross" ]]; then
+    IS_SUBSYSTEM=1
 fi
 
-# Also check subsystem-level DESIGN.md (subsystem-first layout)
-# Extract subsystem from path: {WORKSTREAM}/{N}-{SUB}/...
-SUB_DIR=$(echo "$RELATIVE_PATH" | cut -d'/' -f1)
-if [[ "$SUB_DIR" =~ ^[0-9]+-[A-Z]+$ ]] || [[ "$SUB_DIR" == "_cross" ]]; then
+# --- Check DESIGN.md at the correct level ----------------------------------------
+
+if [[ "$IS_SUBSYSTEM" -eq 1 ]]; then
+    # File is inside a subsystem dir — ONLY subsystem-level DESIGN.md satisfies guard.
+    # WS-level DESIGN.md alone does NOT satisfy (AC-10).
     SUB_DESIGN="${PROJECT_ROOT}/${WORKSTREAM}/${SUB_DIR}/DESIGN.md"
     if [[ -f "$SUB_DESIGN" ]]; then
-        # Subsystem-level DESIGN.md exists — allow the write
+        # Subsystem-level DESIGN.md exists — allow
         exit 0
     fi
+    # WS-level DESIGN.md present but subsystem-level absent — still BLOCK
+    DESIGN_FILE="$SUB_DESIGN"
+    BLOCK_HINT="Run '/dsbv design ${WORKSTREAM_PATTERN}' scoped to subsystem ${SUB_DIR}"
+else
+    # File is at workstream root (no subsystem) — WS-level DESIGN.md is sufficient
+    DESIGN_FILE="${PROJECT_ROOT}/${WORKSTREAM}/DESIGN.md"
+    if [[ -f "$DESIGN_FILE" ]]; then
+        exit 0
+    fi
+    BLOCK_HINT="Run '/dsbv design ${WORKSTREAM_PATTERN}' to create the Design specification"
 fi
 
-# --- BLOCK: No DESIGN.md found --------------------------------------------
+# --- BLOCK: No DESIGN.md found at required level ----------------------------------
 
 # Provide actionable feedback to the agent via stderr (exit 2 sends stderr
 # as feedback to Claude, per Claude Code hooks specification)
 cat >&2 <<BLOCK_MSG
-BLOCKED: Writing to ${WORKSTREAM}/ without a DESIGN.md.
+BLOCKED: Writing to ${WORKSTREAM}/${SUB_DIR}/ without a subsystem-level DESIGN.md.
 
 The DSBV rule requires: "No ad-hoc artifacts. If work is not in DESIGN.md,
 it is not in scope."
 
+A workstream-level DESIGN.md does NOT satisfy this guard for subsystem writes.
+Each subsystem requires its own DESIGN.md at: ${DESIGN_FILE}
+
 To fix this:
-  1. Run '/dsbv design ${WORKSTREAM_PATTERN}' to create the Design specification
+  1. ${BLOCK_HINT}
   2. Get human approval on the DESIGN.md
   3. Then proceed with Build stage writes
 

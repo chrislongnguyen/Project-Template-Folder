@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.0 | status: draft | last_updated: 2026-04-10
+# version: 1.1 | status: draft | last_updated: 2026-04-11
 # dsbv-provenance-guard.sh — PreToolUse hook for Write|Edit
 # P1: Auto-init gate state + enforce agent provenance for DSBV stage artifacts.
 #
@@ -35,11 +35,19 @@ case "$BASENAME" in
   *) exit 0 ;;  # Not a DSBV artifact — pass through
 esac
 
-# Determine workstream from path (e.g. 1-ALIGN, 3-PLAN, 4-EXECUTE, 5-IMPROVE)
+# Determine workstream and subsystem from path
+# Handles both flat (1-ALIGN/DESIGN.md) and subsystem (1-ALIGN/1-PD/DESIGN.md) paths
 WORKSTREAM=""
+SUBSYSTEM=""
 for WS in "1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE"; do
   if echo "$FILE_PATH" | grep -q "$WS"; then
     WORKSTREAM="$WS"
+    # Extract subsystem if present: {N}-{WS}/{S}-{SUB}/...
+    # Match a path segment like 1-PD, 2-DP, 3-DA, 4-IDM after the workstream segment
+    SUB=$(echo "$FILE_PATH" | sed -n "s|.*${WS}/\([0-9]-[A-Z][A-Z]*\)/.*|\1|p")
+    if [ -n "$SUB" ]; then
+      SUBSYSTEM="$SUB"
+    fi
     break
   fi
 done
@@ -66,12 +74,23 @@ STATE_DIR="${PROJECT_ROOT:-.}/.claude/state"
 GATE_STATE_SCRIPT="${PROJECT_ROOT:-.}/scripts/gate-state.sh"
 
 if [ "$WORKSTREAM" != "GOVERN" ] && [ -f "$GATE_STATE_SCRIPT" ]; then
-  STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}.json"
+  # State file key includes subsystem when present (e.g. dsbv-1-ALIGN-1-PD.json)
+  if [ -n "$SUBSYSTEM" ]; then
+    STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}-${SUBSYSTEM}.json"
+    INIT_LABEL="${WORKSTREAM}/${SUBSYSTEM}"
+  else
+    STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}.json"
+    INIT_LABEL="${WORKSTREAM}"
+  fi
   if [ ! -f "$STATE_FILE" ]; then
     # Auto-init — this is the key fix. State is created by the HOOK, not the orchestrator.
     mkdir -p "$STATE_DIR"
-    bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" 2>&1 || true
-    echo "INFO: Auto-initialized gate state for ${WORKSTREAM} (provenance guard)." >&2
+    if [ -n "$SUBSYSTEM" ]; then
+      bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" "$SUBSYSTEM" 2>&1 || true
+    else
+      bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" 2>&1 || true
+    fi
+    echo "INFO: Auto-initialized gate state for ${INIT_LABEL} (provenance guard)." >&2
   fi
 fi
 
@@ -125,7 +144,7 @@ if [ "$PROVENANCE_OK" = false ]; then
   echo "Ref: SKILL.md 'do NOT produce it inline'" >&2
   echo "     .claude/rules/agent-dispatch.md" >&2
   echo "============================================================" >&2
-  exit 1
+  exit 2
 fi
 
 exit 0
