@@ -3,7 +3,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # UBS/UDS ANALYSIS GUIDE
 ## How to Identify Blockers and Drivers

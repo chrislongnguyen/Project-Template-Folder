@@ -2,7 +2,7 @@
 version: "2.3"
 status: draft
 last_updated: 2026-04-05
-owner: "Long Nguyen"
+owner: ""
 workstream: _genesis
 type: charter
 ---

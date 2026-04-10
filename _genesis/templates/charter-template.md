@@ -2,7 +2,7 @@
 version: "1.2"
 status: draft
 last_updated: 2026-04-09
-owner: "Long Nguyen"
+owner: ""
 type: template
 work_stream: 1-ALIGN
 stage: design

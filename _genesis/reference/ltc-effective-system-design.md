@@ -3,7 +3,7 @@ phase: system-design
 title: Effective System Design (ESD) — Reference Framework
 version: 2.0 | 2026-02-28
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 status: validated
 scope: OE (Operational Excellence) and all UE (User Enablement) instances
 ---

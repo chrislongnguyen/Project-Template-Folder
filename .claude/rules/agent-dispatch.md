@@ -1,7 +1,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-31
-owner: "Long Nguyen"
+owner: ""
 description: "Agent dispatch enforcement — every Agent() call must name a MECE agent, use context packaging, set the correct model, and use absolute paths in worktrees."
 ---
 # Agent Dispatch — Always-On Rule

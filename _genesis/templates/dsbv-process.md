@@ -4,7 +4,7 @@ iteration: 1
 iteration_name: concept
 status: draft
 last_updated: 2026-04-10
-owner: Long Nguyen
+owner: ""
 type: template
 work_stream: 0-GOVERN
 stage: design

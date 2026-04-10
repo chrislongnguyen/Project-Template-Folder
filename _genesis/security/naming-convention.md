@@ -2,7 +2,7 @@
 version: "1.1"
 status: draft
 last_updated: 2026-04-03
-owner: "Long Nguyen"
+owner: ""
 ---
 # LTC Naming Convention (Universal Naming Grammar)
 > LTC Global Rule — applies to ALL projects using this template.

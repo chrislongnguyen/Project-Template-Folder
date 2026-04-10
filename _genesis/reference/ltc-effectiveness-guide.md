@@ -5,7 +5,7 @@ version: "Current"
 scope: "All LTC projects — universal framework"
 status: validated
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # LTC Guide to Success & Effectiveness
 

@@ -1,7 +1,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # LTC Brand Identity Guide
 > LTC Global Rule — applies to ALL projects using this template.

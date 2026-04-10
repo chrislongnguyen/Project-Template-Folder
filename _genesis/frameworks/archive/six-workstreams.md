@@ -3,7 +3,7 @@
 ---
 version: "1.2"
 last_updated: 2026-03-30
-owner: "Long Nguyen"
+owner: ""
 ---
 # THE 6 WORK STREAMS
 ### Derived From: Ultimate Truth #7 & #10

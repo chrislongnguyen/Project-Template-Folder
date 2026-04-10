@@ -51,8 +51,8 @@ When reporting DONE, classify any self-check failure as SYNTACTIC (structural) v
 
 PreToolUse/PostToolUse hooks DO NOT FIRE in sub-agents (LP-7, Anthropic GitHub #40580). The following rules compensate for the 14 lost hooks by inlining their checks into the builder's workflow. Execute these checks BEFORE committing any artifact:
 
-1. **UNG naming** — Validate filename against naming rules before Write. Ref: `scripts/naming-lint.sh`
-2. **Frontmatter injection** — Manually add `work_stream`, `sub_system`, `stage`, `type` frontmatter. Ref: `scripts/inject-frontmatter.py`
+1. **UNG naming** — Validate filename against naming rules before Write. Ref: `.claude/hooks/naming-lint.sh`
+2. **Frontmatter injection** — Manually add `work_stream`, `sub_system`, `stage`, `type` frontmatter. Ref: `.claude/hooks/inject-frontmatter.sh`
 3. **DSBV prerequisite** — Confirm DESIGN.md exists in workstream before Build-phase writes. Ref: `scripts/dsbv-skill-guard.sh`
 4. **Chain-of-custody** — Confirm workstream N-1 has a validated artifact before writing to N. Ref: `scripts/dsbv-gate.sh`
 5. **No self-approve** — NEVER set `status: validated`. Only human sets validated. Ref: `scripts/status-guard.sh`
@@ -60,11 +60,11 @@ PreToolUse/PostToolUse hooks DO NOT FIRE in sub-agents (LP-7, Anthropic GitHub #
 7. **Wikilink resolution** — Verify wikilinks in produced artifacts resolve to real files. Ref: `scripts/link-validator.sh`
 8. **Skill validation** — If producing a skill file, run `./scripts/skill-validator.sh <skill-dir>`. Ref: `scripts/skill-validator.sh`
 9. **Routing check** — Confirm artifact lands in the correct filesystem mode (A/B/C/D). Ref: `scripts/validate-blueprint.py`
-10. **Context awareness** — If context window approaches 80%, stop and report to orchestrator. Ref: `scripts/strategic-compact.sh`
-11. **Session state** — After major file changes, note what was done for session recovery. Ref: `scripts/state-saver.sh`
+10. **Context awareness** — If context window approaches 80%, stop and report to orchestrator. Ref: `.claude/hooks/strategic-compact.sh`
+11. **Session state** — After major file changes, note what was done for session recovery. Ref: `.claude/hooks/state-saver.sh`
 12. **Backlink impact** — After renaming or moving files, check if other files reference the old path. Ref: `scripts/ripple-check.sh`
 13. **Changelog hygiene** — If changes are PR-level, add a CHANGELOG.md entry. Ref: PreToolUse(git commit) changelog check
-14. **Frontmatter casing** — All frontmatter values lowercase except `work_stream` (numbered SCREAMING). Ref: `scripts/naming-lint.sh` PostToolUse
+14. **Frontmatter casing** — All frontmatter values lowercase except `work_stream` (numbered SCREAMING). Ref: `.claude/hooks/naming-lint.sh` PostToolUse
 
 ## Quality Checkpoints
 

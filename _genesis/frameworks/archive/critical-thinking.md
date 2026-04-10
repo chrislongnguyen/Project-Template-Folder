@@ -3,7 +3,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # CRITICAL THINKING MODEL
 ### Derived From: Wiki — Critical Thinking; Effective Learning

@@ -3,7 +3,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # THE THREE PILLARS OF EFFECTIVENESS
 ### Derived From: Derived Truth #1

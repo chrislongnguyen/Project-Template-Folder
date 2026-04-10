@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 last_updated: 2026-04-04
-owner: "Long Nguyen"
+owner: ""
 type: [friction | idea]
 workstream: [align | plan | execute | improve | shared | agent]
 severity: [blocked | confused | annoying | minor]  # friction only, omit for ideas

@@ -1,7 +1,7 @@
 ---
 version: "1.2"
 last_updated: 2026-04-04
-owner: "Long Nguyen"
+owner: ""
 type: template
 work_stream: 2-LEARN
 stage: design

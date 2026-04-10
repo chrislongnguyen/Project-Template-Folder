@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 last_updated: 2026-03-30
-owner: "Long Nguyen"
+owner: ""
 ---
 # Agent Diagnostic Framework — Quick Reference
 > LTC Global Framework — applies to ALL AI agent debugging.

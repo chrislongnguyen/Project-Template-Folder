@@ -1,7 +1,7 @@
 ---
 version: "1.3"
 last_updated: 2026-04-10
-owner: Long Nguyen
+owner: ""
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: draft

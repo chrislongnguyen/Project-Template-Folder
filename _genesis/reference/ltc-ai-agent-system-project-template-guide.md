@@ -2,7 +2,7 @@
 version: "1.3"
 status: draft
 last_updated: 2026-03-31
-owner: "Long Nguyen"
+owner: ""
 iteration: 1
 audience: "Human users (primary), AI agents (secondary)"
 ---

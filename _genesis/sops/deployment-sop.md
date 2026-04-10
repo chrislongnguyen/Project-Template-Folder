@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 last_updated: 2026-03-30
-owner: "Long Nguyen"
+owner: ""
 ---
 # DEPLOYMENT SOP
 ## Gate → Stage → Validate → Release

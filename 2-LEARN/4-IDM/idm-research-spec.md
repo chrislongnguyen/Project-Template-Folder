@@ -1,7 +1,7 @@
 ---
 version: "2.0"
 last_updated: 2026-04-05
-owner: "Long Nguyen"
+owner: ""
 type: template
 work_stream: 2-LEARN
 stage: build

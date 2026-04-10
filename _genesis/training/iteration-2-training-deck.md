@@ -294,7 +294,7 @@ status: in-progress
 work_stream: 4-EXECUTE
 stage: build
 sub_system: 2-DP
-owner: "Long Nguyen"
+owner: ""
 last_updated: 2026-04-04
 ---
 ```
@@ -340,7 +340,7 @@ status: in-progress            # ← Drives pill color + view membership
 work_stream: 4-EXECUTE         # ← ALPEI grouping (1-ALIGN through 5-IMPROVE)
 stage: build                   # ← DSBV pipeline position (design → sequence → build → validate)
 sub_system: 2-DP               # ← Problem domain (1-PD / 2-DP / 3-DA / 4-IDM)
-owner: "Long Nguyen"           # ← Who owns this deliverable
+owner: ""           # ← Who owns this deliverable
 last_updated: 2026-04-04       # ← Agent updates this automatically
 ---
 ```

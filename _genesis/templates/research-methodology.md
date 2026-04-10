@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 last_updated: 2026-04-04
-owner: "Long Nguyen"
+owner: ""
 name: Research Methodology
 description: Shared research protocols — multi-angle search, source verification, anti-hallucination. Imported by any skill that performs research.
 type: template

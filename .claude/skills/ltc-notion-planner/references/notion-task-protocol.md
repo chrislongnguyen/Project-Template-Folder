@@ -1,7 +1,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 > Skill for creating, planning, and updating entries in the LTC Notion Task Board and Master Plan via Notion MCP.
 

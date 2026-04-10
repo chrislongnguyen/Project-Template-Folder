@@ -1,7 +1,7 @@
 ---
 version: "1.1"
 last_updated: 2026-03-30
-owner: "Long Nguyen"
+owner: ""
 ---
 # CODE REVIEW SOP
 ## Review Checklist Against the 3 Pillars

@@ -2,7 +2,7 @@
 version: "1.2"
 status: draft
 last_updated: 2026-04-04
-owner: "Long Nguyen"
+owner: ""
 type: template
 work_stream: 4-EXECUTE
 stage: build

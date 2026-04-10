@@ -2,7 +2,7 @@
 version: "1.6"
 status: draft
 last_updated: 2026-04-10
-owner: "Long Nguyen"
+owner: ""
 
 # ALPEI-DSBV Process Map
 

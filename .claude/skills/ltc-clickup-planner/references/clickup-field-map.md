@@ -1,7 +1,7 @@
 ---
 version: "1.0"
 last_updated: 2026-03-29
-owner: "Long Nguyen"
+owner: ""
 ---
 # ClickUp Field Map — What to Set and What to Skip
 

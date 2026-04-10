@@ -2,7 +2,7 @@
 version: "1.1"
 status: draft
 last_updated: 2026-03-31
-owner: "Long Nguyen"
+owner: ""
 ---
 
 # P4 — LEARN Workstream: Cross-Workstream Data Flows
