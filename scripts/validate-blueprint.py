@@ -17,7 +17,7 @@ Usage:
     python scripts/validate-blueprint.py --staged   # check staged files only
     python scripts/validate-blueprint.py --quiet    # exit code only
 """
-# version: 1.1 | status: draft | last_updated: 2026-04-06
+# version: 1.2 | status: draft | last_updated: 2026-04-11
 
 import os
 import re
@@ -212,24 +212,27 @@ def validate_gitkeep():
 
 
 def validate_dsbv():
-    """Check DSBV stage files exist for DSBV workstreams (not LEARN)."""
+    """Check DSBV stage files exist at subsystem level per DD-1.
+
+    DD-1: canonical path is {W}-{WS}/{S}-{SUB}/DESIGN.md — subsystem-level.
+    DD-4: _cross/ missing DSBV files = WARN not FAIL.
+    WS-level DSBV files ({W}-{WS}/DESIGN.md) are NOT expected here.
+    """
     if not QUIET:
-        print("\n=== CHECK 5: DSBV stage files ===\n")
+        print("\n=== CHECK 5: DSBV stage files (subsystem-level per DD-1) ===\n")
 
     dsbv_ws = [ws for ws in WORKSTREAMS if ws != "2-LEARN"]
     for ws in dsbv_ws:
-        # Workstream-root DSBV files
-        for stage in ["DESIGN.md", "SEQUENCE.md"]:
-            fpath = os.path.join(ws, stage)
-            check(os.path.exists(fpath), f"Missing {fpath}")
-
-        # Subsystem DSBV (not for EXECUTE)
         if ws == "4-EXECUTE":
-            continue
+            continue  # EXECUTE uses code layout, not DSBV subsystem files
         for sub in ["1-PD", "2-DP", "3-DA", "4-IDM"]:
             for stage in ["DESIGN.md", "SEQUENCE.md"]:
                 fpath = os.path.join(ws, sub, stage)
-                check(os.path.exists(fpath), f"Missing {fpath}", severity="WARN")
+                check(os.path.exists(fpath), f"Missing {fpath}")
+        # DD-4: _cross/ missing DSBV files = WARN not FAIL
+        for stage in ["DESIGN.md", "SEQUENCE.md"]:
+            fpath = os.path.join(ws, "_cross", stage)
+            check(os.path.exists(fpath), f"Missing {fpath} (_cross optional)", severity="WARN")
 
 
 def validate_routing_mode_b():

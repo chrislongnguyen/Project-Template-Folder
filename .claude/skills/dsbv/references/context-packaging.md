@@ -1,7 +1,7 @@
 ---
-version: "1.7"
+version: "1.8"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 ---
 # Context Packaging Template — Sub-Agent Invocation
 
@@ -42,6 +42,12 @@ Structured context the agent needs. Three sub-sections:
 Project identity + prior decisions the agent MUST know.
 The agent has ZERO memory of prior sessions or parent context.
 State only what is needed for THIS task — not project history.
+
+### Subsystem
+Which sub-system this task targets. Required when the task produces or modifies
+a subsystem-scoped artifact. Tells the agent which DSBV chain to check and where
+to route the output.
+e.g., `subsystem: 1-PD`
 
 ### Files (EP-04: Load What You Need)
 Before listing files, look up the routing table for this workstream × stage:
@@ -116,6 +122,9 @@ LTC Project Template — multi-agent orchestration feature.
 4 MECE agents: ltc-builder (Build), ltc-reviewer (Validate),
 ltc-planner (Design+Sequence), ltc-explorer (Pre-DSBV).
 Skills reference agent files instead of inline definitions.
+
+### Subsystem
+subsystem: 1-PD
 
 ### Files
 - Read: `.claude/agents/ltc-builder.md` — agent file to reference

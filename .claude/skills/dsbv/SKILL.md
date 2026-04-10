@@ -1,7 +1,7 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 name: dsbv
 description: "Run the DSBV sub-process (Design → Sequence → Build → Validate) within any APEI workstream. Guides L2-L4 users through structured artifact production with human gates, readiness checks, and multi-agent Build support."
 ---
@@ -15,16 +15,27 @@ Run the 4-stage DSBV process to produce a workstream's artifacts. DSBV applies t
 
 ## Sub-Commands
 
+Full signature: `/dsbv [stage] [workstream] [subsystem]`
+
+Valid subsystems: `pd` | `dp` | `da` | `idm` | `cross`
+
 | Command | What it does |
 |---|---|
 | `/dsbv` | Full guided flow — all 4 stages with human gates between each |
-| `/dsbv design [workstream]` | Design stage only — define what the workstream must produce and why |
-| `/dsbv sequence [workstream]` | Sequence stage only — order the work, size tasks, map dependencies |
-| `/dsbv build [workstream]` | Build stage only — execute the approved sequence |
-| `/dsbv validate [workstream]` | Validate stage only — verify workstream output enables the next workstream |
-| `/dsbv status` | Show current DSBV state: which workstream, which stage, what is done |
+| `/dsbv design [workstream] [subsystem]` | Design stage only — define what the workstream must produce and why |
+| `/dsbv sequence [workstream] [subsystem]` | Sequence stage only — order the work, size tasks, map dependencies |
+| `/dsbv build [workstream] [subsystem]` | Build stage only — execute the approved sequence |
+| `/dsbv validate [workstream] [subsystem]` | Validate stage only — verify workstream output enables the next workstream |
+| `/dsbv status` | Show current DSBV state for all workstreams and subsystems (no subsystem prompt needed) |
 
-If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUTE, IMPROVE). **Never offer LEARN as a DSBV option.**
+**Progressive prompting — 4 specificity levels:**
+
+1. `/dsbv` → ask workstream, then subsystem, then stage
+2. `/dsbv design` → ask workstream, then subsystem
+3. `/dsbv design align` → ask subsystem (pd|dp|da|idm|cross)
+4. `/dsbv design align pd` → proceed immediately
+
+If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUTE, IMPROVE). If `[subsystem]` is omitted, ask the user which subsystem (pd|dp|da|idm|cross). **Never offer LEARN as a DSBV option.**
 
 <HARD-GATE>
 1. Cannot start Sequence without an approved DESIGN.md.
