@@ -5,7 +5,7 @@ import { colors } from '../lib/theme';
 import { fadeInUp, staggerContainer } from '../lib/animations';
 
 const workstreams = ['ALIGN', 'LEARN', 'PLAN', 'EXECUTE', 'IMPROVE'];
-const phases = ['DESIGN', 'SEQUENCE', 'BUILD', 'VALIDATE'];
+const stages = ['DESIGN', 'SEQUENCE', 'BUILD', 'VALIDATE'];
 
 const cells: Record<string, string[]> = {
   ALIGN:   ['Charter + Force Analysis', 'OKR Register', 'Charter (final)', 'VALIDATE.md'],
@@ -40,7 +40,7 @@ export default function MatrixSlide() {
             marginTop: '8px',
             letterSpacing: '0.04em',
           }}>
-            Each workstream produces artifacts through 4 DSBV phases — agents assigned per phase
+            Each workstream produces artifacts through 4 DSBV stages — agents assigned per stage
           </p>
           <div style={{
             width: '80px',
@@ -85,11 +85,11 @@ export default function MatrixSlide() {
                   PD
                 </span>
               </div>
-              {phases.map((phase, i) => (
-                <div key={phase} style={{
+              {stages.map((stage, i) => (
+                <div key={stage} style={{
                   padding: '12px 14px',
                   background: 'rgba(0, 72, 81, 0.4)',
-                  borderRadius: i === phases.length - 1 ? '0 4px 0 0' : 0,
+                  borderRadius: i === stages.length - 1 ? '0 4px 0 0' : 0,
                   textAlign: 'center',
                 }}>
                   <span style={{
@@ -100,7 +100,7 @@ export default function MatrixSlide() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.06em',
                   }}>
-                    {phase}
+                    {stage}
                   </span>
                 </div>
               ))}

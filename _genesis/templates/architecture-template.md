@@ -9,11 +9,11 @@ stage: design
 sub_system: 
 ---
 # ARCHITECTURE TEMPLATE (T2)
-> Stub template — populate during PLAN Build phase.
+> Stub template — populate during PLAN Build stage.
 > Cell(s) enabled: 3-PLAN × Build
 > Gap justification: ADR_TEMPLATE records one decision. No template produces an overall architecture doc (components, interfaces, data flows).
 
-<!-- TODO: Fill in during PLAN Build phase -->
+<!-- TODO: Fill in during PLAN Build stage -->
 
 ## Architecture Identity
 

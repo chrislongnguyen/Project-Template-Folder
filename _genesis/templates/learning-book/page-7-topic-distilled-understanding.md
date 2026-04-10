@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
@@ -17,10 +17,11 @@ Page 7 = **one topic's slice** of the D. Distilled Understanding table: same col
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P7 Topic Distilled Understanding.md` (e.g. `BOOK-00 — T1.P7 Topic Distilled Understanding.md`)
+- **File name pattern:** `T{topic}.P7-topic-distilled-understanding.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P7-topic-distilled-understanding.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -32,7 +33,7 @@ When distilling a Topic into Page 7, preserve the role-awareness from P0–P5:
 - **Sub-topic X.0 (Overview):** Include the Workstream Contract summary (INPUT → UDO → OUTPUT) and RACI from P0.
 - **Sub-topic X.1 (UBS):** Distill both UBS(R) and UBS(A) perspectives from P1.
 - **Sub-topic X.2 (UDS):** Distill both UDS(R) and UDS(A) perspectives from P2.
-- **Sub-topic X.3 (EPS):** Preserve pillar + role tags: P1(S)(R), P2(E)(A), etc.
+- **Sub-topic X.3 (EP):** Preserve pillar + role tags: P1(S)(R), P2(E)(A), etc.
 - **Sub-topic X.4 (UES):** Preserve role tags: L1.1(R), L2.1(A), etc.
 - **Sub-topic X.5 (EOP):** Include EOP Decision Matrix summary (DERISK/OPTIMIZE targets) and role-tagged steps.
 
@@ -62,7 +63,7 @@ _Write condensed content per sub-topic (X.0–X.6 as applicable). Columns must m
 <th>How does it work successfully? (Effective Operating Procedure)</th>
 <th>What ultimately cause it to work successfully? (Ultimate Driving System)</th>
 <th>How do the Ultimate Driving System cause it to work successfully? (Success Mechanism)</th>
-<th>What principles are the Ultimate Driving System based on? (Effective Principle System)</th>
+<th>What principles are the Ultimate Driving System based on? (Effective Principles)</th>
 <th>What tool(s) do the ultimate drivers require to work? (Ultimate Effective System)</th>
 <th>What environmental conditions do the ultimate drivers require to work? (Ultimate Effective System)</th>
 <th>How can it fail? (Failure Actions)</th>

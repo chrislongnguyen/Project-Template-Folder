@@ -9,11 +9,11 @@ stage: build
 sub_system: 
 ---
 # TEST PLAN TEMPLATE (T8)
-> Stub template — populate during IMPROVE Build phase (for EXECUTE Validate gate).
+> Stub template — populate during IMPROVE Build stage (for EXECUTE Validate gate).
 > Cell(s) enabled: 4-EXECUTE × Validate, 5-IMPROVE × Build
 > Gap justification: REVIEW_TEMPLATE structures peer review. No template structures a test plan (cases, expected/actual, pass/fail, coverage).
 
-<!-- TODO: Fill in during IMPROVE Build phase or before EXECUTE Validate gate -->
+<!-- TODO: Fill in during IMPROVE Build stage or before EXECUTE Validate gate -->
 
 ## Test Plan Identity
 

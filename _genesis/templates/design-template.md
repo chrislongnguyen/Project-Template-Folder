@@ -1,5 +1,5 @@
 ---
-version: "1.3"
+version: "1.4"
 last_updated: 2026-04-10
 owner: ""
 workstream: "{{WORKSTREAM}}"
@@ -12,7 +12,7 @@ sub_system:
 ---
 # DESIGN.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
 
-> DSBV Phase 1 artifact. This document is the contract. If it is not here, it is not in scope.
+> DSBV stage 1 artifact. This document is the contract. If it is not here, it is not in scope.
 
 ---
 
@@ -61,10 +61,14 @@ High-level intent stated by Human Director (1-3 sentences). Agent expands below.
 
 Unified artifact-condition table. Every artifact has at least one condition. Every condition maps to an artifact.
 
-| # | Artifact | Path | Purpose (WHY) | Acceptance Conditions |
-|---|----------|------|---------------|-----------------------|
-| A1 | _artifact name_ | _path_ | _why this artifact exists_ | AC-1: `grep "## Approval Log" <file>` returns 1 match |
-| A2 | | | | AC-2: _condition_ |
+| # | Artifact | Path | Purpose (WHY) | Acceptance Conditions | VANA_Ref |
+|---|----------|------|---------------|-----------------------|----------|
+| A1 | _artifact name_ | _path_ | _why this artifact exists_ | AC-1: `grep "## Approval Log" <file>` returns 1 match | _VANA-SPEC AC ID(s)_ |
+| A2 | | | | AC-2: _condition_ | |
+
+> **VANA_Ref** = comma-separated A.C. IDs from the sub-system's VANA-SPEC (§2-§5) that this artifact's condition verifies.
+> At G1, the PM checks: every VANA-SPEC AC with `Target_Iteration = current` appears in at least one VANA_Ref cell.
+> If an AC has no VANA_Ref in any row, it is an attrition gap — G1 blocker.
 
 > AC examples must be binary and deterministic — a command that returns PASS or FAIL with no judgment required.
 > Strong: `AC-1: grep "status: validated" returns 0 matches` | Weak: `AC-1: document looks complete`
@@ -73,6 +77,7 @@ Unified artifact-condition table. Every artifact has at least one condition. Eve
 - [ ] Orphan conditions = 0 (every condition maps to a named artifact)
 - [ ] Orphan artifacts = 0 or justified (every artifact has at least one condition)
 - [ ] Artifact count here = row count in this table (self-consistent; SEQUENCE.md does not exist at Design time)
+- [ ] VANA coverage = 100% (every VANA-SPEC AC for current iteration appears in at least one VANA_Ref cell)
 
 ---
 

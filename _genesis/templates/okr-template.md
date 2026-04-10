@@ -9,11 +9,11 @@ stage: design
 sub_system: 
 ---
 # OKR TEMPLATE (T3)
-> Stub template — populate during ALIGN Sequence and IMPROVE Validate phases.
+> Stub template — populate during ALIGN Sequence and IMPROVE Validate stages.
 > Cell(s) enabled: 1-ALIGN × Sequence, 5-IMPROVE × Validate
 > Gap justification: VANA_SPEC_TEMPLATE structures requirements; no template structures an OKR register (Objective + KRs with baseline, target, formula).
 
-<!-- TODO: Fill in during ALIGN Sequence phase -->
+<!-- TODO: Fill in during ALIGN Sequence stage -->
 
 ## OKR Register Identity
 

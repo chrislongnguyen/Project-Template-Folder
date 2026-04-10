@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
@@ -13,10 +13,11 @@ _Page type: Ultimate Drivers — the driving side of this Topic (Phase C. Organi
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P2 Ultimate Drivers.md` (e.g. `BOOK-00 — T0.P2 Ultimate Drivers.md`)
+- **File name pattern:** `T{topic}.P2-ultimate-drivers.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P2-ultimate-drivers.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -88,7 +89,7 @@ All UDS elements discovered here become **candidates for the EOP Decision Matrix
 
 ## Principles embedded in this page
 
-Each row's col 6 (EPS) and col 12 (Risky Principles) generate principles. These are harvested into Page 3. Do not skip those cells.
+Each row's col 6 (EP) and col 12 (Risky Principles) generate principles. These are harvested into Page 3. Do not skip those cells.
 
 ---
 
@@ -101,17 +102,17 @@ On UDS rows: "Success" = driver succeeds (GOOD for tagged role), "Failure" = dri
 | Col | Cell starts with | Direction on UDS rows                       |
 | --- | ---------------- | ------------------------------------------- |
 | 4   | `UDS(R).UD:`     | FOR tagged role (drives the driver further) |
-| 6   | `UDS(R).UD.EPS:` | FOR tagged role — use `P` notation          |
+| 6   | `UDS(R).UD.EP:` | FOR tagged role — use `P` notation          |
 | 10  | `UDS(R).UB:`     | AGAINST tagged role (blocks the driver)     |
-| 12  | `UDS(R).UB.EPS:` | AGAINST tagged role — use `P_F` notation    |
+| 12  | `UDS(R).UB.EP:` | AGAINST tagged role — use `P_F` notation    |
 
 Example for row `UDS(R)`:
 
 - Col 1: `UDS(R).REL: UEDS Methodology is the pre-validated causal framework...`
 - Col 4: `UDS(R).UD: 10 Ultimate Truths Activation — ...`
-- Col 6: `UDS(R).UD.EPS: P1(S)(R): Structural Completeness — ...`
+- Col 6: `UDS(R).UD.EP: P1(S)(R): Structural Completeness — ...`
 - Col 10: `UDS(R).UB: Context Fragmentation — ...`
-- Col 12: `UDS(R).UB.EPS: P_F1(S)(R): Context-Dependency Trap — ...`
+- Col 12: `UDS(R).UB.EP: P_F1(S)(R): Context-Dependency Trap — ...`
 
 See the Column Suffix Codex in `engine/rules/phase-c-structure.md` §2 for all 16 suffixes.
 
@@ -138,15 +139,15 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 | 3   | SUCCESS        | How does the row subject operate when functioning as designed? _(UBS row: how does it block? UDS row: how does it drive?)_ (Success Actions)                                                               |
 | 4   | SUCCESS        | What ultimately causes the row subject to function as designed? _(UBS row → UBS.UD: drives the blocker — works AGAINST Learner. UDS row → UDS.UD: drives the driver — works FOR Learner.)_ (UDS)           |
 | 5   | SUCCESS        | How does col 4 (UDS) cause the row subject to function as designed? (Success Mechanism)                                                                                                                    |
-| 6   | SUCCESS        | What principles is the UDS based on? (Success EPS)                                                                                                                                                         |
-| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success Tools — UES)                                                                                                                                          |
-| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success Environment — UES)                                                                                                                 |
+| 6   | SUCCESS        | What principles is the UDS based on? (Success EP)                                                                                                                                                         |
+| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success EOT — Effective Operating Tools)                                                                                                                      |
+| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success EOE — Effective Operating Environment)                                                                                             |
 | 9   | FAILURE        | How can the row subject fail to function as designed? _(UBS row: how does the blocker get disabled? UDS row: how does the driver get blocked?)_ (Failure Actions)                                          |
 | 10  | FAILURE        | What ultimately causes the row subject to fail to function as designed? _(UBS row → UBS.UB: disables the blocker — works FOR Learner. UDS row → UDS.UB: blocks the driver — works AGAINST Learner.)_ (UBS) |
 | 11  | FAILURE        | How does col 10 (UBS) cause the row subject to fail? (Failure Mechanism)                                                                                                                                   |
-| 12  | FAILURE        | What principles are the failure causes based on? (Failure EPS)                                                                                                                                             |
-| 13  | FAILURE        | What tools do the failure causes require? (Failure Tools — UES)                                                                                                                                            |
-| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure Environment — UES)                                                                                                                   |
+| 12  | FAILURE        | What principles are the failure causes based on? (Failure EP)                                                                                                                                             |
+| 13  | FAILURE        | What tools do the failure causes require? (Failure EOT — Effective Operating Tools)                                                                                                                        |
+| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure EOE — Effective Operating Environment)                                                                                               |
 | 15  | LEARNER'S NOTE | If the row subject fails as designed, what should the Learner do? (What Else?)                                                                                                                             |
 | 16  | LEARNER'S NOTE | Next Steps to Take (Now What? Now How?)                                                                                                                                                                    |
 
@@ -154,10 +155,10 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 
 ## Table (T0 — 2 rows)
 
-| Row                             | 1 · Relevance | 2 · Precise Definition | 3 · Success Actions | 4 · UDS    | 5 · Success Mechanism | 6 · Success EPS | 7 · Success Tools (UES) | 8 · Success Environment (UES) | 9 · Failure Actions | 10 · UBS   | 11 · Failure Mechanism | 12 · Failure EPS | 13 · Failure Tools (UES) | 14 · Failure Environment (UES) | 15 · What Else? | 16 · Next Steps |
+| Row                             | 1 · Relevance | 2 · Precise Definition | 3 · Success Actions | 4 · UDS    | 5 · Success Mechanism | 6 · Success EP | 7 · Success EOT | 8 · Success EOE | 9 · Failure Actions | 10 · UBS   | 11 · Failure Mechanism | 12 · Failure EP | 13 · Failure EOT | 14 · Failure EOE | 15 · What Else? | 16 · Next Steps |
 | ------------------------------- | ------------- | ---------------------- | ------------------- | ---------- | --------------------- | --------------- | ----------------------- | ----------------------------- | ------------------- | ---------- | ---------------------- | ---------------- | ------------------------ | ------------------------------ | --------------- | --------------- |
-| **UDS(R): {Agent root driver}** | UDS(R).REL:   | UDS(R).DEF:            | UDS(R).ACT:         | UDS(R).UD: | UDS(R).UD.MECH:       | UDS(R).UD.EPS:  | UDS(R).UD.UES.T:        | UDS(R).UD.UES.E:              | UDS(R).FAIL:        | UDS(R).UB: | UDS(R).UB.MECH:        | UDS(R).UB.EPS:   | UDS(R).UB.UES.T:         | UDS(R).UB.UES.E:               | UDS(R).ELSE:    | UDS(R).NEXT:    |
-| **UDS(A): {Human root driver}** | UDS(A).REL:   | UDS(A).DEF:            | UDS(A).ACT:         | UDS(A).UD: | UDS(A).UD.MECH:       | UDS(A).UD.EPS:  | UDS(A).UD.UES.T:        | UDS(A).UD.UES.E:              | UDS(A).FAIL:        | UDS(A).UB: | UDS(A).UB.MECH:        | UDS(A).UB.EPS:   | UDS(A).UB.UES.T:         | UDS(A).UB.UES.E:               | UDS(A).ELSE:    | UDS(A).NEXT:    |
+| **UDS(R): {Agent root driver}** | UDS(R).REL:   | UDS(R).DEF:            | UDS(R).ACT:         | UDS(R).UD: | UDS(R).UD.MECH:       | UDS(R).UD.EP:  | UDS(R).UD.EOT:        | UDS(R).UD.EOE:              | UDS(R).FAIL:        | UDS(R).UB: | UDS(R).UB.MECH:        | UDS(R).UB.EP:   | UDS(R).UB.EOT:         | UDS(R).UB.EOE:               | UDS(R).ELSE:    | UDS(R).NEXT:    |
+| **UDS(A): {Human root driver}** | UDS(A).REL:   | UDS(A).DEF:            | UDS(A).ACT:         | UDS(A).UD: | UDS(A).UD.MECH:       | UDS(A).UD.EP:  | UDS(A).UD.EOT:        | UDS(A).UD.EOE:              | UDS(A).FAIL:        | UDS(A).UB: | UDS(A).UB.MECH:        | UDS(A).UB.EP:   | UDS(A).UB.EOT:         | UDS(A).UB.EOE:               | UDS(A).ELSE:    | UDS(A).NEXT:    |
 
 For T1+ (up to 6 rows), add 3-row causal chain per role: `{parent}.UD`, `{parent}.UD.UB`, `{parent}.UD.UD`. Each cell uses the same CAG format with the row's full address as prefix.
 ```

@@ -11,7 +11,7 @@ title: "DESIGN: Agent 2 — ltc-planner (Architect)"
 
 # DESIGN: Agent 2 — ltc-planner (Architect)
 
-> **Purpose:** Complete 8-component system design for ltc-planner — the Architect agent that owns DSBV Phase 1 (Design) and Phase 2 (Sequence). Defines what to build and in what order.
+> **Purpose:** Complete 8-component system design for ltc-planner — the Architect agent that owns DSBV stage 1 (Design) and Stage 2 (Sequence). Defines what to build and in what order.
 >
 > **Parent document:** `inbox/2026-04-08_agent-system-8component-design.md` (pipeline-level design)
 > **Agent file:** `.claude/agents/ltc-planner.md` (v1.4, 2026-04-06)
@@ -63,7 +63,7 @@ Planner is NOT limited to the DSBV chain. It operates in multiple modes:
 | **DSBV Sequence** | `/dsbv sequence [workstream]` | Orchestrator (5-field + approved DESIGN.md) | Orchestrator → writes SEQUENCE.md | Full |
 | **Synthesis** | Multi-agent build complete | Orchestrator (N builder drafts + DESIGN.md criteria) | Orchestrator → writes synthesized artifact | Full |
 | **Ad-hoc architecture** | "Design a system for X" or "How should we structure Y?" | Orchestrator (lighter: question + constraints) | Main session directly | Medium |
-| **Brainstorming** | `/ltc-brainstorming` diverge→converge | Brainstorming skill | Main session (synthesis phase) | Light |
+| **Brainstorming** | `/ltc-brainstorming` diverge→converge | Brainstorming skill | Main session (synthesis stage) | Light |
 
 **Key insight:** In ad-hoc mode, planner returns architectural recommendations directly to main session — no DESIGN.md written, no downstream builder handoff. The formal handoff contracts apply ONLY in DSBV chain mode.
 
@@ -78,7 +78,7 @@ Planner is NOT limited to the DSBV chain. It operates in multiple modes:
   Director       (haiku)             ★ (opus) ★            (sonnet)              (opus)             Director
                  Research            Design+Seq            Artifacts             VALIDATE.md
                  │                   │                     │                      │
-                 └─ Pre-DSBV         └─ Phase 1+2          └─ Phase 3             └─ Phase 4
+                 └─ Pre-DSBV         └─ Stage 1+2          └─ Stage 3             └─ Stage 4
 ```
 
 **Role:** Architect — receives research (Explorer EO), produces the construction blueprint (DESIGN.md) and work plan (SEQUENCE.md). Does NOT execute (Builder) or verify (Reviewer). Does NOT orchestrate (Main Session).
@@ -94,7 +94,7 @@ Planner is NOT limited to the DSBV chain. It operates in multiple modes:
 | Explorer EO | Research findings: themed results, source citations, confidence levels, flagged unknowns | Context-packaged by orchestrator into planner's prompt |
 | Charter | `1-ALIGN/charter/` — project EO, stakeholders, success criteria, scope | Read tool (planner loads directly) |
 | Prior decisions | `1-ALIGN/decisions/` — ADRs, rationale | Read tool |
-| DSBV process doc | `_genesis/templates/dsbv-process.md` — phase definitions, gate criteria | Read tool |
+| DSBV process doc | `_genesis/templates/dsbv-process.md` — stage definitions, gate criteria | Read tool |
 | Reference specs | Workstream-specific docs, framework files from `_genesis/` | Read tool |
 | Design template | `_genesis/templates/design-template.md` — DESIGN.md structure | Read tool |
 
@@ -140,7 +140,7 @@ Planner is NOT limited to the DSBV chain. It operates in multiple modes:
 
 ### Why Opus?
 
-Design is the highest-stakes phase in DSBV. Architectural decisions compound — a wrong design produces wrong sequences, wrong builds, and wrong validations. The cost of an Opus invocation for design (~$2-5/session) is trivial compared to the cost of rebuilding from a flawed design (~$20-50 in wasted builder/reviewer cycles).
+Design is the highest-stakes stage in DSBV. Architectural decisions compound — a wrong design produces wrong sequences, wrong builds, and wrong validations. The cost of an Opus invocation for design (~$2-5/session) is trivial compared to the cost of rebuilding from a flawed design (~$20-50 in wasted builder/reviewer cycles).
 
 **LT compensation:**
 - LT-3 (complex task decomposition) — Opus handles multi-constraint design best
@@ -582,17 +582,17 @@ Layer  Component                Status    Enforcement Level
 ### Tool Usage Patterns
 
 ```
-Design Phase (DESIGN.md):
+Design stage (DESIGN.md):
   Read(charter)  →  Read(research)  →  Read(template)  →  QMD(prior decisions)  →  [produce content]
        ↓                 ↓                  ↓                     ↓
   Project EO     Explorer findings   DESIGN structure      Historical context
 
-Sequence Phase (SEQUENCE.md):
+Sequence stage (SEQUENCE.md):
   Read(DESIGN.md)  →  Grep(existing artifacts)  →  Read(process doc)  →  [produce content]
        ↓                      ↓                         ↓
   Artifact list       Current state survey         Task sizing rules
 
-Synthesis Phase:
+Synthesis Stage:
   Read(draft 1)  →  Read(draft 2)  →  ...  →  Read(draft N)  →  [score + synthesize]
        ↓                 ↓                          ↓
   Per-criterion scoring across all drafts simultaneously
@@ -702,7 +702,7 @@ PLANNER PRE-FLIGHT:
 [ ] Explorer research loaded (if applicable)
 [ ] Prior decisions checked (1-ALIGN/decisions/)
 [ ] Design template loaded
-[ ] Workstream identified (which ALPEI phase?)
+[ ] Workstream identified (which ALPEI stage?)
 [ ] Upstream dependency met (ALPEI chain-of-custody)
 [ ] LEARN exclusion confirmed (if 2-LEARN/ involved: pipeline, NOT DSBV)
 ```

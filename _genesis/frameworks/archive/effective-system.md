@@ -15,14 +15,14 @@ Core principle: Success = Efficient & Scalable Management of Failure Risks (S > 
 
 ## When to use
 - Before designing any system, writing any spec, or performing force analysis
-- During ALIGN phase to identify forces (UBS/UDS)
-- During PLAN phase to translate learning into architecture
+- During ALIGN stage to identify forces (UBS/UDS)
+- During PLAN stage to translate learning into architecture
 
 ## Canonical sources
 | Source | What it contains | When to load |
 |--------|-----------------|--------------|
 | `_genesis/reference/ltc-effectiveness-guide.md` | 10 Ultimate Truths + 8-component template + full recursive ESD structure | During LEARN — foundational philosophy |
-| `_genesis/reference/ltc-effective-system-design.md` | 3-phase ESD methodology (Problem→Design→Requirements), VANA grammar, A.C. specs, iteration gates | During PLAN — translating learning to requirements |
+| `_genesis/reference/ltc-effective-system-design.md` | 3-stage ESD methodology (Problem→Design→Requirements), VANA grammar, A.C. specs, iteration gates | During PLAN — translating learning to requirements |
 | `rules/general-system.md` | Agent-distilled version: 8-component formula, RACI, force analysis, boundary spec | Always-loaded via CLAUDE.md |
 
 ## Key concepts (summary only — see canonical sources for full spec)

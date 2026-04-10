@@ -12,7 +12,7 @@ sub_system:
 > See `_genesis/frameworks/` for LTC methodology.
 > Full sprint/execution review template: `5-IMPROVE/reviews/REVIEW_TEMPLATE.md`
 
-<!-- TODO: Fill in during ALIGN phase -->
+<!-- TODO: Fill in during ALIGN stage -->
 
 ## Links
 

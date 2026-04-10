@@ -40,7 +40,7 @@ _genesis/frameworks/ + _genesis/principles/
               │
               ├──> .claude/agents/ — multi-agent-setup-guide.md governs agent config
               ├──> .claude/skills/ — session-lifecycle + tool-routing inform skill design
-              ├──> 4-EXECUTE/ — deployment-sop.md and code-review-sop.md apply during Build phase
+              ├──> 4-EXECUTE/ — deployment-sop.md and code-review-sop.md apply during Build stage
               └──> All workstreams — git-workflow.md governs every commit and PR
 ```
 

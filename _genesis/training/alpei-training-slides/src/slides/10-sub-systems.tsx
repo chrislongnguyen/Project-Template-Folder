@@ -204,7 +204,7 @@ export default function SubSystemsSlide() {
               fontStyle: 'italic',
             }}
           >
-            Every LTC member works through all 4 sub-systems. Each sub-system follows the full ALPEI flow (5 workstreams × 4 DSBV phases) across 5 iterations (Iteration 0–Iteration 4). PD sets the version ceiling for all downstream sub-systems.
+            Every LTC member works through all 4 sub-systems. Each sub-system follows the full ALPEI flow (5 workstreams × 4 DSBV stages) across 5 iterations (Iteration 0–Iteration 4). PD sets the version ceiling for all downstream sub-systems.
           </p>
         </motion.div>
       </div>

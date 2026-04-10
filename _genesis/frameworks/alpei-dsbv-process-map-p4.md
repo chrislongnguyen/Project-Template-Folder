@@ -131,7 +131,7 @@ EXECUTE workstream inherits from PLAN workstream, which inherits from LEARN work
 
 ### LEARN Pipeline — The 6-Skill Mechanism
 
-LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream workstream — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
+LEARN is pre-DSBV research infrastructure. It does not use DSBV stages (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream workstream — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
 
 #### State Machine
 
@@ -161,7 +161,7 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 |-------------|-------------|
 | `2-LEARN/{N}-{SUB}/{sub}-ubs-uds.md` | `3-PLAN/risks/UBS_REGISTER.md` (UBS entries) · `3-PLAN/drivers/UDS_REGISTER.md` (UDS entries) |
 | `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md` | `1-ALIGN/{N}-{SUB}/{sub}-charter.md` (§Design Principles) · `3-PLAN/{N}-{SUB}/{sub}-architecture.md` (component constraints) |
-| `2-LEARN/specs/{slug}/vana-spec.md` | Downstream DSBV Design phases — initializes Design context for the consuming workstream |
+| `2-LEARN/specs/{slug}/vana-spec.md` | Downstream DSBV Design stages — initializes Design context for the consuming workstream |
 
 LEARN completes (S5) → run `/dsbv design` for the target downstream workstream.
 

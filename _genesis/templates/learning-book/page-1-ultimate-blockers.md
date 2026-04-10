@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
@@ -13,10 +13,11 @@ _Page type: Ultimate Blockers — the blocking side of this Topic (Phase C. Orga
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P1 Ultimate Blockers.md` (e.g. `BOOK-00 — T0.P1 Ultimate Blockers.md`)
+- **File name pattern:** `T{topic}.P1-ultimate-blockers.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P1-ultimate-blockers.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -88,7 +89,7 @@ All UBS elements discovered here become **candidates for the EOP Decision Matrix
 
 ## Principles embedded in this page
 
-Each row's col 6 (EPS) and col 12 (Risky Principles) generate principles. These are harvested into Page 3. Do not skip those cells.
+Each row's col 6 (EP) and col 12 (Risky Principles) generate principles. These are harvested into Page 3. Do not skip those cells.
 
 ---
 
@@ -101,17 +102,17 @@ On UBS rows, the perspective inverts: "Success" = blocker succeeds (BAD for tagg
 | Col | Cell starts with | Direction on UBS rows                           |
 | --- | ---------------- | ----------------------------------------------- |
 | 4   | `UBS(R).UD:`     | AGAINST tagged role (drives the blocker harder) |
-| 6   | `UBS(R).UD.EPS:` | AGAINST tagged role — use `P_F` notation        |
+| 6   | `UBS(R).UD.EP:` | AGAINST tagged role — use `P_F` notation        |
 | 10  | `UBS(R).UB:`     | FOR tagged role (disables the blocker)          |
-| 12  | `UBS(R).UB.EPS:` | FOR tagged role — use `P` notation              |
+| 12  | `UBS(R).UB.EP:` | FOR tagged role — use `P` notation              |
 
 Example for row `UBS(R)`:
 
 - Col 1: `UBS(R).REL: This is the highest-risk failure mode for the Agent...`
 - Col 4: `UBS(R).UD: Cognitive Default Reinforcement — ...`
-- Col 6: `UBS(R).UD.EPS: P_F1(S)(R): Bio-Efficiency Exploitation — ...`
+- Col 6: `UBS(R).UD.EP: P_F1(S)(R): Bio-Efficiency Exploitation — ...`
 - Col 10: `UBS(R).UB: Concurrent Architecture Enforcement — ...`
-- Col 12: `UBS(R).UB.EPS: P1(S)(R): Architecture-Over-Willpower — ...`
+- Col 12: `UBS(R).UB.EP: P1(S)(R): Architecture-Over-Willpower — ...`
 
 See the Column Suffix Codex in `engine/rules/phase-c-structure.md` §2 for all 16 suffixes.
 
@@ -138,15 +139,15 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 | 3   | SUCCESS        | How does the row subject operate when functioning as designed? _(UBS row: how does it block? UDS row: how does it drive?)_ (Success Actions)                                                               |
 | 4   | SUCCESS        | What ultimately causes the row subject to function as designed? _(UBS row → UBS.UD: drives the blocker — works AGAINST Learner. UDS row → UDS.UD: drives the driver — works FOR Learner.)_ (UDS)           |
 | 5   | SUCCESS        | How does col 4 (UDS) cause the row subject to function as designed? (Success Mechanism)                                                                                                                    |
-| 6   | SUCCESS        | What principles is the UDS based on? (Success EPS)                                                                                                                                                         |
-| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success Tools — UES)                                                                                                                                          |
-| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success Environment — UES)                                                                                                                 |
+| 6   | SUCCESS        | What principles is the UDS based on? (Success EP)                                                                                                                                                         |
+| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success EOT — Effective Operating Tools)                                                                                                                      |
+| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success EOE — Effective Operating Environment)                                                                                             |
 | 9   | FAILURE        | How can the row subject fail to function as designed? _(UBS row: how does the blocker get disabled? UDS row: how does the driver get blocked?)_ (Failure Actions)                                          |
 | 10  | FAILURE        | What ultimately causes the row subject to fail to function as designed? _(UBS row → UBS.UB: disables the blocker — works FOR Learner. UDS row → UDS.UB: blocks the driver — works AGAINST Learner.)_ (UBS) |
 | 11  | FAILURE        | How does col 10 (UBS) cause the row subject to fail? (Failure Mechanism)                                                                                                                                   |
-| 12  | FAILURE        | What principles are the failure causes based on? (Failure EPS)                                                                                                                                             |
-| 13  | FAILURE        | What tools do the failure causes require? (Failure Tools — UES)                                                                                                                                            |
-| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure Environment — UES)                                                                                                                   |
+| 12  | FAILURE        | What principles are the failure causes based on? (Failure EP)                                                                                                                                             |
+| 13  | FAILURE        | What tools do the failure causes require? (Failure EOT — Effective Operating Tools)                                                                                                                        |
+| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure EOE — Effective Operating Environment)                                                                                               |
 | 15  | LEARNER'S NOTE | If the row subject fails as designed, what should the Learner do? (What Else?)                                                                                                                             |
 | 16  | LEARNER'S NOTE | Next Steps to Take (Now What? Now How?)                                                                                                                                                                    |
 
@@ -154,10 +155,10 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 
 ## Table (T0 — 2 rows)
 
-| Row                              | 1 · Relevance | 2 · Precise Definition | 3 · Success Actions | 4 · UDS    | 5 · Success Mechanism | 6 · Success EPS | 7 · Success Tools (UES) | 8 · Success Environment (UES) | 9 · Failure Actions | 10 · UBS   | 11 · Failure Mechanism | 12 · Failure EPS | 13 · Failure Tools (UES) | 14 · Failure Environment (UES) | 15 · What Else? | 16 · Next Steps |
+| Row                              | 1 · Relevance | 2 · Precise Definition | 3 · Success Actions | 4 · UDS    | 5 · Success Mechanism | 6 · Success EP | 7 · Success EOT | 8 · Success EOE | 9 · Failure Actions | 10 · UBS   | 11 · Failure Mechanism | 12 · Failure EP | 13 · Failure EOT | 14 · Failure EOE | 15 · What Else? | 16 · Next Steps |
 | -------------------------------- | ------------- | ---------------------- | ------------------- | ---------- | --------------------- | --------------- | ----------------------- | ----------------------------- | ------------------- | ---------- | ---------------------- | ---------------- | ------------------------ | ------------------------------ | --------------- | --------------- |
-| **UBS(R): {Agent root blocker}** | UBS(R).REL:   | UBS(R).DEF:            | UBS(R).ACT:         | UBS(R).UD: | UBS(R).UD.MECH:       | UBS(R).UD.EPS:  | UBS(R).UD.UES.T:        | UBS(R).UD.UES.E:              | UBS(R).FAIL:        | UBS(R).UB: | UBS(R).UB.MECH:        | UBS(R).UB.EPS:   | UBS(R).UB.UES.T:         | UBS(R).UB.UES.E:               | UBS(R).ELSE:    | UBS(R).NEXT:    |
-| **UBS(A): {Human root blocker}** | UBS(A).REL:   | UBS(A).DEF:            | UBS(A).ACT:         | UBS(A).UD: | UBS(A).UD.MECH:       | UBS(A).UD.EPS:  | UBS(A).UD.UES.T:        | UBS(A).UD.UES.E:              | UBS(A).FAIL:        | UBS(A).UB: | UBS(A).UB.MECH:        | UBS(A).UB.EPS:   | UBS(A).UB.UES.T:         | UBS(A).UB.UES.E:               | UBS(A).ELSE:    | UBS(A).NEXT:    |
+| **UBS(R): {Agent root blocker}** | UBS(R).REL:   | UBS(R).DEF:            | UBS(R).ACT:         | UBS(R).UD: | UBS(R).UD.MECH:       | UBS(R).UD.EP:  | UBS(R).UD.EOT:        | UBS(R).UD.EOE:              | UBS(R).FAIL:        | UBS(R).UB: | UBS(R).UB.MECH:        | UBS(R).UB.EP:   | UBS(R).UB.EOT:         | UBS(R).UB.EOE:               | UBS(R).ELSE:    | UBS(R).NEXT:    |
+| **UBS(A): {Human root blocker}** | UBS(A).REL:   | UBS(A).DEF:            | UBS(A).ACT:         | UBS(A).UD: | UBS(A).UD.MECH:       | UBS(A).UD.EP:  | UBS(A).UD.EOT:        | UBS(A).UD.EOE:              | UBS(A).FAIL:        | UBS(A).UB: | UBS(A).UB.MECH:        | UBS(A).UB.EP:   | UBS(A).UB.EOT:         | UBS(A).UB.EOE:               | UBS(A).ELSE:    | UBS(A).NEXT:    |
 
 For T1+ (up to 6 rows), add 3-row causal chain per role: `{parent}.UB`, `{parent}.UB.UB`, `{parent}.UB.UD`. Each cell uses the same CAG format with the row's full address as prefix.
 ```

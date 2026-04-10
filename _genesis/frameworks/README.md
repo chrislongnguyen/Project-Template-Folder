@@ -48,7 +48,7 @@ _genesis/philosophy/ + _genesis/principles/
               ├──> 3-PLAN/ — UBS/UDS applied to risk and driver registers
               ├──> 1-ALIGN/ — ALPEI process map drives workstream sequencing
               ├──> _genesis/templates/ — templates are framework-derived artifacts
-              └──> All 5 workstreams — agents reference frameworks in every DSBV phase
+              └──> All 5 workstreams — agents reference frameworks in every DSBV stage
 ```
 
 ## Pre-Flight Checklist

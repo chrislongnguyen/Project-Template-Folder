@@ -87,7 +87,7 @@ Upstream sources:
 - Human Director intent (via orchestrator main session)
 - `/learn-research` skill (1 explorer per topic, parallel dispatch)
 - `/deep-research` skill (N parallel retrieval agents)
-- `/dsbv` skill (indirect — pre-DSBV research phase, orchestrator dispatches)
+- `/dsbv` skill (indirect — pre-DSBV research stage, orchestrator dispatches)
 
 #### Frontier Standard
 

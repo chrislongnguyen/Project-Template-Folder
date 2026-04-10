@@ -1,11 +1,11 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
-# Template: Page 3 — EPS (Effective Principle System)
+# Template: Page 3 — EP (Effective Principles)
 
 _Page type: Principles — the governing rules of this Topic (Phase C. Organise Information)._
 
@@ -13,10 +13,11 @@ _Page type: Principles — the governing rules of this Topic (Phase C. Organise 
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P3 Principles.md` (e.g. `BOOK-00 — T1.P3 Principles.md`)
+- **File name pattern:** `T{topic}.P3-principles.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P3-principles.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -57,7 +58,7 @@ The role tag `(R)`, `(A)`, or `(both)` is always the LAST parenthetical in the r
 
 - **N rows — one principle per row**
 - Rows are collected from:
-  - Page 0: col 6 (EPS from success side) + col 12 (Risky Principles from failure side)
+  - Page 0: col 6 (EP from success side) + col 12 (Risky Principles from failure side)
   - Page 1: col 6 + col 12 from each row
   - Page 2: col 6 + col 12 from each row
 - Row labels: `P1(S)(R)`, `P2(E)(A)`, `P3(Sc)(both)` ... (sequential, with S/E/Sc pillar label + role tag per D29)
@@ -124,15 +125,15 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 | 3   | SUCCESS        | How does the row subject operate when functioning as designed? _(UBS row: how does it block? UDS row: how does it drive?)_ (Success Actions)                                                               |
 | 4   | SUCCESS        | What ultimately causes the row subject to function as designed? _(UBS row → UBS.UD: drives the blocker — works AGAINST Learner. UDS row → UDS.UD: drives the driver — works FOR Learner.)_ (UDS)           |
 | 5   | SUCCESS        | How does col 4 (UDS) cause the row subject to function as designed? (Success Mechanism)                                                                                                                    |
-| 6   | SUCCESS        | What principles is the UDS based on? (Success EPS)                                                                                                                                                         |
-| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success Tools — UES)                                                                                                                                          |
-| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success Environment — UES)                                                                                                                 |
+| 6   | SUCCESS        | What principles is the UDS based on? (Success EP)                                                                                                                                                          |
+| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success EOT — Effective Operating Tools)                                                                                                                      |
+| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success EOE — Effective Operating Environment)                                                                                             |
 | 9   | FAILURE        | How can the row subject fail to function as designed? _(UBS row: how does the blocker get disabled? UDS row: how does the driver get blocked?)_ (Failure Actions)                                          |
 | 10  | FAILURE        | What ultimately causes the row subject to fail to function as designed? _(UBS row → UBS.UB: disables the blocker — works FOR Learner. UDS row → UDS.UB: blocks the driver — works AGAINST Learner.)_ (UBS) |
 | 11  | FAILURE        | How does col 10 (UBS) cause the row subject to fail? (Failure Mechanism)                                                                                                                                   |
-| 12  | FAILURE        | What principles are the failure causes based on? (Failure EPS)                                                                                                                                             |
-| 13  | FAILURE        | What tools do the failure causes require? (Failure Tools — UES)                                                                                                                                            |
-| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure Environment — UES)                                                                                                                   |
+| 12  | FAILURE        | What principles are the failure causes based on? (Failure EP)                                                                                                                                              |
+| 13  | FAILURE        | What tools do the failure causes require? (Failure EOT — Effective Operating Tools)                                                                                                                        |
+| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure EOE — Effective Operating Environment)                                                                                               |
 | 15  | LEARNER'S NOTE | If the row subject fails as designed, what should the Learner do? (What Else?)                                                                                                                             |
 | 16  | LEARNER'S NOTE | Next Steps to Take (Now What? Now How?)                                                                                                                                                                    |
 
@@ -140,12 +141,12 @@ _Subject: {Subject Name} | UDO: [as defined in A — Subject Roadmap]_
 
 ## Table
 
-| Row              | 1 · Relevance     | 2 · Precise Definition | 3 · Success Actions | 4 · UDS          | 5 · Success Mechanism | 6 · Success EPS      | 7 · Success Tools (UES) | 8 · Success Environment (UES) | 9 · Failure Actions | 10 · UBS         | 11 · Failure Mechanism | 12 · Failure EPS     | 13 · Failure Tools (UES) | 14 · Failure Environment (UES) | 15 · What Else?    | 16 · Next Steps    |
+| Row              | 1 · Relevance     | 2 · Precise Definition | 3 · Success Actions | 4 · UDS          | 5 · Success Mechanism | 6 · Success EP      | 7 · Success EOT | 8 · Success EOE | 9 · Failure Actions | 10 · UBS         | 11 · Failure Mechanism | 12 · Failure EP     | 13 · Failure EOT | 14 · Failure EOE | 15 · What Else?    | 16 · Next Steps    |
 | ---------------- | ----------------- | ---------------------- | ------------------- | ---------------- | --------------------- | -------------------- | ----------------------- | ----------------------------- | ------------------- | ---------------- | ---------------------- | -------------------- | ------------------------ | ------------------------------ | ------------------ | ------------------ |
-| **P1(S)(R)**     | P1(S)(R).REL:     | P1(S)(R).DEF:          | P1(S)(R).ACT:       | P1(S)(R).UD:     | P1(S)(R).UD.MECH:     | P1(S)(R).UD.EPS:     | P1(S)(R).UD.UES.T:      | P1(S)(R).UD.UES.E:            | P1(S)(R).FAIL:      | P1(S)(R).UB:     | P1(S)(R).UB.MECH:      | P1(S)(R).UB.EPS:     | P1(S)(R).UB.UES.T:       | P1(S)(R).UB.UES.E:             | P1(S)(R).ELSE:     | P1(S)(R).NEXT:     |
-| **P2(S)(A)**     | P2(S)(A).REL:     | P2(S)(A).DEF:          | P2(S)(A).ACT:       | P2(S)(A).UD:     | P2(S)(A).UD.MECH:     | P2(S)(A).UD.EPS:     | P2(S)(A).UD.UES.T:      | P2(S)(A).UD.UES.E:            | P2(S)(A).FAIL:      | P2(S)(A).UB:     | P2(S)(A).UB.MECH:      | P2(S)(A).UB.EPS:     | P2(S)(A).UB.UES.T:       | P2(S)(A).UB.UES.E:             | P2(S)(A).ELSE:     | P2(S)(A).NEXT:     |
-| **P3(E)(R)**     | P3(E)(R).REL:     | P3(E)(R).DEF:          | P3(E)(R).ACT:       | P3(E)(R).UD:     | P3(E)(R).UD.MECH:     | P3(E)(R).UD.EPS:     | P3(E)(R).UD.UES.T:      | P3(E)(R).UD.UES.E:            | P3(E)(R).FAIL:      | P3(E)(R).UB:     | P3(E)(R).UB.MECH:      | P3(E)(R).UB.EPS:     | P3(E)(R).UB.UES.T:       | P3(E)(R).UB.UES.E:             | P3(E)(R).ELSE:     | P3(E)(R).NEXT:     |
-| **P4(Sc)(both)** | P4(Sc)(both).REL: | P4(Sc)(both).DEF:      | P4(Sc)(both).ACT:   | P4(Sc)(both).UD: | P4(Sc)(both).UD.MECH: | P4(Sc)(both).UD.EPS: | P4(Sc)(both).UD.UES.T:  | P4(Sc)(both).UD.UES.E:        | P4(Sc)(both).FAIL:  | P4(Sc)(both).UB: | P4(Sc)(both).UB.MECH:  | P4(Sc)(both).UB.EPS: | P4(Sc)(both).UB.UES.T:   | P4(Sc)(both).UB.UES.E:         | P4(Sc)(both).ELSE: | P4(Sc)(both).NEXT: |
+| **P1(S)(R)**     | P1(S)(R).REL:     | P1(S)(R).DEF:          | P1(S)(R).ACT:       | P1(S)(R).UD:     | P1(S)(R).UD.MECH:     | P1(S)(R).UD.EP:     | P1(S)(R).UD.EOT:      | P1(S)(R).UD.EOE:            | P1(S)(R).FAIL:      | P1(S)(R).UB:     | P1(S)(R).UB.MECH:      | P1(S)(R).UB.EP:     | P1(S)(R).UB.EOT:       | P1(S)(R).UB.EOE:             | P1(S)(R).ELSE:     | P1(S)(R).NEXT:     |
+| **P2(S)(A)**     | P2(S)(A).REL:     | P2(S)(A).DEF:          | P2(S)(A).ACT:       | P2(S)(A).UD:     | P2(S)(A).UD.MECH:     | P2(S)(A).UD.EP:     | P2(S)(A).UD.EOT:      | P2(S)(A).UD.EOE:            | P2(S)(A).FAIL:      | P2(S)(A).UB:     | P2(S)(A).UB.MECH:      | P2(S)(A).UB.EP:     | P2(S)(A).UB.EOT:       | P2(S)(A).UB.EOE:             | P2(S)(A).ELSE:     | P2(S)(A).NEXT:     |
+| **P3(E)(R)**     | P3(E)(R).REL:     | P3(E)(R).DEF:          | P3(E)(R).ACT:       | P3(E)(R).UD:     | P3(E)(R).UD.MECH:     | P3(E)(R).UD.EP:     | P3(E)(R).UD.EOT:      | P3(E)(R).UD.EOE:            | P3(E)(R).FAIL:      | P3(E)(R).UB:     | P3(E)(R).UB.MECH:      | P3(E)(R).UB.EP:     | P3(E)(R).UB.EOT:       | P3(E)(R).UB.EOE:             | P3(E)(R).ELSE:     | P3(E)(R).NEXT:     |
+| **P4(Sc)(both)** | P4(Sc)(both).REL: | P4(Sc)(both).DEF:      | P4(Sc)(both).ACT:   | P4(Sc)(both).UD: | P4(Sc)(both).UD.MECH: | P4(Sc)(both).UD.EP: | P4(Sc)(both).UD.EOT:  | P4(Sc)(both).UD.EOE:        | P4(Sc)(both).FAIL:  | P4(Sc)(both).UB: | P4(Sc)(both).UB.MECH:  | P4(Sc)(both).UB.EP: | P4(Sc)(both).UB.EOT:   | P4(Sc)(both).UB.EOE:         | P4(Sc)(both).ELSE: | P4(Sc)(both).NEXT: |
 ```
 
 ---

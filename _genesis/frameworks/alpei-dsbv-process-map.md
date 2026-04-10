@@ -13,7 +13,7 @@ This document is the authoritative reference for how the LTC ALPEI framework and
 
 | Consumer                  | Use                                                                                               |
 | ------------------------- | ------------------------------------------------------------------------------------------------- |
-| **PM / Team member**      | Orientation: understand what workstream you are in, what phase is active, what gate you are approaching |
+| **PM / Team member**      | Orientation: understand what workstream you are in, what stage is active, what gate you are approaching |
 | **Agent (Sonnet / Opus)** | Context load: verify correct template, agent, and AC before producing any artifact                |
 | **Training deck author**  | Slide content: each P-section maps to one or more training slides                                 |
 
@@ -24,9 +24,9 @@ Template index: `_genesis/templates/README.md`.
 
 ---
 
-## 2. P1 — 5×4 Matrix: ALPEI Workstreams × DSBV Phases
+## 2. P1 — 5×4 Matrix: ALPEI Workstreams × DSBV stages
 
-Every workstream in the ALPEI system produces artifacts through the same four-phase DSBV sub-process: **Design → Sequence → Build → Validate**. The 5×4 matrix below makes that structure explicit — each cell names the template used, the deliverable path, the assigned agent, and the binary acceptance criterion for that workstream-phase intersection. 
+Every workstream in the ALPEI system produces artifacts through the same four-stage DSBV sub-process: **Design → Sequence → Build → Validate**. The 5×4 matrix below makes that structure explicit — each cell names the template used, the deliverable path, the assigned agent, and the binary acceptance criterion for that workstream-stage intersection. 
 
 **Problem Diagnosis (PD)** serves as the worked example sub-system with all 20 cells filled; all other sub-systems (DP, DA, IDM) follow the identical pattern, substituting their own deliverable paths and domain-specific content.
 
@@ -34,13 +34,13 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 ### Matrix Table 1 — Design + Sequence (ltc-planner: Opus)
 
-> Phases owned by **ltc-planner** (model: Opus). Produces DESIGN.md and SEQUENCE.md artifacts.
+> Stages owned by **ltc-planner** (model: Opus). Produces DESIGN.md and SEQUENCE.md artifacts.
 
 
 | Workstream          | Design (ltc-planner)                                                                                                                                                            | Sequence (ltc-planner)                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1-ALIGN**   | **Template:** charter-template.md (T1) + force-analysis-template.md (T4) **Deliverable:** `1-ALIGN/1-PD/pd-charter.md` (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md` for all 4 subsystems) **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** okr-template.md (T3) **Deliverable:** `1-ALIGN/1-PD/pd-okr-register.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
-| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
+| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV stages.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
 | **3-PLAN**    | **Template:** force-analysis-template.md (T4) + risk-entry-template.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** roadmap-template.md (T6) + driver-entry-template.md (T5) **Deliverable:** `3-PLAN/1-PD/pd-roadmap.md` (pattern: `{ws}/{N}-{SUB}/{sub}-roadmap.md` for all 4 subsystems) **AC:** Milestones map to iteration. Drivers have leverage actions. |
 | **4-EXECUTE** | **Template:** design-template.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** sequence-template.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
 | **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/_cross/cross-metrics-baseline.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** sequence-template.md **Deliverable:** `5-IMPROVE/1-PD/pd-retro-template.md` (pattern: `{ws}/{N}-{SUB}/{sub}-retro-template.md` for all 4 subsystems) **AC:** Retro format defined; participants identified.                                                |
@@ -56,7 +56,7 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 | Workstream          | Build (ltc-builder)                                                                                                                                                                                                                                                           | Validate (ltc-reviewer)                                                                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1-ALIGN**   | **Template:** charter-template.md (T1) **Deliverable:** `1-ALIGN/1-PD/pd-charter.md` (final) (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md` for all 4 subsystems) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** review-template.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
-| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/1-PD/pd-ubs-uds.md` · `2-LEARN/1-PD/pd-effective-principles.md` · P0–P7 pages per topic (pattern: `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md`) | *Validation via `/learn:review` per topic — all P-pages reach `status: validated` before pipeline advances*                                                              |
+| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV stages.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/1-PD/pd-ubs-uds.md` · `2-LEARN/1-PD/pd-effective-principles.md` · P0–P7 pages per topic (pattern: `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md`) | *Validation via `/learn:review` per topic — all P-pages reach `status: validated` before pipeline advances*                                                              |
 | **3-PLAN**    | **Template:** architecture-template.md (T2) **Deliverable:** `3-PLAN/1-PD/pd-architecture.md` (pattern: `{ws}/{N}-{SUB}/{sub}-architecture.md` for all 4 subsystems) **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** review-template.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
 | **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Workstream artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** dsbv-eval-template.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
 | **5-IMPROVE** | **Template:** test-plan-template.md (T8) + feedback-template.md **Deliverable:** `5-IMPROVE/_cross/cross-feedback-register.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** review-package-template.md **Deliverable:** `5-IMPROVE/_cross/cross-version-review.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
@@ -64,9 +64,9 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 ---
 
-### Pre-DSBV Phase — Research (ltc-explorer: Haiku)
+### Pre-DSBV stage — Research (ltc-explorer: Haiku)
 
-> Before Design begins, **ltc-explorer** runs wide-net discovery. This is not a DSBV phase — it feeds the Design phase as input.
+> Before Design begins, **ltc-explorer** runs wide-net discovery. This is not a DSBV stage — it feeds the Design stage as input.
 
 
 | Role             | Scope                                                                                                                                          |
@@ -91,7 +91,7 @@ PD is the first sub-system and sets the version ceiling. DP, DA, and IDM follow 
 
 **Inheritance rule:** Each sub-system's Effective Principles (produced in LEARN workstream Build) are inherited by the next sub-system as validated inputs. A downstream sub-system may not advance to a higher version than its upstream dependency. If PD is at v1.2, DP may not exceed v1.2.
 
-> PD is the worked example showing all 20 cells. DP, DA, and IDM follow the identical workstream × phase structure with their own deliverable paths and domain content.
+> PD is the worked example showing all 20 cells. DP, DA, and IDM follow the identical workstream × stage structure with their own deliverable paths and domain content.
 
 ---
 
@@ -184,14 +184,14 @@ When a project has multiple sub-systems (e.g., PD → DP → DA → IDM), the **
 
 ## 4. P3 — ALIGN Workstream Walkthrough: How It Actually Works
 
-When you run `/dsbv design align`, a structured sequence of agents, rules, and human gates activates — not a chat. Every artifact is produced under contract (DESIGN.md), every phase transition requires your approval, and five always-on rules enforce quality at every step. The walkthrough below traces exactly what happens, from the moment you type the command to the moment ALIGN is marked complete.
+When you run `/dsbv design align`, a structured sequence of agents, rules, and human gates activates — not a chat. Every artifact is produced under contract (DESIGN.md), every stage transition requires your approval, and five always-on rules enforce quality at every step. The walkthrough below traces exactly what happens, from the moment you type the command to the moment ALIGN is marked complete.
 
 ---
 
 ### Step-by-Step Walkthrough
 
 
-| #   | Phase      | Command                            | Agent                                                   | Produces                                                                                    | Rules That Fire                                                                                                                                                                                                                                                             | Gate                                                                                                                                               |
+| #   | Stage      | Command                            | Agent                                                   | Produces                                                                                    | Rules That Fire                                                                                                                                                                                                                                                             | Gate                                                                                                                                               |
 | --- | ---------- | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0   | Pre-flight | *(auto — fires before every task)* | ltc-explorer (Haiku) can assist with pre-DSBV discovery | GREEN / RED status report                                                                   | **alpei-pre-flight** (6 checks: workstream, alignment, risks, drivers, learning, version consistency) · **alpei-chain-of-custody** (upstream workstream dependency check)                                                                                                               | RED on any check = STOP. Fix before proceeding.                                                                                                    |
 | 1   | Design     | `/dsbv design align`               | **ltc-planner** (Opus)                                  | `1-ALIGN/DESIGN.md` — artifact inventory, per-artifact purpose, binary ACs, alignment table | **versioning** (new file → version 1.0 / status Draft) · **agent-dispatch** (5-field context package required)                                                                                                                                                              | **G1:** Human reviews DESIGN.md. Approves → Sequence unlocks. Requests changes → planner revises and re-presents.                                  |
@@ -217,7 +217,7 @@ Gates are decision points, not labels. The system does not advance automatically
 
 ---
 
-### Always-On Rules (Every Phase)
+### Always-On Rules (Every Stage)
 
 Five rules load at session start and fire continuously. They cannot be disabled per-command.
 
@@ -225,9 +225,9 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 | Rule                       | File                                      | What it enforces                                                                                                                                                                                                                                              |
 | -------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **alpei-pre-flight**       | `scripts/pre-flight.sh`                   | 9 checks before every task: workstream, alignment, risks, drivers, templates, learning, version, S>E>Sc, decisions. RED = stop.                                                                                                                                     |
-| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips.                                                                                                                                 |
+| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. stage ordering: Design → Sequence → Build → Validate, no skips.                                                                                                                                 |
 | **versioning**             | `.claude/rules/versioning.md`             | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. Iteration 1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved.                                                                                                         |
-| **dsbv**                   | `.claude/skills/dsbv/SKILL.md`            | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact.                                                                                                               |
+| **dsbv**                   | `.claude/skills/dsbv/SKILL.md`            | No artifact produced outside DSBV. stage ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact.                                                                                                               |
 | **agent-dispatch**         | `.claude/rules/agent-dispatch.md`         | Every Agent() call must: (1) name one of the 4 MECE agents, (2) use 5-field context package (EO → INPUT → EP → OUTPUT → VERIFY), (3) match model to agent file, (4) use absolute paths in worktrees. Enforced via PreToolUse hook — ad-hoc calls are blocked. |
 
 
@@ -236,7 +236,7 @@ Five rules load at session start and fire continuously. They cannot be disabled 
 ### Agent Roster
 
 
-| Agent        | Model  | DSBV Phase        | Scope boundary                                                     |
+| Agent        | Model  | DSBV stage        | Scope boundary                                                     |
 | ------------ | ------ | ----------------- | ------------------------------------------------------------------ |
 | ltc-explorer | Haiku  | Pre-DSBV          | Read-only research and discovery. Does NOT produce workstream artifacts. |
 | ltc-planner  | Opus   | Design + Sequence | Defines WHAT to build and in what order. Does NOT write artifacts. |
@@ -412,7 +412,7 @@ EXECUTE workstream inherits from PLAN workstream, which inherits from LEARN work
 
 ### LEARN Pipeline — The 6-Skill Mechanism
 
-LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream workstream — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
+LEARN is pre-DSBV research infrastructure. It does not use DSBV stages (Design → Sequence → Build → Validate) internally — instead, it uses a dedicated `/learn` pipeline that is state-aware, file-system-driven, and skill-dispatched. The entry point is `/learn {slug}`, which derives the current state from what files already exist in `2-LEARN/` and invokes the appropriate sub-skill. When the pipeline reaches State 5 (complete), the correct next step is `/dsbv design` for the downstream workstream — LEARN hands off to DSBV, it does not replace it. Templates for all P-page types are project-local: `2-LEARN/templates/page-{n}-*.md`.
 
 #### State Machine
 
@@ -447,7 +447,7 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `2-LEARN/{N}-{SUB}/{sub}-ubs-uds.md`              | `3-PLAN/risks/UBS_REGISTER.md` (UBS entries) · `3-PLAN/drivers/UDS_REGISTER.md` (UDS entries)                     |
 | `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md` | `1-ALIGN/{N}-{SUB}/{sub}-charter.md` (§Design Principles) · `3-PLAN/{N}-{SUB}/{sub}-architecture.md` (component constraints) |
-| `2-LEARN/specs/{slug}/vana-spec.md`            | Downstream DSBV Design phases — initializes Design context for the consuming workstream                                 |
+| `2-LEARN/specs/{slug}/vana-spec.md`            | Downstream DSBV Design stages — initializes Design context for the consuming workstream                                 |
 
 
 LEARN completes (S5) → run `/dsbv design` for the target downstream workstream.
@@ -470,9 +470,9 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 ---
 
-## 7. Routing Tables — Agent Dispatch by Workstream × Phase
+## 7. Routing Tables — Agent Dispatch by Workstream × Stage
 
-> **Purpose:** Runtime lookup for agent dispatch and template selection. To find the correct template and agent for any task, grep `## Routing: {WORKSTREAM}` in this file, then read the row matching your current DSBV phase.
+> **Purpose:** Runtime lookup for agent dispatch and template selection. To find the correct template and agent for any task, grep `## Routing: {WORKSTREAM}` in this file, then read the row matching your current DSBV stage.
 >
 > **Lookup syntax:** `grep "## Routing: PLAN" _genesis/frameworks/alpei-dsbv-process-map.md`
 >
@@ -483,7 +483,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 ## Routing: ALIGN
 
 
-| Phase    | Template(s)                                      | Agent        | Deliverable Path                     | AC                                                       |
+| Stage    | Template(s)                                      | Agent        | Deliverable Path                     | AC                                                       |
 | -------- | ------------------------------------------------ | ------------ | ------------------------------------ | -------------------------------------------------------- |
 | Design   | charter-template.md · force-analysis-template.md | ltc-planner  | `1-ALIGN/1-PD/pd-charter.md` (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md`)         | Charter has EO, stakeholders, and VANA criteria          |
 | Sequence | okr-template.md                                  | ltc-planner  | `1-ALIGN/1-PD/pd-okr-register.md`       | All objectives have ≥1 KR with baseline and target       |
@@ -495,7 +495,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 ## Routing: LEARN
 
-> LEARN does not use DSBV phase routing. Use the `/learn` pipeline instead.
+> LEARN does not use DSBV stage routing. Use the `/learn` pipeline instead.
 > Full state machine and skill dispatch: see §P4 LEARN Pipeline.
 > Lookup syntax: `/learn {slug}` — state is derived from file system on every invocation.
 
@@ -506,7 +506,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 | S2    | Input exists; no `2-LEARN/research/{slug}/`          | `/learn:research {slug}`                                           | `2-LEARN/research/{slug}/`                                   | Research notes present per topic; each topic named              |
 | S3    | Research present; any topic missing validated P-pages | `/learn:structure {slug} {topic}` → `/learn:review {slug} {topic}` | `2-LEARN/research/{slug}/{topic}/P0–P7.md`                   | All P-pages present; all have `status: validated`                |
 | S4    | All topics validated; no vana-spec                    | `/learn:spec {slug}`                                               | `2-LEARN/specs/{slug}/vana-spec.md` · `DSBV-READY-{slug}.md` | VANA spec present; DSBV-READY file present                      |
-| S5    | Pipeline complete                                    | `/dsbv design [downstream workstream]`                                   | See DSBV routing for target workstream                             | LEARN outputs consumed by target workstream Design phase              |
+| S5    | Pipeline complete                                    | `/dsbv design [downstream workstream]`                                   | See DSBV routing for target workstream                             | LEARN outputs consumed by target workstream Design stage              |
 
 
 ---
@@ -514,7 +514,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 ## Routing: PLAN
 
 
-| Phase    | Template(s)                                         | Agent        | Deliverable Path                      | AC                                                              |
+| Stage    | Template(s)                                         | Agent        | Deliverable Path                      | AC                                                              |
 | -------- | --------------------------------------------------- | ------------ | ------------------------------------- | --------------------------------------------------------------- |
 | Design   | force-analysis-template.md · risk-entry-template.md | ltc-planner  | `3-PLAN/risks/UBS_REGISTER.md`        | Every UBS entry has a mitigation                                |
 | Sequence | roadmap-template.md · driver-entry-template.md      | ltc-planner  | `3-PLAN/1-PD/pd-roadmap.md` (pattern: `{ws}/{N}-{SUB}/{sub}-roadmap.md`)           | Milestones map to iteration; drivers have leverage actions      |
@@ -527,7 +527,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 ## Routing: EXECUTE
 
 
-| Phase    | Template(s)                         | Agent        | Deliverable Path                          | AC                                                                  |
+| Stage    | Template(s)                         | Agent        | Deliverable Path                          | AC                                                                  |
 | -------- | ----------------------------------- | ------------ | ----------------------------------------- | ------------------------------------------------------------------- |
 | Design   | design-template.md                  | ltc-planner  | `4-EXECUTE/DESIGN.md`                      | All artifacts have binary ACs; no orphan conditions                 |
 | Sequence | dsbv-context-template.md            | ltc-planner  | `4-EXECUTE/SEQUENCE.md`                    | Tasks ordered by dependency with input/output/AC/token estimate     |
@@ -540,7 +540,7 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 ## Routing: IMPROVE
 
 
-| Phase    | Template(s)                                  | Agent        | Deliverable Path                         | AC                                                             |
+| Stage    | Template(s)                                  | Agent        | Deliverable Path                         | AC                                                             |
 | -------- | -------------------------------------------- | ------------ | ---------------------------------------- | -------------------------------------------------------------- |
 | Design   | metrics-baseline-template.md                 | ltc-planner  | `5-IMPROVE/_cross/cross-metrics-baseline.md`  | Each metric has current value, target, and measurement method  |
 | Sequence | retro-template.md                            | ltc-planner  | `5-IMPROVE/1-PD/pd-retro-template.md` (pattern: `{ws}/{N}-{SUB}/{sub}-retro-template.md`) | Retro format defined; participants identified                  |

@@ -36,7 +36,7 @@ Before mapping what blocks or drives learning, we anchor on **who** is acting an
 | **Effective Outcome (EO)** | **Optimal acquisition of wisdom for the learner's given resources.** The learner aims to get the highest-quality learning (wisdom) possible within their constraints (time, energy, context). This is "Effective Learning" as defined in this system. EO is aspirational, directional, and technology-agnostic. How close A.C.s push the User towards EO measures success. |
 | **INPUT** | What triggers this system and what data/artifacts it receives from upstream systems. INPUT is the system-level aggregation of all EOP step-level "REQUIRED INPUT" that originates from OUTSIDE this system. It is the integration contract with upstream systems. For the Learning System: INPUT = raw subject matter, prior knowledge, and upstream learning outputs. |
 | **OUTPUT** | The concrete artifact or data this system produces that feeds INTO downstream systems. OUTPUT is the system-level aggregation of all EOP step-level "DESIRED OUTPUT" that goes OUTSIDE this system. It is evidence that EO was achieved for this iteration — the handoff contract with downstream systems. For the Learning System: OUTPUT = structured Learning Book (Phase C pages) → feeds into ESD for system building. |
-| **RACI** | System-level responsibility assignment: R (Responsible — who does the work), A (Accountable — who owns the outcome), C (Consulted — provides input before action), I (Informed — receives output after action). RACI anchors UBS/UDS analysis perspective: the same system has different blockers for R vs A. For the Learning System: R = AI Agent (ILE Learning Agent), A = Learner (Director), C = domain experts, I = downstream build agents. |
+| **RACI** | System-level responsibility assignment: R (Responsible — who does the work), A (Accountable — who owns the outcome), C (Consulted — provides input before action), I (Informed — receives output after action). RACI anchors UBS/UDS analysis perspective: the same system has different blockers for R vs A. For the Learning System: R = AI Agent (Learn Source Learning Agent), A = Learner (Director), C = domain experts, I = downstream build agents. |
 
 
 The rest of the document maps **what blocks** this (UBS) and **what drives** it (UDS), so we can design principles, environment, tools, and actions that deactivate blockers and activate drivers.
@@ -619,7 +619,7 @@ Environment design follows the same two-sub-category structure as EP. Risk Manag
 
 #### 2.b. Effective Learning Tools
 
-**Purpose:** To best deliver the Effective Principles in order to best overcome the UBS & best utilize the UDS. Tools are chosen to fit the ideal **Environments** in §2.a (Physical / Digital / Cultural). The **ILE (Integrated Learning Environment)** — this project — is the Digital Tool being built to embody this system (Learning Book, A. Subject Roadmap, templates, entry points, session log, persistent memory) inside a single workspace (e.g. Cursor).
+**Purpose:** To best deliver the Effective Principles in order to best overcome the UBS & best utilize the UDS. Tools are chosen to fit the ideal **Environments** in §2.a (Physical / Digital / Cultural). The **Learn Source (Integrated Learning Environment)** — this project — is the Digital Tool being built to embody this system (Learning Book, A. Subject Roadmap, templates, entry points, session log, persistent memory) inside a single workspace (e.g. Cursor).
 
 ---
 
@@ -631,30 +631,30 @@ Environment design follows the same two-sub-category structure as EP. Risk Manag
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| Energy management: sleep/activity trackers (e.g. Oura, Whoop) to align sessions with high-energy windows; hydration/meal reminders. | **ILE:** A. Subject Roadmap + Learning Book as single source of truth; templates offload structure so the learner doesn’t rely on memory. **Cursor:** one workspace (chat + Markdown), rules, optional memory so context is scoped, not scattered. | Shared norms doc or wiki (e.g. Notion, Confluence) that states blameless, accuracy-first, no-pressure principles so everyone can reference the same “contract.” |
-| Noise-cancelling headphones (e.g. Sony WH-1000XM5, Bose QuietComfort) to enforce low sensory load in any space. | **AntiGravity** or **Cursor Chat:** low-notification, single-conversation focus; no competing tabs for the learning dialogue. | **COE structure** (e.g. in ClickUp or ILE): Topic / Sub-topic / Question hierarchy so bias detection is built into the workflow, not ad hoc. |
+| Energy management: sleep/activity trackers (e.g. Oura, Whoop) to align sessions with high-energy windows; hydration/meal reminders. | **Learn Source:** A. Subject Roadmap + Learning Book as single source of truth; templates offload structure so the learner doesn’t rely on memory. **Cursor:** one workspace (chat + Markdown), rules, optional memory so context is scoped, not scattered. | Shared norms doc or wiki (e.g. Notion, Confluence) that states blameless, accuracy-first, no-pressure principles so everyone can reference the same “contract.” |
+| Noise-cancelling headphones (e.g. Sony WH-1000XM5, Bose QuietComfort) to enforce low sensory load in any space. | **AntiGravity** or **Cursor Chat:** low-notification, single-conversation focus; no competing tabs for the learning dialogue. | **COE structure** (e.g. in ClickUp or Learn Source): Topic / Sub-topic / Question hierarchy so bias detection is built into the workflow, not ad hoc. |
 | Mental breaks: Pomodoro or focus timers (e.g. Be Focused, Focus@Will) to force pauses and exit autopilot. | Pre-configured **focus mode** (e.g. macOS Focus, Freedom, Cold Turkey) to block unrelated apps/notifications during learning sessions. | **Bias checklist** (physical or digital card): “What am I assuming? What might I be missing? What would contradict this?” — used at session start or before key decisions. |
 
 *DON'Ts (tools or patterns that strengthen UBS):*
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| Relying only on “when I feel like it” with no external cue for energy or breaks (triggers autopilot and low energy). | Using **only** associative, chronological feeds (e.g. raw chat scroll, unsorted notes) as primary memory — prefer Working Memory backed by structure (ILE: A + Learning Book, templates). | Using tools that optimize for speed or volume (e.g. “answer in 30 seconds”) without evidence or review steps. |
+| Relying only on “when I feel like it” with no external cue for energy or breaks (triggers autopilot and low energy). | Using **only** associative, chronological feeds (e.g. raw chat scroll, unsorted notes) as primary memory — prefer Working Memory backed by structure (Learn Source: A + Learning Book, templates). | Using tools that optimize for speed or volume (e.g. “answer in 30 seconds”) without evidence or review steps. |
 
 **A.2 Efficiency — Highest De-risking Output at Current Resources**
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| **One** dedicated desk/station checklist (lighting, noise, ergonomics, materials) so setup is repeatable in minutes; e.g. laminated card or Notion page. | **ILE:** Entry point → template mapping; one entry point at a time, pre-loaded template and A context — zero setup friction per session. **Cursor:** single workspace, no app switching. | **COE question-answer protocol** (e.g. in ILE templates): structured Q&A (Topic, Sub-topic, Question) so bias detection is the default, not an extra step. |
-| Single Pomodoro or time-box timer (e.g. 25 min focus + 5 min break) to protect session length and prevent fatigue past diminishing returns. | **Pre-configured workspace** (e.g. Cursor workspace + ILE repo): one clone, open, choose subject/entry point — same “environment” every time. | **Short-session norm:** e.g. “We do 2–3 focused blocks, then stop” — reinforced by shared calendar or ClickUp time tracking. |
-| Essential materials checklist (e.g. “water, notebook, one textbook”) so nothing triggers break-in-flow retrieval. | **Bias-check prompts** inside templates (e.g. ILE Organise/Distill tables with UBS/UDS/EP columns) so checking is in-flow, not retrospective. | **Real-time feedback** habit: e.g. “Before we move on, what could be wrong with this?” — supported by COE buddy or peer review in ClickUp/ILE. |
+| **One** dedicated desk/station checklist (lighting, noise, ergonomics, materials) so setup is repeatable in minutes; e.g. laminated card or Notion page. | **Learn Source:** Entry point → template mapping; one entry point at a time, pre-loaded template and A context — zero setup friction per session. **Cursor:** single workspace, no app switching. | **COE question-answer protocol** (e.g. in Learn Source templates): structured Q&A (Topic, Sub-topic, Question) so bias detection is the default, not an extra step. |
+| Single Pomodoro or time-box timer (e.g. 25 min focus + 5 min break) to protect session length and prevent fatigue past diminishing returns. | **Pre-configured workspace** (e.g. Cursor workspace + Learn Source repo): one clone, open, choose subject/entry point — same “environment” every time. | **Short-session norm:** e.g. “We do 2–3 focused blocks, then stop” — reinforced by shared calendar or ClickUp time tracking. |
+| Essential materials checklist (e.g. “water, notebook, one textbook”) so nothing triggers break-in-flow retrieval. | **Bias-check prompts** inside templates (e.g. Learn Source Organise/Distill tables with UBS/UDS/EP columns) so checking is in-flow, not retrospective. | **Real-time feedback** habit: e.g. “Before we move on, what could be wrong with this?” — supported by COE buddy or peer review in ClickUp/Learn Source. |
 
 **A.3 Scalability — Highest Increase in De-risking per Additional Resource**
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| **Replicable station checklist** (one doc or card): lighting, noise, ergonomics — duplicate for new room or new learner so any space is learning-ready in minutes. | **ILE repo + A template:** clone once; new subject = new A (Roadmap) + Learning Book branch. Same entry-point→template logic everywhere. **Cursor rules / dotfiles:** shareable so new devices get the same focus and scoping. | **Documented learning-culture norms** (e.g. in README or wiki): blameless, accuracy-first, no pressure — onboard new participants without re-teaching. |
-| **Portable kit** (noise-cancelling headphones, same notebook brand, same pen) so environment travels with the learner. | **Platform-agnostic templates:** Markdown + standard structure (e.g. ILE `templates/`) so they work in Cursor, Obsidian, or any editor; not locked to one vendor. | **Peer review / COE pairs:** e.g. “buddy” field in ClickUp or ILE; each new member adds bias-detection coverage. |
+| **Replicable station checklist** (one doc or card): lighting, noise, ergonomics — duplicate for new room or new learner so any space is learning-ready in minutes. | **Learn Source repo + A template:** clone once; new subject = new A (Roadmap) + Learning Book branch. Same entry-point→template logic everywhere. **Cursor rules / dotfiles:** shareable so new devices get the same focus and scoping. | **Documented learning-culture norms** (e.g. in README or wiki): blameless, accuracy-first, no pressure — onboard new participants without re-teaching. |
+| **Portable kit** (noise-cancelling headphones, same notebook brand, same pen) so environment travels with the learner. | **Platform-agnostic templates:** Markdown + standard structure (e.g. Learn Source `templates/`) so they work in Cursor, Obsidian, or any editor; not locked to one vendor. | **Peer review / COE pairs:** e.g. “buddy” field in ClickUp or Learn Source; each new member adds bias-detection coverage. |
 | | **Centralized focus policy:** one blocklist or Focus mode config (e.g. Freedom, macOS) that scales to all devices. | **Shared vocabulary for bias types** (e.g. WYSIATI, anchoring, confirmation bias) in a short glossary so the cost of communicating “what went wrong” drops as the group grows. |
 
 ---
@@ -667,9 +667,9 @@ Environment design follows the same two-sub-category structure as EP. Risk Manag
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| Same energy and focus tools as A.1 (trackers, headphones, Pomodoro) so the slow system has the resources to stay on. | **ILE:** A (Roadmap) + Session Log + Level Completion Checklist so the Agent (and learner) always know “where I am” and “what’s next” — no context collapse, so the slow system doesn’t disengage. **Cursor:** rules + optional memory so principles and conventions persist across chats. | **Psychological safety in the tool:** e.g. ILE/ClickUp “progress” and “evidence” fields that reward iteration and evidence, not one-shot right answers. |
-| Comfortable, ergonomic setup (chair, desk height, screen) so long reasoning blocks don’t get cut short by physical distraction. | **Evidence and review in flow:** e.g. ILE templates with “evidence” or “source” fields; Cursor prompts that ask “what would contradict this?” so accuracy is built in. | **Novelty in the structure:** e.g. ILE entry points by Chapter/Topic so “new & important” (new topic, new question) is explicit — supports UDS.UD.UD conflict detection. |
-| | **Single-focus workspace:** Cursor + ILE = chat + one Learning Book; no tab sprawl so the slow system isn’t hijacked. | **COE / teamwork in the process:** e.g. ClickUp COE structure or ILE “buddy” so self-disassociation and peer review are part of the workflow. |
+| Same energy and focus tools as A.1 (trackers, headphones, Pomodoro) so the slow system has the resources to stay on. | **Learn Source:** A (Roadmap) + Session Log + Level Completion Checklist so the Agent (and learner) always know “where I am” and “what’s next” — no context collapse, so the slow system doesn’t disengage. **Cursor:** rules + optional memory so principles and conventions persist across chats. | **Psychological safety in the tool:** e.g. Learn Source/ClickUp “progress” and “evidence” fields that reward iteration and evidence, not one-shot right answers. |
+| Comfortable, ergonomic setup (chair, desk height, screen) so long reasoning blocks don’t get cut short by physical distraction. | **Evidence and review in flow:** e.g. Learn Source templates with “evidence” or “source” fields; Cursor prompts that ask “what would contradict this?” so accuracy is built in. | **Novelty in the structure:** e.g. Learn Source entry points by Chapter/Topic so “new & important” (new topic, new question) is explicit — supports UDS.UD.UD conflict detection. |
+| | **Single-focus workspace:** Cursor + Learn Source = chat + one Learning Book; no tab sprawl so the slow system isn’t hijacked. | **COE / teamwork in the process:** e.g. ClickUp COE structure or Learn Source “buddy” so self-disassociation and peer review are part of the workflow. |
 
 *DON'Ts:*
 
@@ -681,17 +681,17 @@ Environment design follows the same two-sub-category structure as EP. Risk Manag
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| **One** focus station + materials checklist (as in A.2) so reasoning blocks start fast. | **ILE:** One entry point, one template, one scoped context (A + that section of the Learning Book) — single-focus workspace; no switching. | **High-leverage question protocol:** e.g. in ILE or ClickUp, “Do novel/high-stakes topics first” (Pareto) so group time goes to where the slow system pays off most. |
-| Sequential materials (e.g. one textbook chapter, one set of notes) within arm’s reach to reduce working-memory load. | **Reasoning templates (CODE):** e.g. ILE Organise/Distill tables with step-by-step questions; Cursor rules that enforce “evidence, then conclusion” so effort goes into analysis, not setup. | **Step-by-step and evidence norms:** e.g. “Every claim has a source or reasoning step” in templates or peer review. |
-| Protected time blocks (e.g. calendar “focus” or ClickUp time tracking) so reasoning sessions have a clear start and end. | **Time-boxed sessions with review:** e.g. Pomodoro + “last 2 min = review what I learned” or ILE Session Log “progress” field at session end. | **Immediate feedback on reasoning:** e.g. COE buddy or Agent prompt: “What’s one gap in this reasoning?” in real time. |
+| **One** focus station + materials checklist (as in A.2) so reasoning blocks start fast. | **Learn Source:** One entry point, one template, one scoped context (A + that section of the Learning Book) — single-focus workspace; no switching. | **High-leverage question protocol:** e.g. in Learn Source or ClickUp, “Do novel/high-stakes topics first” (Pareto) so group time goes to where the slow system pays off most. |
+| Sequential materials (e.g. one textbook chapter, one set of notes) within arm’s reach to reduce working-memory load. | **Reasoning templates (CODE):** e.g. Learn Source Organise/Distill tables with step-by-step questions; Cursor rules that enforce “evidence, then conclusion” so effort goes into analysis, not setup. | **Step-by-step and evidence norms:** e.g. “Every claim has a source or reasoning step” in templates or peer review. |
+| Protected time blocks (e.g. calendar “focus” or ClickUp time tracking) so reasoning sessions have a clear start and end. | **Time-boxed sessions with review:** e.g. Pomodoro + “last 2 min = review what I learned” or Learn Source Session Log “progress” field at session end. | **Immediate feedback on reasoning:** e.g. COE buddy or Agent prompt: “What’s one gap in this reasoning?” in real time. |
 
 **B.3 Scalability — Highest Increase in Value-Creation per Additional Resource**
 
 | Physical | Digital | Cultural |
 |----------|---------|----------|
-| Same replicable station + portable kit as A.3 so any new space supports reasoning quickly. | **ILE:** Same repo, same A template, same entry-point→template map; new subject or new learner = new A + new Learning Book area — reasoning setup scales without re-building. **Shareable Cursor workspace + rules** so new devices/people get the same high-focus, evidence-enabled setup. | **Documented COE and teamwork norms** (e.g. in ILE README or ClickUp docs): psychological safety, novelty, skepticism — new participants onboard without re-teaching. |
-| | **Platform-agnostic templates and CODE:** Markdown + standard structure (e.g. ILE `templates/`) so they work across Cursor, Obsidian, Notion; knowledge base (e.g. Obsidian vault, Notion DB) that compounds across sessions. | **Peer review / COE pairs** (e.g. ClickUp assignees, ILE “buddy”): each new member increases reasoning quality and error-detection coverage. |
-| | **Centralized feedback loop:** e.g. ILE Session Log + Level Completion Checklist + Gap Analysis so “review → test → apply → reflect” is in one place and compounds. | **Shared vocabulary for reasoning and evidence** (e.g. “claim vs evidence,” “UBS vs UDS”) in a short doc so the cost of communicating and improving reasoning drops as the group grows. |
+| Same replicable station + portable kit as A.3 so any new space supports reasoning quickly. | **Learn Source:** Same repo, same A template, same entry-point→template map; new subject or new learner = new A + new Learning Book area — reasoning setup scales without re-building. **Shareable Cursor workspace + rules** so new devices/people get the same high-focus, evidence-enabled setup. | **Documented COE and teamwork norms** (e.g. in Learn Source README or ClickUp docs): psychological safety, novelty, skepticism — new participants onboard without re-teaching. |
+| | **Platform-agnostic templates and CODE:** Markdown + standard structure (e.g. Learn Source `templates/`) so they work across Cursor, Obsidian, Notion; knowledge base (e.g. Obsidian vault, Notion DB) that compounds across sessions. | **Peer review / COE pairs** (e.g. ClickUp assignees, Learn Source “buddy”): each new member increases reasoning quality and error-detection coverage. |
+| | **Centralized feedback loop:** e.g. Learn Source Session Log + Level Completion Checklist + Gap Analysis so “review → test → apply → reflect” is in one place and compounds. | **Shared vocabulary for reasoning and evidence** (e.g. “claim vs evidence,” “UBS vs UDS”) in a short doc so the cost of communicating and improving reasoning drops as the group grows. |
 
 ---
 
@@ -700,10 +700,10 @@ Environment design follows the same two-sub-category structure as EP. Risk Manag
 | Bucket | Risk Management (De-risking) | Driving Maximum Output |
 |--------|------------------------------|-------------------------|
 | **Physical** | Oura/Whoop (energy); Sony/Bose headphones (noise); Be Focused / Focus@Will (Pomodoro); station checklist (laminated or Notion). | Same; plus ergonomic setup and protected focus blocks (calendar). |
-| **Digital** | **ILE** (this project): A + Learning Book + templates + entry-point mapping. **Cursor:** single workspace, rules, memory. **AntiGravity** or Cursor Chat (focused dialogue). **Freedom / Cold Turkey** (blocking). **ClickUp** (COE structure, tasks, time, sync with Learning Book at scale). | **ILE** (context, templates, CODE, Session Log). **Cursor** (single workspace, evidence-oriented prompts). **ClickUp** (goals, COE, peer assignees). **Obsidian / Notion** (knowledge base, backlinks). |
-| **Cultural** | Shared norms doc (Notion/Confluence). COE structure (ClickUp/ILE). Bias checklist (card or template). | Same; plus COE pairs/buddies, high-leverage question protocol, shared vocabulary for reasoning and evidence. |
+| **Digital** | **Learn Source** (this project): A + Learning Book + templates + entry-point mapping. **Cursor:** single workspace, rules, memory. **AntiGravity** or Cursor Chat (focused dialogue). **Freedom / Cold Turkey** (blocking). **ClickUp** (COE structure, tasks, time, sync with Learning Book at scale). | **Learn Source** (context, templates, CODE, Session Log). **Cursor** (single workspace, evidence-oriented prompts). **ClickUp** (goals, COE, peer assignees). **Obsidian / Notion** (knowledge base, backlinks). |
+| **Cultural** | Shared norms doc (Notion/Confluence). COE structure (ClickUp/Learn Source). Bias checklist (card or template). | Same; plus COE pairs/buddies, high-leverage question protocol, shared vocabulary for reasoning and evidence. |
 
-*The ILE is the Digital Tool that implements the Effective Learning System: it provides the Environment (single workspace, scoped context, persistent memory via A + Learning Book) and the Tools (templates, entry points, Session Log, CODE-style tables) that respect the Principles and Environments in this document.*
+*The Learn Source is the Digital Tool that implements the Effective Learning System: it provides the Environment (single workspace, scoped context, persistent memory via A + Learning Book) and the Tools (templates, entry points, Session Log, CODE-style tables) that respect the Principles and Environments in this document.*
 
 ---
 
@@ -717,9 +717,9 @@ The EOP below is structured in line with a standard SOP: **Section 3. Roles & As
 
 | ROLE | PEOPLE IN CHARGE | PRIMARY RESPONSIBILITIES |
 |------|------------------|--------------------------|
-| **RESPONSIBLE** (The Doer) | **Agent** (e.g. Cursor, AntiGravity, or ILE-integrated AI) | Executes the day-to-day tasks as outlined in the procedure: loads templates, scopes context, conducts Q&A within the template, reads/writes A and the Learning Book, suggests next entry points, appends Session Log, and—when required—helps sync the Learning Book in Cursor / AntiGravity to ClickUp, fully respecting ClickUp’s COE Space hierarchical structure and the location of each member’s learning areas. |
+| **RESPONSIBLE** (The Doer) | **Agent** (e.g. Cursor, AntiGravity, or Learn Source-integrated AI) | Executes the day-to-day tasks as outlined in the procedure: loads templates, scopes context, conducts Q&A within the template, reads/writes A and the Learning Book, suggests next entry points, appends Session Log, and—when required—helps sync the Learning Book in Cursor / AntiGravity to ClickUp, fully respecting ClickUp’s COE Space hierarchical structure and the location of each member’s learning areas. |
 | **ACCOUNTABLE** (The Reviewer / Approver) | **Learner** | Ensures adherence to the Effective Learning System; provides final approval on progress, level changes, and checkpoint updates; chooses subject, phase, and entry point; validates output before phase/entry switch. |
-| **CONSULTED** (The Expert) | **Tester / Expert of the subject domain** | Provides guidance on content accuracy, depth, and alignment with COE/subject standards; consulted on level placement, evidence quality, and exceptions; has the capability to create tests or quizzes for the Learner using the ILE-integrated AI and Cursor/AntiGravity platform whenever requested; does not execute the procedure but advises or provides assessments when the Learner or Agent requests. |
+| **CONSULTED** (The Expert) | **Tester / Expert of the subject domain** | Provides guidance on content accuracy, depth, and alignment with COE/subject standards; consulted on level placement, evidence quality, and exceptions; has the capability to create tests or quizzes for the Learner using the Learn Source-integrated AI and Cursor/AntiGravity platform whenever requested; does not execute the procedure but advises or provides assessments when the Learner or Agent requests. |
 | **INFORMED** (Other Relevant Stakeholders) | **Peers within LTC Company** | Kept up-to-date on progress or decisions (e.g. level completed, subject covered) typically via one-way communication after the task or milestone is completed; no approval required. |
 
 ---
@@ -745,15 +745,15 @@ Each step below is role-tagged: (R) = Agent executes; (A) = Learner executes/app
 | Field | Content |
 |-------|---------|
 | **Step name** | Open workspace and orient |
-| **Required input** | ILE repo URL or path; Cursor or AntiGravity installed; access to Learning Book and `docs/ai` (e.g. clone or open existing repo). |
-| **Desired output** | Single workspace open (Cursor or AntiGravity) with ILE repo loaded; Learner sees Learning Book folder and A (Subject Roadmap) for at least one subject. |
+| **Required input** | Learn Source repo URL or path; Cursor or AntiGravity installed; access to Learning Book and `docs/ai` (e.g. clone or open existing repo). |
+| **Desired output** | Single workspace open (Cursor or AntiGravity) with Learn Source repo loaded; Learner sees Learning Book folder and A (Subject Roadmap) for at least one subject. |
 
 **RACI — Operating users**
 
 | Role | DOS (Key actions) | DON'TS (Avoid) | KPI (Success measure) |
 |------|-------------------|----------------|------------------------|
 | **Responsible (Agent)** | On open: offer to read A for default subject; list available subjects/areas from Learning Book if present. | Do not assume subject or entry point without Learner choice. | A is readable; at least one subject/area is available to choose. |
-| **Accountable (Learner)** | Open the repo in Cursor/AntiGravity; confirm workspace is the ILE root; choose or confirm subject for this session. | Do not start learning in a different repo or without A. | Workspace is ILE; subject is chosen or confirmed. |
+| **Accountable (Learner)** | Open the repo in Cursor/AntiGravity; confirm workspace is the Learn Source root; choose or confirm subject for this session. | Do not start learning in a different repo or without A. | Workspace is Learn Source; subject is chosen or confirmed. |
 | **Consulted (Tester/Expert)** | — | — | — |
 | **Informed (LTC Peers)** | — | — | — |
 
@@ -761,11 +761,11 @@ Each step below is role-tagged: (R) = Agent executes; (A) = Learner executes/app
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Computer; optional: noise-cancelling headphones. | Cursor or AntiGravity; git (clone/pull). | ILE repo; `learning-book/`; `docs/ai/`; A (e.g. `learning-book/COE_DS/A. Subject Roadmap & Level Specifications/…`). |
+| Computer; optional: noise-cancelling headphones. | Cursor or AntiGravity; git (clone/pull). | Learn Source repo; `learning-book/`; `docs/ai/`; A (e.g. `learning-book/COE_DS/A. Subject Roadmap & Level Specifications/…`). |
 
 **Typical blocker** | Repo not cloned or wrong folder opened; A missing for chosen subject.  
 **References** | `docs/ai/implementation/ile-minimal-flow.md`; `README.md` (clone → open in Cursor).  
-**Derisk** | One-time checklist: Clone ILE → Open in Cursor → Confirm A exists for subject.
+**Derisk** | One-time checklist: Clone Learn Source → Open in Cursor → Confirm A exists for subject.
 
 ---
 
@@ -790,7 +790,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 | Physical | Digital |
 |----------|---------|
 | Safe, comfortable space; adequate energy (rested, fed). | Single-focus mode; notifications off or minimal. |
-| Low sensory distractions (quiet, or headphones). | Cognitive offloading available (templates, ILE). |
+| Low sensory distractions (quiet, or headphones). | Cognitive offloading available (templates, Learn Source). |
 
 **3. Agent asks: Are your Physical & Digital tools ready?**
 
@@ -798,7 +798,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Physical | Digital |
 |----------|---------|
-| Timer or Pomodoro if using; headphones if needed. | ILE repo open in Cursor/AntiGravity; A (Subject Roadmap) readable. |
+| Timer or Pomodoro if using; headphones if needed. | Learn Source repo open in Cursor/AntiGravity; A (Subject Roadmap) readable. |
 | Materials within reach (water, notebook if needed). | Focus mode or blocklist on if using. |
 
 **RACI — Operating users**
@@ -837,7 +837,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Same as Step 1. | Cursor/AntiGravity; ILE. | A. Subject Roadmap & Level Specifications; Session Log; Learner Progress Tracker. |
+| Same as Step 1. | Cursor/AntiGravity; Learn Source. | A. Subject Roadmap & Level Specifications; Session Log; Learner Progress Tracker. |
 
 **Typical blocker** | A missing or corrupted; wrong subject path.  
 **References** | `ile-minimal-flow.md` § Session Start (Resume); `ile-persistent-memory.md`.  
@@ -866,7 +866,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Same. | Cursor/AntiGravity; ILE. | A; `learning-book-tree-map.md`; entry-point-to-template-mapping. |
+| Same. | Cursor/AntiGravity; Learn Source. | A; `learning-book-tree-map.md`; entry-point-to-template-mapping. |
 
 **Typical blocker** | Learner unsure which phase; Agent does not have Learning Map.  
 **References** | `ile-minimal-flow.md` § Core flow step 2; `learning-book-tree-map.md`.  
@@ -895,7 +895,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Same. | Cursor/AntiGravity; ILE. | `templates/`; `entry-point-to-template-mapping.md`; Learning Book section for that entry. |
+| Same. | Cursor/AntiGravity; Learn Source. | `templates/`; `entry-point-to-template-mapping.md`; Learning Book section for that entry. |
 
 **Typical blocker** | Template missing for entry; wrong mapping.  
 **References** | `entry-point-to-template-mapping.md`; `ile-minimal-flow.md` § Core flow step 3.  
@@ -924,7 +924,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Same; optional: Pomodoro timer. | Cursor/AntiGravity; ILE; focus mode (no unrelated apps). | Template; Learning Book Markdown for entry; A (read-only during conversation). |
+| Same; optional: Pomodoro timer. | Cursor/AntiGravity; Learn Source; focus mode (no unrelated apps). | Template; Learning Book Markdown for entry; A (read-only during conversation). |
 
 **Typical blocker** | Context collapse (chat too long); Learner fatigued; template too rigid or too vague.  
 **References** | EP § Risk Management & Driving Output; `ile-minimal-flow.md` § Core flow step 4; CODE/templates.
@@ -953,7 +953,7 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 | Hardware | Software | Documents |
 |----------|----------|-----------|
-| Same. | Cursor/AntiGravity; ILE; optional: ClickUp, email, or shared dashboard. | A (Session Log, Learner Progress Tracker, Level Completion Checklist); optional: COE/ClickUp for LTC Peers. |
+| Same. | Cursor/AntiGravity; Learn Source; optional: ClickUp, email, or shared dashboard. | A (Session Log, Learner Progress Tracker, Level Completion Checklist); optional: COE/ClickUp for LTC Peers. |
 
 **Typical blocker** | Learner forgets to approve; A file locked or conflict; no channel for LTC Peers.  
 **References** | `ile-minimal-flow.md` § Core flow step 5; `ile-persistent-memory.md` § Session end.  
@@ -974,10 +974,10 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 ---
 
-##### Quick reference: Steps to effectively learn with ILE + Cursor (no-fail sequence)
+##### Quick reference: Steps to effectively learn with Learn Source + Cursor (no-fail sequence)
 
-1. **Open** — Clone ILE repo → Open in Cursor → Confirm A exists for your subject.  
-2. **Pre-session checklist** — Agent states 3 key principles (de-risking first, one entry one template, A is truth); Agent asks environment ready? (Physical: safe, energy, low distractions | Digital: single-focus, offloading); Agent asks tools ready? (Physical: timer/headphones, materials | Digital: ILE + A open, focus mode). Learner confirms or defers.  
+1. **Open** — Clone Learn Source repo → Open in Cursor → Confirm A exists for your subject.  
+2. **Pre-session checklist** — Agent states 3 key principles (de-risking first, one entry one template, A is truth); Agent asks environment ready? (Physical: safe, energy, low distractions | Digital: single-focus, offloading); Agent asks tools ready? (Physical: timer/headphones, materials | Digital: Learn Source + A open, focus mode). Learner confirms or defers.  
 3. **Resume** — Choose subject → Agent reads A → Agent says where you are and suggests next → You choose "resume" or "pick another."  
 4. **Phase** — Choose B (Capture), C (Organise), or D (Distill) → Agent shows entry points.  
 5. **Entry** — Pick one entry point (e.g. Chapter 1 UBS, Topic 0) → Agent loads template and scopes context.  
@@ -987,13 +987,13 @@ Present a short checklist for Learner to confirm (yes / not yet / skip for now):
 
 ---
 
-## 8. ILE Strategy (implementation)
+## 8. Learn Source Strategy (implementation)
 
-For ILE strategy — which sections matter most, how to fully respect Principles (EP) and EOP, and the checklist — see the implementation contract:
+For Learn Source strategy — which sections matter most, how to fully respect Principles (EP) and EOP, and the checklist — see the implementation contract:
 
 **`docs/ai/implementation/ile-effective-learning-contract.md`**
 
-That document contains: minimal EP (3 principles), full EOP (RACI + all 8 steps with Required Input, Desired Output, RACI, gates), and ILE Strategy (which sections matter, how to respect Principles and EOP). The Agent loads or recalls this contract at ILE session start per `docs/ai/implementation/ile-persistent-memory.md` §3.
+That document contains: minimal EP (3 principles), full EOP (RACI + all 8 steps with Required Input, Desired Output, RACI, gates), and Learn Source Strategy (which sections matter, how to respect Principles and EOP). The Agent loads or recalls this contract at Learn Source session start per `docs/ai/implementation/ile-persistent-memory.md` §3.
 
 ---
 
@@ -1006,7 +1006,7 @@ That document contains: minimal EP (3 principles), full EOP (RACI + all 8 steps 
 5. **UDS (top down)** — UDS (surface, full system) ← driven by UDS.UD (slow system), blocked by UDS.UB (fast system); UDS.UD ← driven by UDS.UD.UD (evolutionary), blocked by UDS.UD.UB (bio-efficient); UDS.UB blocked by UDS.UB.UB (support belief).
 6. **Strategic Design** — EP, Effective Environment, Effective Tools, EOP, each with Risk Management, Sustainability, Efficiency, Scalability, Driving Output.
 7. **User Guide** — EP (principles from UBS & UDS, deeper first) → EOE/EOT (environment and tools) → EOP (steps from Effective Execution + EP & EOE/EOT).
-8. **ILE Strategy** — See `docs/ai/implementation/ile-effective-learning-contract.md` (minimal EP + full EOP + Strategy). Respect via: persistent reference, EOP as the flow (steps 1–8 with mandatory gates), principles in Agent behavior, RACI by design (no A write or switch without Learner approval).
+8. **Learn Source Strategy** — See `docs/ai/implementation/ile-effective-learning-contract.md` (minimal EP + full EOP + Strategy). Respect via: persistent reference, EOP as the flow (steps 1–8 with mandatory gates), principles in Agent behavior, RACI by design (no A write or switch without Learner approval).
 
 This document is the single markdown reference for the **LTC Advanced Effective Learning System**, with User/Action/Outcome at the start, UBS and UDS explained top-down, shared forces explained once with distinct UBS vs UDS roles, and a causal diagram reflecting the full relationship as in the source.
 

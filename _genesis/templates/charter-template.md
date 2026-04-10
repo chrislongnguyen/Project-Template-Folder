@@ -9,11 +9,11 @@ stage: design
 sub_system: 
 ---
 # CHARTER TEMPLATE (T1)
-> Stub template — populate during ALIGN Design and Build phases.
+> Stub template — populate during ALIGN Design and Build stages.
 > Cell(s) enabled: 1-ALIGN × Design, 1-ALIGN × Build
-> Gap justification: DESIGN_TEMPLATE structures a DSBV phase; no existing template produces a project charter (EO, stakeholders, scope, success criteria).
+> Gap justification: DESIGN_TEMPLATE structures a DSBV stage; no existing template produces a project charter (EO, stakeholders, scope, success criteria).
 
-<!-- TODO: Fill in during ALIGN Design phase -->
+<!-- TODO: Fill in during ALIGN Design stage -->
 
 ## Project Identity
 

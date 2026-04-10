@@ -13,7 +13,7 @@ parent: inbox/2026-04-08_agent-system-8component-design.md
 # DESIGN: Agent 3 — ltc-builder (Maker)
 
 > **Purpose:** Full 8-component system design for ltc-builder, the Maker agent.
-> DSBV Phase 3 (Build). Sonnet model. The ONLY agent that modifies the codebase.
+> DSBV stage 3 (Build). Sonnet model. The ONLY agent that modifies the codebase.
 >
 > **Parent document:** `inbox/2026-04-08_agent-system-8component-design.md`
 >
@@ -29,7 +29,7 @@ parent: inbox/2026-04-08_agent-system-8component-design.md
 Name:            ltc-builder
 Role:            Maker — produce artifacts per approved sequence
 Model:           Sonnet (balanced speed/quality/cost)
-Pipeline pos:    DSBV Phase 3 (Build) — third in chain
+Pipeline pos:    DSBV stage 3 (Build) — third in chain
 RACI:            R only — builds, never designs or validates
 Agent type:      Leaf node — cannot dispatch sub-agents (EP-13)
 Agent file:      .claude/agents/ltc-builder.md (v1.4)
@@ -352,7 +352,7 @@ Status: ❌ PreToolUse/PostToolUse hooks DO NOT FIRE for sub-agents
 |------|-------|-------------|---------------------|--------|
 | `naming-lint.sh` | PreToolUse(Write) | Validates filename against UNG naming rules | ❌ LOST | Builder can create files with invalid names |
 | `inject-frontmatter.sh` | PostToolUse(Write\|Edit) | Auto-injects work_stream, sub_system, stage, type from file path | ❌ LOST | Builder must manually add all frontmatter fields |
-| `dsbv-skill-guard.sh` | PreToolUse(Write\|Edit) | Checks DSBV Design phase prerequisite (no Build without DESIGN.md) | ❌ LOST | Builder could write to a workstream without DESIGN.md |
+| `dsbv-skill-guard.sh` | PreToolUse(Write\|Edit) | Checks DSBV Design stage prerequisite (no Build without DESIGN.md) | ❌ LOST | Builder could write to a workstream without DESIGN.md |
 | `dsbv-gate.sh --pretool` | PreToolUse(Write\|Edit) | Checks ALPEI chain-of-custody (workstream N-1 must have validated artifact) | ❌ LOST | Builder could build in workstream N without upstream approval |
 | `state-saver.sh` | PostToolUse(Write\|Edit) | Saves session state after file changes | ❌ LOST | No state preservation during build |
 | `ripple-check.sh` | PostToolUse(Write\|Edit) | Checks backlink impact of file changes | ❌ LOST | Builder unaware of downstream link breakage |

@@ -203,7 +203,7 @@ Agent 0 performs five categories of action:
 
 ```
 1. INTERPRET ---- Parse user intent, identify workstream, check pre-flight protocol
-2. DECOMPOSE ---- Break work into DSBV phases, identify sub-agent assignments
+2. DECOMPOSE ---- Break work into DSBV stages, identify sub-agent assignments
 3. DISPATCH ----- Invoke Agent() with context-packaged 5-field prompts
 4. SYNTHESIZE --- Receive sub-agent EO, merge, resolve conflicts, check coherence
 5. PRESENT ------ Show results to Human Director at DSBV gate points (G1-G4)
@@ -255,7 +255,7 @@ Direct action (no sub-agent dispatch) occurs for:
 |-------|----------|-------------|
 | UBS-1 | Technical | No retry/circuit breaker means failures cascade without automatic recovery |
 | UBS-2 | Human | Human Director must manually re-dispatch after sub-agent failure --- attention cost |
-| UBS-3 | Temporal | Sequential dispatch adds latency to multi-phase pipelines |
+| UBS-3 | Temporal | Sequential dispatch adds latency to multi-stage pipelines |
 | UDS-1 | Technical | 5-field context packaging standardizes every dispatch --- reduces miscommunication |
 | UDS-2 | Technical | MECE agent roster eliminates scope overlap --- each agent has clear boundaries |
 | UDS-3 | Technical | verify-agent-dispatch.sh PreToolUse hook enforces packaging compliance |
@@ -284,7 +284,7 @@ But Agent 0's own output to the Human Director has no enforced format --- it is 
 
 **Frontier Standard**
 
-- Structured gate reports: every gate presentation includes a standard header (workstream, phase, AC summary, risk flags, recommended action)
+- Structured gate reports: every gate presentation includes a standard header (workstream, stage, AC summary, risk flags, recommended action)
 - Confidence-tagged output: each substantive claim tagged with confidence level (high/medium/low)
 - Audit trail: every output traces to an input (user message ID, sub-agent report, or rule reference)
 
@@ -818,7 +818,7 @@ The /dsbv skill hard-codes 2 execution modes only (competing hypotheses vs singl
 This is insufficient. The orchestrator must evaluate ALL 6 modes against 8 LTs before choosing:
 
 ```
-SEQUENCE Phase Step 0: Choose Execution Mode
+SEQUENCE Stage Step 0: Choose Execution Mode
 ─────────────────────────────────────────────
 For each task, score 4 dimensions:
 
@@ -854,7 +854,7 @@ Mode selection matrix:
   └──────────────────────┴──────────────┴───────────────────────────────────────────┘
 ```
 
-**Current state:** Only modes 3 and 4 are documented in /dsbv. Modes 1, 2, 5, 6 are used in practice but never formalized. The planner/SEQUENCE phase has no decision tree — it picks from a 2-row table.
+**Current state:** Only modes 3 and 4 are documented in /dsbv. Modes 1, 2, 5, 6 are used in practice but never formalized. The planner/SEQUENCE stage has no decision tree — it picks from a 2-row table.
 
 **Frontier Standard**
 
@@ -904,7 +904,7 @@ Mode selection matrix:
 | Input format | Natural language messages (unstructured) |
 | Expected content | Intent (what to achieve), scope (which workstream/artifact), constraints (time, quality, budget) |
 | Minimum viable input | A clear EO statement: "{verb} {noun} {constraint}" |
-| Orchestrator obligation | Parse intent, run pre-flight protocol, identify DSBV phase, propose plan before executing |
+| Orchestrator obligation | Parse intent, run pre-flight protocol, identify DSBV stage, propose plan before executing |
 | Human obligation | Approve/reject at G1-G4 gates; provide validated status when satisfied |
 | Escalation path | If intent is ambiguous, orchestrator asks clarifying questions before proceeding |
 
@@ -951,7 +951,7 @@ Prioritized by S > E > Sc (DT#1). Each proposal grounded in a specific gap, EP, 
   max_iterations = 2 (before escalation)
   exit_condition = all ACs PASS in VALIDATE.md
   ```
-- Implementation: Update `.claude/skills/dsbv/SKILL.md` Build phase section
+- Implementation: Update `.claude/skills/dsbv/SKILL.md` Build stage section
 
 **P0-2: Circuit Breaker**
 - Gap: EA-G2
@@ -996,7 +996,7 @@ Prioritized by S > E > Sc (DT#1). Each proposal grounded in a specific gap, EP, 
   ```json
   {
     "workstream": "4-EXECUTE",
-    "phase": "build",
+    "stage": "build",
     "task_id": "T3.2",
     "completed_tasks": ["T1.1", "T1.2", ...],
     "last_sub_agent": "ltc-builder",
@@ -1018,7 +1018,7 @@ Prioritized by S > E > Sc (DT#1). Each proposal grounded in a specific gap, EP, 
 - EP: EP-10 (Define Done)
 - Proposal: Standardize orchestrator gate presentations:
   ```
-  GATE: G{N} ({phase}) | Workstream: {name}
+  GATE: G{N} ({stage}) | Workstream: {name}
   ACs: {pass}/{total} | Risk flags: {count}
   Action: APPROVE / REVISE / ESCALATE
   ---
@@ -1096,7 +1096,7 @@ Success = efficient and scalable management of failure risks. Agent 0's happy pa
 
 ---
 
-## Cross-Agent Review (2026-04-08, Phase 1 Review)
+## Cross-Agent Review (2026-04-08, Stage 1 Review)
 
 ### Aggregate Scorecard
 
@@ -1116,8 +1116,8 @@ Agent     │ S    │ E    │ Sc   │ Weakest Component      │ Critical Fin
 |---|-------|--------|--------|
 | 1 | WMS reference corrected: ClickUp primary, Notion removed, WMS integration dropped (D7) | Orchestrator | DONE (this edit) |
 | 2 | Planner Action 4 mentions "Learn Pipeline Orchestration" — LEARN interaction not fully designed | Planner | Defer to Iteration 2 |
-| 3 | Reviewer proposes VALIDATE.md v2 format but Orchestrator EOP doesn't reference it | Orch ↔ Reviewer | Build phase |
-| 4 | Builder proposes handoff.json but no agent explicitly handles receiving it | Builder ↔ all | Build phase |
+| 3 | Reviewer proposes VALIDATE.md v2 format but Orchestrator EOP doesn't reference it | Orch ↔ Reviewer | Build stage |
+| 4 | Builder proposes handoff.json but no agent explicitly handles receiving it | Builder ↔ all | Build stage |
 
 ### Cross-Agent Consistency Verified
 

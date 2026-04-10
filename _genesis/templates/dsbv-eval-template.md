@@ -12,9 +12,9 @@ sub_system:
 ---
 # DSBV Evaluation Protocol — [WORKSTREAM NAME]
 
-> For Validate phase. Covers multi-agent synthesis and single-agent validation.
+> For Validate stage. Covers multi-agent synthesis and single-agent validation.
 > Follow mechanically. Do not skip steps.
-> Source of truth for 4 universal dimensions: SKILL.md v2.1 §Phase 4: VALIDATE.
+> Source of truth for 4 universal dimensions: SKILL.md v2.1 §Stage 4: VALIDATE.
 
 ---
 
@@ -63,7 +63,7 @@ Add below the universal dimensions. Weights must sum to 100% across all dimensio
 | [Exact text from DESIGN.md AC-02] | PASS / FAIL / PARTIAL | [file path, line number, or excerpt proving the verdict] |
 | ... | ... | ... |
 
-**Evidence standard (per phase-execution-guide.md §Validate Phase):**
+**Evidence standard (per stage-execution-guide.md §Validate stage):**
 - Every verdict — PASS, FAIL, or PARTIAL — requires a file path, line number, or quoted excerpt.
 - A table with all-PASS verdicts and no evidence column is a rubber-stamp. Re-run with evidence.
 - PARTIAL = criterion is partly satisfied; evidence must show what is present AND what is missing.
@@ -239,7 +239,7 @@ UNIQUE INSIGHTS (1 team only):
 - [[dsbv-metrics]]
 - [[gate-state]]
 - [[iteration]]
-- [[phase-execution-guide]]
+- [[stage-execution-guide]]
 - [[project]]
 - [[task]]
 - [[workstream]]

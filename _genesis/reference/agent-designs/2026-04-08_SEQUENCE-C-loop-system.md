@@ -257,7 +257,7 @@ Builder SHOULD also report (when applicable):
 ```json
 {
   "workstream": "4-EXECUTE",
-  "phase": "build",
+  "stage": "build",
   "task_id": "T3.2",
   "completed_tasks": ["T1.1", "T1.2"],
   "last_sub_agent": "ltc-builder",
@@ -293,7 +293,7 @@ Builder SHOULD also report (when applicable):
 
 **Change:** Add gate presentation template:
 ```
-GATE: G{N} ({phase}) | Workstream: {name}
+GATE: G{N} ({stage}) | Workstream: {name}
 ACs: {pass}/{total} | Risk flags: {count}
 Action: APPROVE / REVISE / ESCALATE
 ```

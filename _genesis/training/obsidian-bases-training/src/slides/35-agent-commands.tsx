@@ -23,8 +23,8 @@ const categories: { label: string; color: string; rows: SkillRow[] }[] = [
       { cmd: '/ltc-brainstorming', desc: 'Structured discovery — 4 invisible gates', when: 'Starting any new feature' },
       { cmd: '/dsbv design', desc: 'Design phase — EO, scope, forces, acceptance criteria', when: 'After brainstorming' },
       { cmd: '/dsbv sequence', desc: 'Sequence phase — order the work, identify batches', when: 'After design approved' },
-      { cmd: '/dsbv build', desc: 'Build phase — agent writes artifacts', when: 'Active work session' },
-      { cmd: '/dsbv validate', desc: 'Validate phase — review against DESIGN.md ACs', when: 'After build complete' },
+      { cmd: '/dsbv build', desc: 'Build stage — agent writes artifacts', when: 'Active work session' },
+      { cmd: '/dsbv validate', desc: 'Validate stage — review against DESIGN.md ACs', when: 'After build complete' },
     ],
   },
   {

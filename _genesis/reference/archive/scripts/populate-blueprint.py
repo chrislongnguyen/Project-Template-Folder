@@ -6,7 +6,7 @@ populate-blueprint.py — Manifest-driven repo population for LTC Project Templa
 Reads the filesystem blueprint (3-PLAN/_cross/filesystem-blueprint.md) rules and:
 1. Migrates existing files from old category dirs → new subsystem dirs (git mv)
 2. Creates templated artifacts for all subsystems (PD, DP, DA, IDM) + _cross
-3. Creates DSBV phase files (DESIGN.md, SEQUENCE.md) per workstream×subsystem
+3. Creates DSBV stage files (DESIGN.md, SEQUENCE.md) per workstream×subsystem
 4. Cleans up empty old dirs and orphan .gitkeep files
 5. Moves Obsidian code from 4-EXECUTE/src/obsidian → _genesis/obsidian/src
 
@@ -215,7 +215,7 @@ def make_stub(title, description, sections=None):
     body = f"# {title}\n\n> {description}\n"
     if sections:
         for s in sections:
-            body += f"\n## {s}\n\n<!-- TODO: Populate during DSBV Build phase -->\n"
+            body += f"\n## {s}\n\n<!-- TODO: Populate during DSBV Build stage -->\n"
     body += "\n## Links\n\n- [[workstream]]\n- [[iteration]]\n"
     return body
 
@@ -307,7 +307,7 @@ def create_from_template(target_path, template_name, work_stream, sub_system,
     stats["created"] += 1
 
 
-# ─── Phase 1: Migrate existing files ────────────────────────────────────────
+# ─── Stage 1: Migrate existing files ────────────────────────────────────────
 
 def phase_1_migrate():
     print("\n=== PHASE 1: Migrate existing files ===\n")
@@ -363,7 +363,7 @@ def phase_1_migrate():
         stats["migrated"] += 1
 
 
-# ─── Phase 1b: Move Obsidian code ───────────────────────────────────────────
+# ─── Stage 1b: Move Obsidian code ───────────────────────────────────────────
 
 def phase_1b_obsidian():
     print("\n=== PHASE 1b: Move Obsidian code to _genesis/obsidian/ ===\n")
@@ -394,7 +394,7 @@ def phase_1b_obsidian():
                     stats["migrated"] += 1
 
 
-# ─── Phase 2: Create templated artifacts ─────────────────────────────────────
+# ─── Stage 2: Create templated artifacts ─────────────────────────────────────
 
 def phase_2_populate():
     print("\n=== PHASE 2: Create templated artifacts ===\n")
@@ -433,10 +433,10 @@ def phase_2_populate():
             )
 
 
-# ─── Phase 2b: Create DSBV phase files per subsystem ────────────────────────
+# ─── Stage 2b: Create DSBV stage files per subsystem ────────────────────────
 
 def phase_2b_dsbv():
-    print("\n=== PHASE 2b: Create DSBV phase files ===\n")
+    print("\n=== PHASE 2b: Create DSBV stage files ===\n")
 
     dsbv_templates = {
         "DESIGN.md":   ("design-template.md",       "design"),
@@ -463,12 +463,12 @@ def phase_2b_dsbv():
 
                 body = f"""# DSBV {stage.upper()} — {ws_upper} × {sub_full}
 
-> DSBV Phase artifact for {ws_upper} workstream, {sub_full} subsystem.
+> DSBV stage artifact for {ws_upper} workstream, {sub_full} subsystem.
 > Source template: `_genesis/templates/{template}`
 
 ## Scope
 
-<!-- TODO: Define what this workstream×subsystem phase must produce -->
+<!-- TODO: Define what this workstream×subsystem stage must produce -->
 
 ## Artifacts
 
@@ -492,7 +492,7 @@ def phase_2b_dsbv():
                 stats["created"] += 1
 
 
-# ─── Phase 3: Create subsystem READMEs where missing ────────────────────────
+# ─── Stage 3: Create subsystem READMEs where missing ────────────────────────
 
 def phase_3_readmes():
     print("\n=== PHASE 3: Ensure subsystem READMEs ===\n")
@@ -527,7 +527,7 @@ def phase_3_readmes():
             stats["created"] += 1
 
 
-# ─── Phase 4: Clean up old dirs ─────────────────────────────────────────────
+# ─── Stage 4: Clean up old dirs ─────────────────────────────────────────────
 
 def phase_4_cleanup():
     print("\n=== PHASE 4: Clean up old dirs ===\n")
@@ -580,7 +580,7 @@ def phase_4_cleanup():
         stats["cleaned_dirs"] += 1
 
 
-# ─── Phase 5: Remove training deck duplicate ────────────────────────────────
+# ─── Stage 5: Remove training deck duplicate ────────────────────────────────
 
 def phase_5_execute_cleanup():
     """Clean up 4-EXECUTE files that moved elsewhere or are duplicates."""

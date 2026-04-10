@@ -12,9 +12,9 @@ sub_system:
 ---
 # SEQUENCE.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
 
-> DSBV Phase 2 artifact. Prerequisite: DESIGN.md approved at G1.
+> DSBV stage 2 artifact. Prerequisite: DESIGN.md approved at G1.
 > This document orders the work. Every task in DESIGN.md Artifact Inventory must appear here.
-> Produced by ltc-planner. Consumed by ltc-builder during Build phase.
+> Produced by ltc-planner. Consumed by ltc-builder during Build stage.
 
 ---
 
@@ -33,8 +33,8 @@ sub_system:
 
 ## Dependency Map
 
-_Ordered list of tasks with their upstream dependencies. Build phase executes in this order._
-_Ref: workstream-typical chains in `.claude/skills/dsbv/references/phase-execution-guide.md` § Sequence Phase._
+_Ordered list of tasks with their upstream dependencies. Build stage executes in this order._
+_Ref: workstream-typical chains in `.claude/skills/dsbv/references/stage-execution-guide.md` § Sequence stage._
 
 | ID | Task | Depends-on | Input | Output |
 |----|------|------------|-------|--------|
@@ -43,7 +43,7 @@ _Ref: workstream-typical chains in `.claude/skills/dsbv/references/phase-executi
 | T-03 | _task name_ | T-01, T-02 | _input artifact(s)_ | _output artifact(s)_ |
 | T-04 | _task name_ | — | _input artifact(s)_ | _output artifact(s)_ |
 
-> Workstream dependency patterns (from phase-execution-guide.md):
+> Workstream dependency patterns (from stage-execution-guide.md):
 > - ALIGN: Charter → Stakeholders → Requirements → OKRs → Decisions
 > - PLAN: Architecture → Risks (UBS) → Drivers (UDS) → Roadmap
 > - EXECUTE: Config → Core modules → Integration → Tests → Docs
@@ -71,7 +71,7 @@ _Size heuristic: S = <15 min | M = 15–60 min | L = >60 min (decompose L tasks 
 ## Parallel Dispatch
 
 _Tasks with no shared Write targets and no data dependency may be dispatched simultaneously._
-_Mark independent tasks explicitly so Build phase can optimise wall-clock time._
+_Mark independent tasks explicitly so Build stage can optimise wall-clock time._
 _Source: `.claude/skills/dsbv/SKILL.md` § Parallel Dispatch Protocol._
 
 ```
@@ -115,7 +115,7 @@ _Tasks off the critical path are candidates for parallel dispatch (see above)._
 
 ## Git Strategy
 
-_Branch, worktree, and merge plan for this workstream's Build phase._
+_Branch, worktree, and merge plan for this workstream's Build stage._
 
 | Field | Value |
 |-------|-------|
@@ -165,6 +165,6 @@ _Verify SEQUENCE.md is complete before submitting for G2._
 - [[VALIDATE]]
 - [[dsbv-process]]
 - [[iteration]]
-- [[phase-execution-guide]]
+- [[stage-execution-guide]]
 - [[task]]
 - [[workstream]]

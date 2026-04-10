@@ -7,12 +7,12 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 const teams = [
   { name: 'ltc-explorer', when: 'Pre-DSBV research', agents: 'Haiku — read-only', color: '#69C7CC' },
   { name: 'ltc-planner', when: 'Design + Sequence', agents: 'Opus — defines WHAT', color: colors.gold },
-  { name: 'ltc-builder', when: 'Build phase', agents: 'Sonnet — produces artifacts', color: '#69994D' },
-  { name: 'ltc-reviewer', when: 'Validate phase', agents: 'Opus — reviews vs DESIGN', color: colors.ruby },
+  { name: 'ltc-builder', when: 'Build stage', agents: 'Sonnet — produces artifacts', color: '#69994D' },
+  { name: 'ltc-reviewer', when: 'Validate stage', agents: 'Opus — reviews vs DESIGN', color: colors.ruby },
 ];
 
 const steps = [
-  { num: '1', label: 'You run /dsbv {phase}' },
+  { num: '1', label: 'You run /dsbv {stage}' },
   { num: '2', label: 'Pre-flight checks fire' },
   { num: '3', label: 'Correct agent dispatched' },
   { num: '4', label: 'Artifact produced' },

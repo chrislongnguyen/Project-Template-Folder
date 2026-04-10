@@ -39,5 +39,5 @@ fi
 echo "=== A/B Re-Test (LIVE) ==="
 echo "TODO: Implement live A/B test scenarios"
 echo "This requires dispatching parallel agents with controlled prompts."
-echo "Deferred to G4 Validate phase."
+echo "Deferred to G4 Validate stage."
 exit 1

@@ -342,7 +342,7 @@ The 7-CS integrates all three layers. EP-11 (Agent Role Separation) enforces sco
 
 **Patterns:**
 - Scope Declaration at Spawn — every agent prompt begins with explicit scope boundary. If a task crosses boundaries, the agent surfaces a handoff request rather than resolving unilaterally.
-- MECE File Ownership — agents operating in parallel are assigned non-overlapping file targets. Shared files written by one designated agent per phase.
+- MECE File Ownership — agents operating in parallel are assigned non-overlapping file targets. Shared files written by one designated agent per stage.
 
 **APEI Application:** ALIGN workstream-2 (ALIGN, PLAN) are ltc-planner's domain. EXECUTE workstream is ltc-builder's domain. IMPROVE workstream is ltc-reviewer-initiated. Handoff artifacts (PLANNING_BASELINE.md, .exec/ task files) are the formal scope boundaries between workstreams.
 

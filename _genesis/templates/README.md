@@ -13,7 +13,7 @@ iteration: 2
 
 ## Purpose
 
-DSBV phase templates, VANA-SPEC, ADR, research, review, and 15+ artifact starters.
+DSBV stage templates, VANA-SPEC, ADR, research, review, and 15+ artifact starters.
 
 Creating artifacts without templates produces inconsistent structure that breaks Obsidian Bases queries, agent parsing, and review automation. This directory exists separately from `frameworks/` because templates are fill-in starters (HOW to produce an artifact) while frameworks are thinking models (HOW to reason about a problem). Always check here before creating a blank artifact.
 
@@ -21,9 +21,9 @@ Creating artifacts without templates produces inconsistent structure that breaks
 
 | Content Type | Description |
 |-------------|-------------|
-| `design-template.md` | DSBV Design phase — spec structure for any workstream |
-| `dsbv-process.md` | DSBV process template — Sequence phase scaffolding |
-| `review-template.md` | DSBV Validate phase — review package template |
+| `design-template.md` | DSBV Design stage — spec structure for any workstream |
+| `dsbv-process.md` | DSBV process template — Sequence stage scaffolding |
+| `review-template.md` | DSBV Validate stage — review package template |
 | `vana-spec-template.md` | VANA acceptance criteria spec (Verb Adverb Noun Adjective) |
 | `adr-template.md` | Architecture Decision Record |
 | `charter-template.md` | 1-ALIGN charter template |

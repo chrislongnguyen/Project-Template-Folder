@@ -142,7 +142,7 @@ owner: ""
 
 **Diagnosis:** `[ Instructions: Identify the specific "Ultimate Blocking System" (UBS) for this System. In a team context, the UBS is often defined by "human-related biases" or "shadow operating systems" (unofficial ways of doing things). What psychological biases, structural bottlenecks, or natural failure paths prevent this system from succeeding? ]`
 
-**Role-Aware Analysis (D25):** `[ UBS must be analyzed from BOTH R (Responsible) and A (Accountable) perspectives. The same system has different blockers depending on who is doing the work. Label UBS elements with role tags: UBS(R) = blockers from R's perspective; UBS(A) = blockers from A's perspective. Source: ILE T1 + ESD §3.4. ]`
+**Role-Aware Analysis (D25):** `[ UBS must be analyzed from BOTH R (Responsible) and A (Accountable) perspectives. The same system has different blockers depending on who is doing the work. Label UBS elements with role tags: UBS(R) = blockers from R's perspective; UBS(A) = blockers from A's perspective. Source: Learn Source T1 + ESD §3.4. ]`
 
 **Mitigation Strategy:** `[ Instructions: How does this system systematically disable or overcome these blockers? ]`
 
@@ -165,7 +165,7 @@ owner: ""
 
 **Diagnosis**: `[ Instructions: Identify the "Ultimate Driving System" (UDS). For teams, this is the "collective logical & analytical reasoning capability". What logic, data, or discipline makes this system succeed? ]`
 
-**Role-Aware Analysis (D25):** `[ UDS must be analyzed from BOTH R (Responsible) and A (Accountable) perspectives. The same system has different drivers depending on who is doing the work. Label UDS elements with role tags: UDS(R) = drivers from R's perspective; UDS(A) = drivers from A's perspective. Source: ILE T2 + ESD §3.3. ]`
+**Role-Aware Analysis (D25):** `[ UDS must be analyzed from BOTH R (Responsible) and A (Accountable) perspectives. The same system has different drivers depending on who is doing the work. Label UDS elements with role tags: UDS(R) = drivers from R's perspective; UDS(A) = drivers from A's perspective. Source: Learn Source T2 + ESD §3.3. ]`
 
 
 | ASPECTS                                                                                                                                                                                                                                               | COMPONENTS                                                                                            | KEY QUESTION                                                                    | DESCRIPTION                                                                                                             | UTILIZATION STRATEGY                                                                           | IMPORTANT NOTES |

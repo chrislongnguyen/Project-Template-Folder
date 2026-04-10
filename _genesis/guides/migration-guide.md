@@ -272,7 +272,7 @@ All references to old names have been updated across: `.claude/rules/`, `.claude
 | No DSBV workflow | Design → Sequence → Build → Validate with human gates |
 | No enforcement | 5 always-on rules + 3 hooks |
 | Manual commits | /git-save with classification + version checks |
-| No templates | 27 templates covering all workstream × phase intersections |
+| No templates | 27 templates covering all workstream × stage intersections |
 | No training | 47-slide interactive deck + Navigator HTML |
 
 ---

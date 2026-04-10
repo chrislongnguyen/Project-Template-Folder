@@ -25,7 +25,7 @@ This folder structure is **structural risk management encoded into the filesyste
 
 Three principles shape the structure:
 
-1. **Make risks visible before they compound** — explicit risk artifacts at every phase
+1. **Make risks visible before they compound** — explicit risk artifacts at every stage
 2. **Follow the natural flow of effective work** — ALIGN → PLAN → EXECUTE → IMPROVE
 3. **Encode the 3 pillars into the structure** — Sustainability (survives failures?), Efficiency (minimal waste?), Scalability (handles growth?)
 
@@ -329,13 +329,13 @@ Every workstream produces artifacts through **Design → Sequence → Build → 
 | Command | What it does |
 |---------|-------------|
 | `/dsbv` | Start a full guided DSBV cycle |
-| `/dsbv design align` | Run just the Design phase on ALIGN workstream |
+| `/dsbv design align` | Run just the Design stage on ALIGN workstream |
 | `/dsbv status` | See progress across all workstreams |
 
 **Rules:**
 - Design MUST complete before Build
 - Validate MUST happen before a workstream is marked complete
-- Each phase transition requires your explicit approval
+- Each stage transition requires your explicit approval
 
 ### Using the Learning Pipeline
 

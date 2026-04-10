@@ -6,7 +6,7 @@ export default function SectionFramework() {
     <SectionDivider
       number={2}
       title="THE ALPEI FRAMEWORK"
-      subtitle="Three structural layers: 5 ALPEI workstreams × 4 DSBV phases"
+      subtitle="Three structural layers: 5 ALPEI workstreams × 4 DSBV stages"
       accentColor={colors.midnight}
     />
   );

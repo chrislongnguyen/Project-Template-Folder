@@ -38,7 +38,7 @@ _genesis/philosophy/ + _genesis/principles/
 ## Pre-Flight Checklist
 
 - [ ] Confirm governance artifacts have been ratified by the appropriate authority level before adding here
-- [ ] Verify RACI entries cover all DSBV phase-gate decisions
+- [ ] Verify RACI entries cover all DSBV stage-gate decisions
 - [ ] No orphaned or stale artifacts
 
 ## Naming Convention

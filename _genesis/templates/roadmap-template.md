@@ -9,11 +9,11 @@ stage: build
 sub_system: 
 ---
 # ROADMAP TEMPLATE (T6)
-> Stub template — populate during PLAN Sequence phase.
+> Stub template — populate during PLAN Sequence stage.
 > Cell(s) enabled: 3-PLAN × Sequence
 > Gap justification: SOP_TEMPLATE structures a procedure. No template structures a roadmap (milestones, dependencies, iteration mapping).
 
-<!-- TODO: Fill in during PLAN Sequence phase -->
+<!-- TODO: Fill in during PLAN Sequence stage -->
 
 ## Roadmap Identity
 

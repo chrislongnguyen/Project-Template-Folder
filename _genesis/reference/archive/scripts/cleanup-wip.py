@@ -4,7 +4,7 @@ cleanup-wip.py — Remove all WIP/demo/personal content from template repo.
 
 A template repo should contain ONLY:
 - Clean templates with TODOs (no project-specific content)
-- Structural files (READMEs, DSBV phase files)
+- Structural files (READMEs, DSBV stage files)
 - _genesis/ (shared frameworks, templates, obsidian infra)
 - .claude/ (agent config)
 - scripts/ (infrastructure)
@@ -215,7 +215,7 @@ def phase_4():
 
         stage = "validate" if "validate" in ftype else "build"
         fm = make_fm(ws, sub, ftype, stage=stage)
-        body = f"# {title}\n\n> Template — populate during DSBV Build phase.\n"
+        body = f"# {title}\n\n> Template — populate during DSBV Build stage.\n"
         for s in sections:
             body += f"\n## {s}\n\n<!-- TODO: Fill during DSBV Build -->\n"
         body += "\n## Links\n\n- [[workstream]]\n- [[iteration]]\n"
@@ -249,7 +249,7 @@ def phase_5():
             fm = make_fm(ws, sub, "dsbv-validate", stage="validate")
             body = f"""# DSBV VALIDATE — {ws_upper} × {sub_full}
 
-> DSBV Validate phase artifact. Evidence-based review against DESIGN.md criteria.
+> DSBV Validate stage artifact. Evidence-based review against DESIGN.md criteria.
 > Source template: `_genesis/templates/dsbv-eval-template.md`
 
 ## Validation Criteria

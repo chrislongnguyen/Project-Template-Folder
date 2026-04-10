@@ -7,13 +7,13 @@ description: "P3 — ALIGN Workstream Walkthrough: how agents, skills, rules, an
 
 # P3 — ALIGN Workstream Walkthrough: How It Actually Works
 
-When you run `/dsbv design align`, a structured sequence of agents, rules, and human gates activates — not a chat. Every artifact is produced under contract (DESIGN.md), every phase transition requires your approval, and five always-on rules enforce quality at every step. The walkthrough below traces exactly what happens, from the moment you type the command to the moment ALIGN is marked complete.
+When you run `/dsbv design align`, a structured sequence of agents, rules, and human gates activates — not a chat. Every artifact is produced under contract (DESIGN.md), every stage transition requires your approval, and five always-on rules enforce quality at every step. The walkthrough below traces exactly what happens, from the moment you type the command to the moment ALIGN is marked complete.
 
 ---
 
 ## Step-by-Step Walkthrough
 
-| # | Phase | Command | Agent | Produces | Rules That Fire | Gate |
+| # | Stage | Command | Agent | Produces | Rules That Fire | Gate |
 |---|-------|---------|-------|----------|-----------------|------|
 | 0 | Pre-flight | _(auto — fires before every task)_ | ltc-explorer (Haiku) can assist with pre-DSBV discovery | GREEN / RED status report | **alpei-pre-flight** (6 checks: workstream, alignment, risks, drivers, learning, version consistency) · **alpei-chain-of-custody** (upstream workstream dependency check) | RED on any check = STOP. Fix before proceeding. |
 | 1 | Design | `/dsbv design align` | **ltc-planner** (Opus) | `1-ALIGN/DESIGN.md` — artifact inventory, per-artifact purpose, binary ACs, alignment table | **versioning** (new file → version 1.0 / status Draft) · **agent-dispatch** (5-field context package required) | **G1:** Human reviews DESIGN.md. Approves → Sequence unlocks. Requests changes → planner revises and re-presents. |
@@ -36,23 +36,23 @@ Gates are decision points, not labels. The system does not advance automatically
 
 ---
 
-## Always-On Rules (Every Phase)
+## Always-On Rules (Every Stage)
 
 Five rules load at session start and fire continuously. They cannot be disabled per-command.
 
 | Rule | File | What it enforces |
 |------|------|-----------------|
 | **alpei-pre-flight** | `scripts/pre-flight.sh` | 9 checks before every task: workstream, alignment, risks, drivers, templates, learning, version, S>E>Sc, decisions. RED = stop. |
-| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. Phase ordering: Design → Sequence → Build → Validate, no skips. |
+| **alpei-chain-of-custody** | `.claude/rules/alpei-chain-of-custody.md` | Workstream N cannot build until Workstream N-1 has ≥1 validated artifact. stage ordering: Design → Sequence → Build → Validate, no skips. |
 | **versioning** | `.claude/rules/versioning.md` | Every edited `.md` file must have `version`, `status`, `last_updated` frontmatter. Iteration 1 files = 1.x. Agent sets Draft/Review. Human ONLY sets Approved. |
-| **dsbv** | `.claude/skills/dsbv/SKILL.md` | No artifact produced outside DSBV. Phase ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact. |
+| **dsbv** | `.claude/skills/dsbv/SKILL.md` | No artifact produced outside DSBV. stage ordering enforced with hard gates. Workstream N cannot reach Review until Workstream N-1 has ≥1 Approved artifact. |
 | **agent-dispatch** | `.claude/rules/agent-dispatch.md` | Every Agent() call must: (1) name one of the 4 MECE agents, (2) use 5-field context package (EO → INPUT → EP → OUTPUT → VERIFY), (3) match model to agent file, (4) use absolute paths in worktrees. Enforced via PreToolUse hook — ad-hoc calls are blocked. |
 
 ---
 
 ## Agent Roster
 
-| Agent | Model | DSBV Phase | Scope boundary |
+| Agent | Model | DSBV stage | Scope boundary |
 |-------|-------|-----------|----------------|
 | ltc-explorer | Haiku | Pre-DSBV | Read-only research and discovery. Does NOT produce workstream artifacts. |
 | ltc-planner | Opus | Design + Sequence | Defines WHAT to build and in what order. Does NOT write artifacts. |
@@ -97,7 +97,7 @@ The PM makes three decisions in this exchange: approve Design, approve Sequence,
 
 ---
 
-*Connects to: P1 (ALPEI workstream map), P2 (DSBV phase overview), P4 (LEARN → ALIGN + PLAN data flow)*
+*Connects to: P1 (ALPEI workstream map), P2 (DSBV stage overview), P4 (LEARN → ALIGN + PLAN data flow)*
 
 ## Links
 

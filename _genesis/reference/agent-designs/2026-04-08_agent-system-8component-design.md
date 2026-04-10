@@ -33,13 +33,13 @@ title: "Agent System 8-Component Design — Full Pipeline Redesign"
   Director          (haiku)               (opus)               (sonnet)              (opus)             Director
                     Research              Design+Seq           Artifacts             VALIDATE.md
                     │                     │                    │                      │
-                    └─ Pre-DSBV           └─ Phase 1+2         └─ Phase 3             └─ Phase 4
+                    └─ Pre-DSBV           └─ Stage 1+2         └─ Stage 3             └─ Stage 4
 ```
 
 **Orchestrator:** The main Claude Code session (Opus, all tools including Agent()). This is NOT a sub-agent — it IS the supervisor. All 4 agents are leaf nodes dispatched by the main session.
 
 **Pattern match:** Supervisor/Hierarchical (68% of production systems — dominant pattern per frontier research). Contains:
-- Sequential pipeline (DSBV phases)
+- Sequential pipeline (DSBV stages)
 - Parallel fan-out (competing hypotheses in Build; multi-topic in Learn)
 - Generator/Critic loop (Builder→Reviewer until VALIDATE passes)
 
@@ -49,9 +49,9 @@ title: "Agent System 8-Component Design — Full Pipeline Redesign"
 |---|-------|-------|------|-------------------|-------|
 | 0 | **Main Session** (orchestrator) | Opus | Decompose, dispatch, synthesize, approve | Root — supervises all | All (incl. Agent()) |
 | 1 | **ltc-explorer** | Haiku | Scout — find information fast and cheap | Pre-DSBV + LEARN pipeline | Read, Glob, Grep, Exa, QMD |
-| 2 | **ltc-planner** | Opus | Architect — define what to build and in what order | DSBV Phase 1 (Design) + Phase 2 (Sequence) | Read, Grep, WebFetch, Exa, QMD |
-| 3 | **ltc-builder** | Sonnet | Maker — produce artifacts per approved sequence | DSBV Phase 3 (Build) | Read, Edit, Write, Bash, Grep |
-| 4 | **ltc-reviewer** | Opus | Judge — verify output against DESIGN.md criteria | DSBV Phase 4 (Validate) | Read, Glob, Grep, Bash |
+| 2 | **ltc-planner** | Opus | Architect — define what to build and in what order | DSBV stage 1 (Design) + Stage 2 (Sequence) | Read, Grep, WebFetch, Exa, QMD |
+| 3 | **ltc-builder** | Sonnet | Maker — produce artifacts per approved sequence | DSBV stage 3 (Build) | Read, Edit, Write, Bash, Grep |
+| 4 | **ltc-reviewer** | Opus | Judge — verify output against DESIGN.md criteria | DSBV stage 4 (Validate) | Read, Glob, Grep, Bash |
 
 ### Current State (2026-04-08)
 
@@ -71,12 +71,12 @@ Agents are dispatched regularly (near-daily) by the Human Director across sessio
 |-----------|--------------|-------------------|-----|
 | **EI** (Input) | User messages + CLAUDE.md + rules/ + memory + hooks | Explicit orchestration state tracking (ADK session.state, LangGraph graph state) | **GAP:** No formal orchestration state. Main session relies on conversation history — lossy (LT-2) and expensive (LT-7). Pipeline progress lives in the user's head or in version-registry.md |
 | **EU** (User) | Claude Opus 4.6 (1M context). RACI: C (Consulted by sub-agents, orchestrates R agents). A = Human Director | Same | — |
-| **EA** (Action) | Reads user intent → decomposes into DSBV phases → dispatches agents → receives EO → synthesizes → presents for human approval | ADK: AutoFlow routing based on agent descriptions. LangGraph: explicit state machine transitions | **GAP:** Dispatch is ad-hoc (user invokes /dsbv, main session follows skill). No state machine. No automatic routing. |
+| **EA** (Action) | Reads user intent → decomposes into DSBV stages → dispatches agents → receives EO → synthesizes → presents for human approval | ADK: AutoFlow routing based on agent descriptions. LangGraph: explicit state machine transitions | **GAP:** Dispatch is ad-hoc (user invokes /dsbv, main session follows skill). No state machine. No automatic routing. |
 | **EO** (Output) | Synthesized artifacts + VALIDATE.md approval recommendation | Same + metrics dashboard (token cost, success rate per agent) | **GAP:** No cost tracking, no success metrics |
 | **EP** (Principles) | CLAUDE.md (200-line routing index) + 12 always-on rules + 14 EPs | Same | Adequate — but 6 rule files referenced in CLAUDE.md don't exist (agent-system.md, tool-routing.md, agent-diagnostic.md, general-system.md, security-rules.md, brand-identity.md) |
 | **EOE** (Environment) | Claude Code CLI + hooks + settings.json permissions | Same + orchestration state store (persistent across dispatches) | **GAP:** No persistent orchestration state between dispatches |
 | **EOT** (Tools) | All tools (Agent, Read, Write, Edit, Bash, Grep, Glob, MCP servers) | Same | Adequate |
-| **EOP** (Procedure) | /dsbv skill (4-phase guided flow with G1-G4 gates) | Same + circuit breaker (auto-escalate to human if agent failure rate > threshold) | **GAP:** No circuit breaker. If builder fails repeatedly, user must notice manually |
+| **EOP** (Procedure) | /dsbv skill (4-stage guided flow with G1-G4 gates) | Same + circuit breaker (auto-escalate to human if agent failure rate > threshold) | **GAP:** No circuit breaker. If builder fails repeatedly, user must notice manually |
 
 #### S×E×Sc Evaluation
 
@@ -100,7 +100,7 @@ Agents are dispatched regularly (near-daily) by the Human Director across sessio
 | UDS | Category | Leverage |
 |-----|----------|---------|
 | UDS-O1: Context packaging protocol | Technical | 5-field template standardizes handoffs — already best-in-class vs. industry |
-| UDS-O2: Human gates (G1-G4) | Human | Director approval at each phase boundary prevents cascade (aligns with ADK Human-in-Loop pattern) |
+| UDS-O2: Human gates (G1-G4) | Human | Director approval at each stage boundary prevents cascade (aligns with ADK Human-in-Loop pattern) |
 | UDS-O3: MECE agent roster | Technical | 4 agents with zero overlap = no "Bag of Agents" anti-pattern |
 
 ---
@@ -339,7 +339,7 @@ The 4-agent pipeline IS a system (UT#1). Each agent is a component. The system's
 ```
 Pipeline EI   = Human Director's intent (1-3 sentences)
 Pipeline EU   = Main Session (Opus orchestrator)
-Pipeline EA   = DSBV phases (Design→Sequence→Build→Validate)
+Pipeline EA   = DSBV stages (Design→Sequence→Build→Validate)
 Pipeline EO   = Validated workstream artifacts ready for next workstream
 Pipeline EP   = 14 EPs + 8 LTs + 10 UTs (the philosophical stack)
 Pipeline EOE  = Claude Code + hooks + settings.json + git
@@ -357,7 +357,7 @@ Pipeline EOP  = /dsbv skill (guided flow with G1-G4 gates)
 | 4 agents (MECE) | HIGH — each scoped, failures isolated, retryable | MEDIUM — handoff overhead but focused context | HIGH — parallel dispatch, independent scaling | ✅ Current |
 | 10 agents (fine-grained) | MEDIUM — "Bag of Agents" anti-pattern (17x error trap) | LOW — coordination overhead dominates | LOW — exponential complexity | ❌ Overengineered |
 
-**EP-09 (Decompose Before Delegate):** 4 maps exactly to DSBV's 4 phases. Each agent owns ONE phase. This is MECE by construction.
+**EP-09 (Decompose Before Delegate):** 4 maps exactly to DSBV's 4 stages. Each agent owns ONE stage. This is MECE by construction.
 
 **EP-11 (Agent Role Separation):** Tool whitelists enforce boundaries deterministically. Explorer can't write. Builder can't research. Reviewer can't fix.
 
@@ -380,7 +380,7 @@ This mirrors the ALPEI workstream sequence: ALIGN (right outcome) → LEARN (und
 - Explicit input/output contracts at each boundary
 - Binary ACs that agents self-verify before reporting done
 - Deterministic VERIFY checks (file existence, grep, script exit code)
-- Human gates (G1-G4) as circuit breakers at phase boundaries
+- Human gates (G1-G4) as circuit breakers at stage boundaries
 
 **Gap:** We have the contracts but no enforcement. PreToolUse hooks don't fire inside sub-agents (Anthropic SDK limitation, GitHub issue #40580). Enforcement is advisory (agent file text), not deterministic (hook).
 

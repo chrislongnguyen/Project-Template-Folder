@@ -9,11 +9,11 @@ stage: design
 sub_system: 
 ---
 # FORCE ANALYSIS TEMPLATE (T4)
-> Stub template — populate during ALIGN Design and PLAN Design phases.
+> Stub template — populate during ALIGN Design and PLAN Design stages.
 > Cell(s) enabled: 1-ALIGN × Design, 3-PLAN × Design
 > Gap justification: RISK_ENTRY_TEMPLATE covers one UBS entry. No template scopes a force analysis session (driving forces + restraining forces + UBS/UDS inventory).
 
-<!-- TODO: Fill in during ALIGN Design or PLAN Design phase -->
+<!-- TODO: Fill in during ALIGN Design or PLAN Design stage -->
 
 ## Force Analysis Identity
 

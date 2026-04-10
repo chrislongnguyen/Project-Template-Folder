@@ -11,7 +11,7 @@ title: "DESIGN: Agent 4 — ltc-reviewer (Judge)"
 
 # DESIGN: Agent 4 — ltc-reviewer (Judge)
 
-> **Purpose:** Full 8-component system design for ltc-reviewer, the DSBV Phase 4 (Validate) agent. Covers current state, gaps, frontier standards, and improvement proposals with S*E*Sc evaluation and force analysis.
+> **Purpose:** Full 8-component system design for ltc-reviewer, the DSBV stage 4 (Validate) agent. Covers current state, gaps, frontier standards, and improvement proposals with S*E*Sc evaluation and force analysis.
 >
 > **Governing equation:** Success = Efficient & Scalable Management of Failure Risks (UT#5)
 > **Evaluation criteria:** Sustainability > Efficiency > Scalability (DT#1)
@@ -28,7 +28,7 @@ Reviewer is NOT limited to the DSBV chain. It operates in multiple modes:
 | Mode | Trigger | EI Source | EO Destination | Context Weight |
 |------|---------|-----------|----------------|----------------|
 | **DSBV Validate** | `/dsbv validate [workstream]` | Orchestrator (5-field + DESIGN.md + all artifacts) | Human Director (G4 gate) | Full: DESIGN.md + artifacts + template |
-| **Generator/Critic loop** | Auto-triggered after Build phase | Orchestrator (DESIGN.md + artifacts + prior VALIDATE.md) | Orchestrator → builder re-dispatch if FAIL | Full + iteration context |
+| **Generator/Critic loop** | Auto-triggered after Build stage | Orchestrator (DESIGN.md + artifacts + prior VALIDATE.md) | Orchestrator → builder re-dispatch if FAIL | Full + iteration context |
 | **Ad-hoc audit** | "Review X" or "Check if Y is correct" | Orchestrator (lighter: what to check + criteria) | Main session directly | Light: files + criteria |
 | **Code review** | `/code-review` or "Review this PR" | Orchestrator (diff + standards) | Main session directly | Medium: diff + rules |
 | **Compliance check** | "Is this compliant?" or `/ltc-rules-compliance` | Orchestrator (files + rule set) | Main session directly | Medium: files + rules |

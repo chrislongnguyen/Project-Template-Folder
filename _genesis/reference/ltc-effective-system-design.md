@@ -282,13 +282,13 @@ Explicit mapping of every ELF layer to its corresponding ESD element. Reference 
 
 ### 3.0 Workstream Boundary (D24, D28)
 
-Before defining the User, establish the system/workstream boundary. This maps 1:1 to the ILE Learning Book T0 Workstream Contract.
+Before defining the User, establish the system/workstream boundary. This maps 1:1 to the Learn Source Learning Book T0 Workstream Contract.
 
 | Field | Source | Description |
 |-------|--------|-------------|
-| **INPUT** | ILE T0 Workstream Contract | What triggers this system; what data/artifacts arrive from upstream systems |
-| **EO** | ILE T0 Workstream Contract / ELF | The state this system aims to achieve — carried into §3.2 |
-| **OUTPUT** | ILE T0 Workstream Contract | What this system produces for downstream systems |
+| **INPUT** | Learn Source T0 Workstream Contract | What triggers this system; what data/artifacts arrive from upstream systems |
+| **EO** | Learn Source T0 Workstream Contract / ELF | The state this system aims to achieve — carried into §3.2 |
+| **OUTPUT** | Learn Source T0 Workstream Contract | What this system produces for downstream systems |
 
 *The INPUT/OUTPUT fields create the integration chain: SYS-A OUTPUT → SYS-B INPUT → SYS-B OUTPUT → SYS-C INPUT. Without these, the system is designed in isolation.*
 
@@ -307,7 +307,7 @@ Include: what they do differently, why this system is not designed for them, and
 *Vague Anti-Personas fail to prevent scope creep. Be precise.*
 
 **System-Level RACI (D23)**
-Establish R (Responsible) and A (Accountable) BEFORE UBS/UDS analysis. The same system has different blockers depending on who is R vs A. Source: ILE T0 RACI Assignment / MCM Table 4b.
+Establish R (Responsible) and A (Accountable) BEFORE UBS/UDS analysis. The same system has different blockers depending on who is R vs A. Source: Learn Source T0 RACI Assignment / MCM Table 4b.
 
 | Role | Actor | Perspective for UBS/UDS |
 |------|-------|------------------------|
@@ -429,12 +429,12 @@ Full tool configuration enabling the User to reach the EO by solving root-cause 
 Derived from ELF EOP. The sequential, gated steps the primary User Role takes using the Tools in the Environment to reach the EO. Staged in two phases and documented per step with full RACI.
 
 **EOP Decision Matrix (D26)**
-Before listing steps, declare which UBS elements are targeted for disabling and which UDS elements are targeted for amplifying. This mirrors the ILE T5 Decision Matrix — the EOP is a DECISION POINT, not just a discovery list.
+Before listing steps, declare which UBS elements are targeted for disabling and which UDS elements are targeted for amplifying. This mirrors the Learn Source T5 Decision Matrix — the EOP is a DECISION POINT, not just a discovery list.
 
 | Category | Targeted Elements | Source | Role |
 |----------|------------------|--------|------|
-| **DERISK**: UBS to disable | [List specific UBS(R) and UBS(A) from §3.4] | ILE T1/ESD §3.4 | R: [action]; A: [oversight] |
-| **OPTIMIZE**: UDS to amplify | [List specific UDS(R) and UDS(A) from §3.3] | ILE T2/ESD §3.3 | R: [action]; A: [oversight] |
+| **DERISK**: UBS to disable | [List specific UBS(R) and UBS(A) from §3.4] | Learn Source T1/ESD §3.4 | R: [action]; A: [oversight] |
+| **OPTIMIZE**: UDS to amplify | [List specific UDS(R) and UDS(A) from §3.3] | Learn Source T2/ESD §3.3 | R: [action]; A: [oversight] |
 
 **Stage 1 — DERISK (Sustainability)**: Steps that neutralise the targeted UBS elements — minimise failure risks. These steps must complete and gate before any OPTIMIZE steps begin.
 

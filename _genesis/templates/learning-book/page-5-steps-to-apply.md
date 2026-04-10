@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
@@ -13,10 +13,11 @@ _Page type: Steps to Apply — the operating procedure for this Topic (Phase C. 
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P5 Steps to Apply.md` (e.g. `BOOK-00 — T0.P5 Steps to Apply.md`)
+- **File name pattern:** `T{topic}.P5-steps-to-apply.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P5-steps-to-apply.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -120,15 +121,15 @@ _Before listing steps, declare which UBS elements are targeted for disabling (DE
 | 3   | SUCCESS        | How does the row subject operate when functioning as designed? _(UBS row: how does it block? UDS row: how does it drive?)_ (Success Actions)                                                               |
 | 4   | SUCCESS        | What ultimately causes the row subject to function as designed? _(UBS row → UBS.UD: drives the blocker — works AGAINST Learner. UDS row → UDS.UD: drives the driver — works FOR Learner.)_ (UDS)           |
 | 5   | SUCCESS        | How does col 4 (UDS) cause the row subject to function as designed? (Success Mechanism)                                                                                                                    |
-| 6   | SUCCESS        | What principles is the UDS based on? (Success EPS)                                                                                                                                                         |
-| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success Tools — UES)                                                                                                                                          |
-| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success Environment — UES)                                                                                                                 |
+| 6   | SUCCESS        | What principles is the UDS based on? (Success EP)                                                                                                                                                         |
+| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success EOT — Effective Operating Tools)                                                                                                                      |
+| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success EOE — Effective Operating Environment)                                                                                             |
 | 9   | FAILURE        | How can the row subject fail to function as designed? _(UBS row: how does the blocker get disabled? UDS row: how does the driver get blocked?)_ (Failure Actions)                                          |
 | 10  | FAILURE        | What ultimately causes the row subject to fail to function as designed? _(UBS row → UBS.UB: disables the blocker — works FOR Learner. UDS row → UDS.UB: blocks the driver — works AGAINST Learner.)_ (UBS) |
 | 11  | FAILURE        | How does col 10 (UBS) cause the row subject to fail? (Failure Mechanism)                                                                                                                                   |
-| 12  | FAILURE        | What principles are the failure causes based on? (Failure EPS)                                                                                                                                             |
-| 13  | FAILURE        | What tools do the failure causes require? (Failure Tools — UES)                                                                                                                                            |
-| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure Environment — UES)                                                                                                                   |
+| 12  | FAILURE        | What principles are the failure causes based on? (Failure EP)                                                                                                                                             |
+| 13  | FAILURE        | What tools do the failure causes require? (Failure EOT — Effective Operating Tools)                                                                                                                        |
+| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure EOE — Effective Operating Environment)                                                                                               |
 | 15  | LEARNER'S NOTE | If the row subject fails as designed, what should the Learner do? (What Else?)                                                                                                                             |
 | 16  | LEARNER'S NOTE | Next Steps to Take (Now What? Now How?)                                                                                                                                                                    |
 
@@ -136,11 +137,11 @@ _Before listing steps, declare which UBS elements are targeted for disabling (DE
 
 ## Table
 
-| Row           | 1 · Relevance  | 2 · Precise Definition | 3 · Success Actions | 4 · UDS       | 5 · Success Mechanism | 6 · Success EPS   | 7 · Success Tools (UES) | 8 · Success Environment (UES) | 9 · Failure Actions | 10 · UBS      | 11 · Failure Mechanism | 12 · Failure EPS  | 13 · Failure Tools (UES) | 14 · Failure Environment (UES) | 15 · What Else? | 16 · Next Steps |
+| Row           | 1 · Relevance  | 2 · Precise Definition | 3 · Success Actions | 4 · UDS       | 5 · Success Mechanism | 6 · Success EP   | 7 · Success EOT | 8 · Success EOE | 9 · Failure Actions | 10 · UBS      | 11 · Failure Mechanism | 12 · Failure EP  | 13 · Failure EOT | 14 · Failure EOE | 15 · What Else? | 16 · Next Steps |
 | ------------- | -------------- | ---------------------- | ------------------- | ------------- | --------------------- | ----------------- | ----------------------- | ----------------------------- | ------------------- | ------------- | ---------------------- | ----------------- | ------------------------ | ------------------------------ | --------------- | --------------- |
-| **STEP.1(R)** | STEP.1(R).REL: | STEP.1(R).DEF:         | STEP.1(R).ACT:      | STEP.1(R).UD: | STEP.1(R).UD.MECH:    | STEP.1(R).UD.EPS: | STEP.1(R).UD.UES.T:     | STEP.1(R).UD.UES.E:           | STEP.1(R).FAIL:     | STEP.1(R).UB: | STEP.1(R).UB.MECH:     | STEP.1(R).UB.EPS: | STEP.1(R).UB.UES.T:      | STEP.1(R).UB.UES.E:            | STEP.1(R).ELSE: | STEP.1(R).NEXT: |
-| **STEP.2(A)** | STEP.2(A).REL: | STEP.2(A).DEF:         | STEP.2(A).ACT:      | STEP.2(A).UD: | STEP.2(A).UD.MECH:    | STEP.2(A).UD.EPS: | STEP.2(A).UD.UES.T:     | STEP.2(A).UD.UES.E:           | STEP.2(A).FAIL:     | STEP.2(A).UB: | STEP.2(A).UB.MECH:     | STEP.2(A).UB.EPS: | STEP.2(A).UB.UES.T:      | STEP.2(A).UB.UES.E:            | STEP.2(A).ELSE: | STEP.2(A).NEXT: |
-| **STEP.3(R)** | STEP.3(R).REL: | STEP.3(R).DEF:         | STEP.3(R).ACT:      | STEP.3(R).UD: | STEP.3(R).UD.MECH:    | STEP.3(R).UD.EPS: | STEP.3(R).UD.UES.T:     | STEP.3(R).UD.UES.E:           | STEP.3(R).FAIL:     | STEP.3(R).UB: | STEP.3(R).UB.MECH:     | STEP.3(R).UB.EPS: | STEP.3(R).UB.UES.T:      | STEP.3(R).UB.UES.E:            | STEP.3(R).ELSE: | STEP.3(R).NEXT: |
+| **STEP.1(R)** | STEP.1(R).REL: | STEP.1(R).DEF:         | STEP.1(R).ACT:      | STEP.1(R).UD: | STEP.1(R).UD.MECH:    | STEP.1(R).UD.EP: | STEP.1(R).UD.EOT:     | STEP.1(R).UD.EOE:           | STEP.1(R).FAIL:     | STEP.1(R).UB: | STEP.1(R).UB.MECH:     | STEP.1(R).UB.EP: | STEP.1(R).UB.EOT:      | STEP.1(R).UB.EOE:            | STEP.1(R).ELSE: | STEP.1(R).NEXT: |
+| **STEP.2(A)** | STEP.2(A).REL: | STEP.2(A).DEF:         | STEP.2(A).ACT:      | STEP.2(A).UD: | STEP.2(A).UD.MECH:    | STEP.2(A).UD.EP: | STEP.2(A).UD.EOT:     | STEP.2(A).UD.EOE:           | STEP.2(A).FAIL:     | STEP.2(A).UB: | STEP.2(A).UB.MECH:     | STEP.2(A).UB.EP: | STEP.2(A).UB.EOT:      | STEP.2(A).UB.EOE:            | STEP.2(A).ELSE: | STEP.2(A).NEXT: |
+| **STEP.3(R)** | STEP.3(R).REL: | STEP.3(R).DEF:         | STEP.3(R).ACT:      | STEP.3(R).UD: | STEP.3(R).UD.MECH:    | STEP.3(R).UD.EP: | STEP.3(R).UD.EOT:     | STEP.3(R).UD.EOE:           | STEP.3(R).FAIL:     | STEP.3(R).UB: | STEP.3(R).UB.MECH:     | STEP.3(R).UB.EP: | STEP.3(R).UB.EOT:      | STEP.3(R).UB.EOE:            | STEP.3(R).ELSE: | STEP.3(R).NEXT: |
 ```
 
 ---

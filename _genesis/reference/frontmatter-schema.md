@@ -45,7 +45,7 @@ iteration: 2
 
 ## Stage Values
 
-| Value | DSBV Phase | Notes |
+| Value | DSBV stage | Notes |
 |-------|-----------|-------|
 | `design` | Design | Scope, ACs, artifact inventory |
 | `sequence` | Sequence | Task ordering, dependencies |

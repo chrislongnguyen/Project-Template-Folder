@@ -11,7 +11,7 @@ const checks = [
   { num: 4, name: 'CHECK DRIVERS', ensures: 'Read 3-PLAN/drivers/UDS_REGISTER.md — what forces to leverage.' },
   { num: 5, name: 'CHECK TEMPLATES', ensures: 'Identify which templates apply from alpei-dsbv-process-map.md.' },
   { num: 6, name: 'CHECK LEARNING', ensures: "Scan 2-LEARN/ — prior research, specs. Don't reinvent." },
-  { num: 7, name: 'VERSION CONSISTENCY', ensures: 'Workstream versions consistent with DSBV phase. No regressions.' },
+  { num: 7, name: 'VERSION CONSISTENCY', ensures: 'Workstream versions consistent with DSBV stage. No regressions.' },
 ];
 
 export default function PreflightSlide() {

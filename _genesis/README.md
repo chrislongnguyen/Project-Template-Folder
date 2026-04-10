@@ -25,7 +25,7 @@ It exists as a separate directory to enforce the boundary between org-level know
 | `principles/` | Non-negotiable standards derived from philosophy |
 | `frameworks/` | System models and analytical tools (ALPEI, UBS/UDS, 8-component, UES versioning) |
 | `reference/` | Authoritative guides, company handbook, EOP governance spec, ALPEI PDFs |
-| `templates/` | DSBV phase templates, ADR, VANA-SPEC, research, review, and 15+ artifact starters |
+| `templates/` | DSBV stage templates, ADR, VANA-SPEC, research, review, and 15+ artifact starters |
 | `brand/` | Visual identity — colors, typography, logo usage |
 | `security/` | Data classification, naming convention, security hierarchy |
 | `sops/` | Standard operating procedures for repeatable activities |

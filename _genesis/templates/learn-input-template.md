@@ -2,9 +2,9 @@
 # Learn Input Template — Phase 0 Interview Output
 # Created by /learn:input command. All downstream commands read from this file.
 # Reference: ESD §3.0 (Workstream Boundary), D24, D28, D39
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 ---
 
 # Learn Input: {system_name}
@@ -57,7 +57,7 @@ Select one. This determines how many topics `/learn:research` and `/learn:struct
 
 - [ ] **T0** — Overview only (1 topic: T0 Overview & Summary)
 - [ ] **T0-T2** — Overview + UBS + UDS (3 topics)
-- [ ] **T0-T5** — Full depth: Overview + UBS + UDS + EPS + UES + EOP (6 topics)
+- [ ] **T0-T5** — Full depth: Overview + UBS + UDS + EP + UES + EOP (6 topics)
 
 **Selected:** {T0 | T0-T2 | T0-T5}
 
@@ -72,7 +72,7 @@ Select one. This determines how many topics `/learn:research` and `/learn:struct
 | T0 | Overview & Summary | P0-P5 | Pending |
 | T1 | UBS (Ultimate Blocking System) | P0-P5 | — |
 | T2 | UDS (Ultimate Driving System) | P0-P5 | — |
-| T3 | EPS (Effective Principle System) | P0-P5 | — |
+| T3 | EP (Effective Principles) | P0-P5 | — |
 | T4 | UES (Ultimate Effective System) | P0-P5 | — |
 | T5 | EOP (Effective Operating Procedure) | P0-P5 | — |
 

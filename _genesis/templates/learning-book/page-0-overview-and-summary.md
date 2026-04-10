@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-10
 type: template
 ---
 
@@ -13,10 +13,11 @@ _Page type: Overview & Summary (Phase C. Organise Information). Use for any Topi
 
 ## Naming (Learning Book)
 
-All learning-book items use the `BOOK-NN` prefix convention (e.g. `BOOK-00`, `BOOK-01`).
+Output files use the sub-system slug and topic number:
 
-- **Prefix:** `BOOK-{NN} — ` (space-em-dash-space separator)
-- **This page type** → file name: `BOOK-{NN} — T{topic}.P0 Overview & Summary.md` (e.g. `BOOK-00 — T0.P0 Overview & Summary.md`, `BOOK-00 — T1.P0 Overview & Summary.md`)
+- **File name pattern:** `T{topic}.P0-overview-and-summary.md`
+- **Output path:** `2-LEARN/{sub-system}/output/{system-slug}/T{topic}.P0-overview-and-summary.md`
+- Sub-system = one of: `1-PD`, `2-DP`, `3-DA`, `4-IDM`
 - **Full rule:** `engine/rules/learning-book-naming.md`
 
 ---
@@ -42,7 +43,7 @@ Page 0 is the **entry point** for the Topic. It gives a single high-level view o
 - **DUPLICATE the parent page — do not regenerate. Copy ALL rows (both R and A).**
   - Topic 1 Page 0 = copy of Topic 0 Page 1 (UBS rows)
   - Topic 2 Page 0 = copy of Topic 0 Page 2 (UDS rows)
-  - Topic 3 Page 0 = copy of Topic 0 Page 3 (EPS rows)
+  - Topic 3 Page 0 = copy of Topic 0 Page 3 (EP rows)
   - Topic 4 Page 0 = copy of Topic 0 Page 4 (UES rows)
   - Topic 5 Page 0 = copy of Topic 0 Page 5 (EOP rows)
 - Rename the file only. No content generation needed. This saves tokens and ensures continuity.
@@ -55,7 +56,7 @@ Page 0 is the **entry point** for the Topic. It gives a single high-level view o
 | ------------- | --------------------------------------------------------------------------------------- |
 | Col 10 · UBS  | Row R col 10 → P1 row `UBS(R)`. Row A col 10 → P1 row `UBS(A)`. Two seeds, two P1 rows. |
 | Col 4 · UDS   | Row R col 4 → P2 row `UDS(R)`. Row A col 4 → P2 row `UDS(A)`. Two seeds, two P2 rows.   |
-| Col 6 · EPS   | Seeds the principles for Page 3 (from both R and A rows)                                |
+| Col 6 · EP    | Seeds the principles for Page 3 (from both R and A rows)                                |
 | Col 7+8 · UES | Seeds the components/tools for Page 4 (from both R and A rows)                          |
 | Col 3 · EOP   | Seeds the steps for Page 5 (from both R and A rows)                                     |
 
@@ -73,9 +74,9 @@ P0 uses `Effective(R)` and `Effective(A)` as row codes. Example cells for the R 
 | --- | ------------------------ | ----------------------------------------------------------------------- |
 | 1   | `Effective(R).REL:`      | `Effective(R).REL: The OE System enables the Agent to...`               |
 | 4   | `Effective(R).UD:`       | `Effective(R).UD: UEDS Methodology — the 10-UT causal framework...`     |
-| 6   | `Effective(R).UD.EPS:`   | `Effective(R).UD.EPS: P1(S)(R): Structured Framework Loading — ...`     |
+| 6   | `Effective(R).UD.EP:`   | `Effective(R).UD.EP: P1(S)(R): Structured Framework Loading — ...`     |
 | 10  | `Effective(R).UB:`       | `Effective(R).UB: Context Fragmentation — the inability to maintain...` |
-| 12  | `Effective(R).UB.EPS:`   | `Effective(R).UB.EPS: P_F1(S)(R): Context-Dependency Trap — ...`        |
+| 12  | `Effective(R).UB.EP:`   | `Effective(R).UB.EP: P_F1(S)(R): Context-Dependency Trap — ...`        |
 
 See the Column Suffix Codex in `engine/rules/phase-c-structure.md` §2 for all 16 suffixes.
 
@@ -128,15 +129,15 @@ _RACI anchors perspective for ALL subsequent pages (P1–P5). UBS/UDS analysis d
 | 3   | SUCCESS        | How does the row subject operate when functioning as designed? _(UBS row: how does it block? UDS row: how does it drive?)_ (Success Actions)                                                               |
 | 4   | SUCCESS        | What ultimately causes the row subject to function as designed? _(UBS row → UBS.UD: drives the blocker — works AGAINST Learner. UDS row → UDS.UD: drives the driver — works FOR Learner.)_ (UDS)           |
 | 5   | SUCCESS        | How does col 4 (UDS) cause the row subject to function as designed? (Success Mechanism)                                                                                                                    |
-| 6   | SUCCESS        | What principles is the UDS based on? (Success EPS)                                                                                                                                                         |
-| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success Tools — UES)                                                                                                                                          |
-| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success Environment — UES)                                                                                                                 |
+| 6   | SUCCESS        | What principles is the UDS based on? (Success EP)                                                                                                                                                         |
+| 7   | SUCCESS        | What tools do the ultimate drivers require? (Success EOT — Effective Operating Tools)                                                                                                                      |
+| 8   | SUCCESS        | What environmental conditions do the ultimate drivers require? (Success EOE — Effective Operating Environment)                                                                                             |
 | 9   | FAILURE        | How can the row subject fail to function as designed? _(UBS row: how does the blocker get disabled? UDS row: how does the driver get blocked?)_ (Failure Actions)                                          |
 | 10  | FAILURE        | What ultimately causes the row subject to fail to function as designed? _(UBS row → UBS.UB: disables the blocker — works FOR Learner. UDS row → UDS.UB: blocks the driver — works AGAINST Learner.)_ (UBS) |
 | 11  | FAILURE        | How does col 10 (UBS) cause the row subject to fail? (Failure Mechanism)                                                                                                                                   |
-| 12  | FAILURE        | What principles are the failure causes based on? (Failure EPS)                                                                                                                                             |
-| 13  | FAILURE        | What tools do the failure causes require? (Failure Tools — UES)                                                                                                                                            |
-| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure Environment — UES)                                                                                                                   |
+| 12  | FAILURE        | What principles are the failure causes based on? (Failure EP)                                                                                                                                             |
+| 13  | FAILURE        | What tools do the failure causes require? (Failure EOT — Effective Operating Tools)                                                                                                                        |
+| 14  | FAILURE        | What environmental conditions do the failure causes require? (Failure EOE — Effective Operating Environment)                                                                                               |
 | 15  | LEARNER'S NOTE | If the row subject fails as designed, what should the Learner do? (What Else?)                                                                                                                             |
 | 16  | LEARNER'S NOTE | Next Steps to Take (Now What? Now How?)                                                                                                                                                                    |
 
@@ -144,10 +145,10 @@ _RACI anchors perspective for ALL subsequent pages (P1–P5). UBS/UDS analysis d
 
 ## Table
 
-| Row                             | 1 · Relevance     | 2 · Precise Definition | 3 · Success Actions | 4 · UDS          | 5 · Success Mechanism | 6 · Success EPS      | 7 · Success Tools (UES) | 8 · Success Environment (UES) | 9 · Failure Actions | 10 · UBS         | 11 · Failure Mechanism | 12 · Failure EPS     | 13 · Failure Tools (UES) | 14 · Failure Environment (UES) | 15 · What Else?    | 16 · Next Steps    |
+| Row                             | 1 · Relevance     | 2 · Precise Definition | 3 · Success Actions | 4 · UDS          | 5 · Success Mechanism | 6 · Success EP      | 7 · Success EOT | 8 · Success EOE | 9 · Failure Actions | 10 · UBS         | 11 · Failure Mechanism | 12 · Failure EP     | 13 · Failure EOT | 14 · Failure EOE | 15 · What Else?    | 16 · Next Steps    |
 | ------------------------------- | ----------------- | ---------------------- | ------------------- | ---------------- | --------------------- | -------------------- | ----------------------- | ----------------------------- | ------------------- | ---------------- | ---------------------- | -------------------- | ------------------------ | ------------------------------ | ------------------ | ------------------ |
-| **Effective {Subject Name}(R)** | Effective(R).REL: | Effective(R).DEF:      | Effective(R).ACT:   | Effective(R).UD: | Effective(R).UD.MECH: | Effective(R).UD.EPS: | Effective(R).UD.UES.T:  | Effective(R).UD.UES.E:        | Effective(R).FAIL:  | Effective(R).UB: | Effective(R).UB.MECH:  | Effective(R).UB.EPS: | Effective(R).UB.UES.T:   | Effective(R).UB.UES.E:         | Effective(R).ELSE: | Effective(R).NEXT: |
-| **Effective {Subject Name}(A)** | Effective(A).REL: | Effective(A).DEF:      | Effective(A).ACT:   | Effective(A).UD: | Effective(A).UD.MECH: | Effective(A).UD.EPS: | Effective(A).UD.UES.T:  | Effective(A).UD.UES.E:        | Effective(A).FAIL:  | Effective(A).UB: | Effective(A).UB.MECH:  | Effective(A).UB.EPS: | Effective(A).UB.UES.T:   | Effective(A).UB.UES.E:         | Effective(A).ELSE: | Effective(A).NEXT: |
+| **Effective {Subject Name}(R)** | Effective(R).REL: | Effective(R).DEF:      | Effective(R).ACT:   | Effective(R).UD: | Effective(R).UD.MECH: | Effective(R).UD.EP: | Effective(R).UD.EOT:  | Effective(R).UD.EOE:        | Effective(R).FAIL:  | Effective(R).UB: | Effective(R).UB.MECH:  | Effective(R).UB.EP: | Effective(R).UB.EOT:   | Effective(R).UB.EOE:         | Effective(R).ELSE: | Effective(R).NEXT: |
+| **Effective {Subject Name}(A)** | Effective(A).REL: | Effective(A).DEF:      | Effective(A).ACT:   | Effective(A).UD: | Effective(A).UD.MECH: | Effective(A).UD.EP: | Effective(A).UD.EOT:  | Effective(A).UD.EOE:        | Effective(A).FAIL:  | Effective(A).UB: | Effective(A).UB.MECH:  | Effective(A).UB.EP: | Effective(A).UB.EOT:   | Effective(A).UB.EOE:         | Effective(A).ELSE: | Effective(A).NEXT: |
 ```
 
 ---

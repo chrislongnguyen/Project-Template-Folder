@@ -25,7 +25,7 @@ DSBV is the **sub-process executed WITHIN each APEI workstream** (ALIGN, PLAN, E
 **When to use:** Every time a workstream is activated. No workstream artifact is produced outside DSBV.
 
 ```
-APEI Workstream (WHAT)          DSBV Phase (HOW)
+APEI Workstream (WHAT)          DSBV stage (HOW)
 ─────────────────    ×    ─────────────────
 ALIGN                     Design
 PLAN                      Sequence
@@ -33,21 +33,21 @@ EXECUTE                   Build
 IMPROVE                   Validate
 ```
 
-Each workstream runs all 4 DSBV phases internally. The workstream determines the content; DSBV determines the workflow.
+Each workstream runs all 4 DSBV stages internally. The workstream determines the content; DSBV determines the workflow.
 
 ---
 
 ## How to Use
 
 - Run `/dsbv` to start a guided DSBV cycle on any workstream
-- Run `/dsbv design align` to run just the Design phase on the ALIGN workstream
+- Run `/dsbv design align` to run just the Design stage on the ALIGN workstream
 - Run `/dsbv status` to see current progress across all workstreams
 - Run `./scripts/dsbv-gate.sh` to manually check workstream-boundary readiness
 - Skill definition: `.claude/skills/dsbv/SKILL.md` | Context template: `_genesis/templates/dsbv-context-template.md` | Evaluation template: `_genesis/templates/dsbv-eval-template.md`
 
 ---
 
-## Phase 1: DESIGN
+## Stage 1: DESIGN
 
 ### Scope Check (Design Stage Preamble)
 
@@ -116,7 +116,7 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 
 ---
 
-## Phase 2: SEQUENCE
+## Stage 2: SEQUENCE
 
 **Purpose:** ORDER the work — dependencies, build sequence, task sizing.
 
@@ -142,7 +142,7 @@ Unified from Google ADK + Anthropic "Building Effective Agents":
 
 ---
 
-## Phase 3: BUILD
+## Stage 3: BUILD
 
 **Purpose:** EXECUTE the work following the approved sequence.
 
@@ -205,7 +205,7 @@ Full circuit breaker protocol: `.claude/skills/dsbv/references/circuit-breaker-p
 
 ---
 
-## Phase 4: VALIDATE
+## Stage 4: VALIDATE
 
 **Purpose:** VERIFY the workstream output enables the next workstream to start.
 
@@ -229,7 +229,7 @@ Full circuit breaker protocol: `.claude/skills/dsbv/references/circuit-breaker-p
 Every gate presentation (G1-G4) uses a consistent template so PMs can review at a glance.
 
 ```
-GATE: G{N} ({phase}) | Workstream: {name}
+GATE: G{N} ({stage}) | Workstream: {name}
 ACs: {pass}/{total} | Risk flags: {count}
 Action: APPROVE / REVISE / ESCALATE
 
@@ -262,7 +262,7 @@ The DSBV orchestrator classifies every human message at an active gate (G1-G4) i
 | Tier 1 | Explicit Approval | "approved", "lgtm", "looks good", "ship it", "confirmed" | Advance immediately → Gate Approval Protocol |
 | Tier 2 | Implicit Approval | "proceed to sequence", "go ahead", "build it", "next", "yes" (after gate question) | Emit confirmation statement → Gate Approval Protocol |
 | Tier 3 | Ambiguous | "ok" (standalone), "good", "check this", "fix X then..." | Ask for clarification. Status unchanged. |
-| Tier 4 | Rejection | "wait", "no", "revise", "not ready", silence | Stay in current phase. Ask for feedback. |
+| Tier 4 | Rejection | "wait", "no", "revise", "not ready", silence | Stay in current stage. Ask for feedback. |
 
 **Tier 2 confirmation template (statement, not question):**
 ```
@@ -281,13 +281,13 @@ When a human approves a gate, the DSBV orchestrator executes these steps in orde
 1. **Verify prerequisites** — `bash scripts/gate-precheck.sh G{N} {workstream}` (run before presenting gate; exit non-zero = do not present)
 2. **Mark artifact in-review** — `bash scripts/set-status-in-review.sh {artifact_path}`
 3. **Present gate template** — use Structured Gate Reports template above
-4. **Detect and classify approval signal** — Tier 1/2: proceed; Tier 3: clarify; Tier 4: stay in phase
+4. **Detect and classify approval signal** — Tier 1/2: proceed; Tier 3: clarify; Tier 4: stay in stage
 5. **Write approval record** — append to artifact's `## Approval Log`; then set `status: validated`
 6. **Advance gate state + sync** — `bash scripts/gate-state.sh advance {workstream} G{N}`; run `./scripts/generate-registry.sh`
 
 **Safety invariants:**
 - NEVER set `status: validated` without a logged approval record
-- NEVER advance phase without completing Steps 1-5 first
+- NEVER advance stage without completing Steps 1-5 first
 - NEVER self-approve (only Human Director sets validated)
 
 Full protocol with approval log format and safety invariants: `.claude/skills/dsbv/SKILL.md` § Gate Approval Protocol.
@@ -311,7 +311,7 @@ Full protocol with approval log format and safety invariants: `.claude/skills/ds
 | Model | Cost/Run | When to Use | Example |
 |-------|----------|-------------|---------|
 | **Sonnet** | $0.50-1.50 | Breadth/exploration — diverse perspectives, parallel hypothesis generation | Build teams (3-5 competing agents) |
-| **Opus** | $2-5 | Synthesis/judgment — combining outputs, evaluating quality, final decisions | Build synthesis + Validate phase |
+| **Opus** | $2-5 | Synthesis/judgment — combining outputs, evaluating quality, final decisions | Build synthesis + Validate stage |
 | **Haiku** | $0.05-0.15 | Simple checks — status queries, readiness verification, formatting | Status checks, gate readiness |
 
 **Default configuration:**
@@ -374,7 +374,7 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 | 1 | Context package Section 3 (Required Artifacts) and Section 6 (Agent Deliverables) must be 1:1. In the ALIGN run, OKRs were listed as required but not included in deliverables — agents correctly produced only what was specified. | **Input** — incomplete deliverable list in prompt | Add readiness check: diff artifact list vs deliverable list before launch. If mismatch, BLOCK. |
 | 2 | DESIGN.md was not produced by any Build team because it was not in the deliverables list, only implied by the process. | **Input** — assumed artifact not explicitly assigned | Every artifact in DESIGN.md must appear as a named deliverable in the context package. Implicit = missing. |
 | 3 | Agents running in worktrees complicated output collection — synthesis agent had to locate and compare files across multiple directories. | **EOE** — worktree isolation created collection overhead | Automate worktree output collection: script that gathers all team outputs into a single comparison directory before synthesis. |
-| 4 | Agent skipped /dsbv skill invocation and operated from degraded memory of SKILL.md. Hard Gate #4 (multi-agent prompt) was missed. User not offered single/multi-agent choice. | **Agent + EOP** — LT-2 context degradation + LT-8 rationalization. Rules are probabilistic (~80%). | Deploy `dsbv-skill-guard.sh` hook: blocks workstream artifact writes if DESIGN.md doesn't exist. Enforces OUTCOME (Design phase completed) not PROCESS (skill invoked). |
+| 4 | Agent skipped /dsbv skill invocation and operated from degraded memory of SKILL.md. Hard Gate #4 (multi-agent prompt) was missed. User not offered single/multi-agent choice. | **Agent + EOP** — LT-2 context degradation + LT-8 rationalization. Rules are probabilistic (~80%). | Deploy `dsbv-skill-guard.sh` hook: blocks workstream artifact writes if DESIGN.md doesn't exist. Enforces OUTCOME (Design stage completed) not PROCESS (skill invoked). |
 | 5 | Hook blocked legitimate writes to operational files (retros, changelogs) because no DESIGN.md existed for that workstream. | **EOE** — hook enforcement too broad | Add allowlist in hook for operational files: retrospectives, changelogs, ADRs, metrics, learning outputs, reviews. These are updated incrementally outside DSBV. |
 | 6 | Lessons 1, 2, and the ADR gap in the single-agent run all share the same structural cause: DESIGN.md separates artifacts and conditions into two lists with no mapping. Conditions reference artifacts that don't exist in the deliverable list. | **EOP** — EP-09 (incomplete decomposition) + EP-10 (done not fully defined). The template structure itself caused the gap. | Unified artifact-condition table in DESIGN.md and context template. Mandatory alignment check at Gate G1: orphan conditions = 0, orphan artifacts = 0, deliverable count matches. Process fix, not outcome fix. |
 
@@ -392,7 +392,7 @@ Captured from real DSBV runs. Each lesson traces to a 7-CS root cause component.
 | Context Template | `_genesis/templates/dsbv-context-template.md` |
 | Evaluation Template | `_genesis/templates/dsbv-eval-template.md` |
 | Workstream-Boundary Gate | `scripts/dsbv-gate.sh` |
-| Design-Phase Guard | `scripts/dsbv-skill-guard.sh` |
+| Design-Stage Guard | `scripts/dsbv-skill-guard.sh` |
 | Gate Prerequisite Check | `scripts/gate-precheck.sh` |
 | Gate State Tracker | `scripts/gate-state.sh` |
 | Set Status In-Review | `scripts/set-status-in-review.sh` |

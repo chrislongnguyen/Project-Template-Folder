@@ -1064,7 +1064,7 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 ```
 /ltc-brainstorming                           /dsbv
 ┌──────────────────────┐                ┌──────────────────────┐
-│  Discovery Protocol  │                │  Design Phase        │
+│  Discovery Protocol  │                │  Design stage        │
 │  (4 gates)           │ ─── feeds ──► │  EO becomes §1 of    │
 │                      │    into        │  context-packaging    │
 │  Output:             │                │  template             │
@@ -1073,7 +1073,7 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 │                      │                │  Build → Validate     │
 └──────────────────────┘                └──────────────────────┘
 
-  Option A: PM says "let's build it" → agent offers /dsbv to start Design phase
+  Option A: PM says "let's build it" → agent offers /dsbv to start Design stage
   Option B: PM just wanted clarity  → closes with Discovery Complete summary
 ```
 

@@ -339,7 +339,7 @@ const SKILLS=[
 {id:"ltc-task-executor",name:"ltc-task-executor",desc:"Executes .exec/ task files with meta-rules re-injection",role:"EOP",cells:["E-B"],cat:"Process",connects:["ltc-execution-planner"]},
 {id:"feedback",name:"feedback",desc:"Routes feedback as GitHub Issues",role:"EOP",cells:["I-B"],cat:"Quality",connects:["ltc-rules-compliance"]},
 {id:"deep-research",name:"deep-research",desc:"12-question CODE framework with Blue-Red falsification",role:"EOT",cells:["L-B","A-B"],cat:"Research",connects:["learn-research"]},
-{id:"root-cause-tracing",name:"root-cause-tracing",desc:"ILE causal chain via UBS/UDS dot-notation",role:"EOT",cells:["I-B","I-D"],cat:"Research",connects:["feedback"]},
+{id:"root-cause-tracing",name:"root-cause-tracing",desc:"Learn Source causal chain via UBS/UDS dot-notation",role:"EOT",cells:["I-B","I-D"],cat:"Research",connects:["feedback"]},
 {id:"session-start",name:"session-start",desc:"[DEPRECATED] Use /resume instead. Retained for reference only.",role:"EOP",cells:["A-D","L-D","P-D","E-D","I-D"],cat:"Session",connects:["resume","setup"]},
 {id:"session-end",name:"session-end",desc:"[DEPRECATED] Use /compress then /clear instead. Retained for reference only.",role:"EOP",cells:["A-V","L-V","P-V","E-V","I-V"],cat:"Session",connects:["compress","ltc-clickup-planner"]},
 {id:"compress",name:"compress",desc:"Saves session context — writes rich frontmatter (goal, state, open_items, next_action) + auto-updates MEMORY.md Briefing Card. ~500 tokens.",role:"EOP",cells:["A-B","L-B","P-B","E-B","I-B"],cat:"Session",connects:["session-end","resume"]},
@@ -354,7 +354,7 @@ const TEMPLATES=[
 {id:"DSBV_PROCESS",name:"DSBV_PROCESS",desc:"DSBV workflow reference",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
 {id:"DSBV_CONTEXT",name:"DSBV_CONTEXT",desc:"Context package for Build",cells:["A-B","L-B","P-B","E-B","I-B"],role:"EOP"},
 {id:"DSBV_EVAL",name:"DSBV_EVAL",desc:"Validation protocol",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EOP"},
-{id:"DESIGN_TEMPLATE",name:"DESIGN_TEMPLATE",desc:"Workstream design spec (DSBV Phase 1)",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
+{id:"DESIGN_TEMPLATE",name:"DESIGN_TEMPLATE",desc:"Workstream design spec (DSBV Stage 1)",cells:["A-D","L-D","P-D","E-D","I-D"],role:"EOP"},
 {id:"ADR_TEMPLATE",name:"ADR_TEMPLATE",desc:"Architecture Decision Record",cells:["A-D","A-B"],role:"EOP"},
 {id:"VANA_SPEC",name:"VANA_SPEC",desc:"System requirements + acceptance criteria",cells:["A-B","L-V"],role:"EOP"},
 {id:"RISK_ENTRY",name:"RISK_ENTRY",desc:"Risk register entry (UBS)",cells:["P-B"],role:"EOP"},
@@ -377,7 +377,7 @@ const TEMPLATES=[
 {id:"OKR_TEMPLATE",name:"OKR_TEMPLATE",desc:"OKR register — Objectives with Key Results, baseline, target, formula.",cells:["A-S","I-V"],role:"EOP"},
 {id:"TEST_PLAN_TEMPLATE",name:"TEST_PLAN_TEMPLATE",desc:"Test plan — cases, expected/actual, pass/fail, AC coverage.",cells:["I-D","I-B"],role:"EOP"},
 {id:"GLOBAL_CLAUDE_MD_EXAMPLE",name:"GLOBAL_CLAUDE_MD_EXAMPLE",desc:"Golden reference CLAUDE.md for new projects — brand, rules, agent config scaffold.",cells:["A-D"],role:"EOP"},
-{id:"README_TEMPLATES",name:"README (Templates Index)",desc:"Template directory catalog — which template serves which workstream×phase.",cells:["A-D"],role:"EOP"}
+{id:"README_TEMPLATES",name:"README (Templates Index)",desc:"Template directory catalog — which template serves which workstream×stage.",cells:["A-D"],role:"EOP"}
 ];
 const FRAMEWORKS=[
 {id:"ltc-10-ultimate-truths",name:"ltc-10-ultimate-truths",desc:"S > E > Sc priority",cells:["ALL"],role:"EP",insight:"Derisk first, optimize second, scale third"},
@@ -389,7 +389,7 @@ const FRAMEWORKS=[
 {id:"agent-system",name:"agent-system",desc:"7-CS for AI",cells:["ALL"],role:"EP",insight:"Configure EP first, blame Agent last"},
 {id:"agent-diagnostic",name:"agent-diagnostic",desc:"Sequential blame",cells:["A-V","L-V","P-V","E-V","I-V"],role:"EP",insight:"Most failures = Input or EOP"},
 {id:"history-version-control",name:"history-version-control",desc:"Git strategy",cells:["E-B","E-V"],role:"EP",insight:"Human promotes Draft\u2192Approved"},
-{id:"alpei-dsbv-process-map",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 workstreams \u00d7 4 phases = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every workstream artifact routes through this map"},
+{id:"alpei-dsbv-process-map",name:"ALPEI-DSBV Process Map",desc:"Master routing: 5 workstreams \u00d7 4 stages = 20 cells. Templates, agents, gates per cell.",cells:["ALL"],role:"EP",insight:"The operational spine \u2014 every workstream artifact routes through this map"},
 {id:"alpei-dsbv-process-map-p1",name:"Process Map P1: 5\u00d74 Matrix",desc:"Workstream \u00d7 phase matrix with template, deliverable, agent, and AC per cell.",cells:["ALL"],role:"EP",insight:"Design+Sequence use ltc-planner; Build uses ltc-builder; Validate uses ltc-reviewer"},
 {id:"alpei-dsbv-process-map-p2",name:"Process Map P2: Version Progression",desc:"What each workstream produces at each depth level (I0\u2192I4). 25-cell matrix.",cells:["ALL"],role:"EP",insight:"I0=scaffold, I1=safety, I2=efficiency, I3=production, I4=self-improving"},
 {id:"alpei-dsbv-process-map-p3",name:"Process Map P3: ALIGN Walkthrough",desc:"Step-by-step trace of ALIGN workstream \u2014 agents, rules, gates, PM interaction.",cells:["A-D","A-S","A-B","A-V"],role:"EP",insight:"4 gates, 5 always-on rules, 4 agents \u2014 the PM makes 3 decisions"},
@@ -610,7 +610,7 @@ const WORKSTREAM_IO={
   E:{input:"PLAN.VALIDATE.EO: ARCHITECTURE.md + UBS_REGISTER.md + ROADMAP.md",output:"Workstream artifacts per SEQUENCE.md \u00b7 VALIDATE.md \u2192 IMPROVE"},
   I:{input:"EXECUTE.VALIDATE.EO: 4-EXECUTE/ deliverables + VALIDATE.md + OKR_REGISTER.md",output:"VERSION-REVIEW.md (GO/NO-GO) \u00b7 FEEDBACK_REGISTER.md \u2192 ALIGN (next iteration)"}
 };
-// I/O between DSBV phases
+// I/O between DSBV stages
 const DSBV_IO={
   D:{input:"Workstream input + EP constraints",output:"Design spec + execution strategy"},
   S:{input:"Design spec",output:"Ordered task list + dependencies"},
@@ -658,7 +658,7 @@ function getWorkstream7CS(row){
 
 function getCell7CS(cellId){
   const c=cellId[2];
-  const phase=c;
+  const stage=c;
   const data=CELL_7CS[cellId]||{};
 
   // EP: enforcement rules (no frameworks)
@@ -681,8 +681,8 @@ function getCell7CS(cellId){
   let eot_tool_names=(data.eot_tools||[]);
   let eot=[...eot_tmpl,...eot_tool_names.map(n=>({name:n,id:n}))];
 
-  // Agent: dynamic lookup by phase column
-  let agent=AGENTS[phase]||'ltc-planner (Opus)';
+  // Agent: dynamic lookup by stage column
+  let agent=AGENTS[stage]||'ltc-planner (Opus)';
 
   // EO: specific output file paths
   let eo=data.eo||DSBV_IO[c].output;
@@ -970,7 +970,7 @@ function closeBriefPanel(){
   document.getElementById('brief-panel').classList.remove('open');
 }
 
-// Capture-phase delegation: intercept clicks in brief mode
+// Capture-stage delegation: intercept clicks in brief mode
 document.body.addEventListener('click',function(e){
   if(!briefMode) return;
   const target=e.target.closest('[data-brief-coord]');

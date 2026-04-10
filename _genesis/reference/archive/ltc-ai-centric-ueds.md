@@ -521,7 +521,7 @@ Book 0: Master Overview & Shared Foundations
 
 Book 1: Sub-System 1 (E.1) — Define Scope
   ├── Stage E.1 Translation (from Part 2 below)
-  └── Curriculum (36 pages, following ILE format)
+  └── Curriculum (36 pages, following Learn Source format)
 
 Book 2: Sub-System 2 (E.2) — Design Solution
   ├── Stage E.2 Translation
@@ -1521,7 +1521,7 @@ The AI-Centric UEDS is sliced into 9 books:
 
 Each book contains:
 - Complete stage translation (as in Part 2 above)
-- Full curriculum (36 pages, ILE format)
+- Full curriculum (36 pages, Learn Source format)
   - Topic 0: Overview & Summary (6 pages)
   - Topics 1–5: Deep dives on stage UBS, UDS, principles, components, procedures
 - Sub-system boundaries & integration with adjacent stages
@@ -1858,7 +1858,7 @@ The AI-centric translation resolves this by:
 This Document 3 serves as the bridge between:
 
 - **Upstream:** Doc 1 (10 Ultimate Truths) and Doc 2 (Human-Centric UEDS)
-- **Downstream:** Master Curriculum Map (9 books, 324 pages of ILE-formatted learning)
+- **Downstream:** Master Curriculum Map (9 books, 324 pages of Learn Source-formatted learning)
 
 Each book in the curriculum will:
 - Start with the stage/phase translation (from Part 2 above)

@@ -29,14 +29,14 @@ The template now ships with 4 specialist agents that replace ad-hoc sub-agent di
 
 ## 2. The 4 Agents (1-minute read)
 
-Each agent has a single job. The DSBV phase determines which agent you (or a skill) should use.
+Each agent has a single job. The DSBV stage determines which agent you (or a skill) should use.
 
 | Agent | Model | When to Use | CLI Flag |
 |---|---|---|---|
 | `ltc-explorer` | Haiku | Before designing — research, codebase scan, prior art | `claude --agent ltc-explorer` |
-| `ltc-planner` | Opus | Design + Sequence phases — architecture, trade-offs | `claude --agent ltc-planner` |
-| `ltc-builder` | Sonnet | Build phase — artifact production from approved sequences | `claude --agent ltc-builder` |
-| `ltc-reviewer` | Opus | Validate phase — evidence-based review against ACs | `claude --agent ltc-reviewer` |
+| `ltc-planner` | Opus | Design + Sequence stages — architecture, trade-offs | `claude --agent ltc-planner` |
+| `ltc-builder` | Sonnet | Build stage — artifact production from approved sequences | `claude --agent ltc-builder` |
+| `ltc-reviewer` | Opus | Validate stage — evidence-based review against ACs | `claude --agent ltc-reviewer` |
 
 **Important:** The `--agent` CLI flag is for direct invocation from your terminal. Inside skills (e.g., `/dsbv build`), sub-agents are dispatched automatically using the Agent tool with context packaging — you do not need to pass `--agent` manually. The skill handles routing.
 
@@ -59,7 +59,7 @@ Step 2: Verify hooks are registered
 
 Step 3: Check DSBV status
   /dsbv status
-  → This command is now agent-aware and shows which agent handles the current phase
+  → This command is now agent-aware and shows which agent handles the current stage
   → No change to the command — output just includes agent routing info
 
 Step 4: Try a simple build task
@@ -95,7 +95,7 @@ VERIFY: How the agent self-checks before returning results
 
 ```
 EO:     Task file T3.1 written with all sections filled, no placeholders
-INPUT:  Context: DSBV Build phase for PLAN workstream.
+INPUT:  Context: DSBV Build stage for PLAN workstream.
         Files: SEQUENCE.md (task list), spec.md (acceptance criteria).
         Budget: ~10K tokens.
 EP:     EP-08 (Lean Output — signal only, no padding), EP-10 (Binary ACs — pass/fail only)
