@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 1.0 | status: draft | last_updated: 2026-04-09
+# version: 1.1 | status: draft | last_updated: 2026-04-10
 # gate-precheck.sh — Validate prerequisites before presenting a DSBV gate (C-04)
 # Bash 3 compatible: no mapfile, no declare -A, no local -a, no bash 4+ features
 #
@@ -202,6 +202,113 @@ check_g4() {
   echo "OK: G4 prerequisites met — VALIDATE.md found with aggregate score."
   exit 0
 }
+
+# ---------------------------------------------------------------------------
+# check_subsystem_ordering
+# Enforces the PD >= DP >= DA >= IDM version ceiling.
+# Subsystem ordering: PD(1) >= DP(2) >= DA(3) >= IDM(4).
+# When subsystem is null or empty in state file → skip (return 0, no-op).
+# When subsystem is non-null → read upstream subsystem's DESIGN.md version
+# and compare. If current subsystem version > upstream version → exit 1.
+#
+# State file location: .claude/state/dsbv-<workstream>.json
+# Reads: "subsystem": "<value>" field from state JSON
+# Reads: version from DESIGN.md frontmatter (line: "^version:")
+# ---------------------------------------------------------------------------
+check_subsystem_ordering() {
+  # Locate state file for the workstream
+  state_file=".claude/state/dsbv-${WORKSTREAM}.json"
+  if [ ! -f "$state_file" ]; then
+    # No state file: subsystem feature not active — skip silently
+    return 0
+  fi
+
+  # Extract subsystem value from state JSON
+  # Line format: "subsystem": null  OR  "subsystem": "1-PD"
+  subsystem_raw="$(grep '"subsystem"' "$state_file" | sed 's/.*"subsystem": *\(.*\)/\1/' | sed 's/[", ]//g' | sed 's/,//')"
+
+  # If null or empty → skip ordering check entirely
+  if [ -z "$subsystem_raw" ] || [ "$subsystem_raw" = "null" ]; then
+    return 0
+  fi
+
+  # Map subsystem code to numeric rank
+  # PD=1, DP=2, DA=3, IDM=4
+  subsystem_rank=0
+  case "$subsystem_raw" in
+    1-PD)  subsystem_rank=1 ;;
+    2-DP)  subsystem_rank=2 ;;
+    3-DA)  subsystem_rank=3 ;;
+    4-IDM) subsystem_rank=4 ;;
+    *)
+      echo "WARN: check_subsystem_ordering — unrecognised subsystem '${subsystem_raw}', skipping version ordering check." >&2
+      return 0
+      ;;
+  esac
+
+  # PD (rank=1) has no upstream — skip version ordering for PD
+  if [ "$subsystem_rank" -le 1 ]; then
+    return 0
+  fi
+
+  # Derive upstream subsystem code (rank - 1)
+  upstream_rank=$((subsystem_rank - 1))
+  case "$upstream_rank" in
+    1) upstream_subsystem="1-PD" ;;
+    2) upstream_subsystem="2-DP" ;;
+    3) upstream_subsystem="3-DA" ;;
+  esac
+
+  # Read current subsystem's DESIGN.md version
+  current_design="$(find "$WS_DIR" -maxdepth 3 -path "*/${subsystem_raw}/DESIGN.md" 2>/dev/null | head -1)"
+  if [ -z "$current_design" ]; then
+    # Cannot find current DESIGN.md — cannot enforce ordering, skip
+    return 0
+  fi
+
+  current_version="$(grep '^version:' "$current_design" | sed 's/version: *"\?\([0-9.]*\)"\?.*/\1/' | head -1)"
+
+  # Read upstream subsystem's DESIGN.md version
+  upstream_design="$(find "$WS_DIR" -maxdepth 3 -path "*/${upstream_subsystem}/DESIGN.md" 2>/dev/null | head -1)"
+  if [ -z "$upstream_design" ]; then
+    echo "ERROR: Subsystem version ordering check failed — upstream subsystem '${upstream_subsystem}' has no DESIGN.md in '${WS_DIR}'." >&2
+    echo "  PD >= DP >= DA >= IDM version ceiling requires upstream DESIGN.md to exist." >&2
+    exit 1
+  fi
+
+  upstream_version="$(grep '^version:' "$upstream_design" | sed 's/version: *"\?\([0-9.]*\)"\?.*/\1/' | head -1)"
+
+  if [ -z "$current_version" ] || [ -z "$upstream_version" ]; then
+    echo "WARN: check_subsystem_ordering — could not read version from one or both DESIGN.md files (current='${current_version}', upstream='${upstream_version}'). Skipping." >&2
+    return 0
+  fi
+
+  # Compare MAJOR.MINOR versions using awk (Bash 3 safe, no bc needed)
+  # Returns 1 if current > upstream, 0 otherwise
+  ordering_ok="$(awk -v cur="$current_version" -v up="$upstream_version" '
+    BEGIN {
+      split(cur, ca, ".")
+      split(up,  ua, ".")
+      cur_major = ca[1]+0; cur_minor = (ca[2]+0)
+      up_major  = ua[1]+0; up_minor  = (ua[2]+0)
+      if (cur_major > up_major) { print "FAIL" }
+      else if (cur_major == up_major && cur_minor > up_minor) { print "FAIL" }
+      else { print "OK" }
+    }')"
+
+  if [ "$ordering_ok" = "FAIL" ]; then
+    echo "ERROR: Subsystem version ordering violated — ${subsystem_raw} version ${current_version} exceeds upstream ${upstream_subsystem} version ${upstream_version}." >&2
+    echo "  PD >= DP >= DA >= IDM: downstream subsystem MUST NOT exceed upstream version." >&2
+    echo "  Fix: advance upstream ${upstream_subsystem} DESIGN.md to at least version ${current_version} first." >&2
+    exit 1
+  fi
+
+  echo "OK: Subsystem version ordering check passed — ${upstream_subsystem} ${upstream_version} >= ${subsystem_raw} ${current_version}."
+}
+
+# Run subsystem ordering check before gate-specific check.
+# When subsystem is null/empty in state, this is a no-op (null-safe).
+check_subsystem_ordering
 
 # ---------------------------------------------------------------------------
 # dispatch to gate check
