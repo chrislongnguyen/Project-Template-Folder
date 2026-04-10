@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 work_stream: 3-PLAN
 sub_system: _cross
 stage: design
@@ -17,7 +17,7 @@ type: design
 
 | Question                                        | Answer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Q1: Are upstream workstream outputs sufficient? | YES — Option A decided (DSBV scope = workstream x subsystem). Vocabulary fix ("phase" -> "stage") shipped across 187 files. Subsystem dirs already exist in filesystem (`{W}-{WS}/{S}-{SUB}/`).                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Q1: Are upstream workstream outputs sufficient? | YES — Option A decided (DSBV scope = workstream x subsystem). Vocabulary fix ("phase" -> "stage") shipped across 187 files. Subsystem dirs already exist in filesystem (`{W}-{WS}/{S}-{SUB}/`). BLUEPRINT v2.4, SOP v2.1, and VANA-SPEC v2.0 shipped as upstream prerequisites.                                                                                                                                                                                                                                                                                                                                  |
 | Q2: What is in scope for this design?           | 10 MUST-HAVE items migrating DSBV from workstream-level to subsystem-level scoping. See Artifact Inventory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Q2b: What is explicitly OUT of scope?           | (a) New subsystem creation (no new dirs beyond PD/DP/DA/IDM/_cross). (b) LEARN pipeline changes (Mode B untouched). (c) Iteration advancement logic (iteration-bump.sh unchanged). (d) Obsidian Bases view changes (downstream of registry format). (e) New agent roles or model changes. (f) WS-level DESIGN.md cleanup/removal (separate cleanup task post-migration). (g) **Operational exception dirs** — `charter/`, `decisions/`, `okrs/` in `1-ALIGN/` predate subsystem layout and are exempt from subsystem DSBV routing. They are not subsystem-scoped and not subject to DD-1 path pattern enforcement. |
 | Q3: Go/No-Go                                    | GO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -151,6 +151,7 @@ Stage 4: validate-blueprint.py stops expecting WS-level files
 
 | # | Artifact | Path | Purpose (WHY) | Acceptance Conditions |
 |---|----------|------|---------------|-----------------------|
+| A0 | Upstream prerequisites (complete) | `_genesis/alpei-blueprint.md`, `_genesis/sops/alpei-standard-operating-procedure.md`, `_genesis/templates/vana-spec-template.md` | Canonical upstream documents that A1-A10 build upon | AC-00: All 3 files exist and are committed. Status: COMPLETE. |
 | A1 | `/dsbv` skill update | `.claude/skills/dsbv/SKILL.md` | Add required `[subsystem]` parameter so DSBV operates at subsystem granularity | AC-01: Grep `\[subsystem\]` in SKILL.md returns >=1 match in Sub-Commands table. AC-02: Grep `pd\|dp\|da\|idm\|cross` in SKILL.md returns valid subsystem enum. AC-03: SKILL.md contains a section with 4 numbered specificity-level examples (0-arg through 3-arg) matching DD-2. AC-04: Signature line shows `/dsbv [stage] [workstream] [subsystem]`. |
 | A2 | Template scaffolding removal | `_genesis/reference/archive/scripts/populate-blueprint.py` + skill behavior | Stop generating WS-level DESIGN.md stubs; only generate at `{W}-{WS}/{S}-{SUB}/DESIGN.md` per DD-1 | AC-05: After running `/dsbv design align pd`, file exists at `1-ALIGN/1-PD/DESIGN.md`. AC-06: After running `/dsbv design align pd`, file `1-ALIGN/DESIGN.md` is NOT created. |
 | A3 | `dsbv-skill-guard.sh` update | `scripts/dsbv-skill-guard.sh` | Check subsystem-level DESIGN.md before allowing Build writes | AC-07: Script extracts subsystem dir from `$FILE_PATH` using pattern `{W}-{WS}/{S}-{SUB}/`. AC-08: When `1-ALIGN/1-PD/DESIGN.md` exists and write targets `1-ALIGN/1-PD/pd-charter.md`, exit code = 0 (allow). AC-09: When `1-ALIGN/1-PD/DESIGN.md` is missing and write targets `1-ALIGN/1-PD/pd-charter.md`, exit code = 2 (block). AC-10: WS-level `1-ALIGN/DESIGN.md` alone does NOT satisfy guard for subsystem writes (no fallback to WS-level for Build gate). |
@@ -165,8 +166,8 @@ Stage 4: validate-blueprint.py stops expecting WS-level files
 **Alignment check (mandatory at G1):**
 - [x] Orphan conditions = 0 (every AC maps to an artifact A1-A10)
 - [x] Orphan artifacts = 0 (every artifact has >=1 AC)
-- [x] Artifact count = 10 = items in spec
-- [x] AC count = 34 (31 original + AC-14b, AC-25b, AC-26b)
+- [x] Artifact count = 11 (A0-A10)
+- [x] AC count = 35 (31 original + AC-14b, AC-25b, AC-26b + AC-00)
 
 ---
 
