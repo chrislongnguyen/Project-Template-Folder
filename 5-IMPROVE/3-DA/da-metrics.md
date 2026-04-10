@@ -10,11 +10,11 @@ sub_system: 3-DA
 iteration: 1
 ---
 # METRICS BASELINE TEMPLATE (T7)
-> Stub template — populate during IMPROVE Design and IMPROVE Build phases.
+> Stub template — populate during IMPROVE Design and IMPROVE Build stages.
 > Cell(s) enabled: 5-IMPROVE × Design, 5-IMPROVE × Build
 > Gap justification: No template structures a quantitative metrics baseline (metric, current value, target, measurement method, cadence).
 
-<!-- TODO: Fill in during IMPROVE Design phase -->
+<!-- TODO: Fill in during IMPROVE Design stage -->
 
 ## Metrics Baseline Identity
 

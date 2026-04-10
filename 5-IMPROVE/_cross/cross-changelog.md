@@ -11,7 +11,7 @@ iteration: 1
 
 # Project Changelog
 
-> Template — populate during DSBV Build phase.
+> Template — populate during DSBV Build stage.
 
 ## Unreleased
 
@@ -34,7 +34,7 @@ iteration: 1
 - **P1:** Created `.claude/rules/filesystem-routing.md` — 4-mode routing rule (A=DSBV, B=Learn pipeline, C=PKB, D=Genesis)
 - **P2:** Updated `CLAUDE.md` — routing section + DSBV "not LEARN" exclusion
 - **P3:** Fixed `scripts/dsbv-skill-guard.sh` — LEARN DSBV block (exit 2), pipeline allow (exit 0)
-- **P4:** Fixed `scripts/populate-blueprint.py` — skip LEARN in DSBV phase file creation
+- **P4:** Fixed `scripts/populate-blueprint.py` — skip LEARN in DSBV stage file creation
 - **P5:** Fixed `scripts/generate-readmes.py` — LEARN-specific pipeline README template
 - **P6:** Fixed `.claude/skills/dsbv/SKILL.md` — HARD-CONSTRAINT LEARN exclusion + status table
 - **P7:** Updated `.claude/agents/ltc-planner.md` + `ltc-builder.md` — Routing Boundaries section

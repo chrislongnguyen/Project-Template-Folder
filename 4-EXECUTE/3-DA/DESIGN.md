@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV DESIGN — EXECUTE x Data Analysis
 
-> DSBV Phase artifact for EXECUTE workstream, Data Analysis subsystem.
+> DSBV stage artifact for EXECUTE workstream, Data Analysis subsystem.
 > Source template: `_genesis/templates/design-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream x subsystem phase must produce -->
+<!-- TODO: Define what this workstream x subsystem stage must produce -->
 
 ## Artifacts
 

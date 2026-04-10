@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV SEQUENCE — EXECUTE x Problem Diagnosis
 
-> DSBV Phase artifact for EXECUTE workstream, Problem Diagnosis subsystem.
+> DSBV stage artifact for EXECUTE workstream, Problem Diagnosis subsystem.
 > Source template: `_genesis/templates/dsbv-context-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream x subsystem phase must produce -->
+<!-- TODO: Define what this workstream x subsystem stage must produce -->
 
 ## Artifacts
 

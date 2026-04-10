@@ -11,7 +11,7 @@ iteration: 1
 
 # Driver Register (UDS) — Problem Diagnosis
 
-> Template — populate during DSBV Build phase.
+> Template — populate during DSBV Build stage.
 
 ## Driver Register
 

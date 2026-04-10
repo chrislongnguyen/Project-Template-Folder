@@ -11,7 +11,7 @@ iteration: 1
 
 # OKR Register — Problem Diagnosis
 
-> Template — populate during DSBV Build phase.
+> Template — populate during DSBV Build stage.
 
 ## Objectives
 

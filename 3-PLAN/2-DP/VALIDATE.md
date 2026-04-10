@@ -11,7 +11,7 @@ iteration: 1
 
 # DSBV VALIDATE — PLAN × Data Pipeline
 
-> DSBV Validate phase artifact. Evidence-based review against DESIGN.md criteria.
+> DSBV Validate stage artifact. Evidence-based review against DESIGN.md criteria.
 > Source template: `_genesis/templates/dsbv-eval-template.md`
 
 ## Validation Criteria

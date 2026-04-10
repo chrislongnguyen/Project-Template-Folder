@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV DESIGN — EXECUTE x Insights & Decision Making
 
-> DSBV Phase artifact for EXECUTE workstream, Insights & Decision Making subsystem.
+> DSBV stage artifact for EXECUTE workstream, Insights & Decision Making subsystem.
 > Source template: `_genesis/templates/design-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream x subsystem phase must produce -->
+<!-- TODO: Define what this workstream x subsystem stage must produce -->
 
 ## Artifacts
 

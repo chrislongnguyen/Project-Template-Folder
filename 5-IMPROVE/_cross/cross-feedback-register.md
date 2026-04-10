@@ -11,7 +11,7 @@ iteration: 1
 
 # Feedback Register
 
-> Template — populate during DSBV Build phase.
+> Template — populate during DSBV Build stage.
 
 ## Feedback Log
 

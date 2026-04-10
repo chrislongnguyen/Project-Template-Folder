@@ -10,11 +10,11 @@ sub_system: 3-DA
 iteration: 1
 ---
 # DRIVER ENTRY TEMPLATE (T5)
-> Stub template — populate during PLAN Sequence and PLAN Build phases.
+> Stub template — populate during PLAN Sequence and PLAN Build stages.
 > Cell(s) enabled: 3-PLAN × Sequence, 3-PLAN × Build
 > Gap justification: RISK_ENTRY_TEMPLATE covers UBS (threats). No parallel template for UDS (drivers/opportunities).
 
-<!-- TODO: Fill in during PLAN Sequence or Build phase. One entry per driver. -->
+<!-- TODO: Fill in during PLAN Sequence or Build stage. One entry per driver. -->
 
 ## Driver Entry
 

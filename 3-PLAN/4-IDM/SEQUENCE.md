@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV SEQUENCE — PLAN × Insights & Decision Making
 
-> DSBV Phase artifact for PLAN workstream, Insights & Decision Making subsystem.
+> DSBV stage artifact for PLAN workstream, Insights & Decision Making subsystem.
 > Source template: `_genesis/templates/dsbv-context-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream×subsystem phase must produce -->
+<!-- TODO: Define what this workstream×subsystem stage must produce -->
 
 ## Artifacts
 

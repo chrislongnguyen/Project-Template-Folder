@@ -11,7 +11,7 @@ iteration: 1
 # Driver Register (UDS) — PLAN Workstream
 
 > Cross-subsystem driver register for 3-PLAN. Covers all 4 sub-systems (PD, DP, DA, IDM).
-> Populate during DSBV Build phase for each sub-system.
+> Populate during DSBV Build stage for each sub-system.
 > Sub-system registers: `1-PD/pd-driver-register.md`, `2-DP/dp-driver-register.md`, `3-DA/da-driver-register.md`, `4-IDM/idm-driver-register.md`
 
 ## UDS Framework

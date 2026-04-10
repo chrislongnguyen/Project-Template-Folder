@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV DESIGN — IMPROVE × Problem Diagnosis
 
-> DSBV Phase artifact for IMPROVE workstream, Problem Diagnosis subsystem.
+> DSBV stage artifact for IMPROVE workstream, Problem Diagnosis subsystem.
 > Source template: `_genesis/templates/design-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream×subsystem phase must produce -->
+<!-- TODO: Define what this workstream×subsystem stage must produce -->
 
 ## Artifacts
 

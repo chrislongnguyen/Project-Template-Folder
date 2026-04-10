@@ -10,12 +10,12 @@ iteration: 1
 ---
 # DSBV SEQUENCE — ALIGN × Data Analysis
 
-> DSBV Phase artifact for ALIGN workstream, Data Analysis subsystem.
+> DSBV stage artifact for ALIGN workstream, Data Analysis subsystem.
 > Source template: `_genesis/templates/dsbv-context-template.md`
 
 ## Scope
 
-<!-- TODO: Define what this workstream×subsystem phase must produce -->
+<!-- TODO: Define what this workstream×subsystem stage must produce -->
 
 ## Artifacts
 
