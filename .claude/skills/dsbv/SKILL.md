@@ -1,5 +1,5 @@
 ---
-version: "2.2"
+version: "2.3"
 status: draft
 last_updated: 2026-04-11
 name: dsbv
@@ -105,10 +105,10 @@ Every `Agent()` call in **ANY stage** (Design, Sequence, Build, Validate) MUST u
    `_genesis/frameworks/alpei-dsbv-process-map.md`, Design row, Template column.
    Default: `design-template.md` if routing table not yet populated for this workstream.
 3. **Dispatch to ltc-planner.** Context-package the design problem using the 5-field template (`references/context-packaging.md`): EO = workstream intent, INPUT = charter + template + prior decisions, EP = design quality checks from planner agent file, OUTPUT = DESIGN.md in output contract envelope, VERIFY = alignment check (zero orphans). The planner drafts DESIGN.md — do NOT produce it inline.
-4. Write the planner's returned DESIGN.md content to `{workstream-number}-{WORKSTREAM}/DESIGN.md`
+4. Write the planner's returned DESIGN.md content to `{W}-{WORKSTREAM}/{S}-{SUBSYSTEM}/DESIGN.md`
 5. Present DESIGN.md to the user for review
 
-**Output:** `{workstream-number}-{WORKSTREAM}/DESIGN.md` (e.g., `1-ALIGN/DESIGN.md`)
+**Output:** `{W}-{WORKSTREAM}/{S}-{SUBSYSTEM}/DESIGN.md` (e.g., `1-ALIGN/1-PD/DESIGN.md`)
 
 **Pre-gate actions (run before presenting this gate to PM):**
 ```bash
@@ -129,10 +129,10 @@ On human approval, execute the Gate Approval Protocol below.
 **Steps:**
 1. Read the approved DESIGN.md
 2. **Dispatch to ltc-planner.** Context-package using the 5-field template (`references/context-packaging.md`): EO = order the work for this workstream, INPUT = approved DESIGN.md + workstream context, EP = dependency mapping + sizing from planner agent file, OUTPUT = SEQUENCE.md in output contract envelope, VERIFY = all DESIGN.md artifacts have ≥1 task, no circular dependencies. The planner drafts SEQUENCE.md — do NOT produce it inline.
-3. Write the planner's returned SEQUENCE.md content to `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
+3. Write the planner's returned SEQUENCE.md content to `{W}-{WORKSTREAM}/{S}-{SUBSYSTEM}/SEQUENCE.md`
 4. Present SEQUENCE.md to the user
 
-**Output:** `{workstream-number}-{WORKSTREAM}/SEQUENCE.md`
+**Output:** `{W}-{WORKSTREAM}/{S}-{SUBSYSTEM}/SEQUENCE.md` (e.g., `1-ALIGN/1-PD/SEQUENCE.md`)
 
 **Pre-gate actions (run before presenting this gate to PM):**
 ```bash
@@ -294,7 +294,7 @@ On human approval, execute the Gate Approval Protocol below.
 6. Check **Downstream readiness** — the next workstream can start with these outputs
 7. Produce a validation report: pass/fail per criterion with file-path evidence
 
-**Output:** `{workstream-number}-{WORKSTREAM}/VALIDATE.md` — validation report with pass/fail per criterion
+**Output:** `{W}-{WORKSTREAM}/{S}-{SUBSYSTEM}/VALIDATE.md` (e.g., `1-ALIGN/1-PD/VALIDATE.md`) — validation report with pass/fail per criterion
 
 **Pre-gate actions (run before presenting this gate to PM):**
 ```bash
@@ -338,33 +338,33 @@ Action: APPROVE / REVISE / ESCALATE
 
 ```
 DSBV Status — Iteration 1 (YYYY-MM-DD)
-┌─────────────────────────┬──────────────────────────┬─────────┬─────────────┬──────────┐
-│ Workstream × Stage            │ Deliverable              │ Version │ Status      │ AC Pass  │
-├─────────────────────────┼──────────────────────────┼─────────┼─────────────┼──────────┤
-│ 1-ALIGN × Design        │ DESIGN.md                │ 1.4     │ Draft       │ —        │
-│ 1-ALIGN × Sequence      │ SEQUENCE.md              │ 1.3     │ Draft       │ —        │
-│ 1-ALIGN × Build         │ Charter+ADRs+OKRs        │ 1.x     │ In Progress │ 28/30    │
-│ 1-ALIGN × Validate      │ VALIDATE.md              │ 1.2     │ Draft       │ 28/30    │
-│ 2-LEARN × Pipeline       │ input/research/specs/out │ 1.x     │ In Progress │ —        │
-│ (LEARN uses pipeline, not DSBV — no DESIGN/SEQUENCE/VALIDATE rows)           │          │
-│ 3-PLAN × Design         │ DESIGN.md                │ —       │ Pending     │ —        │
-│ 3-PLAN × Sequence       │ SEQUENCE.md              │ —       │ Pending     │ —        │
-│ 3-PLAN × Build          │ UBS/UDS/Architecture     │ —       │ Pending     │ —        │
-│ 3-PLAN × Validate       │ VALIDATE.md              │ —       │ Pending     │ —        │
-│ 4-EXECUTE × Design      │ DESIGN.md                │ 1.2     │ Draft       │ —        │
-│ 4-EXECUTE × Sequence    │ SEQUENCE.md              │ —       │ Not Started │ —        │
-│ 4-EXECUTE × Build       │ src/tests/config/docs    │ —       │ Not Started │ —        │
-│ 4-EXECUTE × Validate    │ VALIDATE.md              │ —       │ Not Started │ —        │
-│ 5-IMPROVE × Design      │ DESIGN.md                │ —       │ Pending     │ —        │
-│ 5-IMPROVE × Sequence    │ SEQUENCE.md              │ —       │ Pending     │ —        │
-│ 5-IMPROVE × Build       │ CHANGELOG/metrics/retros │ 1.0     │ Pending     │ —        │
-│ 5-IMPROVE × Validate    │ VALIDATE.md              │ —       │ Pending     │ —        │
-└─────────────────────────┴──────────────────────────┴─────────┴─────────────┴──────────┘
+┌──────────────────────────────────┬──────────────────────────┬─────────┬─────────────┬──────────┐
+│ Workstream × Subsystem × Stage   │ Deliverable              │ Version │ Status      │ AC Pass  │
+├──────────────────────────────────┼──────────────────────────┼─────────┼─────────────┼──────────┤
+│ 1-ALIGN/1-PD × Design            │ 1-PD/DESIGN.md           │ 1.4     │ Draft       │ —        │
+│ 1-ALIGN/1-PD × Sequence          │ 1-PD/SEQUENCE.md         │ 1.3     │ Draft       │ —        │
+│ 1-ALIGN/1-PD × Build             │ Charter+ADRs+OKRs        │ 1.x     │ In Progress │ 28/30    │
+│ 1-ALIGN/1-PD × Validate          │ 1-PD/VALIDATE.md         │ 1.2     │ Draft       │ 28/30    │
+│ 2-LEARN × Pipeline               │ input/research/specs/out │ 1.x     │ In Progress │ —        │
+│ (LEARN uses pipeline, not DSBV — no DESIGN/SEQUENCE/VALIDATE rows)                  │          │
+│ 3-PLAN/1-PD × Design             │ 1-PD/DESIGN.md           │ —       │ Pending     │ —        │
+│ 3-PLAN/1-PD × Sequence           │ 1-PD/SEQUENCE.md         │ —       │ Pending     │ —        │
+│ 3-PLAN/1-PD × Build              │ UBS/UDS/Architecture     │ —       │ Pending     │ —        │
+│ 3-PLAN/1-PD × Validate           │ 1-PD/VALIDATE.md         │ —       │ Pending     │ —        │
+│ 4-EXECUTE/1-PD × Design          │ 1-PD/DESIGN.md           │ 1.2     │ Draft       │ —        │
+│ 4-EXECUTE/1-PD × Sequence        │ 1-PD/SEQUENCE.md         │ —       │ Not Started │ —        │
+│ 4-EXECUTE/1-PD × Build           │ src/tests/config/docs    │ —       │ Not Started │ —        │
+│ 4-EXECUTE/1-PD × Validate        │ 1-PD/VALIDATE.md         │ —       │ Not Started │ —        │
+│ 5-IMPROVE/1-PD × Design          │ 1-PD/DESIGN.md           │ —       │ Pending     │ —        │
+│ 5-IMPROVE/1-PD × Sequence        │ 1-PD/SEQUENCE.md         │ —       │ Pending     │ —        │
+│ 5-IMPROVE/1-PD × Build           │ CHANGELOG/metrics/retros │ 1.0     │ Pending     │ —        │
+│ 5-IMPROVE/1-PD × Validate        │ 1-PD/VALIDATE.md         │ —       │ Pending     │ —        │
+└──────────────────────────────────┴──────────────────────────┴─────────┴─────────────┴──────────┘
 Active workstream: 2-LEARN × Build (In Progress)
 Next gate: 2-LEARN × Validate → human approval required
 ```
 
-**Single-workstream summary (backward-compatible):** `/dsbv status [workstream]` filters to 4 rows for that workstream only, preserving the same column structure.
+**Single-workstream summary:** `/dsbv status [workstream]` filters to rows for that workstream only (all subsystems), preserving the same column structure. `/dsbv status [workstream] [subsystem]` filters to 4 rows for that workstream×subsystem pair.
 
 **Data source:** All values read from `_genesis/version-registry.md` — never hardcoded in the skill. Edit the registry row, re-run `/dsbv status` → output reflects the change.
 
@@ -427,10 +427,10 @@ Run `./scripts/generate-registry.sh`. Scaffold next artifact per § Safety Invar
 
 | Current gate | Next artifact | Action |
 |---|---|---|
-| G1 (Design approved) | `SEQUENCE.md` | Create from template with `status: draft` |
+| G1 (Design approved) | `{W}-{WS}/{S}-{SUB}/SEQUENCE.md` | Create from template with `status: draft` |
 | G2 (Sequence approved) | Build artifacts | Per SEQUENCE.md task list — begin first task |
-| G3 (Build approved) | `VALIDATE.md` | Create from template with `status: draft` |
-| G4 (Validate approved) | Next workstream DESIGN.md | Create with `status: draft` (if chain-of-custody allows) |
+| G3 (Build approved) | `{W}-{WS}/{S}-{SUB}/VALIDATE.md` | Create from template with `status: draft` |
+| G4 (Validate approved) | Next subsystem or workstream DESIGN.md | Create at `{W}-{WS}/{S}-{SUB}/DESIGN.md` with `status: draft` (if chain-of-custody allows) |
 
 New artifacts start at `version: "1.0"`, `status: draft`, `last_updated: {today}`.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 1.1 | status: draft | last_updated: 2026-04-06
+# version: 1.2 | status: draft | last_updated: 2026-04-11
 """
 populate-blueprint.py — Manifest-driven repo population for LTC Project Template.
 
@@ -165,8 +165,14 @@ OLD_DIRS_TO_CLEAN = [
     "5-IMPROVE/reviews", "5-IMPROVE/risk-log",
 ]
 
-# DSBV files that already exist at workstream root — keep them there
+# ARCHIVED SCRIPT NOTE (DD-1): DSBV artifacts MUST live at subsystem level, never WS level.
+# Convention: {W}-{WS}/{S}-{SUB}/DESIGN.md  (e.g., 1-ALIGN/1-PD/DESIGN.md)
+# The dict below was a migration snapshot of pre-convention WS-root files.
+# phase_2b_dsbv() already creates subsystem-level files correctly.
+# If re-activating this script, remove WS-root DSBV files and rely on phase_2b_dsbv() only.
 EXISTING_DSBV = {
+    # These WS-root DSBV files are LEGACY — do not create new ones here.
+    # All new DSBV files go to {W}-{WS}/{S}-{SUB}/ via phase_2b_dsbv().
     "1-ALIGN": ["DESIGN.md", "SEQUENCE.md", "VALIDATE.md"],
     "3-PLAN":  ["DESIGN.md", "SEQUENCE.md", "VALIDATE.md"],
     "4-EXECUTE": ["DESIGN.md", "SEQUENCE.md", "VALIDATE.md"],
