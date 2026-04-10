@@ -4,6 +4,29 @@ All notable changes to the LTC Project Template.
 Format: [semver] — YYYY-MM-DD — summary.
 Tier tags: [T1:REPLACE] [T2:MERGE] [T3:ADD-ONLY]
 
+## [Unreleased] — 2026-04-10
+
+### Added — DSBV Template Alignment (38 ACs, 6 artifacts)
+- [T3:ADD-ONLY] `_genesis/templates/sequence-template.md` v1.0 — new SEQUENCE.md template (was missing entirely)
+- [T1:REPLACE] `_genesis/templates/dsbv-eval-template.md` v1.2 — rewrite: Completeness/Quality/Coherence/Downstream dimensions, criterion parity, FAIL classification, evidence standard
+- [T1:REPLACE] `_genesis/templates/dsbv-process.md` v1.6 — add gate scripts, Generator/Critic loop, circuit breaker, approval signals, authority boundary
+- [T1:REPLACE] `_genesis/templates/design-template.md` v1.3 — add Approval Log, iteration context, binary AC examples, fix alignment check
+- [T1:REPLACE] `_genesis/templates/dsbv-context-template.md` v1.2 — add Budget/max_tool_calls, context-packaging relationship, EP filtering, replace LLM boilerplate
+- [T1:REPLACE] `_genesis/frameworks/alpei-dsbv-process-map.md` v1.6 — add sequence-template.md routing, fix kebab-case filenames
+
+### Added — DSBV Enforcement (P1+P2 provenance system)
+- [T3:ADD-ONLY] `.claude/hooks/dsbv-provenance-guard.sh` v1.0 — PreToolUse hook blocks DSBV artifact writes without prior designated agent dispatch; auto-inits gate state
+- [T1:REPLACE] `.claude/hooks/nesting-depth-guard.sh` v2.0 — add structured JSONL dispatch audit log (consumed by provenance guard)
+
+### Added — Targeted DSBV Fixes (5 of 15, I1-relevant)
+- [T3:ADD-ONLY] `.claude/hooks/builder-audit.sh` v1.0 — SubagentStop hook warns if builder skips AC self-check (S-FIX-1)
+- [T1:REPLACE] `.claude/agents/ltc-builder.md` v1.7 + `.claude/agents/ltc-reviewer.md` v1.6 — structural/semantic AC scope split (E-FIX-1)
+- [T3:ADD-ONLY] `scripts/gate-ceremony.sh` v1.0 — convenience wrapper for gate transitions (E-FIX-2)
+- [T1:REPLACE] `.claude/agents/ltc-explorer.md` v1.6 — parallel tool use protocol (E-FIX-5)
+- [T1:REPLACE] `scripts/gate-state.sh` v1.2 + `scripts/gate-precheck.sh` v1.1 — subsystem chain-of-custody enforcement PD>=DP>=DA>=IDM (Sc-FIX-2)
+
+---
+
 ## [Unreleased] — 2026-04-07
 
 ### Fixed — DSBV Gate: risks/drivers operational file exception
