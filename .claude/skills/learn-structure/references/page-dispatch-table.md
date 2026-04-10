@@ -51,11 +51,14 @@ Priority if ambiguous: S > E > Sc (Sustainability always wins).
 
 ## P4 Layer Structure
 
+<!-- Layer names and count are discovered during LEARN research — not prescribed here. -->
+<!-- Define layer names per sub-system before generating P4. -->
+
 | Layer | Code | Meaning |
 |-------|------|---------|
-| Foundational | `INFRA.n(role)` | Core infrastructure (frameworks, data stores, protocols) |
-| Operational | `WORKSPACE.n(role)` | Daily-use tools and environments |
-| Enabling | `INTEL.n(role)` | Intelligence/analysis tools that amplify capability |
+| Foundational (name per sub-system) | `{LAYER_NAME}.n(role)` | Must exist before anything else can operate (e.g., Infrastructure, Physical, Legal) |
+| Operational (name per sub-system) | `{LAYER_NAME}.n(role)` | Working environment — requires foundational layer (e.g., Workspace, Digital, Process) |
+| Additional layers (if warranted) | `{LAYER_NAME}.n(role)` | Each amplifies the layers below — define based on research (e.g., Intelligence, Cultural, Strategic) |
 
 ## P5 Step Ordering
 

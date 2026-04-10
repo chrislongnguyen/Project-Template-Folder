@@ -6,7 +6,7 @@
 # PURPOSE:
 #   1. Detect sub-agent nesting violations (EP-13)
 #   2. Log every Agent() dispatch to structured JSONL audit log (P2)
-#      → consumed by dsbv-provenance-guard.sh to verify phase artifact provenance
+#      → consumed by dsbv-provenance-guard.sh to verify stage artifact provenance
 #
 # LIMITATION: PostToolUse hooks fire in the calling session. If a sub-agent calls Agent(),
 # this hook fires inside that sub-agent's isolated context — but whether PostToolUse

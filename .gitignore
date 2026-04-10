@@ -20,9 +20,8 @@ secrets/
 .worktrees/
 .template-version
 
-# Superpowers working artifacts (specs/plans are local-only)
-docs/superpowers/specs/
-docs/superpowers/plans/
+# Local documentation (appearance notes, superpowers artifacts)
+docs/
 
 # Dependencies
 node_modules/

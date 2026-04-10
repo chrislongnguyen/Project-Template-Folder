@@ -223,10 +223,13 @@ Each row: `P[n](pillar)(role)` for enabling principles, `P_F[n](pillar)(role)` f
 
 ### Structure
 
-3-layer causal stack:
-1. **Foundational** (`INFRA.n(role)`) — core infrastructure, frameworks, data stores
-2. **Operational** (`WORKSPACE.n(role)`) — daily tools, environments, workflows
-3. **Enabling** (`INTEL.n(role)`) — intelligence/analysis tools that amplify capability
+<!-- Layer names and count are discovered during LEARN research for this sub-system — not prescribed. -->
+<!-- Define layer names before generating P4. Check the learn-input file or subject notes for the active layer set. -->
+
+Causally ordered layer stack (number of layers and names are sub-system-specific):
+- Define layer names based on the subject (e.g., Infrastructure/Workspace/Intelligence, Physical/Digital/Cognitive, Legal/Process/Analytics)
+- Layers MUST be causal: each layer depends on and builds from the layer(s) below it
+- Row code: `{LAYER_NAME}.n(role)` — substitute the actual layer name from the subject definition
 
 Each component must explicitly state which P3 principle(s) it enables.
 
@@ -234,7 +237,8 @@ Each component must explicitly state which P3 principle(s) it enables.
 
 ### Validate P4
 - Each component references at least one P3 principle
-- 3 layers represented (INFRA, WORKSPACE, INTEL)
+- All defined layers are represented (number and names per sub-system definition)
+- Row codes use the actual layer name, not placeholder text
 
 ---
 
@@ -253,7 +257,7 @@ Sequential steps: `STEP.n(role)` — numbered sequentially.
 2. Steps N+1-M: OPTIMIZE — leverage UDS elements from P2 (success acceleration second)
 
 Each step must reference specific P1-P4 elements it acts on. Example:
-`STEP.1(R).ACT: Load architectural context [INFRA.1(R)] before execution to prevent UBS(R) — Context Fragmentation`
+`STEP.1(R).ACT: Load architectural context [{LAYER_NAME}.1(R)] before execution to prevent UBS(R) — Context Fragmentation`
 
 ### Typical count: 4-6 rows
 

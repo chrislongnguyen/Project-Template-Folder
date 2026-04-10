@@ -44,9 +44,9 @@ The agent has ZERO memory of prior sessions or parent context.
 State only what is needed for THIS task — not project history.
 
 ### Files (EP-04: Load What You Need)
-Before listing files, look up the routing table for this workstream × phase:
+Before listing files, look up the routing table for this workstream × stage:
   grep `## Routing: {workstream}` in `_genesis/frameworks/alpei-dsbv-process-map.md`
-  → Template column = required Read files for this phase
+  → Template column = required Read files for this stage
   → Deliverable Path column = Write target
 Then list resolved paths explicitly (no relative paths in worktrees — see worktree rule).
 
@@ -101,12 +101,12 @@ This compensates for LT-1 (hallucination) and LT-5 (plausibility ≠ truth).
 
 ## Per-Agent Examples
 
-### ltc-builder (Build phase)
+### ltc-builder (Build stage)
 
 ```markdown
 ## 1. EO
 Task T1.3 produces an updated /dsbv SKILL.md that references
-ltc-builder agent file for Build phase dispatch, without breaking
+ltc-builder agent file for Build stage dispatch, without breaking
 existing skill behavior or failing EOP-GOV validation.
 
 ## 2. INPUT
@@ -142,12 +142,12 @@ max_tool_calls: 50
 
 ### Deliverable
 Modified `.claude/skills/dsbv/SKILL.md` with agent dispatch
-references in Build and Validate phase sections.
+references in Build and Validate stage sections.
 Consumed by: all users invoking `/dsbv build` or `/dsbv validate`.
 
 ### Acceptance Criteria
-- [ ] `ltc-builder` referenced in Build phase section
-- [ ] `ltc-reviewer` referenced in Validate phase section
+- [ ] `ltc-builder` referenced in Build stage section
+- [ ] `ltc-reviewer` referenced in Validate stage section
 - [ ] Existing skill triggers unchanged
 - [ ] `skill-validator.sh` passes
 

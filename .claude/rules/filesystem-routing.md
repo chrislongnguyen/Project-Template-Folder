@@ -31,9 +31,9 @@ NONE → operational file (.claude/, scripts/, root) — no routing constraint
 
 Structure: `{N}-{WORKSTREAM}/{subsystem}/` where subsystem = `1-PD`, `2-DP`, `3-DA`, `4-IDM`, `_cross`
 
-DSBV phase files (`DESIGN.md`, `SEQUENCE.md`, `VALIDATE.md`) live at workstream root or subsystem level.
+DSBV stage files (`DESIGN.md`, `SEQUENCE.md`, `VALIDATE.md`) live at workstream root or subsystem level.
 
-Artifacts require a DESIGN.md in the workstream before Build-phase writes (enforced by `scripts/dsbv-skill-guard.sh`).
+Artifacts require a DESIGN.md in the workstream before Build-stage writes (enforced by `scripts/dsbv-skill-guard.sh`).
 
 ## Mode B — Learning Pipeline
 

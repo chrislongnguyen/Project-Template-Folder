@@ -63,7 +63,7 @@ Every content cell (cols 1-16) MUST begin with a CAG-tagged prefix:
 | P1 | 2 | Up to 6 (3 per role) | `UBS(role)`, `.UB`, `.UB.UB`, `.UB.UD` |
 | P2 | 2 | Up to 6 (3 per role) | `UDS(role)`, `.UD`, `.UD.UB`, `.UD.UD` |
 | P3 | 4-8 | 4-8 | `P[n](pillar)(role)`, `P_F[n](pillar)(role)` |
-| P4 | 4-8 | 4-8 | `INFRA.n(role)`, `WORKSPACE.n(role)`, `INTEL.n(role)` |
+| P4 | 4-8 | 4-8 | `{LAYER_NAME}.n(role)` — layer names discovered during LEARN, not prescribed |
 | P5 | 4-6 | 4-6 | `STEP.n(role)` |
 
 ---
@@ -94,10 +94,14 @@ Format: `P[n](pillar)(role)` for enabling, `P_F[n](pillar)(role)` for failure.
 
 ## P4 Component Layers
 
-Components follow a 3-layer structure:
-1. **Foundational (INFRA):** Infrastructure that must exist first
-2. **Operational (WORKSPACE):** Day-to-day working environment
-3. **Enabling (INTEL):** Intelligence/analytics that amplify the other layers
+<!-- Layer names are discovered during LEARN research, not prescribed here. The number of layers is sub-system-specific. -->
+
+Components follow a causally ordered layer structure (number of layers defined per sub-system):
+1. **Foundational layer:** Must exist before anything else can operate. Name defined during research (e.g., Infrastructure, Physical, Legal).
+2. **Operational layer:** Working environment — requires the foundational layer. Name defined during research (e.g., Workspace, Digital, Process).
+3. **Additional layers (if warranted):** Each amplifies the layers below. Define names and count based on what the research reveals for this sub-system.
+
+Row code pattern: `{LAYER_NAME}.n(role)` — substitute the actual layer name discovered during research.
 
 ## Links
 

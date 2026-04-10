@@ -13,7 +13,7 @@ Full spec: `.claude/rules/enforcement-layers.md`
                   | Documentation       | Automated Check         | Human Gate
 ------------------+---------------------+-------------------------+---------------------
 Session Load      | .claude/rules/ files| SessionStart hooks      | —
-Tool Use          | —                   | PreToolUse/PostToolUse  | DSBV phase gates G1-G4
+Tool Use          | —                   | PreToolUse/PostToolUse  | DSBV stage gates G1-G4
 Commit            | git-conventions.md  | Pre-commit hooks +      | —
                   |                     | template-check.sh       |
 Review            | —                   | CI/CD (GitHub Actions)  | Code review + Validate

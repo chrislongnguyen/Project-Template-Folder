@@ -4,7 +4,7 @@ last_updated: 2026-03-30
 ---
 # Multi-Agent Build Reference
 
-> When to use: DSBV Build phase on design-heavy workstreams (ALIGN, PLAN).
+> When to use: DSBV Build stage on design-heavy workstreams (ALIGN, PLAN).
 > Pattern: Competing Hypotheses + Synthesis (ADR-001, Option C).
 > Single-agent Build for execution-heavy workstreams (EXECUTE, IMPROVE).
 

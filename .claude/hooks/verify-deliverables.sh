@@ -140,7 +140,7 @@ if [[ -n "$ARTIFACT_PATH" && -n "$ACS_PASS" && -n "$ACS_TOTAL" ]]; then
   LOG_DIR="$PROJECT_ROOT/.claude/logs"
   mkdir -p "$LOG_DIR" || true
 
-  # Detect phase from artifact path
+  # Detect stage from artifact path
   PHASE="unknown"
   if echo "$ARTIFACT_PATH" | grep -qi "DESIGN"; then
     PHASE="design"
@@ -158,7 +158,7 @@ if [[ -n "$ARTIFACT_PATH" && -n "$ACS_PASS" && -n "$ACS_TOTAL" ]]; then
   SAFE_AGENT=$(echo "$AGENT_TYPE" | sed 's/"/\\"/g')
   SAFE_BLOCKERS=$(echo "$BLOCKERS_TEXT" | sed 's/"/\\"/g')
 
-  echo "{\"timestamp\":\"${TIMESTAMP}\",\"agent\":\"${SAFE_AGENT}\",\"phase\":\"${PHASE}\",\"task\":\"${SAFE_TASK}\",\"acs_pass\":${ACS_PASS},\"acs_total\":${ACS_TOTAL},\"blockers\":\"${SAFE_BLOCKERS}\"}" \
+  echo "{\"timestamp\":\"${TIMESTAMP}\",\"agent\":\"${SAFE_AGENT}\",\"stage\":\"${PHASE}\",\"task\":\"${SAFE_TASK}\",\"acs_pass\":${ACS_PASS},\"acs_total\":${ACS_TOTAL},\"blockers\":\"${SAFE_BLOCKERS}\"}" \
     >> "$LOG_DIR/dsbv-metrics.jsonl" || true
 fi
 

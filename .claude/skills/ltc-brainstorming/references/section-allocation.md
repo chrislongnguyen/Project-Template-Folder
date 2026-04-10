@@ -11,11 +11,11 @@ Stage 1 brainstorming decomposes VANA-SPEC generation across 5 sub-agent groups 
 
 | Group | Name | Sections | Focus | Context Budget |
 |---|---|---|---|---|
-| 1 | Identity | §0 Force Analysis, §1 Identity | Strategic: forces, RACI, personas | ~30K tokens |
-| 2 | Behavioral | §2 Verb ACs | Functional: what the system does | ~30K tokens |
-| 3 | Quality | §3 Adverb ACs, §5 Adjective ACs | Quality: how well + what properties | ~30K tokens |
-| 4 | Structural | §4 Noun ACs | Structural: what components exist | ~30K tokens |
-| 5 | Synthesis | §6 Boundaries, AC-TEST-MAP, §7 Failure Modes, §8 Behavioral Boundaries, §9 Iteration Plan, §10 Integration Contracts | Cross-cutting: boundaries, testing, integration | ~30K tokens |
+| 1 | Identity | §2 Force Analysis, §1 Identity | Strategic: forces, RACI, personas | ~30K tokens |
+| 2 | Behavioral | §4.1 Verb ACs | Functional: what the system does | ~30K tokens |
+| 3 | Quality | §4.2 Adverb ACs, §4.4 Adjective ACs | Quality: how well + what properties | ~30K tokens |
+| 4 | Structural | §4.3 Noun ACs | Structural: what components exist | ~30K tokens |
+| 5 | Synthesis | §6 Boundaries, §5 AC-TEST-MAP, §7 Failure Modes, §8 Behavioral Boundaries, §9 Iteration Plan, §6 Integration Contracts | Cross-cutting: boundaries, testing, integration | ~30K tokens |
 
 ## Source Material Routing
 
@@ -73,9 +73,9 @@ The lead assembles all 5 groups into a complete VANA-SPEC and runs:
 
 | Check | Criteria |
 |---|---|
-| AC ID cross-reference | Every AC ID referenced in §6 (Boundaries) exists in §2-§5 |
-| Persona consistency | Every persona reference in §2-§5 matches §1 (Identity) |
-| Force-to-principle mapping | Every force in §0 maps to at least one principle in §3/§5 |
+| AC ID cross-reference | Every AC ID referenced in §6 (Boundaries) exists in §4.1-§4.4 |
+| Persona consistency | Every persona reference in §4.1-§4.4 matches §1 (Identity) |
+| Force-to-principle mapping | Every force in §2 maps to at least one principle in §4.2/§4.4 |
 | Traceability chain | Complete for every AC: AC <- VANA Element <- ESD Decision <- Source <- EO |
 
 ### Step 5: MECE Validation

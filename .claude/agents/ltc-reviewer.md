@@ -3,7 +3,7 @@ name: ltc-reviewer
 version: "1.6"
 status: draft
 last_updated: 2026-04-10
-description: "DSBV Validate phase agent. Use when reviewing completed work against DESIGN.md criteria — completeness, quality, coherence, downstream readiness. Produces VALIDATE.md with evidence-based verdicts."
+description: "DSBV Validate stage agent. Use when reviewing completed work against DESIGN.md criteria — completeness, quality, coherence, downstream readiness. Produces VALIDATE.md with evidence-based verdicts."
 model: opus
 tools: Read, Glob, Grep, Bash
 ---

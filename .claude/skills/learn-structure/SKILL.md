@@ -1,7 +1,7 @@
 ---
-version: "1.2"
+version: "1.3"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-10
 name: learn-structure
 description: >
   Use when /learn:research is complete for a topic and you need to generate
@@ -62,7 +62,7 @@ Follow [structuring-procedure.md](./references/structuring-procedure.md) for det
 | 4 | P2 | Drivers: UDS rows with direction inversion | Causal chain |
 | **GATE** | — | **Re-read P0-P2 from disk. Extract seeds for P3-P5.** | — |
 | 5 | P3 | Principles: harvested from P0-P2 cols 6,12 | Pillar map |
-| 6 | P4 | Components: 3-layer (Foundational/Operational/Enabling) | Layer diagram |
+| 6 | P4 | Components: EOT layers as discovered during LEARN research (names and count are sub-system-specific) | Layer diagram |
 | 7 | P5 | Steps: DERISK then OPTIMIZE sequence | Flow diagram |
 | 8 | — | Validate all pages via validation script | — |
 
@@ -73,7 +73,7 @@ Each P-page output file MUST include a lightweight mermaid diagram block after t
 - **P1:** UBS causal chain (surface → driver → deeper driver)
 - **P2:** UDS causal chain (surface → driver → deeper driver)
 - **P3:** Principle pillar map (S/E/Sc grouping with P and P_F)
-- **P4:** Component layer diagram (Foundational → Operational → Enabling)
+- **P4:** Component layer diagram (layers named and ordered per sub-system research — not prescribed)
 - **P5:** Sequential flow (DERISK steps → OPTIMIZE steps)
 
 Keep mermaid blocks under 15 nodes. These are companions to the table, not replacements.

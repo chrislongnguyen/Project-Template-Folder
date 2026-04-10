@@ -8,7 +8,7 @@ Use this table to decide which rule families are in scope.
 | Repo/folder/Drive/PJ Project/PJ Deliverable naming | Naming (UNG) | `rules/naming-rules.md` | `ltc-naming-rules` |
 | Commits, secrets, high-risk actions, blast radius | Security | `rules/security-rules.md` | (direct rule check) |
 | Skill creation / review | EOP governance | `_genesis/reference/ltc-eop-gov.md` | `skill-validator.sh` |
-| DSBV phase correctness | Process gates | `_genesis/templates/dsbv-process.md` | `dsbv` |
+| DSBV stage correctness | Process gates | `_genesis/templates/dsbv-process.md` | `dsbv` |
 | Session closing behavior | Process gates | `session/session-end/SKILL.md` | `session-end` |
 
 ## Rule-family decision tips

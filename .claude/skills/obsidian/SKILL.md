@@ -43,8 +43,8 @@ Log grep results alongside vault results before drawing conclusions. If `.claude
 **Only one vault is active at a time.** The Obsidian desktop app targets a single vault directory. If your working repo is in a git worktree (e.g., `.worktrees/obsidian-cli/`), that worktree is invisible to Obsidian — the app only sees the main repo checkout.
 
 **Implication for agents:**
-- **Build phase** (working in a worktree): use grep/Read for file access. Do NOT use Obsidian CLI — it targets the wrong directory.
-- **Validate phase** (after merge to main): use Obsidian CLI. The merged content is now in the active vault.
+- **Build stage** (working in a worktree): use grep/Read for file access. Do NOT use Obsidian CLI — it targets the wrong directory.
+- **Validate stage** (after merge to main): use Obsidian CLI. The merged content is now in the active vault.
 
 Single-vault targeting means search results always reflect the main vault state, not in-flight branch changes.
 
@@ -64,7 +64,7 @@ Use Grep/Glob instead when:
 - Obsidian is not running (fallback — see below)
 - Query is exact-match keyword (Grep is faster, no app dependency)
 - File path is known (Read tool is sufficient)
-- Working in a worktree (Build phase — see Vault Targeting above)
+- Working in a worktree (Build stage — see Vault Targeting above)
 
 ---
 
@@ -148,7 +148,7 @@ obsidian orphans
 
 Returns a list of file paths. Use to identify isolated notes that may be stale, unlinked, or missing categorization.
 
-**Repo-scoped alternative (no app dependency):** `scripts/orphan-detect.sh` (D2 harness) detects orphaned `.md` files in the repo without requiring Obsidian to be running. Prefer this for CI or Build-phase work. `obsidian orphans` covers the broader vault (notes outside the repo) — use it when vault-wide coverage is needed.
+**Repo-scoped alternative (no app dependency):** `scripts/orphan-detect.sh` (D2 harness) detects orphaned `.md` files in the repo without requiring Obsidian to be running. Prefer this for CI or Build-stage work. `obsidian orphans` covers the broader vault (notes outside the repo) — use it when vault-wide coverage is needed.
 
 ---
 
@@ -250,7 +250,7 @@ Writes to `vault/knowledge/`, `vault/personal/`, or any path outside this whitel
 
 **Knowledge layer is read-only — V7.** Vault content outside the V5 whitelist paths is the Knowledge layer — curated, human-authored content. Agents do not write to the Knowledge layer. If a task requires it, draft in `vault/inbox/` and request human promotion.
 
-**Worktrees are invisible.** See Vault Targeting section above. Build-phase work in a worktree must use grep, not obsidian CLI.
+**Worktrees are invisible.** See Vault Targeting section above. Build-stage work in a worktree must use grep, not obsidian CLI.
 
 Full security rules: `.claude/rules/obsidian-security.md`
 

@@ -97,7 +97,7 @@ emit_pipeline_state() {
 import json
 with open('$pipeline_file') as f:
     s = json.load(f)
-print(f\"Workstream: {s.get('workstream','?')} | Phase: {s.get('phase','?')} | Task: {s.get('task_id','?')}\")
+print(f\"Workstream: {s.get('workstream','?')} | Stage: {s.get('stage','?')} | Task: {s.get('task_id','?')}\")
 print(f\"Last agent: {s.get('last_sub_agent','?')} | Result: {s.get('last_result','?')}\")
 done = s.get('completed_tasks', [])
 if done:

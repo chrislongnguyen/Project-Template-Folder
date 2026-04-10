@@ -36,7 +36,7 @@ Mismatched models are silent failures — wrong capability tier, wrong cost.
 When dispatching from a git worktree, ALL file paths in INPUT must be absolute.
 Relative paths resolve to the main repo, not the worktree — writes land in the wrong location silently.
 
-**Skill:** `/dsbv` — builds context-packaged Agent() calls for each DSBV phase.
+**Skill:** `/dsbv` — builds context-packaged Agent() calls for each DSBV stage.
 
 ## Links
 

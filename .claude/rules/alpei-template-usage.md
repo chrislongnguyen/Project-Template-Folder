@@ -8,9 +8,9 @@ last_updated: 2026-04-03
 
 Before creating any ALPEI workstream deliverable, check for a template first — never create a blank artifact when one exists. Templates are in `_genesis/templates/`.
 
-Applies to all 5 workstreams: ALIGN, LEARN, PLAN, EXECUTE, IMPROVE. Each workstream has DSBV phase-specific templates.
+Applies to all 5 workstreams: ALIGN, LEARN, PLAN, EXECUTE, IMPROVE. Each workstream has DSBV stage-specific templates.
 
-Full lookup table (workstream × DSBV phase → template): loaded via `/dsbv` or grep `## Routing:` in `_genesis/frameworks/alpei-dsbv-process-map.md`.
+Full lookup table (workstream × DSBV stage → template): loaded via `/dsbv` or grep `## Routing:` in `_genesis/frameworks/alpei-dsbv-process-map.md`.
 
 Exception: if no template exists, create with proper YAML frontmatter and flag the gap.
 

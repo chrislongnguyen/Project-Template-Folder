@@ -59,6 +59,7 @@ You MUST create a task for each of these items and complete them in order:
 7. **Spec review loop** — dispatch spec-document-reviewer subagent with precisely crafted review context (never your session history); fix issues and re-dispatch until approved (max 3 iterations, then surface to human)
 8. **User reviews written spec** — ask user to review the spec file before proceeding
 9. **Transition** — offer `/dsbv` if PM is ready to produce a design doc, OR close with **Discovery Complete** summary if the goal was clarity only. Never force /dsbv.
+   - **Subsystem nudge:** If the conversation clearly targets a specific subsystem (PD, DP, DA, IDM), suggest the subsystem-scoped command: e.g., "Ready to design? → `/dsbv design align pd`". If the user is discussing cross-cutting work spanning multiple subsystems, suggest `_cross`. Only nudge — never auto-invoke.
 
 ## Process Flow
 
@@ -124,7 +125,7 @@ When writing the VANA-SPEC, use sectional sub-agent orchestration and extended o
 
 Wait for response. If changes requested, make them and re-run review loop. Only proceed once approved.
 
-**Implementation:** Guide the user to run `/dsbv` — this starts the PLAN workstream Sequence phase to produce the implementation task order. Do NOT invoke any other skill at this point.
+**Implementation:** Guide the user to run `/dsbv` — this starts the PLAN workstream Sequence stage to produce the implementation task order. Do NOT invoke any other skill at this point.
 
 ## Key Principles
 

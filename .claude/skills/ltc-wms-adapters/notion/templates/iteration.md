@@ -5,7 +5,7 @@ Replace all `{placeholders}` with actual values. Remove this instruction block b
 
 Detail level: **RICH** — Iterations define the build cycle scope. Invest in clarity here.
 
-## Standard Iteration Names (ILE Framework)
+## Standard Iteration Names (Learn Source Framework)
 
 | Iteration | Name          | Focus |
 | --------- | ------------- | ----- |

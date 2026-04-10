@@ -18,17 +18,17 @@ if [ ! -f "$SPEC" ]; then
     exit 1
 fi
 
-# Check 1: §0 Force Analysis present with recursive decomposition
-echo "Criterion 1: §0 Force Analysis present"
-if grep -q "§0 Force Analysis\|§0\.1 UBS" "$SPEC"; then
+# Check 1: §2 Force Analysis present with recursive decomposition
+echo "Criterion 1: §2 Force Analysis present"
+if grep -q "§2 Force Analysis\|§2\.1 UBS" "$SPEC"; then
     if grep -q "Recursive Decomposition" "$SPEC"; then
-        echo "  PASS: §0 Force Analysis with recursive decomposition found"
+        echo "  PASS: §2 Force Analysis with recursive decomposition found"
     else
-        echo "  FAIL: §0 Force Analysis found but missing Recursive Decomposition"
+        echo "  FAIL: §2 Force Analysis found but missing Recursive Decomposition"
         ERRORS=$((ERRORS + 1))
     fi
 else
-    echo "  FAIL: §0 Force Analysis section not found"
+    echo "  FAIL: §2 Force Analysis section not found"
     ERRORS=$((ERRORS + 1))
 fi
 
@@ -75,7 +75,7 @@ else
     ERRORS=$((ERRORS + 1))
 fi
 
-# Check 4: AC-TEST-MAP coverage (every AC in §2-§5 appears in AC-TEST-MAP)
+# Check 4: AC-TEST-MAP coverage (every AC in §4.1-§4.4 appears in AC-TEST-MAP)
 echo "Criterion 4: AC-TEST-MAP MECE coverage"
 if grep -q "AC-TEST-MAP" "$SPEC"; then
     # Extract ACs that appear in the AC-TEST-MAP section
@@ -83,14 +83,14 @@ if grep -q "AC-TEST-MAP" "$SPEC"; then
     TESTMAP_START=$(grep -n "AC-TEST-MAP" "$SPEC" | head -1 | cut -d: -f1)
     if [ -n "$TESTMAP_START" ]; then
         TESTMAP_ACS=$(tail -n +"$TESTMAP_START" "$SPEC" | grep -oE '(Verb|SustainAdv|EffAdv|ScalAdv|Noun|SustainAdj|EffAdj|ScalAdj)-AC[0-9]+' | sort -u)
-        # Get ACs from §2-§5 only (before §6 or AC-TEST-MAP)
+        # Get ACs from §4.1-§4.4 only (before §5 AC-TEST-MAP)
         SECTION_ACS=$(head -n "$((TESTMAP_START - 1))" "$SPEC" | grep -oE '(Verb|SustainAdv|EffAdv|ScalAdv|Noun|SustainAdj|EffAdj|ScalAdj)-AC[0-9]+' | sort -u)
 
         MISSING_FROM_MAP=$(comm -23 <(echo "$SECTION_ACS") <(echo "$TESTMAP_ACS") 2>/dev/null || true)
         if [ -z "$MISSING_FROM_MAP" ]; then
-            echo "  PASS: All ACs from §2-§5 appear in AC-TEST-MAP"
+            echo "  PASS: All ACs from §4.1-§4.4 appear in AC-TEST-MAP"
         else
-            echo "  FAIL: ACs in §2-§5 missing from AC-TEST-MAP:"
+            echo "  FAIL: ACs in §4.1-§4.4 missing from AC-TEST-MAP:"
             echo "$MISSING_FROM_MAP" | sed 's/^/    /'
             ERRORS=$((ERRORS + 1))
         fi

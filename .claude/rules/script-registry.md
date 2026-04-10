@@ -91,7 +91,7 @@ Use these for DSBV gate enforcement, state tracking, and approval verification. 
 | Script | When to use | What it does |
 |---|---|---|
 | `gate-precheck.sh` | Before DSBV gate approval | Verify all ACs pass before allowing gate transition |
-| `gate-state.sh` | DSBV phase tracking | Read/write DSBV phase state (which phase, which gate) |
+| `gate-state.sh` | DSBV stage tracking | Read/write DSBV stage state (which stage, which gate) |
 | `set-status-in-review.sh` | Before requesting gate approval | Set artifact `status: in-review` with frontmatter update |
 | `verify-approval-record.sh` | After gate approval | Grep markdown for approval record row in table |
 | `classify-fail.sh` | After builder AC failure | Convert failure output to lowercase-classified error type |
@@ -113,7 +113,7 @@ Use these when managing wikilinks, aliases, or vault structure.
 
 | Script | When to use | What it does |
 |---|---|---|
-| `obsidian-autolinker.py` | After creating many new files | 3-phase engine: DISCOVER → SCAN → WRITE. Converts plain-text cross-references into [[wikilinks]] |
+| `obsidian-autolinker.py` | After creating many new files | 3-stage engine: DISCOVER → SCAN → WRITE. Converts plain-text cross-references into [[wikilinks]] |
 | `obsidian-alias-seeder.py` | After bulk file creation | Add `aliases:` to YAML frontmatter for Obsidian resolution |
 | `backlink-map.sh` | Analyzing graph structure | Build adjacency list of all [[wikilinks]] in repo |
 | `orphan-detect.sh` | Finding disconnected files | Find .md files with zero inbound [[backlinks]] |

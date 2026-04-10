@@ -89,7 +89,7 @@ After PM provides guidance and the issue is resolved, reset loop state before re
 bash scripts/gate-state.sh reset <workstream>
 ```
 
-This resets all gates and loop state to initial values. Re-advance gates to the correct phase before resuming.
+This resets all gates and loop state to initial values. Re-advance gates to the correct stage before resuming.
 
 ## Cross-References
 

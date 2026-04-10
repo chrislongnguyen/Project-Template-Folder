@@ -92,7 +92,7 @@ Pipeline complete for: {system_name}
 
 Next steps:
   /learn:visualize {slug}  — Generate interactive system map (optional, Iteration 2)
-  /dsbv design             — Begin DSBV Design phase using Readiness Package
+  /dsbv design             — Begin DSBV Design stage using Readiness Package
 ```
 
 ## Execution Instructions

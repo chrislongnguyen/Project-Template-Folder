@@ -3,7 +3,7 @@ name: ltc-builder
 version: "1.7"
 status: draft
 last_updated: 2026-04-10
-description: "DSBV Build phase agent. Use when producing workstream artifacts — writing files, editing code, creating documents, running scripts. Handles all artifact production across ALIGN, PLAN, EXECUTE, IMPROVE workstreams."
+description: "DSBV Build stage agent. Use when producing workstream artifacts — writing files, editing code, creating documents, running scripts. Handles all artifact production across ALIGN, PLAN, EXECUTE, IMPROVE workstreams."
 model: sonnet
 tools: Read, Edit, Write, Bash, Grep, Glob
 ---
@@ -54,7 +54,7 @@ PreToolUse/PostToolUse hooks DO NOT FIRE in sub-agents (LP-7, Anthropic GitHub #
 
 1. **UNG naming** — Validate filename against naming rules before Write. Ref: `.claude/hooks/naming-lint.sh`
 2. **Frontmatter injection** — Manually add `work_stream`, `sub_system`, `stage`, `type` frontmatter. Ref: `.claude/hooks/inject-frontmatter.sh`
-3. **DSBV prerequisite** — Confirm DESIGN.md exists in workstream before Build-phase writes. Ref: `scripts/dsbv-skill-guard.sh`
+3. **DSBV prerequisite** — Confirm DESIGN.md exists in workstream before Build-stage writes. Ref: `scripts/dsbv-skill-guard.sh`
 4. **Chain-of-custody** — Confirm workstream N-1 has a validated artifact before writing to N. Ref: `scripts/dsbv-gate.sh`
 5. **No self-approve** — NEVER set `status: validated`. Only human sets validated. Ref: `scripts/status-guard.sh`
 6. **Version registry sync** — After editing a workstream artifact, update `_genesis/version-registry.md`. Ref: `scripts/registry-sync-check.sh`

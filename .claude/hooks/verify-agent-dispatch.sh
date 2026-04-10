@@ -5,7 +5,7 @@
 #
 # BLOCKING (exit 1): missing CP markers (C-13)
 # WARN only (exit 0): budget field (C-17), model routing (C-07), gate state (C-02),
-#                     phase-agent compatibility (C-17 additional)
+#                     stage-agent compatibility (C-17 additional)
 #
 # Bash 3 compatible: indexed arrays only, no declare -A, no mapfile.
 set -euo pipefail
@@ -95,7 +95,7 @@ if [ -n "$SUBAGENT_TYPE" ] && [ -n "$DECLARED_MODEL" ]; then
 fi
 
 # ---------------------------------------------------------------------------
-# CHECK 4 + 5: Gate state check + Phase-agent compatibility — WARN only (C-02, C-17)
+# CHECK 4 + 5: Gate state check + Stage-agent compatibility — WARN only (C-02, C-17)
 # ---------------------------------------------------------------------------
 # Determine state dir relative to repo root. Hook fires from repo root.
 STATE_DIR=".claude/state"
@@ -124,7 +124,7 @@ if [ -d "$STATE_DIR" ]; then
           if [ "$G2_STATUS" != "approved" ]; then
             echo "WARN: Dispatching ltc-builder but G2 (Sequence approved) is not approved." >&2
             echo "      G2 status: ${G2_STATUS} | workstream: ${WORKSTREAM}" >&2
-            echo "      Build phase requires G2 approval. Non-blocking." >&2
+            echo "      Build stage requires G2 approval. Non-blocking." >&2
           fi
           ;;
         ltc-reviewer)
@@ -132,7 +132,7 @@ if [ -d "$STATE_DIR" ]; then
           if [ "$G3_STATUS" != "approved" ]; then
             echo "WARN: Dispatching ltc-reviewer but G3 (Build approved) is not approved." >&2
             echo "      G3 status: ${G3_STATUS} | workstream: ${WORKSTREAM}" >&2
-            echo "      Validate phase requires G3 approval. Non-blocking." >&2
+            echo "      Validate stage requires G3 approval. Non-blocking." >&2
           fi
           ;;
         ltc-planner)
@@ -141,18 +141,18 @@ if [ -d "$STATE_DIR" ]; then
             if [ "$G1_STATUS" != "approved" ]; then
               echo "WARN: Dispatching ltc-planner for Sequence but G1 (Design approved) is not approved." >&2
               echo "      G1 status: ${G1_STATUS} | workstream: ${WORKSTREAM}" >&2
-              echo "      Sequence phase requires G1 approval. Non-blocking." >&2
+              echo "      Sequence stage requires G1 approval. Non-blocking." >&2
             fi
           fi
           ;;
       esac
 
-      # Phase-agent compatibility check (C-17 additional)
+      # Stage-agent compatibility check (C-17 additional)
       if [ "$SUBAGENT_TYPE" = "ltc-planner" ] && [ -n "$CURRENT_PHASE" ]; then
         case "$CURRENT_PHASE" in
           build|validate)
-            echo "WARN: Dispatching ltc-planner during '${CURRENT_PHASE}' phase (workstream: ${WORKSTREAM})." >&2
-            echo "      ltc-planner is unusual in build/validate phases — verify this is intentional." >&2
+            echo "WARN: Dispatching ltc-planner during '${CURRENT_PHASE}' stage (workstream: ${WORKSTREAM})." >&2
+            echo "      ltc-planner is unusual in build/validate stages — verify this is intentional." >&2
             echo "      Non-blocking." >&2
             ;;
         esac

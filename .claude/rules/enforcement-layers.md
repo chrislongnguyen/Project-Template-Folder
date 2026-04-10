@@ -18,7 +18,7 @@ type: always-on rule
 Session Load      | .claude/rules/ files    | SessionStart hooks       | —
                   | (EP — always-on rules)  | (.claude/settings.json)  |
 ------------------+-------------------------+--------------------------+------------------------------
-Tool Use          | —                       | PreToolUse / PostToolUse | DSBV phase gates (G1–G4)
+Tool Use          | —                       | PreToolUse / PostToolUse | DSBV stage gates (G1–G4)
                   |                         | hooks + permission modes |
                   |                         | (settings.json)          |
 ------------------+-------------------------+--------------------------+------------------------------
@@ -27,7 +27,7 @@ Commit            | git-conventions.md rule | Pre-commit hooks +       | —
                   |                         | skill-validator.sh       |
 ------------------+-------------------------+--------------------------+------------------------------
 Review            | —                       | CI/CD                    | Code review +
-                  |                         | (GitHub Actions)         | DSBV Validate phase
+                  |                         | (GitHub Actions)         | DSBV Validate stage
                   |                         |                          | (ltc-reviewer agent)
 ```
 
@@ -45,7 +45,7 @@ Review            | —                       | CI/CD                    | Code 
 1. Add the rule file to `.claude/rules/` — covers Session Load × Documentation.
 2. If the rule guards a tool action (Bash, Write, Edit): add a PreToolUse hook entry in `.claude/settings.json`.
 3. If the rule governs file content (versioning, brand): add a check to `scripts/template-check.sh` or a pre-commit hook.
-4. If the rule requires human judgment before advancing a DSBV phase: register it as a G1–G4 gate criterion in the relevant DESIGN.md.
+4. If the rule requires human judgment before advancing a DSBV stage: register it as a G1–G4 gate criterion in the relevant DESIGN.md.
 5. If the rule should block a PR merge: add a GitHub Actions step under `.github/workflows/`.
 
 ## Hook Event Quick-Ref

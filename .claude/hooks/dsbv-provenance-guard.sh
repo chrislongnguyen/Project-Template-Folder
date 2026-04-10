@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # version: 1.0 | status: draft | last_updated: 2026-04-10
 # dsbv-provenance-guard.sh — PreToolUse hook for Write|Edit
-# P1: Auto-init gate state + enforce agent provenance for DSBV phase artifacts.
+# P1: Auto-init gate state + enforce agent provenance for DSBV stage artifacts.
 #
 # Breaks the circular dependency: state tracking no longer depends on the
 # orchestrator calling gate-state.sh init. This hook auto-initializes state
@@ -27,7 +27,7 @@ fi
 BASENAME=$(basename "$FILE_PATH")
 
 # ---------------------------------------------------------------------------
-# GATE 1: Is this a DSBV phase artifact?
+# GATE 1: Is this a DSBV stage artifact?
 # Only check DESIGN.md, SEQUENCE.md, VALIDATE.md
 # ---------------------------------------------------------------------------
 case "$BASENAME" in
@@ -120,7 +120,7 @@ if [ "$PROVENANCE_OK" = false ]; then
   echo "" >&2
   echo "The orchestrator must dispatch to ${REQUIRED_AGENT} using the" >&2
   echo "5-field context packaging template before writing ${BASENAME}." >&2
-  echo "Producing phase artifacts inline is not permitted." >&2
+  echo "Producing stage artifacts inline is not permitted." >&2
   echo "" >&2
   echo "Ref: SKILL.md 'do NOT produce it inline'" >&2
   echo "     .claude/rules/agent-dispatch.md" >&2

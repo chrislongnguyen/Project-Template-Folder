@@ -1,8 +1,8 @@
-# DSBV Phase Execution Guide
+# DSBV stage Execution Guide
 
-Practical guidance for executing each phase. Supplements the procedural steps in SKILL.md with quality patterns and anti-patterns observed in practice.
+Practical guidance for executing each stage. Supplements the procedural steps in SKILL.md with quality patterns and anti-patterns observed in practice.
 
-## Design Phase — What Good Looks Like
+## Design stage — What Good Looks Like
 
 A strong DESIGN.md has:
 - **Artifact inventory** — every deliverable named, with purpose and owner
@@ -15,7 +15,7 @@ A weak DESIGN.md has:
 - Success criteria that require judgment ("looks good", "is complete")
 - No alignment table — conditions and artifacts listed separately with no traceability
 
-## Sequence Phase — Dependency Ordering
+## Sequence stage — Dependency Ordering
 
 Common dependency patterns per workstream:
 
@@ -28,7 +28,7 @@ Common dependency patterns per workstream:
 
 **Sizing heuristic:** If a task would take >1h human-equivalent, decompose further. If <15min, consider merging with an adjacent task.
 
-## Build Phase — Quality Checkpoints
+## Build stage — Quality Checkpoints
 
 **Single-agent Build:** After each task, self-verify against its acceptance criteria from DESIGN.md BEFORE moving to the next task. Do not batch verification.
 
@@ -43,7 +43,7 @@ Common dependency patterns per workstream:
 
 The synthesizer uses these tables to select best elements, not just "pick the longest draft."
 
-## Validate Phase — Evidence Standards
+## Validate stage — Evidence Standards
 
 Each check in VALIDATE.md must have:
 1. **Criterion** — exact text from DESIGN.md (copy, don't paraphrase)

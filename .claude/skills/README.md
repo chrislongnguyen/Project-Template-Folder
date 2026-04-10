@@ -18,7 +18,7 @@ All slash commands live here. Type `/` in Claude Code to see the full list. Each
 Type the skill name after `/` in any Claude Code session:
 
 ```
-/dsbv design align        ← run DSBV Design phase for ALIGN workstream
+/dsbv design align        ← run DSBV Design stage for ALIGN workstream
 /git-save                 ← classify and commit your changes
 /learn                    ← start or continue a learning pipeline
 /deep-research:mid        ← run mid-depth research (~200K tokens)
@@ -40,7 +40,7 @@ Skills auto-load when invoked — you don't need to read or reference them manua
 
 | Skill | Command | When to Use |
 |-------|---------|-------------|
-| **dsbv** | `/dsbv [phase] [workstream]` | Produce workstream artifacts via Design → Sequence → Build → Validate |
+| **dsbv** | `/dsbv [stage] [workstream]` | Produce workstream artifacts via Design → Sequence → Build → Validate |
 | **git-save** | `/git-save` | Classify, stage, and commit changes with LTC conventions |
 | **ltc-feedback** | `/ltc-feedback` | Report a frustration or improvement as a GitHub Issue |
 | **ltc-brainstorming** | `/ltc-brainstorming` | Explore an idea or approach a non-trivial decision |

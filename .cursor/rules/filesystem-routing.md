@@ -27,7 +27,7 @@ NONE → operational file (.claude/, scripts/, root) — no routing constraint
 
 Structure: `{N}-{WORKSTREAM}/{subsystem}/` where subsystem = `1-PD`, `2-DP`, `3-DA`, `4-IDM`, `_cross`
 
-Requires DESIGN.md in the workstream before any Build-phase writes.
+Requires DESIGN.md in the workstream before any Build-stage writes.
 
 ## Mode B — Learning Pipeline
 

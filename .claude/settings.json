@@ -167,7 +167,7 @@
             "type": "command",
             "command": "./scripts/dsbv-skill-guard.sh",
             "timeout": 5,
-            "statusMessage": "Checking DSBV Design phase prerequisite..."
+            "statusMessage": "Checking DSBV Design stage prerequisite..."
           },
           {
             "type": "command",

@@ -7,7 +7,7 @@ description: "Run the DSBV sub-process (Design → Sequence → Build → Valida
 ---
 # /dsbv — Design, Sequence, Build, Validate
 
-Run the 4-phase DSBV process to produce a workstream's artifacts. DSBV applies to 4 workstreams: **ALIGN, PLAN, EXECUTE, IMPROVE**. DSBV defines HOW you produce work; the workstream defines WHAT you produce.
+Run the 4-stage DSBV process to produce a workstream's artifacts. DSBV applies to 4 workstreams: **ALIGN, PLAN, EXECUTE, IMPROVE**. DSBV defines HOW you produce work; the workstream defines WHAT you produce.
 
 <HARD-CONSTRAINT>
 **LEARN (2-LEARN/) does NOT use DSBV.** LEARN uses the learning pipeline (Input → Research → Specs → Output → Archive). DESIGN.md, SEQUENCE.md, and VALIDATE.md must NEVER be created in 2-LEARN/. If a user requests `/dsbv` for LEARN, explain that LEARN uses the pipeline and suggest appropriate pipeline actions instead. See: `.claude/rules/filesystem-routing.md` (Mode B).
@@ -17,12 +17,12 @@ Run the 4-phase DSBV process to produce a workstream's artifacts. DSBV applies t
 
 | Command | What it does |
 |---|---|
-| `/dsbv` | Full guided flow — all 4 phases with human gates between each |
-| `/dsbv design [workstream]` | Design phase only — define what the workstream must produce and why |
-| `/dsbv sequence [workstream]` | Sequence phase only — order the work, size tasks, map dependencies |
-| `/dsbv build [workstream]` | Build phase only — execute the approved sequence |
-| `/dsbv validate [workstream]` | Validate phase only — verify workstream output enables the next workstream |
-| `/dsbv status` | Show current DSBV state: which workstream, which phase, what is done |
+| `/dsbv` | Full guided flow — all 4 stages with human gates between each |
+| `/dsbv design [workstream]` | Design stage only — define what the workstream must produce and why |
+| `/dsbv sequence [workstream]` | Sequence stage only — order the work, size tasks, map dependencies |
+| `/dsbv build [workstream]` | Build stage only — execute the approved sequence |
+| `/dsbv validate [workstream]` | Validate stage only — verify workstream output enables the next workstream |
+| `/dsbv status` | Show current DSBV state: which workstream, which stage, what is done |
 
 If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUTE, IMPROVE). **Never offer LEARN as a DSBV option.**
 
@@ -31,14 +31,14 @@ If `[workstream]` is omitted, ask the user which workstream (ALIGN, PLAN, EXECUT
 2. Cannot start Build without an approved SEQUENCE.md.
 3. Cannot mark a workstream complete without Validate passing.
 4. Multi-agent Build requires explicit human approval before launching (show cost estimate first).
-5. Running a single-phase sub-command (e.g., `/dsbv build`) on a workstream that lacks the prerequisite artifact is an error — tell the user what is missing and how to produce it.
+5. Running a single-stage sub-command (e.g., `/dsbv build`) on a workstream that lacks the prerequisite artifact is an error — tell the user what is missing and how to produce it.
 </HARD-GATE>
 
 ## Meta-Rules (re-injected — compensates for LT-2 context degradation)
 
 These are always in effect. They override any conflicting behavior:
 
-1. **MODEL AS SYSTEM:** Before any phase, identify the 7-CS components in play (EP, Input, EOP, EOE, EOT, Agent, EA). If a component is missing or misconfigured, flag it.
+1. **MODEL AS SYSTEM:** Before any stage, identify the 7-CS components in play (EP, Input, EOP, EOE, EOT, Agent, EA). If a component is missing or misconfigured, flag it.
    (Source: agent-system.md §5)
 
 2. **UBS BEFORE UDS:** What blocks this workstream? Answer BEFORE asking what drives it. Identify risks, dependencies, and constraints first.
@@ -48,14 +48,14 @@ These are always in effect. They override any conflicting behavior:
    (Source: general-system.md §6 — S > E > Sc priority)
 
 4. **VANA DECOMPOSE:** Every requirement = Verb + Adverb + Noun + Adjective. If you cannot decompose it, you do not understand it.
-   (Source: general-system.md §8 — ESD Phase 3)
+   (Source: general-system.md §8 — ESD Stage 3)
 
 5. **DEFINE DONE:** Every acceptance criterion must be binary, deterministic, testable. "Good quality" is not an AC. "All DESIGN.md artifacts have a success rubric with ≥1 binary criterion" is.
    (Source: general-system.md §7 — Layer 3 Eval Spec)
 
 ## Readiness Check (Criterion 1-6)
 
-Before ANY phase, verify these conditions. If any is RED, tell the user what is missing and how to fix it. Do not proceed until all are GREEN.
+Before ANY stage, verify these conditions. If any is RED, tell the user what is missing and how to fix it. Do not proceed until all are GREEN.
 
 | ID | Condition | How to check |
 |----|-----------|--------------|
@@ -68,11 +68,11 @@ Before ANY phase, verify these conditions. If any is RED, tell the user what is 
 
 Report readiness as a table: `Criterion 1: GREEN | Criterion 2: RED — missing prior workstream output | ...`
 
-**Practical execution guidance:** Read [references/phase-execution-guide.md](references/phase-execution-guide.md) for quality patterns per phase — what good DESIGN.md looks like, dependency ordering by workstream, Build quality checkpoints, Validate evidence standards.
+**Practical execution guidance:** Read [references/stage-execution-guide.md](references/stage-execution-guide.md) for quality patterns per stage — what good DESIGN.md looks like, dependency ordering by workstream, Build quality checkpoints, Validate evidence standards.
 
 ## Agent Dispatch Protocol
 
-Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST use the 5-field context packaging template. This is always-on — not phase-specific.
+Every `Agent()` call in **ANY stage** (Design, Sequence, Build, Validate) MUST use the 5-field context packaging template. This is always-on — not stage-specific.
 
 **Template:** `.claude/skills/dsbv/references/context-packaging.md` (EO, INPUT, EP, OUTPUT, VERIFY)
 
@@ -82,7 +82,7 @@ Every `Agent()` call in **ANY phase** (Design, Sequence, Build, Validate) MUST u
 
 ---
 
-## Phase 1: DESIGN
+## Stage 1: DESIGN
 
 **What this does:** Defines WHAT the workstream must produce and WHY — before any work begins. This is the contract. If it is not in DESIGN.md, it is not in scope.
 
@@ -105,11 +105,11 @@ bash scripts/gate-precheck.sh G1 {workstream}   # Verify prerequisites
 bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
 ```
 
-**Gate G1:** "I have completed the Design phase. Here is what I produced: [artifact list with summary]. Alignment check: [N conditions, N artifacts, 0 orphans]. Ready to proceed to Sequence?"
+**Gate G1:** "I have completed the Design stage. Here is what I produced: [artifact list with summary]. Alignment check: [N conditions, N artifacts, 0 orphans]. Ready to proceed to Sequence?"
 Wait for explicit human approval. If the user requests changes, revise and re-present.
 On human approval, execute the Gate Approval Protocol below.
 
-## Phase 2: SEQUENCE
+## Stage 2: SEQUENCE
 
 **What this does:** Orders the work — what depends on what, what gets built first, how large each task is. This prevents the agent from jumping around or attempting work whose inputs do not exist yet.
 
@@ -129,10 +129,10 @@ bash scripts/gate-precheck.sh G2 {workstream}   # Verify prerequisites
 bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
 ```
 
-**Gate G2:** "I have completed the Sequence phase. Here is the task order: [numbered list with sizes]. Ready to proceed to Build?"
+**Gate G2:** "I have completed the Sequence stage. Here is the task order: [numbered list with sizes]. Ready to proceed to Build?"
 On human approval, execute the Gate Approval Protocol below.
 
-## Phase 3: BUILD
+## Stage 3: BUILD
 
 **What this does:** Executes the work following the approved sequence. Each task is completed, self-verified against its acceptance criteria, and committed before moving to the next.
 
@@ -140,7 +140,7 @@ On human approval, execute the Gate Approval Protocol below.
 
 **Workstream-aware behavior:**
 
-For the current workstream's Build-phase template and agent, look up:
+For the current workstream's Build-stage template and agent, look up:
 `_genesis/frameworks/alpei-dsbv-process-map.md` § `## Routing: {WORKSTREAM}`, Build row.
 
 | Workstream type | Default pattern | Why |
@@ -149,7 +149,7 @@ For the current workstream's Build-phase template and agent, look up:
 | Execution-heavy (EXECUTE, IMPROVE) | Single agent, sequential tasks | Output is more deterministic — diversity adds cost, not quality. |
 
 **Model configuration (user-overridable):**
-- Default teams: Sonnet for breadth, Opus for synthesis, current model for other phases
+- Default teams: Sonnet for breadth, Opus for synthesis, current model for other stages
 - Override: `/dsbv build align --model opus --teams 3`
 - Cost guidance shown before multi-agent launch:
   ```
@@ -264,7 +264,7 @@ bash scripts/set-status-in-review.sh {artifact}  # Mark artifact in-review
 **Gate G3:** "Build is complete. All tasks in SEQUENCE.md are done. Generator/Critic loop: {iterations} iterations, {pass}/{total} criteria PASS. Here is what was produced: [file list]. Ready to proceed to Validate?"
 On human approval, execute the Gate Approval Protocol below.
 
-## Phase 4: VALIDATE
+## Stage 4: VALIDATE
 
 **What this does:** Verifies that the workstream's output is complete, correct, coherent, and enables the next workstream to start. This is the quality gate before a workstream is marked done.
 
@@ -274,7 +274,7 @@ On human approval, execute the Gate Approval Protocol below.
 
 **Steps:**
 1. Dispatch to `ltc-reviewer` with: DESIGN.md, list of produced artifacts, workstream context
-2. ltc-reviewer loads the Validate-phase template from
+2. ltc-reviewer loads the Validate-stage template from
    `_genesis/frameworks/alpei-dsbv-process-map.md` § `## Routing: {WORKSTREAM}`, Validate row, Template column.
    Default: `dsbv-eval-template.md` if routing table not yet populated for this workstream.
 3. Check **Completeness** — all artifacts listed in DESIGN.md are present
@@ -299,7 +299,7 @@ On human approval, execute the Gate Approval Protocol below.
 Every gate presentation (G1-G4) MUST use this template for consistent human review:
 
 ```
-GATE: G{N} ({phase}) | Workstream: {name}
+GATE: G{N} ({stage}) | Workstream: {name}
 ACs: {pass}/{total} | Risk flags: {count}
 Action: APPROVE / REVISE / ESCALATE
 
@@ -328,7 +328,7 @@ Action: APPROVE / REVISE / ESCALATE
 ```
 DSBV Status — Iteration 1 (YYYY-MM-DD)
 ┌─────────────────────────┬──────────────────────────┬─────────┬─────────────┬──────────┐
-│ Workstream × Phase            │ Deliverable              │ Version │ Status      │ AC Pass  │
+│ Workstream × Stage            │ Deliverable              │ Version │ Status      │ AC Pass  │
 ├─────────────────────────┼──────────────────────────┼─────────┼─────────────┼──────────┤
 │ 1-ALIGN × Design        │ DESIGN.md                │ 1.4     │ Draft       │ —        │
 │ 1-ALIGN × Sequence      │ SEQUENCE.md              │ 1.3     │ Draft       │ —        │
@@ -390,7 +390,7 @@ Use the Structured Gate Reports template (§ Structured Gate Reports below).
 
 **Step 4 — Detect and classify approval signal**
 Match human response against Approval Signal Catalog (§ Approval Signal Detection).
-Tier 1/2: proceed to Step 5 | Tier 3: clarify — stop | Tier 4: stay in phase — stop
+Tier 1/2: proceed to Step 5 | Tier 3: clarify — stop | Tier 4: stay in stage — stop
 
 **Step 5 — Write approval record + verify**
 Append a row to the artifact's `## Approval Log` section:
@@ -410,9 +410,9 @@ Run `./scripts/generate-registry.sh`. Scaffold next artifact per § Safety Invar
 ### Safety Invariants
 
 - NEVER set `status: validated` without a logged approval record (INV-5)
-- NEVER advance phase without completing Steps 1-5 first
+- NEVER advance stage without completing Steps 1-5 first
 - NEVER self-approve (Tier 3 or 4 signals = ask or stay)
-- If generate-registry.sh fails, log the failure and continue — do not block phase advance
+- If generate-registry.sh fails, log the failure and continue — do not block stage advance
 
 | Current gate | Next artifact | Action |
 |---|---|---|
@@ -431,7 +431,7 @@ New artifacts start at `version: "1.0"`, `status: draft`, `last_updated: {today}
 
 Derived from analysis of 37 conversation logs and 180 session records. The DSBV orchestrator uses this catalog to classify every human message received during an active gate (G1-G4).
 
-**Gate-based, not word-parsing.** Approval only counts when it occurs in the context of an active gate presentation. Signals outside gate context do not trigger phase transitions.
+**Gate-based, not word-parsing.** Approval only counts when it occurs in the context of an active gate presentation. Signals outside gate context do not trigger stage transitions.
 
 **When in doubt, ASK. There is NO auto-timeout. Human must always prompt something.**
 
@@ -450,18 +450,18 @@ Agent advances immediately. Execute the Gate Approval Protocol.
 
 ### Tier 2 — Implicit Approval
 
-These phrases imply approval of the CURRENT phase when they reference the NEXT phase. Agent emits a confirmation **statement** (not a question), then executes the Gate Approval Protocol. Human can interrupt before the protocol completes.
+These phrases imply approval of the CURRENT stage when they reference the NEXT stage. Agent emits a confirmation **statement** (not a question), then executes the Gate Approval Protocol. Human can interrupt before the protocol completes.
 
 | Signal | Example | Interpretation |
 |--------|---------|---------------|
-| "proceed to {next phase}" | "proceed to sequence" | Current phase approved, start next |
+| "proceed to {next stage}" | "proceed to sequence" | Current stage approved, start next |
 | "go ahead" / "go" | "go ahead and build" | Current gate approved |
 | "build it" / "do it" | "ok build it" | Sequence approved, start build |
-| "continue" / "move on" | "continue with build" | Current phase approved |
-| "next" / "what's next" | "next" | Current phase approved |
-| "ok" + directive | "ok, start the sequence" | Current phase approved |
+| "continue" / "move on" | "continue with build" | Current stage approved |
+| "next" / "what's next" | "next" | Current stage approved |
+| "ok" + directive | "ok, start the sequence" | Current stage approved |
 | "yes" (after gate question) | "yes" | Direct response to gate question = approval |
-| "ready" / "ready for" | "ready for build" | Current phase approved |
+| "ready" / "ready for" | "ready for build" | Current stage approved |
 
 **Confirmation template (Tier 2) — statement, not question:**
 
@@ -478,21 +478,21 @@ Agent MUST ask for clarification. Status unchanged until clarified.
 
 | Signal | Why ambiguous | Agent response |
 |--------|--------------|----------------|
-| "ok" (standalone, no directive) | Could be acknowledgment, not approval | "Are you validating this phase, or just acknowledging?" |
+| "ok" (standalone, no directive) | Could be acknowledgment, not approval | "Are you validating this stage, or just acknowledging?" |
 | "good" (standalone) | Quality comment vs. approval | "Does 'good' mean you're approving, or noting quality?" |
 | "check this" / "let me review" | Human may be starting review, not finishing | Wait. Do not advance. |
-| "fix X then..." | Revision request, NOT approval | Treat as REVISE. Stay in current phase. |
+| "fix X then..." | Revision request, NOT approval | Treat as REVISE. Stay in current stage. |
 | "just build it" | Impatience signal — may skip review | "I'll proceed to build. Confirming: you're approving the current {DESIGN/SEQUENCE}?" |
 
 ### Tier 4 — Rejection
 
-Agent stays in current phase. Ask for feedback.
+Agent stays in current stage. Ask for feedback.
 
 | Signal | Action |
 |--------|--------|
 | "wait" / "hold on" / "stop" | Halt. Ask what needs to change. |
-| "no" / "not yet" / "not ready" | Stay in current phase. Ask for specific feedback. |
-| "revise" / "redo" / "rework" / "needs work" | Stay in current phase. Apply feedback. Re-present. |
+| "no" / "not yet" / "not ready" | Stay in current stage. Ask for specific feedback. |
+| "revise" / "redo" / "rework" / "needs work" | Stay in current stage. Apply feedback. Re-present. |
 | "come back to this" | Park. Move to other work. Status stays `in-progress`. |
 | Silence (no response) | Do NOT advance. Status stays `in-review`. |
 
@@ -508,10 +508,10 @@ Does it match Tier 1? ──YES──> Advance immediately → Gate Approval Pro
 Does it match Tier 2? ──YES──> Emit confirmation statement → Gate Approval Protocol
          │NO
          ▼
-Does it match Tier 4? ──YES──> Stay in phase → ask for feedback
+Does it match Tier 4? ──YES──> Stay in stage → ask for feedback
          │NO
          ▼
-Treat as Tier 3 ──────────────> Ask: "Are you validating this phase, or just acknowledging?"
+Treat as Tier 3 ──────────────> Ask: "Are you validating this stage, or just acknowledging?"
 ```
 
 ---
@@ -585,8 +585,8 @@ Cannot advance {downstream-SS} to I{N+1} — upstream {upstream-SS} is still at 
 
 When the user expresses confusion or asks "what should I do next?":
 1. Run `/dsbv status` to show where they are
-2. Explain the current phase in 2-3 plain sentences
-3. Suggest the specific next action: "You are in the Design phase for ALIGN. The next step is to tell me what you want ALIGN to accomplish in 1-3 sentences, and I will draft the DESIGN.md for your review."
+2. Explain the current stage in 2-3 plain sentences
+3. Suggest the specific next action: "You are in the Design stage for ALIGN. The next step is to tell me what you want ALIGN to accomplish in 1-3 sentences, and I will draft the DESIGN.md for your review."
 
 ## Gotchas
 
@@ -600,7 +600,7 @@ Full list (5 patterns): [gotchas.md](gotchas.md)
 
 Full process specification: `_genesis/templates/dsbv-process.md`
 
-**GATE — Verify:** At phase completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the phase is NOT complete. See gotchas.md for LT-1 hallucination pattern.
+**GATE — Verify:** At stage completion, confirm artifact exists on disk using Glob/Read. If the file does not exist, the stage is NOT complete. See gotchas.md for LT-1 hallucination pattern.
 
 ## Parallel Dispatch Protocol
 
@@ -634,14 +634,14 @@ Show estimate before dispatch. Wait for human approval if N > 3.
 
 ## Pipeline State Persistence
 
-DSBV pipeline state is checkpointed after every phase transition and sub-agent dispatch. This enables crash recovery and session resume.
+DSBV pipeline state is checkpointed after every stage transition and sub-agent dispatch. This enables crash recovery and session resume.
 
 **Schema** (`pipeline.json` — written by `state-saver.sh`, read by `session-reconstruct.sh`):
 
 ```json
 {
   "workstream": "4-EXECUTE",
-  "phase": "build",
+  "stage": "build",
   "task_id": "T3.2",
   "completed_tasks": ["T1.1", "T1.2", "T2.1"],
   "last_sub_agent": "ltc-builder",
@@ -654,7 +654,7 @@ DSBV pipeline state is checkpointed after every phase transition and sub-agent d
 
 **Fields:**
 - `workstream` — current ALPEI workstream (e.g., `1-ALIGN`, `4-EXECUTE`)
-- `phase` — current DSBV phase: `design` | `sequence` | `build` | `validate`
+- `stage` — current DSBV stage: `design` | `sequence` | `build` | `validate`
 - `task_id` — current task from SEQUENCE.md (e.g., `T3.2`)
 - `completed_tasks` — list of task IDs that have passed all ACs
 - `last_sub_agent` — which agent was last dispatched
@@ -663,13 +663,13 @@ DSBV pipeline state is checkpointed after every phase transition and sub-agent d
 - `fail_items` — array of FAIL-{N} items from reviewer (empty if PASS)
 - `updated` — ISO 8601 timestamp of last update
 
-**Write path:** `state-saver.sh` (PostToolUse hook) updates the timestamp on every file write. Phase transitions explicitly write the full state.
+**Write path:** `state-saver.sh` (PostToolUse hook) updates the timestamp on every file write. stage transitions explicitly write the full state.
 
 **Read path:** `session-reconstruct.sh` (SessionStart hook) emits pipeline state as part of session context, enabling the orchestrator to resume mid-pipeline after a crash or context rotation.
 
 **Gate state (authoritative):** `.claude/state/dsbv-{workstream}.json` — managed by `scripts/gate-state.sh`. This is the authoritative gate progression tracker. Initialize with `gate-state.sh init {workstream}` at the start of any DSBV flow.
 
-**Task-level state (build tracking):** `pipeline.json` — managed by `state-saver.sh`. Tracks in-progress build task state within the Build phase.
+**Task-level state (build tracking):** `pipeline.json` — managed by `state-saver.sh`. Tracks in-progress build task state within the Build stage.
 
 ## Auto-Recall Relevance Filtering (Spec)
 
@@ -710,7 +710,7 @@ When the UserPromptSubmit hook injects QMD auto-recall context, it should filter
 - [[ltc-builder]]
 - [[ltc-planner]]
 - [[ltc-reviewer]]
-- [[phase-execution-guide]]
+- [[stage-execution-guide]]
 - [[schema]]
 - [[simple]]
 - [[task]]

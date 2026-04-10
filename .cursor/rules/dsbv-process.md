@@ -1,5 +1,5 @@
 ---
-description: DSBV process rules — Design→Sequence→Build→Validate phase ordering and gates
+description: DSBV process rules — Design→Sequence→Build→Validate stage ordering and gates
 globs: "**"
 ---
 
@@ -7,7 +7,7 @@ globs: "**"
 
 Full spec: `.claude/rules/alpei-chain-of-custody.md` | Skill: `.claude/skills/dsbv/SKILL.md`
 
-## Phase Order (enforced — no skipping)
+## Stage Order (enforced — no skipping)
 
 ```
 DESIGN → SEQUENCE → BUILD → VALIDATE

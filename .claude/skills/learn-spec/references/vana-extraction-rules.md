@@ -17,7 +17,32 @@ From `T0.P0-overview-and-summary.md`:
 
 ---
 
-## Step 2: Verb ACs from T0.P5 (§2)
+## Step 1.5: 8-Component System Design + Environment + EOP Design (§3.1, §3.3, §3.5)
+
+Cross-reference T0.P3 (principles) × T0.P4 (components) × T0.P0 (user/RACI) to fill the system design tables.
+
+**§3.1 — 8-Component Table:**
+For each of the 8 components (EI, EU, EA, EO, EP, EOE, EOT, EOP):
+- **Current State**: synthesize from T0.P0 context + T0.P4 current layer descriptions
+- **Target State**: synthesize from T0.P4 target descriptions + T0.P3 principles
+- **Governing Principle(s)**: reference P[n](pillar) from T0.P3 that most directly governs this component
+
+**§3.3 — Effective Operating Environment (EOE):**
+- Discover the environment types relevant to this sub-system from T0.P0 context + T0.P1/P2 analysis. Do not assume a fixed number — the sub-system may have 1 type or several.
+- **DERISK column**: from T0.P1 UBS analysis — what environmental factors must be controlled for safety
+- **OPTIMIZE column**: from T0.P2 UDS analysis — what environmental factors amplify output
+
+**§3.5 — EOP Design:**
+- **Decision Matrix**: UBS elements to disable (from §2.1) and UDS elements to amplify (from §2.2)
+- **Stage 1 DERISK steps**: from T0.P5 STEP.n rows tagged with Sustainability principles
+- **Stage 2 OPTIMIZE steps**: from T0.P5 STEP.n rows tagged with Efficiency/Scalability principles
+- **RACI per step**: R from STEP.n(R), A from STEP.n(A), C and I from T0.P0 RACI
+
+Note: This step front-loads the system design while agent context is freshest. Steps 2-5 (ACs) derive from this design.
+
+---
+
+## Step 2: Verb ACs from T0.P5 (§4.1)
 
 Read `T0.P5-steps-to-apply.md`. Find all `STEP.n(R)` rows.
 
@@ -35,11 +60,11 @@ IDs: Verb-AC1, Verb-AC2, …
 
 ---
 
-## Step 3: Adverb ACs from T0.P3 (§3)
+## Step 3: Adverb ACs from T0.P3 (§4.2)
 
 Read `T0.P3-principles.md`. Find all `P[n](pillar)(role)` rows (enabling principles only — not `P_F`).
 
-Bucket by pillar: S → §3.1 SustainAdv (Iteration 1) | E → §3.2 EffAdv (Iteration 2) | Sc → §3.3 ScalAdv (Iteration 3)
+Bucket by pillar: S → §4.2.1 SustainAdv (Iteration 1) | E → §4.2.2 EffAdv (Iteration 2) | Sc → §4.2.3 ScalAdv (Iteration 3)
 
 For each row:
 - **VANA Word**: single adverb from principle name (e.g., `Traceably`, `Atomically`)
@@ -52,9 +77,9 @@ IDs: SustainAdv-AC1, EffAdv-AC1, ScalAdv-AC1, …
 
 ---
 
-## Step 4: Noun ACs from T0.P4 (§4)
+## Step 4: Noun ACs from T0.P4 (§4.3)
 
-Read `T0.P4-components.md`. Bucket by layer prefix (`INFRA.n`, `PIPELINE.n`, `QUALITY.n`, or system-specific).
+Read `T0.P4-components.md`. Group components into EOT layers as discovered during LEARN (§3.1 8-Component table, EOT row). The number of layers varies per sub-system — there may be 1, 2, 3, or more. Layer names are sub-system-specific — derive from T0.P4 component groupings, never assume a fixed count or use generic labels.
 
 For each component row:
 - **VANA Word**: single noun from component name (`Repository`, `Pipeline`, `Schema`)
@@ -69,7 +94,7 @@ IDs: Noun-AC1, Noun-AC2, … (continuous across layers)
 
 ---
 
-## Step 5: Adjective ACs — P3 × P4 Cross-Reference (§5)
+## Step 5: Adjective ACs — P3 × P4 Cross-Reference (§4.4)
 
 For each P4 component row, read col 6 (UD.EP) to find referenced P3 principles.
 
@@ -83,7 +108,7 @@ IDs by pillar: SustainAdj-AC1, EffAdj-AC1, ScalAdj-AC1, …
 
 ---
 
-## Step 6: AC-TEST-MAP (§6)
+## Step 6: AC-TEST-MAP (§5)
 
 One row per AC, in order: Verb-ACs → SustainAdv → EffAdv → ScalAdv → Noun-ACs → SustainAdj → EffAdj → ScalAdj.
 
@@ -126,7 +151,7 @@ Repeat for Iterations 2-4 with "(same as Iteration 1 — tighten as scope expand
 
 ## Step 9: Iteration Plan (§9)
 
-**Master Scope Mapping:** One row per AC from §2-§5.
+**Master Scope Mapping:** One row per AC from §4.1-§4.4.
 
 | Iteration | ACs |
 |-----------|-----|
@@ -141,7 +166,7 @@ Iteration 4 Gate Criteria: "All Iteration 1-Iteration 3 ACs pass eval + Human Di
 
 ---
 
-## Step 10: Integration Contracts (§10)
+## Step 10: Integration Contracts (§6)
 
 **INPUT CONTRACT:** Copy table from learn-input §3 (fields: source, schema, validation, error, sla, version).
 **OUTPUT CONTRACT:** Copy table from learn-input §4 (fields: consumer, schema, validation, error, sla, version).

@@ -20,11 +20,11 @@ The lead agent (you) reads all source material and creates a Section Allocation 
 
 | Group | Sections | Focus |
 |---|---|---|
-| 1 (Identity) | §0 Force Analysis, §1 Identity | Strategic: forces, RACI, personas |
-| 2 (Behavioral) | §2 Verb ACs | Functional: what the system does |
-| 3 (Quality) | §3 Adverb ACs, §5 Adjective ACs | Quality: how well + what properties |
-| 4 (Structural) | §4 Noun ACs | Structural: what components exist |
-| 5 (Synthesis) | §6 Boundaries, AC-TEST-MAP, §7 Failure, §8 Boundaries, §9 Iteration, §10 Integration | Cross-cutting: boundaries, testing, integration |
+| 1 (Identity) | §2 Force Analysis, §1 Identity | Strategic: forces, RACI, personas |
+| 2 (Behavioral) | §4.1 Verb ACs | Functional: what the system does |
+| 3 (Quality) | §4.2 Adverb ACs, §4.4 Adjective ACs | Quality: how well + what properties |
+| 4 (Structural) | §4.3 Noun ACs | Structural: what components exist |
+| 5 (Synthesis) | §6 Boundaries, §5 AC-TEST-MAP, §7 Failure, §8 Boundaries, §9 Iteration, §6 Integration | Cross-cutting: boundaries, testing, integration |
 
 **Step 2: Dispatch 5 sub-agent groups in parallel**
 
@@ -43,9 +43,9 @@ Checkpoint: "Does every claim trace to a source page/row/col?"
 **Step 4: Lead assembles all sections into complete VANA-SPEC**
 
 Runs cross-section consistency check:
-- Every AC ID referenced in §6 exists in §2-§5
-- Every persona reference in §2-§5 matches §1
-- Every force in §0 maps to at least one principle in §3/§5
+- Every AC ID referenced in §6 exists in §4.1-§4.4
+- Every persona reference in §4.1-§4.4 matches §1
+- Every force in §2 maps to at least one principle in §4.2/§4.4
 - Traceability chain complete for every AC
 
 **Step 5: Run MECE validator script**
@@ -73,11 +73,11 @@ Runs cross-section consistency check:
 
 The OE.6.4 VANA-SPEC includes two NEW sections beyond the standard template:
 
-### §0 Force Analysis (before §1)
+### §2 Force Analysis (before §1)
 
 **Required content:** UBS(R), UBS(A), UDS(R), UDS(A), recursive decomposition (minimum 1 level), sigmoid workstream classification, bottleneck identification, synergy check.
 
-Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §0 structure.
+Use the extended template at `_genesis/templates/VANA_SPEC_TEMPLATE.md` for the full §2 structure.
 
 ### §6 System Boundaries (new position; old §6+ shift down)
 
