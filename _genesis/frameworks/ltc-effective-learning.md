@@ -1,7 +1,10 @@
 ---
 type: framework
-work_stream: 2-LEARN
-sub_system: effective_learning
+work_stream: _genesis
+sub_system:
+version: "1.0"
+status: draft
+last_updated: 2026-04-10
 ---
 
 # Effective Learning — Learning Hierarchy & CODE Template

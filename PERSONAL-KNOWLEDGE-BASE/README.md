@@ -1,7 +1,7 @@
 ---
 version: "2.1"
-status: Draft
-last_updated: 2026-04-05
+status: draft
+last_updated: 2026-04-10
 ---
 # Personal Knowledge Base (PKB)
 
@@ -101,6 +101,16 @@ This is the magic. You don't have to remember what you've learned.
 **QMD** (your local search engine) indexes everything in `distilled/`. At the start of every session, the system queries QMD for knowledge relevant to what you're working on. If you're building a skill and you've previously ingested Anthropic's skill docs, the relevant wiki page appears in your session context — automatically.
 
 You don't search for it. You don't ask for it. It just shows up.
+
+### 3a. QMD — Search and Auto-Recall
+
+QMD is the local search engine that indexes everything in `distilled/`. It provides two search modes:
+- **vec** (semantic): meaning-based vector search — finds related concepts even without exact keywords
+- **lex** (keyword): BM25 keyword search — exact term matching, fast
+
+**Auto-recall:** On `UserPromptSubmit`, the hook `.claude/hooks/auto-recall-filter.sh` queries QMD with the user's prompt intent and injects relevant distilled pages into the session context automatically. No manual action needed.
+
+**Manual recall:** Use `mcp__qmd__query` directly with `type:'vec'` or `type:'lex'` sub-queries. For retrieval by path: `mcp__qmd__get`.
 
 ### 4. Review — Spaced Repetition
 

@@ -1,7 +1,7 @@
 ---
 version: "2.0"
-status: Draft
-last_updated: 2026-04-05
+status: draft
+last_updated: 2026-04-10
 ---
 # Learning Dashboard
 

@@ -2,6 +2,11 @@
 type: reference
 classification: INTERNAL
 date: 2026-03-30
+work_stream: _genesis
+sub_system:
+version: "1.0"
+status: draft
+last_updated: 2026-04-10
 ---
 
 # UES VERSION-SPECIFIC BEHAVIORS
