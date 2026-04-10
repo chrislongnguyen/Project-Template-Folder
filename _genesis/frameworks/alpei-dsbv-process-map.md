@@ -1,7 +1,7 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-02
+last_updated: 2026-04-10
 owner: "Long Nguyen"
 
 # ALPEI-DSBV Process Map
@@ -42,8 +42,8 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 | **1-ALIGN**   | **Template:** charter-template.md (T1) + force-analysis-template.md (T4) **Deliverable:** `1-ALIGN/charter/CHARTER.md` **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** okr-template.md (T3) **Deliverable:** `1-ALIGN/okrs/OKR_REGISTER.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
 | **3-PLAN**    | **Template:** force-analysis-template.md (T4) + risk-entry-template.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** roadmap-template.md (T6) + driver-entry-template.md (T5) **Deliverable:** `3-PLAN/roadmap/ROADMAP.md` **AC:** Milestones map to iteration. Drivers have leverage actions. |
-| **4-EXECUTE** | **Template:** design-template.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** dsbv-context-template.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
-| **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** retro-template.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
+| **4-EXECUTE** | **Template:** design-template.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** sequence-template.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
+| **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** sequence-template.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
 
 
 ---
@@ -254,7 +254,7 @@ This is what the ALIGN Design → Sequence transition looks like in practice.
 
 **PM:** `/dsbv design align`
 
-**ltc-planner:** Pre-flight check — all 6 conditions GREEN. Loading DSBV_CONTEXT_TEMPLATE. What do you want ALIGN to accomplish for the PD sub-system? Give me 1-3 sentences.
+**ltc-planner:** Pre-flight check — all 6 conditions GREEN. Loading dsbv-context-template.md. What do you want ALIGN to accomplish for the PD sub-system? Give me 1-3 sentences.
 
 **PM:** ALIGN should define success for the PD sub-system: stakeholders, OKRs, and the decision log for why we chose this scope.
 
