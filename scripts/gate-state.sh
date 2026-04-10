@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 1.2 | status: draft | last_updated: 2026-04-10
+# version: 1.3 | status: draft | last_updated: 2026-04-11
 # gate-state.sh — DSBV gate state machine (C-01, C-08)
 # Bash 3 compatible: no mapfile, no declare -A, no local -a
 # JSON ops via awk/sed — no jq required
@@ -7,15 +7,20 @@
 # State format: each gate is a single JSON line, e.g.:
 #   "G1": { "status": "pending",  "approved_date": null, ... }
 #
+# State file path (DD-1 canonical): .claude/state/dsbv-{ws}-{sub}.json
+# When subsystem omitted (deprecated): .claude/state/dsbv-{ws}.json
+#
 # Usage:
-#   gate-state.sh init <workstream>                            # Create state file
-#   gate-state.sh read <workstream>                            # Print state JSON
-#   gate-state.sh advance <workstream> <gate>                  # G1=approved → G2=pending, etc.
-#   gate-state.sh reset <workstream>                           # Reset all gates to initial
+#   gate-state.sh init <workstream> [subsystem]                # Create state file
+#   gate-state.sh read <workstream> [subsystem]                # Print state JSON
+#   gate-state.sh advance <workstream> <gate> [subsystem]      # G1=approved → G2=pending, etc.
+#   gate-state.sh reset <workstream> [subsystem]               # Reset all gates to initial
 #   gate-state.sh set-subsystem <workstream> <subsystem>       # Set active subsystem (1-PD|2-DP|3-DA|4-IDM|null)
-#   gate-state.sh update-loop <workstream> iteration <N>       # Increment iteration by N (or set if N is explicit)
-#   gate-state.sh update-loop <workstream> cost_tokens <N>     # Add N to cost_tokens
-#   gate-state.sh update-loop <workstream> fail_count <N>      # Add N to fail_count
+#   gate-state.sh update-loop <workstream> iteration <N> [subsystem]   # Add N to loop iteration
+#   gate-state.sh update-loop <workstream> cost_tokens <N> [subsystem] # Add N to cost_tokens
+#   gate-state.sh update-loop <workstream> fail_count <N> [subsystem]  # Add N to fail_count
+#
+# subsystem values (lowercase): pd|dp|da|idm|cross
 
 STATE_DIR=".claude/state"
 
@@ -34,22 +39,66 @@ today_date() {
 }
 
 # ---------------------------------------------------------------------------
-# get_state_file <workstream>
+# validate_subsystem <sub_lower>
+# Accepts: pd|dp|da|idm|cross. Exits 1 on invalid.
 # ---------------------------------------------------------------------------
-get_state_file() {
-  echo "${STATE_DIR}/dsbv-${1}.json"
+validate_subsystem() {
+  case "$1" in
+    pd|dp|da|idm|cross) ;;
+    *)
+      echo "ERROR: Invalid subsystem '$1'. Must be one of: pd, dp, da, idm, cross" >&2
+      exit 1
+      ;;
+  esac
 }
 
 # ---------------------------------------------------------------------------
-# print_initial_json <workstream>
+# map_subsystem <sub_lower> → display label
+# pd→1-PD, dp→2-DP, da→3-DA, idm→4-IDM, cross→_cross
+# ---------------------------------------------------------------------------
+map_subsystem() {
+  case "$1" in
+    pd)    echo "1-PD" ;;
+    dp)    echo "2-DP" ;;
+    da)    echo "3-DA" ;;
+    idm)   echo "4-IDM" ;;
+    cross) echo "_cross" ;;
+  esac
+}
+
+# ---------------------------------------------------------------------------
+# get_state_file <workstream> [subsystem]
+# With subsystem: .claude/state/dsbv-{ws}-{sub}.json
+# Without (deprecated): .claude/state/dsbv-{ws}.json + warning to stderr
+# ---------------------------------------------------------------------------
+get_state_file() {
+  ws="$1"
+  sub="$2"
+  if [ -n "$sub" ]; then
+    echo "${STATE_DIR}/dsbv-${ws}-${sub}.json"
+  else
+    echo "WARNING: WS-level state is deprecated. Use: gate-state.sh <cmd> <workstream> <subsystem>" >&2
+    echo "${STATE_DIR}/dsbv-${ws}.json"
+  fi
+}
+
+# ---------------------------------------------------------------------------
+# print_initial_json <workstream> [subsystem_lower]
 # Emits the canonical initial state JSON. Each gate is on one line.
+# If subsystem provided, sets "subsystem": "<display>" else null.
 # ---------------------------------------------------------------------------
 print_initial_json() {
   ws="$1"
+  sub="$2"
   ts="$(iso_now)"
   printf '{\n'
   printf '  "workstream": "%s",\n' "$ws"
-  printf '  "subsystem": null,\n'
+  if [ -n "$sub" ]; then
+    sub_display="$(map_subsystem "$sub")"
+    printf '  "subsystem": "%s",\n' "$sub_display"
+  else
+    printf '  "subsystem": null,\n'
+  fi
   printf '  "current_phase": "design",\n'
   printf '  "gates": {\n'
   printf '    "G1": { "status": "pending",  "approved_date": null, "signal": null, "tier": null },\n'
@@ -200,16 +249,21 @@ cmd_set_subsystem() {
 }
 
 # ---------------------------------------------------------------------------
-# cmd_init <workstream>
+# cmd_init <workstream> [subsystem]
 # ---------------------------------------------------------------------------
 cmd_init() {
   ws="$1"
+  sub="$2"
   if [ -z "$ws" ]; then
     echo "ERROR: init requires <workstream> argument" >&2
     exit 1
   fi
 
-  state_file="$(get_state_file "$ws")"
+  if [ -n "$sub" ]; then
+    validate_subsystem "$sub"
+  fi
+
+  state_file="$(get_state_file "$ws" "$sub")"
 
   if [ ! -d "$STATE_DIR" ]; then
     mkdir -p "$STATE_DIR"
@@ -221,25 +275,30 @@ cmd_init() {
     exit 0
   fi
 
-  print_initial_json "$ws" > "$state_file"
+  print_initial_json "$ws" "$sub" > "$state_file"
   echo "OK: Created $state_file"
 }
 
 # ---------------------------------------------------------------------------
-# cmd_read <workstream>
+# cmd_read <workstream> [subsystem]
 # ---------------------------------------------------------------------------
 cmd_read() {
   ws="$1"
+  sub="$2"
   if [ -z "$ws" ]; then
     echo "ERROR: read requires <workstream> argument" >&2
     exit 1
   fi
 
-  state_file="$(get_state_file "$ws")"
+  if [ -n "$sub" ]; then
+    validate_subsystem "$sub"
+  fi
+
+  state_file="$(get_state_file "$ws" "$sub")"
 
   if [ ! -f "$state_file" ]; then
     echo "ERROR: State file not found: $state_file" >&2
-    echo "       Run 'gate-state.sh init $ws' first." >&2
+    echo "       Run 'gate-state.sh init $ws${sub:+ $sub}' first." >&2
     exit 2
   fi
 
@@ -247,13 +306,14 @@ cmd_read() {
 }
 
 # ---------------------------------------------------------------------------
-# cmd_advance <workstream> <gate>
+# cmd_advance <workstream> <gate> [subsystem]
 # Transitions the specified gate from pending → approved and cascades to
 # the next gate (locked → pending). Also updates current_phase.
 # ---------------------------------------------------------------------------
 cmd_advance() {
   ws="$1"
   gate="$2"
+  sub="$3"
 
   if [ -z "$ws" ] || [ -z "$gate" ]; then
     echo "ERROR: advance requires <workstream> and <gate> arguments" >&2
@@ -268,7 +328,11 @@ cmd_advance() {
       ;;
   esac
 
-  state_file="$(get_state_file "$ws")"
+  if [ -n "$sub" ]; then
+    validate_subsystem "$sub"
+  fi
+
+  state_file="$(get_state_file "$ws" "$sub")"
 
   if [ ! -f "$state_file" ]; then
     echo "ERROR: State file not found: $state_file" >&2
@@ -351,7 +415,7 @@ set_loop_field() {
 }
 
 # ---------------------------------------------------------------------------
-# cmd_update_loop <workstream> <field> <value>
+# cmd_update_loop <workstream> <field> <value> [subsystem]
 # Updates loop_state fields in the state file.
 # Fields: iteration (add value), cost_tokens (add value), fail_count (add value)
 # ---------------------------------------------------------------------------
@@ -359,6 +423,7 @@ cmd_update_loop() {
   ws="$1"
   field="$2"
   value="$3"
+  sub="$4"
 
   if [ -z "$ws" ] || [ -z "$field" ] || [ -z "$value" ]; then
     echo "ERROR: update-loop requires <workstream> <field> <value>" >&2
@@ -382,7 +447,11 @@ cmd_update_loop() {
       ;;
   esac
 
-  state_file="$(get_state_file "$ws")"
+  if [ -n "$sub" ]; then
+    validate_subsystem "$sub"
+  fi
+
+  state_file="$(get_state_file "$ws" "$sub")"
 
   if [ ! -f "$state_file" ]; then
     echo "ERROR: State file not found: $state_file" >&2
@@ -403,24 +472,29 @@ cmd_update_loop() {
 }
 
 # ---------------------------------------------------------------------------
-# cmd_reset <workstream>
+# cmd_reset <workstream> [subsystem]
 # ---------------------------------------------------------------------------
 cmd_reset() {
   ws="$1"
+  sub="$2"
   if [ -z "$ws" ]; then
     echo "ERROR: reset requires <workstream> argument" >&2
     exit 1
   fi
 
-  state_file="$(get_state_file "$ws")"
+  if [ -n "$sub" ]; then
+    validate_subsystem "$sub"
+  fi
+
+  state_file="$(get_state_file "$ws" "$sub")"
 
   if [ ! -f "$state_file" ]; then
     echo "ERROR: State file not found: $state_file" >&2
-    echo "       Run 'gate-state.sh init $ws' first." >&2
+    echo "       Run 'gate-state.sh init $ws${sub:+ $sub}' first." >&2
     exit 2
   fi
 
-  print_initial_json "$ws" > "$state_file"
+  print_initial_json "$ws" "$sub" > "$state_file"
   echo "OK: Reset $state_file to initial state"
 }
 
@@ -451,16 +525,18 @@ case "$subcommand" in
     ;;
   ""|--help|-h)
     echo "Usage:"
-    echo "  gate-state.sh init <workstream>                       # Create state file"
-    echo "  gate-state.sh read <workstream>                       # Print state JSON"
-    echo "  gate-state.sh advance <workstream> <gate>             # G1=approved → G2=pending, etc."
-    echo "  gate-state.sh reset <workstream>                              # Reset all gates to initial"
-    echo "  gate-state.sh set-subsystem <workstream> <subsystem>         # Set active subsystem (1-PD|2-DP|3-DA|4-IDM|null)"
-    echo "  gate-state.sh update-loop <workstream> iteration <N>         # Add N to loop iteration"
-    echo "  gate-state.sh update-loop <workstream> cost_tokens <N># Add N to cost_tokens"
-    echo "  gate-state.sh update-loop <workstream> fail_count <N> # Add N to fail_count"
+    echo "  gate-state.sh init <workstream> [subsystem]                        # Create state file"
+    echo "  gate-state.sh read <workstream> [subsystem]                        # Print state JSON"
+    echo "  gate-state.sh advance <workstream> <gate> [subsystem]              # G1=approved → G2=pending, etc."
+    echo "  gate-state.sh reset <workstream> [subsystem]                       # Reset all gates to initial"
+    echo "  gate-state.sh set-subsystem <workstream> <subsystem>               # Set active subsystem (1-PD|2-DP|3-DA|4-IDM|null)"
+    echo "  gate-state.sh update-loop <workstream> iteration <N> [subsystem]   # Add N to loop iteration"
+    echo "  gate-state.sh update-loop <workstream> cost_tokens <N> [subsystem] # Add N to cost_tokens"
+    echo "  gate-state.sh update-loop <workstream> fail_count <N> [subsystem]  # Add N to fail_count"
     echo ""
-    echo "State files: .claude/state/dsbv-<workstream>.json"
+    echo "subsystem values (lowercase): pd|dp|da|idm|cross"
+    echo "State files (DD-1): .claude/state/dsbv-<workstream>-<subsystem>.json"
+    echo "Deprecated (WS-level): .claude/state/dsbv-<workstream>.json"
     exit 0
     ;;
   *)
