@@ -84,8 +84,8 @@ PD is the first sub-system and sets the version ceiling. DP, DA, and IDM follow 
 | Sub-system | Full Name                | Inherits From           | Version Ceiling Rule                        |
 | ---------- | ------------------------ | ----------------------- | ------------------------------------------- |
 | **PD**     | Problem Diagnosis        | — (first in chain)      | Sets ceiling for all downstream sub-systems |
-| **DP**     | Diagnosis Protocol       | PD Effective Principles | DP version ≤ PD version                     |
-| **DA**     | Diagnostic Analysis      | DP Effective Principles | DA version ≤ DP version                     |
+| **DP**     | Data Pipeline            | PD Effective Principles | DP version ≤ PD version                     |
+| **DA**     | Data Analytics           | DP Effective Principles | DA version ≤ DP version                     |
 | **IDM**    | Informed Decision Making | DA Effective Principles | IDM version ≤ DA version                    |
 
 
