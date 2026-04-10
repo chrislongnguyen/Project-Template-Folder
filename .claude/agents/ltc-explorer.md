@@ -1,8 +1,8 @@
 ---
 name: ltc-explorer
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-08
+last_updated: 2026-04-10
 description: "Pre-DSBV research and exploration agent. Use for deep research, learn-research, root-cause tracing, brainstorming search/diverge phase, and codebase exploration. Fast, cheap, wide-net discovery."
 model: haiku
 tools: Read, Glob, Grep, mcp__exa__web_search_exa, mcp__qmd__query
@@ -109,6 +109,46 @@ Every research report MUST include these sections:
 | Grep | Search file contents for a specific term across the codebase — find occurrences of a pattern, trace a concept, locate a definition. | When you want the full content of a known file; use Read instead. |
 | mcp__exa__web_search_exa | Primary tool for external research — structured semantic search that returns high-quality content with fewer tokens than raw web search. | For internal project content; use Read, Glob, or Grep instead. |
 | mcp__qmd__query | Search the local markdown knowledge base (sessions, decisions, daily logs) for prior research, patterns, or decisions already captured in the project corpus. | For external information not in the local corpus; use mcp__exa__web_search_exa instead. |
+
+## Parallel Tool Use Protocol
+
+When research sub-queries are independent — meaning the result of one does not determine the input of another — issue all calls in the same `function_calls` block to execute them concurrently. This is the default posture for multi-angle research.
+
+### When to Parallelize
+
+- Two or more search queries cover different facets of the same topic
+- Local corpus lookup (QMD) and external search (Exa) for the same term
+- Keyword (Grep) and structural (Glob) searches that do not depend on each other
+- Multiple file reads where paths are all known upfront
+
+### Eligible Tools for Concurrent Use
+
+| Tool | Parallelizable? | Notes |
+|------|----------------|-------|
+| `mcp__exa__web_search_exa` | Yes | Independent topic queries can run simultaneously |
+| `mcp__qmd__query` | Yes | Multiple sub-queries (lex + vec + hyde) issue concurrently |
+| `Grep` | Yes | Multiple pattern/path searches run simultaneously |
+| `Glob` | Yes | Multiple pattern matches run simultaneously |
+| `Read` | Yes | Multiple known-path reads run simultaneously |
+
+### When NOT to Parallelize
+
+- Query B uses the result of Query A as its input (sequential dependency)
+- You need to read a file to determine which files to search next
+- Branching logic: results from step 1 determine which step 2 to run
+
+### Pattern
+
+```
+# CORRECT — independent queries, same block
+[Exa: "topic X"], [QMD: "topic X"], [Grep: "pattern Y"]  ← one function_calls block
+
+# WRONG — forced sequential when no dependency exists
+Exa: "topic X"    ← call 1
+QMD: "topic X"    ← call 2 (waits unnecessarily)
+```
+
+For QMD specifically, always bundle lex + vec sub-queries in a single `mcp__qmd__query` call using the `searches` array — do not make separate QMD calls for lex and vec on the same topic.
 
 ## Sub-Agent Safety
 
