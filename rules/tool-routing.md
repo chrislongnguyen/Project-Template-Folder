@@ -73,7 +73,7 @@ grep -r --include='*.md' --include='*.sh' --include='*.py' --include='*.html' "<
 
 Log grep results alongside vault results before drawing conclusions. If `.claude/` content conflicts with vault content, `.claude/` takes precedence.
 
-**Worktree constraint:** During Build phase (working in a git worktree), do NOT use obsidian-cli — it targets the main vault, not the worktree. Use Grep/Read instead. obsidian-cli is safe during Validate phase (after merge to main).
+**Worktree constraint:** During Build stage (working in a git worktree), do NOT use obsidian-cli — it targets the main vault, not the worktree. Use Grep/Read instead. obsidian-cli is safe during Validate stage (after merge to main).
 
 ---
 

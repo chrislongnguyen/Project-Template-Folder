@@ -8,7 +8,7 @@ Checks:
 3. Filenames follow {sub}-{name}.md pattern
 4. No files remain in old category dirs
 5. No orphan .gitkeep in populated dirs
-6. DSBV phase files exist per DSBV workstream (not LEARN)
+6. DSBV stage files exist per DSBV workstream (not LEARN)
 7. No DSBV files in 2-LEARN/ (Mode B routing)
 8. No DSBV files in _genesis/ outside templates/ (Mode D routing)
 
@@ -212,23 +212,23 @@ def validate_gitkeep():
 
 
 def validate_dsbv():
-    """Check DSBV phase files exist for DSBV workstreams (not LEARN)."""
+    """Check DSBV stage files exist for DSBV workstreams (not LEARN)."""
     if not QUIET:
-        print("\n=== CHECK 5: DSBV phase files ===\n")
+        print("\n=== CHECK 5: DSBV stage files ===\n")
 
     dsbv_ws = [ws for ws in WORKSTREAMS if ws != "2-LEARN"]
     for ws in dsbv_ws:
         # Workstream-root DSBV files
-        for phase in ["DESIGN.md", "SEQUENCE.md"]:
-            fpath = os.path.join(ws, phase)
+        for stage in ["DESIGN.md", "SEQUENCE.md"]:
+            fpath = os.path.join(ws, stage)
             check(os.path.exists(fpath), f"Missing {fpath}")
 
         # Subsystem DSBV (not for EXECUTE)
         if ws == "4-EXECUTE":
             continue
         for sub in ["1-PD", "2-DP", "3-DA", "4-IDM"]:
-            for phase in ["DESIGN.md", "SEQUENCE.md"]:
-                fpath = os.path.join(ws, sub, phase)
+            for stage in ["DESIGN.md", "SEQUENCE.md"]:
+                fpath = os.path.join(ws, sub, stage)
                 check(os.path.exists(fpath), f"Missing {fpath}", severity="WARN")
 
 

@@ -114,11 +114,11 @@ Every workstream (ALIGN → PLAN → EXECUTE → IMPROVE) uses **DSBV** — Desi
 
 ```
 /dsbv                    Start a guided DSBV cycle on any workstream
-/dsbv design align       Run just the Design phase on the ALIGN workstream
+/dsbv design align       Run just the Design stage on the ALIGN workstream
 /dsbv status             See current progress across all workstreams
 ```
 
-DSBV guides you step by step: define what the workstream must produce (Design), order the work (Sequence), execute it (Build), and verify quality (Validate). Each phase has a human gate — you review and approve before proceeding.
+DSBV guides you step by step: define what the workstream must produce (Design), order the work (Sequence), execute it (Build), and verify quality (Validate). Each stage has a human gate — you review and approve before proceeding.
 
 Start with ALIGN: `/dsbv design align` — it will ask you to describe your project's purpose in 1-3 sentences, then draft the specification for your review.
 
@@ -344,7 +344,7 @@ Three-layer defense-in-depth:
 | Layer | Mechanism | Reliability |
 |-------|-----------|-------------|
 | **1 — Structural** | `.gitignore` excludes secrets, keys, backups by path | Passive — cannot be accidentally committed |
-| **2 — Agent EPS** | `CLAUDE.md`, `GEMINI.md`, `.cursor/rules/` constitutional rules | Probabilistic (~80% compliance) |
+| **2 — Agent EP** | `CLAUDE.md`, `GEMINI.md`, `.cursor/rules/` constitutional rules | Probabilistic (~80% compliance) |
 | **3 — Hard Gate** | gitleaks + frontmatter validator + `settings.json` deny rules | Deterministic — cannot bypass |
 
 Configure `.claude/settings.json` first — it is your safety net.

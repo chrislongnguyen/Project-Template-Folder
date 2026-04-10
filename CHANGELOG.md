@@ -53,7 +53,7 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 - [T1:REPLACE] `_genesis/reference/frontmatter-schema.md` — canonical schema spec
 - [T1:REPLACE] `scripts/migrate-status.sh` — S2 vocabulary migration across workstream artifacts
 - [T1:REPLACE] LTC dark CSS theme for Bases dashboards + color pill selectors
-- [T1:REPLACE] Kanban views + Bases dashboard grouping for DSBV phases
+- [T1:REPLACE] Kanban views + Bases dashboard grouping for DSBV stages
 
 ### Added — S2 Status Lifecycle Enforcement
 - [T1:REPLACE] `scripts/dsbv-gate.sh` v2.1 — ALPEI chain-of-custody gate (5 workstreams, S2 vocab, multi-file-type support, `--pretool` real-time mode)

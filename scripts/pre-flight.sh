@@ -105,7 +105,7 @@ DESIGN_FILE="$WORKSTREAM/DESIGN.md"
 if [[ -f "$DESIGN_FILE" ]]; then
   check "C8" "DESIGN.md exists for $WORKSTREAM" "PASS"
 else
-  check "C8" "DESIGN.md exists for $WORKSTREAM" "WARN" "No DESIGN.md — needed before Build phase"
+  check "C8" "DESIGN.md exists for $WORKSTREAM" "WARN" "No DESIGN.md — needed before Build stage"
 fi
 
 # Criterion 9: DOCUMENT — decisions directory

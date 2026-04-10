@@ -134,7 +134,7 @@ GENESIS_DIRS = {
         "quote": "What is the approved process for this activity?",
     },
     "_genesis/templates": {
-        "purpose": "DSBV phase templates, VANA-SPEC, ADR, research, review, and 15+ artifact templates",
+        "purpose": "DSBV stage templates, VANA-SPEC, ADR, research, review, and 15+ artifact templates",
         "quote": "Is there a template for this, or are we inventing from scratch?",
     },
 }

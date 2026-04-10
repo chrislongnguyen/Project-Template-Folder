@@ -136,7 +136,7 @@ check_g3() {
 
   if [ -z "$sequence_file" ]; then
     echo "ERROR: G3 prerequisite failed — SEQUENCE.md not found in '${WS_DIR}'." >&2
-    echo "  Build phase cannot be verified without a SEQUENCE.md." >&2
+    echo "  Build stage cannot be verified without a SEQUENCE.md." >&2
     exit 1
   fi
 

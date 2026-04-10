@@ -10,7 +10,7 @@
 #   2. Checks if file is in a workstream directory (1-ALIGN/, 3-PLAN/, 4-EXECUTE/, 5-IMPROVE/)
 #   3. If not a workstream file → ALLOW (exit 0)
 #   4. If a DSBV process file (DESIGN.md, SEQUENCE.md, VALIDATE.md) → ALLOW
-#   5. If workstream's DESIGN.md exists → ALLOW (Design phase completed)
+#   5. If workstream's DESIGN.md exists → ALLOW (Design stage completed)
 #   6. If workstream's DESIGN.md does NOT exist → BLOCK (exit 2)
 #
 # This enforces the OUTCOME (DESIGN.md exists) rather than the PROCESS
@@ -102,7 +102,7 @@ esac
 # --- Allow operational files (updated outside DSBV cycles) -----------------
 
 # Some workstream files are operational — they get updated incrementally, not as
-# part of a DSBV Build phase. These include retrospectives, changelogs,
+# part of a DSBV Build stage. These include retrospectives, changelogs,
 # metrics, decision records, and learning outputs.
 RELATIVE_PATH="${FILE_PATH#*/${WORKSTREAM}/}"
 case "$RELATIVE_PATH" in
@@ -157,9 +157,9 @@ it is not in scope."
 To fix this:
   1. Run '/dsbv design ${WORKSTREAM_PATTERN}' to create the Design specification
   2. Get human approval on the DESIGN.md
-  3. Then proceed with Build phase writes
+  3. Then proceed with Build stage writes
 
-This hook enforces the DSBV phase ordering:
+This hook enforces the DSBV stage ordering:
   Design (DESIGN.md) → Sequence → Build (workstream artifacts) → Validate
 
 File attempted: ${FILE_PATH}

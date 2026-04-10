@@ -16,7 +16,7 @@ L4 (EXECUTE code): actual files
 
 ## Before Creating Any File
 
-1. Identify workstream (which ALPEI phase?) → L1
+1. Identify workstream (which ALPEI workstream?) → L1
 2. Identify subsystem (which domain?) → L2. Use `_cross` if spans subsystems.
 3. Build filename with subsystem prefix: `{sub}-{name}.md`
 4. For EXECUTE code: add L3 type folder (src/tests/config/notebooks/docs)

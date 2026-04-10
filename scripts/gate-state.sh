@@ -300,30 +300,30 @@ cmd_advance() {
   set_gate_status "$state_file" "$gate" "approved"
   set_gate_approved_date "$state_file" "$gate" "$today"
 
-  # Cascade: unlock next gate and update phase
+  # Cascade: unlock next gate and update stage
   case "$gate" in
     G1)
       set_gate_status "$state_file" "G2" "pending"
       set_current_phase "$state_file" "sequence"
       bump_updated "$state_file"
-      echo "OK: G1 approved → phase=sequence, G2 unlocked (pending)"
+      echo "OK: G1 approved → stage=sequence, G2 unlocked (pending)"
       ;;
     G2)
       set_gate_status "$state_file" "G3" "pending"
       set_current_phase "$state_file" "build"
       bump_updated "$state_file"
-      echo "OK: G2 approved → phase=build, G3 unlocked (pending)"
+      echo "OK: G2 approved → stage=build, G3 unlocked (pending)"
       ;;
     G3)
       set_gate_status "$state_file" "G4" "pending"
       set_current_phase "$state_file" "validate"
       bump_updated "$state_file"
-      echo "OK: G3 approved → phase=validate, G4 unlocked (pending)"
+      echo "OK: G3 approved → stage=validate, G4 unlocked (pending)"
       ;;
     G4)
       set_current_phase "$state_file" "complete"
       bump_updated "$state_file"
-      echo "OK: G4 approved → phase=complete (workflow finished)"
+      echo "OK: G4 approved → stage=complete (workflow finished)"
       ;;
   esac
 }
