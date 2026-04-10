@@ -168,6 +168,12 @@
             "command": "./scripts/dsbv-gate.sh --pretool",
             "timeout": 5,
             "statusMessage": "Checking ALPEI chain-of-custody..."
+          },
+          {
+            "type": "command",
+            "command": "./.claude/hooks/dsbv-provenance-guard.sh",
+            "timeout": 5,
+            "statusMessage": "Checking DSBV artifact provenance..."
           }
         ]
       },
