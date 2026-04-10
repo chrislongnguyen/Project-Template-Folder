@@ -55,6 +55,12 @@
             "command": "./.claude/hooks/verify-deliverables.sh",
             "timeout": 10,
             "statusMessage": "Verifying sub-agent deliverables..."
+          },
+          {
+            "type": "command",
+            "command": "./.claude/hooks/builder-audit.sh",
+            "timeout": 5,
+            "statusMessage": "Auditing builder AC self-check (Gap S-1)..."
           }
         ]
       }
@@ -168,6 +174,12 @@
             "command": "./scripts/dsbv-gate.sh --pretool",
             "timeout": 5,
             "statusMessage": "Checking ALPEI chain-of-custody..."
+          },
+          {
+            "type": "command",
+            "command": "./.claude/hooks/dsbv-provenance-guard.sh",
+            "timeout": 5,
+            "statusMessage": "Checking DSBV artifact provenance..."
           }
         ]
       },

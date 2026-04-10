@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 1.1 | status: draft | last_updated: 2026-04-09
+# version: 1.2 | status: draft | last_updated: 2026-04-10
 # gate-state.sh — DSBV gate state machine (C-01, C-08)
 # Bash 3 compatible: no mapfile, no declare -A, no local -a
 # JSON ops via awk/sed — no jq required
@@ -12,6 +12,7 @@
 #   gate-state.sh read <workstream>                            # Print state JSON
 #   gate-state.sh advance <workstream> <gate>                  # G1=approved → G2=pending, etc.
 #   gate-state.sh reset <workstream>                           # Reset all gates to initial
+#   gate-state.sh set-subsystem <workstream> <subsystem>       # Set active subsystem (1-PD|2-DP|3-DA|4-IDM|null)
 #   gate-state.sh update-loop <workstream> iteration <N>       # Increment iteration by N (or set if N is explicit)
 #   gate-state.sh update-loop <workstream> cost_tokens <N>     # Add N to cost_tokens
 #   gate-state.sh update-loop <workstream> fail_count <N>      # Add N to fail_count
@@ -135,6 +136,67 @@ bump_updated() {
   ts="$(iso_now)"
   sed "s/\"updated\": *\"[^\"]*\"/\"updated\": \"${ts}\"/" \
     "$json_file" > "${json_file}.tmp" && mv "${json_file}.tmp" "$json_file"
+}
+
+# ---------------------------------------------------------------------------
+# set_subsystem_field <file> <subsystem_or_null>
+# Replaces the "subsystem": ... line. Handles both null and quoted string values.
+# Line format (null):   "subsystem": null,
+# Line format (string): "subsystem": "1-PD",
+# ---------------------------------------------------------------------------
+set_subsystem_field() {
+  json_file="$1"
+  new_val="$2"  # either literal: null  OR  a subsystem code like 1-PD
+  if [ "$new_val" = "null" ]; then
+    sed 's/"subsystem": *"[^"]*"/"subsystem": null/' \
+      "$json_file" > "${json_file}.tmp" && mv "${json_file}.tmp" "$json_file"
+    # Also handle case where it is already null (no-op safe)
+    sed 's/"subsystem": *null/"subsystem": null/' \
+      "$json_file" > "${json_file}.tmp" && mv "${json_file}.tmp" "$json_file"
+  else
+    # Replace null → "value"
+    sed "s/\"subsystem\": *null/\"subsystem\": \"${new_val}\"/" \
+      "$json_file" > "${json_file}.tmp" && mv "${json_file}.tmp" "$json_file"
+    # Replace existing quoted value → "value"
+    sed "s/\"subsystem\": *\"[^\"]*\"/\"subsystem\": \"${new_val}\"/" \
+      "$json_file" > "${json_file}.tmp" && mv "${json_file}.tmp" "$json_file"
+  fi
+}
+
+# ---------------------------------------------------------------------------
+# cmd_set_subsystem <workstream> <subsystem>
+# Sets the active subsystem in the state file.
+# Allowed values: 1-PD, 2-DP, 3-DA, 4-IDM, null
+# ---------------------------------------------------------------------------
+cmd_set_subsystem() {
+  ws="$1"
+  subsystem="$2"
+
+  if [ -z "$ws" ] || [ -z "$subsystem" ]; then
+    echo "ERROR: set-subsystem requires <workstream> and <subsystem> arguments" >&2
+    echo "       Allowed values: 1-PD, 2-DP, 3-DA, 4-IDM, null" >&2
+    exit 1
+  fi
+
+  case "$subsystem" in
+    1-PD|2-DP|3-DA|4-IDM|null) ;;
+    *)
+      echo "ERROR: Invalid subsystem '${subsystem}'. Must be one of: 1-PD, 2-DP, 3-DA, 4-IDM, null" >&2
+      exit 1
+      ;;
+  esac
+
+  state_file="$(get_state_file "$ws")"
+
+  if [ ! -f "$state_file" ]; then
+    echo "ERROR: State file not found: $state_file" >&2
+    echo "       Run 'gate-state.sh init $ws' first." >&2
+    exit 2
+  fi
+
+  set_subsystem_field "$state_file" "$subsystem"
+  bump_updated "$state_file"
+  echo "OK: subsystem set to ${subsystem} in $state_file"
 }
 
 # ---------------------------------------------------------------------------
@@ -381,6 +443,9 @@ case "$subcommand" in
   reset)
     cmd_reset "$@"
     ;;
+  set-subsystem)
+    cmd_set_subsystem "$@"
+    ;;
   update-loop)
     cmd_update_loop "$@"
     ;;
@@ -389,8 +454,9 @@ case "$subcommand" in
     echo "  gate-state.sh init <workstream>                       # Create state file"
     echo "  gate-state.sh read <workstream>                       # Print state JSON"
     echo "  gate-state.sh advance <workstream> <gate>             # G1=approved → G2=pending, etc."
-    echo "  gate-state.sh reset <workstream>                      # Reset all gates to initial"
-    echo "  gate-state.sh update-loop <workstream> iteration <N>  # Add N to loop iteration"
+    echo "  gate-state.sh reset <workstream>                              # Reset all gates to initial"
+    echo "  gate-state.sh set-subsystem <workstream> <subsystem>         # Set active subsystem (1-PD|2-DP|3-DA|4-IDM|null)"
+    echo "  gate-state.sh update-loop <workstream> iteration <N>         # Add N to loop iteration"
     echo "  gate-state.sh update-loop <workstream> cost_tokens <N># Add N to cost_tokens"
     echo "  gate-state.sh update-loop <workstream> fail_count <N> # Add N to fail_count"
     echo ""

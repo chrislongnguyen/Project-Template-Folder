@@ -6,7 +6,7 @@ type: always-on rule
 ---
 # Script Registry — Always-On Rule
 
-39 scripts in `scripts/`. 9 archived to `_genesis/reference/archive/scripts/`.
+40 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
 This index is the authoritative lookup for agent script discovery.
 Before writing a new script, check here — it may already exist.
 
@@ -39,6 +39,8 @@ These scripts fire automatically via `.claude/settings.json` hooks. The agent do
 | `session-etl-trigger.sh` | UserPromptSubmit | Debounced wrapper — triggers `session-etl.py` in background |
 | `session-etl.py` | (called by trigger above) | Parse Claude JSONL sessions → extract decisions/errors/changes → append to daily vault summaries |
 | `memory-guard.sh` | PreToolUse (Write on MEMORY.md) | Validate MEMORY.md 3-section structure before write |
+| `dsbv-provenance-guard.sh` | PreToolUse (Write/Edit) | Block DSBV artifact Write without prior designated agent dispatch (P1 enforcement) |
+| `builder-audit.sh` | SubagentStop | Grep builder output for AC markers; warn if self-check skipped (S-FIX-1) |
 
 ## Pre-Commit Scripts — Run Before Staging
 
@@ -77,6 +79,7 @@ Use these when managing iterations, versions, or bulk metadata operations.
 | `readiness-report.sh` | Before iteration advancement | Check Criterion 1-3 (C1-C3) readiness criteria per subsystem. Called by `/dsbv status` |
 | `bulk-validate.sh` | Bulk status promotion | Set `status: validated` on all matching .md files under a path (human-invoked only) |
 | `frontmatter-extract.sh` | Debugging frontmatter issues | Parse and display YAML frontmatter fields from .md files |
+| `gate-ceremony.sh` | At DSBV gate transitions | Convenience wrapper: runs gate-precheck → set-status-in-review → gate-state advance in sequence (E-FIX-2) |
 
 ## Obsidian & Knowledge Graph — Run for Vault Maintenance
 

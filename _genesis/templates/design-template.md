@@ -1,6 +1,6 @@
 ---
-version: "1.2"
-last_updated: 2026-04-04
+version: "1.3"
+last_updated: 2026-04-10
 owner: Long Nguyen
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
@@ -31,6 +31,20 @@ Answer before proceeding to DESIGN content.
 
 ---
 
+## Iteration/Version Context
+
+| Field | Value |
+|-------|-------|
+| Current iteration | _e.g., Iteration 1 (concept)_ |
+| UES version ceiling | _e.g., v1.x — correct + safe only_ |
+| Scope boundary | _What this iteration produces vs. defers_ |
+| Version convention | New file in Iteration 1 → `version: "1.0"`. Bump minor on each committed edit. |
+
+> Reference: `_genesis/frameworks/ltc-ues-version-behaviors.md` — 25-cell matrix governs what each UES version tier may produce.
+> Do not design beyond the current iteration's UES ceiling.
+
+---
+
 ## Design Decisions
 
 High-level intent stated by Human Director (1-3 sentences). Agent expands below.
@@ -49,13 +63,16 @@ Unified artifact-condition table. Every artifact has at least one condition. Eve
 
 | # | Artifact | Path | Purpose (WHY) | Acceptance Conditions |
 |---|----------|------|---------------|-----------------------|
-| A1 | _artifact name_ | _path_ | _why this artifact exists_ | AC-1: _condition_ |
+| A1 | _artifact name_ | _path_ | _why this artifact exists_ | AC-1: `grep "## Approval Log" <file>` returns 1 match |
 | A2 | | | | AC-2: _condition_ |
+
+> AC examples must be binary and deterministic — a command that returns PASS or FAIL with no judgment required.
+> Strong: `AC-1: grep "status: validated" returns 0 matches` | Weak: `AC-1: document looks complete`
 
 **Alignment check (mandatory at G1):**
 - [ ] Orphan conditions = 0 (every condition maps to a named artifact)
 - [ ] Orphan artifacts = 0 or justified (every artifact has at least one condition)
-- [ ] Artifact count here = deliverable count in SEQUENCE.md
+- [ ] Artifact count here = row count in this table (self-consistent; SEQUENCE.md does not exist at Design time)
 
 ---
 
@@ -67,6 +84,7 @@ Unified artifact-condition table. Every artifact has at least one condition. Eve
 | Why this pattern | _Which LT risks does it compensate?_ |
 | Why NOT simpler | _What fails with single agent / sequential?_ |
 | Agent config | _How many agents, which models, roles, handoff protocol_ |
+| Generator/Critic | `max_iterations: 3`, `cost_cap: ~$0.06/iter` (Sonnet builder + Opus reviewer) |
 | Git strategy | _Branches, worktrees, merge plan_ |
 | Human gates | _Which decisions pause for human approval_ |
 | EP validation | _How EP-01, EP-03, EP-04, EP-09 are satisfied_ |
@@ -109,6 +127,21 @@ Additional workstream-specific gates:
 
 **All conditions must be GREEN before G1.**
 
+---
+
+## Approval Log
+
+Audit trail for all gate decisions. Append a row at each human gate.
+
+| Date | Gate | Decision | Signal | Tier |
+|------|------|----------|--------|------|
+| YYYY-MM-DD | G1 | Approved / Rejected | _human note_ | human |
+| YYYY-MM-DD | G2 | Approved / Rejected | _human note_ | human |
+| YYYY-MM-DD | G3 | Approved / Rejected | _human note_ | human |
+| YYYY-MM-DD | G4 | Approved / Rejected | _human note_ | human |
+
+> Only humans write to this table. Agents NEVER set Decision = Approved.
+
 ## Links
 
 - [[AGENTS]]
@@ -119,5 +152,6 @@ Additional workstream-specific gates:
 - [[deliverable]]
 - [[dsbv-process]]
 - [[iteration]]
+- [[ltc-ues-version-behaviors]]
 - [[task]]
 - [[workstream]]

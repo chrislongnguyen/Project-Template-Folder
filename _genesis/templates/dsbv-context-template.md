@@ -1,9 +1,9 @@
 ---
-version: "1.1"
+version: "1.2"
 iteration: 1
 iteration_name: concept
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-10
 owner: Long Nguyen
 type: template
 work_stream: 0-GOVERN
@@ -12,7 +12,14 @@ sub_system:
 ---
 # DSBV Context Package — [WORKSTREAM NAME]
 
-> Input context for agents running DSBV Build phase on Workstream [N].
+> **WORKSTREAM-LEVEL context package** — fill this ONCE per DSBV cycle to ground all agents working on
+> Workstream [N]. It captures project identity, settled decisions, and the artifact contract.
+>
+> **This is NOT the per-dispatch Agent() context.** For each individual Agent() call, use the
+> per-dispatch template at `.claude/skills/dsbv/references/context-packaging.md`. That template
+> covers EO, INPUT (Context + Files + Budget), EP, OUTPUT, and VERIFY for a single task invocation.
+> This file feeds the "Context" sub-section of that template.
+>
 > Budget: ~4000 words. Every token costs signal-to-noise ratio.
 > Bookend pattern (LT-2): most critical content at start and end, least critical in middle.
 
@@ -48,6 +55,29 @@ sub_system:
 |---|----------|-----------|
 | D1 | [Decision statement] | [Why this was chosen] |
 | D2 | [Decision statement] | [Why this was chosen] |
+
+### Reference Materials
+
+[Key excerpts from documents, research, specs. Do not paste full documents — respect context budget.]
+
+### Budget
+
+> Token/scope boundary for agents working this workstream. Copy to the `### Budget` sub-section of
+> each per-dispatch context package. Adjust token estimate per task; adjust max_tool_calls per agent.
+
+~4000 words (~8K tokens) for this workstream context package. Agents load only what THIS task needs.
+
+**Default max_tool_calls by agent** — override per dispatch when task is known tool-heavy or tool-light:
+
+| Agent | Default max_tool_calls | Rationale |
+|-------|----------------------|-----------|
+| ltc-builder | 50 | Read + Write + Edit + Grep + Bash for artifact production |
+| ltc-reviewer | 30 | Read + Glob + Grep + Bash for evidence gathering |
+| ltc-explorer | 20 | Read-only exploration; should be focused and fast |
+| ltc-planner | 40 | Read + design synthesis; moderate tool usage |
+
+Enforcement: agent self-tracks tool call count. At 80% of budget, prioritize remaining work and report
+partial completion rather than exceeding budget silently.
 
 ---
 
@@ -92,33 +122,42 @@ sub_system:
 
 [Relevant quotes, debate resolutions, strategic direction. Include reasoning, not just conclusions.]
 
-### Reference Materials
-
-[Key excerpts from documents, research, specs. Do not paste full documents — respect context budget.]
-
 ---
 
 ## Section 5: Agent System Constraints
 
 > Standardized section — same for every context package. Grounds agents in LLM structural limits.
+> Load the full 8 LLM Truths and 7-CS framework from `rules/agent-system.md`.
 
-### The 8 LLM Truths
+Key truths for this workstream:
 
-| # | Truth | Summary |
-|---|-------|---------|
-| LT-1 | Hallucination is structural | P(hallucination) > 0 for any model. Plausible is not true. |
-| LT-2 | Context compression is lossy | Effective window << nominal. Middle content gets lost. |
-| LT-3 | Reasoning degrades on complex tasks | 3-step works; 12-step breaks. 0.9^7 = 48%. |
-| LT-4 | Retrieval is fragile under noise | Model grabs "close enough" instead of exact fact. |
-| LT-5 | Prediction optimizes plausibility | Trained for "sounds right," not "is right." |
-| LT-6 | No persistent memory | Every session starts blank. |
-| LT-7 | Cost scales with tokens | More words = more money, worse LT-2. |
-| LT-8 | Alignment is approximate | Can drift, game criteria, find loopholes. |
+| # | Truth | Impact here |
+|---|-------|-------------|
+| LT-1 | Hallucination is structural | Require file-path evidence for every claim; no assertion without source |
+| LT-2 | Context compression is lossy | Place critical content at start and end of this package (bookend pattern) |
+| LT-7 | Cost scales with tokens | Every irrelevant paragraph degrades signal — load only what THIS task needs |
+
+All other LT apply; see `rules/agent-system.md` for the full table before designing any system component.
 
 ### 7-CS and Two Operators
 
 `EO = f(EP, Input, EOP, EOE, EOT, Agent, EA)` — Human Director = Accountable (not a component).
 **Human** fails via System 1 (anchoring, confirmation bias). **Agent** fails via 8 LTs (hallucination, context loss). Each compensates for the other's blind spots.
+
+### EP Task-Type Filtering
+
+Not all EPs apply to every task. Listing all 10+ EPs wastes tokens and dilutes focus. Use this table
+to select the 2-3 most relevant EPs per Agent() dispatch. Include at most 4 EPs per context package —
+if more are needed, the task is too broad and should be decomposed (EP-09).
+
+| Task Type | Applicable EPs | Why These |
+|-----------|---------------|-----------|
+| Research | EP-01 (Brake Before Gas), EP-04 (Signal Over Volume), EP-08 (Economy) | Caution (EP-01), focused scope (EP-04), token efficiency (EP-08) |
+| Design | EP-01 (Brake Before Gas), EP-05 (Gates Before Guides), EP-09 (Decompose), EP-10 (Define Done) | Caution (EP-01), deterministic gates (EP-05), decomposition (EP-09), testable criteria (EP-10) |
+| Build | EP-01 (Brake Before Gas), EP-05 (Gates Before Guides), EP-10 (Define Done), EP-14 (Script-First) | Stop-on-block (EP-01), routing boundaries (EP-05), AC verification (EP-10), script validation (EP-14) |
+| Validate | EP-01 (Brake Before Gas), EP-10 (Define Done), EP-12 (Evidence-Based) | Caution (EP-01), criterion matching (EP-10), file-path evidence (EP-12) |
+
+Full EP registry: `_genesis/reference/ltc-effective-agent-principles-registry.md`
 
 ---
 
@@ -161,8 +200,10 @@ sub_system:
 - [[AGENTS]]
 - [[CHANGELOG]]
 - [[DESIGN]]
+- [[agent-system]]
 - [[architecture]]
 - [[charter]]
+- [[context-packaging]]
 - [[deliverable]]
 - [[iteration]]
 - [[project]]
