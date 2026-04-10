@@ -1,35 +1,39 @@
 ---
-version: "1.1"
+version: "1.2"
 iteration: 1
 iteration_name: concept
 status: draft
-last_updated: 2026-04-04
+last_updated: 2026-04-10
 owner: Long Nguyen
 type: template
 work_stream: 0-GOVERN
 stage: validate
-sub_system: 
+sub_system:
 ---
 # DSBV Evaluation Protocol — [WORKSTREAM NAME]
 
 > For Validate phase. Covers multi-agent synthesis and single-agent validation.
 > Follow mechanically. Do not skip steps.
+> Source of truth for 4 universal dimensions: SKILL.md v2.1 §Phase 4: VALIDATE.
 
 ---
 
 ## 1. Success Rubric
 
-Score each dimension 0-10. Weighted average = final score. No half-points.
+### 1a. Universal Dimensions (all workstreams)
 
-### Universal Dimensions (all workstreams)
+Four dimensions are fixed. Do NOT rename, merge, or replace them.
 
-| Dimension | Weight | 10/10 | 5/10 | 0/10 |
-|-----------|--------|-------|------|------|
-| **EO Clarity** | [%] | One sentence, testable, measurable condition | Vague but directional | Missing or contradictory |
-| **Coherence** | [%] | All artifacts cross-reference, no contradictions | Minor inconsistencies | Contradictions between core artifacts |
-| **Actionability** | [%] | Next workstream starts without questions | Gaps remain, workarounds obvious | Next workstream must redo this workstream |
+| Dimension | What is checked |
+|-----------|-----------------|
+| **Completeness** | All artifacts listed in DESIGN.md are present on disk |
+| **Quality** | Each artifact passes its per-artifact success rubric from DESIGN.md |
+| **Coherence** | Artifacts do not contradict each other (no orphaned conditions, no conflicting claims) |
+| **Downstream Readiness** | The next workstream's Criterion 1 (clear scope) and Criterion 2 (input materials) can be satisfied from this workstream's outputs without further questions |
 
-### Workstream-Specific Dimensions (fill 3-4 per workstream)
+### 1b. Workstream-Specific Dimensions (3–4 per workstream)
+
+Add below the universal dimensions. Weights must sum to 100% across all dimensions.
 
 | Dimension | Weight | 10/10 | 5/10 | 0/10 |
 |-----------|--------|-------|------|------|
@@ -38,53 +42,137 @@ Score each dimension 0-10. Weighted average = final score. No half-points.
 | **[Dimension 3]** | [%] | [Excellent] | [Mediocre] | [Failure] |
 | **[Dimension 4]** | [%] | [Excellent] | [Mediocre] | [Failure] |
 
-[ALIGN: EU Coverage, UBS Depth, UDS Coverage, Requirements Quality | PLAN: Architecture Completeness, Risk Mitigation, Task Decomposition, Dependency Accuracy | EXECUTE: Code Quality, Test Coverage, Doc Completeness, Performance | IMPROVE: Insight Depth, Action Specificity, Metric Accuracy, Feedback Closure]
+**Workstream examples:**
 
-**Weights must sum to 100%.** Typical: 30-40% universal + 60-70% workstream-specific.
+- ALIGN: EU Coverage, UBS Depth, UDS Coverage, Requirements Quality
+- PLAN: Architecture Completeness, Risk Mitigation, Task Decomposition, Dependency Accuracy
+- EXECUTE: Code Quality, Test Coverage, Doc Completeness, Performance
+- IMPROVE: Insight Depth, Action Specificity, Metric Accuracy, Feedback Closure
+
+**Weights must sum to 100%.** Typical split: 40–50% universal + 50–60% workstream-specific.
 
 ---
 
-## 2. Multi-Agent Protocol (Design-Heavy Workstreams: ALIGN, PLAN)
+## 2. Per-Criterion Verdict Table
 
-> For single-agent workstreams (EXECUTE, IMPROVE), skip to Section 3.
+> Copy every criterion from DESIGN.md verbatim. Do NOT paraphrase. Criterion count in this table MUST equal the criterion count in DESIGN.md — a mismatch is a coverage gap, not a rounding choice.
 
-**Step 1 — Read all N team outputs.** Load each team's complete workstream package. Note impressions, do not score yet.
+| Criterion | Verdict | Evidence |
+|-----------|---------|----------|
+| [Exact text from DESIGN.md AC-01] | PASS / FAIL / PARTIAL | [file path, line number, or excerpt proving the verdict] |
+| [Exact text from DESIGN.md AC-02] | PASS / FAIL / PARTIAL | [file path, line number, or excerpt proving the verdict] |
+| ... | ... | ... |
 
-**Step 2 — Score each team on each dimension (0-10).** One sentence justifying each score.
+**Evidence standard (per phase-execution-guide.md §Validate Phase):**
+- Every verdict — PASS, FAIL, or PARTIAL — requires a file path, line number, or quoted excerpt.
+- A table with all-PASS verdicts and no evidence column is a rubber-stamp. Re-run with evidence.
+- PARTIAL = criterion is partly satisfied; evidence must show what is present AND what is missing.
+
+**Verdict vocabulary:** PASS | FAIL | PARTIAL — no other values.
+
+---
+
+## 3. FAIL Classification
+
+After identifying FAIL and PARTIAL items, classify each using the circuit breaker taxonomy.
+Classification drives the retry vs. escalate decision in the Generator/Critic loop.
+
+| Classification | Meaning | Action |
+|----------------|---------|--------|
+| **SYNTACTIC** | Format, structure, frontmatter, schema error | Auto-retry — provide specific correction instruction to builder |
+| **SEMANTIC** | Wrong logic, wrong content, misunderstood requirement | ESCALATE immediately — wrong understanding, needs PM decision |
+| **ENVIRONMENTAL** | Missing file, permission error, script failure | Fix environment first, then retry |
+| **SCOPE** | Out of scope, undefined requirement, needs research | ESCALATE immediately — out of build scope, needs PM |
+
+**Hard-stop rules (circuit-breaker-protocol.md §Hard-Stop Rules):**
+1. Same FAIL text persists across 2 consecutive iterations → ESCALATE
+2. 2 consecutive agent failures (non-zero exit) → STOP
+3. All FAIL items classified as SEMANTIC → ESCALATE immediately (do not retry)
+4. `loop_state.iteration >= max_iterations` (default 3) → ESCALATE
+
+Escalation format: see `references/circuit-breaker-protocol.md §Escalation Message Format`.
+
+**Logging:** Append each FAIL verdict with its classification to `.claude/logs/dsbv-metrics.jsonl` after every reviewer dispatch:
+
+```json
+{
+  "workstream": "[WORKSTREAM]",
+  "iteration": 1,
+  "criterion": "AC-02",
+  "verdict": "FAIL",
+  "classification": "SYNTACTIC",
+  "evidence": "[excerpt or file:line]",
+  "timestamp": "2026-04-10T00:00:00Z"
+}
+```
+
+---
+
+## 4. Aggregate Score
+
+Aggregate Score = weighted average of all dimension scores (0–10 each, integer only).
+
+```
+Aggregate Score = SUM(dimension_score_i * weight_i) for all i
+```
+
+Report as: `Aggregate Score: X.X / 10`
+
+| Aggregate Score | Decision | Action |
+|-----------------|----------|--------|
+| >= 8.0 | **APPROVE** | Proceed to next workstream |
+| 6.0 – 7.9 | **REVISE** | Address flagged dimensions; re-run on weak areas |
+| < 6.0 | **REJECT** | Re-run DSBV with improved context or approach |
+
+**On REVISE:** List which dimensions need work and what "good" looks like. Human decides: re-prompt builder or manual fix.
+
+**On REJECT:** Diagnose via 7-CS blame order: EP > Input > EOP > EOE > EOT > Agent. Most REJECTs trace to bad Input or missing EP context.
+
+---
+
+## 5. Multi-Agent Protocol (Design-Heavy Workstreams: ALIGN, PLAN)
+
+> For single-agent workstreams (EXECUTE, IMPROVE), skip to Section 6.
+
+**Step 1 — Read all N team outputs.** Load each team's complete workstream package. Note impressions; do not score yet.
+
+**Step 2 — Score each team on each dimension (0–10).** One sentence justifying each score.
 
 **Step 3 — Comparison matrix.**
 
 ```
-           Dim1  Dim2  Dim3  ...  Weighted
-Team 1:    7     6     8         6.8
-Team 2:    8     7     6         7.4
+              Completeness  Quality  Coherence  Downstream  Workstream  Weighted
+Team 1:       7             6        8          7           7.0         7.1
+Team 2:       8             7        6          8           8.0         7.7
 ```
 
-**Step 4 — Best team per dimension.** One sentence each: "Team N wins [Dim] because [reason]."
+**Step 4 — Best team per dimension.** One sentence each: "Team N wins [Dimension] because [reason]."
 
-**Step 5 — Divergence analysis.** Use template in Section 4. Where do teams AGREE vs DIVERGE?
+**Step 5 — Divergence analysis.** Use template in Section 7. Where do teams AGREE vs DIVERGE?
 
-**Step 6 — Synthesize.** Best element per dimension from winning team. Resolve conflicts. Must be a self-consistent package, not cut-and-paste.
+**Step 6 — Synthesize.** Best element per dimension from winning team. Resolve conflicts. Must be a self-consistent package — not cut-and-paste.
 
 **Step 7 — Self-check.** Score synthesis on same rubric. Every dimension must score >= 7.
 
-**Step 8 — Flag for Human.** Any dimension < 7: list reason and what needs Human judgment.
+**Step 8 — Flag for Human.** Any dimension < 7: list reason and what requires Human judgment.
 
 ---
 
-## 3. Single-Agent Protocol (Execution-Heavy Workstreams: EXECUTE, IMPROVE)
+## 6. Single-Agent Protocol (Execution-Heavy Workstreams: EXECUTE, IMPROVE)
 
-**Step 1 — Score output on each dimension (0-10).** One sentence justifying each score.
+**Step 1 — Complete the Per-Criterion Verdict Table (Section 2).** One evidence entry per criterion.
 
-**Step 2 — Identify weak dimensions.** Any < 7: state what is wrong and what "good" looks like.
+**Step 2 — Score output on each universal + workstream dimension (0–10).** One sentence justifying each score.
 
-**Step 3 — Human Review Checklist.** Complete Section 5. Every item must be checked.
+**Step 3 — Identify weak dimensions.** Any < 7: state what is wrong and what "good" looks like for that dimension.
 
-**Step 4 — Decision.** Apply thresholds from Section 6.
+**Step 4 — Complete the Human Review Checklist (Section 8).** Every item must be checked.
+
+**Step 5 — Decision.** Apply thresholds from Section 4 (Aggregate Score).
 
 ---
 
-## 4. Divergence Analysis Template
+## 7. Divergence Analysis Template
 
 > Used in multi-agent Step 5. Report using this exact structure.
 
@@ -107,50 +195,51 @@ UNIQUE INSIGHTS (1 team only):
 | Condition | Action |
 |-----------|--------|
 | Majority agree (>= N/2 + 1) | Include as-is |
-| Even split | Pick option with more evidence, flag for Human |
+| Even split | Pick option with more evidence; flag for Human |
 | 1 team unique finding | Validate against context; include if plausible, flag if uncertain |
 | Uncertain | Flag for Human. Over-flagging > silent bad choices. |
 
 ---
 
-## 5. Human Review Checklist
+## 8. Human Review Checklist
 
 > Adapt items to workstream. Replace bracketed text with workstream-specific checks.
 
 - [ ] EO still makes sense to me as the project owner
 - [ ] No critical [stakeholder/component/artifact] is missing
+- [ ] All DESIGN.md criteria are covered in the Per-Criterion Verdict Table (criterion count parity verified)
 - [ ] [Quality check 1 — e.g., "UBS includes risks I've seen in practice"]
 - [ ] [Quality check 2 — e.g., "Architecture handles known scale requirements"]
 - [ ] [Quality check 3 — e.g., "Tests cover acceptance criteria from requirements"]
-- [ ] Outputs achievable within constraints (time, budget, team)
-- [ ] A new team member could understand this workstream's output
-- [ ] Next workstream can start without asking me questions
+- [ ] Outputs are achievable within constraints (time, budget, team)
+- [ ] A new team member could understand this workstream's output without asking me questions
+- [ ] Next workstream can start without asking me questions (Downstream Readiness confirmed)
 - [ ] All divergence flags reviewed and resolved (if multi-agent)
+- [ ] All FAIL items are either fixed or explicitly deferred with justification
 
 ---
 
-## 6. Scoring Thresholds
+## Approval Log
 
-| Weighted Average | Decision | Action |
-|------------------|----------|--------|
-| >= 8.0 | **APPROVE** | Proceed to next workstream |
-| 6.0 - 7.9 | **REVISE** | Address flagged dimensions, re-run on weak areas |
-| < 6.0 | **REJECT** | Re-run DSBV with improved context or approach |
+> Human completes this section. Agent MUST NOT self-approve. `status: validated` is set by Human only.
 
-**On REVISE:** List which dimensions need work and what "good" looks like. Human decides: re-prompt agents or manual fix.
-
-**On REJECT:** Diagnose via 7-CS blame order: EP > Input > EOP > EOE > EOT > Agent. Most REJECTs trace to bad Input.
+| Date | Reviewer | Decision | Notes |
+|------|----------|----------|-------|
+| YYYY-MM-DD | [Name] | APPROVE / REVISE / REJECT | [reason or deferred items] |
 
 ---
-
-**Classification:** INTERNAL
 
 ## Links
 
 - [[AGENTS]]
+- [[SKILL]]
 - [[VALIDATE]]
 - [[architecture]]
+- [[circuit-breaker-protocol]]
+- [[dsbv-metrics]]
+- [[gate-state]]
 - [[iteration]]
+- [[phase-execution-guide]]
 - [[project]]
 - [[task]]
 - [[workstream]]
