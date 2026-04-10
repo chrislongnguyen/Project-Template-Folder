@@ -1,7 +1,7 @@
 ---
-version: "1.7"
+version: "1.8"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 ---
 # Versioning — Always-On Rule
 
@@ -44,10 +44,11 @@ reviewed: "yes"
 ## LTC Version Number Convention
 
 ```
-MAJOR = iteration number. Iteration 1 = 1.x  |  Iteration 2 = 2.x  |  NEVER use 0.x or semver.
+MAJOR = iteration number. Iteration 0 = 0.x  |  Iteration 1 = 1.x  |  Iteration 2 = 2.x  |  NEVER use semver.
 MINOR = edit count within the iteration. Starts at 0 for every new file.
 
-New file in Iteration 1          → version: "1.0"  ALWAYS. Never "0.1", never "2.0".
+New file in Iteration 0          → version: "0.0"  (logic-scaffold only).
+New file in Iteration 1          → version: "1.0"  ALWAYS. Never "2.0".
 Committed file at 1.Y   → meaningful edit → bump to 1.(Y+1)
 Uncommitted rewrite     → same version (was never committed at the prior number)
 Whitespace / typo only  → no bump
@@ -123,7 +124,7 @@ Update the corresponding row in `_genesis/version-registry.md` — version, stat
 | Mistake | Correct behavior |
 |---------|-----------------|
 | Using `version: "2.0"` for Iteration 1 content | Iteration 1 = 1.x always. 2.x is for Iteration 2. |
-| Using `version: "0.1"` | LTC does not use 0.x. New file in Iteration 1 = "1.0". |
+| Using `version: "0.1"` for non-I0 content | Iteration 0 = 0.x (logic-scaffold only). Iteration 1 = 1.x always. |
 | Bumping version on uncommitted rewrite | No bump — it was never committed at the prior number |
 | Setting `status: validated` without human | Only human validates. Agent sets draft, in-progress, or in-review. |
 | Forgetting `status` field | All four fields (version + status + last_updated) required; iteration_name optional |
