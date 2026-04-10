@@ -1,5 +1,5 @@
 ---
-version: "1.6"
+version: "1.7"
 status: draft
 last_updated: 2026-04-10
 owner: ""
@@ -39,11 +39,11 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 | Workstream          | Design (ltc-planner)                                                                                                                                                            | Sequence (ltc-planner)                                                                                                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1-ALIGN**   | **Template:** charter-template.md (T1) + force-analysis-template.md (T4) **Deliverable:** `1-ALIGN/charter/CHARTER.md` **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** okr-template.md (T3) **Deliverable:** `1-ALIGN/okrs/OKR_REGISTER.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
+| **1-ALIGN**   | **Template:** charter-template.md (T1) + force-analysis-template.md (T4) **Deliverable:** `1-ALIGN/1-PD/pd-charter.md` (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md` for all 4 subsystems) **AC:** Charter has EO, stakeholders, and VANA criteria. | **Template:** okr-template.md (T3) **Deliverable:** `1-ALIGN/1-PD/pd-okr-register.md` **AC:** All objectives have ≥1 KR with baseline and target.                                          |
 | **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Entry: `/learn {slug}` See §P4 LEARN Pipeline for state machine and skill dispatch.                                       | *See §P4 LEARN Pipeline*                                                                                                                                                                |
-| **3-PLAN**    | **Template:** force-analysis-template.md (T4) + risk-entry-template.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** roadmap-template.md (T6) + driver-entry-template.md (T5) **Deliverable:** `3-PLAN/roadmap/ROADMAP.md` **AC:** Milestones map to iteration. Drivers have leverage actions. |
+| **3-PLAN**    | **Template:** force-analysis-template.md (T4) + risk-entry-template.md **Deliverable:** `3-PLAN/risks/UBS_REGISTER.md` **AC:** Every UBS entry has a mitigation.                | **Template:** roadmap-template.md (T6) + driver-entry-template.md (T5) **Deliverable:** `3-PLAN/1-PD/pd-roadmap.md` (pattern: `{ws}/{N}-{SUB}/{sub}-roadmap.md` for all 4 subsystems) **AC:** Milestones map to iteration. Drivers have leverage actions. |
 | **4-EXECUTE** | **Template:** design-template.md **Deliverable:** `4-EXECUTE/DESIGN.md` **AC:** All artifacts have binary ACs. No orphan conditions.                                             | **Template:** sequence-template.md **Deliverable:** `4-EXECUTE/SEQUENCE.md` **AC:** Tasks ordered by dependency with input/output/AC/token estimate.                                 |
-| **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/metrics/METRICS_BASELINE.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** sequence-template.md **Deliverable:** `5-IMPROVE/retrospectives/RETRO-PLAN.md` **AC:** Retro format defined; participants identified.                                                |
+| **5-IMPROVE** | **Template:** metrics-baseline-template.md (T7) **Deliverable:** `5-IMPROVE/_cross/cross-metrics-baseline.md` **AC:** Each metric has current value, target, and measurement method. | **Template:** sequence-template.md **Deliverable:** `5-IMPROVE/1-PD/pd-retro-template.md` (pattern: `{ws}/{N}-{SUB}/{sub}-retro-template.md` for all 4 subsystems) **AC:** Retro format defined; participants identified.                                                |
 
 
 ---
@@ -55,11 +55,11 @@ Every workstream in the ALPEI system produces artifacts through the same four-ph
 
 | Workstream          | Build (ltc-builder)                                                                                                                                                                                                                                                           | Validate (ltc-reviewer)                                                                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1-ALIGN**   | **Template:** charter-template.md (T1) **Deliverable:** `1-ALIGN/charter/CHARTER.md` (final) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** review-template.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
-| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/output/{SUB}-UBS-UDS.md` · `2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md` · P0–P7 pages per topic | *Validation via `/learn:review` per topic — all P-pages reach `status: validated` before pipeline advances*                                                              |
-| **3-PLAN**    | **Template:** architecture-template.md (T2) **Deliverable:** `3-PLAN/architecture/ARCHITECTURE.md` **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** review-template.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
+| **1-ALIGN**   | **Template:** charter-template.md (T1) **Deliverable:** `1-ALIGN/1-PD/pd-charter.md` (final) (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md` for all 4 subsystems) **AC:** Signed off by PM; version frontmatter present.                                                                                                                           | **Template:** review-template.md **Deliverable:** `1-ALIGN/VALIDATE.md` **AC:** All DESIGN.md criteria PASS or have a documented exception.                            |
+| **2-LEARN**   | *LEARN uses the `/learn` pipeline — not DSBV phases.* Pipeline: `/learn:input` → `/learn:research` → `/learn:structure` → `/learn:review` → `/learn:spec` Outputs: `2-LEARN/1-PD/pd-ubs-uds.md` · `2-LEARN/1-PD/pd-effective-principles.md` · P0–P7 pages per topic (pattern: `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md`) | *Validation via `/learn:review` per topic — all P-pages reach `status: validated` before pipeline advances*                                                              |
+| **3-PLAN**    | **Template:** architecture-template.md (T2) **Deliverable:** `3-PLAN/1-PD/pd-architecture.md` (pattern: `{ws}/{N}-{SUB}/{sub}-architecture.md` for all 4 subsystems) **AC:** Components, interfaces, and data flows present.                                                                                                                    | **Template:** review-template.md **Deliverable:** `3-PLAN/VALIDATE.md` **AC:** Architecture references UBS mitigations. No orphaned components.                  |
 | **4-EXECUTE** | **Template:** (artifact-specific per SEQUENCE.md) **Deliverable:** Workstream artifacts per `4-EXECUTE/SEQUENCE.md` **AC:** Each artifact passes its SEQUENCE.md AC before the next task begins.                                                                                     | **Template:** dsbv-eval-template.md **Deliverable:** `4-EXECUTE/VALIDATE.md` **AC:** All SEQUENCE.md ACs addressed. No FAIL without a documented exception.              |
-| **5-IMPROVE** | **Template:** test-plan-template.md (T8) + feedback-template.md **Deliverable:** `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** review-package-template.md **Deliverable:** `5-IMPROVE/reviews/VERSION-REVIEW.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
+| **5-IMPROVE** | **Template:** test-plan-template.md (T8) + feedback-template.md **Deliverable:** `5-IMPROVE/_cross/cross-feedback-register.md` **AC:** Feedback has category, severity, and status per entry.                                                                                      | **Template:** review-package-template.md **Deliverable:** `5-IMPROVE/_cross/cross-version-review.md` **AC:** Three Pillars scored. Version advancement decision: GO / NO-GO. |
 
 
 ---
@@ -294,27 +294,27 @@ LEARN (LEARN workstream) is the research engine of the ALPEI system. It converts
   ┌─────────────────────────────────────────────────────────────────────┐
   │                        2-LEARN (LEARN workstream)                             │
   │                                                                     │
-  │  output/                          research/                         │
-  │  ├── PD-UBS-UDS.md                ├── PD-RESEARCH-SCOPE.md          │
+  │  1-PD/                            1-PD/                             │
+  │  ├── pd-ubs-uds.md                ├── pd-research-spec.md           │
   │  │   (threat + driver inventory)  │   (research findings/evidence)  │
-  │  └── PD-EFFECTIVE-PRINCIPLES.md  └── PD-RESEARCH-PLAN.md            │
-  │      (validated EPs)                  (methodology)                  │
+  │  └── pd-effective-principles.md  └── pd-research-spec.md            │
+  │      (validated EPs)                  (methodology + scope)          │
   └──────────┬──────────────────────┬──────────────────────────────────┘
              │                      │
     ┌────────▼────────┐    ┌────────▼────────┐
     │ 1-ALIGN (ALIGN workstream)│    │ 3-PLAN (PLAN workstream) │
     │                 │◄──►│                 │
-    │ charter/        │ ^  │ risks/          │
-    │ CHARTER.md      │ │  │ UBS_REGISTER.md │
+    │ 1-PD/           │ ^  │ risks/          │
+    │ pd-charter.md   │ │  │ UBS_REGISTER.md │
     │ (§Design Princ) │ │  │                 │
     │                 │ │  │ drivers/        │
     │ decisions/      │ │  │ UDS_REGISTER.md │
     │ ADR_*.md        │ │  │                 │
-    │ (rationale)     │ │  │ architecture/   │
-    └────────┬────────┘ │  │ ARCHITECTURE.md │
+    │ (rationale)     │ │  │ 1-PD/           │
+    └────────┬────────┘ │  │ pd-architecture │
              │          │  │                 │
-             │          │  │ roadmap/        │
-             │          │  │ ROADMAP.md      │
+             │          │  │ 1-PD/           │
+             │          │  │ pd-roadmap.md   │
              └──────────┘  └────────┬────────┘
           Bidirectional:            │
           Charter scopes LEARN;     │ (feeds forward)
@@ -336,14 +336,14 @@ LEARN (LEARN workstream) is the research engine of the ALPEI system. It converts
 
 | Flow | Source Artifact                             | Data Type                                          | Target Artifact                         | How Consumed                                                                                                              |
 | ---- | ------------------------------------------- | -------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| F1   | `2-LEARN/output/PD-UBS-UDS.md`              | UBS threat inventory (layered root-cause analysis) | `3-PLAN/risks/UBS_REGISTER.md`          | Each UBS entry expands into a register row: blocker, root cause, mitigation action, owner                                 |
-| F2   | `2-LEARN/output/PD-UBS-UDS.md`              | UDS driver inventory (root enabler analysis)       | `3-PLAN/drivers/UDS_REGISTER.md`        | Each UDS entry expands into a register row: driver, root enabler, leverage action, owner                                  |
-| F3   | `2-LEARN/output/PD-EFFECTIVE-PRINCIPLES.md` | Validated Effective Principles (safety-checked)    | `1-ALIGN/charter/CHARTER.md`            | Charter §Design Principles section is populated from EPs; each principle traces back to a LEARN finding                   |
-| F4   | `2-LEARN/output/PD-EFFECTIVE-PRINCIPLES.md` | Validated Effective Principles                     | `3-PLAN/architecture/ARCHITECTURE.md`   | Architecture component constraints derive from EPs — each design decision must cite the EP that governs it                |
-| F5   | `2-LEARN/research/PD-RESEARCH-SCOPE.md`     | Research evidence and findings                     | `1-ALIGN/decisions/ADR_*.md`            | ADR rationale cites research findings as evidence; decisions not backed by LEARN findings are flagged as assumptions      |
-| F6   | `2-LEARN/research/PD-RESEARCH-PLAN.md`      | Research methodology (validated approach)          | `3-PLAN/architecture/ARCHITECTURE.md`   | Architecture records which research methods validated each structural decision (research-backed vs. assumption-based)     |
-| F7   | `2-LEARN/research/PD-RESEARCH-SCOPE.md`     | Scoped problem domain boundaries                   | `3-PLAN/roadmap/ROADMAP.md`             | Roadmap iteration inputs inherit problem domain scope from LEARN — prevents planning work outside the researched boundary |
-| F8   | `4-EXECUTE/` deliverables                   | Metrics baseline + production data                 | `5-IMPROVE/metrics/METRICS_BASELINE.md` | IMPROVE measures delta from EXECUTE baseline — retros, changelog, and KR tracking require EXECUTE output as input         |
+| F1   | `2-LEARN/1-PD/pd-ubs-uds.md`              | UBS threat inventory (layered root-cause analysis) | `3-PLAN/risks/UBS_REGISTER.md`          | Each UBS entry expands into a register row: blocker, root cause, mitigation action, owner                                 |
+| F2   | `2-LEARN/1-PD/pd-ubs-uds.md`              | UDS driver inventory (root enabler analysis)       | `3-PLAN/drivers/UDS_REGISTER.md`        | Each UDS entry expands into a register row: driver, root enabler, leverage action, owner                                  |
+| F3   | `2-LEARN/1-PD/pd-effective-principles.md` | Validated Effective Principles (safety-checked)    | `1-ALIGN/1-PD/pd-charter.md`            | Charter §Design Principles section is populated from EPs; each principle traces back to a LEARN finding                   |
+| F4   | `2-LEARN/1-PD/pd-effective-principles.md` | Validated Effective Principles                     | `3-PLAN/1-PD/pd-architecture.md`   | Architecture component constraints derive from EPs — each design decision must cite the EP that governs it                |
+| F5   | `2-LEARN/1-PD/pd-research-spec.md`     | Research evidence and findings                     | `1-ALIGN/decisions/ADR_*.md`            | ADR rationale cites research findings as evidence; decisions not backed by LEARN findings are flagged as assumptions      |
+| F6   | `2-LEARN/1-PD/pd-research-spec.md`      | Research methodology (validated approach)          | `3-PLAN/1-PD/pd-architecture.md`   | Architecture records which research methods validated each structural decision (research-backed vs. assumption-based)     |
+| F7   | `2-LEARN/1-PD/pd-research-spec.md`     | Scoped problem domain boundaries                   | `3-PLAN/1-PD/pd-roadmap.md`             | Roadmap iteration inputs inherit problem domain scope from LEARN — prevents planning work outside the researched boundary |
+| F8   | `4-EXECUTE/` deliverables                   | Metrics baseline + production data                 | `5-IMPROVE/_cross/cross-metrics-baseline.md` | IMPROVE measures delta from EXECUTE baseline — retros, changelog, and KR tracking require EXECUTE output as input         |
 
 
 ---
@@ -354,10 +354,10 @@ LEARN (LEARN workstream) is the research engine of the ALPEI system. It converts
 | Category             | Stays in 2-LEARN/                                          | Crosses to Other Workstreams                                                                           |
 | -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | Raw input            | `input/raw/` — unprocessed transcripts, photos, recordings | No — raw data does not cross; only synthesized output does                                       |
-| Research methodology | `research/PD-RESEARCH-PLAN.md`                             | Partial — methodology rationale cross-references into `3-PLAN/architecture/ARCHITECTURE.md`      |
-| Structured analysis  | `output/PD-UBS-UDS.md`                                     | Yes — full inventory crosses to `3-PLAN/risks/` and `3-PLAN/drivers/`                            |
-| Effective Principles | `output/PD-EFFECTIVE-PRINCIPLES.md`                        | Yes — crosses to `1-ALIGN/charter/CHARTER.md` and `3-PLAN/architecture/ARCHITECTURE.md`          |
-| Research evidence    | `research/PD-RESEARCH-SCOPE.md`                            | Yes — crosses to `1-ALIGN/decisions/ADR_*.md` as decision rationale                              |
+| Research methodology | `1-PD/pd-research-spec.md`                             | Partial — methodology rationale cross-references into `3-PLAN/1-PD/pd-architecture.md`      |
+| Structured analysis  | `1-PD/pd-ubs-uds.md`                                     | Yes — full inventory crosses to `3-PLAN/risks/` and `3-PLAN/drivers/`                            |
+| Effective Principles | `1-PD/pd-effective-principles.md`                        | Yes — crosses to `1-ALIGN/1-PD/pd-charter.md` and `3-PLAN/1-PD/pd-architecture.md`          |
+| Research evidence    | `1-PD/pd-research-spec.md`                            | Yes — crosses to `1-ALIGN/decisions/ADR_*.md` as decision rationale                              |
 | VANA specifications  | `specs/`                                                   | No — VANA specs are internal to LEARN; they define what research must validate                   |
 | Archive / superseded | `archive/`                                                 | No — completed research stays archived in LEARN; downstream workstreams retain only what they consumed |
 
@@ -371,11 +371,11 @@ LEARN (LEARN workstream) is the research engine of the ALPEI system. It converts
 LEARN and ALIGN have a two-way dependency that is intentional and bounded:
 
 ```
-  1-ALIGN/charter/CHARTER.md
+  1-ALIGN/1-PD/pd-charter.md
          │
          │  (1) Charter defines the research scope:
          │      "What problem are we solving for whom?"
-         │      → scopes 2-LEARN/research/PD-RESEARCH-SCOPE.md
+         │      → scopes 2-LEARN/1-PD/pd-research-spec.md
          ▼
   2-LEARN (research + analysis)
          │
@@ -384,7 +384,7 @@ LEARN and ALIGN have a two-way dependency that is intentional and bounded:
          │      Research evidence surfaces assumptions in the charter
          │      UBS analysis may reveal charter scope gaps
          ▼
-  1-ALIGN/charter/CHARTER.md (updated)
+  1-ALIGN/1-PD/pd-charter.md (updated)
   1-ALIGN/decisions/ADR_*.md (new decisions added)
 ```
 
@@ -397,12 +397,12 @@ LEARN and ALIGN have a two-way dependency that is intentional and bounded:
 LEARN outputs do not skip workstreams. The propagation path is strictly sequential:
 
 ```
-2-LEARN/output/PD-UBS-UDS.md
+2-LEARN/1-PD/pd-ubs-uds.md
     └──► 3-PLAN/risks/UBS_REGISTER.md       (mitigations defined)
               └──► 4-EXECUTE/                (mitigations implemented as checkpoints and validation gates)
 
-2-LEARN/output/PD-EFFECTIVE-PRINCIPLES.md
-    └──► 3-PLAN/architecture/ARCHITECTURE.md (constraints codified)
+2-LEARN/1-PD/pd-effective-principles.md
+    └──► 3-PLAN/1-PD/pd-architecture.md     (constraints codified)
               └──► 4-EXECUTE/src/            (implementation must comply with architecture constraints)
 ```
 
@@ -445,8 +445,8 @@ LEARN is pre-DSBV research infrastructure. It does not use DSBV phases (Design �
 
 | Output file                                    | Consumed by                                                                                                       |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `2-LEARN/output/{SUB}-UBS-UDS.md`              | `3-PLAN/risks/UBS_REGISTER.md` (UBS entries) · `3-PLAN/drivers/UDS_REGISTER.md` (UDS entries)                     |
-| `2-LEARN/output/{SUB}-EFFECTIVE-PRINCIPLES.md` | `1-ALIGN/charter/CHARTER.md` (§Design Principles) · `3-PLAN/architecture/ARCHITECTURE.md` (component constraints) |
+| `2-LEARN/{N}-{SUB}/{sub}-ubs-uds.md`              | `3-PLAN/risks/UBS_REGISTER.md` (UBS entries) · `3-PLAN/drivers/UDS_REGISTER.md` (UDS entries)                     |
+| `2-LEARN/{N}-{SUB}/{sub}-effective-principles.md` | `1-ALIGN/{N}-{SUB}/{sub}-charter.md` (§Design Principles) · `3-PLAN/{N}-{SUB}/{sub}-architecture.md` (component constraints) |
 | `2-LEARN/specs/{slug}/vana-spec.md`            | Downstream DSBV Design phases — initializes Design context for the consuming workstream                                 |
 
 
@@ -485,9 +485,9 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                                      | Agent        | Deliverable Path                     | AC                                                       |
 | -------- | ------------------------------------------------ | ------------ | ------------------------------------ | -------------------------------------------------------- |
-| Design   | charter-template.md · force-analysis-template.md | ltc-planner  | `1-ALIGN/charter/CHARTER.md`         | Charter has EO, stakeholders, and VANA criteria          |
-| Sequence | okr-template.md                                  | ltc-planner  | `1-ALIGN/okrs/OKR_REGISTER.md`       | All objectives have ≥1 KR with baseline and target       |
-| Build    | charter-template.md                              | ltc-builder  | `1-ALIGN/charter/CHARTER.md` (final) | Signed off by PM; version frontmatter present            |
+| Design   | charter-template.md · force-analysis-template.md | ltc-planner  | `1-ALIGN/1-PD/pd-charter.md` (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md`)         | Charter has EO, stakeholders, and VANA criteria          |
+| Sequence | okr-template.md                                  | ltc-planner  | `1-ALIGN/1-PD/pd-okr-register.md`       | All objectives have ≥1 KR with baseline and target       |
+| Build    | charter-template.md                              | ltc-builder  | `1-ALIGN/1-PD/pd-charter.md` (final) (pattern: `{ws}/{N}-{SUB}/{sub}-charter.md`) | Signed off by PM; version frontmatter present            |
 | Validate | review-template.md                               | ltc-reviewer | `1-ALIGN/VALIDATE.md`                | All DESIGN.md criteria PASS or have documented exception |
 
 
@@ -517,8 +517,8 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 | Phase    | Template(s)                                         | Agent        | Deliverable Path                      | AC                                                              |
 | -------- | --------------------------------------------------- | ------------ | ------------------------------------- | --------------------------------------------------------------- |
 | Design   | force-analysis-template.md · risk-entry-template.md | ltc-planner  | `3-PLAN/risks/UBS_REGISTER.md`        | Every UBS entry has a mitigation                                |
-| Sequence | roadmap-template.md · driver-entry-template.md      | ltc-planner  | `3-PLAN/roadmap/ROADMAP.md`           | Milestones map to iteration; drivers have leverage actions      |
-| Build    | architecture-template.md                            | ltc-builder  | `3-PLAN/architecture/ARCHITECTURE.md` | Components, interfaces, and data flows present                  |
+| Sequence | roadmap-template.md · driver-entry-template.md      | ltc-planner  | `3-PLAN/1-PD/pd-roadmap.md` (pattern: `{ws}/{N}-{SUB}/{sub}-roadmap.md`)           | Milestones map to iteration; drivers have leverage actions      |
+| Build    | architecture-template.md                            | ltc-builder  | `3-PLAN/1-PD/pd-architecture.md` (pattern: `{ws}/{N}-{SUB}/{sub}-architecture.md`) | Components, interfaces, and data flows present                  |
 | Validate | review-template.md                                  | ltc-reviewer | `3-PLAN/VALIDATE.md`                  | Architecture references UBS mitigations; no orphaned components |
 
 
@@ -542,10 +542,10 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 | Phase    | Template(s)                                  | Agent        | Deliverable Path                         | AC                                                             |
 | -------- | -------------------------------------------- | ------------ | ---------------------------------------- | -------------------------------------------------------------- |
-| Design   | metrics-baseline-template.md                 | ltc-planner  | `5-IMPROVE/metrics/METRICS_BASELINE.md`  | Each metric has current value, target, and measurement method  |
-| Sequence | retro-template.md                            | ltc-planner  | `5-IMPROVE/retrospectives/RETRO-PLAN.md` | Retro format defined; participants identified                  |
-| Build    | test-plan-template.md · feedback-template.md | ltc-builder  | `5-IMPROVE/metrics/FEEDBACK_REGISTER.md` | Feedback has category, severity, and status per entry          |
-| Validate | review-package-template.md                   | ltc-reviewer | `5-IMPROVE/reviews/VERSION-REVIEW.md`    | Three Pillars scored; version advancement decision: GO / NO-GO |
+| Design   | metrics-baseline-template.md                 | ltc-planner  | `5-IMPROVE/_cross/cross-metrics-baseline.md`  | Each metric has current value, target, and measurement method  |
+| Sequence | retro-template.md                            | ltc-planner  | `5-IMPROVE/1-PD/pd-retro-template.md` (pattern: `{ws}/{N}-{SUB}/{sub}-retro-template.md`) | Retro format defined; participants identified                  |
+| Build    | test-plan-template.md · feedback-template.md | ltc-builder  | `5-IMPROVE/_cross/cross-feedback-register.md` | Feedback has category, severity, and status per entry          |
+| Validate | review-package-template.md                   | ltc-reviewer | `5-IMPROVE/_cross/cross-version-review.md`    | Three Pillars scored; version advancement decision: GO / NO-GO |
 
 ## Links
 
