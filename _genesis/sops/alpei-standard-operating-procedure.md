@@ -1,7 +1,7 @@
 ---
-version: "2.3"
+version: "2.4"
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 type: sop
 work_stream: _genesis
 audience: LTC Project Managers operating a UES using this template
@@ -87,84 +87,67 @@ The PM's #1 contribution is **learning quality** — not execution speed, not to
 ```
 OPS_OE.X.X.PROJECT-NAME/
 │
+│  NOTE: DSBV files (DESIGN.md, SEQUENCE.md, VALIDATE.md) and build artifacts
+│  (charters, ADRs, registers, etc.) are generated on-demand via /dsbv — not
+│  pre-scaffolded. Each subsystem dir ships empty (README.md + _cross/ only).
+│
 ├── 1-ALIGN/                        ← Charter, decisions, OKRs (per sub-system)
-│   ├── 1-PD/                       ← Problem Diagnosis
-│   │   ├── DESIGN.md               ← DSBV Design spec
-│   │   ├── SEQUENCE.md             ← DSBV Sequence spec
-│   │   ├── VALIDATE.md             ← DSBV Validate report
-│   │   ├── pd-charter.md           ← Sub-system charter
-│   │   ├── pd-okr-register.md      ← Sub-system OKRs
-│   │   └── pd-decision-*.md        ← ADRs
-│   ├── 2-DP/                       ← Data Pipeline (same structure)
-│   ├── 3-DA/                       ← Data Analysis (same structure)
-│   ├── 4-IDM/                      ← Insights & Decision Making (same structure)
-│   └── _cross/                     ← Cross-cutting (stakeholders, shared decisions)
+│   ├── 1-PD/                       ← Problem Diagnosis subsystem dir
+│   ├── 2-DP/                       ← Data Pipeline subsystem dir
+│   ├── 3-DA/                       ← Data Analysis subsystem dir
+│   ├── 4-IDM/                      ← Insights & Decision Making subsystem dir
+│   ├── _cross/                     ← Cross-cutting (stakeholders, shared decisions)
+│   └── README.md
 │
 ├── 2-LEARN/                        ← Learning pipeline (NOT DSBV — uses /learn:*)
-│   ├── 1-PD/                       ← PD learning artifacts
-│   │   ├── input/                  ← Raw learning inputs
-│   │   ├── research/               ← Research outputs per topic
-│   │   ├── specs/                  ← Structured specifications
-│   │   ├── output/                 ← Final learning outputs
-│   │   ├── archive/                ← Completed items
-│   │   ├── pd-effective-principles.md
-│   │   ├── pd-ubs-uds.md
-│   │   └── pd-research-spec.md
-│   ├── 2-DP/                       ← DP learning (same structure)
-│   ├── 3-DA/                       ← DA learning (same structure)
-│   ├── 4-IDM/                      ← IDM learning (same structure)
-│   └── _cross/                     ← Shared config, scripts, templates
+│   ├── 1-PD/                       ← PD learning pipeline
+│   │   ├── input/                  ← Raw learning inputs (S1)
+│   │   ├── research/               ← Research outputs per topic (S2)
+│   │   ├── specs/                  ← Structured specifications (S3-S4)
+│   │   ├── output/                 ← Final learning outputs (S5)
+│   │   └── archive/                ← Completed items
+│   ├── 2-DP/                       ← DP learning (same pipeline structure)
+│   ├── 3-DA/                       ← DA learning (same pipeline structure)
+│   ├── 4-IDM/                      ← IDM learning (same pipeline structure)
+│   ├── _cross/                     ← Shared config, scripts, templates
+│   └── README.md
 │
 ├── 3-PLAN/                         ← Architecture, risks, drivers, roadmap
-│   ├── 1-PD/                       ← PD planning artifacts
-│   │   ├── DESIGN.md
-│   │   ├── SEQUENCE.md
-│   │   ├── VALIDATE.md
-│   │   ├── pd-architecture.md
-│   │   ├── pd-roadmap.md
-│   │   ├── pd-risk-register.md
-│   │   └── pd-driver-register.md
-│   ├── 2-DP/                       ← DP planning (same structure)
-│   ├── 3-DA/                       ← DA planning (same structure)
-│   ├── 4-IDM/                      ← IDM planning (same structure)
-│   ├── risks/                      ← Cross-cutting UBS register
-│   │   └── UBS_REGISTER.md
-│   └── drivers/                    ← Cross-cutting UDS register
-│       └── UDS_REGISTER.md
+│   ├── 1-PD/                       ← PD planning subsystem dir
+│   ├── 2-DP/                       ← DP planning subsystem dir
+│   ├── 3-DA/                       ← DA planning subsystem dir
+│   ├── 4-IDM/                      ← IDM planning subsystem dir
+│   ├── _cross/                     ← Cross-cutting registers
+│   │   ├── UBS_REGISTER.md         ← Cross-cutting risk (UBS) register
+│   │   └── UDS_REGISTER.md         ← Cross-cutting driver (UDS) register
+│   └── README.md
 │
 ├── 4-EXECUTE/                      ← Source, tests, config, docs
-│   ├── 1-PD/                       ← PD execution artifacts
-│   │   ├── DESIGN.md
-│   │   ├── SEQUENCE.md
-│   │   ├── VALIDATE.md
+│   ├── 1-PD/                       ← PD execution subsystem dir
 │   │   ├── src/                    ← Source code
 │   │   ├── tests/                  ← Test suites
 │   │   ├── config/                 ← Configuration
 │   │   └── docs/                   ← Documentation
-│   ├── 2-DP/                       ← DP execution (+ notebooks/)
-│   ├── 3-DA/                       ← DA execution (+ notebooks/)
-│   └── 4-IDM/                      ← IDM execution
+│   ├── 2-DP/                       ← DP execution (same structure)
+│   ├── 3-DA/                       ← DA execution (same structure)
+│   ├── 4-IDM/                      ← IDM execution (same structure)
+│   ├── _cross/                     ← Cross-cutting execution artifacts
+│   └── README.md
 │
 ├── 5-IMPROVE/                      ← Changelog, metrics, retros, reviews
-│   ├── 1-PD/                       ← PD improvement artifacts
-│   │   ├── DESIGN.md
-│   │   ├── SEQUENCE.md
-│   │   ├── VALIDATE.md
-│   │   ├── pd-changelog.md
-│   │   ├── pd-metrics.md
-│   │   └── pd-retro-template.md
-│   ├── 2-DP/                       ← DP improvement (same structure)
-│   ├── 3-DA/                       ← DA improvement (same structure)
-│   ├── 4-IDM/                      ← IDM improvement (same structure)
-│   └── _cross/                     ← Cross-cutting improvement
-│       ├── cross-metrics-baseline.md
-│       ├── cross-feedback-register.md
-│       └── cross-version-review.md
+│   ├── 1-PD/                       ← PD improvement subsystem dir
+│   ├── 2-DP/                       ← DP improvement subsystem dir
+│   ├── 3-DA/                       ← DA improvement subsystem dir
+│   ├── 4-IDM/                      ← IDM improvement subsystem dir
+│   ├── _cross/                     ← Cross-cutting improvement
+│   │   └── cross-changelog.md      ← Cross-workstream changelog
+│   └── README.md
 │
 ├── _genesis/                       ← OE-builder: frameworks, templates, SOPs
 │   ├── alpei-blueprint.md          ← Philosophy, principles, 80-cell matrix
 │   ├── frameworks/                 ← Vinh's 9 canonical frameworks
-│   ├── templates/                  ← DSBV and artifact templates (43 files)
+│   ├── templates/                  ← DSBV and artifact templates
+│   │   └── adr-000-template.md     ← ADR template (used on-demand per ADR)
 │   ├── sops/                       ← This SOP and other operating procedures
 │   ├── reference/                  ← Agent designs, ESD, EP registry
 │   └── version-registry.md         ← Master version tracking
@@ -372,14 +355,14 @@ Before starting any workstream task, run the 9-check pre-flight.
 | Check | What It Verifies |
 |-------|-----------------|
 | C1: Workstream | Target directory exists |
-| C2: Alignment | alpei-blueprint.md + charter present |
+| C2: Alignment | alpei-blueprint.md + ALIGN subsystem dirs exist |
 | C3: Risks | UBS Register present |
 | C4: Drivers | UDS Register present |
 | C5: Templates | DSBV process map has routing for this workstream |
 | C6: Learning | 2-LEARN has content |
 | C7: Version | Version registry exists |
 | C8: Execute | DESIGN.md exists (required before Build) |
-| C9: Document | Decisions directory exists |
+| C9: Document | Cross-cutting dir exists in ALIGN |
 
 **Command:** `./scripts/pre-flight.sh <workstream>` (e.g., `./scripts/pre-flight.sh 1-ALIGN`)
 

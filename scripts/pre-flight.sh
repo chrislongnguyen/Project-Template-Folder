@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.1 | status: draft | last_updated: 2026-04-09
+# version: 1.2 | status: draft | last_updated: 2026-04-11
 # pre-flight.sh — Implements the 9 CLAUDE.md pre-flight checks
 # Check legend: C1=Workstream C2=Alignment C3=Risks C4=Drivers C5=Templates C6=Learning C7=Version C8=Execute C9=Document
 # Usage: ./scripts/pre-flight.sh <workstream>
@@ -43,21 +43,22 @@ else
   check "C1" "Workstream directory exists" "FAIL" "$WORKSTREAM/ not found"
 fi
 
-# Criterion 2: ALIGNMENT — BLUEPRINT.md + charter
+# Criterion 2: ALIGNMENT — BLUEPRINT.md + ALIGN subsystem dirs
 if [[ -f "_genesis/BLUEPRINT.md" ]]; then
   check "C2a" "BLUEPRINT.md present" "PASS"
 else
   check "C2a" "BLUEPRINT.md present" "WARN" "_genesis/BLUEPRINT.md not found"
 fi
-CHARTER_DIR="1-ALIGN/charter"
-if [[ -d "$CHARTER_DIR" ]] && ls "$CHARTER_DIR"/*.md >/dev/null 2>&1; then
-  check "C2b" "Charter artifacts exist" "PASS"
+# Charters are per-subsystem; check 1-ALIGN/1-PD as canary for subsystem scaffold
+CHARTER_DIR="1-ALIGN/1-PD"
+if [[ -d "$CHARTER_DIR" ]]; then
+  check "C2b" "ALIGN subsystem dirs exist" "PASS"
 else
-  check "C2b" "Charter artifacts exist" "WARN" "No .md files in $CHARTER_DIR/"
+  check "C2b" "ALIGN subsystem dirs exist" "WARN" "$CHARTER_DIR/ not found — run /setup to scaffold"
 fi
 
 # Criterion 3: RISKS — UBS register
-UBS_FILE="3-PLAN/risks/UBS_REGISTER.md"
+UBS_FILE="3-PLAN/_cross/UBS_REGISTER.md"
 if [[ -f "$UBS_FILE" ]]; then
   check "C3" "UBS Register present" "PASS"
 else
@@ -65,7 +66,7 @@ else
 fi
 
 # Criterion 4: DRIVERS — UDS register
-UDS_FILE="3-PLAN/drivers/UDS_REGISTER.md"
+UDS_FILE="3-PLAN/_cross/UDS_REGISTER.md"
 if [[ -f "$UDS_FILE" ]]; then
   check "C4" "UDS Register present" "PASS"
 else
@@ -108,12 +109,12 @@ else
   check "C8" "DESIGN.md exists for $WORKSTREAM" "WARN" "No DESIGN.md — needed before Build stage"
 fi
 
-# Criterion 9: DOCUMENT — decisions directory
-DECISIONS_DIR="1-ALIGN/decisions"
+# Criterion 9: DOCUMENT — cross-cutting dir in ALIGN (decisions go in subsystem dirs)
+DECISIONS_DIR="1-ALIGN/_cross"
 if [[ -d "$DECISIONS_DIR" ]]; then
-  check "C9" "Decisions directory exists" "PASS"
+  check "C9" "Cross-cutting dir exists in ALIGN" "PASS"
 else
-  check "C9" "Decisions directory exists" "WARN" "$DECISIONS_DIR/ not found"
+  check "C9" "Cross-cutting dir exists in ALIGN" "WARN" "$DECISIONS_DIR/ not found"
 fi
 
 echo "================================"
