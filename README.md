@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.2"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-11
 iteration: 1
 type: template
 ---
@@ -47,14 +47,6 @@ This skill is your **thinking companion**. It doesn't generate artifacts or star
 
 Use it when you're thinking out loud: *"I'm thinking about..."*, *"What if we..."*, *"How should I approach..."*. The brainstorming skill catches the #1 failure mode in project work: jumping to implementation before understanding the problem.
 
-## Must-Read Before Starting
-
-| # | Resource | How to access | Time |
-|---|----------|---------------|------|
-| 1 | **Training Deck** (47 slides) | `cd _genesis/training/alpei-training-slides && npm install && npm run dev` → open `http://localhost:5173` | 30 min |
-| 2 | **ALPEI Navigator** (interactive map) | Open `_genesis/tools/alpei-navigator.html` in any browser (no install needed) | 10 min |
-| 3 | **Migration Guide** (Iteration 1 → Iteration 2) | Read `_genesis/guides/migration-guide.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
-
 ## Quick Start
 
 ### 1. Create your project from this template
@@ -97,6 +89,16 @@ claude   # Opens Claude Code with CLAUDE.md auto-loaded
 
 Or open the project in AntiGravity / Cursor — each IDE loads its own rules automatically.
 
+## Must-Read After Cloning
+
+Once you have the repo locally, orient yourself with these resources before producing any artifacts:
+
+| # | Resource | How to access | Time |
+|---|----------|---------------|------|
+| 1 | **Training Deck** (47 slides) | `cd _genesis/training/alpei-training-slides && npm install && npm run dev` → open `http://localhost:5173` | 30 min |
+| 2 | **ALPEI Navigator** (interactive map) | Open `_genesis/tools/alpei-navigator.html` in any browser (no install needed) | 10 min |
+| 3 | **Migration Guide** (Iteration 1 → Iteration 2) | Read `_genesis/guides/migration-guide.md` — or tell your agent: *"Read the migration guide and execute it for my project"* | 15 min |
+
 ### 5. Explore before you build
 
 Don't start with DSBV. Start with brainstorming:
@@ -109,6 +111,8 @@ Don't start with DSBV. Start with brainstorming:
 Once you have clarity, the brainstorming skill transitions you to `/dsbv` to begin production.
 
 ### 6. Produce with DSBV
+
+> **Bootstrap design:** This repo ships as a minimal structural skeleton — directory trees and cross-cutting registers only. DSBV artifacts (`DESIGN.md`, `SEQUENCE.md`, `VALIDATE.md`) and workstream deliverables (charters, ADRs, OKR registers, architecture docs, etc.) are generated on demand via `/dsbv`. Run `/dsbv status` to see the full artifact matrix and begin generating content for your project.
 
 Every workstream (ALIGN → PLAN → EXECUTE → IMPROVE) uses **DSBV** — Design, Sequence, Build, Validate:
 
@@ -224,7 +228,7 @@ Every workstream is organized by subsystem, not by artifact category:
 ├── .claude/
 │   ├── settings.json                # Safety deny/allow (hard ceilings)
 │   ├── agents/                      # 4 MECE agents: planner, builder, reviewer, explorer
-│   ├── hooks/                       # Event-driven automation (5 hooks)
+│   ├── hooks/                       # Event-driven automation (15 hook scripts, 29 hook registrations)
 │   ├── rules/                       # 12 always-on rules (versioning, naming, DSBV, etc.)
 │   └── skills/                      # 30+ skills across 15 categories
 │
@@ -396,6 +400,21 @@ cp .claude/settings.local.json.example .claude/settings.local.json
 ---
 
 _Template maintained by OPS Process. Source: [OPS_OE.6.4.LTC-PROJECT-TEMPLATE](https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE)_
+
+## Glossary
+
+| Term | Definition |
+|------|-----------|
+| **ALPEI** | 5-workstream framework: Align, Learn, Plan, Execute, Improve |
+| **DSBV** | 4-stage sub-process: Design, Sequence, Build, Validate |
+| **UES** | User Enablement System — the product this template helps build |
+| **UBS** | Ultimate Blocking Forces — risks that prevent success (S>E>Sc categorized) |
+| **UDS** | Ultimate Driving Forces — motivations that drive success |
+| **VANA** | Verb-Adverb-Noun-Adjective — grammar for testable acceptance criteria |
+| **EP** | Effective Principle — 14 design rules for AI agent systems (EP-01 through EP-14) |
+| **S>E>Sc** | Sustainability > Efficiency > Scalability — mandatory priority order |
+| **PD/DP/DA/IDM** | 4 subsystems: Problem Diagnosis → Data Pipeline → Data Analysis → Insights & Decision Making |
+| **7-CS** | 7-Component System model for AI agent architecture |
 
 ## Links
 

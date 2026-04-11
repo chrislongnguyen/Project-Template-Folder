@@ -1,54 +1,59 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 4-EXECUTE
 sub_system: 1-PD
-type: template
-iteration: 1
 ---
 
-# 1-PD — Problem Diagnosis | EXECUTE Workstream
+# 4-EXECUTE / 1-PD — Problem Diagnosis
 
-> "Without PD-EXECUTE, the build has no agreed scope — developers produce code against unvalidated requirements and the subsystem boundary stays ambiguous."
+> **You are here:** `4-EXECUTE/1-PD/` — Confirm build scope and establish execution principles. PD's DESIGN.md must be approved before any DP, DA, or IDM build work begins.
 
-PD-EXECUTE translates the approved plan into an executable build contract for this subsystem. It defines what is being built, the sustainability-first principles that govern all implementation choices, and the success criteria that DP, DA, and IDM will build toward.
+## What Goes Here
+
+Execution artifacts scoped to Problem Diagnosis: DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md), `docs/` (subsystem reference documentation), and `config/` (PD-scoped configuration). The DESIGN.md here is the approved build contract that all downstream subsystems inherit.
+
+## How to Create Artifacts
+
+```
+/dsbv design execute pd      # Step 1: Confirm sprint scope and prerequisites
+/dsbv sequence execute pd    # Step 2: Technical design for each PD deliverable
+/dsbv build execute pd       # Step 3: Produce the artifacts
+/dsbv validate execute pd    # Step 4: Verify against VANA acceptance criteria
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`3-PLAN/4-IDM/` must have an approved roadmap (the build contract). Confirm prerequisites: inputs available, tools accessible, environment configured — before any build work begins.
 
 ## Cascade Position
 
 ```
-[3-PLAN/4-IDM approved package]  ──►  [1-PD]  ──►  [2-DP (Data Pipeline)]
+[3-PLAN approved package]  →  [1-PD]  →  [2-DP]
+                                   ↓
+     PD's DESIGN.md is the scope boundary all downstream subsystems build within
 ```
 
-Receives from upstream: `idm-architecture.md`, `idm-roadmap.md` from `3-PLAN/4-IDM/`; validated design from `4-EXECUTE/1-PD/DESIGN.md`.
-Produces for downstream: DSBV design artifacts and execution principles — consumed by 2-DP as the agreed scope boundary and build constraints for source code and configuration.
+**GATE:** No DP, DA, or IDM build work starts until PD's DESIGN.md is approved. This is enforced by the `dsbv-skill-guard.sh` hook.
 
-## Contents
+## Templates
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| DSBV Design | `DESIGN.md` | Approved build spec — what to deliver, acceptance criteria, constraints |
-| DSBV Sequence | `SEQUENCE.md` | Ordered task list — dependencies and delivery order for this subsystem |
-| DSBV Validate | `VALIDATE.md` | Validation criteria and evidence checklist for PD deliverables |
-| Docs | `docs/` | Reference documentation scoped to the PD subsystem |
-| Config | `config/` | Configuration files governing PD subsystem behavior |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm DESIGN.md traces every acceptance criterion to a 3-PLAN/4-IDM decision
-- [ ] Verify SEQUENCE.md respects the Sustainability > Efficiency > Scalability priority order
-- [ ] Confirm no build work starts in DP/DA/IDM until PD's DESIGN.md is approved
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| Sequence plan | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
+| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[documentation]]
-- [[idm-architecture]]
-- [[idm-roadmap]]
-- [[iteration]]
-- [[task]]
+- [[deliverable]]
 - [[workstream]]

@@ -1,45 +1,49 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 1-ALIGN
 sub_system: _cross
-type: template
-iteration: 1
 ---
 
-# _cross — Cross-Cutting | ALIGN Workstream
+# 1-ALIGN / _cross — Cross-Cutting Alignment Artifacts
 
-> "If cross-cutting artifacts like stakeholder maps and RACI are absent, each subsystem builds its own partial picture — decisions in IDM contradict inputs gathered in DP, and no one owns the conflict."
+> **You are here:** `1-ALIGN/_cross/` — Project-wide artifacts shared across all 4 subsystems: stakeholder map and RACI.
 
-`_cross` holds alignment artifacts that no single subsystem owns but every subsystem depends on. In the ALIGN workstream, this means project-wide stakeholder visibility and accountability assignments that must be established early and remain consistent across PD, DP, DA, and IDM.
+## What Goes Here
 
-## Scope
+Cross-cutting alignment artifacts that no single subsystem owns but all subsystems depend on: a stakeholder map (`cross-stakeholder-map.md`) covering all project stakeholders and their roles, and a RACI matrix (`cross-stakeholder-raci.md`) assigning Responsible, Accountable, Consulted, and Informed roles for key alignment decisions. These must exist before subsystems diverge into specialized work.
 
-Cross-cutting artifacts span all 4 subsystems (PD, DP, DA, IDM) within the ALIGN workstream.
-These cannot be owned by a single subsystem — they govern or support all of them.
+## How to Create Artifacts
 
-In ALIGN specifically, cross-cutting means: who is involved (stakeholder map) and who is accountable for what (RACI). Both must exist before subsystems diverge into specialized work — otherwise each subsystem redefines stakeholders independently and the project's alignment breaks at the seams.
+```
+/dsbv design align _cross      # Step 1: Design cross-cutting scope
+/dsbv sequence align _cross    # Step 2: Sequence the build tasks
+/dsbv build align _cross       # Step 3: Agent produces stakeholder map and RACI
+/dsbv validate align _cross    # Step 4: Review against acceptance criteria
+```
 
-## Contents
+## What's Here Now
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Stakeholder map | `cross-stakeholder-map.md` | All project stakeholders, their roles, influence, and communication needs |
-| Stakeholder RACI | `cross-stakeholder-raci.md` | Responsible, Accountable, Consulted, Informed mapping for key ALIGN processes |
+This directory is empty — artifacts are generated on-demand when you run the commands above.
 
-## Pre-Flight Checklist
+## Prerequisites
 
-- [ ] Confirm stakeholder map covers all four subsystems — no subsystem has a stakeholder unknown to this file
-- [ ] Verify RACI assignments are complete for every major ALIGN decision point
-- [ ] Confirm cross-cutting artifacts are updated whenever PD, DP, DA, or IDM changes the stakeholder landscape
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+Start `_cross` early in the ALIGN workstream — ideally alongside or before PD. Subsystem charters in PD, DP, DA, and IDM all reference stakeholders that must be identified here first.
+
+## Why _cross Exists
+
+If each subsystem defines its own stakeholder list independently, the lists diverge — IDM decisions contradict inputs gathered in DP. `_cross` is the single source of truth for who is involved and who is accountable.
+
+## Templates
+
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Stakeholder map | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
+| Force analysis | `force-analysis-template.md` | `../../_genesis/templates/force-analysis-template.md` |
 
 ## Links
 
-- [[cross-stakeholder-map]]
-- [[cross-stakeholder-raci]]
-- [[iteration]]
+- [[charter]]
 - [[project]]
 - [[workstream]]

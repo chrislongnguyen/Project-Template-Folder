@@ -1,48 +1,56 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 4-EXECUTE
 sub_system: 4-IDM
-type: template
-iteration: 1
 ---
 
-# 4-IDM — Insights & Decision Making | EXECUTE Workstream
+# 4-EXECUTE / 4-IDM — Insights & Decision Making
 
-> "Without IDM-EXECUTE, analytical results stay locked in code — stakeholders cannot act on outputs that were never packaged into a usable interface or decision artifact."
+> **You are here:** `4-EXECUTE/4-IDM/` — Package DA results into user-facing outputs: dashboards, reports, APIs, decision tools. The delivery surface of the EXECUTE workstream.
 
-IDM-EXECUTE packages DA's computed results into the form that end users and decision-makers consume: dashboards, reports, APIs, or decision support tools. It is the delivery surface of the EXECUTE workstream and must satisfy the acceptance criteria defined in PD's DESIGN.md.
+## What Goes Here
+
+Execution artifacts scoped to Insights and Decision Making: `src/` (delivery layer — dashboards, report generators, API endpoints), `tests/` (acceptance tests verifying output correctness and user-facing behavior), `config/` (presentation config, routing, access controls), `docs/` (user guide, interpretation notes, known limitations). Also DSBV process files.
+
+## How to Create Artifacts
+
+```
+/dsbv design execute idm      # Step 1: Design delivery layer against PD acceptance criteria
+/dsbv sequence execute idm    # Step 2: Sequence delivery (manual review before automation)
+/dsbv build execute idm       # Step 3: Produce dashboards, reports, user docs
+/dsbv validate execute idm    # Step 4: All acceptance criteria met, handoff to 5-IMPROVE
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`4-EXECUTE/3-DA/` must have validated result sets before IDM build begins. IDM consumes DA outputs only — no direct data access from IDM.
 
 ## Cascade Position
 
 ```
-[3-DA (Data Analysis)]  ──►  [4-IDM]  ──►  [5-IMPROVE (workstream output)]
+[3-DA validated result sets]  →  [4-IDM]  →  [5-IMPROVE]
+                                        ↓
+     Deployed artifacts are what 5-IMPROVE evaluates against metrics
 ```
 
-Receives from upstream: validated result sets from `4-EXECUTE/3-DA/src/` and `4-EXECUTE/3-DA/tests/`.
-Produces for downstream: `src/` delivery layer (dashboards, reports, APIs), `config/` presentation config, `docs/` user-facing documentation — consumed by 5-IMPROVE as the deployed artifact that metrics and retrospectives evaluate.
+Every acceptance criterion from `4-EXECUTE/1-PD/DESIGN.md` must have a corresponding test in `tests/`.
 
-## Contents
+## Templates
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Source code | `src/` | Delivery layer — dashboards, report generators, API endpoints |
-| Tests | `tests/` | Acceptance tests verifying output correctness and user-facing behavior |
-| Config | `config/` | Presentation configuration, routing rules, access controls |
-| Docs | `docs/` | User guide, output interpretation, known limitations |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm every acceptance criterion from `4-EXECUTE/1-PD/DESIGN.md` has a corresponding test
-- [ ] Verify all outputs are traceable to DA result sets — no direct data access from IDM
-- [ ] Confirm user-facing docs cover interpretation and known edge cases
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
+| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[documentation]]
-- [[iteration]]
 - [[workstream]]

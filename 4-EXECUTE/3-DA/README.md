@@ -1,50 +1,55 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 4-EXECUTE
 sub_system: 3-DA
-type: template
-iteration: 1
 ---
 
-# 3-DA — Data Analysis | EXECUTE Workstream
+# 4-EXECUTE / 3-DA — Data Analysis
 
-> "Without DA-EXECUTE, IDM has no computed results to present — decisions and reports are built on manual summaries instead of reproducible analysis."
+> **You are here:** `4-EXECUTE/3-DA/` — Run analytical logic against pipeline outputs. All analysis must be reproducible, tested, and traceable to DP inputs.
 
-DA-EXECUTE applies analytical logic to the pipeline outputs from DP: it runs models, computes metrics, and produces validated result sets that IDM can package into decisions and reports. All analytical logic must be reproducible via tested source code and versioned notebooks.
+## What Goes Here
+
+Execution artifacts scoped to Data Analysis: `src/` (analytical modules — models, metrics, aggregations), `notebooks/` (reproducible analyses), `tests/` (result validation — expected output ranges, regression checks), `config/` (model parameters, threshold definitions), `docs/` (methodology docs, metric definitions). Also DSBV process files.
+
+## How to Create Artifacts
+
+```
+/dsbv design execute da      # Step 1: Technical design for analytical components
+/dsbv sequence execute da    # Step 2: Sequence analysis build (accuracy before scale)
+/dsbv build execute da       # Step 3: Produce source code, notebooks, tests
+/dsbv validate execute da    # Step 4: All results validated before handoff to IDM
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`4-EXECUTE/2-DP/` must have passing contract tests before DA build begins. All analytical inputs must originate from `4-EXECUTE/2-DP/src/` or `4-EXECUTE/2-DP/config/` — no direct data access from DA.
 
 ## Cascade Position
 
 ```
-[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
+[2-DP validated pipeline outputs]  →  [3-DA]  →  [4-IDM]
+                                            ↑
+              Every metric in src/ must have a corresponding test in tests/
 ```
 
-Receives from upstream: pipeline outputs and schema contracts from `4-EXECUTE/2-DP/src/` and `4-EXECUTE/2-DP/config/`.
-Produces for downstream: `src/` analytical modules, `notebooks/` reproducible analyses, `tests/` result validation — consumed by 4-IDM as verified computed outputs for presentation and decision packaging.
+## Templates
 
-## Contents
-
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Source code | `src/` | Analytical logic — models, metrics, aggregations, transformations |
-| Notebooks | `notebooks/` | Reproducible analysis — exploratory and documentation-grade notebooks |
-| Tests | `tests/` | Result validation — expected output ranges, regression checks |
-| Config | `config/` | Analysis parameters, model configuration, threshold definitions |
-| Docs | `docs/` | Methodology documentation, metric definitions, result interpretation guide |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm all analytical inputs are sourced exclusively from `4-EXECUTE/2-DP/` outputs
-- [ ] Verify every metric in `src/` has a corresponding test in `tests/`
-- [ ] Confirm notebooks are reproducible — run clean from top to bottom without errors
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
+| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
 
 ## Links
 
 - [[documentation]]
-- [[iteration]]
 - [[methodology]]
 - [[schema]]
 - [[workstream]]

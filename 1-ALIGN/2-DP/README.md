@@ -1,63 +1,58 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 1-ALIGN
 sub_system: 2-DP
-type: template
-iteration: 1
 ---
 
-# 2-DP — Data Pipeline | ALIGN Workstream
+# 1-ALIGN / 2-DP — Data Pipeline
 
-> "Without a scoped stakeholder map and requirements input, the analysis stage works from incomplete data — producing alignment artifacts that miss the people or constraints that matter most."
+> **You are here:** `1-ALIGN/2-DP/` — Define what data sources and inputs are in scope for this project. Bounded by PD's Effective Principles.
 
-DP gathers the structured inputs that alignment analysis depends on: stakeholder context, requirements, and any domain data needed to validate the problem diagnosis. It is bounded by the effective principles from 1-PD and passes organized, scoped inputs to 3-DA for synthesis into decisions and OKRs.
+## What Goes Here
+
+Alignment artifacts scoped to the Data Pipeline subsystem: a charter (`dp-charter.md`) defining data scope and transformation boundaries, OKRs, Architecture Decision Records for DP-stage decisions, and DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md).
+
+## How to Create Artifacts
+
+```
+/dsbv design align dp      # Step 1: Design the DP alignment scope
+/dsbv sequence align dp    # Step 2: Sequence the build tasks
+/dsbv build align dp       # Step 3: Agent produces charter, OKRs, decisions
+/dsbv validate align dp    # Step 4: Review against acceptance criteria
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`1-ALIGN/1-PD/` must have a validated artifact before starting DP. The PD charter and Effective Principles constrain what data sources and inputs are in scope here.
 
 ## Cascade Position
 
 ```
-[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
-                                      ↑
-                  Effective principles from 1-PD constrain what is in scope here
+[1-PD]  →  [2-DP]  →  [3-DA]
+                ↑
+  Effective Principles from 1-PD bound what data is in scope
 ```
 
-Receives from upstream: `pd-effective-principles.md`, scoped problem statement from `1-PD/pd-charter.md`.
-Produces for downstream: `dp-charter.md`, stakeholder inputs, requirements baseline — consumed by 3-DA as the structured data set for analysis and decision-making.
+## Templates
 
-## Contents
-
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Charter | `dp-charter.md` | Defines scope, objectives, and success criteria for this subsystem |
-| OKR register | `dp-okr.md` | Objectives and key results for the data pipeline subsystem |
-| Decision log template | `dp-decision-adr-template.md` | ADR template for decisions made during input gathering |
-| DSBV Design | `DESIGN.md` | Design spec for how DP work is structured in this project |
-| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for DP artifacts |
-| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for DP |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm all key stakeholders identified in `_cross/cross-stakeholder-map.md` are represented in DP inputs
-- [ ] Verify requirements are traceable to the problem statement in `1-PD/pd-charter.md`
-- [ ] Confirm no data gathering is in scope that contradicts PD's effective principles
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to 3-DA
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Charter | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
+| OKRs | `okr-template.md` | `../../_genesis/templates/okr-template.md` |
+| Decision (ADR) | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[adr]]
 - [[charter]]
-- [[cross-stakeholder-map]]
-- [[dp-charter]]
-- [[dp-decision-adr-template]]
-- [[dp-okr]]
-- [[iteration]]
 - [[okr]]
-- [[pd-charter]]
-- [[pd-effective-principles]]
-- [[project]]
 - [[workstream]]

@@ -1,124 +1,68 @@
 ---
-version: "1.0"
+version: "1.2"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 4-EXECUTE
-type: template
-iteration: 1
+sub_system: _root
 ---
 
 # 4-EXECUTE — Deliver with Effective Process
 
-> "Build it right, with the right tools, in the right environment."
+> **You are here:** `4-EXECUTE/` — Build and deliver artifacts against the approved plan, sustainability-first.
 
-## Purpose
+## What Goes Here
 
-Without EXECUTE, planning artifacts accumulate but nothing ships. The risk here is not inaction — it is uncontrolled action: building without confirming prerequisites, skipping correctness checks in favor of throughput, and delivering artifacts that cannot be verified against VANA criteria. This workstream enforces a derisk-first discipline — validate the environment and block all identified risks before producing output, then confirm each deliverable against its acceptance criteria before handing off to 5-IMPROVE.
+Execution artifacts: source code (`src/`), tests, configuration, documentation, and DSBV (Design, Sequence, Build, Validate) process files. Each subsystem directory holds deliverables organized by type. PD establishes build scope and principles; DP, DA, and IDM deliver within those constraints.
 
-## The 4 Stages
+## How to Create Artifacts
 
-Every subsystem (PD, DP, DA, IDM) flows through these stages:
-
-```
-DESIGN  →  SEQUENCE  →  BUILD  →  VALIDATE
-```
-
-| Stage | Purpose | Key Output |
-|-------|---------|-----------|
-| **Design** | Confirm sprint scope; verify all prerequisites (inputs, tools, environment); log and mitigate blockers before work begins | Confirmed sprint scope; blocker log with mitigations; environment readiness checklist; team kick-off brief |
-| **Sequence** | Design technical implementation for each deliverable; produce test plans and acceptance cases before writing any artifact | Technical design per deliverable; design review sign-off; test plan with acceptance criteria; integration specs |
-| **Build** | Build and deliver artifacts — derisk-first: correctness before throughput; validate each component before integrating | Delivered artifacts; test results (all passing); delivery confirmation; inline documentation |
-| **Validate** | Verify each deliverable meets VANA acceptance criteria; confirm evidence basis; reject any artifact that cannot be verified | Execution review report; defect log with severity; corrective actions; validated deliverables → 5-IMPROVE |
-
-## Subsystem Flow
+This directory is empty by design. Run DSBV to generate content:
 
 ```
-PD-EXECUTE  →  DP-EXECUTE  →  DA-EXECUTE  →  IDM-EXECUTE
+/dsbv design execute pd      # Step 1: Confirm sprint scope and prerequisites
+/dsbv sequence execute pd    # Step 2: Technical design for each deliverable
+/dsbv build execute pd       # Step 3: Produce the artifacts (agent builds)
+/dsbv validate execute pd    # Step 4: Verify against VANA acceptance criteria
 ```
 
-| Subsystem | Focus | Key Inputs | Key Outputs |
-|-----------|-------|-----------|------------|
-| **PD** | Build problem-diagnosis artifacts — define what the problem is and establish effective principles that govern downstream work | PD execution plan + EP from PD-LEARN; PD acceptance criteria from PD-PLAN | UBS/UDS analysis documents; finalized effective principles; design guidelines for DP, DA, IDM |
-| **DP** | Build and validate the transformation system — inputs are correctly processed before passing to analysis | **Principles from PD** + DP execution plan; PD design guidelines; source inputs | Transformation artifacts (source connectors, cleaning rules, processing logic); validated analysis-ready output |
-| **DA** | Execute analytical logic; validate conclusions against evidence before producing insights | **Principles from PD** + DA execution plan; analysis-ready output from DP; DA acceptance criteria | Analyzed outputs (patterns, conclusions, anomalies); validated findings with confidence basis; methodology documentation |
-| **IDM** | Build and deploy user-facing outputs — manual review before automation; usability validated before rollout | **Principles from all upstream** + IDM execution plan; analyzed outputs from DA; consumer decision context | Insight delivery artifacts (dashboards, reports, alerts, decision tools); user SOPs; delivery confirmation |
+Repeat for each subsystem: `pd` → `dp` → `da` → `idm`. PD DESIGN.md must be approved before DP, DA, or IDM build work begins.
 
-> **Critical:** PD produces the effective principles that govern the entire UES — DP, DA, and IDM inherit and build on them.
+## What's Here Now
 
-## Structure
+This directory is empty — artifacts are generated on-demand when you run the commands above.
 
-| Folder | Contents |
-|--------|---------|
-| `1-PD/` | EXECUTE artifacts for problem diagnosis — analysis documents, effective principles, design guidelines; organized by DSBV stage |
-| `2-DP/` | EXECUTE artifacts for transformation — source connectors, cleaning rules, processing logic, validation gates; organized by DSBV stage |
-| `3-DA/` | EXECUTE artifacts for analysis and logic — analytical outputs, models, validated conclusions, methodology docs; organized by DSBV stage |
-| `4-IDM/` | EXECUTE artifacts for insight delivery — dashboards, decision tools, alerts, SOPs, training materials; organized by DSBV stage |
+## Prerequisites
+
+3-PLAN must have at least one validated artifact (approved architecture + roadmap) before EXECUTE begins. The PLAN package is the build contract: every deliverable must trace to a decision in 3-PLAN.
+
+## Subsystem Sequence
+
+```
+1-PD  →  2-DP  →  3-DA  →  4-IDM
+```
+
+| Directory | Subsystem | What it delivers |
+|-----------|-----------|-----------------|
+| `1-PD/` | Problem Diagnosis | Build scope, Effective Principles, design constraints for downstream |
+| `2-DP/` | Data Pipeline | Source connectors, transformation logic, schema contracts, tests |
+| `3-DA/` | Data Analysis | Analytical modules, notebooks, validated result sets |
+| `4-IDM/` | Insights & Decision Making | Dashboards, reports, APIs, user-facing documentation |
+| `_cross/` | Cross-cutting | Shared config, integration tests, deployment orchestration |
 
 ## Templates
 
-| Stage | Template |
-|-------|---------|
-| Design | [`design-template.md`](_genesis/templates/design-template.md) |
-| Sequence | [`dsbv-process.md`](_genesis/templates/dsbv-process.md) |
-| Build | Artifact-specific templates in [`_genesis/templates/`](_genesis/templates/) — match to subsystem deliverable type |
-| Validate | [`review-template.md`](_genesis/templates/review-template.md) |
-
-## Pre-Flight Checklist
-
-### Design Stage
-- [ ] Confirm sprint scope maps directly to a deliverable in the 3-PLAN execution plan
-- [ ] Verify prerequisites — inputs available, tools accessible, environment configured
-- [ ] Log all blockers with assigned mitigations before starting
-- [ ] Distribute team kick-off brief with sprint scope and acceptance criteria
-
-### Sequence Stage
-- [ ] Complete technical design for each deliverable before any build work begins
-- [ ] Obtain design review sign-off from a second reviewer
-- [ ] Write test plan covering all VANA acceptance criteria
-- [ ] Document integration specs for anything passed to a downstream subsystem
-
-### Build Stage
-- [ ] Follow derisk-first order — validate correctness at each step before proceeding
-- [ ] All tests passing before marking any deliverable complete
-- [ ] Documentation updated to match implementation
-- [ ] Delivery confirmation obtained from the responsible owner
-
-### Validate Stage
-- [ ] All VANA acceptance criteria met
-- [ ] Evidence basis verified
-- [ ] Defect log complete with severity ratings
-- [ ] Validated package ready for → 5-IMPROVE
-
-## How EXECUTE Connects
-
-```
-                   locked execution plan
-3-PLAN  ─────────────────────────────>  4-EXECUTE
-                                            │
-                                   validated deliverables
-                                            │
-                                            ▼
-                                        5-IMPROVE
-
-4-EXECUTE ──"unresolved unknown"──> 2-LEARN  (close gap before continuing)
-4-EXECUTE ──"scope change"────────> 1-ALIGN  (re-align before proceeding)
-```
-
-## DASHBOARDS
-
-![[11-execution-overview.base]]
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Design spec | `design-template.md` | `../_genesis/templates/design-template.md` |
+| Sequence plan | `sequence-template.md` | `../_genesis/templates/sequence-template.md` |
+| Test plan | `test-plan-template.md` | `../_genesis/templates/test-plan-template.md` |
+| Review | `review-template.md` | `../_genesis/templates/review-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[blocker]]
 - [[deliverable]]
-- [[design-template]]
-- [[documentation]]
 - [[dsbv-process]]
-- [[iteration]]
-- [[methodology]]
-- [[review-template]]
 - [[workstream]]

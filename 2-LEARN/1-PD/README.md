@@ -1,89 +1,71 @@
 ---
-version: "2.2"
+version: "2.3"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 2-LEARN
 sub_system: 1-PD
-type: template
-iteration: 2
 ---
 
-# 1-PD — Problem Diagnosis | LEARN Workstream
+# 2-LEARN / 1-PD — Problem Diagnosis
 
-> "Without a scoped research question, the pipeline ingests everything and learns nothing — blocking forces and driving forces remain undifferentiated noise."
+> **You are here:** `2-LEARN/1-PD/` — Research the blocking and driving forces in your problem space. The Effective Principles derived here govern DP, DA, and IDM research.
 
-PD translates the chartered problem from 1-ALIGN into a bounded research question with explicit effective principles, UBS (blocking forces), and UDS (driving forces). It governs what the pipeline is allowed to search for and constrains 2-DP to in-scope sources only.
+## What Goes Here
 
-PD is the most consequential subsystem in LEARN — the S-Principles and E-Principles it derives govern the entire UES. Every downstream subsystem (DP, DA, IDM) inherits these principles and cannot contradict them.
+Pipeline content organized by stage: `input/` (research scope), `research/` (evidence), `output/` (structured P-pages), `specs/` (Effective Principles), `archive/` (rejected drafts). Also DSBV meta-artifacts (DESIGN.md, SEQUENCE.md, VALIDATE.md) that govern how this workstream is managed.
+
+## How to Create Artifacts
+
+```
+/learn:input       # S1: Scope research questions for PD (creates input/learn-input-{slug}.md)
+/learn:research    # S2: Gather evidence on blocking and driving forces
+/learn:structure   # S3: Organize into P-pages with UBS/UDS analysis
+/learn:review      # S4: YOU review and approve — this gate is human-only
+/learn:spec        # S5: Agent derives Effective Principles from your approved findings
+```
+
+Or run `/learn` and the skill auto-detects where you are in the pipeline.
+
+## What's Here Now
+
+This directory is empty — pipeline content is generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`1-ALIGN/4-IDM/` must have a validated charter. The chartered problem definition is the required input for `/learn:input` at S1.
 
 ## Cascade Position
 
 ```
-[1-ALIGN output (chartered direction)]  ──►  [1-PD]  ──►  [2-DP (Data Pipeline)]
-                                                   ↑
-                          Effective Principles from here scope the entire pipeline
+[1-ALIGN chartered direction]  →  [1-PD]  →  [2-DP]
+                                       ↓
+              Effective Principles scope the entire LEARN pipeline
 ```
 
-Receives from upstream: chartered problem definition, approved OKRs from `1-ALIGN/4-IDM/idm-charter.md`.
-Produces for downstream: `pd-effective-principles.md`, `pd-research-spec.md`, `pd-ubs-analysis.md`, `pd-uds-analysis.md` — consumed by 2-DP as hard constraints defining what sources and topics are in scope.
+PD is the most consequential LEARN subsystem. The S-Principles and E-Principles derived here set boundaries that DP, DA, and IDM cannot contradict.
 
-## Contents
+## Pipeline Subdirs
 
-| Artifact | File Pattern | What it is |
-|----------|-------------|------------|
-| **Pipeline artifacts** | | |
-| Effective Principles | `pd-effective-principles.md` | S-Principle + E-Principle derivations — govern the entire LEARN pipeline |
-| Research spec | `pd-research-spec.md` | Scoped research questions, objectives, and methodology (S1 output) |
-| UBS analysis | `pd-ubs-analysis.md` | Blocking forces — structured 1.0–1.6 analysis |
-| UDS analysis | `pd-uds-analysis.md` | Driving forces — structured 2.0–2.6 analysis |
-| Literature review | `pd-literature-review.md` | Evidence log supporting UBS/UDS findings |
-| **Pipeline subdirs** | | |
-| S1 — Scope inputs | `input/` | Research questions, source lists, raw captures |
-| S2 — Research | `research/` | Evidence files, investigation working docs |
-| S3 — Structured pages | `output/` | P0–P5 pages per topic — structured findings |
-| S5 — Specifications | `specs/` | VANA-SPEC + derived Effective Principles |
-| Archive | `archive/` | Superseded drafts, rejected hypotheses |
-| **DSBV meta-artifacts** | | |
-| Workstream design | `DESIGN.md` | DSBV Design spec for managing this subsystem's workstream |
-| Workstream sequence | `SEQUENCE.md` | DSBV Sequence — ordered build plan |
-| Workstream validate | `VALIDATE.md` | DSBV acceptance criteria for this subsystem |
+| Directory | Pipeline State | What lives here |
+|-----------|---------------|-----------------|
+| `input/` | S1 — Scope | `learn-input-{slug}.md`, research questions |
+| `research/` | S2 — Research | Evidence files, cited sources |
+| `output/` | S3+S4 — Structure + Review | P0–P5 pages per topic |
+| `specs/` | S5 — Spec | `vana-spec.md`, Effective Principles |
+| `archive/` | — | Rejected hypotheses, superseded drafts |
 
-## Pre-Flight Checklist
+## Templates
 
-### S1 — Scope
-- [ ] Research question is traceable to the chartered problem in `1-ALIGN/4-IDM/idm-charter.md`
-- [ ] `input/learn-input-{slug}.md` exists with system slug and research questions
-- [ ] Out-of-scope boundaries are explicitly stated
-
-### S2 — Research
-- [ ] Every claim in `research/` has a cited source
-- [ ] UBS candidate forces and UDS candidate forces are both represented — not one-sided
-
-### S3 — Structure
-- [ ] P0–P5 pages complete in `output/`
-- [ ] UBS analysis sections 1.0–1.6 all present
-- [ ] UDS analysis sections 2.0–2.6 all present
-
-### S4 — Review
-- [ ] Human PM has reviewed and approved all P-pages — status set to `validated`
-
-### S5 — Spec
-- [ ] `specs/{slug}/vana-spec.md` exists
-- [ ] Every EP in `pd-effective-principles.md` traces to a UBS or UDS finding
-- [ ] S-Principles and E-Principles derivation formulas are both applied
-- [ ] Ready for handoff to 2-DP
+| Pipeline State | Template | Location |
+|---------------|----------|----------|
+| S1 — Scope | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
+| S2 — Research | `research-template.md` | `../../_genesis/templates/research-template.md` |
+| S5 — Spec | `vana-spec-template.md` | `../../_genesis/templates/vana-spec-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[idm-charter]]
-- [[iteration]]
 - [[methodology]]
-- [[pd-effective-principles]]
-- [[pd-literature-review]]
-- [[pd-research-spec]]
-- [[pd-ubs-analysis]]
-- [[pd-uds-analysis]]
 - [[workstream]]

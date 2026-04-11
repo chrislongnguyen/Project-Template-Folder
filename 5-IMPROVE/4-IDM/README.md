@@ -1,52 +1,58 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 5-IMPROVE
 sub_system: 4-IDM
-type: template
-iteration: 1
 ---
 
-# 4-IDM — Insights & Decision Making | IMPROVE Workstream
+# 5-IMPROVE / 4-IDM — Insights & Decision Making
 
-> "Without IDM-IMPROVE, the improvement cycle never closes — findings stay in analysis and the next iteration starts without committed change decisions."
+> **You are here:** `5-IMPROVE/4-IDM/` — Convert analyzed findings into committed improvement actions. Route each action to the correct subsystem's 1-ALIGN. This closes the ALPEI loop.
 
-IDM-IMPROVE converts DA's analyzed findings into committed improvement actions: it selects which risks to address next, updates the metrics baseline, and produces the approved backlog entries that feed into the next iteration's 1-ALIGN and 3-PLAN workstreams.
+## What Goes Here
+
+Improvement artifacts scoped to Insights and Decision Making: `idm-changelog.md` (approved change decisions and version narrative), `idm-metrics.md` (updated metrics baseline — targets reset for the next iteration), and retrospective data on delivery usability and decision quality. Also DSBV process files.
+
+## How to Create Artifacts
+
+```
+/dsbv design improve idm      # Step 1: Define criteria for actionable improvement
+/dsbv sequence improve idm    # Step 2: Prioritize by S > E > Sc (sustainability first)
+/dsbv build improve idm       # Step 3: Produce improvement actions, updated baseline
+/dsbv validate improve idm    # Step 4: Verify each action has an owner and target iteration
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`5-IMPROVE/3-DA/da-metrics.md` and cross-workstream metrics from `5-IMPROVE/_cross/` must exist. IDM commits decisions — it cannot commit without the analyzed findings.
 
 ## Cascade Position
 
 ```
-[3-DA (Data Analysis)]  ──►  [4-IDM]  ──►  [next iteration: 1-ALIGN + 3-PLAN]
+[3-DA analyzed findings]  →  [4-IDM]  →  [1-ALIGN (next iteration)]
+                                    ↓
+     Each improvement action is routed to the correct subsystem's ALIGN
+     IDM routes to ALL subsystems — it sees the full UES
 ```
 
-Receives from upstream: `da-metrics.md`, `da-retro-template.md` from `5-IMPROVE/3-DA/`; cross-workstream metrics from `5-IMPROVE/_cross/`.
-Produces for downstream: `idm-changelog.md`, `idm-metrics.md`, `idm-retro-template.md` — consumed by the next iteration's 1-ALIGN as approved improvement decisions and 3-PLAN as updated risk and driver inputs.
+This is where the ALPEI loop closes. A committed IDM improvement action feeds directly into the next iteration's 1-ALIGN, ensuring every future iteration starts with evidence rather than assumption.
 
-## Contents
+## Templates
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Changelog | `idm-changelog.md` | Approved change decisions and version narrative for the IDM subsystem |
-| Metrics | `idm-metrics.md` | Updated metrics baseline — targets reset for the next iteration |
-| Retro template | `idm-retro-template.md` | Structured retrospective template scoped to IDM delivery processes |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm each improvement action has an owner and a target iteration
-- [ ] Verify the updated metrics baseline is consistent with the DA trend analysis
-- [ ] Confirm improvement decisions are recorded as ADRs in `1-ALIGN/decisions/` if they affect architecture
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Retrospective | `retro-template.md` | `../../_genesis/templates/retro-template.md` |
+| Metrics baseline | `metrics-baseline-template.md` | `../../_genesis/templates/metrics-baseline-template.md` |
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
 
 ## Links
 
 - [[CHANGELOG]]
 - [[architecture]]
-- [[da-metrics]]
-- [[da-retro-template]]
-- [[idm-changelog]]
-- [[idm-metrics]]
-- [[idm-retro-template]]
 - [[iteration]]
 - [[workstream]]

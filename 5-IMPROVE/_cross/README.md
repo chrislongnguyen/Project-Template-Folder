@@ -1,44 +1,49 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 5-IMPROVE
 sub_system: _cross
-type: template
-iteration: 1
 ---
 
-# _cross — Cross-Cutting | IMPROVE Workstream
+# 5-IMPROVE / _cross — Cross-Cutting Improvement Artifacts
 
-> "Without _cross-IMPROVE, workstream-level health is invisible — subsystem metrics exist but no one can see the aggregate system performance or cross-cutting failure patterns."
+> **You are here:** `5-IMPROVE/_cross/` — Workstream-level health artifacts: aggregated metrics and feedback that span all 4 subsystems.
 
-_cross-IMPROVE holds improvement artifacts that aggregate across all four subsystems or that track workstream-level health that no single subsystem owns. Without it, feedback patterns that span multiple subsystems go undetected.
+## What Goes Here
 
-## Scope
+Cross-cutting improvement artifacts that no single subsystem can produce alone: `cross-changelog.md` (workstream-level narrative aggregated across PD, DP, DA, IDM), `cross-metrics-baseline.md` (aggregated health metrics — workstream-level targets and actuals), and `cross-feedback-register.md` (feedback from stakeholders and users spanning all subsystems).
 
-Cross-cutting artifacts in IMPROVE capture what no single subsystem can see alone: workstream-wide changelog narrative, aggregated metrics baseline, and feedback signals collected across PD, DP, DA, and IDM. In this workstream, cross-cutting means any improvement artifact that requires comparing or combining results across subsystems.
+## How to Create Artifacts
 
-## Contents
+```
+/dsbv design improve _cross      # Step 1: Define workstream-level feedback scope
+/dsbv sequence improve _cross    # Step 2: Design aggregation methodology
+/dsbv build improve _cross       # Step 3: Produce cross-changelog, metrics rollup, feedback register
+/dsbv validate improve _cross    # Step 4: Verify rollup covers all 4 subsystems
+```
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Cross changelog | `cross-changelog.md` | Workstream-level change history — aggregated narrative across all subsystems |
-| Cross metrics baseline | `cross-metrics-baseline.md` | Aggregated health metrics — workstream-level targets and actuals |
-| Feedback register | `cross-feedback-register.md` | Captured feedback from stakeholders and users spanning all subsystems |
+## What's Here Now
 
-## Pre-Flight Checklist
+This directory is empty — artifacts are generated on-demand when you run the commands above.
 
-- [ ] Confirm cross-metrics-baseline.md rolls up from all four subsystem metrics files
-- [ ] Verify feedback-register captures signals from both human users and agent outputs
-- [ ] Confirm no artifact here duplicates content already owned by a single subsystem
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+## Prerequisites
+
+Individual subsystem improvement work (PD, DP, DA, IDM) should produce metrics before `_cross` aggregates them. `cross-metrics-baseline.md` rolls up from all four subsystem metrics files.
+
+## Why _cross Exists
+
+Subsystem metrics reveal component-level issues. Workstream-level metrics reveal systemic patterns — a signal that looks minor in DP and minor in DA might be significant when seen together. `_cross` is where cross-subsystem failure patterns become visible.
+
+## Templates
+
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Metrics baseline | `metrics-baseline-template.md` | `../../_genesis/templates/metrics-baseline-template.md` |
+| Feedback | `feedback-template.md` | `../../_genesis/templates/feedback-template.md` |
 
 ## Links
 
 - [[CHANGELOG]]
-- [[cross-changelog]]
-- [[cross-feedback-register]]
-- [[cross-metrics-baseline]]
 - [[iteration]]
 - [[workstream]]

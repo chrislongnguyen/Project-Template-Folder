@@ -1,63 +1,62 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 1-ALIGN
 sub_system: 1-PD
-type: template
-iteration: 1
 ---
 
-# 1-PD — Problem Diagnosis | ALIGN Workstream
+# 1-ALIGN / 1-PD — Problem Diagnosis
 
-> "If the problem is never clearly diagnosed, every downstream alignment artifact answers the wrong question — charter, OKRs, and decisions are all built on a false premise."
+> **You are here:** `1-ALIGN/1-PD/` — Define the problem this project exists to solve. The Effective Principles produced here govern every downstream subsystem.
 
-PD defines what problem this project exists to solve and encodes the principles that govern all downstream alignment work. It receives the project trigger from the workstream entry point and passes a scoped problem statement and effective principles to 2-DP as the hard foundation for all subsequent data gathering and design.
+## What Goes Here
+
+Alignment artifacts scoped to Problem Diagnosis: a charter (`pd-charter.md`) defining scope and success criteria, OKRs (`pd-okr.md`), Architecture Decision Records for PD-stage decisions, and DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md).
+
+## How to Create Artifacts
+
+```
+/dsbv design align pd      # Step 1: Design the PD alignment scope
+/dsbv sequence align pd    # Step 2: Sequence the build tasks
+/dsbv build align pd       # Step 3: Agent produces charter, OKRs, decisions
+/dsbv validate align pd    # Step 4: Review against acceptance criteria
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+PD is the first subsystem in ALIGN. No upstream subsystem dependency.
+
+Input: project mandate, sponsor intent, or strategic context from your organization.
 
 ## Cascade Position
 
 ```
-[(project trigger / sponsor intent)]  ──►  [1-PD]  ──►  [2-DP (Data Pipeline)]
-                                                ↑
-                         Effective principles from here govern DP, DA, and IDM
+[project trigger]  →  [1-PD]  →  [2-DP]
+                           ↓
+             Effective Principles from PD govern DP, DA, and IDM
 ```
 
-Receives from upstream: project mandate, sponsor intent, or strategic context (typically verbal or in `_cross/`).
-Produces for downstream: `pd-effective-principles.md`, scoped problem statement in `pd-charter.md` — consumed by 2-DP as the governing constraint for what data and stakeholders are in scope.
+PD is the most important subsystem: the scope boundaries and principles it establishes constrain everything downstream. Complete and validate PD before starting 2-DP.
 
-## Contents
+## Templates
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Charter | `pd-charter.md` | Defines scope, objectives, and success criteria for this subsystem |
-| OKR register | `pd-okr.md` | Objectives and key results anchored to the problem diagnosis |
-| OKR register (full) | `pd-okr-register.md` | Expanded tracking register for OKRs across iterations |
-| Decision log template | `pd-decision-adr-template.md` | ADR template for decisions made during problem diagnosis |
-| DSBV Design | `DESIGN.md` | Design spec for how PD work is structured in this project |
-| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for PD artifacts |
-| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for PD |
-
-## Pre-Flight Checklist
-
-- [ ] Define the problem statement — one sentence, falsifiable, free of solution bias
-- [ ] Confirm effective principles are written and do not contradict sponsor intent
-- [ ] Verify charter scope excludes what is explicitly out of scope
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to 2-DP
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Charter | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
+| OKRs | `okr-template.md` | `../../_genesis/templates/okr-template.md` |
+| Decision (ADR) | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[adr]]
 - [[charter]]
-- [[iteration]]
 - [[okr]]
-- [[pd-charter]]
-- [[pd-decision-adr-template]]
-- [[pd-effective-principles]]
-- [[pd-okr]]
-- [[pd-okr-register]]
-- [[project]]
 - [[workstream]]

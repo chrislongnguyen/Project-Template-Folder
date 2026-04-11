@@ -1,51 +1,56 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 5-IMPROVE
 sub_system: 2-DP
-type: template
-iteration: 1
 ---
 
-# 2-DP — Data Pipeline | IMPROVE Workstream
+# 5-IMPROVE / 2-DP — Data Pipeline
 
-> "Without DP-IMPROVE, the retrospective loop has no data — DA receives opinions instead of measurements and cannot identify real improvement signals."
+> **You are here:** `5-IMPROVE/2-DP/` — Collect evidence on pipeline health: latency, completeness, schema drift, and source reliability failures.
 
-DP-IMPROVE collects and organizes the raw evidence for the improvement cycle: metrics collected from the deployed pipeline, changelog entries recording what changed, and retrospective data from the DP build. It feeds DA with structured, comparable data across iterations.
+## What Goes Here
+
+Improvement artifacts scoped to the Data Pipeline: `dp-changelog.md` (version history and change narrative), `dp-metrics.md` (pipeline health measurements against the PD baseline), and retrospective data capturing reliability failures and process gaps. Also DSBV process files.
+
+## How to Create Artifacts
+
+```
+/dsbv design improve dp      # Step 1: Define DP feedback collection plan
+/dsbv sequence improve dp    # Step 2: Design metric analysis methodology
+/dsbv build improve dp       # Step 3: Produce changelog, metrics, retro report
+/dsbv validate improve dp    # Step 4: Verify metrics measured against PD baseline
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`5-IMPROVE/1-PD/pd-metrics.md` must exist — it defines the baseline that DP metrics are measured against. `4-EXECUTE/2-DP/` must have deployed artifacts to evaluate.
 
 ## Cascade Position
 
 ```
-[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
+[1-PD pd-metrics.md baseline]  →  [2-DP]  →  [3-DA]
+                                         ↑
+              Metrics here feed 3-DA as raw evidence for trend analysis
 ```
 
-Receives from upstream: improvement criteria and baseline definitions from `5-IMPROVE/1-PD/pd-metrics.md`.
-Produces for downstream: `dp-changelog.md`, `dp-metrics.md`, `dp-retro-template.md` — consumed by 3-DA as the raw evidence set for trend analysis and improvement prioritization.
+Focus on reliability failures before efficiency improvements: a pipeline that occasionally drops data is more dangerous than one that is slow.
 
-## Contents
+## Templates
 
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Changelog | `dp-changelog.md` | Version history and change narrative for the DP subsystem |
-| Metrics | `dp-metrics.md` | Pipeline health measurements — latency, completeness, schema drift |
-| Retro template | `dp-retro-template.md` | Structured retrospective template scoped to DP processes and artifacts |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm metrics are collected against the baselines defined in `5-IMPROVE/1-PD/pd-metrics.md`
-- [ ] Verify changelog is consistent with actual commits in the DP source history
-- [ ] Confirm retro captures pipeline reliability failures — not just feature gaps
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Retrospective | `retro-template.md` | `../../_genesis/templates/retro-template.md` |
+| Metrics baseline | `metrics-baseline-template.md` | `../../_genesis/templates/metrics-baseline-template.md` |
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
 
 ## Links
 
 - [[CHANGELOG]]
-- [[dp-changelog]]
-- [[dp-metrics]]
-- [[dp-retro-template]]
 - [[iteration]]
-- [[pd-metrics]]
-- [[schema]]
 - [[workstream]]

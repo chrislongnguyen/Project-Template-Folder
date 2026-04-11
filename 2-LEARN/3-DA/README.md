@@ -1,90 +1,67 @@
 ---
-version: "2.2"
+version: "2.3"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 2-LEARN
 sub_system: 3-DA
-type: template
-iteration: 2
 ---
 
-# 3-DA — Data Analysis | LEARN Workstream
+# 2-LEARN / 3-DA — Data Analysis
 
-> "Without systematic analysis, the pipeline produces a pile of sources but no learning — IDM has no synthesized findings to act on, and the project must either guess or repeat the research."
+> **You are here:** `2-LEARN/3-DA/` — Synthesize validated sources into structured findings: force analysis, pattern identification, and gap assessment.
 
-DA synthesizes the validated inputs from 2-DP into structured findings: literature synthesis, force analysis, pattern identification, and gap assessment. These become the evidence basis that 4-IDM converts into actionable insights and recommendations for 3-PLAN.
+## What Goes Here
+
+Pipeline content organized by stage: `input/` (validated inputs from DP), `research/` (synthesis working docs), `output/` (structured P-pages), `specs/` (DA Effective Principles), `archive/` (superseded analyses). Also DSBV meta-artifacts governing workstream management.
+
+## How to Create Artifacts
+
+```
+/learn:input       # S1: Scope analytical questions (methods, bias risks, validation)
+/learn:research    # S2: Synthesize findings from DP output — no new unvetted sources
+/learn:structure   # S3: Organize into P-pages with DA-specific UBS/UDS analysis
+/learn:review      # S4: YOU review and approve — this gate is human-only
+/learn:spec        # S5: Agent derives DA Effective Principles
+```
+
+## What's Here Now
+
+This directory is empty — pipeline content is generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`2-LEARN/2-DP/` must have validated output before starting DA. All analytical inputs must originate from DP's validated source set — no unvetted sources admitted at this stage.
 
 ## Cascade Position
 
 ```
-[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
-                                   ↑
-           Effective Principles from 1-PD govern what conclusions are in scope
+[2-DP validated output]  →  [3-DA]  →  [4-IDM]
+                                  ↑
+      DA synthesizes only what DP validated — conclusions must trace to cited sources
 ```
 
-Receives from upstream: filtered source set from `2-DP/output/`, `dp-effective-principles.md`, `dp-literature-review.md`.
-Produces for downstream: `da-effective-principles.md`, synthesized literature review, force analysis outputs — consumed by 4-IDM as the evidence base for insight generation and recommendation drafting.
+## Pipeline Subdirs
 
-## Contents
+| Directory | Pipeline State | What lives here |
+|-----------|---------------|-----------------|
+| `input/` | S1 — Scope | Analytical questions, `learn-input-{slug}.md` |
+| `research/` | S2 — Research | Synthesis working docs, pattern notes |
+| `output/` | S3+S4 — Structure + Review | P0–P5 pages per analytical topic |
+| `specs/` | S5 — Spec | `vana-spec.md`, DA Effective Principles |
+| `archive/` | — | Superseded analyses, exploratory drafts |
 
-| Artifact | File Pattern | What it is |
-|----------|-------------|------------|
-| **Pipeline artifacts** | | |
-| Effective Principles | `da-effective-principles.md` | DA-level constraints governing analytical methods and scope |
-| Research spec | `da-research-spec.md` | Analytical methodology and synthesis approach (S1 output) |
-| UBS analysis | `da-ubs-analysis.md` | Blocking forces — 1.0–1.6 analysis of analytical obstacles (bias, brittle methods) |
-| UDS analysis | `da-uds-analysis.md` | Driving forces — 2.0–2.6 analysis of what enables rigorous analysis |
-| Literature review | `da-literature-review.md` | Synthesized findings across all validated sources |
-| **Pipeline subdirs** | | |
-| S1 — Scope inputs | `input/` | Validated inputs received from 2-DP |
-| S2 — Research | `research/` | Working documents produced during synthesis |
-| S3 — Structured pages | `output/` | Finalized analytical findings — P0–P5 pages per topic |
-| S5 — Specifications | `specs/` | Formal analytical specs and methodologies |
-| Archive | `archive/` | Superseded analyses or exploratory drafts |
-| **DSBV meta-artifacts** | | |
-| Workstream design | `DESIGN.md` | DSBV Design spec for managing this subsystem's workstream |
-| Workstream sequence | `SEQUENCE.md` | DSBV Sequence — ordered build plan |
-| Workstream validate | `VALIDATE.md` | DSBV acceptance criteria for this subsystem |
+## Templates
 
-## Pre-Flight Checklist
-
-### S1 — Scope
-- [ ] Analytical methodology is traceable to `1-PD/pd-research-spec.md` research questions
-- [ ] `input/learn-input-{slug}.md` exists with analysis-specific questions
-
-### S2 — Research
-- [ ] Every source in `research/` originated from `2-DP/output/` — no unvetted sources admitted
-- [ ] Analysis methods explicitly stated and justified
-
-### S3 — Structure
-- [ ] P0–P5 pages complete in `output/`
-- [ ] UBS analysis sections 1.0–1.6 present — covers misleading patterns, bias, brittle methods
-- [ ] UDS analysis sections 2.0–2.6 present — covers robust methods, validation approaches
-- [ ] Every conclusion traceable to a source in `2-DP/output/` — no unsupported claims
-
-### S4 — Review
-- [ ] Human PM has reviewed and approved all P-pages — status set to `validated`
-
-### S5 — Spec
-- [ ] `specs/{slug}/vana-spec.md` exists
-- [ ] Every EP in `da-effective-principles.md` traces to a UBS or UDS finding
-- [ ] Literature review synthesis covers all research questions from `1-PD/pd-research-spec.md`
-- [ ] Ready for handoff to 4-IDM
+| Pipeline State | Template | Location |
+|---------------|----------|----------|
+| S1 — Scope | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
+| S2 — Research | `research-template.md` | `../../_genesis/templates/research-template.md` |
+| S5 — Spec | `vana-spec-template.md` | `../../_genesis/templates/vana-spec-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[da-effective-principles]]
-- [[da-literature-review]]
-- [[da-research-spec]]
-- [[da-ubs-analysis]]
-- [[da-uds-analysis]]
-- [[dp-effective-principles]]
-- [[dp-literature-review]]
-- [[iteration]]
 - [[methodology]]
-- [[pd-research-spec]]
-- [[project]]
 - [[workstream]]

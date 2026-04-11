@@ -1,50 +1,55 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 4-EXECUTE
 sub_system: 2-DP
-type: template
-iteration: 1
 ---
 
-# 2-DP — Data Pipeline | EXECUTE Workstream
+# 4-EXECUTE / 2-DP — Data Pipeline
 
-> "Without DP-EXECUTE, the analysis layer receives raw or inconsistent inputs — DA notebooks break on undefined schemas or missing data contracts."
+> **You are here:** `4-EXECUTE/2-DP/` — Build the ingestion and transformation layer. Source connectors, cleaning rules, and schema contracts that deliver validated inputs to DA.
 
-DP-EXECUTE builds the ingestion and pipeline layer: source connectors, data loaders, schema definitions, and configuration that deliver clean, contract-compliant inputs to DA. It is the first code-producing subsystem and must be stable before DA notebooks can run.
+## What Goes Here
+
+Execution artifacts scoped to the Data Pipeline: `src/` (pipeline source code — connectors, loaders, transformations), `notebooks/` (exploratory work and schema discovery), `tests/` (contract tests verifying schema, completeness, freshness), `config/` (data source definitions), `docs/` (data dictionary, pipeline diagram). Also DSBV process files.
+
+## How to Create Artifacts
+
+```
+/dsbv design execute dp      # Step 1: Technical design for pipeline components
+/dsbv sequence execute dp    # Step 2: Sequence pipeline build (safety before throughput)
+/dsbv build execute dp       # Step 3: Produce source code, tests, config
+/dsbv validate execute dp    # Step 4: All contract tests pass before handoff to DA
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`4-EXECUTE/1-PD/DESIGN.md` must be approved before DP build work begins. All data sources in `config/` must be approved in PD's scope boundary.
 
 ## Cascade Position
 
 ```
-[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
+[1-PD DESIGN.md scope boundary]  →  [2-DP]  →  [3-DA]
+                                          ↑
+              DA cannot run until DP outputs pass contract tests
 ```
 
-Receives from upstream: DESIGN.md and SEQUENCE.md from `4-EXECUTE/1-PD/`; data contracts and scope boundaries from PD principles.
-Produces for downstream: `src/` pipeline code, `notebooks/` exploratory work, `config/` data source definitions, `tests/` contract tests — consumed by 3-DA as the validated input layer.
+## Templates
 
-## Contents
-
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Source code | `src/` | Pipeline implementation — connectors, loaders, transformations |
-| Notebooks | `notebooks/` | Exploratory pipeline work and schema discovery |
-| Tests | `tests/` | Contract tests verifying schema, completeness, and freshness |
-| Config | `config/` | Data source definitions, connection parameters, pipeline settings |
-| Docs | `docs/` | Data dictionary, pipeline diagram, schema reference |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm all data sources defined in `config/` are approved in the PD scope boundary
-- [ ] Verify `tests/` includes at least one contract test per pipeline output schema
-- [ ] Confirm notebooks are exploratory only — no production logic in notebooks
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
+| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
-- [[iteration]]
 - [[schema]]
 - [[workstream]]

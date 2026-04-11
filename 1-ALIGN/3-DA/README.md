@@ -1,61 +1,58 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-11
 work_stream: 1-ALIGN
 sub_system: 3-DA
-type: template
-iteration: 1
 ---
 
-# 3-DA — Data Analysis | ALIGN Workstream
+# 1-ALIGN / 3-DA — Data Analysis
 
-> "If the analysis stage is skipped, the project moves into decision-making with raw inputs but no synthesis — OKRs become guesses and decisions lack a reasoned basis."
+> **You are here:** `1-ALIGN/3-DA/` — Define the analytical scope: which questions to answer, which methods are approved, which conclusions count as success.
 
-DA synthesizes the inputs gathered in 2-DP into structured analysis: force analysis, gap assessment, and prioritized insights. It is constrained by the effective principles from 1-PD and produces analyzed findings ready for IDM to convert into decisions and chartered direction.
+## What Goes Here
+
+Alignment artifacts scoped to the Data Analysis subsystem: a charter (`da-charter.md`) defining analytical scope and quality criteria, OKRs, Architecture Decision Records for DA-stage decisions, and DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md).
+
+## How to Create Artifacts
+
+```
+/dsbv design align da      # Step 1: Design the DA alignment scope
+/dsbv sequence align da    # Step 2: Sequence the build tasks
+/dsbv build align da       # Step 3: Agent produces charter, OKRs, decisions
+/dsbv validate align da    # Step 4: Review against acceptance criteria
+```
+
+## What's Here Now
+
+This directory is empty — artifacts are generated on-demand when you run the commands above.
+
+## Prerequisites
+
+`1-ALIGN/2-DP/` must have a validated artifact before starting DA. The DP charter establishes what analysis-ready inputs will be available, bounding the analytical scope here.
 
 ## Cascade Position
 
 ```
-[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
-                                  ↑
-              Effective principles from 1-PD govern analytical scope and rigor
+[2-DP]  →  [3-DA]  →  [4-IDM]
+                ↑
+  DP charter constrains what analysis inputs are available
 ```
 
-Receives from upstream: organized stakeholder inputs, requirements baseline from `2-DP/dp-charter.md`.
-Produces for downstream: `da-charter.md`, analytical findings and prioritized insights — consumed by 4-IDM as the evidenced basis for decisions, OKRs, and chartered direction.
+## Templates
 
-## Contents
-
-| Artifact | File Pattern | Purpose |
-|----------|-------------|---------|
-| Charter | `da-charter.md` | Defines scope, objectives, and success criteria for this subsystem |
-| OKR register | `da-okr.md` | Objectives and key results for the analysis subsystem |
-| Decision log template | `da-decision-adr-template.md` | ADR template for decisions made during analysis |
-| DSBV Design | `DESIGN.md` | Design spec for how DA work is structured in this project |
-| DSBV Sequence | `SEQUENCE.md` | Ordered build plan for DA artifacts |
-| DSBV Validate | `VALIDATE.md` | Acceptance criteria and validation evidence for DA |
-
-## Pre-Flight Checklist
-
-- [ ] Confirm all inputs from 2-DP are accounted for — no stakeholder or requirement left unanalyzed
-- [ ] Verify analytical conclusions are traceable to evidence, not assumption
-- [ ] Confirm force analysis (blocking vs. driving forces) is complete before passing to IDM
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to 4-IDM
+| Artifact | Template | Location |
+|----------|----------|----------|
+| Charter | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
+| OKRs | `okr-template.md` | `../../_genesis/templates/okr-template.md` |
+| Decision (ADR) | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
+| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[adr]]
 - [[charter]]
-- [[da-charter]]
-- [[da-decision-adr-template]]
-- [[da-okr]]
-- [[dp-charter]]
-- [[iteration]]
 - [[okr]]
-- [[project]]
 - [[workstream]]
