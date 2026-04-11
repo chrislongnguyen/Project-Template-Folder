@@ -1,7 +1,7 @@
 ---
-version: "1.2"
+version: "1.3"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 ---
 
 # Filesystem Routing — Always-On Rule
@@ -32,10 +32,10 @@ NONE → operational file (.claude/, scripts/, root) — no routing constraint
 Structure: `{N}-{WORKSTREAM}/{subsystem}/` where subsystem = `1-PD`, `2-DP`, `3-DA`, `4-IDM`, `_cross`
 
 DSBV stage file placement (canonical rule):
-- `DESIGN.md` and `SEQUENCE.md` live at **subsystem level**: `{N}-{WS}/{N}-{SUB}/DESIGN.md`
-- `VALIDATE.md` lives at **workstream root**: `{N}-{WS}/VALIDATE.md` — one per workstream, not per subsystem
+- `DESIGN.md`, `SEQUENCE.md`, and `VALIDATE.md` all live at **subsystem level**: `{N}-{WS}/{N}-{SUB}/VALIDATE.md`
+- One VALIDATE.md per subsystem per workstream — certifies that subsystem's full DSBV cycle is complete
 
-`VALIDATE.md` is a workstream-level gate certifying the full workstream. DESIGN.md and SEQUENCE.md are subsystem-scoped.
+All three DSBV control files are subsystem-scoped. The 5×4×4 matrix (workstream × subsystem × DSBV stage) places VALIDATE.md alongside DESIGN.md and SEQUENCE.md at subsystem level (e.g., `1-ALIGN/1-PD/VALIDATE.md`).
 
 Artifacts require a DESIGN.md in the workstream before Build-stage writes (enforced by `scripts/dsbv-skill-guard.sh`).
 

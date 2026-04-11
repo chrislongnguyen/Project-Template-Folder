@@ -1,6 +1,6 @@
 # Filesystem Routing — Always-On Rule
 
-# version: 2.2 | status: draft | last_updated: 2026-04-11
+# version: 2.3 | status: draft | last_updated: 2026-04-12
 
 Full spec: `_genesis/filesystem-blueprint.md`
 
@@ -81,9 +81,9 @@ DSBV control files are placed at different levels depending on their scope:
 |------|-------|-------------|-----------|
 | `DESIGN.md` | Subsystem | `{N}-{WS}/{N}-{SUB}/DESIGN.md` | Scopes design to one subsystem |
 | `SEQUENCE.md` | Subsystem | `{N}-{WS}/{N}-{SUB}/SEQUENCE.md` | Scopes build tasks to one subsystem |
-| `VALIDATE.md` | **Workstream root** | `{N}-{WS}/VALIDATE.md` | One per workstream — certifies the full workstream gate |
+| `VALIDATE.md` | Subsystem | `{N}-{WS}/{N}-{SUB}/VALIDATE.md` | One per subsystem — certifies that subsystem's full DSBV cycle is complete |
 
-`VALIDATE.md` is intentionally at workstream root, not subsystem level. It is a workstream-level gate that certifies the entire workstream is ready to advance. There is exactly one `VALIDATE.md` per workstream (e.g., `1-ALIGN/VALIDATE.md`, `3-PLAN/VALIDATE.md`), not one per subsystem.
+`VALIDATE.md` lives at subsystem level, alongside DESIGN.md and SEQUENCE.md. The 5×4×4 matrix (workstream × subsystem × DSBV stage) requires one VALIDATE.md per subsystem per workstream (e.g., `1-ALIGN/1-PD/VALIDATE.md`, `1-ALIGN/2-DP/VALIDATE.md`). This certifies that subsystem's full DSBV cycle (Design → Sequence → Build → Validate) is complete before the next subsystem begins.
 
 ## Forbidden
 

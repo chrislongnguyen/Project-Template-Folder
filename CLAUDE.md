@@ -1,7 +1,7 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 ---
 # CLAUDE.md — LTC Project Template
 
