@@ -1,58 +1,61 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 1-ALIGN
 sub_system: 3-DA
+type: template
+iteration: 1
 ---
 
-# 1-ALIGN / 3-DA — Data Analysis
+# 3-DA — Data Analysis | ALIGN Workstream
 
-> **You are here:** `1-ALIGN/3-DA/` — Define the analytical scope: which questions to answer, which methods are approved, which conclusions count as success.
+> "If DA alignment is skipped, analysts will choose methods that fit the data rather than methods that answer the problem."
 
-## What Goes Here
-
-Alignment artifacts scoped to the Data Analysis subsystem: a charter (`da-charter.md`) defining analytical scope and quality criteria, OKRs, Architecture Decision Records for DA-stage decisions, and DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md).
-
-## How to Create Artifacts
-
-```
-/dsbv design align da      # Step 1: Design the DA alignment scope
-/dsbv sequence align da    # Step 2: Sequence the build tasks
-/dsbv build align da       # Step 3: Agent produces charter, OKRs, decisions
-/dsbv validate align da    # Step 4: Review against acceptance criteria
-```
-
-## What's Here Now
-
-This directory is empty — artifacts are generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`1-ALIGN/2-DP/` must have a validated artifact before starting DA. The DP charter establishes what analysis-ready inputs will be available, bounding the analytical scope here.
+DA-Align scopes the analytical effort — which questions to answer, which methods are approved, and what insight quality looks like. It receives pipeline constraints from DP-Align and Effective Principles from PD-Align.
 
 ## Cascade Position
 
 ```
-[2-DP]  →  [3-DA]  →  [4-IDM]
-                ↑
-  DP charter constrains what analysis inputs are available
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
 ```
+
+Receives from upstream: dp-charter.md + data quality SLAs from 2-DP; Effective Principles from 1-PD.
+Produces for downstream: da-charter.md + insight quality SLAs — consumed by 4-IDM as delivery boundary constraints; also feeds 2-LEARN/3-DA as research scope.
+
+## Contents
+
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| da-charter.md | `da-charter.md` | Analytical scope: approved questions, methods, and insight quality criteria |
+| da-okr.md | `da-okr.md` | Analysis success criteria per version |
+| ADR-NNN_*.md | `ADR-NNN_{slug}.md` | Methodology and tooling decisions |
+| DESIGN.md | `DESIGN.md` | DSBV Design stage for DA alignment |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence for DA alignment work order |
+| VALIDATE.md | `VALIDATE.md` | DSBV Validate stage — review all subsystem ACs before advancing to next subsystem |
+
+## Pre-Flight Checklist
+
+- [ ] dp-charter.md received — data quality SLAs understood
+- [ ] Analytical questions scoped to the problem (not the available data)
+- [ ] Approved analytical methods listed — bias risks identified
+- [ ] da-charter.md reviewed against PD Effective Principles
+- [ ] Outputs ready for handoff to downstream
 
 ## Templates
 
 | Artifact | Template | Location |
 |----------|----------|----------|
-| Charter | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
-| OKRs | `okr-template.md` | `../../_genesis/templates/okr-template.md` |
-| Decision (ADR) | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
-| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| da-charter.md | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
+| da-okr.md | `okr-template.md` | `../../_genesis/templates/okr-template.md` |
+| ADR-NNN_*.md | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[charter]]
-- [[okr]]
 - [[workstream]]

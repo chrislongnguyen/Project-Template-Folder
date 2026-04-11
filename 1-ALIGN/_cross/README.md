@@ -1,49 +1,56 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 1-ALIGN
 sub_system: _cross
+type: template
+iteration: 1
 ---
 
-# 1-ALIGN / _cross — Cross-Cutting Alignment Artifacts
+# _cross — Cross-Cutting | ALIGN Workstream
 
-> **You are here:** `1-ALIGN/_cross/` — Project-wide artifacts shared across all 4 subsystems: stakeholder map and RACI.
+> "Without a shared stakeholder map and RACI, every subsystem invents its own accountability model — contradictions emerge at integration."
 
-## What Goes Here
+Cross-cutting ALIGN artifacts span all 4 subsystems (PD, DP, DA, IDM). They define who is accountable (RACI), which stakeholders govern decisions (stakeholder map), and which decisions apply project-wide (cross-cutting ADRs). These cannot be owned by a single subsystem.
 
-Cross-cutting alignment artifacts that no single subsystem owns but all subsystems depend on: a stakeholder map (`cross-stakeholder-map.md`) covering all project stakeholders and their roles, and a RACI matrix (`cross-stakeholder-raci.md`) assigning Responsible, Accountable, Consulted, and Informed roles for key alignment decisions. These must exist before subsystems diverge into specialized work.
+## Scope
 
-## How to Create Artifacts
+Cross-cutting artifacts span all 4 subsystems (PD, DP, DA, IDM) within the ALIGN workstream.
+These cannot be owned by a single subsystem — they govern or support all of them.
 
-```
-/dsbv design align _cross      # Step 1: Design cross-cutting scope
-/dsbv sequence align _cross    # Step 2: Sequence the build tasks
-/dsbv build align _cross       # Step 3: Agent produces stakeholder map and RACI
-/dsbv validate align _cross    # Step 4: Review against acceptance criteria
-```
+Cross-cutting means the artifact applies horizontally: a stakeholder map lists every sponsor and reviewer regardless of which subsystem they engage; a cross-cutting ADR records a decision that constrains multiple subsystems simultaneously. Any decision affecting more than one subsystem belongs here, not in a subsystem-level ADR.
 
-## What's Here Now
+## Contents
 
-This directory is empty — artifacts are generated on-demand when you run the commands above.
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| stakeholder-map.md | `stakeholder-map.md` | All project stakeholders, roles, and influence levels |
+| RACI.md | `RACI.md` | Responsibility matrix: who is Responsible, Accountable, Consulted, Informed per artifact |
+| ADR-NNN_*.md | `ADR-NNN_{slug}.md` | Project-wide decisions affecting multiple subsystems |
+| DESIGN.md | `DESIGN.md` | DSBV Design stage — scope, ACs, agent dispatch plan |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence stage — ordered work plan |
 
-## Prerequisites
+## Pre-Flight Checklist
 
-Start `_cross` early in the ALIGN workstream — ideally alongside or before PD. Subsystem charters in PD, DP, DA, and IDM all reference stakeholders that must be identified here first.
-
-## Why _cross Exists
-
-If each subsystem defines its own stakeholder list independently, the lists diverge — IDM decisions contradict inputs gathered in DP. `_cross` is the single source of truth for who is involved and who is accountable.
+- [ ] All key stakeholders identified and mapped
+- [ ] RACI matrix reviewed by sponsor
+- [ ] No cross-cutting decisions left undocumented (if a decision affects >1 subsystem, it belongs here)
+- [ ] Artifacts do not contradict upstream subsystem's scope or Effective Principles
+- [ ] Outputs ready for handoff to downstream
 
 ## Templates
 
 | Artifact | Template | Location |
 |----------|----------|----------|
-| Stakeholder map | `charter-template.md` | `../../_genesis/templates/charter-template.md` |
-| Force analysis | `force-analysis-template.md` | `../../_genesis/templates/force-analysis-template.md` |
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| ADR-NNN_*.md | `adr-template.md` | `../../_genesis/templates/adr-template.md` |
 
 ## Links
 
-- [[charter]]
-- [[project]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
 - [[workstream]]
