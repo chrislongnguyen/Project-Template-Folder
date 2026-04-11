@@ -1,60 +1,67 @@
 ---
-version: "2.4"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 2-LEARN
 sub_system: 4-IDM
+type: template
+iteration: 1
 ---
 
-# 2-LEARN / 4-IDM — Insights & Decision Making
+# 4-IDM — Insights & Decision Making | LEARN Workstream
 
-> **You are here:** `2-LEARN/4-IDM/` — Convert analytical findings into actionable recommendations that 3-PLAN can consume directly. The LEARN pipeline ends here.
+> "If IDM research skips adoption risks, insights will be delivered in formats that impress stakeholders but don't change decisions."
 
-## What Goes Here
-
-Pipeline content organized by stage: `input/` (findings from DA), `research/` (insight synthesis), `output/` (recommendations as P-pages), `specs/` (IDM Effective Principles and the final validated learning package), `archive/` (exploratory drafts).
-
-## How to Create Artifacts
-
-```
-/learn:input       # S1: Scope insight criteria (what counts as actionable?)
-/learn:research    # S2: Synthesize DA findings into recommendations — no new sources
-/learn:structure   # S3: Organize into P-pages with delivery-specific UBS/UDS analysis
-/learn:review      # S4: YOU review and approve — this gate is human-only
-/learn:spec        # S5: Agent derives IDM Effective Principles + validated learning package
-```
-
-## What's Here Now
-
-This directory is empty — pipeline content is generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`2-LEARN/3-DA/` must have validated output before starting IDM. Each recommendation here must trace to a finding in DA — no unsupported insights.
+IDM-LEARN researches insight delivery formats, adoption barriers, decision-maker context, and feedback loop design. It closes the LEARN cascade — its Effective Principles govern how 4-EXECUTE builds the delivery layer.
 
 ## Cascade Position
 
 ```
-[3-DA validated findings]  →  [4-IDM]  →  [3-PLAN]
-                                    ↓
-         Validated learning package (specs/) is what 3-PLAN consumes
+[3-DA (Data Analysis)]  ──►  [4-IDM]  ──►  [(LEARN complete → 3-PLAN)]
+                          ↑
+     Anchors on: all upstream Effective Principles (PD + DP + DA) — defines delivery
+     constraints that are real, not aspirational
 ```
 
-IDM closes the LEARN pipeline. The `specs/` output is the validated learning package that unlocks 3-PLAN.
+Receives from upstream: `2-LEARN/3-DA/specs/vana-spec.md` (analytical constraints) + all upstream Effective Principles from PD and DP.
+Produces for downstream: vana-spec.md with delivery constraints + DSBV-READY-idm.md — consumed by 3-PLAN/4-IDM to begin planning; closes the 2-LEARN cascade and unlocks 3-PLAN for all subsystems.
 
-## Pipeline Subdirs
+## Pipeline Stages
 
-| Directory | Pipeline State | What lives here |
-|-----------|---------------|-----------------|
-| `input/` | S1 — Scope | Insight criteria, `learn-input-{slug}.md` |
-| `research/` | S2 — Research | Insight synthesis working docs |
-| `output/` | S3+S4 — Structure + Review | P0–P5 recommendation pages |
-| `specs/` | S5 — Spec | `vana-spec.md`, IDM Effective Principles, validated learning package |
-| `archive/` | — | Exploratory insight drafts |
+**HARD CONSTRAINT:** No DESIGN.md, SEQUENCE.md, or VALIDATE.md in this directory.
+LEARN uses the 6-state pipeline (S1–S5), not DSBV.
+
+| Stage | Location | What happens here |
+|-------|----------|------------------|
+| **S1 — Scope** | `_cross/input/` | learn-input-{slug}.md — research scope definition |
+| **S2 — Research** | `_cross/research/{slug}/` | Deep research per topic (cited, 6-section format) |
+| **S3 — Structure** | `output/` | P0–P5 structured learning pages (`/learn:structure`) |
+| **S4 — Review** | status on P-pages in `output/` | Human review gate — approve or reject each P-page |
+| **S5 — Spec** | `specs/` | Effective Principles extracted from validated findings |
+
+## Contents
+
+| Artifact | Location | Purpose |
+|----------|----------|---------|
+| `learn-input-4-IDM.md` | `_cross/input/` | Research scope definition for this subsystem |
+| `T{n}-{topic}.md` | `_cross/research/4-IDM/` | Deep research per topic (cited, structured) |
+| `T0.P{m}-{slug}.md` | `output/` | P0–P5 structured learning pages |
+| `vana-spec.md` | `specs/` | Extracted Effective Principles — primary output |
+| `DSBV-READY-4-IDM.md` | `specs/` | Readiness package confirming 3-PLAN can begin |
+
+## Pre-Flight Checklist
+
+- [ ] `learn-input-4-IDM.md` exists and is validated (scope locked)
+- [ ] All upstream Effective Principles received (PD, DP, DA) — delivery constraints grounded in upstream realities
+- [ ] Research domains confirmed: delivery formats (dashboard, report, alert, API), adoption barriers, decision-maker cognitive load, feedback loop design, change management requirements
+- [ ] Target decision-makers researched — their context and constraints understood; adoption barriers identified (not assumed away)
+- [ ] All P0–P5 pages have `status: validated` (human-reviewed via `/learn:review`)
+- [ ] `vana-spec.md` exists with delivery constraints derived from evidence
+- [ ] `DSBV-READY-4-IDM.md` confirms 3-PLAN/4-IDM can begin; 2-LEARN cascade is closed
 
 ## Templates
 
-| Pipeline State | Template | Location |
+| Pipeline Stage | Template | Location |
 |---------------|----------|----------|
 | S1 — Scope | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
 | S2 — Research | `research-template.md` | `../../_genesis/templates/research-template.md` |
@@ -62,8 +69,6 @@ IDM closes the LEARN pipeline. The `specs/` output is the validated learning pac
 
 ## Links
 
-- [[DESIGN]]
-- [[SEQUENCE]]
-- [[VALIDATE]]
+- [[SKILL]]
 - [[methodology]]
 - [[workstream]]

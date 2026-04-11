@@ -1,58 +1,67 @@
 ---
-version: "2.4"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 2-LEARN
 sub_system: 3-DA
+type: template
+iteration: 1
 ---
 
-# 2-LEARN / 3-DA — Data Analysis
+# 3-DA — Data Analysis | LEARN Workstream
 
-> **You are here:** `2-LEARN/3-DA/` — Synthesize validated sources into structured findings: force analysis, pattern identification, and gap assessment.
+> "If DA research picks methods that fit the available data, the analysis will answer questions the data can answer — not questions the problem requires."
 
-## What Goes Here
-
-Pipeline content organized by stage: `input/` (validated inputs from DP), `research/` (synthesis working docs), `output/` (structured P-pages), `specs/` (DA Effective Principles), `archive/` (superseded analyses).
-
-## How to Create Artifacts
-
-```
-/learn:input       # S1: Scope analytical questions (methods, bias risks, validation)
-/learn:research    # S2: Synthesize findings from DP output — no new unvetted sources
-/learn:structure   # S3: Organize into P-pages with DA-specific UBS/UDS analysis
-/learn:review      # S4: YOU review and approve — this gate is human-only
-/learn:spec        # S5: Agent derives DA Effective Principles
-```
-
-## What's Here Now
-
-This directory is empty — pipeline content is generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`2-LEARN/2-DP/` must have validated output before starting DA. All analytical inputs must originate from DP's validated source set — no unvetted sources admitted at this stage.
+DA-LEARN researches analytical methods, bias risks, validation approaches, and the gap between available data and required insights. It is bounded by PD Effective Principles and the pipeline constraints from DP-LEARN.
 
 ## Cascade Position
 
 ```
-[2-DP validated output]  →  [3-DA]  →  [4-IDM]
-                                  ↑
-      DA synthesizes only what DP validated — conclusions must trace to cited sources
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
+                          ↑
+     Anchors on: PD Effective Principles + DP pipeline constraints — defines which analytical
+     methods are valid given data reality
 ```
 
-## Pipeline Subdirs
+Receives from upstream: `2-LEARN/2-DP/specs/vana-spec.md` (pipeline constraints + validated data spec) + PD Effective Principles from `2-LEARN/1-PD/specs/vana-spec.md`.
+Produces for downstream: vana-spec.md with analytical method constraints — consumed by 2-LEARN/4-IDM as delivery design bounds, and by 3-PLAN/3-DA as the DSBV-READY package that unlocks planning.
 
-| Directory | Pipeline State | What lives here |
-|-----------|---------------|-----------------|
-| `input/` | S1 — Scope | Analytical questions, `learn-input-{slug}.md` |
-| `research/` | S2 — Research | Synthesis working docs, pattern notes |
-| `output/` | S3+S4 — Structure + Review | P0–P5 pages per analytical topic |
-| `specs/` | S5 — Spec | `vana-spec.md`, DA Effective Principles |
-| `archive/` | — | Superseded analyses, exploratory drafts |
+## Pipeline Stages
+
+**HARD CONSTRAINT:** No DESIGN.md, SEQUENCE.md, or VALIDATE.md in this directory.
+LEARN uses the 6-state pipeline (S1–S5), not DSBV.
+
+| Stage | Location | What happens here |
+|-------|----------|------------------|
+| **S1 — Scope** | `_cross/input/` | learn-input-{slug}.md — research scope definition |
+| **S2 — Research** | `_cross/research/{slug}/` | Deep research per topic (cited, 6-section format) |
+| **S3 — Structure** | `output/` | P0–P5 structured learning pages (`/learn:structure`) |
+| **S4 — Review** | status on P-pages in `output/` | Human review gate — approve or reject each P-page |
+| **S5 — Spec** | `specs/` | Effective Principles extracted from validated findings |
+
+## Contents
+
+| Artifact | Location | Purpose |
+|----------|----------|---------|
+| `learn-input-3-DA.md` | `_cross/input/` | Research scope definition for this subsystem |
+| `T{n}-{topic}.md` | `_cross/research/3-DA/` | Deep research per topic (cited, structured) |
+| `T0.P{m}-{slug}.md` | `output/` | P0–P5 structured learning pages |
+| `vana-spec.md` | `specs/` | Extracted Effective Principles — primary output |
+| `DSBV-READY-3-DA.md` | `specs/` | Readiness package confirming 3-PLAN can begin |
+
+## Pre-Flight Checklist
+
+- [ ] `learn-input-3-DA.md` exists and is validated (scope locked)
+- [ ] Pipeline constraints from DP-LEARN received — analytical questions mapped to the problem (not the available data)
+- [ ] Research domains confirmed: analytical methods (descriptive/predictive/prescriptive), bias risks, statistical validation approaches, insight quality criteria, method-to-question mapping, tooling capabilities
+- [ ] Bias risks identified per method — mitigation approaches researched and documented
+- [ ] All P0–P5 pages have `status: validated` (human-reviewed via `/learn:review`)
+- [ ] `vana-spec.md` exists with analytical constraints derived from evidence
+- [ ] `DSBV-READY-3-DA.md` confirms 3-PLAN/3-DA can begin
 
 ## Templates
 
-| Pipeline State | Template | Location |
+| Pipeline Stage | Template | Location |
 |---------------|----------|----------|
 | S1 — Scope | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
 | S2 — Research | `research-template.md` | `../../_genesis/templates/research-template.md` |
@@ -60,8 +69,6 @@ This directory is empty — pipeline content is generated on-demand when you run
 
 ## Links
 
-- [[DESIGN]]
-- [[SEQUENCE]]
-- [[VALIDATE]]
+- [[SKILL]]
 - [[methodology]]
 - [[workstream]]

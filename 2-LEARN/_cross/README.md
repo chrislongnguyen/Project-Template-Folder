@@ -1,59 +1,62 @@
 ---
-version: "2.4"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 2-LEARN
 sub_system: _cross
+type: template
+iteration: 1
 ---
 
-# 2-LEARN / _cross — Pipeline Staging + Shared Infrastructure
+# _cross — Cross-Cutting | LEARN Workstream
 
-> **You are here:** `2-LEARN/_cross/` — The central pipeline staging area. Skills route through here automatically. Also holds shared templates, scripts, and references for all 4 subsystems.
+> "If the shared research infrastructure is missing or inconsistent, each subsystem reinvents its own conventions — producing research that cannot be compared, combined, or trusted as a coherent whole."
 
-## What Goes Here
+Cross-cutting LEARN artifacts support all 4 subsystem research pipelines. They cannot be owned by one subsystem — they provide shared infrastructure (learn-input files, research outputs, methodology) that all pipeline stages consume.
 
-Two roles in one directory:
+## Scope
 
-1. **Pipeline staging** — `/learn:*` skills write pipeline content here. The 6-state pipeline (input → research → output → specs) passes through `_cross/` subdirectories.
-2. **Shared infrastructure** — Templates, scripts, references, and config used by all 4 subsystems (PD, DP, DA, IDM). A standard defined here applies to everyone; do not duplicate it into subsystem dirs.
+Cross-cutting artifacts span all 4 subsystems (PD, DP, DA, IDM) within the LEARN pipeline.
+These cannot be owned by a single subsystem — they govern or support all of them.
 
-## How to Create Artifacts
+In the LEARN pipeline context, cross-cutting means: scope definitions (learn-input files) that each subsystem reads before starting S1, research files that multiple subsystems reference, and methodology standards that ensure all research meets the same citation and quality bar. Scripts that validate pipeline state across all subsystems also live here.
 
-Pipeline content is routed here automatically by skills — you do not manually place files here:
+## What _cross Contains
 
-```
-/learn:input       # Routes to _cross/input/
-/learn:research    # Routes to _cross/research/
-/learn:structure   # Routes to _cross/output/
-/learn:spec        # Routes to _cross/specs/
-```
+`_cross/` is shared infrastructure for all LEARN subsystem pipelines. It does not run its own pipeline — it hosts artifacts consumed by PD, DP, DA, and IDM research cycles.
 
-For shared infrastructure (templates, scripts), create files directly in the appropriate subdir.
+| Directory/Artifact | Purpose |
+|-------------------|---------|
+| `input/` | Staging area for all subsystem learn-input files (`learn-input-{slug}.md`) |
+| `research/{slug}/` | Deep research output per system slug — one subdirectory per active subsystem |
+| `research-methodology.md` | Shared methodology: citation rules, source evaluation, anti-hallucination standards |
+| `scripts/` | Pipeline utility scripts shared across subsystems |
 
-## What's Here Now
+## Contents
 
-This directory may contain pipeline configuration and shared templates. Pipeline content is generated on-demand.
+| Artifact | Location | Purpose |
+|----------|----------|---------|
+| `learn-input-{slug}.md` | `_cross/input/` | Research scope definition per subsystem — input to `/learn:research` |
+| `T{n}-{topic}.md` | `_cross/research/{slug}/` | Deep research files per topic (cited, structured, 6-section format) |
+| `research-methodology.md` | `_cross/` | Shared research standards — citation rules, source evaluation, anti-hallucination |
 
-## Prerequisites
+## Pre-Flight Checklist
 
-None — `_cross` infrastructure should be set up before subsystem pipeline work begins. Skills depend on the directory structure and config files being in place.
+- [ ] `learn-input-*.md` files exist for each active subsystem (PD, DP, DA, IDM)
+- [ ] Research methodology (`research-methodology.md`) exists and has been shared with all subsystem researchers
+- [ ] Research files in `_cross/research/` have `status: completed` (not partial)
+- [ ] No research file is empty or under 2000 characters
+- [ ] Methodology applied consistently across all research topics — citation format and source evaluation uniform
 
-## Directory Map
+## Templates
 
-| Directory | Role | What lives here |
-|-----------|------|-----------------|
-| `input/` | S1 staging | `learn-input-{slug}.md` files, raw captures |
-| `research/` | S2 staging | Structured research per topic, evidence files |
-| `output/` | S3+S4 staging | P0–P5 structured pages (status set by human review) |
-| `specs/` | S5 staging | VANA-SPEC + Readiness Packages |
-| `templates/` | Shared infra | Artifact templates used by all subsystems |
-| `scripts/` | Shared infra | Pipeline validation and automation scripts |
-| `references/` | Shared infra | Shared bibliography and source registry |
-| `config/` | Shared infra | Pipeline configuration files |
-| `visual/` | Post-S5 | HTML system maps from `/learn:visualize` |
+| Artifact | Template | Location |
+|----------|----------|----------|
+| learn-input-{slug}.md | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
+| T{n}-{topic}.md | `research-template.md` | `../../_genesis/templates/research-template.md` |
 
 ## Links
 
 - [[SKILL]]
-- [[standard]]
+- [[methodology]]
 - [[workstream]]
