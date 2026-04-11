@@ -1,7 +1,7 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-11
 name: ltc-clickup-planner
 description: >
   Plan and log work to ClickUp within the LTC workspace. Creates PJ Projects, PJ Workstreams (iterations),
@@ -61,7 +61,7 @@ Full system design: [system-design.md](./references/system-design.md)
 Compensate for LT-6 (no persistent memory):
 
 1. **Read MEMORY.md** — extract active project state, recent decisions, scope context.
-2. **Load field map** — read [clickup-field-map.md](./references/clickup-field-map.md) for exact custom field IDs.
+2. **Load field map** — read [field-map.md](../ltc-wms-adapters/clickup/field-map.md) for exact custom field IDs.
 3. **Query ClickUp** — search for existing items in the target scope (duplicate detection + hierarchy).
 4. **Resolve assignee** — `get_workspace_members` + client-side filter (NOT `find_member_by_name`).
 5. If target scope is ambiguous — **ask, do not assume**.
@@ -96,7 +96,7 @@ Full definitions: [protocol §0](./references/clickup-task-protocol.md)
 
 - **CREATE** → [create-flow.md](./references/create-flow.md)
 - **UPDATE** → [update-flow.md](./references/update-flow.md)
-- **BLOCKER** → See [field-map.md § PJ Blocker](./references/clickup-field-map.md)
+- **BLOCKER** → See [field-map.md § PJ Blocker](../ltc-wms-adapters/clickup/field-map.md)
 
 ---
 
@@ -177,14 +177,14 @@ When the agent encounters a blocker (or user reports one):
 3. **Execution topology diagram mandatory** in every PJ Project description. Shows parallel/sequential lanes + critical path.
 4. **Task types are mandatory.** Use `null` for Task level (NOT `task_type: 'Task'`). Correct type on every other item.
 5. **UNG naming** at Project (2-part) and Deliverable (3-part). Free text below.
-6. **VANA in custom fields**, not description. Use field IDs from [field-map](./references/clickup-field-map.md).
+6. **VANA in custom fields**, not description. Use field IDs from [field-map](../ltc-wms-adapters/clickup/field-map.md).
 7. **Hierarchy:** Documentation and Blockers are siblings of Increments (all children of Task).
 8. **1 PJ Documentation per Task.** The reference doc for that Task's subsystem.
 9. **Time estimates on every PJ Increment.** Native field, milliseconds.
 10. **Dependencies at creation time** via `clickup_add_task_dependency`.
 11. **Completion cascade.** Must Have children + Blockers must be resolved before parent Done.
 12. **Assignees resolved via `get_workspace_members` + filter (NOT `find_member_by_name`).**
-13. **Skip irrelevant fields.** Only use fields in the [field map](./references/clickup-field-map.md).
+13. **Skip irrelevant fields.** Only use fields in the [field map](../ltc-wms-adapters/clickup/field-map.md).
 14. **VANA cascade is mandatory.** Every child item traces to specific parent AC IDs.
 15. **Input/Output contracts mandatory on every item.** Dependencies follow I/O chains.
 16. **Use `description` parameter (NOT `markdown_description`).** ClickUp auto-renders markdown.
@@ -210,7 +210,7 @@ When the agent encounters a blocker (or user reports one):
 - [[DESIGN]]
 - [[VALIDATE]]
 - [[blocker]]
-- [[clickup-field-map]]
+- [[field-map]]
 - [[clickup-task-protocol]]
 - [[create-flow]]
 - [[deliverable]]
