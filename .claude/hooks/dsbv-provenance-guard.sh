@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | status: draft | last_updated: 2026-04-11
+# version: 1.3 | status: draft | last_updated: 2026-04-11
 # dsbv-provenance-guard.sh — PreToolUse hook for Write|Edit
 # P1: Auto-init gate state + enforce agent provenance for DSBV stage artifacts.
 #
@@ -90,9 +90,10 @@ STATE_DIR="${PROJECT_ROOT:-.}/.claude/state"
 GATE_STATE_SCRIPT="${PROJECT_ROOT:-.}/scripts/gate-state.sh"
 
 if [ "$WORKSTREAM" != "GOVERN" ] && [ -f "$GATE_STATE_SCRIPT" ]; then
-  # State file key includes subsystem when present (e.g. dsbv-1-ALIGN-1-PD.json)
+  # State file key includes subsystem when present (e.g. dsbv-1-ALIGN-pd.json)
   if [ -n "$SUBSYSTEM" ]; then
-    STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}-${SUBSYSTEM}.json"
+    SUB_CODE=$(display_to_code "$SUBSYSTEM")
+    STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}-${SUB_CODE:-$SUBSYSTEM}.json"
     INIT_LABEL="${WORKSTREAM}/${SUBSYSTEM}"
   else
     STATE_FILE="${STATE_DIR}/dsbv-${WORKSTREAM}.json"

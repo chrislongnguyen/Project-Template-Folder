@@ -105,8 +105,8 @@ Version labels from `_genesis/frameworks/ues-version-behaviors.md`.
 | Sub-System                          | Logic Scaffold (PD) | Concept (DP)  | Prototype (DA) | MVE (IDM)  | Leadership     |
 |-------------------------------------|---------------------|---------------|----------------|------------|----------------|
 | PD — Problem Diagnosis              | In Progress         | Pending        | Pending        | Pending    | Pending        |
-| DP — Diagnosis Pipeline             | Pending             | Pending        | Pending        | Pending    | Pending        |
-| DA — Diagnosis Analysis             | Pending             | Pending        | Pending        | Pending    | Pending        |
+| DP — Data Pipeline             | Pending             | Pending        | Pending        | Pending    | Pending        |
+| DA — Data Analytics             | Pending             | Pending        | Pending        | Pending    | Pending        |
 | IDM — Insight-Driven Management     | Pending             | Pending        | Pending        | Pending    | Pending        |
 
 > PD is at Logic Scaffold (Iteration 1). DP, DA, IDM cannot exceed PD's version — downstream inherits upstream constraint.

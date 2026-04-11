@@ -1,7 +1,7 @@
 ---
-version: "1.3"
+version: "1.4"
 status: draft
-last_updated: 2026-04-01
+last_updated: 2026-04-11
 ---
 
 # Tool Routing Rule
@@ -45,7 +45,7 @@ last_updated: 2026-04-01
 ## Agent Tool Inventory
 
 
-| Agent        | Model  | Allowed Tools                                                   | Phase             |
+| Agent        | Model  | Allowed Tools                                                   | Stage             |
 | ------------ | ------ | --------------------------------------------------------------- | ----------------- |
 | ltc-builder  | Sonnet | Read, Edit, Write, Bash, Grep                                   | Build             |
 | ltc-reviewer | Opus   | Read, Glob, Grep, Bash                                          | Validate          |

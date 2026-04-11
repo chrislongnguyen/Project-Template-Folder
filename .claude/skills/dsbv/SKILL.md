@@ -1,5 +1,5 @@
 ---
-version: "2.3"
+version: "2.4"
 status: draft
 last_updated: 2026-04-11
 name: dsbv
@@ -325,7 +325,7 @@ Action: APPROVE / REVISE / ESCALATE
 ```
 
 **Gate-specific additions:**
-- **G1 (Design):** Include alignment table (conditions vs artifacts, 0 orphans)
+- **G1 (Design):** Include alignment table (conditions vs artifacts, 0 orphans) + VANA coverage: "{pass}/{total} DESIGN.md ACs have VANA_Ref" (SOP Rule 5, CP-1 for PLAN / CP-2 for EXECUTE)
 - **G2 (Sequence):** Include dependency count and critical path length
 - **G3 (Build):** Include Generator/Critic loop summary (iterations, FAIL items fixed)
 - **G4 (Validate):** Include Aggregate Score from VALIDATE.md v2

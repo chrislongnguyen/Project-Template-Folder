@@ -1,5 +1,5 @@
 ---
-version: "1.7"
+version: "1.8"
 iteration: 1
 iteration_name: concept
 status: draft
@@ -268,7 +268,7 @@ The DSBV orchestrator classifies every human message at an active gate (G1-G4) i
 **Tier 2 confirmation template (statement, not question):**
 ```
 Understood — marking {ARTIFACT} as validated (status: validated, v{X.Y}).
-Advancing to {NEXT_PHASE}.
+Advancing to {NEXT_STAGE}.
 ```
 
 Full signal catalog with examples and decision flow: `.claude/skills/dsbv/SKILL.md` § Approval Signal Detection.

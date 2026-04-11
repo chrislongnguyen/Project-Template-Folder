@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-03-30
+version: "1.1"
+last_updated: 2026-04-11
 ---
 <!-- GOVERN workstream agent-facing copy. Human-readable version: _genesis/frameworks/agent-system.md -->
 # LTC Agent System
@@ -343,7 +343,7 @@ Lateral dependencies:
 
 When multiple agents collaborate on a DSBV flow, the following roster applies:
 
-| Agent | Model | Phase | Tools (max 7) | Scope Boundary |
+| Agent | Model | Stage | Tools (max 7) | Scope Boundary |
 |---|---|---|---|---|
 | ltc-planner | Opus | Design + Sequence | Read, Grep, WebFetch, Exa MCP, QMD MCP | Architectural judgment. No file writes to 4-EXECUTE/. |
 | ltc-builder | Sonnet | Build | Read, Edit, Write, Bash, Grep | Artifact production from approved sequences only. No design decisions. |

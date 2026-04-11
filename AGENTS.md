@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-07
+last_updated: 2026-04-11
 work_stream: 0-GOVERN
 type: agent-config
 iteration: 1
@@ -15,7 +15,7 @@ iteration: 1
 
 This project uses a 4-agent MECE architecture. All agents serve the DSBV (Design, Sequence, Build, Validate) lifecycle within the ALPEI workstream framework.
 
-| Agent | Role | Phase | Model Tier | Config |
+| Agent | Role | Stage | Model Tier | Config |
 |-------|------|-------|------------|--------|
 | **ltc-planner** | Orchestrator — designs what to build, sequences work, synthesizes outputs | Design + Sequence | High reasoning (opus) | `.claude/agents/ltc-planner.md` |
 | **ltc-builder** | Producer — writes code, creates documents, produces artifacts | Build | Fast execution (sonnet) | `.claude/agents/ltc-builder.md` |
