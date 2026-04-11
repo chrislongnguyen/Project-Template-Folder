@@ -1,5 +1,5 @@
 ---
-version: "2.3"
+version: "2.4"
 status: draft
 last_updated: 2026-04-11
 work_stream: 2-LEARN
@@ -12,7 +12,7 @@ sub_system: 3-DA
 
 ## What Goes Here
 
-Pipeline content organized by stage: `input/` (validated inputs from DP), `research/` (synthesis working docs), `output/` (structured P-pages), `specs/` (DA Effective Principles), `archive/` (superseded analyses). Also DSBV meta-artifacts governing workstream management.
+Pipeline content organized by stage: `input/` (validated inputs from DP), `research/` (synthesis working docs), `output/` (structured P-pages), `specs/` (DA Effective Principles), `archive/` (superseded analyses).
 
 ## How to Create Artifacts
 

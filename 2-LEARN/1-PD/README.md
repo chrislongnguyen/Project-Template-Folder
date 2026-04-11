@@ -1,5 +1,5 @@
 ---
-version: "2.3"
+version: "2.4"
 status: draft
 last_updated: 2026-04-11
 work_stream: 2-LEARN
@@ -12,7 +12,7 @@ sub_system: 1-PD
 
 ## What Goes Here
 
-Pipeline content organized by stage: `input/` (research scope), `research/` (evidence), `output/` (structured P-pages), `specs/` (Effective Principles), `archive/` (rejected drafts). Also DSBV meta-artifacts (DESIGN.md, SEQUENCE.md, VALIDATE.md) that govern how this workstream is managed.
+Pipeline content organized by stage: `input/` (research scope), `research/` (evidence), `output/` (structured P-pages), `specs/` (Effective Principles), `archive/` (rejected drafts).
 
 ## How to Create Artifacts
 

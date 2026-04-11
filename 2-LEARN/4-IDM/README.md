@@ -1,5 +1,5 @@
 ---
-version: "2.3"
+version: "2.4"
 status: draft
 last_updated: 2026-04-11
 work_stream: 2-LEARN
@@ -12,7 +12,7 @@ sub_system: 4-IDM
 
 ## What Goes Here
 
-Pipeline content organized by stage: `input/` (findings from DA), `research/` (insight synthesis), `output/` (recommendations as P-pages), `specs/` (IDM Effective Principles and the final validated learning package), `archive/` (exploratory drafts). Also DSBV meta-artifacts governing workstream management.
+Pipeline content organized by stage: `input/` (findings from DA), `research/` (insight synthesis), `output/` (recommendations as P-pages), `specs/` (IDM Effective Principles and the final validated learning package), `archive/` (exploratory drafts).
 
 ## How to Create Artifacts
 
