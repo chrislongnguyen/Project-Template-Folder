@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.2 | status: draft | last_updated: 2026-04-11
+# version: 1.4 | status: draft | last_updated: 2026-04-11
 # pre-flight.sh — Implements the 9 CLAUDE.md pre-flight checks
 # Check legend: C1=Workstream C2=Alignment C3=Risks C4=Drivers C5=Templates C6=Learning C7=Version C8=Execute C9=Document
 # Usage: ./scripts/pre-flight.sh <workstream>
@@ -43,11 +43,11 @@ else
   check "C1" "Workstream directory exists" "FAIL" "$WORKSTREAM/ not found"
 fi
 
-# Criterion 2: ALIGNMENT — BLUEPRINT.md + ALIGN subsystem dirs
-if [[ -f "_genesis/BLUEPRINT.md" ]]; then
-  check "C2a" "BLUEPRINT.md present" "PASS"
+# Criterion 2: ALIGNMENT — alpei-blueprint.md + ALIGN subsystem dirs
+if [[ -f "_genesis/alpei-blueprint.md" ]]; then
+  check "C2a" "alpei-blueprint.md present" "PASS"
 else
-  check "C2a" "BLUEPRINT.md present" "WARN" "_genesis/BLUEPRINT.md not found"
+  check "C2a" "alpei-blueprint.md present" "WARN" "_genesis/alpei-blueprint.md not found"
 fi
 # Charters are per-subsystem; check 1-ALIGN/1-PD as canary for subsystem scaffold
 CHARTER_DIR="1-ALIGN/1-PD"
@@ -101,12 +101,19 @@ else
   check "C7" "Version registry present" "WARN" "$REGISTRY not found"
 fi
 
-# Criterion 8: EXECUTE — DESIGN.md prerequisite for Build
-DESIGN_FILE="$WORKSTREAM/DESIGN.md"
-if [[ -f "$DESIGN_FILE" ]]; then
-  check "C8" "DESIGN.md exists for $WORKSTREAM" "PASS"
+# Criterion 8: EXECUTE — DESIGN.md prerequisite for Build (subsystem-first layout)
+# DESIGN.md lives at {WORKSTREAM}/{subsystem}/DESIGN.md — never at workstream root
+C8_FOUND=""
+for sub in 1-PD 2-DP 3-DA 4-IDM _cross; do
+  if [[ -f "$WORKSTREAM/$sub/DESIGN.md" ]]; then
+    C8_FOUND="$WORKSTREAM/$sub/DESIGN.md"
+    break
+  fi
+done
+if [[ -n "$C8_FOUND" ]]; then
+  check "C8" "DESIGN.md exists in subsystem dir" "PASS" "$C8_FOUND (and possibly others)"
 else
-  check "C8" "DESIGN.md exists for $WORKSTREAM" "WARN" "No DESIGN.md — needed before Build stage"
+  check "C8" "DESIGN.md exists in subsystem dir" "WARN" "No DESIGN.md found in any subsystem dir — run /dsbv design to create one before Build stage"
 fi
 
 # Criterion 9: DOCUMENT — cross-cutting dir in ALIGN (decisions go in subsystem dirs)

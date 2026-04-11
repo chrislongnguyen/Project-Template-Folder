@@ -283,6 +283,9 @@ is_operational_file() {
         *reviews/*|*review*)                  return 0 ;;
         *risks/*|*risk*)                      return 0 ;;
         *drivers/*|*driver*)                  return 0 ;;
+        *UBS_REGISTER*|*ubs*)                 return 0 ;;
+        *UDS_REGISTER*|*uds*)                 return 0 ;;
+        *okr*|*OKR*)                          return 0 ;;
     esac
     return 1
 }

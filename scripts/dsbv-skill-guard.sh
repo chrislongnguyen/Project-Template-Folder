@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.5 | status: draft | last_updated: 2026-04-11
+# version: 1.6 | status: draft | last_updated: 2026-04-11
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -121,6 +121,7 @@ case "$RELATIVE_PATH" in
     skills/*) exit 0 ;;                             # Skills are operational tools
     risks/*|*risk*) exit 0 ;;                       # Risk registers are ongoing operational
     drivers/*|*driver*) exit 0 ;;                   # Driver registers are ongoing operational
+    *okr*) exit 0 ;;                                # OKR registers are ongoing operational
     */README.md|README.md) exit 0 ;;                # READMEs are structural, not DSBV artifacts
     _cross/*) exit 0 ;;                             # Cross-cutting artifacts are operational
     charter/*) exit 0 ;;                            # Charter working dir is navigational

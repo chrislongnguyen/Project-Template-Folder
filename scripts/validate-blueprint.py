@@ -8,16 +8,22 @@ Checks:
 3. Filenames follow {sub}-{name}.md pattern
 4. No files remain in old category dirs
 5. No orphan .gitkeep in populated dirs
-6. DSBV stage files exist per DSBV workstream (not LEARN)
+6. DSBV stage files exist per DSBV workstream (not LEARN) — skipped in template mode
 7. No DSBV files in 2-LEARN/ (Mode B routing)
 8. No DSBV files in _genesis/ outside templates/ (Mode D routing)
 
 Usage:
-    python scripts/validate-blueprint.py            # full check
-    python scripts/validate-blueprint.py --staged   # check staged files only
-    python scripts/validate-blueprint.py --quiet    # exit code only
+    python scripts/validate-blueprint.py                  # full check (auto-detects template mode)
+    python scripts/validate-blueprint.py --template-mode  # force template mode
+    python scripts/validate-blueprint.py --staged         # check staged files only
+    python scripts/validate-blueprint.py --quiet          # exit code only
+
+Template mode:
+    Activated by --template-mode flag OR when zero DESIGN.md files exist anywhere under
+    1-ALIGN through 5-IMPROVE. In template mode, Check 6 (DSBV stage file existence) is
+    skipped — DSBV artifacts are generated on-demand via /dsbv, not pre-scaffolded.
 """
-# version: 1.2 | status: draft | last_updated: 2026-04-11
+# version: 1.3 | status: draft | last_updated: 2026-04-11
 
 import os
 import re
@@ -27,6 +33,7 @@ from pathlib import Path
 
 QUIET = "--quiet" in sys.argv
 STAGED_ONLY = "--staged" in sys.argv
+FORCE_TEMPLATE_MODE = "--template-mode" in sys.argv
 
 PASS = 0
 WARN = 0
@@ -211,15 +218,38 @@ def validate_gitkeep():
                 )
 
 
+def is_template_mode():
+    """Return True if template mode should be active.
+
+    Template mode = --template-mode flag OR zero DESIGN.md files found anywhere
+    under the 5 ALPEI workstream directories. In template mode DSBV artifact
+    existence checks are skipped (they are generated on-demand via /dsbv).
+    """
+    if FORCE_TEMPLATE_MODE:
+        return True
+    for ws in WORKSTREAMS:
+        for root, dirs, files in os.walk(ws):
+            if "DESIGN.md" in files:
+                return False
+    return True
+
+
 def validate_dsbv():
     """Check DSBV stage files exist at subsystem level per DD-1.
 
     DD-1: canonical path is {W}-{WS}/{S}-{SUB}/DESIGN.md — subsystem-level.
     DD-4: _cross/ missing DSBV files = WARN not FAIL.
     WS-level DSBV files ({W}-{WS}/DESIGN.md) are NOT expected here.
+
+    Skipped entirely in template mode (generate DSBV artifacts via /dsbv).
     """
     if not QUIET:
         print("\n=== CHECK 5: DSBV stage files (subsystem-level per DD-1) ===\n")
+
+    if is_template_mode():
+        if not QUIET:
+            print("  Template mode: DSBV artifact checks skipped (generate via /dsbv)")
+        return
 
     dsbv_ws = [ws for ws in WORKSTREAMS if ws != "2-LEARN"]
     for ws in dsbv_ws:
