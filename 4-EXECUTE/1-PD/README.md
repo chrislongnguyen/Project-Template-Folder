@@ -1,59 +1,61 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 4-EXECUTE
 sub_system: 1-PD
+type: template
+iteration: 1
 ---
 
-# 4-EXECUTE / 1-PD — Problem Diagnosis
+# 1-PD — Problem Diagnosis | EXECUTE Workstream
 
-> **You are here:** `4-EXECUTE/1-PD/` — Confirm build scope and establish execution principles. PD's DESIGN.md must be approved before any DP, DA, or IDM build work begins.
+> "If PD is built without tests, the diagnosis system will produce results that look correct but cannot be verified — and errors will compound through DP, DA, and IDM."
 
-## What Goes Here
-
-Execution artifacts scoped to Problem Diagnosis: DSBV process files (DESIGN.md, SEQUENCE.md, VALIDATE.md), `docs/` (subsystem reference documentation), and `config/` (PD-scoped configuration). The DESIGN.md here is the approved build contract that all downstream subsystems inherit.
-
-## How to Create Artifacts
-
-```
-/dsbv design execute pd      # Step 1: Confirm sprint scope and prerequisites
-/dsbv sequence execute pd    # Step 2: Technical design for each PD deliverable
-/dsbv build execute pd       # Step 3: Produce the artifacts
-/dsbv validate execute pd    # Step 4: Verify against VANA acceptance criteria
-```
-
-## What's Here Now
-
-This directory is empty — artifacts are generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`3-PLAN/4-IDM/` must have an approved roadmap (the build contract). Confirm prerequisites: inputs available, tools accessible, environment configured — before any build work begins.
+PD-EXECUTE builds the problem-diagnosis system against the pd-architecture.md contract from 3-PLAN. Every build decision must trace to an acceptance criterion in DESIGN.md, which traces to a VANA outcome, which traces to a PD Effective Principle.
 
 ## Cascade Position
 
 ```
-[3-PLAN approved package]  →  [1-PD]  →  [2-DP]
-                                   ↓
-     PD's DESIGN.md is the scope boundary all downstream subsystems build within
+[(workstream-level inputs)]  ──►  [1-PD]  ──►  [2-DP (Data Pipeline)]
 ```
 
-**GATE:** No DP, DA, or IDM build work starts until PD's DESIGN.md is approved. This is enforced by the `dsbv-skill-guard.sh` hook.
+Receives from upstream: 3-PLAN/1-PD → pd-architecture.md (build contract); DESIGN.md ACs.
+Produces for downstream: validated PD system + tested interfaces that DP integrates with — consumed by 2-DP (Data Pipeline) as hard integration contracts; 5-IMPROVE/1-PD → artifacts to measure.
+
+## Contents
+
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| DESIGN.md | `DESIGN.md` | DSBV Design — ACs mapped to VANA outcomes, agent dispatch plan |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence stage — ordered work plan |
+| VALIDATE.md | `VALIDATE.md` | DSBV Validate stage — review all subsystem ACs before advancing to next subsystem |
+| src/ | `src/` | PD implementation code — diagnosis logic, data models, interfaces |
+| tests/ | `tests/` | PD test suite — unit, integration, and acceptance tests |
+| docs/ | `docs/` | PD documentation — API docs, operational guides, architecture notes |
+| pd-test-plan.md | `pd-test-plan.md` | Test strategy — coverage targets, test types, pass/fail criteria |
+
+## Pre-Flight Checklist
+
+- [ ] pd-architecture.md received and DESIGN.md ACs written against it
+- [ ] Test environment set up — no external dependencies unconfigured
+- [ ] All ACs are testable — not subjective or unmeasurable
+- [ ] No secrets hardcoded — environment variables confirmed
+- [ ] Artifacts do not contradict upstream subsystem's scope or Effective Principles
+- [ ] Outputs ready for handoff to downstream
 
 ## Templates
 
 | Artifact | Template | Location |
 |----------|----------|----------|
-| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
-| Sequence plan | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
-| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
-| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| pd-test-plan.md | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
-- [[deliverable]]
 - [[workstream]]

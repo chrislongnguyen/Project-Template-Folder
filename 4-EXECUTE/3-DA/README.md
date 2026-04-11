@@ -1,55 +1,61 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 4-EXECUTE
 sub_system: 3-DA
+type: template
+iteration: 1
 ---
 
-# 4-EXECUTE / 3-DA — Data Analysis
+# 3-DA — Data Analysis | EXECUTE Workstream
 
-> **You are here:** `4-EXECUTE/3-DA/` — Run analytical logic against pipeline outputs. All analysis must be reproducible, tested, and traceable to DP inputs.
+> "Analysis code that produces a result is not analysis code that produces the right result — validate the method, not just the execution."
 
-## What Goes Here
-
-Execution artifacts scoped to Data Analysis: `src/` (analytical modules — models, metrics, aggregations), `notebooks/` (reproducible analyses), `tests/` (result validation — expected output ranges, regression checks), `config/` (model parameters, threshold definitions), `docs/` (methodology docs, metric definitions). Also DSBV process files.
-
-## How to Create Artifacts
-
-```
-/dsbv design execute da      # Step 1: Technical design for analytical components
-/dsbv sequence execute da    # Step 2: Sequence analysis build (accuracy before scale)
-/dsbv build execute da       # Step 3: Produce source code, notebooks, tests
-/dsbv validate execute da    # Step 4: All results validated before handoff to IDM
-```
-
-## What's Here Now
-
-This directory is empty — artifacts are generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`4-EXECUTE/2-DP/` must have passing contract tests before DA build begins. All analytical inputs must originate from `4-EXECUTE/2-DP/src/` or `4-EXECUTE/2-DP/config/` — no direct data access from DA.
+DA-EXECUTE implements the analytical methods approved in da-architecture.md against the validated pipeline output from DP-EXECUTE. Each method must produce verifiable results that trace to problem questions from pd-charter.md.
 
 ## Cascade Position
 
 ```
-[2-DP validated pipeline outputs]  →  [3-DA]  →  [4-IDM]
-                                            ↑
-              Every metric in src/ must have a corresponding test in tests/
+[2-DP (Data Pipeline)]  ──►  [3-DA]  ──►  [4-IDM (Insights & Decision Making)]
 ```
+
+Receives from upstream: 4-EXECUTE/2-DP → validated pipeline + test data; 3-PLAN/3-DA → da-architecture.md.
+Produces for downstream: validated analytical outputs in agreed format — consumed by 4-IDM (Insights & Decision Making) as the source truth for all delivery artifacts; 5-IMPROVE/3-DA.
+
+## Contents
+
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| DESIGN.md | `DESIGN.md` | DSBV Design — ACs for analytical correctness |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence stage — ordered work plan |
+| VALIDATE.md | `VALIDATE.md` | DSBV Validate stage — review all subsystem ACs before advancing to next subsystem |
+| src/ | `src/` | Analysis code — statistical methods, ML models, aggregation logic |
+| tests/ | `tests/` | Analysis test suite — statistical validation, bias tests, regression tests |
+| notebooks/ | `notebooks/` | Exploratory analysis and method validation notebooks |
+| da-test-plan.md | `da-test-plan.md` | Test strategy — method validation criteria, bias test coverage |
+
+## Pre-Flight Checklist
+
+- [ ] DP pipeline validated and test data received
+- [ ] Each analytical method traced to a problem question in pd-charter.md
+- [ ] Bias tests written and passing
+- [ ] Analytical outputs in format agreed by idm-architecture.md
+- [ ] Artifacts do not contradict upstream subsystem's scope or Effective Principles
+- [ ] Outputs ready for handoff to downstream
 
 ## Templates
 
 | Artifact | Template | Location |
 |----------|----------|----------|
-| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
-| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
-| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| da-test-plan.md | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
 
 ## Links
 
-- [[documentation]]
-- [[methodology]]
-- [[schema]]
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
 - [[workstream]]

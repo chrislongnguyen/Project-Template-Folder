@@ -1,55 +1,61 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 work_stream: 4-EXECUTE
 sub_system: 2-DP
+type: template
+iteration: 1
 ---
 
-# 4-EXECUTE / 2-DP — Data Pipeline
+# 2-DP — Data Pipeline | EXECUTE Workstream
 
-> **You are here:** `4-EXECUTE/2-DP/` — Build the ingestion and transformation layer. Source connectors, cleaning rules, and schema contracts that deliver validated inputs to DA.
+> "A pipeline that runs without failing is not the same as a pipeline that produces correct data — test the output, not just the process."
 
-## What Goes Here
-
-Execution artifacts scoped to the Data Pipeline: `src/` (pipeline source code — connectors, loaders, transformations), `notebooks/` (exploratory work and schema discovery), `tests/` (contract tests verifying schema, completeness, freshness), `config/` (data source definitions), `docs/` (data dictionary, pipeline diagram). Also DSBV process files.
-
-## How to Create Artifacts
-
-```
-/dsbv design execute dp      # Step 1: Technical design for pipeline components
-/dsbv sequence execute dp    # Step 2: Sequence pipeline build (safety before throughput)
-/dsbv build execute dp       # Step 3: Produce source code, tests, config
-/dsbv validate execute dp    # Step 4: All contract tests pass before handoff to DA
-```
-
-## What's Here Now
-
-This directory is empty — artifacts are generated on-demand when you run the commands above.
-
-## Prerequisites
-
-`4-EXECUTE/1-PD/DESIGN.md` must be approved before DP build work begins. All data sources in `config/` must be approved in PD's scope boundary.
+DP-EXECUTE builds the data pipeline against dp-architecture.md. The pipeline must be tested at every stage boundary (ingestion quality, transformation correctness, output quality) before DA can integrate against it.
 
 ## Cascade Position
 
 ```
-[1-PD DESIGN.md scope boundary]  →  [2-DP]  →  [3-DA]
-                                          ↑
-              DA cannot run until DP outputs pass contract tests
+[1-PD (Problem Diagnosis)]  ──►  [2-DP]  ──►  [3-DA (Data Analysis)]
 ```
+
+Receives from upstream: 4-EXECUTE/1-PD → validated PD system (defines what data the pipeline must support); 3-PLAN/2-DP → dp-architecture.md.
+Produces for downstream: validated pipeline with tested interfaces + test data for DA integration — consumed by 3-DA (Data Analysis) as the authoritative data source for all analytical methods.
+
+## Contents
+
+| Artifact | File Pattern | Purpose |
+|----------|-------------|---------|
+| DESIGN.md | `DESIGN.md` | DSBV Design — ACs for pipeline correctness and quality |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence stage — ordered work plan |
+| VALIDATE.md | `VALIDATE.md` | DSBV Validate stage — review all subsystem ACs before advancing to next subsystem |
+| src/ | `src/` | Pipeline code — ingestion connectors, transformation logic, quality validators |
+| tests/ | `tests/` | Pipeline test suite — data quality tests, transformation unit tests, integration tests |
+| config/ | `config/` | Pipeline configuration — source credentials structure, environment variables |
+| pipeline-test-plan.md | `pipeline-test-plan.md` | Test strategy — quality thresholds, test data management, rollback procedure |
+
+## Pre-Flight Checklist
+
+- [ ] PD system validated — data requirements confirmed
+- [ ] Test data set available — representative of production range
+- [ ] Data quality thresholds from dp-architecture.md encoded in tests
+- [ ] Pipeline can be run idempotently — re-runs produce same output
+- [ ] Artifacts do not contradict upstream subsystem's scope or Effective Principles
+- [ ] Outputs ready for handoff to downstream
 
 ## Templates
 
 | Artifact | Template | Location |
 |----------|----------|----------|
-| Design spec | `design-template.md` | `../../_genesis/templates/design-template.md` |
-| Test plan | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
-| Review | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| pipeline-test-plan.md | `test-plan-template.md` | `../../_genesis/templates/test-plan-template.md` |
 
 ## Links
 
 - [[DESIGN]]
 - [[SEQUENCE]]
-- [[schema]]
+- [[VALIDATE]]
 - [[workstream]]
