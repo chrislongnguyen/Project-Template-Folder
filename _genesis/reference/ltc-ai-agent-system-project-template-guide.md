@@ -38,8 +38,8 @@ When you join a project that uses this template:
 | Step | Action | Where |
 |------|--------|-------|
 | 1 | Read the agent rules | `CLAUDE.md` (or `GEMINI.md` for AntiGravity) |
-| 2 | Understand the project purpose | `1-ALIGN/charter/` |
-| 3 | Check what can go wrong | `3-PLAN/risks/UBS_REGISTER.md` |
+| 2 | Understand the project purpose | `1-ALIGN/1-PD/` |
+| 3 | Check what can go wrong | `3-PLAN/_cross/UBS_REGISTER.md` |
 | 4 | See where the project is | Run `/dsbv status` in Claude Code |
 | 5 | Start producing | Every artifact goes through DSBV (see §5) |
 
@@ -318,8 +318,8 @@ Each layer builds on the one before. Don't create a framework that contradicts p
    ```
 2. Configure `.claude/settings.json` — **do this first**, it's your safety net
 3. Edit `CLAUDE.md` — replace placeholders with your project details
-4. Write the charter: `1-ALIGN/charter/`
-5. Identify risks: `3-PLAN/risks/UBS_REGISTER.md`
+4. Write the charter: `1-ALIGN/1-PD/`
+5. Identify risks: `3-PLAN/_cross/UBS_REGISTER.md`
 6. Start DSBV: `/dsbv design align`
 
 ### Using the DSBV Process
@@ -360,8 +360,8 @@ All outputs land in `2-LEARN/`. If you stop mid-pipeline, the outputs already sa
 | DSBV process | `_genesis/templates/dsbv-process.md` |
 | EOP governance | `_genesis/reference/ltc-eop-gov.md` |
 | Any skill | `.claude/skills/{category}/{skill-name}/SKILL.md` |
-| Project charter | `1-ALIGN/charter/` |
-| Risk register | `3-PLAN/risks/UBS_REGISTER.md` |
+| Project charter | `1-ALIGN/1-PD/` |
+| Risk register | `3-PLAN/_cross/UBS_REGISTER.md` |
 | Changelog | `5-IMPROVE/changelog/CHANGELOG.md` |
 | This guide | `_genesis/reference/ltc-ai-agent-system-project-template-guide.md` |
 
@@ -434,9 +434,9 @@ WORKSTREAM_MAP:
 
 ROUTING_RULES:
   - "research notes"    → 2-LEARN/research/
-  - "decision record"   → 1-ALIGN/decisions/
-  - "risk identified"   → 3-PLAN/risks/
-  - "driver identified" → 3-PLAN/drivers/
+  - "decision record"   → 1-ALIGN/_cross/
+  - "risk identified"   → 3-PLAN/_cross/
+  - "driver identified" → 3-PLAN/_cross/
   - "source code"       → 4-EXECUTE/src/
   - "test suite"        → 4-EXECUTE/tests/
   - "retrospective"     → 5-IMPROVE/retrospectives/

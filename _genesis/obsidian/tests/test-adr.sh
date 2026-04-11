@@ -2,7 +2,7 @@
 # Test: ADR-002 validation (A1) — AC-12..AC-15
 set -euo pipefail
 PROJ="$(cd "$(dirname "$0")/../../.." && pwd)"
-ADR="$PROJ/1-ALIGN/decisions/ADR-002-obsidian-cli.md"
+ADR="$PROJ/1-ALIGN/_cross/ADR-002-obsidian-cli.md"
 PASS=0; FAIL=0; TOTAL=4
 
 check() { if eval "$2" >/dev/null 2>&1; then echo "  PASS: $1"; PASS=$((PASS+1)); else echo "  FAIL: $1"; FAIL=$((FAIL+1)); fi; }

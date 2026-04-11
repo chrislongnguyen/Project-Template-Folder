@@ -224,7 +224,7 @@ Produces for downstream: [specific artifact names] — consumed by [next SS] as 
 ## 5. Type C — Directory README
 
 Use for: any named directory that is not a workstream root or subsystem root.
-Examples: `_genesis/brand/`, `_genesis/frameworks/`, `3-PLAN/risks/`, `1-ALIGN/_cross/`
+Examples: `_genesis/brand/`, `_genesis/frameworks/`, `3-PLAN/_cross/`, `1-ALIGN/_cross/`
 
 ```markdown
 ---

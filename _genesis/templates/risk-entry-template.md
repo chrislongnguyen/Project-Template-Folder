@@ -8,9 +8,9 @@ stage: build
 sub_system: 
 ---
 # RISK ENTRY TEMPLATE
-> One entry per UBS blocker. File in `3-PLAN/risks/` and reference from `UBS_REGISTER.md`.
+> One entry per UBS blocker. File in `3-PLAN/_cross/` and reference from `UBS_REGISTER.md`.
 > See `_genesis/frameworks/ltc-ubs-uds-framework.md` for analysis methodology.
-> Full UBS register template: `3-PLAN/risks/UBS_REGISTER.md`
+> Full UBS register template: `3-PLAN/_cross/UBS_REGISTER.md`
 
 ## Risk Identity
 

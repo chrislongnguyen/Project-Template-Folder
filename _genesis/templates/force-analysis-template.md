@@ -70,9 +70,9 @@ _[e.g., "Adopt a multi-agent DSBV workflow for all LTC projects."]_
 
 | Entry type | Destination |
 |------------|-------------|
-| Restraining forces (UBS) | `3-PLAN/risks/UBS_REGISTER.md` |
-| Driving forces (UDS) | `3-PLAN/drivers/UDS_REGISTER.md` |
-| Key findings | `1-ALIGN/charter/CHARTER.md` §Design Principles |
+| Restraining forces (UBS) | `3-PLAN/_cross/UBS_REGISTER.md` |
+| Driving forces (UDS) | `3-PLAN/_cross/UDS_REGISTER.md` |
+| Key findings | `1-ALIGN/1-PD/pd-charter.md` §Design Principles |
 
 ## Links
 

@@ -148,7 +148,7 @@ CONFLICTS: none | <list>
 Before starting any DESIGN.md draft:
 - [ ] Charter loaded and EO identified
 - [ ] Explorer research loaded (if applicable)
-- [ ] Prior decisions checked (1-ALIGN/decisions/)
+- [ ] Prior decisions checked (1-ALIGN/_cross/)
 - [ ] Design template loaded
 - [ ] Workstream identified
 - [ ] Upstream dependency met (ALPEI chain-of-custody)

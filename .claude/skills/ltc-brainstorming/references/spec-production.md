@@ -51,7 +51,7 @@ Runs cross-section consistency check:
 **Step 5: Run MECE validator script**
 
 ```bash
-.claude/skills/ltc-brainstorming/scripts/mece-validator.sh 3-PLAN/architecture/specs/<spec-file>.md
+.claude/skills/ltc-brainstorming/scripts/mece-validator.sh 3-PLAN/{N}-{SUB}/specs/<spec-file>.md
 ```
 
 - Every AC in §2-§5 appears exactly once in AC-TEST-MAP

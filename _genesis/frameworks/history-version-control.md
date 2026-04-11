@@ -187,7 +187,7 @@ When EXECUTE produces multiple configuration variants (CF1, CF2, CF3), manage th
 
 Every decision must be traceable in the repo, not lost in chat sessions.
 
-- **ADRs** (Architecture Decision Records) go in `1-ALIGN/decisions/ADR-NNN-title.md`
+- **ADRs** (Architecture Decision Records) go in `1-ALIGN/_cross/ADR-NNN-title.md`
 - **Session summaries** from agent conversations are committed as artifacts, not discarded.
 - **Rejected alternatives** are documented alongside chosen approaches — future operators need to know WHY, not just WHAT.
 - **Force analysis** (UBS/UDS) that informed a decision is referenced in the ADR.

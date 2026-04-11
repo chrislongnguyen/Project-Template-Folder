@@ -13,7 +13,7 @@ When reading or writing to any `memory/MEMORY.md` file, preserve this exact 3-se
 ## Required Sections (in order)
 
 1. **## Agent Instructions** — Meta-rules governing how this file is maintained. NEVER delete, merge, rewrite, or consolidate this section. It is structural, not content.
-2. **## Briefing Card** — Quick-load project context. May be updated with current facts but must retain these fields: Identity, Subject, EO, Current state (with absolute date), Charter (path to authoritative project definition, e.g. `1-ALIGN/charter/`), WMS, Active work.
+2. **## Briefing Card** — Quick-load project context. May be updated with current facts but must retain these fields: Identity, Subject, EO, Current state (with absolute date), Charter (path to authoritative project definition, e.g. `1-ALIGN/1-PD/`), WMS, Active work.
 3. **## Topic Index** — Pointer list to topic files. May add/remove entries but must remain a flat list of `- [filename](filename) — description` entries.
 
 ## Rules for Consolidation

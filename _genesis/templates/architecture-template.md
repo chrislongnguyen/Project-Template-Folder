@@ -61,7 +61,7 @@ _[Describe the architecture here.]_
 
 ## UBS Mitigation References
 
-> Architecture must reference UBS mitigations from `3-PLAN/risks/UBS_REGISTER.md`.
+> Architecture must reference UBS mitigations from `3-PLAN/_cross/UBS_REGISTER.md`.
 
 | UBS Entry | Mitigation in Architecture | Register Ref |
 |-----------|---------------------------|-------------|

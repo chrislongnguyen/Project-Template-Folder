@@ -145,7 +145,7 @@ Changes you will notice when using skills you already know:
 | Tool routing rules | `rules/tool-routing.md` |
 | Multi-agent build pattern | `.claude/skills/dsbv/references/multi-agent-build.md` |
 | EP Registry (includes EP-11, EP-12, EP-13) | `_genesis/reference/ltc-effective-agent-principles-registry.md` |
-| ADR-002 (architecture decision record for this design) | `1-ALIGN/decisions/ADR-002_multi-agent-architecture.md` |
+| ADR-002 (architecture decision record for this design) | `1-ALIGN/_cross/ADR-002_multi-agent-architecture.md` |
 | H-test results (evaluation evidence) | `5-IMPROVE/metrics/multi-agent-eval/h-test-results.md` |
 | Hook scripts | `.claude/hooks/verify-deliverables.sh`, `.claude/hooks/save-context-state.sh`, `.claude/hooks/resume-check.sh` |
 

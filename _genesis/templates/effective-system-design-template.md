@@ -334,7 +334,7 @@ What depth layers does this unlock? -->
 |--------|----------|------|
 | Validated Effective Principles | PLAN workstream (architecture, risk registers) | <!-- TODO: 3-PLAN/{subsystem}/ --> |
 | VANA Requirements (Phase 3) | EXECUTE workstream (build specs) | <!-- TODO: 4-EXECUTE/{subsystem}/ --> |
-| UBS/UDS Analysis | PLAN risk/driver registers | `3-PLAN/risks/UBS_REGISTER.md`, `3-PLAN/drivers/UDS_REGISTER.md` |
+| UBS/UDS Analysis | PLAN risk/driver registers | `3-PLAN/_cross/UBS_REGISTER.md`, `3-PLAN/_cross/UDS_REGISTER.md` |
 | EOP Steps | EXECUTE task breakdown | <!-- TODO: 4-EXECUTE/{subsystem}/ --> |
 | Subsystem boundary (INPUT/OUTPUT) | Adjacent subsystem ESDs | <!-- TODO: Path to downstream subsystem ESD --> |
 

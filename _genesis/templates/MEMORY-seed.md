@@ -19,7 +19,7 @@ This memory uses a tiered design. Briefing Card = always-loaded. Topic Index = o
 **EO:** {EXPECTED_OUTCOME}
 
 **Current state ({DATE}):** Project memory initialized. No sessions recorded yet.
-**Charter:** `1-ALIGN/charter/`
+**Charter:** `1-ALIGN/1-PD/`
 **WMS:** Notion is authoritative. ClickUp is secondary.
 **Active work:** Initial setup — run `/resume` at the start of each session to load context.
 

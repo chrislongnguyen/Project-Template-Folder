@@ -56,7 +56,7 @@ last_updated: 2026-03-30
 
 ## Impact on Project
 - **Requirements affected:** [REQ-XXX in 1-ALIGN/]
-- **Risks affected:** [UBS-XXX in 3-PLAN/risks/]
+- **Risks affected:** [UBS-XXX in 3-PLAN/_cross/]
 - **Architecture affected:** [ADR needed? Y/N]
 
 ---

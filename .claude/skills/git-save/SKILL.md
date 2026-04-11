@@ -35,7 +35,7 @@ Output a classification table for EVERY changed file before staging anything:
 | File | Type | Scope | Note |
 |------|------|-------|------|
 | .claude/rules/git-conventions.md | chore | rules | new always-on rule |
-| 1-ALIGN/charter/CHARTER.md       | feat  | align | v1.2, bump required |
+| 1-ALIGN/1-PD/pd-charter.md       | feat  | align | v1.2, bump required |
 ```
 
 **Types:** `feat` | `fix` | `refactor` | `docs` | `chore` | `test` | `cleanup`

@@ -1,5 +1,5 @@
 <%*
-// LTC Templater — Charter (1-ALIGN/charter/)
+// LTC Templater — Charter (1-ALIGN/)
 // Complete time: <1 minute. Only sub_system and iteration require input.
 -%>
 ---

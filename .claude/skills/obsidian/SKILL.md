@@ -124,7 +124,7 @@ There is no single graph-traversal command. Build dependency graphs by chaining:
 
 ```
 # Step 1: find what links TO a note
-obsidian backlinks path="3-PLAN/risks/UBS_REGISTER.md"
+obsidian backlinks path="3-PLAN/_cross/UBS_REGISTER.md"
 # → returns list of notes that reference UBS_REGISTER
 
 # Step 2: for each result, find what that note links OUT TO

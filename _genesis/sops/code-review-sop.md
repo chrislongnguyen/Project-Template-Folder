@@ -9,8 +9,8 @@ owner: ""
 ---
 
 ## Before Reviewing
-- [ ] Read the linked requirement in `1-ALIGN/charter/REQUIREMENTS.md`
-- [ ] Read any linked risks in `3-PLAN/risks/UBS_REGISTER.md`
+- [ ] Read the linked requirement in `1-ALIGN/1-PD/REQUIREMENTS.md`
+- [ ] Read any linked risks in `3-PLAN/_cross/UBS_REGISTER.md`
 
 ## Sustainability Check
 - [ ] Error handling is comprehensive (no silent failures)

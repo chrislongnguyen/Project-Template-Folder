@@ -132,8 +132,8 @@ Common mappings:
 
 | Old location | New location | Why |
 |---|---|---|
-| `docs/design/` | `1-ALIGN/charter/` or `3-PLAN/architecture/` | Design docs are either alignment (charter) or planning (architecture) |
-| `docs/adr/` | `1-ALIGN/decisions/` | ADRs live in ALIGN |
+| `docs/design/` | `1-ALIGN/1-PD/` or `3-PLAN/{N}-{SUB}/` | Design docs are either alignment (charter) or planning (architecture) |
+| `docs/adr/` | `1-ALIGN/_cross/` | ADRs live in ALIGN |
 | `research/` | `2-LEARN/research/` | Research is LEARN workstream |
 | `_shared/` | `_genesis/` | Shared resources renamed |
 | `src/`, `lib/` | `4-EXECUTE/src/` | Code stays in EXECUTE |
@@ -239,7 +239,7 @@ Blueprint is bedrock philosophy (Iteration 0–Iteration 4), not iteration-scope
 | `ALPEI_DSBV_PROCESS_MAP_P3.md` | `alpei-dsbv-process-map-p3.md` |
 | `ALPEI_DSBV_PROCESS_MAP_P4.md` | `alpei-dsbv-process-map-p4.md` |
 
-All references to old names have been updated across: `.claude/rules/`, `.claude/skills/`, `CLAUDE.md`, `3-PLAN/architecture/`, `_genesis/tools/`, `_genesis/templates/`, `_genesis/principles/`.
+All references to old names have been updated across: `.claude/rules/`, `.claude/skills/`, `CLAUDE.md`, `3-PLAN/`, `_genesis/tools/`, `_genesis/templates/`, `_genesis/principles/`.
 
 ### Frameworks Archived
 

@@ -61,7 +61,7 @@ M1 ──► M2 ──► M3 ──► Release
 
 ## Driver Alignment
 
-> Milestones must align to drivers in `3-PLAN/drivers/UDS_REGISTER.md`.
+> Milestones must align to drivers in `3-PLAN/_cross/UDS_REGISTER.md`.
 
 | Milestone | Leverages Driver | Driver ID |
 |-----------|----------------|-----------|

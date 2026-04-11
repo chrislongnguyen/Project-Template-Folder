@@ -116,10 +116,10 @@ All Criterion 1-6 GREEN → downstream DSBV workstreams (ALIGN, PLAN, EXECUTE, I
 | P-page | Workstream Artifact | Feeds Into |
 |--------|--------------|------------|
 | P0 (System Context) | System identity, scope | DESIGN.md §1 |
-| P1 (Blockers/UBS) | UBS entries | 3-PLAN/risks/UBS_REGISTER.md |
-| P2 (Drivers/UDS) | UDS entries | 3-PLAN/drivers/UDS_REGISTER.md |
+| P1 (Blockers/UBS) | UBS entries | 3-PLAN/_cross/UBS_REGISTER.md |
+| P2 (Drivers/UDS) | UDS entries | 3-PLAN/_cross/UDS_REGISTER.md |
 | P3 (Principles/EP) | EP candidates | Agent rules, design principles |
-| P4 (Components) | Component map | 3-PLAN/architecture/SYSTEM_DESIGN.md |
+| P4 (Components) | Component map | 3-PLAN/{N}-{SUB}/SYSTEM_DESIGN.md |
 | P5 (Steps to Apply) | Sequence hints | 3-PLAN/roadmap/EXECUTION_PLAN.md |
 
 ## Summary

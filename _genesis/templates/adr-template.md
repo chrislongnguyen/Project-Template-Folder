@@ -10,7 +10,7 @@ sub_system:
 # ADR TEMPLATE
 > Architecture Decision Record — document one significant, non-trivial decision.
 > See `_genesis/frameworks/` for LTC methodology.
-> Full ADR template with 3-Pillar evaluation: `1-ALIGN/decisions/ADR-000_template.md`
+> Full ADR template with 3-Pillar evaluation: `1-ALIGN/_cross/ADR-000_template.md`
 
 ## Context
 

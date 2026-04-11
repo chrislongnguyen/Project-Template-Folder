@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # pkb-lint.sh — autonomous health check for the Personal Knowledge Base
-# version: 2.1 | status: in-review | last_updated: 2026-04-09
+# version: 2.2 | status: in-review | last_updated: 2026-04-11
 #
 # Runs 8 mechanical checks that need zero LLM involvement.
 # Designed S > E > Sc: reliable first, fast second, scales to 1000+ pages.
@@ -179,6 +179,16 @@ while IFS= read -r -d '' file; do
     [[ -z "$target" ]] && continue
     # Skip special targets (_index, _log, external)
     [[ "$target" == _* ]] && continue
+    # Skip known cross-repo wikilinks (repo-level files that exist in main repo, not PKB)
+    # These are intentional backlinks to repo artifacts — not broken links
+    case "$target" in
+      CLAUDE|AGENTS|DESIGN|SEQUENCE|VALIDATE|SKILL|CHANGELOG|README) continue ;;
+      architecture|project|workstream|security|task|documentation|standard|simple|friction) continue ;;
+      iteration|anti-patterns|GEMINI|BLUEPRINT|charter|versioning|"Developer's guide"*) continue ;;
+      agent-dispatch|context-packaging|ltc-builder|ltc-explorer|ltc-planner|ltc-reviewer) continue ;;
+      brand-identity|cursor-appearance|ltc-bases-colors|ltc-folder-colors|ltc-reading-experience) continue ;;
+      red.anthropic*|"Developer's"*) continue ;;
+    esac
     # Check if a .md file with this name exists anywhere in distilled/
     found=$(find "$DISTILLED" -name "${target}.md" -type f 2>/dev/null | head -1)
     # Also check captured/

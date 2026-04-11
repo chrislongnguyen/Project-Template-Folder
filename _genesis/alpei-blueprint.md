@@ -323,7 +323,7 @@ Deliverable paths: `2-LEARN/1-PD/pd-ubs-uds.md` · `2-LEARN/1-PD/pd-effective-pr
 | Build | Finalize execution plan and populate registers | Approved Execution Plan, Sprint Backlog, UBS Register | `architecture-template.md`, `driver-entry-template.md` | `/dsbv build plan pd` |
 | Validate | Verify plan realism and risk coverage | Planning validation report, risk-adjusted schedule | `review-template.md` | `/dsbv validate plan pd` |
 
-Deliverable paths: `3-PLAN/1-PD/pd-architecture.md` · `3-PLAN/1-PD/pd-roadmap.md` · `3-PLAN/risks/UBS_REGISTER.md` · `3-PLAN/drivers/UDS_REGISTER.md`
+Deliverable paths: `3-PLAN/1-PD/pd-architecture.md` · `3-PLAN/1-PD/pd-roadmap.md` · `3-PLAN/_cross/UBS_REGISTER.md` · `3-PLAN/_cross/UDS_REGISTER.md`
 
 **PD x EXECUTE**
 

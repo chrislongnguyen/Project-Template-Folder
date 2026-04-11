@@ -117,7 +117,7 @@ else
     -e "s|{ORG_ROLE}|$MEMBER_ROLE|g" \
     -e "s/{TITLE}/Member/g" \
     -e "s|{PROJECT_DESCRIPTION}|$(basename "$REPO_ROOT") — LTC project clone|g" \
-    -e "s|{EXPECTED_OUTCOME}|See 1-ALIGN/charter/ for EO|g" \
+    -e "s|{EXPECTED_OUTCOME}|See 1-ALIGN/1-PD/ for EO|g" \
     -e "s/{DATE}/$TODAY/g" \
     "$SEED_MEMORY" > "$TARGET_MEMORY"
   echo "Step 3 done: MEMORY.md seeded"

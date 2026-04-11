@@ -26,8 +26,8 @@ _One paragraph: what this project is, what problem it solves, who it serves._
 
 | Workstream | Artifact | Path | Status |
 |------------|----------|------|--------|
-| Align | Charter | `1-ALIGN/charter/` | draft |
-| Plan | Risk Register | `3-PLAN/risks/` | draft |
+| Align | Charter | `1-ALIGN/1-PD/` | draft |
+| Plan | Risk Register | `3-PLAN/_cross/` | draft |
 | Execute | Source | `4-EXECUTE/src/` | draft |
 
 ## Links

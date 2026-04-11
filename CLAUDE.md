@@ -72,7 +72,7 @@ EP-13: ONLY orchestrator (main session) calls `Agent()` — sub-agents MUST NEVE
 Tier (strongest first): **hooks > scripts > rules > skills**. Config: `.claude/settings.json`.
 7 hook types: `SessionStart` (3), `PreToolUse` (13), `PostToolUse` (6), `SubagentStop` (2), `PreCompact` (1), `Stop` (3), `UserPromptSubmit` (1) — 29 total hooks covering naming, DSBV gates, status-guard, routing, frontmatter inject, state-save, ripple-check, changelog, recall.
 ## Pre-Flight Protocol (automated: `scripts/pre-flight.sh`)
-9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `BLUEPRINT.md`+`1-ALIGN/charter/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/decisions/`.
+9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `BLUEPRINT.md`+`1-ALIGN/1-PD/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/_cross/`.
 If any check fails: MUST state which and why -> propose minimum fix -> ALWAYS wait for human approval.
 ## Rules Architecture
 `.claude/rules/` = auto-loaded summaries (11 files, always in context). `rules/` = full specs loaded on-demand. Dual-directory pattern: lean context, full specs accessible.

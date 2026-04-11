@@ -1,5 +1,5 @@
 <%*
-// LTC Templater — Architecture Decision Record (1-ALIGN/decisions/)
+// LTC Templater — Architecture Decision Record (1-ALIGN/)
 // Complete time: <1 minute. Only sub_system, iteration, and ues_version require input.
 -%>
 ---

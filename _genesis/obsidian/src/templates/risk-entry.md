@@ -1,5 +1,5 @@
 <%*
-// LTC Templater — Risk Entry (3-PLAN/risks/)
+// LTC Templater — Risk Entry (3-PLAN/_cross/)
 // Complete time: <1 minute. Date auto-fills; all fields are static defaults.
 -%>
 ---

@@ -1,5 +1,5 @@
 <%*
-// LTC Templater — Architecture (3-PLAN/architecture/)
+// LTC Templater — Architecture (3-PLAN/)
 // Complete time: <1 minute. Only sub_system and iteration require input.
 -%>
 ---
