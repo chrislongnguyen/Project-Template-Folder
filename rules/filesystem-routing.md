@@ -1,6 +1,6 @@
 # Filesystem Routing — Always-On Rule
 
-# version: 2.1 | status: draft | last_updated: 2026-04-05
+# version: 2.2 | status: draft | last_updated: 2026-04-11
 
 Full spec: `_genesis/filesystem-blueprint.md`
 
@@ -72,6 +72,18 @@ L4 (EXECUTE code): actual files
 | 4 | IDM | Insights & Decision Making | Dashboards, decision support, governance |
 
 Subsystems are swappable per functional area. After swapping, update this table.
+
+## DSBV Stage File Locations (Mode A canonical rule)
+
+DSBV control files are placed at different levels depending on their scope:
+
+| File | Level | Path pattern | Rationale |
+|------|-------|-------------|-----------|
+| `DESIGN.md` | Subsystem | `{N}-{WS}/{N}-{SUB}/DESIGN.md` | Scopes design to one subsystem |
+| `SEQUENCE.md` | Subsystem | `{N}-{WS}/{N}-{SUB}/SEQUENCE.md` | Scopes build tasks to one subsystem |
+| `VALIDATE.md` | **Workstream root** | `{N}-{WS}/VALIDATE.md` | One per workstream — certifies the full workstream gate |
+
+`VALIDATE.md` is intentionally at workstream root, not subsystem level. It is a workstream-level gate that certifies the entire workstream is ready to advance. There is exactly one `VALIDATE.md` per workstream (e.g., `1-ALIGN/VALIDATE.md`, `3-PLAN/VALIDATE.md`), not one per subsystem.
 
 ## Forbidden
 

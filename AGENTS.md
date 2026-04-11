@@ -1,5 +1,5 @@
 ---
-version: "1.1"
+version: "1.2"
 status: draft
 last_updated: 2026-04-11
 work_stream: 0-GOVERN
@@ -88,7 +88,7 @@ Design → Sequence → Build → Validate. Each stage has a human gate.
 
 ## Key References
 
-- Project blueprint: `_genesis/BLUEPRINT.md`
+- Project blueprint: `_genesis/alpei-blueprint.md`
 - Version registry: `_genesis/version-registry.md`
 - Process map: `_genesis/frameworks/alpei-dsbv-process-map.md`
 - Templates: `_genesis/templates/`

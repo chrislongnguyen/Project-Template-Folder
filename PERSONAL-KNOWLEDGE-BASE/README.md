@@ -1,7 +1,7 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 ---
 # Personal Knowledge Base (PKB)
 
@@ -224,7 +224,7 @@ Obsidian Web Clipper is a browser extension for capturing web pages.
    - **Name:** `PKB Capture`
    - **Note location:** `PERSONAL-KNOWLEDGE-BASE/captured`
    - **Note name:** `{{title}}`
-   - **Properties:** add `version: 2.0`, `status: Draft`, `source_url: {{url}}`, `source_type: web-clip`
+   - **Properties:** add `version: 2.0`, `status: draft`, `source_url: {{url}}`, `source_type: web-clip`
 3. Now `⌥⇧O` on any web page clips it straight to `captured/`
 
 ### Step 5: First Ingest

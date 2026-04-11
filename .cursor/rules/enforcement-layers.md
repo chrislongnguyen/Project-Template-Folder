@@ -19,16 +19,17 @@ Commit            | git-conventions.md  | Pre-commit hooks +      | —
 Review            | —                   | CI/CD (GitHub Actions)  | Code review + Validate
 ```
 
-## Hook Types (27 total)
+## Hook Types (29 total)
 
 | Event | Count | Typical use |
 |-------|-------|-------------|
 | `SessionStart` | 3 | Load env context, warm cache, audit config |
-| `PreToolUse` | 14 | Block forbidden patterns, enforce naming, DSBV guard |
-| `PostToolUse` | 5 | Log, validate output, ripple-check |
-| `SubagentStop` | 1 | State save on sub-agent completion |
+| `PreToolUse` | 13 | Block forbidden patterns, enforce naming, DSBV guard |
+| `PostToolUse` | 6 | Log, validate output, ripple-check |
+| `SubagentStop` | 2 | Audit builder output, verify subsystem chain |
 | `PreCompact` | 1 | Strategic compact warning |
 | `Stop` | 3 | PKB lint, ingest reminder, state save |
+| `UserPromptSubmit` | 1 | Auto-recall injection from QMD |
 
 ## Key Automated Checks
 

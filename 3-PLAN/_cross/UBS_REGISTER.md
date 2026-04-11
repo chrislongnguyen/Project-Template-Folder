@@ -3,6 +3,7 @@ version: "1.0"
 status: draft
 last_updated: 2026-04-07
 work_stream: 3-PLAN
+sub_system: _cross
 stage: build
 type: risk-register
 iteration: 1

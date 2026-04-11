@@ -11,7 +11,7 @@ type: user
 - Decision framework: S > E > Sc (Sustainability > Efficiency > Scalability)
 - Communication style: {STYLE — e.g. "Direct and structured", "Visual learner", "Prefers prose"}
 - Primary tools: {TOOLS — e.g. "Claude Code", "Cursor", "Gemini CLI"}
-- Charter: `_genesis/BLUEPRINT.md` (PART 3: Operating Model)
+- Charter: `_genesis/alpei-blueprint.md` (PART 3: Operating Model)
 
 ## Links
 

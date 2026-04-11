@@ -1,7 +1,7 @@
 ---
-version: "1.2"
+version: "1.3"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-11
 ---
 
 # Migration Guide — Upgrading to ALPEI Template Iteration 1
@@ -221,7 +221,7 @@ Re-index periodically as your vault grows (hooks write new files every session).
 
 ### Blueprint Relocated
 
-`1-ALIGN/charter/BLUEPRINT.md` → `_genesis/BLUEPRINT.md`
+`1-ALIGN/charter/BLUEPRINT.md` → `_genesis/alpei-blueprint.md`
 
 Blueprint is bedrock philosophy (Iteration 0–Iteration 4), not iteration-scoped alignment. A redirect stub remains at the old location.
 

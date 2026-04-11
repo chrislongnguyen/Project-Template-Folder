@@ -1,12 +1,12 @@
 ---
-version: "1.4"
+version: "1.5"
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 type: always-on rule
 ---
 # Script Registry — Always-On Rule
 
-49 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
+53 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
 This index is the authoritative lookup for agent script discovery.
 Before writing a new script, check here — it may already exist.
 
@@ -70,6 +70,7 @@ Use these proactively before PRs, after major changes, or when diagnosing struct
 | `alignment-check.sh` | When reviewing DESIGN.md quality | Verify condition-to-artifact mapping completeness |
 | `agent-benchmark.sh` | When auditing agent config | Safety, output quality, efficiency checks across 5 agent files |
 | `smoke-test.sh` | After `/setup` or harness changes | 5 checks: memory-vault hook system correctly configured |
+| `gemini-audit.py` | Before push/release — independent audit | Calls Gemini API (1 request). Packages workspace context → writes `inbox/YYYY-MM-DD_gemini-audit.md`. Set `GEMINI_API_KEY` before running. |
 
 ## Governance & Lifecycle — Run for Version/Status Operations
 

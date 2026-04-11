@@ -111,7 +111,7 @@ multi-agent governance harness, PKB system, 47-slide training deck.
 - [T2:MERGE] `.claude/rules/git-conventions.md` — canonical commit format, scope list, staging rules
 - [T2:MERGE] `.claude/rules/naming-rules.md` — skill prefix registry, folder format rejection
 - [T2:MERGE] `_genesis/version-registry.md` — 22-row workstream×phase matrix, S2 vocab
-- [T2:MERGE] `_genesis/BLUEPRINT.md` — Iteration 2 prototype scope, LEARN as Zone 2, UES versioning
+- [T2:MERGE] `_genesis/alpei-blueprint.md` — Iteration 2 prototype scope, LEARN as Zone 2, UES versioning
 - [T2:MERGE] All ALPEI process map partitions (P1–P4) — S2 vocabulary alignment
 - [T2:MERGE] `.gitignore` — tsconfig.tsbuildinfo exclusion
 

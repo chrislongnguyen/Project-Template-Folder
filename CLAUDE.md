@@ -1,7 +1,7 @@
 ---
-version: "1.4"
+version: "1.5"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 ---
 # CLAUDE.md — LTC Project Template
 
@@ -16,7 +16,7 @@ last_updated: 2026-04-09
 - **EO:** Maintain the generic ALPEI template all LTC projects clone from. Consumer teams add domain subsystems after cloning.
 ## Build and Validate
 - Template repo — no build step. Validate: `./scripts/template-check.sh`
-- 49 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
+- 53 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
 
 <!-- ── LTC STANDARD (do not modify below this line) ────────────────── -->
 ## Rules
@@ -39,7 +39,7 @@ IMPROVE (Learn & Grow)   → 5-IMPROVE/ (changelog, metrics, retros, reviews)
 ```
 **Core Equation:** Success = Efficient & Scalable Management of Failure Risks
 Every artifact MUST be categorized by subsystem x workstream. NEVER make chat-only decisions.
-## Architecture: Subsystems (full spec: `_genesis/BLUEPRINT.md` Part 4)
+## Architecture: Subsystems (full spec: `_genesis/alpei-blueprint.md` Part 4)
 **PD** (Problem Diagnosis) -> **DP** (Data Pipeline) -> **DA** (Data Analysis) -> **IDM** (Insights & Decision Making).
 PD output: Effective Principles for entire UES. DP: processed data. DA: extracted insights. IDM: actionable decisions.
 PD governs all: PD's EP ALWAYS takes precedence over downstream. Downstream MUST NEVER exceed upstream UES version.
@@ -75,7 +75,7 @@ Tier (strongest first): **hooks > scripts > rules > skills**. Config: `.claude/s
 9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `BLUEPRINT.md`+`1-ALIGN/1-PD/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/_cross/`.
 If any check fails: MUST state which and why -> propose minimum fix -> ALWAYS wait for human approval.
 ## Rules Architecture
-`.claude/rules/` = auto-loaded summaries (11 files, always in context). `rules/` = full specs loaded on-demand. Dual-directory pattern: lean context, full specs accessible.
+`.claude/rules/` = auto-loaded summaries (12 files, always in context). `rules/` = full specs loaded on-demand. Dual-directory pattern: lean context, full specs accessible.
 ## Self-Update Rule
 Trigger: MUST update when new rule/skill/script added OR >2 days drift. MUST NOT exceed 120 lines. Method: `git log --since="2 days" .claude/ scripts/ rules/`.
 
