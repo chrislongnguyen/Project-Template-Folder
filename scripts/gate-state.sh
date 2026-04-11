@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 1.3 | status: draft | last_updated: 2026-04-11
+# version: 1.4 | status: draft | last_updated: 2026-04-11
 # gate-state.sh — DSBV gate state machine (C-01, C-08)
 # Bash 3 compatible: no mapfile, no declare -A, no local -a
 # JSON ops via awk/sed — no jq required
@@ -235,7 +235,16 @@ cmd_set_subsystem() {
       ;;
   esac
 
-  state_file="$(get_state_file "$ws")"
+  # DEPRECATED (C-1): subsystem is now encoded in the state filename when a 2nd positional
+  # arg is provided (e.g. gate-state.sh set-subsystem 1-ALIGN 1-PD sub-scoped-file).
+  # The 3rd arg (if present) is interpreted as an explicit state file path override.
+  # Callers should prefer gate-state.sh init <ws> <subsystem> which embeds subsystem in filename.
+  explicit_state_file="${3:-}"
+  if [ -n "$explicit_state_file" ]; then
+    state_file="$explicit_state_file"
+  else
+    state_file="$(get_state_file "$ws")"
+  fi
 
   if [ ! -f "$state_file" ]; then
     echo "ERROR: State file not found: $state_file" >&2

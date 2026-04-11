@@ -1,13 +1,17 @@
 #!/bin/bash
-# version: 1.1 | status: draft | last_updated: 2026-04-10
+# version: 1.2 | status: draft | last_updated: 2026-04-11
 # gate-precheck.sh — Validate prerequisites before presenting a DSBV gate (C-04)
 # Bash 3 compatible: no mapfile, no declare -A, no local -a, no bash 4+ features
 #
 # Usage:
-#   gate-precheck.sh <gate> <workstream> [workstream_dir]
+#   gate-precheck.sh <gate> <workstream> [workstream_dir] [subsystem]
 #     gate          : G1, G2, G3, or G4
 #     workstream    : e.g. 1-ALIGN, 3-PLAN (used to find DESIGN.md, SEQUENCE.md, VALIDATE.md)
 #     workstream_dir: optional path to workstream dir (default: ./<workstream>/)
+#     subsystem     : optional subsystem scope (pd|dp|da|idm|cross)
+#                     When provided: state file = dsbv-<ws>-<sub>.json,
+#                     file search scoped to {workstream}/{S}-{SUB}/
+#                     When omitted: workstream-level state (deprecated — use subsystem arg)
 #
 # Exit 0: all prerequisites for this gate are met
 # Exit 1: one or more prerequisites missing (specific message to stderr)
@@ -29,13 +33,26 @@
 GATE="$1"
 WORKSTREAM="$2"
 WS_DIR_ARG="$3"
+SUBSYSTEM="$4"
 
 if [ -z "$GATE" ] || [ -z "$WORKSTREAM" ]; then
-  echo "Usage: gate-precheck.sh <gate> <workstream> [workstream_dir]" >&2
-  echo "  gate        : G1, G2, G3, or G4" >&2
-  echo "  workstream  : e.g. 1-ALIGN, 3-PLAN" >&2
+  echo "Usage: gate-precheck.sh <gate> <workstream> [workstream_dir] [subsystem]" >&2
+  echo "  gate          : G1, G2, G3, or G4" >&2
+  echo "  workstream    : e.g. 1-ALIGN, 3-PLAN" >&2
   echo "  workstream_dir: optional path to workstream dir (default: ./<workstream>/)" >&2
+  echo "  subsystem     : optional pd|dp|da|idm|cross — scopes state file and file search" >&2
   exit 1
+fi
+
+# Validate subsystem value if provided
+if [ -n "$SUBSYSTEM" ]; then
+  case "$SUBSYSTEM" in
+    pd|dp|da|idm|cross) ;;
+    *)
+      echo "ERROR: Invalid subsystem '${SUBSYSTEM}'. Must be one of: pd dp da idm cross" >&2
+      exit 1
+      ;;
+  esac
 fi
 
 case "$GATE" in
@@ -75,11 +92,30 @@ WS_DIR="$(resolve_workstream_dir)" || exit 1
 
 # ---------------------------------------------------------------------------
 # find_file_in_ws <filename>
-# Search workstream dir up to depth 3, return first match or empty string
+# Search workstream dir up to depth 3, return first match or empty string.
+# When SUBSYSTEM is set, scope search to {WS_DIR}/{N}-{SUBSYSTEM_UPPER}/.
 # ---------------------------------------------------------------------------
 find_file_in_ws() {
   fname="$1"
-  found="$(find "$WS_DIR" -maxdepth 3 -name "$fname" 2>/dev/null | head -1)"
+  search_root="$WS_DIR"
+
+  if [ -n "$SUBSYSTEM" ]; then
+    # Map subsystem code to directory prefix (pd->1, dp->2, da->3, idm->4, cross->_)
+    sub_upper="$(echo "$SUBSYSTEM" | tr '[:lower:]' '[:upper:]')"
+    case "$SUBSYSTEM" in
+      pd)    sub_dir="${WS_DIR}/1-${sub_upper}" ;;
+      dp)    sub_dir="${WS_DIR}/2-${sub_upper}" ;;
+      da)    sub_dir="${WS_DIR}/3-${sub_upper}" ;;
+      idm)   sub_dir="${WS_DIR}/4-${sub_upper}" ;;
+      cross) sub_dir="${WS_DIR}/_cross" ;;
+    esac
+    if [ -d "$sub_dir" ]; then
+      search_root="$sub_dir"
+    fi
+    # If subsystem dir absent, fall through to WS_DIR (graceful degradation)
+  fi
+
+  found="$(find "$search_root" -maxdepth 3 -name "$fname" 2>/dev/null | head -1)"
   echo "$found"
 }
 
@@ -211,13 +247,26 @@ check_g4() {
 # When subsystem is non-null → read upstream subsystem's DESIGN.md version
 # and compare. If current subsystem version > upstream version → exit 1.
 #
-# State file location: .claude/state/dsbv-<workstream>.json
+# State file location: .claude/state/dsbv-<ws>-<sub>.json  (subsystem arg provided)
+#                     .claude/state/dsbv-<workstream>.json   (deprecated: no subsystem arg)
 # Reads: "subsystem": "<value>" field from state JSON
 # Reads: version from DESIGN.md frontmatter (line: "^version:")
 # ---------------------------------------------------------------------------
 check_subsystem_ordering() {
-  # Locate state file for the workstream
-  state_file=".claude/state/dsbv-${WORKSTREAM}.json"
+  # Determine state file path.
+  # When SUBSYSTEM arg provided: use subsystem-scoped state file.
+  # When omitted: fall back to workstream-level file with deprecation warning.
+  if [ -n "$SUBSYSTEM" ]; then
+    # Normalise workstream for filename: lowercase, strip leading digit+dash
+    ws_key="$(echo "$WORKSTREAM" | tr '[:upper:]' '[:lower:]')"
+    state_file=".claude/state/dsbv-${ws_key}-${SUBSYSTEM}.json"
+  else
+    state_file=".claude/state/dsbv-${WORKSTREAM}.json"
+    if [ -f "$state_file" ]; then
+      echo "DEPRECATION WARNING: gate-precheck.sh called without subsystem arg; reading workstream-level state '${state_file}'. Pass subsystem as 4th arg (pd|dp|da|idm|cross) to use subsystem-scoped state." >&2
+    fi
+  fi
+
   if [ ! -f "$state_file" ]; then
     # No state file: subsystem feature not active — skip silently
     return 0

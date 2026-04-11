@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.1 | status: draft | last_updated: 2026-04-11
+# version: 1.2 | status: draft | last_updated: 2026-04-11
 # dsbv-provenance-guard.sh — PreToolUse hook for Write|Edit
 # P1: Auto-init gate state + enforce agent provenance for DSBV stage artifacts.
 #
@@ -13,6 +13,22 @@
 #
 # Bash 3 compatible.
 set -euo pipefail
+
+# ---------------------------------------------------------------------------
+# Map display-format subsystem dirs to gate-state.sh lowercase codes
+# Input:  "1-PD" | "2-DP" | "3-DA" | "4-IDM" | "_cross"
+# Output: "pd"   | "dp"   | "da"   | "idm"   | "cross"
+# ---------------------------------------------------------------------------
+display_to_code() {
+  case "$1" in
+    1-PD)   echo "pd" ;;
+    2-DP)   echo "dp" ;;
+    3-DA)   echo "da" ;;
+    4-IDM)  echo "idm" ;;
+    _cross) echo "cross" ;;
+    *)      echo "" ;;
+  esac
+}
 
 # Read hook input from stdin
 INPUT=$(cat)
@@ -42,9 +58,9 @@ SUBSYSTEM=""
 for WS in "1-ALIGN" "3-PLAN" "4-EXECUTE" "5-IMPROVE"; do
   if echo "$FILE_PATH" | grep -q "$WS"; then
     WORKSTREAM="$WS"
-    # Extract subsystem if present: {N}-{WS}/{S}-{SUB}/...
-    # Match a path segment like 1-PD, 2-DP, 3-DA, 4-IDM after the workstream segment
-    SUB=$(echo "$FILE_PATH" | sed -n "s|.*${WS}/\([0-9]-[A-Z][A-Z]*\)/.*|\1|p")
+    # Extract subsystem if present: {N}-{WS}/{S}-{SUB}/... or {N}-{WS}/_cross/...
+    # Match: 1-PD, 2-DP, 3-DA, 4-IDM, _cross
+    SUB=$(echo "$FILE_PATH" | sed -n "s|.*${WS}/\([0-9]-[A-Z][A-Z]*\|_cross\)/.*|\1|p")
     if [ -n "$SUB" ]; then
       SUBSYSTEM="$SUB"
     fi
@@ -86,7 +102,11 @@ if [ "$WORKSTREAM" != "GOVERN" ] && [ -f "$GATE_STATE_SCRIPT" ]; then
     # Auto-init — this is the key fix. State is created by the HOOK, not the orchestrator.
     mkdir -p "$STATE_DIR"
     if [ -n "$SUBSYSTEM" ]; then
-      bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" "$SUBSYSTEM" 2>&1 || true
+      SUB_CODE=$(display_to_code "$SUBSYSTEM")
+      if [ -z "$SUB_CODE" ]; then
+        SUB_CODE="$SUBSYSTEM"  # fallback: pass as-is
+      fi
+      bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" "$SUB_CODE" 2>&1 || true
     else
       bash "$GATE_STATE_SCRIPT" init "$WORKSTREAM" 2>&1 || true
     fi

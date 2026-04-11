@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.4 | status: draft | last_updated: 2026-04-11
+# version: 1.5 | status: draft | last_updated: 2026-04-11
 # dsbv-skill-guard.sh — PreToolUse hook for Write|Edit on workstream artifacts
 #
 # Enforces: "No ad-hoc artifacts. If work is not in a DESIGN.md, it is not in scope."
@@ -136,9 +136,15 @@ PROJECT_ROOT="${FILE_PATH%%/${WORKSTREAM}/*}"
 SUB_DIR=$(echo "$RELATIVE_PATH" | cut -d'/' -f1)
 
 # Determine if the file is inside a known subsystem dir
+# Step 1: broad regex catches numeric-prefixed dirs and _cross
 IS_SUBSYSTEM=0
 if [[ "$SUB_DIR" =~ ^[0-9]+-[A-Za-z]+$ ]] || [[ "$SUB_DIR" == "_cross" ]]; then
-    IS_SUBSYSTEM=1
+    # Step 2: canonical validation — only accepted subsystem names qualify.
+    # Non-matching dirs (e.g. a stray "1-OLD/" dir) fall through to WS-level check.
+    case "$SUB_DIR" in
+        1-PD|2-DP|3-DA|4-IDM|_cross) IS_SUBSYSTEM=1 ;;
+        *) IS_SUBSYSTEM=0 ;;
+    esac
 fi
 
 # --- Check DESIGN.md at the correct level ----------------------------------------
