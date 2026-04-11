@@ -1,3 +1,10 @@
+---
+version: "2.0"
+status: draft
+last_updated: 2026-04-11
+work_stream: 5-IMPROVE
+type: changelog
+---
 # Changelog
 
 All notable changes to the LTC Project Template.
@@ -156,7 +163,7 @@ Iteration 1 Concept release. ALPEI workstream scaffold, initial rules, charter, 
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]
