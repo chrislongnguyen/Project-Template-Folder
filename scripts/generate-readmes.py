@@ -47,7 +47,7 @@ WORKSTREAMS = {
     "4-EXECUTE": {
         "tagline": "Deliver with Effective Process",
         "quote": "Build it right, with the right tools, in the right environment.",
-        "has_cross": False,
+        "has_cross": True,
     },
     "5-IMPROVE": {
         "tagline": "Learn, Reflect, Institutionalize",
@@ -71,6 +71,88 @@ WS_FLOW = {
     "3-PLAN": ("2-LEARN", "4-EXECUTE"),
     "4-EXECUTE": ("3-PLAN", "5-IMPROVE"),
     "5-IMPROVE": ("4-EXECUTE", "1-ALIGN (loop closes)"),
+}
+
+# Full ALPEI ring diagrams — pre-computed per workstream
+WS_CONNECTION_DIAGRAMS = {
+    "1-ALIGN": """\
+```
+                              validated alignment package
+(project mandate / 5-IMPROVE)  ──────────────────────────>  2-LEARN
+          ▲                                                       │
+          │ iteration retrospective                    Effective Principles
+          │ + next-version scope                                  │
+          │                                                       ▼
+          └────── 5-IMPROVE  ◄── 4-EXECUTE  ◄── 3-PLAN  ◄────────┘
+```
+
+- **1-ALIGN → 2-LEARN:** Validated alignment package — chartered scope, approved OKRs, governing constraints
+- **5-IMPROVE → 1-ALIGN:** Iteration retrospective closes the loop — next version re-enters here
+- **Any WS → 1-ALIGN:** Scope change or misalignment discovered → re-align before proceeding""",
+
+    "2-LEARN": """\
+```
+                         validated alignment package
+1-ALIGN  ────────────────────────────────────────────>  2-LEARN
+                                                             │
+                                              Effective Principles
+                                              + DSBV Readiness Package
+                                                             │
+                                                             ▼
+                                                         3-PLAN
+```
+
+- **1-ALIGN → 2-LEARN:** Chartered scope + constraints that bound what to research
+- **2-LEARN → 3-PLAN:** Validated Effective Principles + DSBV-READY package per subsystem
+- **2-LEARN → 1-ALIGN:** Research reveals scope gap → re-align before continuing""",
+
+    "3-PLAN": """\
+```
+                  Effective Principles + DSBV Readiness Package
+2-LEARN  ──────────────────────────────────────────────────>  3-PLAN
+                                                                  │
+                                               approved architecture
+                                               + UBS/UDS registers + roadmap
+                                                                  │
+                                                                  ▼
+                                                             4-EXECUTE
+```
+
+- **2-LEARN → 3-PLAN:** Effective Principles as hard architectural constraints; DSBV-READY confirms research complete
+- **3-PLAN → 4-EXECUTE:** Approved architecture, risk register, ordered roadmap as the build contract
+- **3-PLAN → 2-LEARN:** Unknowns surface during planning → return to research""",
+
+    "4-EXECUTE": """\
+```
+                    approved architecture + roadmap
+3-PLAN  ─────────────────────────────────────────────>  4-EXECUTE
+                                                              │
+                                                  deployed + tested artifacts
+                                                  + build postmortem
+                                                              │
+                                                              ▼
+                                                         5-IMPROVE
+```
+
+- **3-PLAN → 4-EXECUTE:** Architecture, risk register, sequenced roadmap — the build contract
+- **4-EXECUTE → 5-IMPROVE:** Deployed artifacts, test results, build postmortem
+- **4-EXECUTE → 3-PLAN:** Design flaw discovered mid-build → back to planning (expensive — minimize via 3-PLAN rigor)""",
+
+    "5-IMPROVE": """\
+```
+                    deployed + tested artifacts
+4-EXECUTE  ───────────────────────────────────────>  5-IMPROVE
+                                                          │
+                                              iteration retrospective
+                                              + metrics + next-version scope
+                                                          │
+                                                          ▼
+                                               1-ALIGN  (loop closes)
+```
+
+- **4-EXECUTE → 5-IMPROVE:** Deployed artifacts, test results, user feedback signals
+- **5-IMPROVE → 1-ALIGN:** Retrospective closes the iteration — next version begins with re-alignment
+- **5-IMPROVE → any WS:** Systemic failure → re-enter the appropriate workstream""",
 }
 
 # Subsystem cascade
@@ -241,18 +323,7 @@ PD-{name}  →  DP-{name}  →  DA-{name}  →  IDM-{name}
 
 ## How {name} Connects
 
-```
-                  [validated output]
-{upstream}  ─────────────────────>  {ws_key}
-                                         │
-                                    [output]
-                                         │
-                                         ▼
-                                    {downstream}
-
-{ws_key} ──"hit unknown"──> 2-LEARN  (loop back)
-{ws_key} ──"scope changed"──> 1-ALIGN  (re-align)
-```
+{WS_CONNECTION_DIAGRAMS[ws_key]}
 
 ## DASHBOARDS
 
@@ -408,16 +479,129 @@ What constraint does it receive from upstream, what does it pass downstream? -->
 
 | Artifact | File Pattern | Purpose |
 |----------|-------------|---------|
-| <!-- TODO --> | `<!-- TODO -->.md` | <!-- TODO --> |
-| <!-- TODO --> | `<!-- TODO -->.md` | <!-- TODO --> |
+| DESIGN.md | `DESIGN.md` | DSBV Design stage — scope, ACs, agent dispatch plan |
+| SEQUENCE.md | `SEQUENCE.md` | DSBV Sequence stage — ordered work plan |
+| VALIDATE.md | `VALIDATE.md` (workstream root) | DSBV Validate stage — review against ACs |
+| <!-- TODO: primary artifact --> | `<!-- TODO -->.md` | <!-- TODO: one-line purpose --> |
+| <!-- TODO: secondary artifact --> | `<!-- TODO -->.md` | <!-- TODO: one-line purpose --> |
 
 ## Pre-Flight Checklist
 
-- [ ] <!-- TODO: most critical gate -->
-- [ ] <!-- TODO: gate 2 -->
-- [ ] <!-- TODO: gate 3 -->
-- [ ] Artifacts here do not contradict upstream subsystem's scope or principles
-- [ ] Outputs are ready for handoff to downstream
+- [ ] <!-- TODO: most critical gate — what must be true before this subsystem starts -->
+- [ ] <!-- TODO: gate 2 — upstream artifact confirmed received -->
+- [ ] <!-- TODO: gate 3 — scope boundaries agreed -->
+- [ ] Artifacts do not contradict upstream subsystem's scope or Effective Principles
+- [ ] Outputs ready for handoff to downstream
+
+## Templates
+
+| Artifact | Template | Location |
+|----------|----------|----------|
+| DESIGN.md | `design-template.md` | `../../_genesis/templates/design-template.md` |
+| SEQUENCE.md | `sequence-template.md` | `../../_genesis/templates/sequence-template.md` |
+| VALIDATE.md | `review-template.md` | `../../_genesis/templates/review-template.md` |
+| <!-- TODO: primary artifact --> | `<!-- TODO -->-template.md` | `../../_genesis/templates/<!-- TODO -->-template.md` |
+
+## Links
+
+- [[DESIGN]]
+- [[SEQUENCE]]
+- [[VALIDATE]]
+- [[workstream]]
+'''
+
+
+def type_b_learn(ss_key: str) -> str:
+    """2-LEARN subsystem README shell — uses pipeline language (S1-S5), NOT DSBV."""
+    ss_full = SUBSYSTEMS[ss_key]
+
+    if ss_key == "_cross":
+        cascade = """## Scope
+
+Cross-cutting artifacts span all 4 subsystems (PD, DP, DA, IDM) within the LEARN pipeline.
+These cannot be owned by a single subsystem — they govern or support all of them.
+
+<!-- TODO: 1-2 sentences on what cross-cutting means in this specific pipeline context. -->
+<!-- Typical _cross contents: learn-input files, shared research methodology, pipeline scripts -->"""
+    else:
+        prev_ss, next_ss = SS_FLOW[ss_key]
+        prev_label = f"{prev_ss} ({SUBSYSTEMS.get(prev_ss, '')})" if prev_ss else "1-ALIGN (chartered scope)"
+        next_label = f"{next_ss} ({SUBSYSTEMS.get(next_ss, '')})" if next_ss else "(LEARN complete → 3-PLAN)"
+
+        cascade = f"""## Cascade Position
+
+```
+[{prev_label}]  ──►  [{ss_key}]  ──►  [{next_label}]
+                          ↑
+     <!-- TODO: what constraint/input this subsystem anchors on from upstream -->
+```
+
+Receives from upstream: <!-- TODO: specific artifact names and source paths -->.
+Produces for downstream: <!-- TODO: specific Effective Principles or research outputs --> — consumed by {next_label} as <!-- TODO: hard constraints / research seed -->."""
+
+    return f'''---
+version: "{VERSION}"
+status: draft
+last_updated: {TODAY}
+work_stream: 2-LEARN
+sub_system: {ss_key}
+type: template
+iteration: {ITERATION}
+---
+
+# {ss_key} — {ss_full} | LEARN Workstream
+
+> "<!-- TODO: what breaks if this subsystem's research is missing, wrong, or shallow? -->"
+
+<!-- TODO: 1-2 sentences. What does this subsystem research within the LEARN pipeline?
+What Effective Principles does it produce, and what does it govern downstream? -->
+
+{cascade}
+
+## Pipeline Stages
+
+**HARD CONSTRAINT:** No DESIGN.md, SEQUENCE.md, or VALIDATE.md in this directory.
+LEARN uses the 6-state pipeline (S1–S5), not DSBV.
+
+| Stage | Location | What happens here |
+|-------|----------|------------------|
+| **S1 — Scope** | `input/` | Define research questions and boundaries for this subsystem |
+| **S2 — Research** | `research/` | Gather evidence with cited sources (via `/learn:research`) |
+| **S3 — Structure** | `output/` | Organize into P0–P5 structured learning pages (`/learn:structure`) |
+| **S4 — Review** | status on P-pages | Human review gate — approve or reject each P-page (`/learn:review`) |
+| **S5 — Spec** | `specs/` | Derive Effective Principles from validated findings (`/learn:spec`) |
+
+## Contents
+
+| Artifact | Location | Purpose |
+|----------|----------|---------|
+| `learn-input-{ss_key}.md` | `_cross/input/` | Research scope definition for this subsystem |
+| `T{{n}}-{{topic}}.md` | `_cross/research/{ss_key}/` | Deep research per topic (cited, structured) |
+| `T0.P{{m}}-{{slug}}.md` | `output/` | P0–P5 structured learning pages |
+| `vana-spec.md` | `specs/` | Extracted Effective Principles — primary output |
+| `DSBV-READY-{ss_key}.md` | `specs/` | Readiness package confirming 3-PLAN can begin |
+
+## Pre-Flight Checklist
+
+- [ ] `learn-input-{ss_key}.md` exists and is validated (scope locked)
+- [ ] <!-- TODO: specific research domain confirmed (what are the key topics?) -->
+- [ ] All P0–P5 pages have `status: validated` (human-reviewed)
+- [ ] `vana-spec.md` exists with Effective Principles derived from evidence
+- [ ] `DSBV-READY-{ss_key}.md` confirms downstream workstream can proceed
+
+## Templates
+
+| Pipeline Stage | Template | Location |
+|---------------|----------|----------|
+| S1 — Scope | `learn-input-template.md` | `../../_genesis/templates/learn-input-template.md` |
+| S2 — Research | `research-template.md` | `../../_genesis/templates/research-template.md` |
+| S5 — Spec | `vana-spec-template.md` | `../../_genesis/templates/vana-spec-template.md` |
+
+## Links
+
+- [[SKILL]]
+- [[methodology]]
+- [[workstream]]
 '''
 
 
@@ -485,10 +669,16 @@ def main():
     for ws_key, ws_meta in WORKSTREAMS.items():
         for ss_key in ["1-PD", "2-DP", "3-DA", "4-IDM"]:
             path = os.path.join(ROOT, ws_key, ss_key, "README.md")
-            targets.append(("B", path, lambda wk=ws_key, sk=ss_key: type_b(wk, sk)))
+            if ws_key == "2-LEARN":
+                targets.append(("B", path, lambda sk=ss_key: type_b_learn(sk)))
+            else:
+                targets.append(("B", path, lambda wk=ws_key, sk=ss_key: type_b(wk, sk)))
         if ws_meta["has_cross"]:
             path = os.path.join(ROOT, ws_key, "_cross", "README.md")
-            targets.append(("B", path, lambda wk=ws_key: type_b(wk, "_cross")))
+            if ws_key == "2-LEARN":
+                targets.append(("B", path, lambda: type_b_learn("_cross")))
+            else:
+                targets.append(("B", path, lambda wk=ws_key: type_b(wk, "_cross")))
 
     # Type C — _genesis directory READMEs
     for dir_key in GENESIS_DIRS:
