@@ -1,5 +1,5 @@
 ---
-version: "2.4"
+version: "2.5"
 status: draft
 last_updated: 2026-04-11
 type: sop
@@ -19,7 +19,7 @@ audience: LTC Project Managers operating a UES using this template
 
 ### What
 
-This SOP governs the daily operation of any LTC project built on the ALPEI template. It defines how a Project Manager (PM) — acting as Human Director — uses AI agents, slash commands, and the DSBV sub-process to produce workstream artifacts across 4 sub-systems.
+This SOP governs the daily operation of any LTC project built on the ALPEI (Align, Learn, Plan, Execute, Improve) template. It defines how a Project Manager (PM) — acting as Human Director — uses AI agents, slash commands, and the DSBV (Design, Sequence, Build, Validate) sub-process to produce workstream artifacts across 4 sub-systems.
 
 ### Who
 
@@ -60,7 +60,7 @@ The PM's #1 contribution is **learning quality** — not execution speed, not to
 | Research and analysis | **R** (Responsible) | **A** (Accountable) |
 | Artifact production | **R** | **A** |
 | Architecture decisions | **C** (Consulted) | **A** |
-| VANA validation | **C** | **A** |
+| VANA (Verb-Adverb-Noun-Adjective) validation | **C** | **A** |
 | DSBV stage gate approval | — | **A** (sole) |
 | Requirement definition | **C** | **A** |
 
@@ -70,7 +70,7 @@ The PM's #1 contribution is **learning quality** — not execution speed, not to
 
 - **PM-to-PM:** Share via ClickUp (primary WMS). Cross-project knowledge via template-sync.
 - **PM-to-Agent:** Claude Code session. Context packaging for sub-agent dispatch.
-- **Agent-to-Agent:** Orchestrator pattern only. Main session dispatches sub-agents. Sub-agents NEVER dispatch other sub-agents (EP-13).
+- **Agent-to-Agent:** Orchestrator pattern only. Main session dispatches sub-agents. Sub-agents NEVER dispatch other sub-agents (EP-13: Effective Principle 13 — Orchestrator Authority).
 
 ### Tool Split
 
@@ -163,7 +163,7 @@ OPS_OE.X.X.PROJECT-NAME/
 │   ├── hooks/                      ← Hook enforcement scripts
 │   └── settings.json               ← Hook registrations (29 hooks)
 │
-├── scripts/                        ← 49 automation scripts
+├── scripts/                        ← 52 automation scripts
 ├── rules/                          ← Full-spec rule files (on-demand)
 ├── CLAUDE.md                       ← Main agent instructions
 └── AGENTS.md                       ← Multi-agent coordination
@@ -194,7 +194,7 @@ Layer 3: DSBV STAGES (process — how each artifact is produced)
 |---|-----------|-----------|--------------|-------------|
 | 1 | **ALIGN** | `1-ALIGN/` | Choose the right outcome | Charter, decisions (ADRs), OKRs, stakeholder map |
 | 2 | **LEARN** | `2-LEARN/` | Find truths, analyze forces | Research reports, specs, learning pages |
-| 3 | **PLAN** | `3-PLAN/` | Design architecture, sequence work | Architecture docs, UBS/UDS registers, roadmap |
+| 3 | **PLAN** | `3-PLAN/` | Design architecture, sequence work | Architecture docs, UBS (Ultimate Blocking Forces)/UDS (Ultimate Driving Forces) registers, roadmap |
 | 4 | **EXECUTE** | `4-EXECUTE/` | Build and deliver | Source code, tests, config, documentation |
 | 5 | **IMPROVE** | `5-IMPROVE/` | Collect feedback, iterate | Changelog, metrics, retrospectives, reviews |
 
@@ -275,7 +275,7 @@ Layer 3: DSBV STAGES (process — how each artifact is produced)
 | `/template-check`       | Compare local vs template remote                 |
 | `/template-sync`        | Pull updates from template remote                |
 | `/ltc-clickup-planner`  | ClickUp work planner                             |
-| `/ltc-feedback`         | Report issues via 7-CS force analysis            |
+| `/ltc-feedback`         | Report issues via 7-CS (7-Component System) force analysis |
 | `/ltc-rules-compliance` | Validate skill compliance                        |
 | `/deep-research`        | Deep web research                                |
 | `/ltc-brainstorming`    | Brainstorming with explorer + planner            |
@@ -368,9 +368,9 @@ Before starting any workstream task, run the 9-check pre-flight.
 
 **Enforcement:** `scripts/pre-flight.sh` (manual) + DSBV skill runs it automatically
 
-### Rule 3: Three Pillars (S > E > Sc)
+### Rule 3: Three Pillars (S > E > Sc — Sustainability > Efficiency > Scalability)
 
-Every prioritization decision follows Sustainability > Efficiency > Scalability. This is not a preference — it is derived from UT#5.
+Every prioritization decision follows Sustainability > Efficiency > Scalability (S > E > Sc). This is not a preference — it is derived from UT#5.
 
 **Enforcement:** Documentation (CLAUDE.md, alpei-blueprint.md)
 
@@ -452,7 +452,7 @@ Tier 1 (strongest): Hooks (.claude/settings.json)
   → Fires automatically — agent cannot bypass
 
 Tier 2: Scripts (scripts/)
-  → 49 scripts: validation, gates, lifecycle, audit
+  → 53 scripts: validation, gates, lifecycle, audit
   → Called by hooks or manually
 
 Tier 3: Rules (.claude/rules/)
