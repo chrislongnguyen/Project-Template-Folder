@@ -6,7 +6,7 @@ type: always-on rule
 ---
 # Script Registry — Always-On Rule
 
-53 scripts in `scripts/`. 15 hooks in `.claude/hooks/`. 9 archived to `_genesis/reference/archive/scripts/`.
+54 scripts in `scripts/`. 14 hooks in `.claude/hooks/`. 10 archived to `_genesis/reference/archive/scripts/`.
 This index is the authoritative lookup for agent script discovery.
 Before writing a new script, check here — it may already exist.
 
@@ -43,7 +43,6 @@ These scripts fire automatically via `.claude/settings.json` hooks. The agent do
 | `dsbv-provenance-guard.sh` | PreToolUse (Write/Edit) | Block DSBV artifact Write without prior designated agent dispatch (P1 enforcement) |
 | `builder-audit.sh` | SubagentStop | Grep builder output for AC markers; warn if self-check skipped (S-FIX-1) |
 | `registry-edit-tracker.sh` | PostToolUse (Edit on version-registry.md) | Track version-registry edits to prevent double-bump |
-| `subsystem-chain-guard.sh` | SubagentStop | Verify subsystem ordering (PD→DP→DA→IDM) in agent output |
 
 ## Pre-Commit Scripts — Run Before Staging
 
@@ -71,6 +70,7 @@ Use these proactively before PRs, after major changes, or when diagnosing struct
 | `agent-benchmark.sh` | When auditing agent config | Safety, output quality, efficiency checks across 5 agent files |
 | `smoke-test.sh` | After `/setup` or harness changes | 5 checks: memory-vault hook system correctly configured |
 | `gemini-audit.py` | Before push/release — independent audit | Calls Gemini API (1 request). Packages workspace context → writes `inbox/YYYY-MM-DD_gemini-audit.md`. Set `GEMINI_API_KEY` before running. |
+| `claude-audit-phase0.py` | Before claude-audit runs | Produce JSON manifest of repo ground truth (files, frontmatter, orphans, hooks) |
 
 ## Governance & Lifecycle — Run for Version/Status Operations
 
@@ -96,7 +96,6 @@ Use these for DSBV gate enforcement, state tracking, and approval verification. 
 | `set-status-in-review.sh` | Before requesting gate approval | Set artifact `status: in-review` with frontmatter update |
 | `verify-approval-record.sh` | After gate approval | Grep markdown for approval record row in table |
 | `classify-fail.sh` | After builder AC failure | Convert failure output to lowercase-classified error type |
-| `subsystem-chain-guard.sh` | SubagentStop | Verify subsystem chain-of-custody (PD→DP→DA→IDM ordering) |
 
 ## Bulk Rename — One-Off Migration Scripts
 
@@ -144,6 +143,16 @@ Use these when working in `2-LEARN/` or evaluating the learning skill suite.
 | `learn-benchmark.sh` | Evaluating learn skill quality | Orchestrator: runs L1 + L2 deterministically |
 | `learn-benchmark-l1.py` | Static skill contract check | L1: Parse SKILL.md for S × E × Sc compliance |
 | `learn-benchmark-l2.py` | Pipeline state simulation | L2: Validate orchestrator state detection logic |
+
+## DSBV Benchmarking — DSBV Skill Quality Tools
+
+Use these when evaluating the quality of DSBV skill artifacts.
+
+| Script | When to use | What it does |
+|---|---|---|
+| `dsbv-benchmark.sh` | Evaluating DSBV skill quality | Orchestrator: runs L1 + L2 DSBV skill benchmarks deterministically |
+| `dsbv-benchmark-l1.py` | Static DSBV skill contract check | L1: Parse DSBV SKILL.md for S x E x Sc compliance |
+| `dsbv-benchmark-l2-judge.py` | Evaluating DSBV skill output quality | L2: Judge evaluation of DSBV skill output quality |
 
 ## Cross-Reference: Skills That Call Scripts
 
