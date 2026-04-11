@@ -1,7 +1,7 @@
 ---
-version: "1.3"
+version: "1.4"
 status: draft
-last_updated: 2026-04-08
+last_updated: 2026-04-12
 name: deep-research
 description: Multi-source research using the 12-question CODE framework (Knowledge → Understanding → Wisdom → Expertise) with Blue-Red team falsification. 4 modes — research:lite (2-5min, ~70K tokens), research:mid (5-10min, ~200K tokens), research:deep (10-20min, ~350K tokens), research:full (20-45min, ~600K tokens). When auto-triggered, default to research:lite. Use this skill whenever the user asks to compare tools/products, analyze market trends, evaluate options for a decision, produce a cited report, or do any research requiring synthesis across 3+ sources. Do NOT use for fixing bugs, writing code, simple factual lookups, or questions with one clear answer.
 agents:
@@ -132,7 +132,9 @@ Address every gap from Phase 6. Conduct targeted research if needed. For each ga
 
 **Step 5:** Generate PDF via sub-agent. If PDF skill unavailable: deliver Markdown + HTML, note PDF as pending.
 
-**Step 6:** Save to `~/Documents/[Topic]_Research_[YYYYMMDD]/` + copy to `~/.claude/research_output/`
+**Step 6:** Save output:
+- If `{system-slug}` is known (learn pipeline context): write to `2-LEARN/_cross/research/{system-slug}/[Topic]_Research_[YYYYMMDD].md`
+- Otherwise (ad-hoc): save to `~/Documents/[Topic]_Research_[YYYYMMDD]/` + copy to `~/.claude/research_output/`
 
 ---
 
