@@ -129,7 +129,7 @@ subsystem: 1-PD
 ### Files
 - Read: `.claude/agents/ltc-builder.md` — agent file to reference
 - Read: `.claude/skills/dsbv/SKILL.md` — file to modify
-- Read: `{workstream}/SEQUENCE.md` — task T1.3 acceptance criteria
+- Read: `{workstream}/{subsystem}/SEQUENCE.md` — task T1.3 acceptance criteria
 - Write: `.claude/skills/dsbv/SKILL.md` — modified in place
 
 ### Budget
@@ -229,7 +229,7 @@ file-path evidence, without rubber-stamping or missing criteria.
 Review against DESIGN.md success criteria.
 
 ### Files
-- Read: `{workstream}/DESIGN.md` — the contract (success criteria)
+- Read: `{workstream}/{subsystem}/DESIGN.md` — the contract (success criteria)
 - Read: {list of all produced artifacts, one per line}
 - Read: `_genesis/templates/dsbv-eval-template.md` — output format
 
@@ -251,7 +251,7 @@ max_tool_calls: 30
 ## 4. OUTPUT
 
 ### Deliverable
-`{workstream}/VALIDATE.md` — per-criterion verdict table.
+`{workstream}/{subsystem}/VALIDATE.md` — per-criterion verdict table.
 Consumed by: human for gate approval, ltc-builder for fixes.
 
 ### Acceptance Criteria
@@ -279,7 +279,7 @@ each produced a complete draft. Synthesize best elements.
 
 ### Files
 - Read: {paths to all N draft files}
-- Read: `{workstream}/DESIGN.md` — scoring criteria
+- Read: `{workstream}/{subsystem}/DESIGN.md` — scoring criteria
 
 ### Budget
 ~40K tokens. All N drafts + DESIGN.md.

@@ -8,7 +8,7 @@ Known failure patterns when executing this skill. Update this file when new issu
 
 **What happens:** Agent jumps straight to Build or Sequence without producing a DESIGN.md, rationalizing that the task is too simple or the outcome is self-evident. This is the #1 DSBV failure mode — it bypasses scope definition, acceptance criteria, and the artifact inventory that downstream stages depend on.
 
-**How to detect:** Before entering any stage other than Design, check: does `{N}-{WORKSTREAM}/DESIGN.md` exist and have status Approved? If not, the agent skipped the gate.
+**How to detect:** Before entering any stage other than Design, check: does `{N}-{WORKSTREAM}/{S}-{SUBSYSTEM}/DESIGN.md` exist and have status Approved? If not, the agent skipped the gate.
 
 **Fix:** Hard-stop and return to Design. No DESIGN.md = no scope = no Build. Even a 10-line DESIGN.md with acceptance criteria is better than none. The readiness check C2 (scope loaded) exists precisely for this case.
 

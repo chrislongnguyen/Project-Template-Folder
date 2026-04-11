@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.1"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-11
 name: circuit-breaker-protocol
 description: "Circuit breaker protocol for the Generator/Critic loop — loop state tracking, FAIL classification, hard-stop rules, and escalation format. Draft for SKILL.md Wave 4 integration (T4.1)."
 work_stream: 4-EXECUTE
@@ -78,7 +78,7 @@ Example:
   Classification: SEMANTIC
   Iteration: 2/3
   Fail count: 4
-  Action required: Review DESIGN.md AC-03 — builder is misunderstanding the acceptance criterion. Provide clarification, then /dsbv reset 1-ALIGN.
+  Action required: Review DESIGN.md AC-03 — builder is misunderstanding the acceptance criterion. Provide clarification, then /dsbv reset 1-ALIGN 1-PD.
 ```
 
 ## Reset

@@ -1,9 +1,9 @@
 ---
-version: "1.6"
+version: "1.7"
 iteration: 1
 iteration_name: concept
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 owner: ""
 type: template
 work_stream: 0-GOVERN
@@ -40,7 +40,8 @@ Each workstream runs all 4 DSBV stages internally. The workstream determines the
 ## How to Use
 
 - Run `/dsbv` to start a guided DSBV cycle on any workstream
-- Run `/dsbv design align` to run just the Design stage on the ALIGN workstream
+- Run `/dsbv [stage] [workstream] [subsystem]` to target a specific stage, e.g. `/dsbv design align pd`
+- Run `/dsbv design align pd` to run just the Design stage on the ALIGN workstream, PD subsystem
 - Run `/dsbv status` to see current progress across all workstreams
 - Run `./scripts/dsbv-gate.sh` to manually check workstream-boundary readiness
 - Skill definition: `.claude/skills/dsbv/SKILL.md` | Context template: `_genesis/templates/dsbv-context-template.md` | Evaluation template: `_genesis/templates/dsbv-eval-template.md`
@@ -229,7 +230,7 @@ Full circuit breaker protocol: `.claude/skills/dsbv/references/circuit-breaker-p
 Every gate presentation (G1-G4) uses a consistent template so PMs can review at a glance.
 
 ```
-GATE: G{N} ({stage}) | Workstream: {name}
+GATE: G{N} ({stage}) | Workstream: {name} | Subsystem: {name}
 ACs: {pass}/{total} | Risk flags: {count}
 Action: APPROVE / REVISE / ESCALATE
 

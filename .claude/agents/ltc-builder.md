@@ -87,6 +87,7 @@ After producing each artifact:
 - **NEVER write DSBV files (DESIGN.md, SEQUENCE.md, VALIDATE.md) to 2-LEARN/.** LEARN uses the learning pipeline, not DSBV. If a SEQUENCE.md task targets 2-LEARN/, produce pipeline artifacts only.
 - **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/.
 - **_genesis/** is for OE-builder artifacts only — never write project artifacts there.
+- **Subsystem path examples:** `1-ALIGN/1-PD/DESIGN.md`, `3-PLAN/2-DP/SEQUENCE.md`, `4-EXECUTE/3-DA/src/`, `5-IMPROVE/_cross/retros/`. Pattern: `{N}-{WS}/{subsystem}/{artifact}`.
 - See: `.claude/rules/filesystem-routing.md` for full 4-mode routing.
 
 ## Constraints

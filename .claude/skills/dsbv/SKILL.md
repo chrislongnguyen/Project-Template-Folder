@@ -310,7 +310,7 @@ On human approval, execute the Gate Approval Protocol below.
 Every gate presentation (G1-G4) MUST use this template for consistent human review:
 
 ```
-GATE: G{N} ({stage}) | Workstream: {name}
+GATE: G{N} ({stage}) | Workstream: {name} | Subsystem: {name}
 ACs: {pass}/{total} | Risk flags: {count}
 Action: APPROVE / REVISE / ESCALATE
 

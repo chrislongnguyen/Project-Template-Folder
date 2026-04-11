@@ -1,6 +1,6 @@
 ---
-version: "1.4"
-last_updated: 2026-04-10
+version: "1.5"
+last_updated: 2026-04-11
 owner: ""
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
@@ -8,9 +8,9 @@ status: draft
 type: template
 work_stream: 0-GOVERN
 stage: design
-sub_system: 
+sub_system: "{{SUBSYSTEM}}"
 ---
-# DESIGN.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
+# DESIGN.md — {{WORKSTREAM}} × {{SUBSYSTEM}}, {{ITERATION}}
 
 > DSBV stage 1 artifact. This document is the contract. If it is not here, it is not in scope.
 

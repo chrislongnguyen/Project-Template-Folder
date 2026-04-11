@@ -1,6 +1,6 @@
 ---
-version: "1.0"
-last_updated: 2026-04-10
+version: "1.1"
+last_updated: 2026-04-11
 owner: ""
 workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
@@ -8,9 +8,9 @@ status: draft
 type: template
 work_stream: 0-GOVERN
 stage: sequence
-sub_system:
+sub_system: "{{SUBSYSTEM}}"
 ---
-# SEQUENCE.md — {{WORKSTREAM}} Workstream, {{ITERATION}}
+# SEQUENCE.md — {{WORKSTREAM}} × {{SUBSYSTEM}}, {{ITERATION}}
 
 > DSBV stage 2 artifact. Prerequisite: DESIGN.md approved at G1.
 > This document orders the work. Every task in DESIGN.md Artifact Inventory must appear here.

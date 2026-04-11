@@ -1,16 +1,16 @@
 ---
-version: "1.2"
+version: "1.3"
 iteration: 1
 iteration_name: concept
 status: draft
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 owner: ""
 type: template
 work_stream: 0-GOVERN
 stage: validate
-sub_system:
+sub_system: "{{SUBSYSTEM}}"
 ---
-# DSBV Evaluation Protocol — [WORKSTREAM NAME]
+# DSBV Evaluation Protocol — {{WORKSTREAM}} × {{SUBSYSTEM}}
 
 > For Validate stage. Covers multi-agent synthesis and single-agent validation.
 > Follow mechanically. Do not skip steps.

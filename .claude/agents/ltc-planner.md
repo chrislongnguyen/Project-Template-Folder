@@ -69,6 +69,7 @@ Reference: `.claude/skills/dsbv/references/live-test-patterns.md`
 - **LEARN (2-LEARN/) does NOT use DSBV.** Never create DESIGN.md, SEQUENCE.md, or VALIDATE.md in 2-LEARN/. LEARN uses the learning pipeline (Input → Research → Specs → Output → Archive). If asked to plan LEARN work, orchestrate pipeline stages instead of DSBV stages.
 - **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/. `/ingest` and `/vault-capture` write to PKB, not LEARN.
 - **_genesis/** houses OE-builder artifacts. Never route project artifacts into _genesis/ or genesis artifacts into ALPEI dirs.
+- **Subsystem path examples:** `1-ALIGN/1-PD/DESIGN.md`, `3-PLAN/2-DP/SEQUENCE.md`, `4-EXECUTE/3-DA/src/`, `5-IMPROVE/_cross/retros/`. Pattern: `{N}-{WS}/{subsystem}/{artifact}`.
 - See: `.claude/rules/filesystem-routing.md` for full 4-mode routing.
 
 ## Constraints
