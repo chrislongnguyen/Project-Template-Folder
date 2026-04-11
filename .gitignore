@@ -23,6 +23,9 @@ secrets/
 # Local documentation (appearance notes, superpowers artifacts)
 docs/
 
+# Archived reference material (historical, not shipped with template)
+_genesis/reference/archive/
+
 # Dependencies
 node_modules/
 .venv/
