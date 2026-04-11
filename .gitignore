@@ -39,11 +39,29 @@ out/
 tsconfig.tsbuildinfo
 **/tsconfig.tsbuildinfo
 
-# PKB — personal content, not shipped with template
-# Shell structure (README.md, dashboard.md, knowledge-map.canvas) is tracked
+# PKB — personal content, never shipped with template
+# Only .gitkeep and README.md are tracked (structural scaffolding)
 PERSONAL-KNOWLEDGE-BASE/captured/
 PERSONAL-KNOWLEDGE-BASE/distilled/
 PERSONAL-KNOWLEDGE-BASE/expressed/
+PERSONAL-KNOWLEDGE-BASE/dashboard.md
+PERSONAL-KNOWLEDGE-BASE/knowledge-map.canvas
+PERSONAL-KNOWLEDGE-BASE/*.canvas
+
+# inbox/ — personal captures, WIP docs, audit records
+# Only .gitkeep and README.md are tracked (structural scaffolding)
+inbox/2[0-9][0-9][0-9]-*.md
+inbox/macos-*.md
+inbox/vana-*.md
+inbox/ghostty-*.md
+inbox/cmux-*.md
+
+# Runtime state — never commit
+.claude/state/
+.claude/logs/
+
+# Personal workspace config — never commit
+*.code-workspace
 
 # IDE
 .vscode/
