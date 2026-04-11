@@ -52,13 +52,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/verify-deliverables.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/verify-deliverables.sh\"",
             "timeout": 10,
             "statusMessage": "Verifying sub-agent deliverables..."
           },
           {
             "type": "command",
-            "command": "./.claude/hooks/builder-audit.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/builder-audit.sh\"",
             "timeout": 5,
             "statusMessage": "Auditing builder AC self-check (Gap S-1)..."
           }
@@ -70,7 +70,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/save-context-state.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/save-context-state.sh\"",
             "timeout": 10,
             "statusMessage": "Saving context state before compaction..."
           }
@@ -165,19 +165,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./scripts/dsbv-skill-guard.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/dsbv-skill-guard.sh\"",
             "timeout": 5,
             "statusMessage": "Checking DSBV Design stage prerequisite..."
           },
           {
             "type": "command",
-            "command": "./scripts/dsbv-gate.sh --pretool",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/dsbv-gate.sh\" --pretool",
             "timeout": 5,
             "statusMessage": "Checking ALPEI chain-of-custody..."
           },
           {
             "type": "command",
-            "command": "./.claude/hooks/dsbv-provenance-guard.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/dsbv-provenance-guard.sh\"",
             "timeout": 5,
             "statusMessage": "Checking DSBV artifact provenance..."
           }
@@ -188,7 +188,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/verify-agent-dispatch.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/verify-agent-dispatch.sh\"",
             "timeout": 5,
             "statusMessage": "Verifying agent dispatch context packaging..."
           }
@@ -198,7 +198,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/strategic-compact.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/strategic-compact.sh\"",
             "timeout": 5,
             "statusMessage": "Checking context saturation..."
           }
@@ -222,7 +222,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/nesting-depth-guard.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/nesting-depth-guard.sh\"",
             "timeout": 5,
             "statusMessage": "EP-13: logging Agent() dispatch..."
           }
@@ -233,30 +233,25 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'CLAUDE_FILE_PATH=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\" ./.claude/hooks/inject-frontmatter.sh'",
+            "command": "bash -c 'CLAUDE_FILE_PATH=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\" bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/inject-frontmatter.sh\"'",
             "timeout": 5,
             "statusMessage": "Auto-injecting frontmatter..."
           },
           {
             "type": "command",
-            "command": "./.claude/hooks/state-saver.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/state-saver.sh\"",
             "timeout": 10,
             "statusMessage": "Saving session state..."
           },
           {
             "type": "command",
-            "command": "bash -c 'FILE=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\"; if [[ \"$FILE\" == *.md ]]; then ./scripts/ripple-check.sh \"$(basename \"$FILE\")\" . | head -20; fi'",
+            "command": "bash -c 'FILE=\"${TOOL_INPUT_file_path:-${TOOL_INPUT_path:-}}\"; if [[ \"$FILE\" == *.md ]]; then bash \"$CLAUDE_PROJECT_DIR/scripts/ripple-check.sh\" \"$(basename \"$FILE\")\" \"$CLAUDE_PROJECT_DIR\" | head -20; fi'",
             "timeout": 5,
             "statusMessage": "Checking backlink ripple..."
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
+          },
           {
             "type": "command",
-            "command": "./scripts/registry-edit-tracker.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/registry-edit-tracker.sh\"",
             "timeout": 5,
             "statusMessage": "Checking registry sync after workstream edit..."
           }
@@ -268,7 +263,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.claude/hooks/auto-recall-filter.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/auto-recall-filter.sh\"",
             "timeout": 3,
             "statusMessage": "Classifying recall intent..."
           }
