@@ -1,7 +1,7 @@
 ---
 phase: system-design
 title: Effective System Design (ESD) — Reference Framework
-version: 2.0 | 2026-02-28
+version: "2.0"
 last_updated: 2026-03-29
 owner: ""
 status: validated

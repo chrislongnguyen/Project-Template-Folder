@@ -85,7 +85,6 @@ The agent should copy these from the template:
 | `.claude/settings.json` | `.claude/settings.json` | **Merge** — keep your permissions, add hook registrations |
 | `_genesis/` | `_genesis/` | **Copy** — frameworks, templates, brand, training |
 | `scripts/` | `scripts/` | **Copy** — template-check.sh, skill-validator.sh |
-| `tests/brand-identity/` | `tests/brand-identity/` | **Copy** — brand validation suite |
 
 ### Step 5: Create missing workstream folders
 
@@ -294,7 +293,7 @@ All references to old names have been updated across: `.claude/rules/`, `.claude
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]
