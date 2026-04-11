@@ -222,7 +222,7 @@ Recommendation: {adjustment for next project}
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[SKILL]]

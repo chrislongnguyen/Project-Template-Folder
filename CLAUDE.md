@@ -82,7 +82,7 @@ Trigger: MUST update when new rule/skill/script added OR >2 days drift. MUST NOT
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[DESIGN]]
 - [[SEQUENCE]]
@@ -106,7 +106,6 @@ Trigger: MUST update when new rule/skill/script added OR >2 days drift. MUST NOT
 - [[ltc-effective-agent-principles-registry]]
 - [[ltc-ues-versioning]]
 - [[naming-rules]]
-- [[pre-flight]]
 - [[project]]
 - [[roadmap]]
 - [[security]]

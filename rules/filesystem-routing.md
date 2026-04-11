@@ -95,7 +95,7 @@ DSBV control files are placed at different levels depending on their scope:
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[adr]]
 - [[architecture]]

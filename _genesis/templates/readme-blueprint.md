@@ -318,7 +318,7 @@ Is it the repo root README?
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[DESIGN]]
 - [[README]]
 - [[SEQUENCE]]

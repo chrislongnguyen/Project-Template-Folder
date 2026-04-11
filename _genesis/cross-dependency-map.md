@@ -52,7 +52,7 @@ When a High-coupling interface changes after downstream PLAN is in Review:
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[SEQUENCE]]
 - [[adr]]
 - [[architecture]]

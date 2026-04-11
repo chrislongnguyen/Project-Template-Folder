@@ -190,7 +190,6 @@ During any conversation, suggest `/git-save` when:
 
 ## Links
 
-- [[ADR-001]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[VALIDATE]]

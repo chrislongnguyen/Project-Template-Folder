@@ -1238,7 +1238,7 @@ If you encounter an issue not covered here:
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

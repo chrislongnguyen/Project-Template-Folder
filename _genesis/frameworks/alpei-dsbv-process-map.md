@@ -549,7 +549,6 @@ LEARN completes (S5) → run `/dsbv design` for the target downstream workstream
 
 ## Links
 
-- [[ADR-001]]
 - [[AGENTS]]
 - [[CHANGELOG]]
 - [[CLAUDE]]

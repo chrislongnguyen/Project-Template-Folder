@@ -43,7 +43,7 @@ If subsystem plans are created without a shared dependency map, planning silos f
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[architecture]]
 - [[project]]
 - [[workstream]]

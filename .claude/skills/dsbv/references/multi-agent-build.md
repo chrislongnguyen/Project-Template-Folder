@@ -76,7 +76,6 @@ The synthesizer uses these tables to select best elements — not "pick longest 
 
 ## Links
 
-- [[ADR-001]]
 - [[AGENTS]]
 - [[CLAUDE]]
 - [[ltc-builder]]

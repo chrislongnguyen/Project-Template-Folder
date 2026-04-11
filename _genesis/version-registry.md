@@ -165,7 +165,7 @@ Wrong MAJOR (2.x)     → correct to 1.x (this is not a normal bump — it is a 
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

@@ -55,7 +55,7 @@ Net force: Driving > Restraining → proceed, but address D-004 first (S > E > S
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[README]]
 - [[SKILL]]
 - [[da-driver-register]]

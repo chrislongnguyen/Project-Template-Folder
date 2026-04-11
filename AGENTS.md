@@ -95,7 +95,7 @@ Design → Sequence → Build → Validate. Each stage has a human gate.
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[GEMINI]]

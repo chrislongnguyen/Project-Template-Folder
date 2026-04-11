@@ -690,7 +690,7 @@ Step 7: Create your first branch
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[SEQUENCE]]

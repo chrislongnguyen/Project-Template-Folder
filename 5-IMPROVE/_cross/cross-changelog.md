@@ -56,7 +56,7 @@ iteration: 1
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[README]]

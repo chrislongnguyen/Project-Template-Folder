@@ -381,7 +381,6 @@ Task type: Build
 
 ## Links
 
-- [[ADR-001]]
 - [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]

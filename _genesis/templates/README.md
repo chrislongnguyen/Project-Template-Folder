@@ -77,7 +77,7 @@ Templates use descriptive kebab-case ending in `-template.md`. The README bluepr
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[DESIGN]]
 - [[MEMORY-seed]]

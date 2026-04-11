@@ -1304,7 +1304,7 @@ scripts/                               ← Infrastructure scripts (lint, check, 
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

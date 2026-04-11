@@ -331,7 +331,7 @@ This blueprint is enforced at 3 layers per the enforcement matrix:
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

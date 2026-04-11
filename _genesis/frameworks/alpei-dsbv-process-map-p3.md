@@ -101,7 +101,6 @@ The PM makes three decisions in this exchange: approve Design, approve Sequence,
 
 ## Links
 
-- [[ADR-001]]
 - [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]

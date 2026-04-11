@@ -16,7 +16,7 @@ type: user
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CLAUDE]]
 - [[GEMINI]]
 - [[charter]]

@@ -515,7 +515,6 @@ When something goes wrong, trace the symptom to the violated EP:
 
 ## Links
 
-- [[ADR-001]]
 - [[AGENTS]]
 - [[CLAUDE]]
 - [[DESIGN]]

@@ -154,7 +154,7 @@ drift with no oversight from ltc-planner. If you need research, STOP and report 
 
 ## Links
 
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[CHANGELOG]]
 - [[CLAUDE]]
 - [[DESIGN]]

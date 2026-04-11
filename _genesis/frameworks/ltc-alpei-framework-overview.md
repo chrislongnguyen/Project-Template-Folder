@@ -120,7 +120,7 @@ The tables below are structured summaries of the prose above. AI agents should u
 ## Links
 
 - [[AGENTS]]
-- [[BLUEPRINT]]
+- [[alpei-blueprint]]
 - [[DESIGN]]
 - [[SEQUENCE]]
 - [[VALIDATE]]
