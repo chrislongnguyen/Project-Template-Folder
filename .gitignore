@@ -82,3 +82,6 @@ TEMP OUT/
 *.log
 npm-debug.log*
 .env
+
+# Local tools (not shipped with template)
+tools/
