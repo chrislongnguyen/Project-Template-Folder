@@ -9,6 +9,7 @@ last_updated: 2026-04-12
 > Companion to `agent-harness-system.md`. Shows HOW the 8 components interact.
 > Grounded in: System Thinking & Design Notes V2, Agent System 8-CS, Harness Engineering Research (28 sources).
 > Use for: **building** (what connects to what), **measuring** (where to observe), **diagnosing** (which edge failed).
+> **Portability note:** Parts 1, 2, 4 (model, edges, metrics) are platform-agnostic. Part 3 (execution flows) uses Claude Code as the reference implementation — map hook names and model tiers to your platform's equivalents.
 
 ---
 

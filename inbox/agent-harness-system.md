@@ -42,7 +42,7 @@ This document extends the 7-Component System defined in `rules/agent-system.md`.
 | "Agent" | **EU** (Effective User) | Aligns with the Effective System Design framework where the doer is always the "User" — in AI systems, the model IS the user of the harness. |
 | 7 components (EO is outcome, not component) | **8 components** (EO promoted to full component) | EO is measured and designed for, not merely received. Promoting it to a component makes the evaluation framework explicit: vary harness → measure EO delta. |
 
-The 7-CS dependency graph shows EP governing Input directly. This document maintains that relationship — EP's Structural category (naming, formatting) constrains how EI is organized, and EP's Behavioral category constrains what the agent does with EI. The Section 5 dependency graph focuses on the 4 buildable subsystems; EP governs EI through its Structural principles.
+The 7-CS dependency graph shows EP governing Input directly. This document maintains that relationship — EP's Structural category (naming, formatting) constrains how EI is organized, and EP's Behavioral category constrains what the agent does with EI. The Section 5 dependency graph focuses on the 4 direct-control subsystems; EP governs EI through its Structural principles.
 
 ### The Flow
 
@@ -169,7 +169,7 @@ These are not bugs. They are structural properties of transformer-based language
 | LT-7 | Cost scales with token count | Budget | EI (lean context), EP (concise rules), EOE (budget limits) |
 | LT-8 | Alignment is approximate | Rule compliance under pressure | EP (behavioral constraints), EOP (verification gates) |
 
-**Key principle:** Only Configuration is directly engineerable. Capability and Limitations are given by the model provider. Understanding Limitations determines how you design EP, EOE, EOT, and EOP — the 4 buildable components exist specifically to compensate for these 8 limits.
+**Key principle:** Only Configuration is directly engineerable. Capability and Limitations are given by the model provider. Understanding Limitations determines how you design EP, EOE, EOT, and EOP — the 4 direct-control components exist specifically to compensate for these 8 limits.
 
 ---
 
