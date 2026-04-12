@@ -1,5 +1,5 @@
 ---
-version: "1.6"
+version: "1.7"
 status: draft
 last_updated: 2026-04-12
 ---
@@ -16,7 +16,7 @@ last_updated: 2026-04-12
 - **EO:** Maintain the generic ALPEI template all LTC projects clone from. Consumer teams add domain subsystems after cloning.
 ## Build and Validate
 - Template repo — no build step. Validate: `./scripts/template-check.sh`
-- 53 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
+- 60 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
 
 <!-- ── LTC STANDARD (do not modify below this line) ────────────────── -->
 ## Rules
