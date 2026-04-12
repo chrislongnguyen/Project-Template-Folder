@@ -1,44 +1,92 @@
 ---
-version: "2.1"
+version: "3.1"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 ---
 
-# Migration Guide — ALPEI Project Template
+# Migration Guide — LTC Project Template
 
-> Your AI agent can execute this guide. Say:
-> "Read `_genesis/guides/migration-guide.md` and execute it for my project."
+> One source of truth for syncing any LTC repo with the template.
+> An AI agent can execute this guide end-to-end. Say:
+> "Read `_genesis/guides/migration-guide.md` and execute Path C for my project."
 
-## Which Path?
+---
+
+## Quick Reference Card
+
+**Start here. 30 seconds to know exactly what to do.**
+
+### Step 1: Know Your Path (one command)
+
+```bash
+bash scripts/template-sync.sh --detect-path
+```
+
+| Output | What it means | Next action |
+|--------|---------------|-------------|
+| `PATH A` | Fresh repo, no commits | → [Path A](#path-a--fresh-clone) (2 min) |
+| `PATH B` | Pre-ALPEI or severely diverged | → [Path B](#path-b--reverse-clone) (30 min) |
+| `PATH C` | Normal upgrade | → [Path C](#path-c--version-upgrade) (5 min) |
+
+### Step 2: Common Tasks (copy-paste)
+
+| I want to... | Command |
+|--------------|---------|
+| See what's new in template | `bash scripts/template-check.sh` |
+| Check my current template version | `grep template_version .template-checkpoint.yml` |
+| Sync to latest | `bash scripts/template-sync.sh --sync v2.1.0` |
+| Verify sync worked | `bash scripts/template-verify.sh` |
+| Check a file's ownership | `bash scripts/template-manifest.sh --classify <path>` |
+| Undo a bad sync | `git checkout backup/pre-vX-upgrade` |
+
+### Step 3: Expected Outputs (you're on track if you see these)
 
 ```
-START
-  │
-  ├─ No existing work? ──────────────────────────→ PATH A (Fresh Clone)
-  │                                                  5 min, fully automated
-  │
-  ├─ Existing work, but NO workstream             PATH B (First Migration)
-  │  folders (1-ALIGN/ etc)?  ────────────────────→  30-60 min, agent-guided
-  │  (pre-ALPEI or early clone)                      Restructure + template sync
-  │
-  └─ Already on template (has 1-ALIGN/,           PATH C (Version Upgrade)
-     .claude/rules/, _genesis/)?  ────────────────→  15-30 min, template-sync
-                                                     Additive sync + merge
+# After --detect-path:
+PATH C: version upgrade
+
+# After --sync:
+[1/5] Reading checkpoint... last_sync_sha: abc123
+[2/5] Fetching template remote... target: v2.1.0
+[3/5] Computing pristine diff... 12 files changed
+[4/5] Applying by lineage... 10 auto-take, 2 merge
+[5/5] Verifying... RESULT: 6/6
+Checkpoint updated.
+
+# After template-verify.sh:
+V1 PASS — structural checks: 8/8
+V2 PASS — hook paths valid
+V3 PASS — 0 broken links
+V4 PASS — agents: 5, rules: 13, skills: 28
+V5 PASS — manifest coverage: 100%
+V6 PASS — sync complete
+RESULT: 6/6
 ```
+
+### Emergency Exit
+
+| Problem | Fix |
+|---------|-----|
+| Sync broke my repo | `git checkout backup/pre-vX-upgrade` |
+| Can't find backup tag | `git tag -l 'backup/*'` to list all |
+| Need to start over | `git checkout main && git branch -D feat/template-upgrade` |
+| Script fails with error | Check [Troubleshooting](#troubleshooting) below |
 
 ---
 
 ## 10 Migration Principles
 
-These are derived from 4 real migrations (Khang/Assets, Dong/Inflation, Dung/Growth, CamVan/FinancialSystem). Every step in this guide follows them.
+These are derived from 4 real migrations (Khang/Assets, Dong/Inflation, Dung/Growth, CamVan/FinancialSystem) and formalized in the v3.0 architecture. Every step in this guide follows them.
 
 ```
 P1  THREE LINEAGES, NOT TWO
     Every file belongs to exactly one lineage:
-      TEMPLATE — from template repo, should be synced
-      DOMAIN   — user-created, sacred, never auto-modified
-      INHERITED — from early setup / Vinh-seeded, may need cleanup
-    Classify BEFORE you act.
+      TEMPLATE   — owned by template; template-manifest.yml is authoritative.
+                   Auto-take when unmodified; conflict when user-edited.
+      SHARED     — both template and user legitimately edit (CLAUDE.md, settings.json).
+                   Uses section-merge or 3-way-merge per manifest entry.
+      DOMAIN     — user-created or domain-seed content; sacred, never auto-modified.
+    Classify via template-manifest.yml BEFORE you act.
 
 P2  STRUCTURE FIRST, CONTENT SECOND
     Directory creation and renames complete BEFORE content merges.
@@ -49,40 +97,43 @@ P3  DOMAIN FILES ARE SACRED
     Move them to the correct location. Suggest updates. Always ask.
     Domain = charter, research, P-pages, code, decisions, OKRs.
 
-P4  TEMPLATE FILES REPLACE, DOMAIN FILES MERGE
-    Pure template file (unchanged since clone) → TAKE template version.
-    File with domain customizations (CLAUDE.md, settings.json) → MERGE.
+P4  TEMPLATE FILES REPLACE, SHARED FILES MERGE
+    Pure template file (lineage: template, user not modified) → TAKE.
+    File with domain customizations (lineage: shared) → section-merge or 3-way-merge.
+    The merge strategy per file is declared in template-manifest.yml — use it.
 
 P5  INFRASTRUCTURE FIRST, THEN WORKSTREAMS
-    Migrate GOVERN (infra: agents, rules, skills, hooks, scripts) first.
-    Then workstream folders. In practice, infrastructure is one batch;
-    workstream content is verified per-workstream after structure is set.
+    Migrate .claude/ (agents, rules, skills, hooks), scripts/, _genesis/ first.
+    Then workstream folders. Infrastructure is one batch; workstream content
+    is verified per-workstream after structure is confirmed.
 
 P6  BRANCH-BASED, CHECKPOINTED
-    Always work on a migration branch.
-    Tag before starting. Commit after each major step.
-    This enables rollback and audit.
+    Always work on a migration branch. Tag before starting.
+    Commit after each major step. .template-checkpoint.yml records the last
+    successful sync SHA — this is your rollback anchor.
 
 P7  VERIFY BEFORE MERGE TO MAIN
-    After migration: template-check (structure) + smoke-test (hooks) +
-    /dsbv status (agent system). ALL must pass before PR merge.
+    After migration: template-verify.sh (6-check sweep) MUST pass.
+    V1 structural + V2 hooks + V3 graph + V4 agent + V5 manifest + V6 sync
+    completeness — ALL must pass before PR merge.
 
 P8  MIGRATION IS ROUTINE, NOT HEROIC
     Small frequent syncs > big-bang catch-ups.
+    The checkpoint + pristine diff engine is designed for incremental use.
     If migration takes > 1 hour, you've waited too long between syncs.
 
 P9  AGENT-EXECUTABLE
-    Every step in this guide must be executable by an AI agent
-    reading top-to-bottom. No ambiguous instructions.
+    Every step in this guide is executable by an AI agent reading top-to-bottom.
+    All commands are explicit. No "see other docs" deferral in Path C.
 
 P10 THE CHECKLIST IS THE GUIDE
-    Create an i2-migration-checklist.md in _genesis/guides/ for
-    your migration. Tick boxes as you go. This IS your audit trail.
+    Create a migration-checklist.md for your migration run.
+    Tick boxes as you go. The checklist IS your audit trail.
 ```
 
 ---
 
-## Path A — Fresh Clone (No Existing Work)
+## Path A — Fresh Clone
 
 **When:** Starting a new project. No domain content created yet.
 
@@ -91,613 +142,399 @@ P10 THE CHECKLIST IS THE GUIDE
 gh repo create Long-Term-Capital-Partners/{YOUR_PROJECT} \
   --template Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE
 
-# 2. Clone and verify
+# 2. Clone locally
 git clone https://github.com/Long-Term-Capital-Partners/{YOUR_PROJECT}.git
 cd {YOUR_PROJECT}
 
-# 3. Verify template health
-./scripts/template-check.sh --quiet
+# 3. Customize CLAUDE.md — edit ONLY the ## Project section:
+#    Name, Stack, Purpose, EO — all other sections are template-owned
+$EDITOR CLAUDE.md
 
-# 4. Open Claude Code
+# 4. Verify template health
+bash scripts/template-check.sh --quiet
+
+# 5. Open Claude Code and confirm agent system works
 claude
 # Then: /dsbv status → should show "no active DSBV cycle"
 ```
 
-Done. Your repo has the full template. Start with /ltc-brainstorming or /dsbv design align pd
+Done. Your repo has the full template structure. Start with `/ltc-brainstorming` or `/dsbv design align pd`.
 
 ---
 
-## Path B — First Migration (Pre-ALPEI → Current Template)
+## Path B — Reverse Clone
 
-**When:** Your repo was cloned before the ALPEI template, or cloned early and never adopted the workstream structure. You have domain content in flat directories (`docs/`, `research/`, `src/`) but NOT in `1-ALIGN/`, `2-LEARN/`, etc.
+**When:** `bash scripts/template-sync.sh --detect-path` outputs `PATH B`, OR:
+- Repo lacks `1-ALIGN/` or `.claude/rules/`
+- Divergence > 30% (more than 30% of files are local-only vs template)
+- Pre-ALPEI repo with flat directory structure (`docs/`, `research/`, `src/`)
 
-**Real example:** Dung's MACRO-GROWTH repo (cloned 2026-03-24, 12 commits, no workstream structure).
+**Engine:** `template-manifest.yml` lineage classification drives triage. Every file in your repo is classified as TEMPLATE, SHARED, DOMAIN-SEED, or DOMAIN before any action is taken.
 
-### Pre-Flight Assessment
-
-Before starting, understand what you have:
+### Step B1: Detect path and generate triage manifest
 
 ```bash
-# 1. What's in your repo?
-git ls-files | head -50
-cat VERSION 2>/dev/null || echo "No VERSION file"
+# Confirm you are on Path B
+bash scripts/template-sync.sh --detect-path
+# → Output: "PATH B: reverse clone required"
 
-# 2. What does the template have? (for comparison)
-git remote add template \
-  https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git 2>/dev/null
-git fetch template main --quiet
-comm -12 <(git ls-files | sort) \
-         <(git ls-tree -r --name-only template/main | sort) > /tmp/shared-files.txt
-comm -23 <(git ls-files | sort) \
-         <(git ls-tree -r --name-only template/main | sort) > /tmp/local-only.txt
-
-echo "Shared with template: $(wc -l < /tmp/shared-files.txt) files"
-echo "Local-only (your content): $(wc -l < /tmp/local-only.txt) files"
+# Generate triage manifest — lists all your files with their recommended action
+bash scripts/template-sync.sh --reverse-clone <source-repo-path>
+# → Outputs: triage-manifest.txt (classify: DOMAIN | TEMPLATE | INHERITED)
+# → DOMAIN files: your project content — must be ported
+# → TEMPLATE files: skip (will come from fresh clone)
+# → INHERITED files: old governance artifacts — delete
 ```
 
-**Agent: Classify every file in `/tmp/local-only.txt` as DOMAIN or INHERITED:**
-- DOMAIN: files with real project content (research, designs, code, specs, findings, data)
-- INHERITED: files from early setup that don't belong — identify by these patterns:
-  - ALL_CAPS `.md` files in `_genesis/` or root (e.g., `RULES.md`, `EFFECTIVE_SYSTEM.md`)
-  - Skills in `.claude/skills/` not matching template's skill list
-  - Root-level `hooks/` directory (should be `.claude/hooks/`)
-  - `plugins/memory-vault/` directory (now integrated into template)
-  - `_shared/` directory (superseded by `_genesis/`)
-  - `0-GOVERN/` directory (not a standard template directory)
-  - `scripts/stage-validators/`, `scripts/wms-sync/` (old template layout)
-
-### Step 1: Backup
+### Step B2: Backup your current repo
 
 ```bash
 git tag backup/pre-migration
-git checkout -b feat/template-migration
 git push origin backup/pre-migration
 ```
 
-### Step 2: Add Template Remote
+### Step B3: Clone template fresh into a staging directory
 
 ```bash
-git remote add template \
-  https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git
-git fetch template main
+gh repo create Long-Term-Capital-Partners/{YOUR_PROJECT}-migration \
+  --template Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE
+git clone https://github.com/Long-Term-Capital-Partners/{YOUR_PROJECT}-migration.git /tmp/migration-target
 ```
 
-### Step 3: Remove Old Template Infrastructure
-
-**Before copying new infrastructure, remove stale old-template files that will cause duplicates:**
+### Step B4: Port DOMAIN files from triage manifest
 
 ```bash
-# Remove old-structure directories that are superseded in current template
-# Only delete these if they exist AND are template artifacts (not domain content)
-rm -rf plugins/memory-vault/ 2>/dev/null   # now integrated into .claude/hooks/
-rm -rf _shared/ 2>/dev/null                 # superseded by _genesis/
-rm -rf 0-GOVERN/ 2>/dev/null               # not a standard template directory
-rm -rf hooks/ 2>/dev/null                   # moved to .claude/hooks/
-rm -rf scripts/stage-validators/ 2>/dev/null # replaced by new scripts/
-rm -rf scripts/wms-sync/ 2>/dev/null        # replaced by skill-based WMS adapters
-rm -rf .claude/commands/ 2>/dev/null        # superseded by .claude/skills/
-
-# Remove old skills that don't match current template (v0.3 had 5 skills, current has ~29)
-# Agent: compare your .claude/skills/ to template/main's .claude/skills/ and remove non-matching dirs
+# For each DOMAIN file in triage-manifest.txt, determine correct ALPEI location:
 ```
-
-### Step 4: Copy Template Infrastructure
-
-Copy these from `template/main` — these are TEMPLATE lineage files:
-
-```bash
-# Agent: for each category below, checkout from template/main
-# Use: git checkout template/main -- <path>
-# Then unstage: git restore --staged <path>
-```
-
-| Category | Source (template/main) | Action |
-|---|---|---|
-| Agent config | `.claude/agents/` | Copy — replaces any old agents |
-| Rules | `.claude/rules/` | Copy — replaces any old rules |
-| Skills | `.claude/skills/` | Copy — replaces old skills entirely |
-| Hooks | `.claude/hooks/` | Copy — new location (was `hooks/` in old template) |
-| Settings | `.claude/settings.json` | Copy (or merge if you have custom permissions) |
-| Genesis | `_genesis/` (frameworks, templates, brand, SOPs, guides, training) | Copy |
-| Scripts | `scripts/` | Copy — replaces old scripts layout |
-| Full-spec rules | `rules/` | Copy |
-| Root files | `AGENTS.md`, `GEMINI.md`, `.gitignore`, `.gitleaks.toml` | Copy |
-| VERSION | `VERSION` | Copy — then verify it matches the template version you're targeting |
-| CLAUDE.md | `CLAUDE.md` | **MERGE** — take template structure, add your project-specific sections |
-
-**CLAUDE.md merge rule:** The template CLAUDE.md has the full structure (Project, Build, Rules, Architecture, etc.). Your project needs project-specific values in the `## Project` section (name, stack, purpose, EO). Take the template version, then edit these fields to describe YOUR project: Name, Stack, Purpose, EO. All other sections should match the template.
-
-### Step 4: Create Workstream Folders
-
-```
-1-ALIGN/
-  1-PD/  2-DP/  3-DA/  4-IDM/  _cross/
-  charter/  decisions/  okrs/
-2-LEARN/
-  1-PD/  2-DP/  3-DA/  4-IDM/  _cross/
-  input/  research/  specs/  output/  archive/
-3-PLAN/
-  1-PD/  2-DP/  3-DA/  4-IDM/  _cross/
-  architecture/  risks/  drivers/  roadmap/
-4-EXECUTE/
-  1-PD/  2-DP/  3-DA/  4-IDM/  _cross/
-  src/  tests/  config/  docs/
-5-IMPROVE/
-  1-PD/  2-DP/  3-DA/  4-IDM/  _cross/
-  changelog/  metrics/  retrospectives/  reviews/
-```
-
-Each directory needs a `README.md` (use `./scripts/generate-readmes.py` or copy from template).
-
-### Step 5: Move Domain Content to Correct Workstreams
-
-**This is the critical step.** For each DOMAIN file, determine its correct ALPEI location:
 
 | Content type | Correct location |
 |---|---|
-| Problem discovery, principles, diagnosis | `2-LEARN/{N}-{SUB}/` or `1-ALIGN/1-PD/` |
+| Problem discovery, principles, diagnosis | `2-LEARN/{N}-{SUB}/research/` or `1-ALIGN/1-PD/` |
 | Design specs, architecture | `3-PLAN/{N}-{SUB}/` |
 | Source code, scripts, config | `4-EXECUTE/{N}-{SUB}/src/` |
 | Test files | `4-EXECUTE/{N}-{SUB}/tests/` |
-| Research, findings, learning captures | `2-LEARN/{N}-{SUB}/research/` |
 | Charter, OKRs, stakeholders | `1-ALIGN/_cross/` or `1-ALIGN/1-PD/` |
 | Decisions, ADRs | `1-ALIGN/_cross/decisions/` |
 | Changelog, metrics, retros | `5-IMPROVE/_cross/` |
-| Vinh/inherited governance files | **DELETE** (not needed — template provides these) |
-
-**Agent: For each move, use `git mv` to preserve history. Never `cp` + `rm`.**
-
-### Step 6: Clean Up INHERITED Files
-
-Files from Vinh or early setup that are NOT in the template and NOT domain content should be removed. Common inherited files to delete:
-
-- Extra skills not in the template's 28 skill directories
-- `RULES.md`, `AGENTS.md` at root if duplicating `.claude/rules/` and `AGENTS.md`
-- ALL_CAPS framework files if kebab-case versions exist in `_genesis/frameworks/`
-- Stale `.claude/commands/` files (superseded by `.claude/skills/`)
-- Old `_shared/` directory (superseded by `_genesis/`)
-- Old `0-GOVERN/` directory (not a standard template directory)
-
-### Step 7: Add Frontmatter + Wikilinks
+| Vinh/inherited governance files | DELETE — not needed; template provides these |
 
 ```bash
-# Add frontmatter to domain files missing it
-./scripts/obsidian-alias-seeder.py
-
-# Add ## Links sections with wikilinks
-./scripts/obsidian-autolinker.py
+# Use cp (not git mv — you are moving to a new repo)
+cp <domain-file> /tmp/migration-target/<correct-alpei-path>/
 ```
 
-### Step 8: Verify and Commit
+### Step B5: Customize CLAUDE.md in the staging repo
 
 ```bash
-# Structural check
-./scripts/template-check.sh --quiet
+# Edit only the ## Project section — Name, Stack, Purpose, EO
+$EDITOR /tmp/migration-target/CLAUDE.md
+```
 
-# Vault/hook check
-./scripts/smoke-test.sh
+### Step B6: Delete INHERITED files from staging repo
 
-# Stage per-category (NOT git add -A — explicit staging per git-conventions)
+INHERITED = files from early setup that are not in the template and not domain content:
+- `.claude/commands/` (superseded by `.claude/skills/`)
+- `_shared/` (superseded by `_genesis/`)
+- `0-GOVERN/` (not a standard template directory)
+- `plugins/memory-vault/` (integrated into template)
+- `scripts/stage-validators/`, `scripts/wms-sync/` (old layout)
+- ALL_CAPS `.md` files in `_genesis/` if kebab-case versions exist
+
+```bash
+# Remove deprecated patterns listed in _genesis/template-manifest.yml §deprecated
+bash scripts/template-manifest.sh --audit /tmp/migration-target
+# → Follow recommendations for any deprecated files found
+```
+
+### Step B7: Add frontmatter and wikilinks to domain files
+
+```bash
+cd /tmp/migration-target
+python3 scripts/obsidian-alias-seeder.py
+python3 scripts/obsidian-autolinker.py
+```
+
+### Step B8: Verify and commit
+
+```bash
+bash scripts/template-verify.sh
+# Must exit 0 (all 6 checks: structural, hooks, graph, agent, manifest, sync)
+
 git add .claude/ _genesis/ scripts/ rules/ CLAUDE.md AGENTS.md GEMINI.md VERSION .gitignore
 git add 1-ALIGN/ 2-LEARN/ 3-PLAN/ 4-EXECUTE/ 5-IMPROVE/
 git commit -m "feat(all): migrate to ALPEI template structure"
 git push -u origin feat/template-migration
 
-# Create PR
-gh pr create --base main --title "feat: ALPEI template migration"
-```
-
-### Step 9: Post-Merge — Start DSBV
-
-```bash
-claude
-/dsbv status
+gh pr create --base main --title "feat: ALPEI template migration (Path B)"
 ```
 
 ---
 
-## Path C — Version Upgrade (Already on Template → Newer Version)
+## Path C — Version Upgrade
 
-**When:** Your repo already has the ALPEI structure (1-ALIGN/, .claude/rules/, _genesis/). You want to pull the latest template improvements.
+**When:** `bash scripts/template-sync.sh --detect-path` outputs `PATH C`. Repo has `1-ALIGN/`, `.claude/rules/`, `_genesis/`. You want to pull template improvements from a newer version.
 
-**Real examples:**
-- Khang's Assets repo (v2.0 → latest, incremental 10-day migration)
-- Dong's Inflation repo (v2.0 → latest, branch-based 2-day migration)
-- Cam Van's Financial System (v1.2 → v2.0, 27-step checklist, gold standard)
+**This path is agent-executable. All commands are explicit. No external docs required.**
 
-### Pre-Migration Audit (CRITICAL — do this FIRST)
+**Key files:**
+- `_genesis/template-manifest.yml` — controls what gets synced (three-lineage ownership)
+- `.template-checkpoint.yml` — tracks sync state (last sync SHA, version, history)
+- `scripts/template-diff.sh` — powers the pristine diff engine (computes template-only changes between two template SHAs)
 
-This step is what makes the difference between a clean migration and content loss.
+---
 
-**Step C0: Classify your files by lineage**
+### Step C1: Detect path
 
 ```bash
-# 1. What files exist in BOTH your repo and the template? (potential merge candidates)
-git fetch template main
-comm -12 <(git ls-files | sort) \
-         <(git ls-tree -r --name-only template/main | sort) > /tmp/shared-files.txt
-
-# 2. Of those, which have YOU modified since your last template sync?
-#    (These are the danger zone — template changed AND you changed)
-while read f; do
-  if ! git diff --quiet template/main -- "$f" 2>/dev/null; then
-    echo "$f"
-  fi
-done < /tmp/shared-files.txt > /tmp/merge-candidates.txt
-
-# 3. Of the merge candidates, which did YOU actually edit (vs untouched template copy)?
-#    Method: check if your version matches ANY prior template/main commit
-#    If it matches a prior template version → you never edited → SAFE to TAKE
-#    If it doesn't match any prior template version → you customized → needs MERGE
-
-# Find the last template sync point (look for sync-related commits)
-SYNC_SHA=$(git log --oneline --all --grep="template" --grep="sync" --all-match \
-  --format="%H" -1 2>/dev/null || echo "")
-
-if [[ -z "$SYNC_SHA" ]]; then
-  # Fallback: use git merge-base to find common ancestor with template
-  SYNC_SHA=$(git merge-base HEAD template/main 2>/dev/null || echo "")
-fi
-
-if [[ -n "$SYNC_SHA" ]]; then
-  echo "Last sync point: $SYNC_SHA"
-  # Files YOU changed since last sync (these need MERGE, not TAKE)
-  git diff --name-only "$SYNC_SHA" HEAD -- $(cat /tmp/merge-candidates.txt) \
-    > /tmp/user-customized.txt
-  # Files you did NOT change since last sync (safe to TAKE)
-  comm -23 /tmp/merge-candidates.txt /tmp/user-customized.txt \
-    > /tmp/safe-to-take.txt
-  echo "Safe to TAKE (untouched): $(wc -l < /tmp/safe-to-take.txt) files"
-  echo "Needs MERGE (you edited): $(wc -l < /tmp/user-customized.txt) files"
-else
-  echo "WARNING: No sync baseline found. Treating ALL merge candidates as MERGE."
-  cp /tmp/merge-candidates.txt /tmp/user-customized.txt
-  touch /tmp/safe-to-take.txt
-fi
-
-# After migration, record this sync point for next time:
-# git rev-parse template/main > .template-sync-version
+bash scripts/template-sync.sh --detect-path
+# → Expected output: "PATH C: version upgrade"
+# If output is PATH B: follow Path B instructions above.
+# If output is PATH A: repo is a fresh clone — no sync needed.
 ```
 
-**Agent: Use the classification above to decide per-file:**
+---
 
-- File in `/tmp/safe-to-take.txt` → **TAKE** (untouched template copy, safe)
-- File in `/tmp/user-customized.txt` → **MERGE** (user edited, manual review)
-- File NOT in `/tmp/merge-candidates.txt` → **SKIP** (domain-only, don't touch)
-
-### Step C1: Backup and Branch
+### Step C2: Check for checkpoint — detect bootstrap mode
 
 ```bash
-git tag backup/pre-v$(cat VERSION)-upgrade
+# Does a checkpoint file exist with a non-empty last_sync_sha?
+if [[ -f .template-checkpoint.yml ]]; then
+  last_sha=$(grep 'last_sync_sha' .template-checkpoint.yml | awk '{print $2}')
+  if [[ -z "$last_sha" || "$last_sha" == '""' || "$last_sha" == "~" ]]; then
+    echo "BOOTSTRAP MODE: checkpoint exists but last_sync_sha is empty"
+  else
+    echo "INCREMENTAL MODE: last sync SHA = $last_sha"
+  fi
+else
+  echo "BOOTSTRAP MODE: no checkpoint file found"
+fi
+```
+
+**If BOOTSTRAP MODE:** proceed to Step C3. **If INCREMENTAL MODE:** skip to Step C4.
+
+---
+
+### Step C3: Bootstrap (first-time checkpoint creation)
+
+This step runs only when `.template-checkpoint.yml` is missing or `last_sync_sha` is empty.
+The sync script will prompt you for the template version this repo was originally cloned from.
+
+```bash
+# Run sync — the script detects missing checkpoint and enters bootstrap mode automatically.
+# It will prompt: "No checkpoint found. What template version was this repo originally
+# cloned from? (e.g., v2.0.0)"
+# Answer with the version tag closest to when you cloned (check git log for dates if unsure).
+bash scripts/template-sync.sh --sync v2.0.0
+# → Script writes initial .template-checkpoint.yml with your provided version SHA
+# → Script re-enters incremental diff from that SHA as the baseline
+# → Proceed to Step C4 after script creates the checkpoint
+```
+
+---
+
+### Step C4: Create a migration branch and backup tag
+
+```bash
+VERSION_OLD=$(cat VERSION 2>/dev/null || echo "unknown")
+git tag "backup/pre-${VERSION_OLD}-upgrade"
 git checkout -b feat/template-upgrade
 ```
 
-### Step C2: Run Template Check
+---
+
+### Step C5: Check what changed since last sync
 
 ```bash
-./scripts/template-check.sh
+bash scripts/template-check.sh
 ```
 
-This produces a JSON report with 5 buckets:
+This compares your repo against the template using the checkpoint SHA as the baseline.
+Output is categorized into 5 buckets:
 
 ```
-┌─────────────────────────┬────────────────────────────────────────┐
-│ Bucket                  │ What it means                          │
-├─────────────────────────┼────────────────────────────────────────┤
-│ auto_add                │ New files, safe dirs → auto-add        │
-│ flagged.security        │ .env, secrets, keys → NEVER auto-add   │
-│ flagged.review_required │ .claude/, _genesis/, scripts/ → review │
-│ merge                   │ Both sides changed → needs decision    │
-│ unchanged               │ Same content → nothing to do           │
-└─────────────────────────┴────────────────────────────────────────┘
+┌─────────────────────────┬────────────────────────────────────────────────────┐
+│ Bucket                  │ What it means                                      │
+├─────────────────────────┼────────────────────────────────────────────────────┤
+│ auto_add                │ New template files not in your repo → safe to add  │
+│ flagged.security        │ .env, secrets → NEVER auto-add                     │
+│ flagged.review_required │ .claude/, _genesis/, scripts/ → review before take │
+│ merge                   │ Both sides changed → needs decision per P4          │
+│ unchanged               │ Identical content → nothing to do                  │
+└─────────────────────────┴────────────────────────────────────────────────────┘
 ```
 
-### Step C3: Auto-Add Safe Files
+The pristine diff engine (`template-diff.sh`) computes the changeset between
+`template@last_sync_sha` and `template@target_sha` — only template-side changes appear.
+Your local edits do NOT create false positives in this diff.
+
+---
+
+### Step C6: Run the sync
 
 ```bash
-./scripts/template-check.sh | jq '.auto_add' | ./scripts/template-sync.sh --auto-add --input -
+# Replace v2.1.0 with the target template version tag you are upgrading to
+bash scripts/template-sync.sh --sync v2.1.0
 ```
 
-These are new files that don't exist in your repo. Safe to add.
+What this does internally:
+1. Reads `.template-checkpoint.yml` for `last_sync_sha`
+2. Calls `template-diff.sh` to compute pristine diff (template@old → template@new)
+3. Loads `_genesis/template-manifest.yml` to classify each changed file
+4. Applies merge strategy per file:
+   - `lineage: template`, user not modified → **auto-take**
+   - `lineage: template`, user modified → **CONFLICT** — flags for manual review
+   - `lineage: shared`, strategy `section-merge` (e.g., CLAUDE.md) → **section-merge**
+   - `lineage: shared`, strategy `3-way-merge` (e.g., settings.json) → **3-way-merge**
+   - `lineage: domain-seed` or `domain` → **skip** (your files never touched)
+5. Leaves ALL changes unstaged (you review before committing)
+6. Logs every action to `.template-sync-log.json`
 
-### Step C4: Handle Flagged Files (Review Required)
+**Do NOT commit yet** — review in Step C7.
 
-For `.claude/`, `_genesis/`, `scripts/` — these are TEMPLATE lineage files. Apply the Three-Lineage rule:
+---
 
-**If you never customized the file** (it's identical to the old template version):
-```bash
-./scripts/template-sync.sh --file <path> --action take
-```
-
-**If you customized the file** (added project-specific content):
-```bash
-# Show the diff first
-git diff HEAD template/main -- <path>
-# Then manually merge — keep your customizations, take template improvements
-```
-
-**Common files that need MERGE (not TAKE):**
-- `CLAUDE.md` — has your project-specific `## Project` section
-- `.claude/settings.json` — may have custom permissions or hook paths
-- `.gitignore` — may have project-specific entries
-
-**Common files safe to TAKE:**
-- `.claude/rules/*` — no project-specific content
-- `.claude/agents/*` — no project-specific content
-- `_genesis/frameworks/*` — template-owned knowledge
-- `_genesis/templates/*` — template-owned templates
-- `scripts/*` — template-owned tools
-
-### Step C5: Handle Merge Candidates
-
-For each file in the `merge` bucket:
-
-```
-(K) Keep local — your version wins
-(T) Take template — template version wins
-(D) Show diff — see what changed before deciding
-(M) Manual merge — take specific sections from each
-```
-
-**Decision rule:**
-```
-Is this file TEMPLATE lineage AND you never edited it?  → T (take)
-Is this file TEMPLATE lineage AND you edited it?         → M (merge)
-Is this file DOMAIN lineage?                             → K (keep)
-```
-
-**Bulk-safe patterns** (if the only diff is `## Links` addition or vocab rename):
-```bash
-# If the diff is ONLY adding ## Links sections or renaming I0→Iteration 0,
-# and you never customized the file — bulk TAKE is safe:
-for f in $(cat /tmp/bulk-safe.txt); do
-  ./scripts/template-sync.sh --file "$f" --action take
-done
-```
-
-### Step C6: Post-Sync Cleanup
-
-After template-sync, check for common migration debris:
+### Step C7: Review unstaged changes
 
 ```bash
-# 1. Stale .claude/commands/ (superseded by skills)
-find .claude/commands/ -name "*.md" 2>/dev/null
+# See everything the sync applied
+git diff
 
-# 2. ALL_CAPS duplicates of kebab-case files in _genesis/
-find _genesis/frameworks/ -name "[A-Z_]*.md" 2>/dev/null
+# Review files flagged as CONFLICT (template lineage, but you edited them)
+# These require manual merge — take template improvements, keep your customizations
+git diff -- .claude/rules/    # rules should be pure template — safe to take
+git diff -- CLAUDE.md         # section-merge handles this, but verify ## Project is intact
+git diff -- .claude/settings.json   # 3-way-merge — verify custom hook paths are present
 
-# 3. Old structural vestiges (from prior template versions)
-#    These are local-only files template-sync can't see
-ls -d _shared/ 0-GOVERN/ plugins/memory-vault/ hooks/ \
-      scripts/stage-validators/ scripts/wms-sync/ 2>/dev/null
+# Common files safe to take as-is (lineage: template, no project customization):
+#   .claude/rules/*      .claude/agents/*      _genesis/frameworks/*
+#   _genesis/templates/* scripts/*             rules/*
 
-# 4. Nested skill dirs (should be flat under .claude/skills/)
-find .claude/skills/ -mindepth 2 -name "SKILL.md" -not -path "*/references/*" 2>/dev/null
-
-# 5. Scripts in wrong location (_genesis/scripts/ should be scripts/)
-ls _genesis/scripts/*.sh 2>/dev/null
-
-# 6. Broken wikilinks
-./scripts/link-validator.sh
-
-# 7. Orphaned files
-./scripts/orphan-detect.sh
-
-# 8. Hook path validation — ensure settings.json paths still resolve
-jq -r '.. | .command? // empty' .claude/settings.json 2>/dev/null | \
-  while read cmd; do
-    script=$(echo "$cmd" | grep -oE '\./[^ ]+\.sh' | head -1)
-    [[ -n "$script" && ! -f "$script" ]] && echo "BROKEN HOOK: $script"
-  done
+# Common files that NEED review (lineage: shared):
+#   CLAUDE.md            — your ## Project section must be preserved
+#   .claude/settings.json — your custom permissions/hook paths must be preserved
+#   .gitignore           — your project-specific entries must be preserved
 ```
 
-**Delete any vestiges found above.** These are old template artifacts, not domain content.
+---
 
-### Step C7: Verify
+### Step C8: Run verification sweep
 
 ```bash
-# 1. Sync completeness (all decisions logged, no deletes, files unstaged)
-./scripts/template-sync.sh --verify
-
-# 2. Template alignment
-./scripts/template-check.sh --quiet
-# Should show: 0 auto_add, 0 flagged, small or 0 merge, high unchanged
-
-# 3. Hook/vault health
-./scripts/smoke-test.sh
-
-# 4. Agent system — open Claude Code and test
-claude
-/dsbv status
+bash scripts/template-verify.sh
 ```
 
-### Step C7.5: Record Sync Point (for next migration)
+`template-verify.sh` runs 6 orthogonal checks:
 
-```bash
-# Save the template commit SHA so the next migration knows the baseline
-git rev-parse template/main > .template-sync-version
-echo ".template-sync-version" >> .gitignore  # local-only tracking file
+```
+V1  Structural   — validate-blueprint.py (dir existence, file presence, frontmatter)
+V2  Hooks        — smoke-test.sh (hook paths resolve, settings.json valid)
+V3  Graph        — link-validator.sh + orphan-detect.sh (no broken wikilinks)
+V4  Agent        — /dsbv status equivalent check (agent system responds)
+V5  Manifest     — template-manifest.sh --audit (ownership coverage 100%, overlaps 0)
+V6  Sync         — template-sync.sh --verify (all decisions logged, no unstaged deletes)
 ```
 
-### Step C8: Commit and PR
+Exit codes: `0` = all pass | `1` = failures | `2` = error. **Do not proceed if exit code is non-zero.**
+
+If V2 fails: check `.claude/settings.json` for hook paths that went stale after renames.
+If V3 fails: run `bash scripts/link-validator.sh` and fix broken `[[wikilinks]]`.
+If V5 fails: a file is missing from `_genesis/template-manifest.yml` — add it or flag to template maintainer.
+
+---
+
+### Step C9: Stage and commit
 
 ```bash
-# Stage per-file (NOT git add -A)
-git add .claude/ _genesis/ scripts/ rules/ CLAUDE.md VERSION
-git commit -m "chore(govern): sync with project template vX.Y"
+# Explicit per-file staging (NOT git add -A) — per P6 and git-conventions.md
+git add .claude/ _genesis/ scripts/ rules/ CLAUDE.md AGENTS.md GEMINI.md VERSION .gitignore
+git commit -m "chore(govern): sync with template v2.1.0"
+```
+
+---
+
+### Step C10: Update checkpoint and create PR
+
+```bash
+# The sync script updates .template-checkpoint.yml ONLY after verify passes (UBS-07 guard)
+# Confirm checkpoint was updated:
+grep 'last_sync_sha\|template_version' .template-checkpoint.yml
 
 git push -u origin feat/template-upgrade
-gh pr create --base main --title "chore(govern): template upgrade to vX.Y"
-```
-
----
-
-## Optional — Obsidian Workspace + Personal Directories
-
-If using Obsidian as your PKM tool, also create these directories:
-
-```bash
-# Personal workspace areas (git-tracked but user-specific content)
-mkdir -p PERSONAL-KNOWLEDGE-BASE/{captured,distilled,expressed}
-mkdir -p DAILY-NOTES/ MISC-TASKS/ PEOPLE/ inbox/
-
-# Copy Obsidian configuration from template
-git checkout template/main -- _genesis/obsidian/ 2>/dev/null
-git restore --staged _genesis/obsidian/ 2>/dev/null
-```
-
-Skip this if you don't use Obsidian — the core ALPEI structure works without it.
-
----
-
-## Migration Checklist Template
-
-Copy this to `_genesis/guides/migration-checklist.md` in your project and tick boxes as you go. This is your audit trail.
-
-```markdown
-# Migration Checklist — Template vOLD → vNEW
-
-**Branch:** `feat/template-upgrade`
-**Backup tag:** `backup/pre-vOLD-upgrade`
-**Date started:** YYYY-MM-DD
-
-## Pre-Flight
-- [ ] Backup tag created
-- [ ] Migration branch created
-- [ ] Template remote added and fetched
-- [ ] Pre-migration audit completed (three-lineage classification)
-
-## Infrastructure (TEMPLATE lineage)
-- [ ] .claude/agents/ updated (see script-registry.md for current count)
-- [ ] .claude/rules/ updated
-- [ ] .claude/skills/ updated
-- [ ] .claude/hooks/ updated
-- [ ] .claude/settings.json MERGED (kept custom permissions, added new hook registrations)
-- [ ] _genesis/ updated (frameworks, templates, brand, SOPs, guides)
-- [ ] scripts/ updated
-- [ ] rules/ (full specs) updated
-- [ ] CLAUDE.md MERGED (kept ## Project section, took template for all other sections)
-- [ ] VERSION bumped
-- [ ] .template-sync-version recorded (git rev-parse template/main)
-
-## Structural (if needed)
-- [ ] Subsystem folders exist: 1-PD/ 2-DP/ 3-DA/ 4-IDM/ in each workstream
-- [ ] _cross/ folders exist where needed
-- [ ] No ALL_CAPS duplicates of kebab-case files
-- [ ] No stale .claude/commands/ files
-
-## Domain Content
-- [ ] All domain files verified untouched (not overwritten by template)
-- [ ] Any moved files used git mv (preserves history)
-- [ ] Frontmatter valid on all .md files
-
-## Cleanup
-- [ ] Inherited/Vinh files removed (if any)
-- [ ] Broken wikilinks fixed (link-validator.sh)
-- [ ] No orphaned files (orphan-detect.sh)
-
-## Verification
-- [ ] template-sync.sh --verify passes 4/4
-- [ ] template-check.sh exits 0
-- [ ] smoke-test.sh passes 5/5
-- [ ] /dsbv status works
-- [ ] PR created and reviewed
-
-## Post-Merge
-- [ ] Merged to main
-- [ ] Backup tag retained for rollback reference
-```
-
----
-
-## Rollback
-
-If something goes wrong at any point:
-
-```bash
-# Option 1: Restore a single file
-git checkout HEAD -- <file>
-
-# Option 2: Restore everything (discard all migration changes)
-git checkout main
-git branch -D feat/template-upgrade
-
-# Option 3: Return to pre-migration state
-git checkout backup/pre-vX-upgrade
-git checkout -b recovery/from-failed-migration
-
-# The .template-sync-log.json records every action — use it to trace
-cat .template-sync-log.json | jq '.[] | select(.action != "skip")'
+gh pr create --base main \
+  --title "chore(govern): template upgrade to v2.1.0" \
+  --body "Synced with OPS_OE.6.4.LTC-PROJECT-TEMPLATE v2.1.0. template-verify.sh: 6/6 pass."
 ```
 
 ---
 
 ## Troubleshooting
 
-**"template-check.sh fails to fetch"**
-→ Check remote URL: `git remote get-url template`. Should be the LTC-PROJECT-TEMPLATE GitHub URL. Network/auth issues → `gh auth status`.
+**Bootstrap prompt appears unexpectedly**
+→ `.template-checkpoint.yml` is missing or `last_sync_sha` is empty. This is expected on first sync after adopting v3.0. Provide the version tag closest to your last manual sync (check `git log --grep="template"` for hints). The script creates the checkpoint and re-enters the diff automatically.
 
-**"merge bucket is huge (100+ files)"**
-→ This means you've fallen far behind. First check: how many are just `## Links` additions? Those are safe to bulk-TAKE if you haven't edited the files. Use the pre-migration audit (Step C0) to identify the safe batch.
+**"merge bucket is large (50+ files)"**
+→ Too long since last sync. First pass: check how many are in `lineage: template` with no user modification — those are safe to auto-take. Run `bash scripts/template-check.sh | jq '.merge | length'` to count. Use bootstrap mode to establish checkpoint, then re-run. Incremental syncs going forward will be small.
 
-**"My CLAUDE.md conflicts with template"**
-→ Your `## Project` section wins. Take template's structural sections (Architecture, Rules, DSBV Process, etc.). Your project-specific content is sacred (P3).
+**"CLAUDE.md section-merge dropped my ## Project section"**
+→ Section-merge preserves `user_owned` headings from `template-manifest.yml`. If your heading differs (e.g., `## Project Details` vs `## Project`), the matcher uses `startswith()`. Check manifest entry for CLAUDE.md and confirm your heading matches the `user_owned` list. Restore from backup tag: `git checkout backup/pre-v{X}-upgrade -- CLAUDE.md` and merge manually.
 
 **"settings.json merge lost my custom hooks"**
-→ Check `git diff HEAD~1 .claude/settings.json`. Your custom hooks should be appended, not replaced. Restore from backup tag if needed.
+→ 3-way-merge is used for settings.json. If it produced conflicts, check `git diff HEAD~1 .claude/settings.json`. Your custom hooks should be in the merged output. If lost: restore with `git checkout backup/pre-v{X}-upgrade -- .claude/settings.json`, then manually add the new template hook entries.
 
-**"Agent doesn't recognize new skills after migration"**
-→ Check `.claude/skills/` directory. Each skill needs a `SKILL.md` file. Run `ls .claude/skills/*/SKILL.md | wc -l` — should match the template count.
+**"template-verify.sh V2 fails — broken hook paths"**
+→ A template rename moved a hook script. Run:
+```bash
+jq -r '.. | .command? // empty' .claude/settings.json 2>/dev/null | \
+  grep -oE '\./[^ ]+\.sh' | while read s; do
+    [[ ! -f "$s" ]] && echo "BROKEN: $s"
+  done
+```
+Update each broken path in `.claude/settings.json` to its new location.
 
-**"Vocabulary mismatch (I0 vs Iteration 0 in my files)"**
-→ The template standardized to "Iteration 0-4". Your domain files may still say "I0-I4". This is cosmetic for now — update when you next edit those files. Do NOT batch-rename domain content during migration.
+**"Agent doesn't recognize new skills after upgrade"**
+→ Each skill needs a `SKILL.md`. Run `ls .claude/skills/*/SKILL.md | wc -l` and compare to template count. If count differs, checkout missing skill dirs from template.
 
 **"I have files the template doesn't have"**
-→ Those are DOMAIN lineage files. Leave them where they are. template-check doesn't surface them because they're local-only. That's correct behavior.
+→ Those are DOMAIN lineage files — local-only. `template-check.sh` does not surface them; they are invisible to the diff engine. That is correct behavior (P3).
+
+**"Deprecated file warnings from template-manifest.sh --audit"**
+→ Your repo has files listed in `_genesis/template-manifest.yml` §deprecated. These are old template artifacts (e.g., `.claude/commands/`, `_shared/`, `0-GOVERN/`). Delete them — they are not domain content.
 
 ---
 
-## What Changed — Version History
+## Rollback
 
-### v2.0.0 (2026-04-05)
-- 5 ALPEI workstreams with subsystem folders (1-PD, 2-DP, 3-DA, 4-IDM)
-- 4 MECE agents, 12 always-on rules, 28 skills, 53 scripts
-- DSBV workflow with human gates
-- Obsidian knowledge graph with wikilinks
-- Memory vault + QMD semantic search
-- template-check + template-sync tools
+```bash
+# Option 1: Restore a single file
+git checkout backup/pre-v{X}-upgrade -- <file>
 
-### Pre-v2.0 → v2.0 (major changes)
-- ALL_CAPS framework files → kebab-case
-- `_shared/` → `_genesis/`
-- S0/S1/S2/S3 → 1-PD/2-DP/3-DA/4-IDM
-- I0-I4 → Iteration 0-4
-- `0-GOVERN/` removed (not a standard directory)
-- 174 Vinh-seeded governance files → not in template (clean up if present)
-- 32 non-standard skills → not in template (clean up if present)
-- Blueprint relocated: `1-ALIGN/charter/BLUEPRINT.md` → `_genesis/alpei-blueprint.md`
+# Option 2: Discard all migration changes and return to main
+git checkout main
+git branch -D feat/template-upgrade
+
+# Option 3: Return to pre-migration state
+git checkout backup/pre-v{X}-upgrade
+git checkout -b recovery/from-failed-migration
+```
+
+The `.template-sync-log.json` records every action taken during sync. Use it to trace what changed:
+
+```bash
+cat .template-sync-log.json | jq '.[] | select(.action != "skip")'
+```
+
+The checkpoint is only updated after `template-verify.sh` exits 0 (UBS-07 guard), so a failed sync leaves the checkpoint pointing to the last known-good SHA.
 
 ---
 
 ## Links
 
-- [[AGENTS]]
-- [[alpei-blueprint]]
-- [[CHANGELOG]]
+- [[template-sync]]
+- [[template-check]]
+- [[template-manifest]]
 - [[CLAUDE]]
-- [[DESIGN]]
-- [[SEQUENCE]]
-- [[SKILL]]
-- [[VALIDATE]]
-- [[agent-system]]
-- [[alpei-dsbv-process-map]]
-- [[architecture]]
-- [[brand-identity]]
-- [[charter]]
-- [[history-version-control]]
-- [[naming-rules]]
-- [[project]]
-- [[roadmap]]
-- [[security]]
+- [[CHANGELOG]]
+- [[alpei-blueprint]]
+- [[filesystem-routing]]
 - [[versioning]]
 - [[workstream]]

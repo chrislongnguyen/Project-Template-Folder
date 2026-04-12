@@ -1,0 +1,25 @@
+# Template sync checkpoint — populated by template-sync.sh on every sync.
+# Downstream repos: populate this file after first sync from the LTC Project Template.
+# DO NOT edit manually unless recovering from a failed sync.
+
+# version of this checkpoint file format
+schema_version: "1.0"
+
+# git SHA of the template commit at last sync (empty = never synced / bootstrap needed)
+last_sync_sha: ""
+
+# ISO date of last sync (YYYY-MM-DD)
+last_sync_date: ""
+
+# semver tag of template at last sync (e.g. "v2.0.0")
+template_version: ""
+
+# URL of the template remote — used by template-sync.sh to auto-add remote
+template_remote_url: "https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git"
+
+# migration path used: A (fresh clone), B (reverse clone), or C (version upgrade)
+migration_path: ""
+
+# list of prior sync records — prepend a new entry after each successful sync
+sync_history:
+  []

@@ -1,0 +1,139 @@
+schema_version: "1.0"
+template_version: "2.0.0"
+generated_date: "2026-04-12"
+
+# Classification algorithm (priority order):
+#   1. reserved_domain_namespaces match → DOMAIN
+#   2. deprecated.pattern match         → DEPRECATED
+#   3. shared.entries exact path match  → SHARED
+#   4. domain_seed.patterns match       → DOMAIN-SEED
+#   5. Local-only (not in template remote at checkpoint SHA) → DOMAIN
+#   6. files.template patterns/explicit match → TEMPLATE
+#   7. In template remote but not in manifest → TEMPLATE (fallback)
+#
+# Step 5 MUST precede step 6 (BUG-A fix). Audit tool checks shared entries
+# BEFORE template patterns to prevent local user files from being mis-classified
+# as TEMPLATE by a broad glob such as ".claude/**".
+
+files:
+  template:
+    patterns:
+      - path: "scripts/**"
+        description: "All template scripts (*.sh, *.py, test fixtures)"
+      - path: ".claude/rules/**"
+        description: "Auto-loaded rule files"
+      - path: ".claude/agents/**"
+        description: "Agent definition files"
+      - path: ".claude/hooks/**"
+        description: "Hook scripts"
+      - path: ".claude/skills/**"
+        description: "Skill files"
+      - path: ".claude/state/**"
+        description: "DSBV state files"
+      - path: "_genesis/**"
+        description: "Org-level frameworks, templates, brand, reference"
+      - path: "rules/**"
+        description: "Full spec rule files (on-demand)"
+      - path: ".cursor/**"
+        description: "Cursor IDE rules"
+      - path: ".github/**"
+        description: "GitHub workflows and issue templates"
+      - path: ".gitleaks.toml"
+        description: "Secret scanning config"
+      - path: ".pre-commit-config.yaml"
+        description: "Pre-commit hook config"
+      - path: ".templateignore"
+        description: "Template sync ignore list"
+      - path: ".mcp.json"
+        description: "MCP server config"
+      - path: "codex.md"
+        description: "Codex reference"
+      - path: "README.md"
+        description: "Repo root README"
+    explicit:
+      - path: "AGENTS.md"
+        description: "Agent roster and routing"
+      - path: "GEMINI.md"
+        description: "Gemini agent config"
+      - path: "CHANGELOG.md"
+        description: "Release changelog — template maintains structure; entries added per release"
+
+  shared:
+    entries:
+      - path: "CLAUDE.md"
+        merge_strategy: "section-merge"
+        note: "Template owns 18 sections; user owns only ## Project"
+        merge_sections:
+          template_owned:
+            - "## Build and Validate"
+            - "## Rules"
+            - "## Knowledge Graph"
+            - "## Architecture: 5x4x4 Matrix"
+            - "## Architecture: Subsystems"
+            - "## Architecture: PKB"
+            - "## Effective Principles"
+            - "## Brand Identity"
+            - "## Naming"
+            - "## Security"
+            - "## Agent System"
+            - "## Filesystem Routing"
+            - "## DSBV Process"
+            - "## Enforcement and Scripts"
+            - "## Pre-Flight Protocol"
+            - "## Rules Architecture"
+            - "## Self-Update Rule"
+            - "## Links"
+          user_owned:
+            - "## Project"
+      - path: ".claude/settings.json"
+        merge_strategy: "3-way-merge"
+        note: "Hook paths and permission modes — both sides edit"
+      - path: ".gitignore"
+        merge_strategy: "3-way-merge"
+        note: "Both sides add ignore rules"
+      - path: "VERSION"
+        merge_strategy: "auto-take"
+        note: "Template version tracking — always take template version"
+
+  domain_seed:
+    patterns:
+      - path: "[1-5]-*/**"
+        description: "All workstream content — ALIGN/LEARN/PLAN/EXECUTE/IMPROVE"
+      - path: "PERSONAL-KNOWLEDGE-BASE/**"
+        description: "Obsidian PKB — user-specific knowledge"
+      - path: "DAILY-NOTES/**"
+        description: "Daily notes — user-specific"
+      - path: "inbox/**"
+        description: "Inbox staging area — user-specific"
+      - path: "MISC-TASKS/**"
+        description: "Miscellaneous tasks — user-specific"
+      - path: "PEOPLE/**"
+        description: "People directory — user-specific"
+
+deprecated:
+  - pattern: ".claude/commands/**"
+    removed_in_version: "2.0.0"
+    action: "Delete directory — replaced by skills"
+  - pattern: "_genesis/scripts/**"
+    removed_in_version: "2.0.0"
+    action: "Delete — scripts moved to scripts/"
+  - pattern: "_shared/**"
+    removed_in_version: "2.0.0"
+    action: "Delete directory"
+  - pattern: "0-GOVERN/**"
+    removed_in_version: "2.0.0"
+    action: "Delete directory — not a template workstream"
+  - pattern: "plugins/memory-vault/**"
+    removed_in_version: "2.0.0"
+    action: "Delete — vault now in ~/.claude"
+  - pattern: "hooks/**"
+    removed_in_version: "2.0.0"
+    action: "Delete — hooks moved to .claude/hooks/"
+
+reserved_domain_namespaces:
+  - pattern: "scripts/project-custom-*.sh"
+    description: "User-defined custom scripts — never overwritten by template sync"
+  - pattern: ".claude/rules/*-custom-*.md"
+    description: "User-defined custom rules — never overwritten by template sync"
+  - pattern: ".claude/skills/project-*/**"
+    description: "User-defined project skills — never overwritten by template sync"
