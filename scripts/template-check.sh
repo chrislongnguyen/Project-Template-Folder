@@ -1,9 +1,38 @@
 #!/usr/bin/env bash
-# version: 2.2 | status: in-review | last_updated: 2026-04-09
+# version: 3.0 | status: draft | last_updated: 2026-04-12
 # LTC Project Template — Deterministic Categorization Script
 # Compares local file tree to template remote via git ls-tree.
 # Outputs valid JSON to stdout. Self-validates bucket counts.
+# v3.0: Each file entry now includes a `lineage` field from template-manifest.sh --classify.
 set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# --- Usage ---
+usage() {
+  cat <<'EOF'
+Usage: template-check.sh [OPTIONS]
+
+Compares local repo to template remote and outputs categorized JSON.
+
+OPTIONS:
+  --remote <name>   Git remote name for template (default: template)
+  --branch <name>   Branch to compare against (default: main)
+  --quiet           Suppress progress messages on stderr
+  --help            Show this help and exit
+
+OUTPUT:
+  Valid JSON to stdout with 5 buckets: auto_add, flagged (security_sensitive,
+  review_required), merge, unchanged. Each file entry is an object:
+    {"path": "scripts/foo.sh", "lineage": "template"}
+  Lineage values: template | shared | domain-seed | domain | deprecated | unknown
+
+EXIT CODES:
+  0   Success
+  1   Bucket mismatch (internal error)
+  2   Usage error / missing dependency
+EOF
+}
 
 # --- Defaults ---
 REMOTE="template"
@@ -17,7 +46,8 @@ while [[ $# -gt 0 ]]; do
     --remote) REMOTE="$2"; shift 2 ;;
     --branch) BRANCH="$2"; shift 2 ;;
     --quiet)  QUIET=true; shift ;;
-    *) echo "Usage: $0 [--remote <name>] [--branch <name>] [--quiet]" >&2; exit 2 ;;
+    --help)   usage; exit 0 ;;
+    *) echo "Usage: $0 [--remote <name>] [--branch <name>] [--quiet] [--help]" >&2; exit 2 ;;
   esac
 done
 
@@ -85,6 +115,25 @@ content_differs() {
   ! git diff --quiet "$REF" -- "$1" 2>/dev/null
 }
 
+# --- Lineage lookup (v3.0) ---
+# Calls template-manifest.sh --classify for a single file path.
+# Falls back to "unknown" if the script is missing, manifest is absent, or call fails.
+MANIFEST_SCRIPT="${SCRIPT_DIR}/template-manifest.sh"
+get_lineage() {
+  local f="$1"
+  if [[ ! -x "$MANIFEST_SCRIPT" ]]; then
+    echo "unknown"
+    return
+  fi
+  local result
+  result="$(bash "$MANIFEST_SCRIPT" --classify "$f" 2>/dev/null)" || { echo "unknown"; return; }
+  # Validate that the result is a known lineage value
+  case "$result" in
+    template|shared|domain-seed|domain|deprecated) echo "$result" ;;
+    *) echo "unknown" ;;
+  esac
+}
+
 # --- Categorize ---
 auto_add=()
 flagged_security=()
@@ -124,13 +173,29 @@ if [[ "$total_template" -ne "$total_bucketed" ]]; then
 fi
 
 # --- Build JSON output ---
+# v3.0: each entry is {"path": "...", "lineage": "..."} instead of a plain string.
 to_json_array() {
+  # Args: each element is a file path string
   local arr=("$@")
   if [[ ${#arr[@]} -eq 0 ]]; then
     echo "[]"
     return
   fi
-  printf '%s\n' "${arr[@]}" | jq -R . | jq -s .
+  local objects="["
+  local first=true
+  local f lineage
+  for f in "${arr[@]}"; do
+    lineage="$(get_lineage "$f")"
+    if $first; then
+      first=false
+    else
+      objects="${objects},"
+    fi
+    # Use jq to safely encode path and lineage strings
+    objects="${objects}$(jq -n --arg p "$f" --arg l "$lineage" '{"path":$p,"lineage":$l}')"
+  done
+  objects="${objects}]"
+  echo "$objects"
 }
 
 # Write JSON arrays to temp files to avoid Windows CLI arg-length limits (#21)
