@@ -1,12 +1,12 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-12
 type: always-on rule
 ---
 # Script Registry — Always-On Rule
 
-54 scripts in `scripts/`. 14 hooks in `.claude/hooks/`. 10 archived to `_genesis/reference/archive/scripts/`.
+60 scripts in `scripts/`. 14 hooks in `.claude/hooks/`. 10 archived to `_genesis/reference/archive/scripts/`.
 This index is the authoritative lookup for agent script discovery.
 Before writing a new script, check here — it may already exist.
 
@@ -63,7 +63,7 @@ Use these proactively before PRs, after major changes, or when diagnosing struct
 | Script | When to use | Output |
 |---|---|---|
 | `pre-flight.sh` | Before starting any workstream task | 9 CLAUDE.md checks: workstream status, alignment, risks, drivers, templates, learning, version, S>E>Sc, decisions |
-| `template-check.sh` | Before PRs or after template-sync | Categorized JSON diff: local vs template remote (auto-add, review-required, local-only) |
+| `template-check.sh` | Before PRs or after template-sync | v3.0: Categorized JSON diff: local vs template remote (auto-add, review-required, local-only); now includes `lineage` field per file in JSON output |
 | `validate-blueprint.py` | After structural edits or template-sync | 8 checks: dir existence, file presence, frontmatter, naming |
 | `validate-memory-structure.sh` | After memory edits | Verify all `MEMORY.md` files have required 3-section structure |
 | `alignment-check.sh` | When reviewing DESIGN.md quality | Verify condition-to-artifact mapping completeness |
@@ -131,8 +131,21 @@ Use these during initial setup, onboarding, or template population. Typically ru
 | `setup-obsidian.sh` | New repo clone | Install LTC Obsidian workspace: copy Bases and Templater templates |
 | `setup-member.sh` | New team member onboarding | One-time Memory Vault setup for new project member |
 | `generate-readmes.py` | After adding new directories | Generate README shells from `readme-blueprint.md` for all directories |
-| `template-sync.sh` | Pulling updates from template remote | Additive sync: `--auto-add`, `--file/--action take\|skip`, `--verify` |
+| `template-sync.sh` | Pulling updates from template remote | v3.1: Additive sync: `--auto-add`, `--file/--action take\|skip`, `--verify`; adds `--detect-path`, `--sync`, `--reverse-clone`, `--bootstrap` modes |
 | `skill-sync-user.sh` | Sharing skills across repos | Copy project-scope skills to `~/.claude/skills/` (cross-project scope) |
+
+## Migration & Verification — Template Release Management Tools
+
+Use these when classifying file lineage, computing pristine diffs, verifying structural soundness after sync, or releasing a new template version.
+
+| Script | When to use | What it does |
+|---|---|---|
+| `template-manifest.sh` | Classify a file's lineage, audit manifest coverage, generate manifest | 3 modes: `--classify <path>` (returns template/shared/domain-seed/domain/deprecated), `--audit` (coverage 100% + overlaps 0 check), `--generate` (stub) |
+| `template-diff.sh` | Compute what changed between two template versions before syncing | Pristine diff engine — compares two template SHAs, outputs changeset with lineage + merge strategy per file |
+| `template-verify.sh` | After any template sync, before committing; verify repo is structurally sound | 6-check sweep (V1=structural, V2=hooks, V3=graph, V4=agent infra, V5=manifest, V6=sync completeness); exit 0=all pass, 1=failures |
+| `template-release.sh` | When releasing a new template version (tag + changelog + notes) | 3 modes: `--dry-run` (preview), `--tag` (create git tag + notes), `--validate` (verify release completeness) |
+| `template-merge-engine.py` | Called by template-sync.sh; also useful standalone for merge testing | Section-merge (fence-aware, prefix-match) for CLAUDE.md; 3-way merge via git merge-file for shared files |
+| `template-merge-engine.sh` | Shell wrapper for template-merge-engine.py | Thin entrypoint — validates args, activates env, delegates to `template-merge-engine.py` |
 
 ## Learning Pipeline — LEARN Workstream Tools
 
@@ -160,8 +173,8 @@ Use these when evaluating the quality of DSBV skill artifacts.
 |---|---|
 | `/dsbv` | `generate-registry.sh`, `readiness-report.sh`, `iteration-bump.sh`, `gate-precheck.sh`, `gate-state.sh`, `gate-ceremony.sh`, `set-status-in-review.sh`, `verify-approval-record.sh`, `classify-fail.sh` |
 | `/setup` | `setup-vault.sh`, `smoke-test.sh` |
-| `/template-check` | `template-check.sh` |
-| `/template-sync` | `template-check.sh`, `template-sync.sh` |
+| `/template-check` | `template-check.sh`, `template-manifest.sh` |
+| `/template-sync` | `template-check.sh`, `template-sync.sh`, `template-manifest.sh`, `template-diff.sh`, `template-verify.sh`, `template-merge-engine.py` |
 | `/ingest` | `pkb-lint.sh` |
 | `/ltc-rules-compliance` | `skill-validator.sh` |
 | `/ltc-skill-creator` | `skill-validator.sh` |
