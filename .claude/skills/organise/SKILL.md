@@ -1,17 +1,17 @@
 ---
-name: ingest
-version: "2.2"
+name: organise
+version: "2.3"
 status: draft
-last_updated: 2026-04-05
+last_updated: 2026-04-13
 model: claude-sonnet-4-6
-description: "Distil raw sources from captured/ into structured wiki pages in distilled/. Use when PM drops files into PERSONAL-KNOWLEDGE-BASE/captured/ and says /ingest, 'ingest knowledge', or 'process captured'."
+description: "Organise raw sources from captured/ into structured wiki pages in organised/. Use when PM drops files into PERSONAL-KNOWLEDGE-BASE/captured/ and says /organise, 'organise knowledge', or 'process captured'."
 argument-hint: "[source-filename] [--depth L1|L2|L3|L4] [--dry-run]"
 disable-model-invocation: true
 allowed-tools: "Read Write Edit Grep Glob Bash Agent"
 ---
-# /ingest — Personal Knowledge Base Ingest
+# /organise — Personal Knowledge Base Organise
 
-> Reads raw sources from `PERSONAL-KNOWLEDGE-BASE/captured/`, distils them into structured wiki pages in `distilled/`, updates the index and log. Based on Karpathy's LLM Wiki pattern + LTC Learning Hierarchy.
+> Reads raw sources from `PERSONAL-KNOWLEDGE-BASE/captured/`, organises them into structured wiki pages in `organised/`, updates the index and log. Based on Karpathy's LLM Wiki pattern + LTC Learning Hierarchy.
 
 ## Pre-Flight
 
@@ -30,10 +30,10 @@ Parse `$ARGUMENTS` as space-separated tokens:
 | `--dry-run` | Report what WOULD be created; no writes | Off (full writes) |
 
 Examples:
-- `/ingest` — ingest all uningested files at L2
-- `/ingest claude-code-docs-full.md` — ingest one file at L2
-- `/ingest claude-code-docs-full.md --depth L3` — ingest one file at L3
-- `/ingest --dry-run` — preview all uningested files
+- `/organise` — ingest all uningested files at L2
+- `/organise claude-code-docs-full.md` — ingest one file at L2
+- `/organise claude-code-docs-full.md --depth L3` — ingest one file at L3
+- `/organise --dry-run` — preview all uningested files
 
 ## Decision Tree (Execute First)
 
@@ -69,7 +69,7 @@ Depth Override
 
 ```
 Step 1 — Read source
-  Read files in captured/ not yet in distilled/_log.md.
+  Read files in captured/ not yet in organised/_log.md.
   If arg provided, read ONLY that file.
 
 Step 2 — Check _index.md (MANDATORY — prevents duplicates)
@@ -77,9 +77,9 @@ Step 2 — Check _index.md (MANDATORY — prevents duplicates)
   Decide: create new page or update existing.
   If updating: read the existing page first, merge content.
 
-Step 3 — Write/update distilled/ pages
+Step 3 — Write/update organised/ pages
   a. Classify: entity page or synthesis page (→ ${CLAUDE_SKILL_DIR}/references/schema.md)
-  b. Determine topic → write to distilled/{topic}/{page-name}.md
+  b. Determine topic → write to organised/{topic}/{page-name}.md
   c. Answer L1-L4 questions per depth target (→ ${CLAUDE_SKILL_DIR}/references/schema.md)
   d. Add extended frontmatter (→ ${CLAUDE_SKILL_DIR}/references/schema.md §Frontmatter Spec)
   e. Add Obsidian [[links]] to related pages (check _index.md for candidates)
@@ -131,7 +131,7 @@ Phase 2 — Section Build (N × ltc-builder, Sonnet, parallel)
     EO: "Distil section N into wiki pages following schema"
     INPUT: Section text (by line range) + _index.md + schema.md
     EP: "L2 minimum, entity/synthesis classification, [[links]] required"
-    OUTPUT: "1+ wiki pages as markdown with full frontmatter, written to distilled/{topic}/"
+    OUTPUT: "1+ wiki pages as markdown with full frontmatter, written to organised/{topic}/"
     VERIFY: "questions_answered ≥ 6, source attribution present, no duplicate titles vs _index.md"
 
 Phase 3 — Synthesis (orchestrator, this session, Sonnet)
@@ -145,7 +145,7 @@ Phase 3 — Synthesis (orchestrator, this session, Sonnet)
 
 ## Depth Minimum
 
-Every distilled/ page must reach **L2 (Understanding)** — 6/12 questions answered.
+Every organised/ page must reach **L2 (Understanding)** — 6/12 questions answered.
 Core skill/framework pages: L3. Architecture decisions: L4.
 Full question list and frontmatter spec: [references/schema.md](references/schema.md)
 
