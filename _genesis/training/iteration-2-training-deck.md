@@ -1,7 +1,7 @@
 ---
-version: "2.1"
+version: "2.2"
 status: draft
-last_updated: 2026-04-06
+last_updated: 2026-04-13
 work_stream: _genesis
 type: training
 audience: "LTC Members (new + upgrading from Iteration 1)"
@@ -54,8 +54,8 @@ In Iteration 1, the template gave you **structure** — folders, rules, agents. 
 | # | Feature | What You Get | Evidence |
 |---|---------|-------------|----------|
 | 1 | **18 Obsidian Dashboards** | Live project views — standup prep, blocker detection, approval queue, version tracking | **WHERE:** `_genesis/obsidian/bases/` (18 `.base` files). **HOW:** Open any `.base` file in Obsidian — it reads your file metadata automatically. **WHY:** Replaces manual folder-checking with auto-generated live tables |
-| 2 | **Personal Knowledge Base** | Capture articles/docs → AI distils into searchable wiki pages (CODE pipeline) | **WHERE:** `PERSONAL-KNOWLEDGE-BASE/` (3 dirs: captured/, distilled/, expressed/). **HOW:** Drop a source in `captured/`, run `/ingest` in Claude Code. **WHY:** Knowledge compounds — every ingested source makes your wiki smarter |
-| 3 | **5 New + 1 Upgraded Skill** | `/ingest`, `/template-check`, `/template-sync`, `/setup`, `/vault-capture` (new) + upgraded `/ltc-brainstorming` | **WHERE:** `.claude/skills/` (one folder per skill with SKILL.md). **HOW:** Type the command in Claude Code terminal. **WHY:** Each skill automates a multi-step workflow you'd otherwise do manually |
+| 2 | **Personal Knowledge Base** | Capture articles/docs → AI organises into searchable wiki pages (4-stage pipeline) | **WHERE:** `PERSONAL-KNOWLEDGE-BASE/` (4 dirs: 1-captured/, 2-organised/, 3-distilled/, 4-expressed/). **HOW:** Drop a source in `1-captured/`, run `/organise` in Claude Code. **WHY:** Knowledge compounds — every organised source makes your wiki smarter |
+| 3 | **5 New + 1 Upgraded Skill** | `/organise`, `/template-check`, `/template-sync`, `/setup`, `/capture` (new) + upgraded `/ltc-brainstorming` | **WHERE:** `.claude/skills/` (one folder per skill with SKILL.md). **HOW:** Type the command in Claude Code terminal. **WHY:** Each skill automates a multi-step workflow you'd otherwise do manually |
 | 4 | **Filesystem Blueprint** *(planned)* | Subsystem-based folders (1-PD, 2-DP, 3-DA, 4-IDM) with routing rules | **WHERE:** Each ALPEI workstream will gain 4 subsystem dirs + `_cross/`. **HOW:** Agent will auto-route files via `sub_system` frontmatter. **WHY:** Replaces flat `charter/`, `decisions/` folders with problem-domain grouping. **STATUS:** Design complete, shipping in next update |
 | 5 | **Frontmatter Standard** | Locked status vocabulary, SCREAMING work_stream format (e.g. `4-EXECUTE`), sub_system codes | **WHERE:** Every `.md` deliverable file (YAML block between `---` markers). **HOW:** Agent enforces on creation; `/template-sync` migrates existing files. **WHY:** Dashboards filter by exact values — inconsistent metadata = invisible files |
 | 6 | **LTC Brand Theme** | Color-coded pills, zebra-striped tables, hover effects in Obsidian | **WHERE:** `_genesis/obsidian/ltc-bases-colors.css` + `ltc-bases-theme` plugin. **HOW:** Enable CSS snippet + plugin in Obsidian settings. **WHY:** Visual distinction between statuses, workstreams, and stages at a glance |
@@ -75,7 +75,7 @@ In Iteration 1, the template gave you **structure** — folders, rules, agents. 
 │ Status in your head                 │ Status in frontmatter → auto-tracked     │
 │ "What changed?" = git log           │ "What changed?" = open C3 dashboard      │
 │ Blockers found in standup           │ Blockers auto-detected by staleness      │
-│ Knowledge in scattered notes        │ Knowledge captured → distilled → wiki    │
+│ Knowledge in scattered notes        │ Knowledge captured → organised → wiki    │
 │ Agent writes files                  │ Agent writes + updates dashboards        │
 │ You check folders manually          │ Dashboards surface what needs attention  │
 │ Category-based dirs (charter/)      │ Subsystem dirs planned (1-PD/, 2-DP/)   │
@@ -94,7 +94,7 @@ In Iteration 1, the template gave you **structure** — folders, rules, agents. 
 | 2 | **Foundations** | 5 min | What is Obsidian, what we built, how Bases work |
 | 3 | **The Frontmatter System** | 5 min | The metadata that powers every dashboard |
 | 4 | **Part 1: Obsidian Bases & PM Workflow** | 10 min | 18 dashboards + your daily cycle (morning → weekly) |
-| 5 | **Part 2: Personal Knowledge Base** | 8 min | CODE pipeline, /ingest, Karpathy LLM-wiki, Obsidian plugins |
+| 5 | **Part 2: Personal Knowledge Base** | 8 min | 4-stage pipeline, /organise, Karpathy LLM-wiki, Obsidian plugins |
 | 6 | **QMD & Memory Vault** | 3 min | How semantic search powers auto-recall across sessions |
 | 7 | **Upgraded Skills** | 3 min | /ltc-brainstorming Discovery Protocol + all new commands |
 | 8 | **Reference** | — | Cheat sheets, dashboard index, file locations |
@@ -245,7 +245,7 @@ Navigate to: _genesis/obsidian/bases/C3-standup-preparation.base
 | 1 | **18 Bases dashboards** | Live views that query your project files — standup prep, blockers, approvals, version progress | `_genesis/obsidian/bases/*.base` — click any file in Obsidian to open |
 | 2 | **LTC brand CSS theme** | Color-coded pills for status (green/gold/ruby), workstream (ALPEI colors), and stage (DSBV) | `_genesis/obsidian/ltc-bases-colors.css` — enable in Settings → Appearance → CSS Snippets |
 | 3 | **Wikilinks across all files** | `[[decisions]]`, `[[risks]]`, `[[specs]]` — click to navigate, backlinks show connections | Already embedded in all deliverable files — just click any `[[link]]` |
-| 4 | **Personal Knowledge Base** | Capture articles → AI distils into wiki pages → searchable knowledge system | `PERSONAL-KNOWLEDGE-BASE/` — drop sources in `captured/`, run `/ingest` |
+| 4 | **Personal Knowledge Base** | Capture articles → AI organises into wiki pages → searchable knowledge system | `PERSONAL-KNOWLEDGE-BASE/` — drop sources in `1-captured/`, run `/organise` |
 | 5 | **Daily notes + inbox + people** | Quick capture, stakeholder tracking, daily reflections — all built into the vault | `DAILY-NOTES/`, `inbox/`, `PEOPLE/` — templates via `Ctrl+T` / `Cmd+T` |
 
 ### Invisible — runs in the background
@@ -717,8 +717,8 @@ ALIGN ──► LEARN ──► PLAN ──► EXECUTE ──► IMPROVE
 | **Approve (set status to `validated`)** | **YOU decide** | **NEVER — only you** |
 | View dashboards daily | **YOU check** | — |
 | Surface blockers & stale items | — | Auto via formulas |
-| Capture knowledge sources | **YOU save to `captured/`** | — |
-| Distil knowledge into wiki pages | — | Writes via `/ingest` |
+| Capture knowledge sources | **YOU save to `1-captured/`** | — |
+| Organise sources into wiki pages | — | Writes via `/organise` |
 | Triage inbox captures | **YOU decide action** | — |
 | Write daily standup notes | **YOU reflect** | — |
 | Customize / add new dashboards | **YOU describe what you want** | Builds the `.base` file |
@@ -746,7 +746,7 @@ Andrej Karpathy (ex-Tesla AI, OpenAI) proposed a pattern: let an LLM **own a wik
 ```
 KARPATHY'S INSIGHT              LTC'S IMPLEMENTATION
 ───────────────────             ─────────────────────
-LLM owns the wiki        →     Agent writes to distilled/ via /ingest
+LLM owns the wiki        →     Agent writes to 2-organised/ via /organise
 Compile-at-ingest         →     AI reads source ONCE, writes permanent pages
 Index-first retrieval     →     _index.md + QMD semantic search
 Human reads wiki          →     Obsidian as your reading/review IDE
@@ -757,70 +757,72 @@ Schema co-evolution       →     schema.md + gotchas.md govern page structure
 
 ---
 
-## THE CODE PIPELINE
+## THE 4-STAGE PIPELINE
 
-LTC's CODE Framework defines 4 stages of knowledge transformation:
+LTC's PKB defines 4 stages of knowledge transformation:
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│    CAPTURE       │     │    ORGANIZE     │     │     DISTIL      │     │    EXPRESS       │
+│    CAPTURE       │     │    ORGANISE     │     │     DISTIL      │     │    EXPRESS       │
 │                  │     │                 │     │                 │     │                  │
-│  YOU save raw    │     │  YOU file to    │     │  AI compiles    │     │  YOU export for  │
-│  sources:        │ ──► │  captured/      │ ──► │  wiki pages     │ ──► │  others:         │
-│  • articles      │     │  folder         │     │  in distilled/  │     │  • summaries     │
-│  • PDFs          │     │  (or use Web    │     │  with L1-L4     │     │  • reports       │
-│  • transcripts   │     │   Clipper)      │     │  depth tracking │     │  • deliverables  │
-│  • session notes │     │                 │     │                 │     │                  │
+│  YOU save raw    │     │  AI extracts    │     │  YOU synthesise │     │  YOU export for  │
+│  sources:        │ ──► │  structured     │ ──► │  cross-source   │ ──► │  others:         │
+│  • articles      │     │  pages into     │     │  connections    │     │  • summaries     │
+│  • PDFs          │     │  2-organised/   │     │  into 3-distilled/│   │  • reports       │
+│  • transcripts   │     │  L1-L4 depth    │     │  (opt-in, not   │     │  • deliverables  │
+│  • session notes │     │                 │     │   nagged)       │     │                  │
 └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
-      YOU                     YOU                     AI (/ingest)             YOU
+      YOU                  AI (/organise)              YOU                     YOU
 ```
 
 ### Directory structure
 
 ```
 PERSONAL-KNOWLEDGE-BASE/
-├── captured/               ← Raw sources (IMMUTABLE — never edited after saving)
+├── 1-captured/             ← Raw sources (IMMUTABLE — never edited after saving)
 │   └── karpathy-llm-wiki.md   (example: dropped article)
-├── distilled/              ← AI-generated wiki pages (compiled by /ingest)
-│   ├── _index.md           ← Navigation hub — AI updates after every ingest
-│   ├── _log.md             ← Ingest audit trail (append-only, parseable)
+├── 2-organised/            ← AI-extracted wiki pages (compiled by /organise)
+│   ├── _index.md           ← Navigation hub — AI updates after every organise run
+│   ├── _log.md             ← Organise audit trail (append-only, parseable)
 │   ├── agents/             ← Topic folder: agent architecture pages
 │   ├── hooks/              ← Topic folder: hook system pages
 │   ├── knowledge-systems/  ← Topic folder: PKM methodology pages
 │   └── ...                 ← More topics as knowledge grows
-├── expressed/              ← Outputs that leave the PKB (summaries, exports)
+├── 3-distilled/            ← YOUR synthesis (cross-source, mental models — opt-in)
+├── 4-expressed/            ← Outputs that leave the PKB (summaries, exports)
 ├── dashboard.md            ← 5 Dataview live queries for PKB health
 └── knowledge-map.canvas    ← Obsidian Canvas visualization of knowledge graph
 ```
 
 ---
 
-## THE /INGEST WORKFLOW — STEP BY STEP
+## THE /ORGANISE WORKFLOW — STEP BY STEP
 
 ### How to add knowledge
 
 ```bash
-# Step 1: Drop a source into captured/
-#   • Drag a markdown file into PERSONAL-KNOWLEDGE-BASE/captured/
+# Step 1: Drop a source into 1-captured/
+#   • Drag a markdown file into PERSONAL-KNOWLEDGE-BASE/1-captured/
 #   • OR use Obsidian Web Clipper (⌥⇧O) to clip any web page directly
+#   • OR use /capture in Claude Code to quick-save from a session
 
-# Step 2: Run ingest in Claude Code terminal
-/ingest
+# Step 2: Run organise in Claude Code terminal
+/organise
 
 # Step 3 (optional): Target a specific file or depth
-/ingest karpathy-llm-wiki.md              # One specific file
-/ingest karpathy-llm-wiki.md --depth L3   # Minimum L3 depth
-/ingest --dry-run                          # Preview without writing
+/organise karpathy-llm-wiki.md              # One specific file
+/organise karpathy-llm-wiki.md --depth L3   # Minimum L3 depth
+/organise --dry-run                          # Preview without writing
 ```
 
 ### What the agent does (5-step pipeline)
 
 ```
-Step 1   Read new files in captured/ not yet in _log.md
+Step 1   Read new files in 1-captured/ not yet in _log.md
 Step 2   Read _index.md to find related existing pages (prevents duplicates)
-Step 3   Write/update wiki pages in distilled/{topic}/ with depth tracking
+Step 3   Write/update wiki pages in 2-organised/{topic}/ with depth tracking
 Step 4   Append row to _log.md (audit trail: date, source, pages affected)
-Step 5   Update _index.md catalog (so next ingest and next session can find them)
+Step 5   Update _index.md catalog (so next organise run and next session can find them)
 ```
 
 ### Size routing (smart dispatch)
@@ -877,10 +879,10 @@ L4 — EXPERTISE (4 more — for architecture decision pages = 12/12)
 | Plugin | Install In | What It Does For PKB |
 |--------|-----------|---------------------|
 | **Dataview** | Settings → Community Plugins → Search "dataview" → Enable JavaScript Queries | Powers `dashboard.md` — 5 live panels showing learning levels, uningested backlog, recent ingests, topic growth, review queue |
-| **Spaced Repetition** | Search "obsidian-spaced-repetition" → Configure note folder to `PERSONAL-KNOWLEDGE-BASE/distilled/` | Flashcard-style review of wiki pages. Open Cmd+P → "Review flashcards" → rate Easy/Good/Hard → plugin auto-schedules next review. 5 min/day builds retention |
+| **Spaced Repetition** | Search "obsidian-spaced-repetition" → Configure note folder to `PERSONAL-KNOWLEDGE-BASE/2-organised/` | Flashcard-style review of wiki pages. Open Cmd+P → "Review flashcards" → rate Easy/Good/Hard → plugin auto-schedules next review. 5 min/day builds retention |
 | **Canvas Mindmap** | Search "canvas-mindmap" → No config needed | Open `knowledge-map.canvas` → drag wiki pages to visualize topic clusters. Keyboard-driven mind mapping for brainstorming |
-| **PDF++** | Search "pdf-plus" → Set highlight export to `captured/` | Annotate PDFs → send highlights directly to captured/ for ingest |
-| **Web Clipper** | Browser extension (search "Obsidian Web Clipper") → Template: note location = `captured/`, name = `{{title}}` | Press `⌥⇧O` on any web page → clips to captured/ with frontmatter. Fastest capture path |
+| **PDF++** | Search "pdf-plus" → Set highlight export to `1-captured/` | Annotate PDFs → send highlights directly to 1-captured/ for ingest |
+| **Web Clipper** | Browser extension (search "Obsidian Web Clipper") → Template: note location = `1-captured/`, name = `{{title}}` | Press `⌥⇧O` on any web page → clips to 1-captured/ with frontmatter. Fastest capture path |
 
 ### The PKB Dashboard (5 live panels)
 
@@ -889,7 +891,7 @@ Open `PERSONAL-KNOWLEDGE-BASE/dashboard.md` in Obsidian to see:
 | Panel | What It Shows | Why It Matters |
 |-------|-------------|---------------|
 | **Learning Level Distribution** | Pages grouped by L1/L2/L3/L4 depth | Spot shallow knowledge areas |
-| **Uningested Files** | Sources in captured/ not yet processed | Your ingest backlog — aim for zero |
+| **Uningested Files** | Sources in 1-captured/ not yet processed | Your ingest backlog — aim for zero |
 | **Recent Ingests** | Last 10 ingest operations with timestamps | Activity heartbeat — is knowledge growing? |
 | **Topics** | Pages grouped by topic folder, with counts | Where your knowledge concentrates |
 | **Review Queue** | Pages due for spaced repetition review | Oldest-first — prevents knowledge rot |
@@ -900,7 +902,7 @@ Open `PERSONAL-KNOWLEDGE-BASE/dashboard.md` in Obsidian to see:
 
 | Check | What It Catches |
 |-------|----------------|
-| UNINGESTED | Sources in captured/ not in _log.md |
+| UNINGESTED | Sources in 1-captured/ not in _log.md |
 | SHALLOW | Pages below L2 minimum (< 6 questions) |
 | FRONTMATTER | Missing required metadata fields |
 | ORPHANS | Pages with no inbound [[links]] |
@@ -924,13 +926,13 @@ Open `PERSONAL-KNOWLEDGE-BASE/dashboard.md` in Obsidian to see:
 ```
 YOUR MARKDOWN FILES          QMD ENGINE              YOUR AGENT
 ┌─────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│ distilled/              │     │  BM25 keyword    │     │ "Based on your   │
-│ sessions/               │ ──► │  + vector embed  │ ──► │  wiki page on X, │
-│ conversations/          │     │  + reranking     │     │  the answer is…" │
-│ decisions/              │     │                  │     │                  │
+│ 2-organised/            │     │  BM25 keyword    │     │ "Based on your   │
+│ 3-distilled/            │ ──► │  + vector embed  │ ──► │  wiki page on X, │
+│ sessions/               │     │  + reranking     │     │  the answer is…" │
+│ conversations/          │     │                  │     │                  │
 │ 2-LEARN/_cross/output/  │     │                  │     │                  │
 └────────────────────────┘     └──────────────────┘     └──────────────────┘
-  You write/ingest/research     Indexes locally          Searches automatically
+  You organise/synthesise       Indexes locally          Searches automatically
 ```
 
 ### Three search types
@@ -957,14 +959,14 @@ YOUR MACHINE
 │         └── decisions/      (decision records)            │
 │                                                          │
 │  Tier 3: QMD Search Layer                                │
-│    └── Indexes Tier 2 + PKB distilled/ + 2-LEARN output  │
+│    └── Indexes Tier 2 + PKB 3-distilled/ + 2-LEARN output  │
 │         ├── lex search (keyword)                          │
 │         ├── vec search (semantic)                         │
 │         └── hyde search (hypothetical document)           │
 │                                                          │
-│  PKB Indexing (after each /ingest)                       │
-│    └── PERSONAL-KNOWLEDGE-BASE/distilled/ → QMD          │
-│         ├── qmd collection add distilled .                │
+│  PKB Indexing (after each /organise)                      │
+│    └── PERSONAL-KNOWLEDGE-BASE/2-organised/ → QMD          │
+│         ├── qmd collection add organised .                │
 │         ├── qmd update && qmd embed                       │
 │         Auto-runs on SessionStop hook — no manual step    │
 │                                                          │
@@ -990,12 +992,12 @@ YOUR MACHINE
 ```bash
 # One-time setup (or run /setup which does this for you):
 cd PERSONAL-KNOWLEDGE-BASE
-qmd collection add distilled .
-qmd update distilled
+qmd collection add organised .
+qmd update organised
 qmd embed
 
-# After each /ingest session (to index new wiki pages):
-qmd update distilled && qmd embed
+# After each /organise session (to index new wiki pages):
+qmd update organised && qmd embed
 ```
 
 > **Tip:** The SessionStop hook auto-runs `qmd update && qmd embed` — so new wiki pages are indexed automatically when you close a session.
@@ -1089,7 +1091,7 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 |---------|-------------|-------------|
 | `/dsbv status` | Show your Design-Sequence-Build-Validate pipeline | Morning check, work session |
 | `/dsbv build` | Tell agent to advance current item to next DSBV stage | Active work — agent writes artifacts |
-| `/ingest` | Compile captured sources into PKB wiki pages | After saving articles/PDFs to `captured/` |
+| `/organise` | Compile captured sources into PKB wiki pages | After saving articles/PDFs to `1-captured/` |
 | `/compress` | Save session context to memory vault | End of day, before starting fresh |
 | `/resume` | Load context from previous sessions | Start of day, picking up where you left off |
 | `/obsidian` | Search your vault via QMD semantic search | When you need to find something by meaning |
@@ -1102,7 +1104,7 @@ After the guided conversation, the agent produces a **pre-spec with 5 fields**:
 | `/template-check` | Audit your project files against Iteration 2 template (read-only) | Before upgrading — see what's changed |
 | `/template-sync` | Apply Iteration 2 template updates interactively (never deletes) | Migration from Iteration 1 → Iteration 2 |
 | `/setup` | Initialize Memory Vault + QMD semantic search (idempotent) | First-time setup or re-initialization |
-| `/vault-capture` | Capture content into PKB or vault from Claude Code | Quick knowledge capture during work |
+| `/capture` | Capture content into PKB or vault from Claude Code | Quick knowledge capture during work |
 
 ### Templater shortcuts (inside Obsidian)
 
@@ -1130,13 +1132,13 @@ Two separate setup commands for two separate systems:
 
 1. Scaffolds Memory Vault folders on Google Drive (sessions/, conversations/, decisions/)
 2. Installs QMD search engine — indexes your vault for semantic search
-3. Connects QMD to your PKB (distilled/ → qmd collection add)
+3. Connects QMD to your PKB (2-organised/ → qmd collection add)
 4. Runs smoke test to verify everything works
 5. Idempotent — safe to re-run anytime
 
 ```
-Your PKB pages ──→ QMD indexes them ──→ Agent auto-recalls relevant knowledge
-                                         when you ask questions
+Your 2-organised/ pages ──→ QMD indexes them ──→ Agent auto-recalls relevant knowledge
+                                                when you ask questions
 ```
 
 > **Why this matters:** Without QMD, your agent has no memory between sessions. With QMD, it recalls past decisions, research, and context automatically.
@@ -1160,7 +1162,7 @@ Your PKB pages ──→ QMD indexes them ──→ Agent auto-recalls relevant 
 | **3** | Settings → Community Plugins → turn off Restricted Mode | Safe — our repo includes security rules |
 | **4** | Install & enable: **Bases**, **Terminal**, **Templater** | Templater: `Ctrl+T` / `Cmd+T` to insert templates |
 | **5** | Settings → Appearance → CSS Snippets → enable `ltc-bases-colors` | Adds LTC brand colors to dashboard tables |
-| **6** | Install for PKB: **Dataview** (enable JS queries), **Spaced Repetition**, **Canvas Mindmap** | Enables PKB dashboard, flashcard review, knowledge maps |
+| **6** | Install for PKB: **Dataview** (enable JS queries), **Spaced Repetition** (set folder to `2-organised/`), **Canvas Mindmap** | Enables PKB dashboard, flashcard review, knowledge maps |
 | **7** | Navigate to `_genesis/obsidian/bases/` → click any `.base` file | Verify your dashboards are working |
 
 > **The `.base` files and CSS are already in your repo.** You just enable the plugins and snippet.
@@ -1269,8 +1271,8 @@ scripts/                               ← Infrastructure scripts (lint, check, 
 │        → Discovery Complete → /dsbv ready      │
 │ 14:00  C5 shows 2 items need my review.        │
 │        Open file, read, change to validated.   │
-│ 16:00  Read an article. Drop in captured/.     │
-│        Type /ingest. Wiki page created.        │
+│ 16:00  Read an article. Drop in 1-captured/.   │
+│        Type /organise. Wiki page created.      │
 │        QMD indexes it. Agent recalls it later. │
 │ 17:00  Type /compress. Context saved.          │
 │        Tomorrow: /resume picks up right here.  │
@@ -1292,7 +1294,7 @@ scripts/                               ← Infrastructure scripts (lint, check, 
   │   Your morning:   C3 → C4 → C1 (5 minutes, full picture)         │
   │   Your work:      /dsbv build (agent writes, you review)          │
   │   Your thinking:  /ltc-brainstorming (structured, not blank-page) │
-  │   Your knowledge: /ingest (compounds, never evaporates)           │
+  │   Your knowledge: /organise (compounds, never evaporates)         │
   │   Your approvals: C5 (you are the gate, dashboards remind you)    │
   │   Your context:   /compress + /resume (nothing lost between days) │
   │                                                                    │

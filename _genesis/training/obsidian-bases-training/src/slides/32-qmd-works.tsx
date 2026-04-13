@@ -51,7 +51,7 @@ const tiers = [
   {
     label: 'Tier 3',
     name: 'QMD Search Layer',
-    desc: 'Indexes all Tier 2 markdown + PKB distilled/ + 2-LEARN structured output — lex, vec, hyde',
+    desc: 'Indexes all Tier 2 markdown + PKB 2-organised/ + 2-LEARN structured output — lex, vec, hyde',
     accent: colors.green,
     accentBg: `${colors.green}10`,
     border: `${colors.green}30`,
@@ -112,8 +112,8 @@ export default function QmdWorksSlide() {
           {[
             {
               title: 'YOUR MARKDOWN FILES',
-              lines: ['distilled/', 'sessions/', 'conversations/', 'decisions/', '2-LEARN/_cross/output/'],
-              sub: 'You write/ingest/research',
+              lines: ['2-organised/', '3-distilled/', 'sessions/', 'conversations/', '2-LEARN/_cross/output/'],
+              sub: 'You organise/synthesise/research',
             },
             null,
             {

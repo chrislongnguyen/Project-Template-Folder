@@ -22,7 +22,7 @@ const afterItems = [
   { time: '9:15', text: '/ltc-brainstorming → 4 gates → Discovery Complete', highlight: true },
   { time: '10:00', text: '/dsbv design → ALIGN → agent writes DESIGN.md', highlight: true },
   { time: '14:00', text: 'C5: 2 items need review → validated.', highlight: false },
-  { time: '16:00', text: 'Drop in captured/. /ingest. Wiki created.', highlight: true },
+  { time: '16:00', text: 'Drop in 1-captured/. /organise. Wiki created.', highlight: true },
   { time: '17:00', text: '/compress. Tomorrow: /resume picks up.', highlight: true },
 ];
 

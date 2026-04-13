@@ -7,7 +7,7 @@ const summaryLines = [
   { label: 'Your thinking:', desc: '/ltc-brainstorming (structured, not blank-page)' },
   { label: 'Your design:', desc: '/dsbv design → ALIGN first (define before you build)' },
   { label: 'Your work:', desc: '/dsbv build (agent writes, you review)' },
-  { label: 'Your knowledge:', desc: '/ingest (compounds, never evaporates)' },
+  { label: 'Your knowledge:', desc: '/organise (compounds, never evaporates)' },
   { label: 'Your approvals:', desc: 'C5 (you are the gate, dashboards remind you)' },
   { label: 'Your context:', desc: '/compress + /resume (nothing lost between days)' },
 ];

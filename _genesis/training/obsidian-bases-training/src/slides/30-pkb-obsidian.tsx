@@ -13,7 +13,7 @@ const plugins = [
   {
     name: 'Spaced Repetition',
     description: 'Flashcard-style review of wiki pages. Cmd+P → "Review flashcards" → rate Easy/Good/Hard',
-    hint: 'Search "obsidian-spaced-repetition" → configure note folder to distilled/',
+    hint: 'Search "obsidian-spaced-repetition" → configure note folder to 2-organised/',
   },
   {
     name: 'Canvas Mindmap',
@@ -22,20 +22,20 @@ const plugins = [
   },
   {
     name: 'PDF++',
-    description: 'Annotate PDFs → send highlights directly to captured/ for ingest',
-    hint: 'Search "pdf-plus" → Set highlight export to captured/',
+    description: 'Annotate PDFs → send highlights directly to 1-captured/ for ingest',
+    hint: 'Search "pdf-plus" → Set highlight export to 1-captured/',
   },
   {
     name: 'Web Clipper',
-    description: 'Press ⌥⇧O on any web page → clips to captured/ with frontmatter',
-    hint: 'Browser extension → Template: note location = captured/, name = {{title}}',
+    description: 'Press ⌥⇧O on any web page → clips to 1-captured/ with frontmatter',
+    hint: 'Browser extension → Template: note location = 1-captured/, name = {{title}}',
   },
 ];
 
 const dashboardPanels = [
   { name: 'Learning Level Distribution', why: 'Spot shallow knowledge areas' },
-  { name: 'Uningested Files', why: 'Your ingest backlog — aim for zero' },
-  { name: 'Recent Ingests', why: 'Activity heartbeat — is knowledge growing?' },
+  { name: 'Unorganised Files', why: 'Your organise backlog — aim for zero' },
+  { name: 'Recent Organise Operations', why: 'Activity heartbeat — is knowledge growing?' },
   { name: 'Topics', why: 'Where your knowledge concentrates' },
   { name: 'Review Queue', why: 'Oldest-first — prevents knowledge rot' },
 ];

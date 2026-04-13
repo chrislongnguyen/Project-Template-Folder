@@ -7,7 +7,7 @@ import { fadeInLeft, fadeInRight } from '../lib/animations';
 const setupSteps = [
   { num: 1, text: 'Scaffolds Memory Vault folders on Google Drive (sessions/, conversations/, decisions/)' },
   { num: 2, text: 'Installs QMD search engine — indexes your vault for semantic search' },
-  { num: 3, text: 'Connects QMD to your PKB (distilled/ → qmd collection add)' },
+  { num: 3, text: 'Connects QMD to your PKB (2-organised/ → qmd collection add)' },
   { num: 4, text: 'Runs smoke test to verify everything works' },
   { num: 5, text: 'Idempotent — safe to re-run anytime' },
 ];
@@ -202,7 +202,7 @@ export default function SetupQmdSlide() {
                     PKB
                   </span>
                   <span style={{ fontFamily: "'Courier New', Courier, monospace", fontSize: 'clamp(0.48rem, 0.65vw, 0.55rem)', color: colors.muted }}>
-                    distilled/
+                    2-organised/
                   </span>
                 </div>
 
@@ -307,7 +307,7 @@ export default function SetupQmdSlide() {
           >
             <span style={{ color: colors.gold, fontWeight: 700 }}>After /setup:</span>{' '}
             your agent can auto-recall knowledge from your wiki AND your past sessions.{' '}
-            <span style={{ color: colors.text }}>/ingest</span> adds to the wiki.{' '}
+            <span style={{ color: colors.text }}>/organise</span> adds to the wiki.{' '}
             <span style={{ color: colors.text }}>/compress</span> adds to sessions.{' '}
             <span style={{ color: colors.text }}>QMD</span> searches both.
           </p>

@@ -40,7 +40,7 @@ Without coaching it, does Claude seem to know the rules of your repo? Does it pu
 - Continue a design or plan you already have in progress
 - Start a new LEARN research thread on something you've been meaning to explore
 - Review and update a piece of documentation that's been sitting stale
-- Try a new skill you haven't used before (`/dsbv status`, `/ingest`, `/obsidian`, etc.)
+- Try a new skill you haven't used before (`/dsbv status`, `/organise`, `/obsidian`, etc.)
 
 ## Feedback Form
 

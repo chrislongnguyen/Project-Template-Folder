@@ -13,13 +13,13 @@ const features = [
   {
     accent: colors.purple,
     name: 'Personal Knowledge Base',
-    what: 'Capture articles/docs → AI distils into searchable wiki pages (CODE pipeline)',
-    evidence: 'WHERE: PERSONAL-KNOWLEDGE-BASE/ (captured/, distilled/, expressed/). HOW: /ingest',
+    what: 'Capture articles/docs → AI organises into searchable wiki pages (4-stage pipeline)',
+    evidence: 'WHERE: PERSONAL-KNOWLEDGE-BASE/ (1-captured/, 2-organised/, 3-distilled/, 4-expressed/). HOW: /organise',
   },
   {
     accent: colors.green,
     name: '5 New + 1 Upgraded Skill',
-    what: '/ingest, /template-check, /template-sync, /setup, /vault-capture + upgraded /ltc-brainstorming',
+    what: '/organise, /template-check, /template-sync, /setup, /capture + upgraded /ltc-brainstorming',
     evidence: 'WHERE: .claude/skills/ (one folder per skill). HOW: Type the command in Claude Code.',
   },
   {

@@ -27,7 +27,7 @@ const steps = [
   },
   {
     num: '06',
-    text: 'Install Obsidian Web Clipper browser extension — press ⌥⇧O on any web page to clip articles directly to captured/ folder for /ingest',
+    text: 'Install Obsidian Web Clipper browser extension — press ⌥⇧O on any web page to clip articles directly to 1-captured/ folder for /organise',
   },
   {
     num: '07',

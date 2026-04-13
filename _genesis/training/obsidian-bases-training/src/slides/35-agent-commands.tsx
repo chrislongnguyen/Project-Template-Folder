@@ -31,8 +31,8 @@ const categories: { label: string; color: string; rows: SkillRow[] }[] = [
     label: 'Knowledge Management',
     color: colors.purple,
     rows: [
-      { cmd: '/ingest', desc: 'Compile sources into PKB wiki', when: 'After saving to captured/' },
-      { cmd: '/vault-capture', desc: 'Quick capture to PKB inbox', when: 'During work' },
+      { cmd: '/organise', desc: 'Compile sources into PKB wiki', when: 'After saving to 1-captured/' },
+      { cmd: '/capture', desc: 'Quick capture to PKB inbox', when: 'During work' },
       { cmd: '/obsidian', desc: 'Search vault via QMD', when: 'Find by meaning' },
     ],
   },

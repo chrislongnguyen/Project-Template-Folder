@@ -7,7 +7,7 @@ import { fadeInUp, staggerContainer } from '../lib/animations';
 const tableRows = [
   {
     insight: "LLM owns the wiki",
-    impl: "Agent writes to distilled/ via /ingest",
+    impl: "Agent writes to 2-organised/ via /organise",
   },
   {
     insight: "Compile-at-ingest",

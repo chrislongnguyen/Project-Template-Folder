@@ -31,7 +31,7 @@ const sections = [
   {
     num: '05',
     title: 'PART 2: PERSONAL KNOWLEDGE BASE',
-    desc: 'CODE pipeline, /ingest, Karpathy LLM-wiki, Obsidian plugins',
+    desc: '4-stage pipeline, /organise, Karpathy LLM-wiki, Obsidian plugins',
     time: '8 min',
   },
   {

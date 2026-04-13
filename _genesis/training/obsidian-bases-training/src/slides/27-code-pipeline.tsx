@@ -12,16 +12,16 @@ const stages = [
     bullets: ['Articles & PDFs', 'Transcripts', 'Session notes', 'Web clips'],
   },
   {
-    name: 'ORGANIZE',
-    actor: 'YOU',
-    accentColor: colors.midnightLight,
-    bullets: ['File to captured/', 'Use Web Clipper', 'Drag & drop MD', 'No editing'],
+    name: 'ORGANISE',
+    actor: 'AI (/organise)',
+    accentColor: colors.gold,
+    bullets: ['Extract wiki pages', 'L1-L4 depth tracking', 'Update _index.md', 'Append _log.md'],
   },
   {
     name: 'DISTIL',
-    actor: 'AI (/ingest)',
-    accentColor: colors.gold,
-    bullets: ['Compile wiki pages', 'L1-L4 depth tracking', 'Update _index.md', 'Append _log.md'],
+    actor: 'YOU (opt-in)',
+    accentColor: colors.midnightLight,
+    bullets: ['Cross-source synthesis', 'Mental models', 'Your thinking only', 'No /distil skill'],
   },
   {
     name: 'EXPRESS',
@@ -32,12 +32,13 @@ const stages = [
 ];
 
 const dirTree = `PERSONAL-KNOWLEDGE-BASE/
-├── captured/           ← Raw sources (IMMUTABLE)
-├── distilled/          ← AI-generated wiki pages
+├── 1-captured/         ← Raw sources (IMMUTABLE)
+├── 2-organised/        ← AI-extracted wiki pages
 │   ├── _index.md       ← Navigation hub
-│   ├── _log.md         ← Ingest audit trail
+│   ├── _log.md         ← Organise audit trail
 │   └── {topics}/       ← Topic folders
-├── expressed/          ← Outputs that leave PKB
+├── 3-distilled/        ← YOUR cross-source synthesis
+├── 4-expressed/        ← Outputs that leave PKB
 ├── dashboard.md        ← 5 Dataview panels
 └── knowledge-map.canvas`;
 
