@@ -1,7 +1,7 @@
 ---
-version: "2.0"
+version: "2.2"
 status: draft
-last_updated: 2026-04-08
+last_updated: 2026-04-13
 type: template
 iteration: 2
 ---
@@ -67,8 +67,8 @@ Skills auto-load when invoked — you don't need to read or reference them manua
 
 | Skill | Command | When to Use |
 |-------|---------|-------------|
-| **ingest** | `/ingest` | Distil raw files from `captured/` into structured PKB pages |
-| **vault-capture** | `/vault-capture` | Quick-save text to `inbox/` staging area |
+| **organise** | `/organise` | Organise raw files from `1-captured/` into structured PKB pages in `2-organised/` |
+| **capture** | `/capture` | Quick-save text to `PERSONAL-KNOWLEDGE-BASE/1-captured/` staging area |
 | **obsidian** | `/obsidian` | Graph traversal — backlinks, outgoing links, orphans |
 | **recall-tune** | `/recall-tune` | Tune QMD auto-injection for better memory precision |
 

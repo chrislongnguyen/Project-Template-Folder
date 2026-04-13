@@ -1,7 +1,7 @@
 ---
-version: "2.2"
+version: "3.1"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-13
 ---
 # Personal Knowledge Base (PKB)
 
@@ -14,28 +14,40 @@ last_updated: 2026-04-11
 
 Every time you start a new session, the AI agent starts from zero. You've read docs, explored frameworks, made discoveries — but that knowledge lives only in past conversations. You lose it. You re-learn it. You waste time.
 
-## The Solution
-
-The PKB is a **personal knowledge library that your AI agent maintains for you.** You drop sources in. The agent reads them, organises them into structured pages, and keeps them updated. Next session, the agent automatically recalls what you've learned — before you ask.
-
-You never write the wiki yourself. The AI does all the organising, cross-referencing, and maintenance. Your job: drop sources, ask questions, and read what comes back.
+The more sessions you run, the worse it gets: duplicate research, contradictory conclusions, no thread of accumulated understanding.
 
 ---
 
-## How It Works — The CODE Pipeline
+## The Solution
+
+The PKB is a **personal knowledge library that your AI agent maintains for you.** You drop raw sources in. The agent reads them and extracts structured wiki pages. Next session, the agent automatically recalls what you've learned — before you ask.
+
+You never write the wiki yourself. The AI does all the organising, cross-referencing, and maintenance. Your job: drop sources, review what comes back, and write your own synthesis when the moment arrives.
+
+---
+
+## How It Works — The 4-Stage Pipeline
 
 ```
-captured/  ──→  distilled/  ──→  expressed/
- Capture         Organise +       Express
- Facts &         Distil            Expertise
- Data            Wisdom
+1-captured/  ──→  2-organised/  ──→  3-distilled/  ──→  4-expressed/
+  Capture           Organise           Distil              Express
+  Raw               AI-extracted       Your                Outputs
+  Sources           Wiki Pages         Synthesis           for Others
 ```
 
-| Stage | What happens | Who does it |
-|---|---|---|
-| **Capture** | Drop raw sources: articles, docs, session notes, web clips | You |
-| **Organise + Distil** | AI reads the source, creates/updates structured wiki pages with cross-links | AI agent |
-| **Express** | You produce outputs from your knowledge: reports, summaries, deliverables | You + AI |
+| Stage | Directory | What happens | Who does it |
+|---|---|---|---|
+| **Capture** | `1-captured/` | Drop raw sources: articles, PDFs, session notes, web clips | You |
+| **Organise** | `2-organised/` | AI reads each source, creates/updates structured wiki pages with cross-links and L1-L4 depth | AI agent via `/organise` |
+| **Distil** | `3-distilled/` | You write cross-source connections, mental models, and synthesis from multiple organised pages | You (opt-in, not nagged) |
+| **Express** | `4-expressed/` | You produce outputs from your knowledge: reports, summaries, deliverables | You + AI |
+
+### Boundary rules
+
+- `1-captured/` is **immutable** — never edited after drop. Source of truth.
+- `2-organised/` ← AI can write here from a single source. Every ingest run touches only this dir.
+- `3-distilled/` ← requires YOUR thinking across multiple organised pages. No `/distil` skill exists — this is populated via natural conversation and save.
+- `4-expressed/` ← anything leaving the PKB for a specific audience.
 
 ---
 
@@ -45,13 +57,14 @@ captured/  ──→  distilled/  ──→  expressed/
 PERSONAL-KNOWLEDGE-BASE/
 ├── README.md               ← you are here
 ├── dashboard.md            ← live learning stats (Dataview)
-├── knowledge-map.canvas    ← visual knowledge map (Canvas)
-├── captured/               ← drop raw sources here
-├── distilled/              ← AI-maintained wiki pages
+├── knowledge-map.canvas    ← visual knowledge pipeline (Canvas)
+├── 1-captured/             ← drop raw sources here (immutable)
+├── 2-organised/            ← AI-maintained wiki pages
 │   ├── _index.md           ← table of contents (AI updates this)
-│   ├── _log.md             ← history of every ingest
-│   └── {topics}/           ← pages organised by domain
-└── expressed/              ← outputs you create from your knowledge
+│   ├── _log.md             ← history of every organise run
+│   └── {topics}/           ← pages grouped by domain
+├── 3-distilled/            ← YOUR cross-source synthesis (optional, opt-in)
+└── 4-expressed/            ← outputs you create from your knowledge
 ```
 
 ---
@@ -62,25 +75,25 @@ PERSONAL-KNOWLEDGE-BASE/
 
 **From the browser:** Use Obsidian Web Clipper (browser extension).
 - Press `⌥⇧O` on any page → select **PKB Capture** template → clip
-- The article lands in `captured/` as a markdown file
+- The article lands in `1-captured/` as a markdown file
 
-**From a session:** When you're reading docs or doing research, just tell the agent:
-> "Save this to captured/"
+**From a session:** When you're reading docs or doing research, tell the agent:
+> "Save this to 1-captured/" — or use `/capture` for quick-save with auto-frontmatter
 
-**Manually:** Drag any `.md` or `.txt` file into `captured/`.
+**Manually:** Drag any `.md` or `.txt` file into `1-captured/`.
 
-Sources in `captured/` are **immutable** — never edited after drop. They're your source of truth.
+Sources in `1-captured/` are **immutable** — never edited after drop. They're your source of truth.
 
-### 2. Ingest — Turn Sources into Knowledge
+### 2. Organise — Turn Sources into Wiki Pages
 
-Run the `/ingest` command. The AI agent will:
+Run `/organise`. The AI agent will:
 
 ```
-Step 1  Read new files in captured/ (skips already-ingested ones)
-Step 2  Check the wiki index for related pages
-Step 3  Create or update pages in distilled/
-Step 4  Log what happened in _log.md
-Step 5  Update the index in _index.md
+Step 1  Read new files in 1-captured/ (skips already-organised ones)
+Step 2  Check 2-organised/_index.md for related pages
+Step 3  Create or update pages in 2-organised/{topic}/
+Step 4  Log what happened in 2-organised/_log.md
+Step 5  Update the index in 2-organised/_index.md
 ```
 
 Each wiki page answers questions at increasing depth:
@@ -92,83 +105,79 @@ Each wiki page answers questions at increasing depth:
 | **L3 Wisdom** | How can we benefit? What should we do next? | Core skill/framework pages |
 | **L4 Expertise** | What is it NOT? Anti-patterns? Alternatives? How to do better? | Architecture decisions |
 
-These 12 questions come from the LTC Learning Hierarchy (`_genesis/frameworks/learning-hierarchy.md`). A page **earns** its level by answering all questions at that level and below — it's not a label, it's proof of depth.
+These 12 questions come from the LTC Learning Hierarchy (`_genesis/frameworks/learning-hierarchy.md`). A page **earns** its level by answering all questions at that level and below.
 
 ### 3. Auto-Recall — Knowledge Surfaces Automatically
 
-This is the magic. You don't have to remember what you've learned.
-
-**QMD** (your local search engine) indexes everything in `distilled/`. At the start of every session, the system queries QMD for knowledge relevant to what you're working on. If you're building a skill and you've previously ingested Anthropic's skill docs, the relevant wiki page appears in your session context — automatically.
+**QMD** (your local search engine) indexes everything in `2-organised/`. At the start of every session, the system queries QMD for knowledge relevant to what you're working on. If you're building a skill and you've previously organised Anthropic's skill docs, the relevant wiki page appears in your session context — automatically.
 
 You don't search for it. You don't ask for it. It just shows up.
 
 ### 3a. QMD — Search and Auto-Recall
 
-QMD is the local search engine that indexes everything in `distilled/`. It provides two search modes:
+QMD indexes everything in `2-organised/` and `3-distilled/`. Two search modes:
 - **vec** (semantic): meaning-based vector search — finds related concepts even without exact keywords
 - **lex** (keyword): BM25 keyword search — exact term matching, fast
 
-**Auto-recall:** On `UserPromptSubmit`, the hook `.claude/hooks/auto-recall-filter.sh` queries QMD with the user's prompt intent and injects relevant distilled pages into the session context automatically. No manual action needed.
+**Auto-recall:** On `UserPromptSubmit`, the hook `.claude/hooks/auto-recall-filter.sh` queries QMD with the user's prompt intent and injects relevant pages into the session context automatically. No manual action needed.
 
-**Manual recall:** Use `mcp__qmd__query` directly with `type:'vec'` or `type:'lex'` sub-queries. For retrieval by path: `mcp__qmd__get`.
+**Manual recall:** Use `mcp__qmd__query` directly with `type:'vec'` or `type:'lex'` sub-queries.
 
-### 4. Review — Spaced Repetition
+After each `/organise` run, re-index so QMD sees new pages:
+```bash
+qmd update 2-organised && qmd embed
+```
+The SessionStop hook runs this automatically — no manual step needed in normal flow.
 
-Knowledge you don't revisit fades. Obsidian's **Spaced Repetition** plugin surfaces your wiki pages on a schedule for active recall — like flashcards, but for entire knowledge pages.
+### 4. Distil — Your Own Synthesis (Optional)
+
+`3-distilled/` is for cross-source thinking that only YOU can write. When you've read multiple organised pages and see a pattern, a contradiction, or a mental model forming — write it in `3-distilled/`.
+
+There is no `/distil` skill. This stage is populated via natural conversation: tell the agent "save this synthesis to 3-distilled/{topic}/filename.md" and it writes what you've articulated.
+
+You are not nagged to distil. The organised pages are useful on their own. Distilled is for when you've genuinely developed a new mental model.
+
+### 5. Review — Spaced Repetition
+
+Knowledge you don't revisit fades. Obsidian's **Spaced Repetition** plugin surfaces your organised pages on a schedule for active recall.
 
 Every wiki page has `review: true` in its frontmatter. The plugin picks these up and reminds you to revisit them.
 
-**How to use it — step by step:**
+**How to use it:**
 
 1. Open Obsidian
-2. Press `Ctrl/Cmd + P` to open the command palette
-3. Type "Spaced Repetition" → select **Review flashcards in this note** or **Review all due notes**
-4. The plugin shows you a wiki page that's due for review
-5. Read the page, then rate: **Easy** (push to 14 days), **Good** (keep at 7 days), **Hard** (review again in 1 day)
-6. Repeat until no more pages are due
+2. Press `Ctrl/Cmd + P` → type "Spaced Repetition" → select **Review flashcards**
+3. Read the page, then rate: **Easy** (14 days), **Good** (7 days), **Hard** (1 day)
+4. Repeat until no pages are due
 
-**When to review:** Aim for 5 minutes daily. The plugin tracks what's due — you don't need to remember. Over time, well-known pages get spaced further apart (14→30→60 days) while difficult ones stay frequent.
+Aim for 5 minutes daily. Over time, well-known pages get spaced further apart.
 
-**Where to find it in Obsidian:** Look for the card icon in the left sidebar, or use the command palette (`Ctrl/Cmd + P`).
-
-### 5. Dashboard — See Your Learning Stats
+### 6. Dashboard — See Your Learning Stats
 
 Open `dashboard.md` in Obsidian to see live stats powered by **Dataview** queries:
 
 | Dashboard panel | What it shows |
 |---|---|
 | **Level Distribution** | How many pages at L1, L2, L3, L4 — shows depth of your knowledge |
-| **Uningested Files** | Files in captured/ you haven't processed yet — your backlog |
-| **Recent Ingests** | Last 10 ingest operations — your activity timeline |
+| **Unorganised Files** | Files in 1-captured/ not yet processed — your backlog |
+| **Recent Organise Operations** | Last 10 organise runs — your activity timeline |
 | **Topics** | Pages grouped by domain — shows where your knowledge concentrates |
+| **Your Synthesis (3-distilled/)** | Cross-source pages you've written — your own thinking |
 | **Review Queue** | Pages due for spaced repetition — what to read today |
-
-Dataview queries update in real-time as your wiki grows. No manual tracking.
-
-### 6. Knowledge Map — See Connections Visually
-
-Open `knowledge-map.canvas` in Obsidian to see your knowledge pipeline as a visual map. **Canvas** lets you:
-
-- See the `captured/ → distilled/ → expressed/` flow
-- Add topic clusters as your wiki grows
-- Drag wiki pages onto the canvas to map relationships
-- Create visual brainstorms connected to your actual knowledge
-
-Canvas Mindmap plugin adds keyboard-driven mind mapping on top.
 
 ### 7. Lint — Keep Your Wiki Healthy
 
-Run `./scripts/pkb-lint.sh` to check wiki health. 8 automated checks, zero AI needed, runs in under 1 second:
+Run `./scripts/pkb-lint.sh` to check wiki health. 8 automated checks, zero AI needed:
 
 ```
-UNINGESTED   Files in captured/ not yet ingested
+UNINGESTED   Files in 1-captured/ not yet organised
 SHALLOW      Pages below L2 minimum (< 6 questions answered)
 FRONTMATTER  Pages missing required metadata fields
 ORPHANS      Pages with no inbound links (disconnected knowledge)
 LINKS        Broken [[links]] pointing to pages that don't exist
 INDEX        Pages missing from the table of contents
 STALE        Pages not updated in 30+ days
-LOG          Ingest history integrity
+LOG          Organise history integrity
 ```
 
 Three modes:
@@ -178,13 +187,13 @@ Three modes:
 
 ### 8. Express — Produce From Your Knowledge
 
-When you're ready to create something from what you know, outputs go in `expressed/`:
+When you're ready to create something from what you know, outputs go in `4-expressed/`:
 - Reports, summaries, deliverables
 - Team-facing documents
 - Research inputs for project work (`2-LEARN/input/`)
 - Anything that leaves the PKB and enters a project
 
-The PKB is the well. `expressed/` is what you draw from it.
+The PKB is the well. `4-expressed/` is what you draw from it.
 
 ---
 
@@ -193,14 +202,24 @@ The PKB is the well. `expressed/` is what you draw from it.
 ### Step 1: Verify Scaffold
 
 The PKB folder is already created when you clone the template. Verify:
-```
+```bash
 ls PERSONAL-KNOWLEDGE-BASE/
-# Should show: captured/  distilled/  expressed/  README.md  dashboard.md  knowledge-map.canvas
+# Should show: 1-captured/  2-organised/  3-distilled/  4-expressed/  README.md  dashboard.md  knowledge-map.canvas
 ```
 
 ### Step 2: Configure QMD
 
-Ensure QMD indexes your wiki. Run `/setup` or check `qmd status`. QMD should list a collection pointing to `PERSONAL-KNOWLEDGE-BASE/distilled/`.
+Ensure QMD indexes your wiki. Run `/setup` or check `qmd status`. QMD should list two collections pointing to `PERSONAL-KNOWLEDGE-BASE/2-organised/` and optionally `PERSONAL-KNOWLEDGE-BASE/3-distilled/`.
+
+```bash
+# One-time setup (or run /setup which does this for you):
+cd PERSONAL-KNOWLEDGE-BASE
+qmd collection add 2-organised 2-organised/
+qmd update 2-organised && qmd embed
+
+# Re-index after each /organise session:
+qmd update 2-organised && qmd embed
+```
 
 ### Step 3: Install Obsidian Plugins
 
@@ -209,11 +228,11 @@ Open Obsidian → Settings → Community Plugins → Browse. Install these 4:
 | Plugin | Search for | What to configure |
 |---|---|---|
 | **Dataview** | `dataview` | Settings → Enable JavaScript Queries → ON. This powers `dashboard.md`. |
-| **Spaced Repetition** | `obsidian-spaced-repetition` | Settings → Note folder → `PERSONAL-KNOWLEDGE-BASE/distilled/`. Filter → `review: true`. This enables spaced repetition flashcards and review scheduling. |
-| **Canvas Mindmap** | `canvas-mindmap` | No config needed. Open `knowledge-map.canvas` to start. Adds keyboard mind mapping to Canvas. |
-| **PDF++** | `pdf-plus` | Settings → Highlight export folder → `PERSONAL-KNOWLEDGE-BASE/captured/`. Lets you annotate PDFs and send highlights to captured/. |
+| **Spaced Repetition** | `obsidian-spaced-repetition` | Settings → Note folder → `PERSONAL-KNOWLEDGE-BASE/2-organised/`. Filter → `review: true`. |
+| **Canvas Mindmap** | `canvas-mindmap` | No config needed. Open `knowledge-map.canvas` to start. |
+| **PDF++** | `pdf-plus` | Settings → Highlight export folder → `PERSONAL-KNOWLEDGE-BASE/1-captured/`. |
 
-> **Callout blocks** are built-in (no install). Use `> [!tip]`, `> [!warning]`, `> [!example]`, `> [!note]` in any markdown for structured visual notes.
+> **Callout blocks** are built-in. Use `> [!tip]`, `> [!warning]`, `> [!example]`, `> [!note]` in any markdown.
 
 ### Step 4: Install Web Clipper (optional but recommended)
 
@@ -222,14 +241,33 @@ Obsidian Web Clipper is a browser extension for capturing web pages.
 1. Install from your browser's extension store (search "Obsidian Web Clipper")
 2. In Clipper settings → Templates → New template:
    - **Name:** `PKB Capture`
-   - **Note location:** `PERSONAL-KNOWLEDGE-BASE/captured`
+   - **Note location:** `PERSONAL-KNOWLEDGE-BASE/1-captured`
    - **Note name:** `{{title}}`
    - **Properties:** add `version: 2.0`, `status: draft`, `source_url: {{url}}`, `source_type: web-clip`
-3. Now `⌥⇧O` on any web page clips it straight to `captured/`
+3. Now `⌥⇧O` on any web page clips it straight to `1-captured/`
 
-### Step 5: First Ingest
+### Step 5: First Organise Run
 
-Drop any doc you've read recently into `captured/` and run `/ingest`. Open `dashboard.md` to see your first page appear.
+Drop any doc you've read recently into `1-captured/` and run `/organise`. Open `dashboard.md` to see your first page appear in `2-organised/`.
+
+### Migration Path (Existing Clones)
+
+If you have an existing PKB with the old unnumbered layout (captured → organised → distilled → expressed):
+
+```bash
+# 1. Rename each subdir to its numbered name
+mv PERSONAL-KNOWLEDGE-BASE/captured PERSONAL-KNOWLEDGE-BASE/1-captured
+mv PERSONAL-KNOWLEDGE-BASE/organised PERSONAL-KNOWLEDGE-BASE/2-organised
+mv PERSONAL-KNOWLEDGE-BASE/distilled PERSONAL-KNOWLEDGE-BASE/3-distilled
+mv PERSONAL-KNOWLEDGE-BASE/expressed PERSONAL-KNOWLEDGE-BASE/4-expressed
+
+# 2. Re-index QMD with the new paths
+qmd collection remove organised 2>/dev/null || true
+qmd collection add 2-organised 2-organised/
+qmd update 2-organised && qmd embed
+```
+
+Your existing AI-extracted pages are now in `2-organised/`. `3-distilled/` is now reserved for your own cross-source synthesis.
 
 ---
 
@@ -242,7 +280,7 @@ Drop any doc you've read recently into `captured/` and run `/ingest`. Open `dash
 | A team knowledge base | Each PM has their own PKB; the system ships, the knowledge doesn't |
 | Committed to git | This entire folder is gitignored — personal and private |
 | A replacement for project docs | Project decisions go to `1-ALIGN/decisions/` |
-| Something you write manually | The AI maintains the wiki; you curate sources and read the output |
+| Something you write manually | The AI maintains 2-organised/; you curate sources and read the output |
 
 ---
 
@@ -251,16 +289,16 @@ Drop any doc you've read recently into `captured/` and run `/ingest`. Open `dash
 Three automated systems work together:
 
 ```
-Post-session hook          Dashboard                   Lint script
-─────────────────          ─────────                   ───────────
-Fires when you end         Open anytime in             Run manually or
-a session. If captured/    Obsidian. Live stats:       on schedule.
-has uningested files,      level distribution,         8 mechanical checks:
-it reminds you.            uningested backlog,         orphans, broken links,
-                           review queue.               shallow pages, stale.
+Post-session hook             Dashboard                   Lint script
+─────────────────             ─────────                   ───────────
+Fires when you end            Open anytime in             Run manually or
+a session. If 1-captured/     Obsidian. Live stats:       on schedule.
+has unorganised files,        level distribution,         8 mechanical checks:
+it reminds you.               unorganised backlog,        orphans, broken links,
+                              review queue.               shallow pages, stale.
 
-"You have 2 files          "3 pages at L1,             "2 orphan pages,
-awaiting ingest."          7 at L2, 1 at L4"           1 broken link"
+"You have 2 files             "3 pages at L1,             "2 orphan pages,
+awaiting organise."           7 at L2, 1 at L4"           1 broken link"
 ```
 
 Together they ensure: nothing is forgotten (hook), nothing is shallow (dashboard), nothing is broken (lint).
@@ -272,19 +310,21 @@ Together they ensure: nothing is forgotten (hook), nothing is shallow (dashboard
 | I want to... | Do this |
 |---|---|
 | Save something from the browser | `⌥⇧O` → PKB Capture template |
-| Save something from a session | Tell the agent: "save this to captured/" |
-| Turn raw sources into knowledge | Run `/ingest` |
+| Save something from a session | `/capture` or tell the agent: "save this to 1-captured/" |
+| Turn raw sources into wiki pages | Run `/organise` |
+| Write my own cross-source synthesis | Write to `3-distilled/` directly or ask agent to save |
 | See my learning stats | Open `dashboard.md` in Obsidian |
 | Review what I've learned | Open Spaced Repetition panel in Obsidian |
 | See knowledge connections | Open `knowledge-map.canvas` |
 | Check wiki health | Run `./scripts/pkb-lint.sh` |
-| Create an output from my knowledge | Write to `expressed/` |
+| Create an output from my knowledge | Write to `4-expressed/` |
 | Find something I've learned | QMD auto-recalls it, or search in Obsidian |
+| Re-index after new organised pages | `qmd update 2-organised && qmd embed` |
 
 ---
 
 > **The system works best when you trust the AI to organise.
-> Your job: drop sources and read what comes back.**
+> Your job: drop sources, read what comes back, and synthesise when you're ready.**
 
 ## Links
 

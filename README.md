@@ -1,7 +1,7 @@
 ---
-version: "1.2"
+version: "1.4"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-13
 iteration: 1
 type: template
 ---
@@ -19,7 +19,7 @@ Standard project scaffold for LT Capital Partners. Clone this to start any new p
 | **Focus** | Sustainability — human adoption first | **Sustainability × Efficiency** — manage workflows sustainably AND efficiently |
 | **Structure** | 5 flat workstream dirs | 5 workstreams × 4 subsystems (PD → DP → DA → IDM) + `_cross` |
 | **Dashboards** | None | Obsidian Bases — filterable views of every artifact by workstream, status, iteration |
-| **Knowledge capture** | Manual | Personal Knowledge Base (PKB) — `/ingest` pipeline + `/vault-capture` for books, articles, conversations |
+| **Knowledge capture** | Manual | Personal Knowledge Base (PKB) — `/organise` pipeline + `/capture` for books, articles, conversations |
 | **Filesystem** | Category-based (`charter/`, `risks/`) | Subsystem-based (`1-PD/`, `2-DP/`) with routing rules |
 | **Agent config** | 3 rules, basic skills | 12 always-on rules, 30+ skills, 4 MECE agents, event-driven hooks |
 | **Learning pipeline** | 7 learn skills | Same skills + per-subsystem pipeline dirs (`input/research/specs/output/archive`) |
@@ -152,8 +152,8 @@ The critical output: **Effective Principles** (S-Principles for safety, E-Princi
 Iteration 2 adds a **Personal Knowledge Base (PKB)** for capturing insights from any source:
 
 ```
-/vault-capture "key insight from today's meeting"    Quick capture → Obsidian inbox
-/ingest path/to/article.pdf                          Full pipeline: extract → embed → index
+/capture "key insight from today's meeting"          Quick capture → PKB 1-captured/
+/organise path/to/article.pdf                        Full pipeline: organise → embed → index
 ```
 
 Books, articles, courses, conversations — everything lands in the Obsidian vault where it's searchable, linkable, and feeds into your LEARN pipeline.
@@ -177,7 +177,7 @@ Morning                           During work                     End of day
   ↓ load context                    ↓ explore ideas                 ↓ auto-save summary
 Obsidian daily note               /learn → /dsbv → produce        /compress if needed
   ↓ check dashboards               ↓ research → produce            ↓ session log → vault
-Notion/ClickUp tasks              /vault-capture insights
+Notion/ClickUp tasks              /capture insights
   ↓ prioritize                      ↓ capture as you go
 ```
 
@@ -284,7 +284,7 @@ All skills live in `.claude/skills/` and are invoked with `/skill-name`.
 | **Process** | `/ltc-brainstorming`, `/ltc-task-executor` | Thinking companion + structured execution |
 | **DSBV** | `/dsbv` | Workstream production — Design, Sequence, Build, Validate |
 | **Learning** | `/learn`, `/learn:input`, `/learn:research`, `/learn:structure`, `/learn:review`, `/learn:spec` | 6-state research pipeline — from question to Effective Principles |
-| **Knowledge** | `/ingest`, `/vault-capture` | Personal Knowledge Base — capture from any source |
+| **Knowledge** | `/organise`, `/capture` | Personal Knowledge Base — `/capture` to `1-captured/`, `/organise` to `2-organised/` |
 | **Obsidian** | `/obsidian` | Vault search, navigation, Bases queries |
 | **Session** | `/session-start`, `/session-end`, `/compress`, `/resume`, `/setup` | Session lifecycle management |
 | **Git** | `/git-save` | Guided commit workflow with classification |

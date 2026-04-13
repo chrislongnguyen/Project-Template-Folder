@@ -1,7 +1,7 @@
 ---
-version: "2.5"
+version: "2.7"
 status: draft
-last_updated: 2026-04-11
+last_updated: 2026-04-13
 type: sop
 work_stream: _genesis
 audience: LTC Project Managers operating a UES using this template
@@ -152,7 +152,7 @@ OPS_OE.X.X.PROJECT-NAME/
 │   ├── reference/                  ← Agent designs, ESD, EP registry
 │   └── version-registry.md         ← Master version tracking
 │
-├── PERSONAL-KNOWLEDGE-BASE/        ← PKB (Capture → Distill → Express)
+├── PERSONAL-KNOWLEDGE-BASE/        ← PKB (1-captured → 2-organised → 3-distilled → 4-expressed)
 ├── DAILY-NOTES/                    ← Daily vault notes
 ├── inbox/                          ← Quick captures
 │
@@ -255,8 +255,8 @@ Layer 3: DSBV STAGES (process — how each artifact is produced)
 
 | Command | Purpose | Target |
 |---------|---------|--------|
-| `/ingest` | Ingest to Personal Knowledge Base | `PERSONAL-KNOWLEDGE-BASE/` |
-| `/vault-capture` | Quick capture to vault inbox | `inbox/` |
+| `/organise` | Organise files from 1-captured/ into PKB wiki pages | `PERSONAL-KNOWLEDGE-BASE/2-organised/` |
+| `/capture` | Quick capture to PKB staging area | `PERSONAL-KNOWLEDGE-BASE/1-captured/` |
 | `/obsidian` | Obsidian CLI integration (search, backlinks, orphans) | Vault-wide |
 
 ### Session Lifecycle Commands
@@ -589,7 +589,7 @@ Full template: `.claude/skills/dsbv/references/context-packaging.md`
 
 ```
 1. /compress                        ← Save session context
-2. /vault-capture                   ← Capture any loose notes
+2. /capture                         ← Capture any loose notes
 3. Hooks auto-fire: PKB ingest reminder, state save
 ```
 

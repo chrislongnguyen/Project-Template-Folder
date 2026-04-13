@@ -1,5 +1,5 @@
 ---
-version: "1.8"
+version: "1.9"
 status: draft
 last_updated: 2026-04-13
 ---
@@ -45,7 +45,7 @@ Every artifact MUST be categorized by subsystem x workstream. NEVER make chat-on
 PD output: Effective Principles for entire UES. DP: processed data. DA: extracted insights. IDM: actionable decisions.
 PD governs all: PD's EP ALWAYS takes precedence over downstream. Downstream MUST NEVER exceed upstream UES version.
 ## Architecture: PKB (full spec: `PERSONAL-KNOWLEDGE-BASE/README.md`)
-Capture (raw, immutable) -> Distill (AI-maintained wiki) -> Express (outputs). Route: `PERSONAL-KNOWLEDGE-BASE/`, `DAILY-NOTES/`, `inbox/` only. NEVER `2-LEARN/`.
+Capture (raw) -> Organise (AI-structured pages) -> Distil (human synthesis) -> Express (outputs). Subdirs: `1-captured/` → `2-organised/` → `3-distilled/` → `4-expressed/`. Route: `PERSONAL-KNOWLEDGE-BASE/`, `DAILY-NOTES/`, `inbox/` only. NEVER `2-LEARN/`.
 QMD provides vec (semantic) and lex (keyword) search over vault + PKB. Use `mcp__qmd__query` for recall, `mcp__qmd__get` for retrieval.
 ## Effective Principles (full spec: `_genesis/reference/ltc-effective-agent-principles-registry.md`)
 14 EPs (EP-01 through EP-14): 11 DERISK, 3 OUTPUT. Reflects UT#5: managing failure risk > maximising output. ALWAYS load registry when designing or reviewing any system component.

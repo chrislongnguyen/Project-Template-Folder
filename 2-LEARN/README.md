@@ -1,7 +1,7 @@
 ---
-version: "2.6"
+version: "2.7"
 status: draft
-last_updated: 2026-04-12
+last_updated: 2026-04-13
 work_stream: 2-LEARN
 type: template
 iteration: 1
@@ -114,7 +114,7 @@ PD-LEARN  →  DP-LEARN  →  DA-LEARN  →  IDM-LEARN
 2-LEARN ──"scope changed"──> 1-ALIGN  (re-align)
 ```
 
-> **Note:** `/ingest` and `/vault-capture` write to PKB dirs (Mode C), NOT to 2-LEARN/.
+> **Note:** `/organise` and `/capture` write to PKB dirs (Mode C), NOT to 2-LEARN/.
 
 ## DASHBOARDS
 

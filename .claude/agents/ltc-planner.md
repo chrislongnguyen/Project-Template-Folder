@@ -1,8 +1,8 @@
 ---
 name: ltc-planner
-version: "1.6"
+version: "1.7"
 status: draft
-last_updated: 2026-04-09
+last_updated: 2026-04-13
 description: "DSBV Design + Sequence stage agent. Use when defining what a workstream must produce (DESIGN.md), ordering work (SEQUENCE.md), synthesizing multi-agent outputs, or advising on DSBV flow. Handles planning, naming, session management, and learn pipeline advisory."
 model: opus
 tools: Read, Glob, Grep, WebFetch, mcp__exa__web_search_exa, mcp__qmd__query
@@ -67,7 +67,7 @@ Reference: `.claude/skills/dsbv/references/live-test-patterns.md`
 ## Routing Boundaries
 
 - **LEARN (2-LEARN/) does NOT use DSBV.** Never create DESIGN.md, SEQUENCE.md, or VALIDATE.md in 2-LEARN/. LEARN uses the learning pipeline (Input → Research → Specs → Output → Archive). If asked to plan LEARN work, orchestrate pipeline stages instead of DSBV stages.
-- **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/. `/ingest` and `/vault-capture` write to PKB, not LEARN.
+- **PKB dirs** (PERSONAL-KNOWLEDGE-BASE/, inbox/, DAILY-NOTES/) are separate from 2-LEARN/. `/organise` and `/capture` write to PKB, not LEARN.
 - **_genesis/** houses OE-builder artifacts. Never route project artifacts into _genesis/ or genesis artifacts into ALPEI dirs.
 - **Subsystem path examples:** `1-ALIGN/1-PD/DESIGN.md`, `3-PLAN/2-DP/SEQUENCE.md`, `4-EXECUTE/3-DA/src/`, `5-IMPROVE/_cross/retros/`. Pattern: `{N}-{WS}/{subsystem}/{artifact}`.
 - See: `.claude/rules/filesystem-routing.md` for full 4-mode routing.

@@ -1,7 +1,7 @@
 ---
-version: "1.6"
+version: "1.8"
 status: draft
-last_updated: 2026-04-12
+last_updated: 2026-04-13
 type: always-on rule
 ---
 # Script Registry — Always-On Rule
@@ -34,7 +34,7 @@ These scripts fire automatically via `.claude/settings.json` hooks. The agent do
 | `skill-validator.sh` | pre-commit (when skills staged) | Validate skill directory structure (EOP governance) |
 | `validate-blueprint.py` | pre-commit (staged, quiet) | 8 structural checks on repo layout |
 | `pkb-lint.sh` | SessionStart + Stop | 8-check PKB health audit (uningested, shallow, frontmatter, orphans, links, index, stale, log) |
-| `pkb-ingest-reminder.sh` | Stop | Flag uningested files in `captured/` not logged in `_log.md` |
+| `pkb-ingest-reminder.sh` | Stop | Flag uningested files in `1-captured/` not logged in `_log.md` |
 | `ripple-check.sh` | PostToolUse (Write/Edit on .md) | Show depth-1 and depth-2 backlinks after file edit |
 | `auto-recall-filter.sh` | UserPromptSubmit | QMD auto-recall injection — classify intent, query vault, inject context |
 | `session-etl-trigger.sh` | (manual / cron) | Debounced wrapper — triggers `session-etl.py` in background |
@@ -175,7 +175,7 @@ Use these when evaluating the quality of DSBV skill artifacts.
 | `/setup` | `setup-vault.sh`, `smoke-test.sh` |
 | `/template-check` | `template-check.sh`, `template-manifest.sh` |
 | `/template-sync` | `template-check.sh`, `template-sync.sh`, `template-manifest.sh`, `template-diff.sh`, `template-verify.sh`, `template-merge-engine.py` |
-| `/ingest` | `pkb-lint.sh` |
+| `/organise` | `pkb-lint.sh` |
 | `/ltc-rules-compliance` | `skill-validator.sh` |
 | `/ltc-skill-creator` | `skill-validator.sh` |
 | `/learn:review` | `2-LEARN/_cross/scripts/validate-learning-page.sh` (separate from `scripts/`) |
