@@ -48,13 +48,14 @@ PERSONAL-KNOWLEDGE-BASE/dashboard.md
 PERSONAL-KNOWLEDGE-BASE/knowledge-map.canvas
 PERSONAL-KNOWLEDGE-BASE/*.canvas
 
-# inbox/ — personal captures, WIP docs, audit records
+# inbox/ — WIP staging, personal captures, research drafts — never shipped
 # Only .gitkeep and README.md are tracked (structural scaffolding)
-inbox/2[0-9][0-9][0-9]-*.md
-inbox/macos-*.md
-inbox/vana-*.md
-inbox/ghostty-*.md
-inbox/cmux-*.md
+inbox/*
+!inbox/.gitkeep
+!inbox/README.md
+
+# Excalidraw/ — personal drawings, not for clone users
+Excalidraw/
 
 # Runtime state — never commit
 .claude/state/
