@@ -1,5 +1,5 @@
 ---
-version: "1.5"
+version: "1.6"
 status: draft
 last_updated: 2026-04-13
 release_version: v2.1.0
@@ -69,6 +69,21 @@ In v2.0.0, discovering which skill or script to use meant listing directories an
 
 In v2.1.0, a categorized index of all 60 scripts and 28 skills is loaded into every session automatically. You describe what you need, and the index is already in context. No searching required.
 
+### 6. Personal Knowledge Base Has a Clear 4-Stage Structure
+
+In v2.0.0, the PKB subdirectory names (`captured/`, `distilled/`, `expressed/`) didn't reflect the pipeline they implement — the vocabulary was inconsistent with the Capture → Organise → Distil → Express flow.
+
+In v2.1.0, the directories are renamed and numbered to match the pipeline:
+
+| Old | New | Stage |
+|-----|-----|-------|
+| `captured/` | `1-captured/` | Raw inbox items |
+| `distilled/` | `2-organised/` | AI-structured pages |
+| `expressed/` | `3-distilled/` | Human synthesis |
+| _(missing)_ | `4-expressed/` | Outputs and deliverables |
+
+The `/capture` and `/organise` skills, `pkb-lint.sh`, and `setup-vault.sh` are all updated to match. If you cloned before 2026-04-13, the migration guide has a one-liner rename command.
+
 ---
 
 ## What Else Improved
@@ -82,6 +97,9 @@ In v2.1.0, a categorized index of all 60 scripts and 28 skills is loaded into ev
 | Windows/WSL compatibility for template scripts | Team members on Windows can now participate fully |
 | 265 files deleted — empty stubs, wrong-schema placeholders, legacy drafts | Cleaner repo, less confusion about what's real vs placeholder |
 | GitHub issue templates added | Bug reports now use a structured format with triage labels |
+| Brand identity rules updated | `rules/brand-identity.md` now enforces 60-30-10 color rule and §7 Markdown Document Format (ALL CAPS headings, bold table headers) |
+| Vestigial `0-GOVERN` references removed | 30 files cleaned — `0-GOVERN/` no longer referenced anywhere in rules, agents, or READMEs |
+| Training materials updated for PKB pipeline | Iteration 2 training deck and Obsidian Bases slides updated to reflect the 4-stage directory structure |
 
 ---
 
@@ -97,6 +115,8 @@ In v2.1.0, a categorized index of all 60 scripts and 28 skills is loaded into ev
 | #32 | The `/dsbv` skill could run Design and Sequence stages without dispatching a dedicated agent — it would write artifacts directly, skipping the quality gate | Design and Sequence stages now require agent dispatch as a mandatory step — the skill enforces it before any artifact write |
 | #33, #34 | The `/learn:research` skill's handoff between orchestrator and sub-agents was undocumented — the orchestrator sometimes wrote files it shouldn't, and sub-agents didn't know which files to produce | Handoff protocol documented: orchestrator creates the research brief, sub-agents produce the output files, boundaries are explicit in the skill definition |
 | CVE-2026-39363 | Vite dependency in the Obsidian Bases training deck had a known security vulnerability (GitHub alerts #3, #4) | Updated `package.json` to patched Vite version |
+| — | CLAUDE.md filesystem-routing rule had stale references and the PKB architecture section was incomplete — gap found during reviewer audit | CLAUDE.md v1.8: routing rule corrected, PKB section updated to reflect 4-stage pipeline |
+| — | Beta test 3 guide omitted the `/learn:spec` stage — users following it would end the pipeline one step early | `/learn:spec` stage added; guide now covers the full Capture → Organise → Distil → Express → Spec pipeline |
 
 ---
 

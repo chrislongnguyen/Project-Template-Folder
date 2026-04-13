@@ -1,8 +1,17 @@
 ---
-version: "3.2"
+version: "3.3"
 status: draft
 last_updated: 2026-04-13
 ---
+
+> **PKB Directory Rename (post-v2.1.0 patch):** If you cloned before 2026-04-13, your PKB subdirectories have changed names.
+> Run these in your repo root to align:
+> ```
+> mv PERSONAL-KNOWLEDGE-BASE/captured PERSONAL-KNOWLEDGE-BASE/1-captured 2>/dev/null; \
+> mv PERSONAL-KNOWLEDGE-BASE/distilled PERSONAL-KNOWLEDGE-BASE/2-organised 2>/dev/null; \
+> mv PERSONAL-KNOWLEDGE-BASE/expressed PERSONAL-KNOWLEDGE-BASE/3-distilled 2>/dev/null
+> ```
+> Then run `bash scripts/setup-vault.sh` to scaffold the new `4-expressed/` directory.
 
 # Migration Guide — LTC Project Template
 
