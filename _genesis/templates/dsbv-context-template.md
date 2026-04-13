@@ -6,7 +6,6 @@ status: draft
 last_updated: 2026-04-10
 owner: ""
 type: template
-work_stream: 0-GOVERN
 stage: design
 sub_system: 
 ---

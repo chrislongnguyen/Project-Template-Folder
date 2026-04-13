@@ -6,7 +6,6 @@ status: draft
 last_updated: 2026-04-11
 owner: ""
 type: template
-work_stream: 0-GOVERN
 stage: validate
 sub_system: "{{SUBSYSTEM}}"
 ---

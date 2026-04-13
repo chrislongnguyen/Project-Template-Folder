@@ -2,7 +2,6 @@
 version: "1.2"
 status: draft
 last_updated: 2026-04-11
-work_stream: 0-GOVERN
 type: agent-config
 iteration: 1
 ---

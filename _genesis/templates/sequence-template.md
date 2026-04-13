@@ -6,7 +6,6 @@ workstream: "{{WORKSTREAM}}"
 iteration: "{{ITERATION}}"
 status: draft
 type: template
-work_stream: 0-GOVERN
 stage: sequence
 sub_system: "{{SUBSYSTEM}}"
 ---

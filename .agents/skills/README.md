@@ -2,7 +2,6 @@
 version: "2.0"
 status: draft
 last_updated: 2026-04-07
-work_stream: 0-GOVERN
 type: readme
 iteration: 2
 ---
