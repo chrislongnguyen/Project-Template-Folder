@@ -41,9 +41,15 @@ tsconfig.tsbuildinfo
 
 # PKB — personal content, never shipped with template
 # Only .gitkeep and README.md are tracked (structural scaffolding)
-PERSONAL-KNOWLEDGE-BASE/captured/
-PERSONAL-KNOWLEDGE-BASE/distilled/
-PERSONAL-KNOWLEDGE-BASE/expressed/
+PERSONAL-KNOWLEDGE-BASE/captured/*
+!PERSONAL-KNOWLEDGE-BASE/captured/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/captured/README.md
+PERSONAL-KNOWLEDGE-BASE/distilled/*
+!PERSONAL-KNOWLEDGE-BASE/distilled/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/distilled/README.md
+PERSONAL-KNOWLEDGE-BASE/expressed/*
+!PERSONAL-KNOWLEDGE-BASE/expressed/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/expressed/README.md
 PERSONAL-KNOWLEDGE-BASE/dashboard.md
 PERSONAL-KNOWLEDGE-BASE/knowledge-map.canvas
 PERSONAL-KNOWLEDGE-BASE/*.canvas
