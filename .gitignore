@@ -53,6 +53,7 @@ PERSONAL-KNOWLEDGE-BASE/*.canvas
 inbox/*
 !inbox/.gitkeep
 !inbox/README.md
+!inbox/beta-test-*.md
 
 # Excalidraw/ — personal drawings, not for clone users
 Excalidraw/
