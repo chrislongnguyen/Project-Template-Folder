@@ -33,6 +33,8 @@ views:
       - version
       - status
       - formula.days_since_update
+    columnSize:
+      file.name: 255
   - type: table
     name: BY STAGE
     groupBy:

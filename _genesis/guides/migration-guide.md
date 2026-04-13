@@ -1,7 +1,7 @@
 ---
-version: "3.1"
+version: "3.2"
 status: draft
-last_updated: 2026-04-12
+last_updated: 2026-04-13
 ---
 
 # Migration Guide — LTC Project Template
@@ -14,46 +14,89 @@ last_updated: 2026-04-12
 
 ## Quick Reference Card
 
-**Start here. 30 seconds to know exactly what to do.**
+**You're a PM (Dong, Khang, Cam Van, Dung, or similar). You're in YOUR repo in Claude Code. Long shipped template v2.1.0. You want to sync.**
 
-### Step 1: Know Your Path (one command)
+---
 
-```bash
-bash scripts/template-sync.sh --detect-path
-```
-
-| Output | What it means | Next action |
-|--------|---------------|-------------|
-| `PATH A` | Fresh repo, no commits | → [Path A](#path-a--fresh-clone) (2 min) |
-| `PATH B` | Pre-ALPEI or severely diverged | → [Path B](#path-b--reverse-clone) (30 min) |
-| `PATH C` | Normal upgrade | → [Path C](#path-c--version-upgrade) (5 min) |
-
-### Step 2: Common Tasks (copy-paste)
-
-| I want to... | Command |
-|--------------|---------|
-| See what's new in template | `bash scripts/template-check.sh` |
-| Check my current template version | `grep template_version .template-checkpoint.yml` |
-| Sync to latest | `bash scripts/template-sync.sh --sync v2.1.0` |
-| Verify sync worked | `bash scripts/template-verify.sh` |
-| Check a file's ownership | `bash scripts/template-manifest.sh --classify <path>` |
-| Undo a bad sync | `git checkout backup/pre-vX-upgrade` |
-
-### Step 3: Expected Outputs (you're on track if you see these)
+### Step 0: Copy This Prompt to Your Claude Code Session
 
 ```
-# After --detect-path:
-PATH C: version upgrade
+I want to sync my repo with LTC template v2.1.0.
 
-# After --sync:
+GUIDE ME through this process — explain what you're doing and why before
+each action. I want to understand the migration, not just have it done.
+
+Follow these steps:
+
+1. SAFETY FIRST
+   - Confirm I'm in MY project repo (not the template repo itself)
+   - Check my working tree is clean (if not, help me stash or commit)
+   - Create a test branch: test/template-v2.1.0
+   - Create a backup tag: backup/pre-v2.1.0
+   - Explain: why branch + tag protects my work
+
+2. CONNECT TO TEMPLATE
+   - Add the template remote if not present:
+     git remote add template https://github.com/Long-Term-Capital-Partners/OPS_OE.6.4.LTC-PROJECT-TEMPLATE.git
+   - Fetch the target version: git fetch template v2.1.0
+   - Explain: what a git remote is and why we need it
+
+3. DETECT MY PATH
+   - Check my repo structure to determine Path A, B, or C:
+     • PATH A: Fresh repo, no existing work
+     • PATH B: Pre-ALPEI structure or severely diverged (>30%)
+     • PATH C: Has 1-ALIGN/, .claude/rules/, _genesis/ — normal upgrade
+   - Explain: why these 3 paths exist and which one applies to me
+
+4. FETCH AND READ THE MIGRATION GUIDE
+   - Run: git show template/v2.1.0:_genesis/guides/migration-guide.md
+   - Follow the detailed steps for my detected path
+   - Before each major action, explain what will happen and ask for my OK
+
+5. VERIFY AND EXPLAIN RESULTS
+   - Run verification after sync completes
+   - Show me what changed (files added, merged, skipped)
+   - Explain: the three lineages (template, shared, domain) and how my files were classified
+   - Confirm: my domain content (charter, research, code) was NOT touched
+
+6. FINAL CHECK
+   - Summarize what was done
+   - Show me how to verify the sync worked
+   - Explain: how to roll back if anything is wrong
+   - Tell me: what to do next (test, commit, merge to main, or discard)
+```
+
+---
+
+### What Happens Next (Reference)
+
+After you paste the prompt above, your Claude agent will guide you through:
+
+| Phase | What Claude Does | What You Learn |
+|-------|------------------|----------------|
+| Safety | Creates branch + tag | Why isolation protects your work |
+| Connect | Adds template remote | How git remotes work |
+| Detect | Checks your repo structure | Which migration path applies to you |
+| Migrate | Executes Path A, B, or C | How three-lineage classification works |
+| Verify | Runs 6-check sweep | What "correct sync" looks like |
+| Summarize | Shows changes + next steps | How to maintain sync going forward |
+
+### Expected Outputs (You're on Track If You See These)
+
+```
+# After path detection:
+Your repo has 1-ALIGN/, .claude/rules/, and _genesis/.
+→ PATH C: Version Upgrade (incremental sync, ~5 min)
+
+# After sync completes:
 [1/5] Reading checkpoint... last_sync_sha: abc123
 [2/5] Fetching template remote... target: v2.1.0
 [3/5] Computing pristine diff... 12 files changed
-[4/5] Applying by lineage... 10 auto-take, 2 merge
+[4/5] Applying by lineage... 10 auto-take, 2 section-merge
 [5/5] Verifying... RESULT: 6/6
-Checkpoint updated.
+✓ Checkpoint updated to v2.1.0
 
-# After template-verify.sh:
+# After verification:
 V1 PASS — structural checks: 8/8
 V2 PASS — hook paths valid
 V3 PASS — 0 broken links
@@ -65,12 +108,12 @@ RESULT: 6/6
 
 ### Emergency Exit
 
-| Problem | Fix |
-|---------|-----|
-| Sync broke my repo | `git checkout backup/pre-vX-upgrade` |
-| Can't find backup tag | `git tag -l 'backup/*'` to list all |
-| Need to start over | `git checkout main && git branch -D feat/template-upgrade` |
-| Script fails with error | Check [Troubleshooting](#troubleshooting) below |
+| Problem | What to Tell Claude |
+|---------|---------------------|
+| Something went wrong | "Roll back to my backup tag and explain what happened" |
+| I don't understand a step | "Pause and explain [X] in more detail before continuing" |
+| I want to stop | "Abort the migration, keep my backup, stay on test branch" |
+| I want to discard everything | "Delete test branch, go back to main, I'll try later" |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
-version: "1.0"
+version: "1.2"
 status: draft
-last_updated: 2026-04-12
+last_updated: 2026-04-13
 requires: ""
 release_version: ""
 release_date: ""
@@ -9,81 +9,78 @@ release_date: ""
 
 # Release Notes — v{VERSION}
 
-> Per-version release notes for LTC Project Template. Fill in each section below.
-> `requires:` enforces the version chain — downstream repos must be on that version before applying this release.
+> Released: {DATE} | Requires: v{PRIOR_VERSION} | {N} commits
 
-## Version
+---
 
-`v{VERSION}` — e.g. `v2.1.0`. Matches the git tag and CHANGELOG.md entry for this release.
+## This Release In 30 Seconds
 
-## Date
+_2-3 sentences addressing the user's current pain. Name the problem they've been living with. Then state the outcome this release delivers — not what you built, but what changes for them. End with one sentence on stability/trust._
 
-`YYYY-MM-DD` — the date this release was tagged and published.
+---
 
-## Requires
+## What Changes For You
 
-Minimum prior template version required before applying this release. If this release can be applied from any version, write `none`. Used by `template-sync.sh` and the migration guide for chain enforcement.
+_3-5 workflow deltas, ranked by impact. Each one follows this pattern:_
 
-Example: `v2.0.0`
+### {N}. {Outcome headline — no jargon, no file paths}
 
-## Summary
+_Describe what was painful in v{PRIOR}, then what's different in v{VERSION}. Use a comparison table for the biggest change. Use prose for the rest. If the user runs a command directly, show it. If it's automated behind the scenes, just describe the outcome — don't show internal scripts._
 
-2–3 sentence plain-language description of what this release delivers and why it matters to downstream repos. Write for a project manager who will decide whether to adopt this release now or defer.
+---
 
-Example: _This release introduces the template manifest and checkpoint system, enabling downstream repos to track which template version they are on. No breaking changes. Repos on v2.0.0 can apply directly._
+## What Else Improved
 
-## Breaking Changes
+_Table of secondary improvements. Column headers: Change | Why It Matters To You. Keep descriptions in user terms._
 
-List each breaking change as a bullet. If there are none, write `None`.
+| Change | Why It Matters To You |
+|--------|----------------------|
+| {change} | {user-facing benefit} |
 
-- `{filename}` — describe what changed and why it is breaking (e.g. renamed, removed, schema change)
+---
 
-Example:
-- `scripts/template-sync.sh` — `--base` flag renamed to `--from`; update any CI scripts that call it directly
+## Issues Fixed
 
-## Added
+| Issue | What Was Wrong |
+|-------|---------------|
+| #{N} | {description of the problem the user experienced} |
 
-New files, scripts, skills, or features introduced in this release. One bullet per item.
+---
 
-- `{path}` — brief description of the new artifact and its purpose
+## How To Upgrade
 
-Example:
-- `_genesis/templates/template-manifest.yml` — declares canonical file list and expected hashes for version verification
-- `scripts/template-release.sh` — automates tagging, changelog skeleton generation, and release notes scaffolding
+_Two options: agent-guided (recommended) and manual. Agent-guided = a paste-ready prompt. Manual = numbered bash steps with safety net first, sync, verify, commit, PR._
 
-## Changed
+**Option A — Agent-guided (recommended)**
 
-Modifications to existing files. One bullet per item. Note the nature of the change.
+```
+Read _genesis/guides/migration-guide.md and execute Path C for template v{VERSION}.
+Guide me through each step.
+```
 
-- `{path}` — what changed and why
+**Option B — Manual**
 
-Example:
-- `scripts/template-sync.sh` — added `--checkpoint` flag to write `.template-checkpoint.yml` after sync
-- `CHANGELOG.md` — added v2.1.0 entry with all artifacts from this release
+```bash
+# Safety net
+git checkout -b feat/template-v{VERSION}
+git tag backup/pre-v{VERSION}
 
-## Removed
+# Sync + verify + commit
+bash scripts/template-sync.sh --sync v{VERSION}
+bash scripts/template-verify.sh
+git add .claude/ _genesis/ scripts/ rules/ CLAUDE.md AGENTS.md VERSION
+git commit -m "chore(govern): sync with template v{VERSION}"
+```
 
-Files, scripts, or features deprecated or deleted in this release. One bullet per item.
+**Rollback:**
+```bash
+git checkout main && git branch -D feat/template-v{VERSION}
+```
 
-- `{path}` — reason for removal and what replaces it (if anything)
-
-Example:
-- `scripts/legacy-sync.sh` — superseded by `template-sync.sh --checkpoint`; delete from downstream repos
-
-## Migration Steps
-
-Ordered steps for a downstream repo maintainer to apply this release. Be explicit — assume the reader has not read the DESIGN.md.
-
-1. Confirm your repo is on `requires: v{PRIOR_VERSION}` before proceeding. Run `cat .template-checkpoint.yml` to check.
-2. Run `./scripts/template-sync.sh --from v{PRIOR_VERSION} --to v{VERSION} --dry-run` and review the diff.
-3. Apply the sync: `./scripts/template-sync.sh --from v{PRIOR_VERSION} --to v{VERSION}`.
-4. Resolve any conflicts noted in the dry-run output.
-5. {Add any release-specific steps here — e.g. rename a file, update a config value, run a migration script.}
-6. Run `./scripts/template-check.sh` to verify the repo passes all structural checks.
-7. Commit: `chore(genesis): apply template v{VERSION}`.
+---
 
 ## Links
 
 - [[CHANGELOG]]
-- [[version-registry]]
+- [[migration-guide]]
 - [[versioning]]
