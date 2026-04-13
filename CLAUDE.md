@@ -1,7 +1,7 @@
 ---
-version: "1.7"
+version: "1.8"
 status: draft
-last_updated: 2026-04-12
+last_updated: 2026-04-13
 ---
 # CLAUDE.md — LTC Project Template
 
@@ -15,8 +15,9 @@ last_updated: 2026-04-12
 - **Purpose:** Enable LTC Project Managers to Effectively (Sustainable x Efficient x Scalable) build and operate AI-powered Operating Systems that construct domain sub-systems (currently: PD→DP→DA→IDM) to aid their work. Captures decisions, risks, and "why" in 5-workstream ALPEI structure.
 - **EO:** Maintain the generic ALPEI template all LTC projects clone from. Consumer teams add domain subsystems after cloning.
 ## Build and Validate
-- Template repo — no build step. Validate: `./scripts/template-check.sh`
-- 60 scripts in `scripts/` (28 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
+- Template repo — no build step. Validate: `./scripts/template-check.sh` | Full sweep: `./scripts/template-verify.sh`
+- Template sync: `/template-sync` (guided upgrade), `/template-check` (dry-run diff). Manifest: `_genesis/template-manifest.yml`
+- 60 scripts in `scripts/` (29 skills in `.claude/skills/`, 12 rules in `.claude/rules/`). Script index: `.claude/rules/script-registry.md`
 
 <!-- ── LTC STANDARD (do not modify below this line) ────────────────── -->
 ## Rules
@@ -62,7 +63,7 @@ UNG: `{SCOPE}_{FA}.{ID}.{NAME}`. ALWAYS load `rules/naming-rules.md` BEFORE crea
 EP-13: ONLY orchestrator (main session) calls `Agent()` — sub-agents MUST NEVER call `Agent()`. Dispatch vs. Team mode are distinct patterns.
 ## Filesystem Routing (full spec: `rules/filesystem-routing.md`)
 **A:** DSBV workstreams (ALIGN/PLAN/EXECUTE/IMPROVE) -> subsystem dirs + DSBV files. **B:** LEARN -> pipeline dirs, NEVER DSBV files.
-**C:** PKB + vault dirs (`/ingest`, `/vault-capture` write here, NEVER 2-LEARN). **D:** `_genesis/` -> OE-builder ONLY, NEVER ALPEI dirs.
+**C:** PKB + vault dirs (`/organise`, `/capture` write here, NEVER 2-LEARN). **D:** `_genesis/` -> OE-builder ONLY, NEVER ALPEI dirs.
 ## DSBV Process (full spec: `_genesis/templates/dsbv-process.md`)
 **Design -> Sequence -> Build -> Validate** for ALIGN/PLAN/EXECUTE/IMPROVE (not LEARN). Run `/dsbv`.
 - ALWAYS Design before Build. Human gates REQUIRED at each transition. Workstream N MUST have N-1 >=1 Approved artifact.
@@ -72,7 +73,7 @@ EP-13: ONLY orchestrator (main session) calls `Agent()` — sub-agents MUST NEVE
 Tier (strongest first): **hooks > scripts > rules > skills**. Config: `.claude/settings.json`.
 7 hook types: `SessionStart` (3), `PreToolUse` (13), `PostToolUse` (6), `SubagentStop` (2), `PreCompact` (1), `Stop` (3), `UserPromptSubmit` (1) — 29 total hooks covering naming, DSBV gates, status-guard, routing, frontmatter inject, state-save, ripple-check, changelog, recall.
 ## Pre-Flight Protocol (automated: `scripts/pre-flight.sh`)
-9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `BLUEPRINT.md`+`1-ALIGN/1-PD/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/_cross/`.
+9 checks before every task: (1) WORKSTREAM `/dsbv status` (2) ALIGNMENT `alpei-blueprint.md`+`1-ALIGN/1-PD/` (3) RISKS `UBS_REGISTER.md` S>E>Sc (4) DRIVERS `UDS_REGISTER.md` (5) TEMPLATES from `alpei-dsbv-process-map.md` (6) LEARNING `2-LEARN/` (7) VERSION metadata (8) EXECUTE S>E>Sc (9) DOCUMENT decisions in `1-ALIGN/_cross/`.
 If any check fails: MUST state which and why -> propose minimum fix -> ALWAYS wait for human approval.
 ## Rules Architecture
 `.claude/rules/` = auto-loaded summaries (12 files, always in context). `rules/` = full specs loaded on-demand. Dual-directory pattern: lean context, full specs accessible.

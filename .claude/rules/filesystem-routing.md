@@ -47,13 +47,13 @@ Structure: pipeline dirs (`input/`, `research/`, `specs/`, `output/`, `archive/`
 
 **HARD CONSTRAINT:** DSBV files (`DESIGN.md`, `SEQUENCE.md`, `VALIDATE.md`) MUST NEVER exist in `2-LEARN/`. LEARN uses a 6-state pipeline (S1-S5 + Complete), not DSBV.
 
-Skills `/ingest` and `/vault-capture` do NOT write to `2-LEARN/` — they write to Mode C dirs.
+Skills `/organise` and `/capture` do NOT write to `2-LEARN/` — they write to Mode C dirs.
 
 ## Mode C — PKB / Vault
 
 **Applies to:** `PERSONAL-KNOWLEDGE-BASE/`, `DAILY-NOTES/`, `inbox/`, `MISC-TASKS/`, `PEOPLE/`
 
-These are Obsidian vault directories. `/ingest` and `/vault-capture` write here.
+These are Obsidian vault directories. `/organise` and `/capture` write here.
 
 **HARD CONSTRAINT:** PKB content never goes to `2-LEARN/`. The learning pipeline and PKB are separate systems.
 
