@@ -48,6 +48,10 @@
 | LTC Powder Blue | #B7DDE1 | Official | — |
 | LTC Pink | #E87299 | Official | — |
 
+### Color Application Rule
+
+ALWAYS apply the **60-30-10 rule**: 60% dominant color, 30% secondary, 10% accent. NEVER use LTC colors outside this ratio for multi-color compositions.
+
 ---
 
 ## 3. Function Color Assignments
@@ -124,6 +128,25 @@ The following are available as images in the ClickUp wiki — consult for design
 - Logo image files (Midnight Green and Gold variants)
 
 ClickUp location: [LTC ALIGN]_MEMBER GUIDES > [LTC ALL]_ALIGN - WIKI & GUIDES > 1. LTC's BRAND IDENTITY SYSTEM
+
+## 7. Markdown Document Format
+
+ALWAYS capitalize ALL heading levels (H1, H2, H3, H4) in every `.md` file — rules, agents, skills, docs, wikis, READMEs. No exceptions.
+
+ALWAYS bold AND capitalize ALL table headers — first row AND first column.
+
+NEVER use title case or sentence case for any heading or table header.
+
+Data cells (non-header table cells) use normal sentence case.
+
+| | CORRECT ✓ | WRONG ✗ |
+|---|---|---|
+| **HEADING** | `## OUTPUT FORMAT` | `## Output Format` |
+| **HEADING** | `## RULES` | `## Rules` |
+| **TABLE HEADER (row)** | `\| **SOURCE TYPE** \|` | `\| Source type \|` |
+| **TABLE HEADER (col 1)** | `\| **Books** \|` | `\| Books \|` |
+
+---
 
 ## Links
 
