@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 1.3 | status: in-review | last_updated: 2026-04-09
+# version: 1.4 | status: in-review | last_updated: 2026-04-13
 """Generate README shells from readme-blueprint.md for all directories.
 
 Writes ONLY shell structure (frontmatter + section headers + placeholders).
@@ -421,7 +421,7 @@ PD-LEARN  →  DP-LEARN  →  DA-LEARN  →  IDM-LEARN
 2-LEARN ──"scope changed"──> 1-ALIGN  (re-align)
 ```
 
-> **Note:** `/ingest` and `/vault-capture` write to PKB dirs (Mode C), NOT to 2-LEARN/.
+> **Note:** `/organise` and `/capture` write to PKB dirs (Mode C), NOT to 2-LEARN/.
 
 ## DASHBOARDS
 

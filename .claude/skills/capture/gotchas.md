@@ -1,4 +1,4 @@
-# Gotchas — vault-capture
+# Gotchas — capture
 
 ## Known Issues
 

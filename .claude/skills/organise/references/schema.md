@@ -57,7 +57,7 @@ Reference: `_genesis/frameworks/learning-hierarchy.md`
 
 ## Extended Frontmatter Spec
 
-Every wiki page in `distilled/` MUST have this frontmatter:
+Every wiki page in `2-organised/` MUST have this frontmatter:
 
 ```yaml
 ---
@@ -65,7 +65,7 @@ version: "2.0"
 status: draft
 last_updated: 2026-04-05
 topic: skills
-source: captured/anthropic-skill-docs.md
+source: 1-captured/anthropic-skill-docs.md
 review: true
 review_interval: 7
 questions_answered:
@@ -94,7 +94,7 @@ questions_answered:
 | 100KB-500KB | 3,000-15,000 | Chunked (sequential sections) | Too large for single pass; sequential preserves coherence |
 | >500KB | >15,000 | Parallel (Agent dispatch) | Requires decomposition per EP-09; orchestrator synthesis per EP-13 |
 
-**How to measure:** `wc -c captured/filename.md` for bytes, `wc -l` for lines.
+**How to measure:** `wc -c 1-captured/filename.md` for bytes, `wc -l` for lines.
 
 ## Multi-Page Ingest Rules
 

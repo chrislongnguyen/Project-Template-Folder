@@ -1,17 +1,17 @@
 ---
 name: organise
-version: "2.3"
+version: "2.4"
 status: draft
 last_updated: 2026-04-13
 model: claude-sonnet-4-6
-description: "Organise raw sources from captured/ into structured wiki pages in organised/. Use when PM drops files into PERSONAL-KNOWLEDGE-BASE/captured/ and says /organise, 'organise knowledge', or 'process captured'."
+description: "Organise raw sources from 1-captured/ into structured wiki pages in 2-organised/. Use when PM drops files into PERSONAL-KNOWLEDGE-BASE/1-captured/ and says /organise, 'organise knowledge', or 'process captured'."
 argument-hint: "[source-filename] [--depth L1|L2|L3|L4] [--dry-run]"
 disable-model-invocation: true
 allowed-tools: "Read Write Edit Grep Glob Bash Agent"
 ---
 # /organise — Personal Knowledge Base Organise
 
-> Reads raw sources from `PERSONAL-KNOWLEDGE-BASE/captured/`, organises them into structured wiki pages in `organised/`, updates the index and log. Based on Karpathy's LLM Wiki pattern + LTC Learning Hierarchy.
+> Reads raw sources from `PERSONAL-KNOWLEDGE-BASE/1-captured/`, organises them into structured wiki pages in `2-organised/`, updates the index and log. Based on Karpathy's LLM Wiki pattern + LTC Learning Hierarchy.
 
 ## Pre-Flight
 
@@ -25,7 +25,7 @@ Parse `$ARGUMENTS` as space-separated tokens:
 
 | Token | Meaning | Default |
 |---|---|---|
-| Bare word (no `--`) | Source filename in `captured/` | All uningested files |
+| Bare word (no `--`) | Source filename in `1-captured/` | All uningested files |
 | `--depth L1\|L2\|L3\|L4` | Override minimum depth target | L2 |
 | `--dry-run` | Report what WOULD be created; no writes | Off (full writes) |
 
@@ -39,8 +39,8 @@ Examples:
 
 ```
 Source Analysis
-├─ Arg provided? → Ingest ONLY that file from captured/
-├─ No arg? → Scan captured/ for ALL uningested files (not in _log.md)
+├─ Arg provided? → Ingest ONLY that file from 1-captured/
+├─ No arg? → Scan 1-captured/ for ALL uningested files (not in _log.md)
 │
 Size Routing (per file)
 ├─ <100KB (≈3K lines) → STANDARD pipeline (Steps 1-5 below)
@@ -59,9 +59,9 @@ Depth Override
 2. NEVER skip Steps 4-5 (_log.md + _index.md update) — invisible pages are worse than no pages
 3. NEVER declare a level in frontmatter — level is DERIVED from `questions_answered` count
 4. NEVER create a page below L2 minimum (6/12 questions) unless using the Escape Hatch
-5. Every page MUST have `source:` frontmatter pointing to the captured/ file
+5. Every page MUST have `source:` frontmatter pointing to the `1-captured/` file
 6. After 2 validation failures on the same page, STOP and ask the user
-7. NEVER modify files in `captured/` — they are immutable source material
+7. NEVER modify files in `1-captured/` — they are immutable source material
 
 </HARD-GATE>
 
@@ -69,7 +69,7 @@ Depth Override
 
 ```
 Step 1 — Read source
-  Read files in captured/ not yet in organised/_log.md.
+  Read files in 1-captured/ not yet in 2-organised/_log.md.
   If arg provided, read ONLY that file.
 
 Step 2 — Check _index.md (MANDATORY — prevents duplicates)
@@ -77,9 +77,9 @@ Step 2 — Check _index.md (MANDATORY — prevents duplicates)
   Decide: create new page or update existing.
   If updating: read the existing page first, merge content.
 
-Step 3 — Write/update organised/ pages
+Step 3 — Write/update 2-organised/ pages
   a. Classify: entity page or synthesis page (→ ${CLAUDE_SKILL_DIR}/references/schema.md)
-  b. Determine topic → write to organised/{topic}/{page-name}.md
+  b. Determine topic → write to 2-organised/{topic}/{page-name}.md
   c. Answer L1-L4 questions per depth target (→ ${CLAUDE_SKILL_DIR}/references/schema.md)
   d. Add extended frontmatter (→ ${CLAUDE_SKILL_DIR}/references/schema.md §Frontmatter Spec)
   e. Add Obsidian [[links]] to related pages (check _index.md for candidates)
@@ -131,7 +131,7 @@ Phase 2 — Section Build (N × ltc-builder, Sonnet, parallel)
     EO: "Distil section N into wiki pages following schema"
     INPUT: Section text (by line range) + _index.md + schema.md
     EP: "L2 minimum, entity/synthesis classification, [[links]] required"
-    OUTPUT: "1+ wiki pages as markdown with full frontmatter, written to organised/{topic}/"
+    OUTPUT: "1+ wiki pages as markdown with full frontmatter, written to 2-organised/{topic}/"
     VERIFY: "questions_answered ≥ 6, source attribution present, no duplicate titles vs _index.md"
 
 Phase 3 — Synthesis (orchestrator, this session, Sonnet)
@@ -145,7 +145,7 @@ Phase 3 — Synthesis (orchestrator, this session, Sonnet)
 
 ## Depth Minimum
 
-Every organised/ page must reach **L2 (Understanding)** — 6/12 questions answered.
+Every 2-organised/ page must reach **L2 (Understanding)** — 6/12 questions answered.
 Core skill/framework pages: L3. Architecture decisions: L4.
 Full question list and frontmatter spec: [references/schema.md](references/schema.md)
 
@@ -165,7 +165,7 @@ After completing all steps, verify before finishing:
 - [ ] `_index.md` lists every new/updated page
 - [ ] All new pages have `[[links]]` to ≥1 related page
 - [ ] No duplicate page titles in `_index.md`
-- [ ] `source:` frontmatter points to correct captured/ file
+- [ ] `source:` frontmatter points to correct `1-captured/` file
 - [ ] If updating existing page: version bumped, last_updated set
 
 Post-validation:

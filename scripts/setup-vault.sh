@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 2.3 | status: in-review | last_updated: 2026-04-09
+# version: 2.4 | status: in-review | last_updated: 2026-04-13
 #
 # setup-vault.sh — Idempotent Obsidian Vault Folder Creation
 #
@@ -21,6 +21,15 @@
 #
 
 set -euo pipefail
+
+# ─────────────────────────────────────────────────────────────
+# HELP
+# ─────────────────────────────────────────────────────────────
+
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  grep '^#' "$0" | grep -v '^#!/' | sed 's/^# //' | sed 's/^#//'
+  exit 0
+fi
 
 # ─────────────────────────────────────────────────────────────
 # CONFIG
@@ -71,6 +80,25 @@ fi
 for folder in "${FOLDERS[@]}"; do
   mkdir -p "$VAULT_ROOT/$folder" || {
     echo "ERROR: Failed to create folder '$VAULT_ROOT/$folder'" >&2
+    exit 1
+  }
+done
+
+# PKB sub-directories: 1-captured (raw immutable), 2-organised (AI wiki pages), 3-distilled (human synthesis), 4-expressed (outputs)
+PKB_SUBDIRS=(
+  "PERSONAL-KNOWLEDGE-BASE/1-captured"
+  "PERSONAL-KNOWLEDGE-BASE/2-organised"
+  "PERSONAL-KNOWLEDGE-BASE/3-distilled"
+  "PERSONAL-KNOWLEDGE-BASE/4-expressed"
+)
+
+for subdir in "${PKB_SUBDIRS[@]}"; do
+  mkdir -p "$VAULT_ROOT/$subdir" || {
+    echo "ERROR: Failed to create '$VAULT_ROOT/$subdir'" >&2
+    exit 1
+  }
+  touch "$VAULT_ROOT/$subdir/.gitkeep" || {
+    echo "ERROR: Failed to create .gitkeep in '$VAULT_ROOT/$subdir'" >&2
     exit 1
   }
 done

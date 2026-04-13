@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# version: 3.4 | status: draft | last_updated: 2026-04-11
+# version: 3.5 | status: draft | last_updated: 2026-04-13
 """
 gemini-audit.py v3.4 — Comprehensive multi-agent workspace audit.
 
@@ -429,7 +429,7 @@ SessionStart(3), PreToolUse(13), PostToolUse(6), SubagentStop(2), PreCompact(1),
 Example: `status-guard.sh` blocks `status: validated` at pre-commit — only human can validate.
 
 **Skills** (28 in .claude/skills/) — slash commands invoked via `/command`. Loaded on demand.
-Key: `/dsbv` (DSBV lifecycle), `/learn` (6-state pipeline), `/ingest` (PKB), `/git-save` (commits).
+Key: `/dsbv` (DSBV lifecycle), `/learn` (6-state pipeline), `/organise` (PKB), `/git-save` (commits).
 
 **Rules** (12 in .claude/rules/) — always-on markdown auto-loaded every session. Define naming, versioning, routing.
 
@@ -472,14 +472,14 @@ AREAS = [
     ("genesis-fw",       "_genesis/frameworks/", "9 canonical frameworks (Vinh's). Process map (alpei-dsbv-process-map.md + parts). All should have frontmatter. Paths in process map must match filesystem-routing."),
     ("genesis-tmpl",     "_genesis/templates/",  "Templates for every DSBV artifact type. Learning book pages (P0-P7). DSBV context template. Check completeness vs process map claims."),
     ("genesis-sops",     "_genesis/sops/",       "Standard Operating Procedures. The main SOP should match actual repo state (counts, paths, workflow). Migration guide, setup guide."),
-    ("claude-skills",    ".claude/skills/",      "28 skill dirs, each with SKILL.md (required). Check: frontmatter present, script refs resolve, gotchas.md where needed. Key skills: /dsbv, /learn, /ingest, /git-save."),
+    ("claude-skills",    ".claude/skills/",      "28 skill dirs, each with SKILL.md (required). Check: frontmatter present, script refs resolve, gotchas.md where needed. Key skills: /dsbv, /learn, /organise, /git-save."),
     ("claude-gov",       ".claude/",             "Rules (12), agents (4), hooks (15 scripts), settings.json (29 registrations). Check: hook scripts exist for every settings.json entry. Rule files cover naming, versioning, routing, dispatch, enforcement."),
     ("scripts-root",     "scripts/",             "53 scripts. Each .sh/.py should have version header comment. Check script-registry.md lists all. No orphan scripts. Pre-flight, template-check, validate-blueprint critical."),
     ("root-config",      "",                     "Root-level files: README.md, CLAUDE.md, AGENTS.md, GEMINI.md, codex.md, CHANGELOG.md, VERSION. These are the first things a PM sees. Check: counts accurate, links valid, bootstrap note present, iteration version correct."),
     ("genesis-other",    "_genesis/",            "Remaining _genesis/ subdirs: brand, compliance, culture, governance, guides, obsidian, philosophy, principles, reference, scripts, security, tools, training. Organizational knowledge. Check: frontmatter, content quality, not orphaned."),
     ("rules-fullspec",   "rules/",               "Full-spec rule files (on-demand, not auto-loaded). 8 files covering: agent-system, brand-identity, filesystem-routing, general-system, naming-convention, security-rules, tool-routing. Check: consistent with .claude/rules/ summaries."),
     ("cursor-config",    ".cursor/",             "Cursor IDE config: 11 rule files in rules/. Should mirror CLAUDE.md key sections: DSBV, enforcement, routing, naming, agent roster. Check: parity with .claude/rules/."),
-    ("pkb-vault",        "PERSONAL-KNOWLEDGE-BASE/", "Personal Knowledge Base: Capture→Distill→Express pipeline. README, dashboard, captured/, distilled/. Check: README documents auto-recall, frontmatter lowercase, no stale content."),
+    ("pkb-vault",        "PERSONAL-KNOWLEDGE-BASE/", "Personal Knowledge Base: Capture→Organise→Express pipeline. README, dashboard, 1-captured/, 2-organised/. Check: README documents auto-recall, frontmatter lowercase, no stale content."),
     ("vault-other",      "",                     "Vault dirs: DAILY-NOTES/, inbox/, MISC-TASKS/, PEOPLE/. Light scaffolding. Check: READMEs exist, .gitkeep files present, no personal data leaked."),
 ]
 

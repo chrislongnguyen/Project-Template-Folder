@@ -41,15 +41,19 @@ tsconfig.tsbuildinfo
 
 # PKB — personal content, never shipped with template
 # Only .gitkeep and README.md are tracked (structural scaffolding)
-PERSONAL-KNOWLEDGE-BASE/captured/*
-!PERSONAL-KNOWLEDGE-BASE/captured/.gitkeep
-!PERSONAL-KNOWLEDGE-BASE/captured/README.md
-PERSONAL-KNOWLEDGE-BASE/distilled/*
-!PERSONAL-KNOWLEDGE-BASE/distilled/.gitkeep
-!PERSONAL-KNOWLEDGE-BASE/distilled/README.md
-PERSONAL-KNOWLEDGE-BASE/expressed/*
-!PERSONAL-KNOWLEDGE-BASE/expressed/.gitkeep
-!PERSONAL-KNOWLEDGE-BASE/expressed/README.md
+PERSONAL-KNOWLEDGE-BASE/1-captured/*
+!PERSONAL-KNOWLEDGE-BASE/1-captured/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/1-captured/README.md
+PERSONAL-KNOWLEDGE-BASE/2-organised/*
+!PERSONAL-KNOWLEDGE-BASE/2-organised/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/2-organised/README.md
+PERSONAL-KNOWLEDGE-BASE/3-distilled/*
+!PERSONAL-KNOWLEDGE-BASE/3-distilled/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/3-distilled/README.md
+!PERSONAL-KNOWLEDGE-BASE/3-distilled/_index.md
+PERSONAL-KNOWLEDGE-BASE/4-expressed/*
+!PERSONAL-KNOWLEDGE-BASE/4-expressed/.gitkeep
+!PERSONAL-KNOWLEDGE-BASE/4-expressed/README.md
 PERSONAL-KNOWLEDGE-BASE/dashboard.md
 PERSONAL-KNOWLEDGE-BASE/knowledge-map.canvas
 PERSONAL-KNOWLEDGE-BASE/*.canvas

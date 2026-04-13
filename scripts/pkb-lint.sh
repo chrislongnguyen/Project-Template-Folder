@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # pkb-lint.sh — autonomous health check for the Personal Knowledge Base
-# version: 2.2 | status: in-review | last_updated: 2026-04-11
+# version: 2.3 | status: in-review | last_updated: 2026-04-13
 #
 # Runs 8 mechanical checks that need zero LLM involvement.
 # Designed S > E > Sc: reliable first, fast second, scales to 1000+ pages.
@@ -18,8 +18,8 @@ set -euo pipefail
 # ── Config ──────────────────────────────────────────────────────────────────
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 PKB="$REPO_ROOT/PERSONAL-KNOWLEDGE-BASE"
-DISTILLED="$PKB/distilled"
-CAPTURED="$PKB/captured"
+DISTILLED="$PKB/2-organised"
+CAPTURED="$PKB/1-captured"
 INDEX="$DISTILLED/_index.md"
 LOG="$DISTILLED/_log.md"
 STALE_DAYS=30
@@ -73,9 +73,9 @@ if [[ -d "$CAPTURED" ]] && [[ -f "$LOG" ]]; then
 fi
 
 if [[ ${#uningested[@]} -eq 0 ]]; then
-  pass "UNINGESTED" "All captured/ files are in _log.md"
+  pass "UNINGESTED" "All 1-captured/ files are in _log.md"
 else
-  warn "UNINGESTED" "${#uningested[@]} file(s) in captured/ not yet ingested"
+  warn "UNINGESTED" "${#uningested[@]} file(s) in 1-captured/ not yet ingested"
   for f in "${uningested[@]}"; do detail "$f"; done
 fi
 
@@ -152,7 +152,7 @@ orphans=()
 while IFS= read -r -d '' file; do
   name="$(basename "$file" .md)"
   [[ "$name" == _* ]] && continue
-  # Search all other .md files in distilled/ for [[name]]
+  # Search all other .md files in organised/ for [[name]]
   inbound=$(grep -rl "\[\[$name\]\]" "$DISTILLED" 2>/dev/null | grep -v "$file" | wc -l | tr -d ' ')
   # Also check _index.md
   in_index=$(grep -c "\[\[$name\]\]" "$INDEX" 2>/dev/null || echo 0)
@@ -189,7 +189,7 @@ while IFS= read -r -d '' file; do
       brand-identity|cursor-appearance|ltc-bases-colors|ltc-folder-colors|ltc-reading-experience) continue ;;
       red.anthropic*|"Developer's"*) continue ;;
     esac
-    # Check if a .md file with this name exists anywhere in distilled/
+    # Check if a .md file with this name exists anywhere in organised/
     found=$(find "$DISTILLED" -name "${target}.md" -type f 2>/dev/null | head -1)
     # Also check captured/
     [[ -z "$found" ]] && found=$(find "$CAPTURED" -name "${target}.md" -type f 2>/dev/null | head -1)

@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 1.0 | status: draft | last_updated: 2026-04-08
+# version: 1.1 | status: draft | last_updated: 2026-04-13
 #
 # skill-sync-user.sh — Copy project-scope skills to user-scope (~/.claude/skills/)
 #
@@ -22,7 +22,7 @@ CROSS_PROJECT_SKILLS=(
   "compress"
   "deep-research"
   "slide-deck"
-  "vault-capture"
+  "capture"
 )
 
 DRY_RUN=false

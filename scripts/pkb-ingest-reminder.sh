@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # pkb-ingest-reminder.sh — check for uningested files in captured/
-# version: 2.1 | status: in-review | last_updated: 2026-04-09
+# version: 2.2 | status: in-review | last_updated: 2026-04-13
 #
 # Called by post-session hook. Prints reminder if captured/ has files
 # not yet logged in _log.md. Always exits 0 (reminder, not blocker).
@@ -8,8 +8,8 @@
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-CAPTURED="$REPO_ROOT/PERSONAL-KNOWLEDGE-BASE/captured"
-LOG="$REPO_ROOT/PERSONAL-KNOWLEDGE-BASE/distilled/_log.md"
+CAPTURED="$REPO_ROOT/PERSONAL-KNOWLEDGE-BASE/1-captured"
+LOG="$REPO_ROOT/PERSONAL-KNOWLEDGE-BASE/2-organised/_log.md"
 
 # Exit silently if PKB not scaffolded
 [[ -d "$CAPTURED" ]] || exit 0
@@ -35,11 +35,11 @@ done
 # Print reminder only if uningested files exist
 if [[ ${#uningested[@]} -gt 0 ]]; then
     echo ""
-    echo "📚 PKB Ingest Reminder: ${#uningested[@]} file(s) in captured/ not yet ingested:"
+    echo "📚 PKB Ingest Reminder: ${#uningested[@]} file(s) in 1-captured/ not yet ingested:"
     for file in "${uningested[@]}"; do
         echo "   → $file"
     done
-    echo "   Run /ingest to distil these into your knowledge base."
+    echo "   Run /organise to organise these into your knowledge base."
     echo ""
 fi
 

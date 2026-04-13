@@ -199,13 +199,13 @@ Each area is a MECE partition of the repo. Every tracked file belongs to exactly
 
 ### 20. pkb
 - **Path:** `PERSONAL-KNOWLEDGE-BASE/`
-- **Expected:** Capture→Distill→Express pipeline. README, dashboard, captured/, distilled/
+- **Expected:** Capture→Organise→Distil→Express 4-stage pipeline. README, dashboard, 1-captured/, 2-organised/, 3-distilled/
 - **Audit criteria:**
   - README documents auto-recall, QMD integration
-  - Dashboard config references correct properties
+  - Dashboard config references correct properties (2-organised/ not 3-distilled/ for AI pages)
   - Frontmatter all lowercase
   - No stale content (>30 days without update flagged)
-  - captured/ files should be logged in _log.md
+  - 1-captured/ files should be logged in 2-organised/_log.md
 
 ### 21. vault-other
 - **Path:** `DAILY-NOTES/`, `inbox/`, `MISC-TASKS/`, `PEOPLE/`

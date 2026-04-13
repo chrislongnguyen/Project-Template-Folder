@@ -1,38 +1,38 @@
 ---
-name: vault-capture
-description: Capture conversation content, research notes, or ephemeral text to inbox/ staging area. Use when you want to save something quickly without deciding where it belongs yet.
-version: "2.0"
+name: capture
+description: Capture conversation content, research notes, or ephemeral text to 1-captured/ staging area. Use when you want to save something quickly without deciding where it belongs yet.
+version: "2.1"
 status: draft
-last_updated: "2026-04-05"
+last_updated: "2026-04-13"
 ---
-# /vault-capture — Quick Capture to Vault Inbox
+# /capture — Quick Capture to PKB
 
-Dump content from the current conversation into the vault's staging area. Capture first, organize later. The `/vault-promote` command (Iteration 3 scope) handles moving captured notes to their final workstream location.
+Dump content from the current conversation into the vault's staging area. Capture first, organise later. The `/vault-promote` command (Iteration 3 scope) handles moving captured notes to their final workstream location.
 
 ---
 
 ## Trigger
 
 ```
-/vault-capture "title"
-/vault-capture "title" --to learn
+/capture "title"
+/capture "title" --to learn
 ```
 
 ---
 
-## Default Mode — inbox/
+## Default Mode — 1-captured/
 
-`/vault-capture "title"` writes a new note to `inbox/` in the project root.
+`/capture "title"` writes a new note to `PERSONAL-KNOWLEDGE-BASE/1-captured/` in the project root.
 
 ### Output path
 
 ```
-inbox/{YYYY-MM-DD}_{slug}.md
+PERSONAL-KNOWLEDGE-BASE/1-captured/{YYYY-MM-DD}_{slug}.md
 ```
 
 Slug rules: lowercase title, spaces → hyphens, strip non-alphanumeric (except hyphens), max 50 chars.
 
-Example: `/vault-capture "API rate limit research"` → `inbox/2026-04-05_api-rate-limit-research.md`
+Example: `/capture "API rate limit research"` → `PERSONAL-KNOWLEDGE-BASE/1-captured/2026-04-13_api-rate-limit-research.md`
 
 ### Frontmatter applied to captured file
 
@@ -49,8 +49,8 @@ tags: []
 
 1. Compute today's date (YYYY-MM-DD).
 2. Generate slug from title: lowercase → spaces to hyphens → strip non-alphanumeric except hyphens → truncate at 50 chars.
-3. Check whether `inbox/` exists at the project root. If missing, create it using Bash: `mkdir -p {project_root}/inbox`.
-4. Build the full file path: `{project_root}/inbox/{date}_{slug}.md`.
+3. Check whether `PERSONAL-KNOWLEDGE-BASE/1-captured/` exists at the project root. If missing, create it using Bash: `mkdir -p {project_root}/PERSONAL-KNOWLEDGE-BASE/1-captured`.
+4. Build the full file path: `{project_root}/PERSONAL-KNOWLEDGE-BASE/1-captured/{date}_{slug}.md`.
 5. Write the file using the Write tool with the frontmatter block above plus `# {title}` as the H1, followed by the content to capture.
 6. Confirm the path to the user.
 
@@ -60,7 +60,7 @@ tags: []
 
 ## --to learn Flag — Research Destination
 
-`/vault-capture "title" --to learn` writes to `2-LEARN/research/` with full governance frontmatter.
+`/capture "title" --to learn` writes to `2-LEARN/research/` with full governance frontmatter.
 
 ### Output path
 
@@ -110,7 +110,7 @@ last_updated: "YYYY-MM-DD"
 
 | Condition | Behavior |
 |-----------|----------|
-| `inbox/` does not exist | Create with `mkdir -p` before writing |
+| `PERSONAL-KNOWLEDGE-BASE/1-captured/` does not exist | Create with `mkdir -p` before writing |
 | `2-LEARN/research/` does not exist | Create with `mkdir -p` before writing |
 | File at target path already exists | Append `_2`, `_3`, etc. to slug until unique |
 | Title is empty string | Stop and ask user for a title |
@@ -122,8 +122,8 @@ last_updated: "YYYY-MM-DD"
 
 | In scope | Out of scope |
 |----------|-------------|
-| Write to `inbox/` or `2-LEARN/research/` | Move or rename existing notes |
-| Create `inbox/` or `2-LEARN/research/` if missing | Reorganize vault structure |
+| Write to `PERSONAL-KNOWLEDGE-BASE/1-captured/` or `2-LEARN/research/` | Move or rename existing notes |
+| Create `PERSONAL-KNOWLEDGE-BASE/1-captured/` or `2-LEARN/research/` if missing | Reorganize vault structure |
 | Apply minimal frontmatter | Tag disambiguation or taxonomy decisions |
 | Confirm output path | Promote to final workstream location (use `/vault-promote` — Iteration 3) |
 
